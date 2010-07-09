@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "author": "Nick Fisher",
   "name": "deepmerge",
   "description": "A library for deep (recursive) merging of Javascript objects",
@@ -35,4 +36,18 @@
     "tap": "~7.1.2"
   },
   "license": "MIT"
+=======
+    "name" : "traverse",
+    "version" : "0.0.1",
+    "description" : "
+        Traverse and transform objects by visiting every node on a recursive
+        walk.
+    ",
+    "author" : "James Halliday",
+    "main" : "traverse",
+    "repository" : {
+        "type" : "git",
+        "url" : "http://github.com/substack/js-traverse.git"
+    }
+>>>>>>> more examples
 }
