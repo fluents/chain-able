@@ -151,7 +151,7 @@ function walk (root, cb) {
     var path = [];
     var parents = [];
     
-    return (function walker (node) {
+    (function walker (node) {
         var modifiers = {};
         
         var state = {
