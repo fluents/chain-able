@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "webpack-chain",
   "version": "3.3.0",
   "main": "src/Config.js",
@@ -25,4 +26,19 @@
     "ava": "^0.19.1",
     "webpack": "^2.3.3"
   }
+=======
+  "author": "",
+  "name": "deepmerge",
+  "description": "A library for deep (recursive) merging of Javascript objects",
+  "version": "0.0.0",
+  "repository": {
+    "url": ""
+  },
+  "main": "index",
+  "engines": {
+    "node": "~0.6.6"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+>>>>>>> initial commit
 }

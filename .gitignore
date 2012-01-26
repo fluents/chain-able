@@ -1,6 +1,4 @@
 <<<<<<< HEAD
-node_modules
-=======
 # Logs
 logs
 *.log
@@ -46,4 +44,9 @@ jspm_packages
 
 # Webstorm project metadata
 .idea
+=======
+node_modules
+
+#jasmine
+reports
 >>>>>>> initial commit
