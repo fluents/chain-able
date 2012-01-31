@@ -1,5 +1,6 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
   "name": "webpack-chain",
   "version": "3.3.0",
   "main": "src/Config.js",
@@ -28,9 +29,12 @@
   }
 =======
   "author": "",
+=======
+  "author": "Nick Fisher",
+>>>>>>> tests are passing.  need 1 more test case
   "name": "deepmerge",
   "description": "A library for deep (recursive) merging of Javascript objects",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "repository": {
     "url": ""
   },
@@ -39,6 +43,12 @@
     "node": "~0.6.6"
   },
   "dependencies": {},
+<<<<<<< HEAD
   "devDependencies": {}
 >>>>>>> initial commit
+=======
+  "devDependencies": {
+    "jasmine-node": "~1.0.20"
+  }
+>>>>>>> tests are passing.  need 1 more test case
 }
