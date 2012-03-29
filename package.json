@@ -34,7 +34,11 @@
 >>>>>>> tests are passing.  need 1 more test case
   "name": "deepmerge",
   "description": "A library for deep (recursive) merging of Javascript objects",
+<<<<<<< HEAD
   "version": "0.0.1",
+=======
+  "version": "0.2.1",
+>>>>>>> incremented version #
   "homepage": "https://github.com/nrf110/deepmerge",
   "repository": {
     "type": "git",
