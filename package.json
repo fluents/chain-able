@@ -1,57 +1,39 @@
 {
-<<<<<<< HEAD
-  "author": "Nick Fisher",
-  "name": "deepmerge",
-  "description": "A library for deep (recursive) merging of Javascript objects",
-  "keywords": [
-    "merge",
-    "deep",
-    "extend",
-    "copy",
-    "clone",
-    "recursive"
-  ],
-  "version": "1.4.4",
-  "homepage": "https://github.com/KyleAMathews/deepmerge",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/KyleAMathews/deepmerge.git"
-  },
-  "main": "dist/umd.js",
-  "module": "dist/es.js",
-  "browser": "dist/cjs.js",
-  "engines": {
-    "node": ">=0.10.0"
-  },
-  "scripts": {
-    "build": "rollup -c",
-    "test": "npm run build && tap test/*.js && jsmd README.markdown"
-  },
-  "devDependencies": {
-    "is-mergeable-object": "~1.0.3",
-    "jsmd": "0.3.1",
-    "rollup": "0.41.6",
-    "rollup-plugin-commonjs": "8.0.2",
-    "rollup-plugin-node-resolve": "3.0.0",
-    "tap": "~7.1.2"
-  },
-  "license": "MIT"
-=======
-    "name" : "traverse",
+    "name" : "js-traverse",
     "version" : "0.6.2",
-    "description" : "Traverse and transform objects by visiting every node on a recursive walk",
-    "author" : "James Halliday",
-    "license" : "MIT/X11",
-    "main" : "./index",
-    "repository" : {
-        "type" : "git",
-        "url" : "http://github.com/substack/js-traverse.git"
+    "description" : "traverse and transform objects by visiting every node on a recursive walk",
+    "main" : "index.js",
+    "bin" : {},
+    "directories" : {
+        "example" : "example",
+        "test" : "test"
     },
+    "dependencies" : {},
     "devDependencies" : {
-        "expresso" : "0.7.x"
+        "tap" : "~0.2.5"
     },
     "scripts" : {
-        "test" : "expresso"
-    }
->>>>>>> more examples
+        "test" : "tap test/*.js"
+    },
+    "repository" : {
+        "type" : "git",
+        "url" : "git://github.com/substack/js-traverse.git"
+    },
+    "homepage" : "https://github.com/substack/js-traverse",
+    "keywords" : [
+        "traverse",
+        "walk",
+        "recursive",
+        "map",
+        "forEach",
+        "deep",
+        "clone"
+    ],
+    "author" : {
+        "name" : "James Halliday",
+        "email" : "mail@substack.net",
+        "url" : "http://substack.net"
+    },
+    "license" : "MIT",
+    "engine" : { "node" : ">=0.6" }
 }
