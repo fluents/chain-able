@@ -3,6 +3,7 @@ node_js:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   - '6.9'
   - '7.7'
 cache:
@@ -24,5 +25,7 @@ script:
 >>>>>>> Update supported node engines to 0.10+
 =======
   - 0.4
+=======
+>>>>>>> drop 0.4
   - 0.6
 >>>>>>> using travis
