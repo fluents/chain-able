@@ -94,7 +94,7 @@ Traverse.prototype.clone = function () {
             parents.push(src);
             nodes.push(dst);
             
-            forEach(objectKeys(src), function (key) {
+            forEach(Object_keys(src), function (key) {
                 dst[key] = clone(src[key]);
             });
             
@@ -141,7 +141,7 @@ function walk (root, cb, immutable) {
                 if (stopHere) keepGoing = false;
             },
             remove : function (stopHere) {
-                if (isArray(state.parent.node)) {
+                if (Array_isArray(state.parent.node)) {
                     state.parent.node.splice(state.key, 1);
                 }
                 else {
@@ -159,26 +159,33 @@ function walk (root, cb, immutable) {
         };
         
         if (!alive) return state;
-        
-        if (typeof node === 'object' && node !== null) {
-            state.keys = objectKeys(node);
-            
-            state.isLeaf = state.keys.length == 0;
-            
-            for (var i = 0; i < parents.length; i++) {
-                if (parents[i].node_ === node_) {
-                    state.circular = parents[i];
-                    break;
+
+        function updateState() {
+            if (typeof state.node === 'object' && state.node !== null) {
+                if (!state.keys || state.node_ !== state.node) {
+                    state.keys = Object_keys(state.node)
+                }
+
+                state.isLeaf = state.keys.length == 0;
+
+                for (var i = 0; i < parents.length; i++) {
+                    if (parents[i].node_ === node_) {
+                        state.circular = parents[i];
+                        break;
+                    }
                 }
             }
+            else {
+                state.isLeaf = true;
+                state.keys = null;
+            }
+
+            state.notLeaf = !state.isLeaf;
+            state.notRoot = !state.isRoot;
         }
-        else {
-            state.isLeaf = true;
-        }
-        
-        state.notLeaf = !state.isLeaf;
-        state.notRoot = !state.isRoot;
-        
+
+        updateState();
+
         // use return values to update if defined
         var ret = cb.call(state, state.node);
         if (ret !== undefined && state.update) state.update(ret);
@@ -190,7 +197,9 @@ function walk (root, cb, immutable) {
         if (typeof state.node == 'object'
         && state.node !== null && !state.circular) {
             parents.push(state);
-            
+
+            updateState();
+
             forEach(state.keys, function (key, i) {
                 path.push(key);
                 
@@ -221,7 +230,7 @@ function copy (src) {
     if (typeof src === 'object' && src !== null) {
         var dst;
         
-        if (isArray(src)) {
+        if (Array_isArray(src)) {
             dst = [];
         }
         else if (isDate(src)) {
@@ -245,21 +254,15 @@ function copy (src) {
         else if (Object.create && Object.getPrototypeOf) {
             dst = Object.create(Object.getPrototypeOf(src));
         }
-        else if (src.constructor === Object) {
-            dst = {};
-        }
-        else {
-            var proto =
-                (src.constructor && src.constructor.prototype)
-                || src.__proto__
-                || {}
-            ;
+        else if (src.__proto__ || src.constructor.prototype) {
+            var proto = src.__proto__ || src.constructor.prototype || {};
             var T = function () {};
             T.prototype = proto;
             dst = new T;
+            if (!dst.__proto__) dst.__proto__ = proto;
         }
         
-        forEach(objectKeys(src), function (key) {
+        forEach(Object_keys(src), function (key) {
             dst[key] = src[key];
         });
         return dst;
@@ -267,7 +270,7 @@ function copy (src) {
     else return src;
 }
 
-var objectKeys = Object.keys || function keys (obj) {
+var Object_keys = Object.keys || function keys (obj) {
     var res = [];
     for (var key in obj) res.push(key)
     return res;
@@ -281,7 +284,7 @@ function isBoolean (obj) { return toS(obj) === '[object Boolean]' }
 function isNumber (obj) { return toS(obj) === '[object Number]' }
 function isString (obj) { return toS(obj) === '[object String]' }
 
-var isArray = Array.isArray || function isArray (xs) {
+var Array_isArray = Array.isArray || function isArray (xs) {
     return Object.prototype.toString.call(xs) === '[object Array]';
 };
 
@@ -292,7 +295,7 @@ var forEach = function (xs, fn) {
     }
 };
 
-forEach(objectKeys(Traverse.prototype), function (key) {
+forEach(Object_keys(Traverse.prototype), function (key) {
     traverse[key] = function (obj) {
         var args = [].slice.call(arguments, 1);
         var t = new Traverse(obj);
