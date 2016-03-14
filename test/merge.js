@@ -231,3 +231,13 @@ test('should work on array with null in it', function(t) {
     t.deepEqual(merge(target, src), expected)
     t.end()
 })
+
+test('should treat regular expressions like primitive values', function (t) {
+    var target = { key1: /abc/ }
+    var src = { key1: /efg/ }
+    var expected = { key1: /efg/ }
+
+    t.deepEqual(merge(target, src), expected)
+    t.deepEqual(merge(target, src).key1.test('efg'), true)
+    t.end()
+})
