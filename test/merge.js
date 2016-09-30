@@ -262,3 +262,70 @@ test('should treat dates like primitives', function(t) {
     t.equal(actual.key.valueOf(), tuesday.valueOf())
     t.end()
 })
+<<<<<<< HEAD
+=======
+
+test('should work on array with null in it', function(t) {
+    var target = []
+
+    var src = [null]
+
+    var expected = [null]
+
+    t.deepEqual(merge(target, src), expected)
+    t.end()
+})
+
+test('should overwrite values when property is initialised but undefined', function(t) {
+    var target1 = { value: [] }
+    var target2 = { value: null }
+    var target3 = { value: 2 }
+
+    var src = { value: undefined }
+
+    var expected = { value: undefined }
+
+    t.deepEqual(merge(target1, src), expected)
+    t.deepEqual(merge(target2, src), expected)
+    t.deepEqual(merge(target3, src), expected)
+    t.end()
+})
+
+test('null should be equal to null in an array', function(t) {
+    var target = [null, 'dude']
+    var source = [null, 'lol']
+
+    var expected = [null, 'dude', 'lol']
+    var actual = merge(target, source)
+
+    t.deepEqual(actual, expected)
+    t.end()
+})
+
+test('dates in an array should be compared correctly', function(t) {
+    var monday = new Date('2016-09-27T01:08:12.761Z')
+
+    var target = [monday, 'dude']
+    var source = [monday, 'lol']
+
+    var expected = [monday, 'dude', 'lol']
+    var actual = merge(target, source)
+
+    t.deepEqual(actual, expected)
+    t.end()
+})
+
+test('dates should copy correctly in an array', function(t) {
+    var monday = new Date('2016-09-27T01:08:12.761Z')
+    var tuesday = new Date('2016-09-28T01:18:12.761Z')
+
+    var target = [monday, 'dude']
+    var source = [tuesday, 'lol']
+
+    var expected = [monday, 'dude', tuesday, 'lol']
+    var actual = merge(target, source)
+
+    t.deepEqual(actual, expected)
+    t.end()
+})
+>>>>>>> Added test case for undefined overwriting stuff
