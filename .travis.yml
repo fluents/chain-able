@@ -1,4 +1,17 @@
 language: node_js
 node_js:
+<<<<<<< HEAD
   - '6'
   - '4'
+=======
+  - '6.9'
+  - '7.7'
+cache:
+  yarn: true
+  directories:
+    - node_modules
+before_script:
+  - yarn
+script:
+  - yarn test
+>>>>>>> Adding testing, which informed v2 API, updated docs to reflect
