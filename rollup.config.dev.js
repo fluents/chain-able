@@ -34,7 +34,7 @@ const config = {
   // useStrict: false,
   // external: ['inspector-gadget'],
   entry: './dist/index.js',
-  sourceMap: true,
+  sourceMap: true, // 'inline',
   plugins,
   targets: [
     {
