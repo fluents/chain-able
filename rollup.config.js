@@ -36,7 +36,7 @@ plugins.push(
 
 const config = {
   entry: './dist/index.js',
-  sourceMap: true,
+  sourceMap: true, //'inline',
   plugins,
   targets: [
     {

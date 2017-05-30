@@ -1,14 +1,9 @@
 {
   "presets": [
-    ["env", {
-      "targets": {
-        "node": "current"
-      }
-    }]
+    "es2015"
   ],
   "plugins": [
-    "transform-flow-strip-types",
-    "add-module-exports"
+    ["istanbul", {"debug": true}]
   ],
-  "sourceMaps": true
+  "sourceMaps": "inline"
 }
