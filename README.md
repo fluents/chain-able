@@ -140,7 +140,10 @@ writing an api using chain-able means:
 
 ### 🔗 links & more
 - [😎⛓ awesome fluents](https://github.com/fluents/awesome-fluents)
-- many thanks to [Eli Perelman](https://github.com/eliperelman)
+- many thanks to [Eli Perelman](https://github.com/eliperelman) for all the chainable goodness
+- thanks to [James Halliday](https://github.com/substack) for the tremendous [traversals](https://github.com/substack/js-traverse)
+- thanks to [Sindre Sorhus](https://github.com/sindresorhus) for the simple [dot-prop](https://github.com/sindresorhus/dot-prop) access
+- thanks to [Josh Duff](https://github.com/KyleAMathews) for [deep merging](https://github.com/KyleAMathews/deepmerge)
 - based on [webpack-chain](https://github.com/mozilla-rpweb/webpack-chain), but not webpack-specific.
-- [Martin Fowler on FluentInterface](https://www.martinfowler.com/bliki/FluentInterface.html)
 - transpiled with [buble](https://gitlab.com/Rich-Harris/buble)
+- [Martin Fowler on FluentInterface](https://www.martinfowler.com/bliki/FluentInterface.html)
