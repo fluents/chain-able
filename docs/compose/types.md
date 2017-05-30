@@ -1,5 +1,9 @@
 # 🌊 `types` [🎼 ](https://github.com/fluents/chain-able/wiki/compose)
 
+- [api](#-api)
+- [examples](#-examples)
+  - [minimal](#-minimal)
+  - [advanced](#advanced)
 
 ### 🌐 api
 - typed(`?name: string`):_TypeChainFactory_
@@ -21,8 +25,7 @@
 
 ## 📘 examples
 
-<!-- #### shorthand -->
-### simple
+### 👾 minimal
 
 ```js
 const chain = new Chain()

@@ -1,10 +1,15 @@
 # `DotProp` [🎼](https://github.com/fluents/chain-able/wiki/compose)
+
+> dot.prop.access
+
 <!-- - intro
 - src
 - tests
 - example
 - more -->
 
+
+## 📘 examples
 
 ```js
 class DotChain extends Chain {

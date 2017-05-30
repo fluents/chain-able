@@ -3,8 +3,11 @@
 - [tap](#-tap)
 - [remap](#-remap)
 - [traverse](#-traverse)
+- [related](#-related)
 
 ### 👆 tap
+
+tap a value with a function
 
 ```js
 new Chain()
@@ -12,6 +15,22 @@ new Chain()
   .tap('eh', x => x + '!')
   .get('eh') === 'eh!'
 ```
+
+this replaced the previous `.concat` and `.append`
+in this simple example, when the existing value for `key` is an _array_ or a _string_, append `val` to it
+
+```js
+const {str, arr} = new Chain()
+  .set('str', 'emptyish')
+  .tap('str', str => str + '+')
+  .set('arr', [1])
+  .tap('arr', arr => arr.concat([2]))
+  .entries()
+
+str == 'emptyish+'
+arr == [1, 2]
+```
+
 
 ### 🗺 remap
 
@@ -24,6 +43,8 @@ const chain = new Chain()
 ```
 
 ### 👣 traverse
+
+- modified [js-traverse][js-traverse]
 
 <!-- - src
 - test
@@ -79,3 +100,18 @@ cleaned === {
 }
 ```
 <!-- </details> -->
+
+
+## 🔗 related
+
+- [map-factory][map-factory]
+- [js-traverse][js-traverse]
+- [tappable-webpack][tappable-webpack]
+- [awesome-tap][awesome-tap]
+
+[code]: https://github.com/fluents/chain-able/tree/master/src/MergeChain.js
+[tests]: https://github.com/fluents/chain-able/tree/master/test/merge.js
+[map-factory]: https://github.com/midknight41/map-factory
+[js-traverse]: https://github.com/substack/js-traverse
+[awesome-tap]: https://github.com/sindresorhus/awesome-tap
+[tappable-webpack]: https://github.com/webpack/tapable
