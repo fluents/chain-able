@@ -1,24 +1,37 @@
 # `Define` [🎼](https://github.com/fluents/chain-able/wiki/compose)
 
+> effortlessly create a completely transparent & customizable api
+
 [objdefine]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
 [define-code]: https://github.com/fluents/chain-able/tree/master/src/compose/Define.js
 [define-tests]: https://github.com/fluents/chain-able/tree/master/test/define.js
 [getter]: https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/get
 [setter]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set
 
+- [api](#-api)
+  - [extendGetSet](#extendGetSet)
+    - [syntax](#extendGetSet)
+    - [overview](#extendGetSet)
+    - [example](#extendGetSet)
+  - [defineGetSet](#defineGetSet)
+    - [syntax](#defineGetSet)
+    - [overview](#defineGetSet)
+    - [example](#defineGetSet)
+- [related](#-related)
 
 #### 🌐 api
-- [`extendGetSet(Array<string>)`: Chain](#extendGetSet)
-- [`defineGetSet(<Array<string>)`: Chain](#defineGetSet)
-
-<!-- definition -->
-<!-- ###  compatible -->
 
 ### `extendGetSet`
 
+##### syntax
+`.extendGetSet(Array<string>): Chainable`
+
+##### overview
 - ☮️ extends `.extend`
 - adds `set` & `get` + name in camelCase
 - then uses [Object.defineProprety][objdefine]: [getter][getter] & [setter][setter], with some added helpers
+
+##### example
 
 ```js
 const Chain = require('chain-able')
@@ -42,7 +55,15 @@ chain.ehOh() === chain.getEhOh() === true
 
 ### `defineGetSet`
 
+##### syntax
+
+`.extendGetSet(Array<string>): Chainable`
+
+##### overview
+
 🍭 similar to [`extendGetSet`](#extendGetSet), but instead of creating methods, it decorates existing methods & scopes a reference to them
+
+##### example
 
 ```js
 class Coolio extends Chain {

@@ -2,6 +2,9 @@
 
 use features as needed
 
+- [example](#-example)
+- [api](#-api)
+
 ## 📘 example
 
 ```js
@@ -11,7 +14,7 @@ const Composed = compose({observe: true})
 class Eh extends Composed {}
 ```
 
-Specifying [SuperClass](#SuperClass)
+Specifying [SuperClass](#-api)
 
 ```js
 const {compose} = require('chain-able')
@@ -24,30 +27,21 @@ class Eh extends Composed {}
 
 
 
-### how?
 
-<!-- links to the info about this here -->
+### 🌐 api
 
-export classes that dynamically extend a base class
-
-```js
-module.exports = SuperClass => class Eh extends SuperClass {}
-```
+| Name | Type | Description | ?Default | Example  |
+| ---- | ---- | ----------- | -------- | -------- |
+| options | <code>string &#124; Array&lt;string&gt;</code> | object with properties matching the pre-created compositions | `null` |
+| SuperClass | <code>Class / Extendable Function</code> | class to extend | `ChainedMap` |
 
 
+##### options example
 
-
-
-### 🌐 api params
-
-##### `options`
-
-object with properties matching the pre-created compositions
-
-- default: true
+_or `options = true` for everything_
 
 ```js
-// or `options = true` for everything
+
 const options = {
   define: true,
   observe: true,
@@ -57,8 +51,16 @@ const options = {
   dot: true,
   extend: true,
 }
+
 ```
 
-### `SuperClass`
 
-- default: `ChainedMap`.
+### how?
+
+<!-- links to the info about this here -->
+
+export classes that dynamically extend a base class, similar to how [decorators](https://ponyfoo.com/articles/javascript-decorators-proposal) work, but much faster.
+
+```js
+module.exports = SuperClass => class Eh extends SuperClass {}
+```

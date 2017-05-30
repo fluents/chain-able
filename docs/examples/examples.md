@@ -17,12 +17,8 @@ class EasyFluent extends ChainedMap {
     // extend a list of strings for easy chainable methods
     this.extend(['eh'])
 
-    // same as .extend,
-    // but when called with no arguments,
-    // default is used (`true` in this case)
-    // third param is optionally a prefix for inversified
-    // for example, `no` => `noCanada()` for inverse value
-    this.extendPrefixed(['canada'], true, 'no')
+    // same as .extend, but with default values, and can be used with an object
+    this.extendWith(['canada'], true)
   }
 
   // if more advanced data changes are needed
@@ -32,10 +28,6 @@ class EasyFluent extends ChainedMap {
     this.set('igloo', igloo)
     return this
   }
-
-  toConfig() {
-    return this.entries()
-  }
 }
 
 // {igloo: 'fire', canada: false, eh: 'moose'}
@@ -43,18 +35,18 @@ const config = new EasyFluent()
   .igloo('fire')
   .noCanada()
   .eh('moose')
-  .toConfig()
+  .entries()
 
 // this is == config
 const hydrated = new EasyFluent()
   .from(config)
-  .toConfig()
+  .entries()
 
 // canada is now true
 const merged = new EasyFluent()
   .merge(config)
   .merge({canada: true})
-  .toConfig()
+  .entries()
 ```
 
 
@@ -82,8 +74,8 @@ class Advanced extends ChainedMapExtendable {
     return this
   }
 
-  toConfig() {
-    return Object.assign(this.entries(), {
+  entries() {
+    return Object.assign(super.entries(), {
       list: this.list.values().map(name => name),
     })
   }
@@ -143,22 +135,22 @@ const chain = Advanced
 chain.has('igloo')
 chain.get('eh')
 
-const result = chain.toConfig()
+const result = chain.entries()
 
 const hydrated = Advanced
   .init()
   .from(result)
-  .toConfig()
+  .entries()
 
 const merged = Advanced
   .init()
   .merge(hydrated)
   .merge({igloo: 'whaaaat'})
 
-// can use toConfig,
+// can use entries,
 // and safely continue editing `merged`
 // with a snapshot of the object data saved as `mergedResult`
-const mergedResult = merged.toConfig()
+const mergedResult = merged.entries()
 
 // hydrated === result === {
 //   igloo: 'brr',
