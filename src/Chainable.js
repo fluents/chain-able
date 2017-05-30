@@ -137,8 +137,8 @@ class Chainable {
    *  chains.when(prod, c => c.set('prod', true), c => c.set('prod', false))
    *
    * @param  {boolean} condition
-   * @param  {Function} [trueBrancher=Function.prototype]
-   * @param  {Function} [falseBrancher=Function.prototype]
+   * @param  {Function} [trueBrancher=Function.prototype] called when true
+   * @param  {Function} [falseBrancher=Function.prototype] called when false
    * @return {ChainedMap}
    */
   when(
@@ -239,17 +239,17 @@ function define(Chain) {
     enumerable: false,
     // writable: false,
     value: (instance, thisArg) => {
-      if (!instance) return false
+      // @NOTE depreciated mixins because of speed, but will use this elsewhere
+      // if (thisArg && thisArg.mixed !== undefined) {
+      //   for (let m = 0; m < thisArg.mixed.length; m++) {
+      //     const mixin = thisArg.mixed[m]
+      //     if (mixin && typeof mixin === 'object' && instance instanceof mixin) {
+      //       return true
+      //     }
+      //   }
+      // }
 
-      if (thisArg && thisArg.mixed !== undefined) {
-        for (let m = 0; m < thisArg.mixed.length; m++) {
-          const mixin = thisArg.mixed[m]
-          if (mixin && typeof mixin === 'object' && instance instanceof mixin) {
-            return true
-          }
-        }
-      }
-      return (
+      return instance && (
         Object.prototype.isPrototypeOf.call(instance, Chain) ||
         !!instance.className ||
         !!instance.parent ||

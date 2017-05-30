@@ -2,6 +2,7 @@ const Chainable = require('./Chainable')
 const {Species, Spreadable} = require('./deps/symbols')
 
 /**
+ * @TODO could add .first .last ?
  * @tutorial https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
  * @prop {Set} store
  * @type {Set}
@@ -50,7 +51,7 @@ class ChainedSet extends Chainable {
    * @return {ChainedSet} @chainable
    */
   merge(arr) {
-    this.store = new Set([...this.store, ...arr])
+    this.store = new Set([...this.store, ...(arr.store ? arr.store.values() : arr)])
     return this
   }
 }

@@ -1,5 +1,6 @@
 const Chainable = require('./Chainable')
 const MergeChain = require('./MergeChain')
+const dopemerge = require('./deps/dopemerge')
 
 /**
  * @tutorial https://ponyfoo.com/articles/es6-maps-in-depth
@@ -40,7 +41,7 @@ class ChainedMap extends Chainable {
    */
   tap(name, fn) {
     const old = this.get(name)
-    const updated = fn(old)
+    const updated = fn(old, dopemerge)
     return this.set(name, updated)
   }
 
@@ -94,11 +95,9 @@ class ChainedMap extends Chainable {
 
   /**
    * @since 0.4.0
-   * @desc
-   *   clears the map,
-   *   goes through this properties,
-   *   calls .clear if they are instanceof Chainable or Map
-   *
+   * @desc clears the map,
+   *       goes through this properties,
+   *       calls .clear if they are instanceof Chainable or Map
    *
    * @see https://github.com/fliphub/flipchain/issues/2
    * @return {ChainedMap} @chainable
@@ -196,8 +195,8 @@ class ChainedMap extends Chainable {
    *       ...as second arg? on instance property?
    * @example chain.set('eh', [1]).merge({eh: [2]}).get('eh') === [1, 2]
    * @desc merges an object with the current store
-   * @param {Object} obj
-   * @param {Function | null} cb
+   * @param {Object} obj object to merge
+   * @param {Function | null} cb return the merger to the callback
    * @return {ChainedMap} @chainable
    */
   merge(obj, cb = null) {
@@ -213,13 +212,12 @@ class ChainedMap extends Chainable {
 
   /**
    * @since 0.4.0
-   * @desc
-   *  goes through the maps,
-   *  and the map values,
-   *  reduces them to array
-   *  then to an object using the reduced values
+   * @desc goes through the maps,
+   *       and the map values,
+   *       reduces them to array
+   *       then to an object using the reduced values
    *
-   * @param {Object} obj
+   * @param {Object} obj object to clean, usually .entries()
    * @return {Object}
    */
   clean(obj) {
