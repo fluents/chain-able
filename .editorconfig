@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 root = true
 
 [*]
@@ -8,5 +9,25 @@ trim_trailing_whitespace = true
 insert_final_newline = true
 
 [*.yml]
+=======
+# Top-most EditorConfig file
+root = true
+
+# Set default charset
+[*.{js}]
+charset = utf-8
+
+[*]
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# 2 space indentation
+[*.{md,js,jsx,scss,hbs}]
+indent_style = space
+indent_size = 2
+
+# Format Config
+[{package.json,.alexrc,babelrc,.eslintignore,.eslintrc,.markdownlint.json,.proselintrc}]
+>>>>>>> 📇💚 pkg, .travis .editor .flow .git .npm .yarn
 indent_style = space
 indent_size = 2
