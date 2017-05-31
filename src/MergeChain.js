@@ -24,6 +24,8 @@ class MergeChain extends Chainable {
       this.store.set(name, val)
       return this
     }
+
+    this.set('onValue', () => true).set('merger', dopemerge)
     this.get = name => this.store.get(name)
   }
 
@@ -86,23 +88,22 @@ class MergeChain extends Chainable {
 
   /**
    * @since 1.0.0
+   *
+   * @TODO issue here if we extend without shorthands &
+   *       we want to merge existing values... :s
+   *
    * @desc merges object in, goes through all keys, checks cbs, dopemerges
    * @param  {Object} obj2 object to merge in
    * @return {MergeChain} @chainable
    */
   merge(obj2) {
-    let onValue = this.get('onValue')
-    let onExisting = this.get('onExisting')
-
+    const onExisting = this.get('onExisting')
+    const onValue = this.get('onValue')
     const opts = this.get('opts') || {}
-    const merger =
-      this.get('merger') ||
-      ((existing, value) => dopemerge(existing, value, opts))
-
-    let obj = obj2
-    if (this.has('obj') === true && !obj) {
-      obj = this.get('obj')
-    }
+    const obj = this.has('obj') === true && !obj2 ? this.get('obj') : obj2 || {}
+    const merger = this.get('merger')
+    const sh = this.parent.shorthands || []
+    const keys = Object.keys(obj)
 
     // @TODO do this
     // if (obj2 instanceof Chainable) {
@@ -111,56 +112,67 @@ class MergeChain extends Chainable {
     //   // set, much easier to merge
     //   // else if (obj2.values)
     // }
+    // @TODO isEqual here?
+    //
+    // @NOTE
+    // since this would be slower
+    // if I want to not have a speedy default when using .onExisting
+    // need to note to use .extend
+    // when using chains without a class & doing .merge (edge-case)
+    const handleExisting = (key, value) => {
+      // when fn is a full method, not an extended shorthand
+      const hasFn = typeof this.parent[key] === 'function'
+      const hasKey = this.parent.has(key)
+      const set = (k, v) => (hasFn ? this.parent[k](v) : this.parent.set(k, v))
 
-    // const onChildChain = this.get('onChildChain') (is just .merge)
-    // const onDefault = this.get('onDefault') (is .set)
-    const shorthands = this.parent.shorthands
+      // check if it is shorthanded
+      // has a value already
+      if (hasKey === true) {
+        // get that value
+        const existing = this.parent.get(key)
 
-    // for (let i = 0; i < keys.length; i++) const key = keys[i]
-    const keys = Object.keys(obj)
+        // if we have a cb, call it
+        // default to dopemerge
+        if (onExisting === undefined) {
+          // console.log('no onExisting', {existing, value, key})
+          set(key, merger(existing, value, opts))
+        }
+        else {
+          // maybe we should not even have `.onExisting`
+          // since we can just override merge method...
+          // and then client can just use a custom merger...
+          //
+          // could add and remove subscriber but that's overhead and ug
+          // tricky here, because if we set a value that was just set...
+          // console.log('has onExisting', {existing, value, key, onExisting})
+          set(key, onExisting(existing, value, opts))
+        }
+      }
+      else {
+        set(key, value)
+      }
+    }
+
     for (let k = 0, len = keys.length; k < len; k++) {
       const key = keys[k]
       const value = obj[key]
+      const method = this.parent[key]
 
       // use onValue when set
-      if (onValue !== undefined && onValue(obj[key], key) === false) {
+      if (!onValue(value, key, this)) {
+        // console.log('used onValue returning false')
         continue
       }
-      else if (this.parent[key] && this.parent[key] instanceof Chainable) {
+      else if (method instanceof Chainable) {
         // when property itself is a Chainable
         this.parent[key].merge(value)
       }
-      else if (shorthands !== undefined && shorthands.includes(key)) {
-        // check if it is shorthanded
-        // has a value already
-        if (this.parent.has(key) === true) {
-          // get that value
-          const existing = this.parent.get(key)
-
-          // setup vars
-          let merged = existing
-
-          // if we have a cb, call it
-          // default to dopemerge
-          if (onExisting === undefined) {
-            merged = merger(existing, value)
-          }
-          else {
-            merged = onExisting(existing, value)
-          }
-
-          this.parent[key](merged)
-        }
-        else {
-          this.parent[key](value)
-        }
-      }
-      else if (this.parent[key] !== undefined) {
-        // when fn is a full method, not an extended shorthand
-        // console.log({key})
-        this.parent[key](value)
+      else if (method || sh.includes(key)) {
+        // console.log('has method or shorthand')
+        handleExisting(key, value)
       }
       else {
+        // console.log('went to default')
         // default to .set on the store
         this.parent.set(key, value)
       }
