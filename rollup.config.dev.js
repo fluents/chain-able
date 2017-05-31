@@ -1,13 +1,8 @@
-const pkg = require('./package')
 const nodeResolve = require('rollup-plugin-node-resolve')
 const commonjs = require('rollup-plugin-commonjs')
-const uglify = require('rollup-plugin-uglify')
 const buble = require('rollup-plugin-buble')
-const babili = require('rollup-plugin-babili')
-const clean = require('rollup-plugin-cleanup')
-const replace = require('rollup-plugin-replace')
-const filesize = require('rollup-plugin-filesize')
 const log = require('fliplog')
+const pkg = require('./package')
 
 const plugins = [
   nodeResolve({
@@ -19,17 +14,15 @@ const plugins = [
   commonjs({
     include: '**/**',
   }),
-  // buble({transforms: {dangerousForOf: true}}),
   buble({
     transforms: {
-      forOf: false,
-      dangerousForOf: false,
-      computedProperty: false,
+      // forOf: false,
+      // dangerousForOf: false,
+      // computedProperty: false,
     },
   }),
 ]
 
-// @TODO replace & production
 const config = {
   // useStrict: false,
   // external: ['inspector-gadget'],
