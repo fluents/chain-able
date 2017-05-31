@@ -3,30 +3,31 @@ const log = require('fliplog')
 const izz = require('izz')
 const TypeChain = require('../dist')
 
-const isURL = require('validator/lib/isURL')
-const isEmail = require('validator/lib/isEmail')
+// const isURL = require('validator/lib/isURL')
+// const isEmail = require('validator/lib/isEmail')
 const isLength = require('validator/lib/isLength')
 const isNumeric = require('validator/lib/isNumeric')
 const trim = require('validator/lib/trim')
-const isUUIDValidator = require('validator/lib/isUUID')
-const validUrl = require('valid-url')
+// const isUUIDValidator = require('validator/lib/isUUID')
+// const validUrl = require('valid-url')
 
-const isNotEmpty = value => typeof value !== 'undefined' && value !== undefined && value !== null
+// const isNotEmpty = value =>
+//   typeof value !== 'undefined' && value !== undefined && value !== null
 const validators = {
-  alwaysTrue: value => true,
-  isBool: value => value === true || value === false || typeof value === 'boolean',
-  isNotEmpty,
-  isEmpty: value => !isNotEmpty(value),
-  isObj: value => value && typeof value === 'object',
-  isArray: Array.isArray,
-  isString: value => value && typeof value === 'string',
-  isUUID: value => isNotEmpty(value) && isUUIDValidator(value),
-  isURL,
-  isEmail,
+  // alwaysTrue: value => true,
+  // isBool: value => value === true || value === false || typeof value === 'boolean',
+  // isNotEmpty,
+  // isEmpty: value => !isNotEmpty(value),
+  // isObj: value => value && typeof value === 'object',
+  // isArray: Array.isArray,
+  // isString: value => value && typeof value === 'string',
+  // isUUID: value => isNotEmpty(value) && isUUIDValidator(value),
+  // isURL,
+  // isEmail,
   isPhone: value => isNumeric(value) && isLength(trim(value), {min: 6}),
-  isLength,
-  isWebUri: validUrl.isWebUri,
-  validUrl,
+  // isLength,
+  // isWebUri: validUrl.isWebUri,
+  // validUrl,
 }
 
 test(`
@@ -110,7 +111,10 @@ test(`restore from backup`, t => {
   typed.easy('so easy')
   typed.whaaaat('!!!')
 
-  // typed.ring('1250-555-5555')
+  try {
+    typed.ring('1250-555-5555')
+  }
+  catch (e) {}
 
   try {
     typed.igloo(!!'boolean') // invalid
