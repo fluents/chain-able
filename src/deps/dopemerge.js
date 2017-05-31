@@ -2,7 +2,7 @@ let _debug = true
 
 // @TODO convert forEach for faster loops
 // import deepmerge from 'deepmerge'
-function isMergeableObject(val) {
+function isMergeableObj(val) {
   var strType = Object.prototype.toString.call(val)
 
   return (
@@ -19,64 +19,63 @@ function emptyTarget(val) {
   return Array.isArray(val) ? [] : {}
 }
 
-function cloneIfNecessary(value, optionsArgument) {
-  var clone = optionsArgument && optionsArgument.clone === true
-  return clone && isMergeableObject(value) ?
-    deepmerge(emptyTarget(value), value, optionsArgument) :
-    value
+function cloneIfNeeded(value, optsArg) {
+  var clone = optsArg && optsArg.clone === true
+  return clone && isMergeableObj(value)
+    ? deepmerge(emptyTarget(value), value, optsArg)
+    : value
 }
 
-function defaultArrayMerge(target, source, optionsArgument) {
+function defaultArrayMerge(target, source, optsArg) {
   var destination = target.slice()
   source.forEach((e, i) => {
     if (typeof destination[i] === 'undefined') {
-      destination[i] = cloneIfNecessary(e, optionsArgument)
+      destination[i] = cloneIfNeeded(e, optsArg)
     }
-    else if (isMergeableObject(e)) {
-      destination[i] = deepmerge(target[i], e, optionsArgument)
+    else if (isMergeableObj(e)) {
+      destination[i] = deepmerge(target[i], e, optsArg)
     }
     else if (target.indexOf(e) === -1) {
-      destination.push(cloneIfNecessary(e, optionsArgument))
+      destination.push(cloneIfNeeded(e, optsArg))
     }
   })
   return destination
 }
 
-function mergeObject(target, source, optionsArgument) {
+function mergeObj(target, source, optsArg) {
   var destination = {}
-  if (isMergeableObject(target)) {
+  if (isMergeableObj(target)) {
     Object.keys(target).forEach(key => {
-      destination[key] = cloneIfNecessary(target[key], optionsArgument)
+      destination[key] = cloneIfNeeded(target[key], optsArg)
     })
   }
   Object.keys(source).forEach(key => {
-    if (!isMergeableObject(source[key]) || !target[key]) {
-      destination[key] = cloneIfNecessary(source[key], optionsArgument)
+    if (!isMergeableObj(source[key]) || !target[key]) {
+      destination[key] = cloneIfNeeded(source[key], optsArg)
     }
     else {
-      destination[key] = deepmerge(target[key], source[key], optionsArgument)
+      destination[key] = deepmerge(target[key], source[key], optsArg)
     }
   })
   return destination
 }
 
-function deepmerge(target, source, optionsArgument) {
-  var array = Array.isArray(source)
-  var options = optionsArgument || {arrayMerge: defaultArrayMerge}
+function deepmerge(target, source, optsArg) {
+  var options = optsArg || {arrayMerge: defaultArrayMerge}
   var arrayMerge = options.arrayMerge || defaultArrayMerge
 
-  if (array) {
-    return Array.isArray(target) ?
-      arrayMerge(target, source, optionsArgument) :
-      cloneIfNecessary(source, optionsArgument)
+  if (Array.isArray(source)) {
+    return Array.isArray(target)
+      ? arrayMerge(target, source, optsArg)
+      : cloneIfNeeded(source, optsArg)
   }
   else {
-    return mergeObject(target, source, optionsArgument)
+    return mergeObj(target, source, optsArg)
   }
 }
 
 // unused
-// deepmerge.all = function deepmergeAll(array, optionsArgument) {
+// deepmerge.all = function deepmergeAll(array, optsArg) {
 //   if (!Array.isArray(array) || array.length < 2) {
 //     throw new Error(
 //       'first argument should be an array with at least two elements'
@@ -85,7 +84,7 @@ function deepmerge(target, source, optionsArgument) {
 //
 //   // we are sure there are at least 2 values, so it is safe to have no initial value
 //   return array.reduce((prev, next) => {
-//     return deepmerge(prev, next, optionsArgument)
+//     return deepmerge(prev, next, optsArg)
 //   })
 // }
 
@@ -134,7 +133,7 @@ function getOpts(opts) {
   return options
 }
 
-const isArr = Array.isArray
+// eslint-disable-next-line complexity
 function dopemerge(obj1, obj2, opts = {}) {
   // if they are identical, fastest === check
   if (obj1 === obj2) return obj1
@@ -145,8 +144,8 @@ function dopemerge(obj1, obj2, opts = {}) {
   // setup vars
   let type1 = typeof obj1
   let type2 = typeof obj2
-  if (isArr(obj1)) type1 = 'array'
-  if (isArr(obj2)) type2 = 'array'
+  if (Array.isArray(obj1)) type1 = 'array'
+  if (Array.isArray(obj2)) type2 = 'array'
   const types = [type1, type2]
 
   // check one then check the other

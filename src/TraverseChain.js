@@ -12,18 +12,10 @@ module.exports = class Traverser extends ChainedMap {
    */
   constructor(parent) {
     super(parent)
+    this.set('keys', []).set('vals', [])
     this.call = this.traverse.bind(this)
   }
 
-  /**
-   * @since 1.0.1
-   * @desc set the .traverse to build an object instead
-   * @param  {boolean} [should=false]
-   * @return {Traverser}
-   */
-  // build(should = false) {
-  //   return this.set('build', should)
-  // }
   whitelist(whitelist = true) {
     return this.set('whitelist', whitelist)
   }
@@ -117,49 +109,27 @@ module.exports = class Traverser extends ChainedMap {
     // console.log('starting match...')
     // log.bold('key val matchers').fmtobj({keys, vals}).echo(debug)
 
-    // debug this
-    const blackMatchit = (prop, val) => {
-      if (keys) {
-        for (var keyTest of keys) {
-          // log
-          //   .dim('testing keys')
-          //   .data({test, prop, matched: test.test(prop)})
-          //   .echo(debug)
-          if (typeof keyTest === 'function') {
-            if (!keyTest.test && keyTest(prop)) {
-              return true
-            }
-          }
-          else if (typeof keyTest === 'string') {
-            const asRegex = keyTest.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
-            const testRegex = new RegExp(asRegex)
-            if (testRegex.test(prop)) {
-              return true
-            }
-          }
-          else if (keyTest.test(prop, val)) {
-            // log.green('matched!').echo(debug)
-            return true
-          }
-        }
+    const tester = (key, arg1, arg2) => {
+      const type = typeof key
+      // log
+      //   .dim('testing keys')
+      //   .data({test, arg1, matched: test.test(arg1)})
+      //   .echo(debug)
+      if (type === 'string') {
+        const test = new RegExp(key.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&'))
+        return !!test.test(arg1)
       }
+      if (type === 'function' && !key.test) return !!key(arg1)
+      return !!key.test(arg1, arg2)
+    }
 
-      if (vals) {
-        for (var valTest of vals) {
-          // log
-          //   .dim('testing vals')
-          //   .data({test, val, matched: test.test(val)})
-          //   .echo(debug)
-          if (typeof valTest === 'function' && !valTest.test) {
-            if (valTest(val, prop)) {
-              return true
-            }
-          }
-          else if (valTest.test(val)) {
-            // log.green('matched!').echo(debug)
-            return true
-          }
-        }
+    // diff between keys and val is order of arg in ^ tester
+    const blackMatchit = (prop, val) => {
+      for (let i = 0; i < keys.length; i++) {
+        if (tester(keys[i], prop, val)) return true
+      }
+      for (let i = 0; i < vals.length; i++) {
+        if (tester(vals[i], val, prop)) return true
       }
 
       // log.red('did not match').fmtobj({prop, val}).echo(debug)
@@ -189,7 +159,6 @@ module.exports = class Traverser extends ChainedMap {
     })
 
     this.set('traversed', result)
-
     return shouldReturn === true ? result : this
   }
 
