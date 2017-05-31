@@ -914,11 +914,12 @@ config
 # ⛓ chain-able
 
 [![NPM version][chain-able-npm-image]][chain-able-npm-url]
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b1d92a30c4aa43df9a6233cfadde2307)](https://www.codacy.com/app/aretecode/chain-able?utm_source=github.com&utm_medium=referral&utm_content=fluents/chain-able&utm_campaign=badger)
 [![docs](https://img.shields.io/badge/📖-docs-blue.svg)](https://github.com/fluents/chain-able/wiki)
 [![Dependencies][david-deps-img]][david-deps-url]
 [![fliphub][gitter-badge]][gitter-url]
 [![BuildStatus](https://travis-ci.org/fluents/awesome-fluents.svg?branch=master)](https://travis-ci.org/fluents/awesome-fluents)
+[![Coverage Status](https://coveralls.io/repos/github/fluents/chain-able/badge.svg?branch=master)](https://coveralls.io/github/fluents/chain-able?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b1d92a30c4aa43df9a6233cfadde2307)](https://www.codacy.com/app/aretecode/chain-able?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=fluents/chain-able&amp;utm_campaign=Badge_Grade)
 [![gzip size](http://img.badgesize.io/https://unpkg.com/chain-able@2.0.0-beta.1?compression=gzip)](https://unpkg.com/chain-able@2.0.0-beta.1)
 [![fluent](https://img.shields.io/badge/⛓-fluent-9659F7.svg)](https://github.com/fluents/awesome-fluents)
 
