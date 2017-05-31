@@ -1,5 +1,6 @@
 const Chainable = require('./Chainable')
 const {Species, Spreadable} = require('./deps/symbols')
+const toarr = require('./deps/to-arr')
 
 /**
  * @TODO could add .first .last ?
@@ -33,16 +34,8 @@ class ChainedSet extends Chainable {
    * @return {ChainedSet} @chainable
    */
   prepend(value) {
-    this.store = new Set([value, ...this.store])
+    this.store = new Set([value].concat(super.values()))
     return this
-  }
-
-  /**
-   * @since 0.4.0
-   * @return {Array<any>}
-   */
-  values() {
-    return [...this.store]
   }
 
   /**
@@ -51,7 +44,7 @@ class ChainedSet extends Chainable {
    * @return {ChainedSet} @chainable
    */
   merge(arr) {
-    this.store = new Set([...this.store, ...(arr.store ? arr.store.values() : arr)])
+    toarr(arr).forEach(v => this.store.add(v))
     return this
   }
 }
