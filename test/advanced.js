@@ -89,7 +89,7 @@ test('toConfig', t => {
 test('merge', t => {
   const result = fixture().toConfig()
   const hydrated = Advanced.init().from(result).toConfig()
-  const merged = Advanced.init().merge(hydrated).merge({igloo: 'whaaaat'})
+  const merged = Advanced.init().merge(hydrated).from({igloo: 'whaaaat'})
 
   // can use toConfig,
   // and safely continue editing `merged`
@@ -104,6 +104,7 @@ test('merge', t => {
     // debug: false,
   })
   t.deepEqual(mergedResult, {
+    // igloo: ['brr', 'whaaaat'],
     igloo: 'whaaaat',
     canada: true,
     eh: 'eh!',
