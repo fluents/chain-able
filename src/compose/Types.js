@@ -1,19 +1,5 @@
 const dopemerge = require('../deps/dopemerge')
 
-// removed for size
-// class TypeChainError extends TypeError {
-//   constructor(message) {
-//     super(message)
-//     this.name = this.constructor.name
-//     if (typeof TypeError.captureStackTrace === 'function') {
-//       TypeError.captureStackTrace(this, this.constructor)
-//     }
-//     else {
-//       this.stack = new TypeError(message).stack
-//     }
-//   }
-// }
-
 module.exports = (SuperClass, opts) => {
   return class TypeChain extends SuperClass {
     /**
@@ -25,11 +11,11 @@ module.exports = (SuperClass, opts) => {
      */
     validators(validators) {
       // icky but shorter: merge existing, or use variable
+      /* prettier-ignore */
       return this
-        .set('validators',
-          this.has('validators') === true ?
-            dopemerge(this.get('validators'), validators) :
-            validators)
+        .set('validators', this.has('validators') === true
+          ? dopemerge(this.get('validators'), validators)
+          : validators)
     }
 
     /**
@@ -88,9 +74,9 @@ module.exports = (SuperClass, opts) => {
           }
         }
 
-        const validator = typeof type === 'string' ?
-          this.get('validators')[type] :
-          type
+        const validator = typeof type === 'string'
+          ? this.get('validators')[type]
+          : type
 
         if (typeof validator !== 'function') {
           // console.error({validators: this.get('validators')}, '\n\n')
