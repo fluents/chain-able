@@ -40,24 +40,6 @@ class Chainable {
     }
 
     this.className = this.constructor.name
-
-    // www.bennadel.com/blog/2829-string-interpolation-using-util-format-and-util-inspect-in-node-js.htm
-    // const inspector = (filters = []) => {
-    //   const allProps = require('./deps/all-props')
-    //   return function(depth, options) {
-    //     let inspected = {}
-    //
-    //     /* prettier-ignore */
-    //     allProps(this)
-    //       .filter(key => !['parent', 'mixed', 'shorthands'].includes(key))
-    //       .map(key =>
-    //         inspected[key] = Object.getOwnPropertyDescriptor(this, key))
-    //
-    //     return inspected
-    //   }
-    // }
-    // if (this.initializer !== undefined) this.initializer(parent)
-    // this.inspect = () => inspector()
   }
 
   /**
@@ -198,6 +180,21 @@ class Chainable {
   }
 
   /**
+   * @since 0.4.0
+   * @NOTE: moved from ChainedMap and ChainedSet to Chainable @2.0.2
+   * @NOTE: this was [...] & Array.from(this.store.values())
+   * @see https://kangax.github.io/compat-table/es6/#test-Array_static_methods
+   * @see https://stackoverflow.com/questions/20069828/how-to-convert-set-to-array
+   * @desc spreads the entries from ChainedMap.store.values
+   * @return {Array<any>}
+   */
+  values() {
+    const vals = []
+    this.store.forEach(v => vals.push(v))
+    return vals
+  }
+
+  /**
    * @see http://2ality.com/2015/09/well-known-symbols-es6.html#default-tostring-tags
    * @since 1.0.2
    * @example chain + 1 (calls this)
@@ -218,14 +215,19 @@ class Chainable {
 
     // default:
     // if (this.valueOf) return this.valueOf(hint)
-    // if (this.toType !== undefined) return this.toType(hint)
-
-    if (this.toPrimative !== undefined) return this.toPrimative(hint)
-    if (this.toNumber !== undefined) return this.toNumber(hint)
-    if (this.toArray !== undefined) return this.toArray(hint)
-    if (this.toJSON !== undefined) return this.toJSON(hint)
-    if (this.toBoolean !== undefined) return this.toBoolean(hint)
-    if (this.toObject !== undefined) return this.toObject(hint)
+    const methods = [
+      'toPrimative',
+      'toNumber',
+      'toArray',
+      'toJSON',
+      'toBoolean',
+      'toObject',
+    ]
+    for (let m = 0; m < methods.length; m++) {
+      if (this[methods[m]] !== undefined) {
+        return this[methods[m]](hint)
+      }
+    }
 
     return this.toString()
   }
@@ -260,11 +262,12 @@ function define(Chain) {
       //   }
       // }
 
-      return instance && (
-        Object.prototype.isPrototypeOf.call(instance, Chain) ||
-        !!instance.className ||
-        !!instance.parent ||
-        !!instance.store
+      return (
+        instance &&
+        (Object.prototype.isPrototypeOf.call(instance, Chain) ||
+          !!instance.className ||
+          !!instance.parent ||
+          !!instance.store)
       )
     },
   })

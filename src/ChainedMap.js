@@ -98,6 +98,13 @@ const Chainable = require('./Chainable')
 const MergeChain = require('./MergeChain')
 const dopemerge = require('./deps/dopemerge')
 
+const ignored = k =>
+  k === 'inspect' ||
+  k === 'parent' ||
+  k === 'store' ||
+  k === 'shorthands' ||
+  k === 'decorated'
+
 /**
  * @tutorial https://ponyfoo.com/articles/es6-maps-in-depth
  * @tutorial https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map
@@ -201,7 +208,7 @@ class ChainedMap extends Chainable {
   clear() {
     this.store.clear()
     Object.keys(this).forEach(key => {
-      if (key === 'inspect' || key === 'parent') return
+      if (ignored(key)) return
       if (this[key] instanceof Chainable) this[key].clear()
       if (this[key] instanceof Map) this[key].clear()
     })
@@ -230,15 +237,7 @@ class ChainedMap extends Chainable {
 
     const add = self => {
       Object.keys(self).forEach(k => {
-        if (
-          k === 'inspect' ||
-          k === 'parent' ||
-          k === 'store' ||
-          k === 'shorthands' ||
-          k === 'decorated'
-        ) {
-          return
-        }
+        if (ignored(k)) return
         const val = self[k]
         if (val && typeof val.entries === 'function') {
           Object.assign(reduced, {[k]: val.entries(true) || {}})
@@ -249,15 +248,6 @@ class ChainedMap extends Chainable {
     }
 
     return add(this).add(reduced).reduced
-  }
-
-  /**
-   * @since 0.4.0
-   * @desc spreads the entries from ChainedMap.store.values
-   * @return {Array<any>}
-   */
-  values() {
-    return [...this.store.values()]
   }
 
   /**
