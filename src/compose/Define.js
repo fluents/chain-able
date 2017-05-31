@@ -20,26 +20,6 @@ module.exports = (SuperClass = ChainedMap, opts) => {
    */
   return class DefineChain extends SuperClass {
     /**
-     * @inheritdoc
-     * @override
-     * @desc for inspecting
-     * @since 1.0.1
-     * @param  {Array<string> | Object} methods
-     * @return {This} @chainable
-     */
-    clean(methods) {
-      if (Array.isArray(methods) === false) {
-        return super.clean(methods)
-      }
-      methods.forEach(method => {
-        delete this[method]
-        if (!this.parent || typeof this.parent !== 'object') return
-        delete this.parent[method]
-      })
-      return this
-    }
-
-    /**
      * @TODO abstract this
      * @TODO this may break .from
      * @since 1.0.2
@@ -122,32 +102,30 @@ module.exports = (SuperClass = ChainedMap, opts) => {
       methods.forEach(method => {
         let getter
         let setter
+        let name = typeof method === 'string' ? method : method.name
 
-        if (typeof method === 'string') {
-          getter = () => this.get(method)
-          // when arg is not passed in, count it as a getter
-          // because `call` can be getter
-          setter = (arg1 = OFF) => {
-            if (arg1 === OFF) return getter()
-            return this.set(method, arg1)
-          }
-        }
-        else {
-          getter = arg => method.get(arg)
-          setter = (arg1 = OFF, arg2, arg3) => {
-            if (arg1 === OFF) return getter()
-            return method.set(arg1, arg2, arg3)
-          }
-        }
+        // when we have method, use it, fallback to get/set
+        /* prettier-ignore */
+        getter = method.get ?
+          arg => method.get(arg) :
+          arg => this.get(name)
 
-        const getMethod = camelCase(`get-${method}`)
-        const setMethod = camelCase(`set-${method}`)
+        // create the method beforehand to scope it, vs every call
+        const sets = method.set ?
+          (a, b, c) => method.set(a, b, c) :
+          a => this.set(name, a)
 
-        this[getMethod] = getter
-        this[setMethod] = setter
+        // when arg is not passed in, count it as a getter
+        // because `call` can be getter
+        setter = (a = OFF, b, c) => (a === OFF ? getter() : sets(a, b, c))
+
+        // if this was hoisted it would be smaller
+        this[camelCase(`get-${name}`)] = getter
+        this[camelCase(`set-${name}`)] = setter
+        this.shorthands.push(name)
 
         // also should have `setGet`
-        Object.defineProperty(this, method, {
+        Object.defineProperty(this, name, {
           configurable: true,
           enumerable: true,
           get: function getr(arg1) {
