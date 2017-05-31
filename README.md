@@ -1,6 +1,7 @@
 # ⛓ chain-able
 
 [![NPM version][chain-able-npm-image]][chain-able-npm-url]
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b1d92a30c4aa43df9a6233cfadde2307)](https://www.codacy.com/app/aretecode/chain-able?utm_source=github.com&utm_medium=referral&utm_content=fluents/chain-able&utm_campaign=badger)
 [![docs](https://img.shields.io/badge/📖-docs-blue.svg)](https://github.com/fluents/chain-able/wiki)
 [![Dependencies][david-deps-img]][david-deps-url]
 [![fliphub][gitter-badge]][gitter-url]
