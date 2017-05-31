@@ -81,7 +81,7 @@ class FactoryChain extends Composed {
    * @return {any}
    */
   getData(prop = null) {
-    return (prop === null) ? this.data : this.data[prop]
+    return prop === null ? this.data : this.data[prop]
   }
 
   factory(obj = {}) {
