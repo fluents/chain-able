@@ -57,7 +57,7 @@ module.exports = {
 
   set(obj, path, value) {
     if (!isObj(obj) || typeof path !== 'string') {
-      return
+      return obj
     }
 
     const pathArr = getPathSegments(path)
@@ -75,6 +75,8 @@ module.exports = {
 
       obj = obj[p]
     }
+
+    return obj
   },
 
   delete(obj, path) {
@@ -114,8 +116,7 @@ module.exports = {
         }
 
         obj = obj[pathArr[i]]
-      }
-      else {
+      } else {
         return false
       }
     }
