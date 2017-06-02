@@ -128,15 +128,12 @@ module.exports = (SuperClass = ChainedMap, opts) => {
      * @return {ChainedMap} @chainable
      */
     extendWith(methods, val = undefined) {
-      let isArr = Array.isArray(methods)
-
+      const isArr = Array.isArray(methods)
       const keys = isArr ? methods : Object.keys(methods)
 
       keys.forEach(method => {
         this.shorthands.push(method)
         const v = isArr === false ? methods[method] : val
-        // console.log({isArnpr, method, val})
-
         this[method] = (value = v) => this.set(method, value)
       })
       return this
