@@ -224,7 +224,8 @@ class ChainedMap extends Chainable {
    * @return {Object}
    */
   entries(chains = false) {
-    const entries = [...this.store]
+    const entries = Array.from(this.store.entries())
+
     let reduced = {}
     if (entries.length !== 0) {
       reduced = entries.reduce((acc, [key, value]) => {
