@@ -1,6 +1,6 @@
 {
   "name": "chain-able",
-  "version": "2.0.0-beta.2",
+  "version": "2.0.1",
   "description": "interfaces that describe their intentions.",
   "main:dev": "./index.cjs.dev.js",
   "main": "./index.cjs.js",
@@ -119,6 +119,7 @@
     "chainsaw": "^0.1.0",
     "coveralls": "^2.13.1",
     "deepmerge": "^1.3.2",
+    "eslint-config-chain-able": "^1.0.0",
     "fliplog": "^0.3.0",
     "flow-remove-types": "*",
     "fsbx": "^2.1.0-beta.4",
@@ -138,8 +139,7 @@
     "rollup-plugin-replace": "^1.1.1",
     "rollup-plugin-uglify": "^2.0.1",
     "traverse": "^0.6.6",
-    "uglify-es": "^3.0.13",
-    "eslint-config-chain-able": "^1.0.0"
+    "uglify-es": "^3.0.13"
   },
   "keywords": [
     "lego",
