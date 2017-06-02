@@ -1,9 +1,31 @@
 /**
  * @since 2.0.0
  */
+const dot = require('../deps/dot-prop')
+const isDot = k => typeof k === 'string' && k.includes('.')
 
 module.exports = (SuperClass, opts) => {
   return class DotProp extends SuperClass {
+    set(key, val) {
+      return isDot(key)
+        ? super.set(
+            key.split('.').shift(),
+            dot.set(super.entries(this), key, val) || val
+          )
+        : super.set(key, val)
+    }
+    get(key) {
+      return isDot(key) ? dot.get(super.entries(this), key) : super.get(key)
+    }
+    has(key) {
+      return isDot(key) ? dot.has(super.entries(this), key) : super.has(key)
+    }
+    delete(key) {
+      return isDot(key)
+        ? dot.delete(super.entries(this), key)
+        : super.delete(key)
+    }
+
     /**
      * @desc returns a dot chain
      * @since 1.0.0
@@ -36,7 +58,7 @@ module.exports = (SuperClass, opts) => {
     _dotter(name) {
       let accessor = name
       let first = name
-      let hasDot = name.includes('.')
+      let hasDot = isDot(name)
       let value
 
       if (hasDot) {
