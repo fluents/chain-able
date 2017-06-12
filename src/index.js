@@ -5,6 +5,7 @@ const ChainedSet = require('./ChainedSet')
 // merge
 const MergeChain = require('./MergeChain')
 const dopemerge = require('./deps/dopemerge')
+const traverse = require('./deps/traverse')
 // easy
 const FactoryChain = require('./FactoryChain')
 // composer
@@ -15,6 +16,11 @@ const exp = compose()
 exp.init = parent => new exp(parent)
 exp.Chain = exp
 exp.compose = compose
+exp.traverse = traverse
+exp.toArr = require('./deps/to-arr')
+exp.camelCase = require('./deps/to-arr')
+exp.dot = require('./deps/dot-prop')
+// exp.saw = require('./deps/chainsaw')
 
 // function d(name, opts) {
 //   Object.defineProperty(exp, name, {

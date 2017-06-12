@@ -4,7 +4,21 @@
 
 const ChainedMap = require('../ChainedMap')
 const toarr = require('../deps/to-arr')
+const isObj = require('../deps/is/pureObj')
 // const {addPrefix, removePrefix} = require('../deps/prefix')
+
+function getDecoration(decoration) {
+  const method = isObj(decoration)
+    ? Object.keys(decoration).pop()
+    : decoration.method || decoration
+
+  return {
+    method,
+    returnee: decoration.return,
+    key: decoration.key || method,
+    cb: isObj(decoration) ? decoration[method] : null,
+  }
+}
 
 /**
  * @inheritdoc
@@ -13,6 +27,11 @@ module.exports = (SuperClass = ChainedMap, opts) => {
   return class Extendable extends SuperClass {
     constructor(parent) {
       super(parent)
+
+      // this.methodsAlias = this.extendAlias.bind(this)
+      // this.methodsWith = this.extendWith.bind(this)
+      // this.methodsAutoIncrement = this.extendIncrement.bind(this)
+
       if (parent && parent.has && parent.has('debug')) {
         this._debug = parent.get('debug')
         // this.debug(parent.get('debug'))
@@ -64,21 +83,8 @@ module.exports = (SuperClass = ChainedMap, opts) => {
       }
 
       decorations.forEach(decoration => {
-        let method
-        let returnee
-        let key
-        let cb
-
-        if (typeof decoration === 'object') {
-          method = Object.keys(decoration).pop()
-          cb = decoration[method]
-        }
-
-        method = method || decoration.method || decoration
-        returnee = decoration.return // || this.parent
-        key = decoration.key || method
-
         // console.log({method, key}, 'parent decorations')
+        let {method, cb, returnee, key} = getDecoration(decoration)
 
         // @NOTE ignores when no parent
         if (!returnee && !this.parent) {
@@ -128,15 +134,12 @@ module.exports = (SuperClass = ChainedMap, opts) => {
      * @return {ChainedMap} @chainable
      */
     extendWith(methods, val = undefined) {
-      let isArr = Array.isArray(methods)
-
+      const isArr = Array.isArray(methods)
       const keys = isArr ? methods : Object.keys(methods)
 
       keys.forEach(method => {
         this.shorthands.push(method)
         const v = isArr === false ? methods[method] : val
-        // console.log({isArnpr, method, val})
-
         this[method] = (value = v) => this.set(method, value)
       })
       return this

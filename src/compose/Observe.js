@@ -1,6 +1,11 @@
 const ChainedMap = require('../ChainedMap')
 const ChainedSet = require('../ChainedSet')
 const toarr = require('../deps/to-arr')
+const traverse = require('../deps/traverse')
+const eq = require('../deps/traversers/eq')
+
+// scoped clones
+let objs = {}
 
 module.exports = (SuperClass = ChainedMap, opts) => {
   /**
@@ -34,16 +39,25 @@ module.exports = (SuperClass = ChainedMap, opts) => {
       /* prettier-ignore */
       this.observers
         .add(changed => {
-          // @TODO
-          //  use `changed` to simply only update data with changed
-          //  keep scoped data
-          //  const {key, value} = changed
-
-          const data = {}
+          let data = {}
           const props = toarr(properties)
-          for (let i = 0; i < props.length; i++) {
-            data[props[i]] = this.get(props[i])
+
+          if (props.includes('*')) {
+            data = this.entries()
           }
+          else {
+            for (let i = 0; i < props.length; i++) {
+              data[props[i]] = this.get(props[i])
+            }
+          }
+
+          const keys = props.join('_')
+          if (eq(objs[keys], data)) {
+            return this
+          }
+
+          objs[keys] = traverse(data).clone()
+
           cb(data, this)
         })
 

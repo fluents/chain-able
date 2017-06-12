@@ -1,27 +1,27 @@
 // @TODO
 module.exports = (SuperClass, opts) => {
   class DebugChain extends SuperClass {
-    constructor(parent) {
-      super(parent)
-
-      // www.bennadel.com/blog/2829-string-interpolation-using-util-format-and-util-inspect-in-node-js.htm
-      // const inspector = (filters = []) => {
-      //   const allProps = require('./deps/all-props')
-      //   return function(depth, options) {
-      //     let inspected = {}
-      //
-      //     /* prettier-ignore */
-      //     allProps(this)
-      //       .filter(key => !['parent', 'mixed', 'shorthands'].includes(key))
-      //       .map(key =>
-      //         inspected[key] = Object.getOwnPropertyDescriptor(this, key))
-      //
-      //     return inspected
-      //   }
-      // }
-      // if (this.initializer !== undefined) this.initializer(parent)
-      // this.inspect = () => inspector()
-    }
+    // constructor(parent) {
+    //   super(parent)
+    //
+    //   // www.bennadel.com/blog/2829-string-interpolation-using-util-format-and-util-inspect-in-node-js.htm
+    //   // const inspector = (filters = []) => {
+    //   //   const allProps = require('./deps/all-props')
+    //   //   return function(depth, options) {
+    //   //     let inspected = {}
+    //   //
+    //   //     /* prettier-ignore */
+    //   //     allProps(this)
+    //   //       .filter(key => !['parent', 'mixed', 'shorthands'].includes(key))
+    //   //       .map(key =>
+    //   //         inspected[key] = Object.getOwnPropertyDescriptor(this, key))
+    //   //
+    //   //     return inspected
+    //   //   }
+    //   // }
+    //   // if (this.initializer !== undefined) this.initializer(parent)
+    //   // this.inspect = () => inspector()
+    // }
 
     /**
      * @inheritdoc

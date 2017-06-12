@@ -1,4 +1,5 @@
 const TraverseChain = require('../TraverseChain')
+const isObj = require('../deps/is/obj')
 
 module.exports = (SuperClass, opts) => {
   return class Transform extends SuperClass {
@@ -9,13 +10,18 @@ module.exports = (SuperClass, opts) => {
      * @desc traverse `this`, or `this.entries`
      * @see TraverseChain
      * @see js-traverse
-     * @param  {boolean} [useThis=false]
+     * @param  {boolean | traversable} [useThis=false]
      * @return {ChainedMapExtendable} @chainable
      */
     traverse(useThis = false) {
       /* prettier-ignore */
       return new TraverseChain(this)
-        .obj(useThis === false ? this.entries(true) : this)
+        .obj(useThis === false
+          ? this.entries(true)
+          : useThis === true
+            ? this
+            : useThis
+        )
     }
 
     // but could specify the key
@@ -27,6 +33,7 @@ module.exports = (SuperClass, opts) => {
     // }
 
     /**
+     * @TODO dot-prop here
      * @since 1.0.2
      * @TODO handle transformers with an array...
      * @see obj-chain
@@ -38,25 +45,38 @@ module.exports = (SuperClass, opts) => {
      *     .set('dis', {id: 'eh'}) // .get('dis') === 'eh'
      *
      * @param  {string | Function} key currently just string
-     * @param  {any | Function} value
+     * @param  {Function} value
      * @return {This} @chainable
      */
     transform(key, value) {
       if (this.transformers === undefined) this.transformers = {}
-      this.transformers[key] = value
+      if (this.transformers[key]) this.transformers[key].push(value)
+      else this.transformers[key] = [value]
       return this
     }
 
+    compute(key, cb) {
+      return this.transform(key, value => {
+        cb(value, this)
+        return value
+      })
+    }
+
     /**
+     * @TODO dot-prop here
      * @inheritdoc
      * @see this.observe, this.transform
      * @since 1.0.0
      */
-    set(key, val) {
+    set(prop, val) {
       let value = val
+      let key = prop
+
       /* prettier-ignore */
       if (this.transformers !== undefined && this.transformers[key] !== undefined) {
-        value = this.transformers[key](value, this)
+        for (let i = 0; i < this.transformers[key].length; i++) {
+          value = this.transformers[key][i].call(this, value, this)
+        }
       }
 
       super.set(key, value)
@@ -68,44 +88,10 @@ module.exports = (SuperClass, opts) => {
       return this
     }
 
-    /**
-     * @TODO add to .set
-     * @inheritdoc
-     * @override
-     * @since 1.0.0
-     * @desc if we have a keymap, remap, otherwise, just normal .from
-     * @see FlipChain.from
-     * @example chain.from({eh: true}) === chain.merge({eh: true})
-     * @param  {Object} obj
-     * @return {Chain} @chainable
-     */
-    from(obj) {
-      if (this.has('keymap') === false) {
-        return super.from(obj)
-      }
-
-      const keymap = this.get('keymap')
-      const keys = Object.keys(obj)
-      const mappedKeys = keys.map(key => {
-        if (keymap[key]) return keymap[key]
-        return key
-      })
-
-      for (let i = 0; i < keys.length; i++) {
-        const key = mappedKeys[i]
-        // skip if we already have it
-        if (obj[key]) continue
-        // otherwise, set it, can delete the old one
-        obj[key] = obj[keys[i]]
-      }
-
-      return super.from(obj)
-    }
-
     // --- remap ---
 
     /**
-     * @TODO could also be an array of `from` and corresponds to an array of `to`
+     * @TODO: could also be a function, but then might as well use .transform
      * @since 1.0.0
      * @example
      *  this
@@ -118,9 +104,16 @@ module.exports = (SuperClass, opts) => {
      * @param  {string} to property name to change key to
      * @return {Chain} @chainable
      */
-    remapKey(from, to) {
-      if (this.has('keymap') === false) this.set('keymap', {})
-      this.get('keymap')[from] = to
+    remap(from, to) {
+      let remap = from
+      if (!isObj(from)) remap = {[from]: to}
+
+      /* prettier-ignore */
+      Object.keys(remap).forEach(key => this.transform(key, val => {
+        this.set(remap[key], val)
+        return val
+      }))
+
       return this
     }
   }

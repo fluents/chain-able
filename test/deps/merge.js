@@ -2,7 +2,7 @@ const test = require('ava')
 const merge = require('../../dist/deps/dopemerge')
 // const merge = require('deepmerge')
 
-test.failing('custom merge array', t => {
+test('custom merge array', t => {
   var mergeFunctionCalled = false
   function concatMerge(target, source, options) {
     t.falsy(mergeFunctionCalled)
@@ -33,7 +33,7 @@ test.failing('custom merge array', t => {
   t.pass()
 })
 
-test.failing('custom: merge top-level arrays', t => {
+test('custom: merge top-level arrays', t => {
   function concatMerge(a, b) {
     return a.concat(b)
   }
@@ -152,7 +152,7 @@ test('should add nested object in target', t => {
   t.pass()
 })
 
-test.failing('should clone source and target', t => {
+test('should clone source and target', t => {
   var src = {
     b: {
       c: 'foo',
@@ -178,8 +178,8 @@ test.failing('should clone source and target', t => {
 
   t.deepEqual(merged, expected)
 
-  t.not(merged.a, target.a)
-  t.not(merged.b, src.b)
+  t.false(merged.a === target.a)
+  t.false(merged.b === src.b)
 
   t.pass()
 })
@@ -334,7 +334,7 @@ test('should work on array properties', t => {
   t.pass()
 })
 
-test.failing('should work on array properties with clone option', t => {
+test('should work on array properties with clone option', t => {
   var src = {
     key1: ['one', 'three'],
     key2: ['four'],
@@ -378,7 +378,7 @@ test('should work on array of objects', t => {
   t.pass()
 })
 
-test.failing('should work on array of objects with clone option', t => {
+test('should work on array of objects with clone option', t => {
   var src = [{key1: ['one', 'three'], key2: ['one']}, {key3: ['five']}]
   var target = [{key1: ['one', 'two']}, {key3: ['four']}]
 
@@ -488,7 +488,7 @@ test('should work on array with null in it', t => {
   t.pass()
 })
 
-test.failing('should clone array\'s element if it is object', t => {
+test('should clone array\'s element if it is object', t => {
   var a = {key: 'yup'}
   var target = []
   var source = [a]
@@ -501,19 +501,16 @@ test.failing('should clone array\'s element if it is object', t => {
   t.pass()
 })
 
-test.failing(
-  'should clone an array property when there is no target array',
-  t => {
-    const someObject = {}
-    var target = {}
-    var source = {ary: [someObject]}
-    var output = merge(target, source, {clone: true})
+test('should clone an array property when there is no target array', t => {
+  const someObject = {}
+  var target = {}
+  var source = {ary: [someObject]}
+  var output = merge(target, source, {clone: true})
 
-    t.deepEqual(output, {ary: [{}]})
-    t.not(output.ary[0], someObject)
-    t.pass()
-  }
-)
+  t.deepEqual(output, {ary: [{}]})
+  t.not(output.ary[0], someObject)
+  t.pass()
+})
 
 test('should overwrite values when property is initialised but undefined', t => {
   var target1 = {value: []}

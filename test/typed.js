@@ -1,6 +1,6 @@
 const test = require('ava')
-const log = require('fliplog')
-const izz = require('izz')
+// const log = require('fliplog')
+// const izz = require('izz')
 const TypeChain = require('../dist')
 
 // const isURL = require('validator/lib/isURL')
@@ -24,10 +24,11 @@ const validators = {
   // isUUID: value => isNotEmpty(value) && isUUIDValidator(value),
   // isURL,
   // isEmail,
-  isPhone: value => isNumeric(value) && isLength(trim(value), {min: 6}),
   // isLength,
   // isWebUri: validUrl.isWebUri,
   // validUrl,
+  isPhone: value => isNumeric(value) && isLength(trim(value), {min: 6}),
+  string: value => typeof value === 'string',
 }
 
 test(`
@@ -72,7 +73,6 @@ test(`restore from backup`, t => {
 
   /* prettier-ignore */
   const creation = typed
-    .validators(izz)
     .validators(validators)
     .typed()
       .type('string')

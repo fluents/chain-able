@@ -19,6 +19,25 @@ module.exports = (SuperClass = ChainedMap, opts) => {
    * @type {Map}
    */
   return class DefineChain extends SuperClass {
+    // @TODO!!!
+    // getWhenSet() {
+    //   this.set = (key, val) => {
+    //     if (Object.hasOwnProprty(key) === false) {
+    //       Object.defineProperty({
+    //         configurable: true,
+    //         enumerable: true,
+    //         get() {
+    //           return this.get(key)
+    //         },
+    //         set(setVal) {
+    //           this.set(key, setVal)
+    //         },
+    //       })
+    //     }
+    //     return super.set(key, val)
+    //   }
+    // }
+
     /**
      * @TODO abstract this
      * @TODO this may break .from
@@ -41,9 +60,9 @@ module.exports = (SuperClass = ChainedMap, opts) => {
     defineGetSet(methods) {
       methods.forEach(method => {
         // reference current method, since we overwrite it
-        const ref = this[method] && this[method].bind ?
-          this[method].bind(this) :
-          this[method]
+        const ref = this[method] && this[method].bind
+          ? this[method].bind(this)
+          : this[method]
 
         const getter = () => ref()
 
@@ -106,14 +125,14 @@ module.exports = (SuperClass = ChainedMap, opts) => {
 
         // when we have method, use it, fallback to get/set
         /* prettier-ignore */
-        getter = method.get ?
-          arg => method.get(arg) :
-          arg => this.get(name)
+        getter = method.get
+          ? arg => method.get(arg)
+          : arg => this.get(name)
 
         // create the method beforehand to scope it, vs every call
-        const sets = method.set ?
-          (a, b, c) => method.set(a, b, c) :
-          a => this.set(name, a)
+        const sets = method.set
+          ? (a, b, c) => method.set(a, b, c)
+          : a => this.set(name, a)
 
         // when arg is not passed in, count it as a getter
         // because `call` can be getter

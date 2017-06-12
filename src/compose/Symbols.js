@@ -1,5 +1,7 @@
 // putting it here allows buble to ignore it
-const {Iterator, Instance, Primative} = require('../deps/symbols')
+const Iterator = require('../deps/symbols/iterator')
+const Primative = require('../deps/symbols/primative')
+const Instance = require('../deps/symbols/instance')
 
 module.exports = (SuperClass, opts) => {
   class Symbols extends SuperClass {
@@ -67,8 +69,8 @@ module.exports = (SuperClass, opts) => {
      * @param {Chainable | Object | any} instance
      * @return {boolean} instanceof
      */
-    [Symbol.hasInstance](instance) {
-      return Symbols[Symbol.hasInstance](instance, this)
+    [Instance](instance) {
+      return Symbols[Instance](instance, this)
     }
 
     /**
@@ -78,7 +80,7 @@ module.exports = (SuperClass, opts) => {
      * @param {string} hint
      * @return {Primative}
      */
-    [Primative](hint: string) {
+    [Primative](hint) {
       if (hint === 'number' && this.toNumber) {
         return this.toNumber()
       }
@@ -119,7 +121,7 @@ module.exports = (SuperClass, opts) => {
         return this.store.size
       },
     })
-    Object.defineProperty(Chain, Symbol.hasInstance, {
+    Object.defineProperty(Chain, Instance, {
       configurable: true,
       enumerable: false,
       // writable: false,

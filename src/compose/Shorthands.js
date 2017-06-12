@@ -2,6 +2,20 @@
  * @since 2.0.0
  */
 
+const encase = configs => (a, b, c, d, e) => {
+  const {onValid, onInvalid, ref, rethrow} = configs
+  let result
+  try {
+    result = ref(a, b, c, d, e)
+    return onValid === 0 ? result : onValid(result)
+  }
+  catch (error) {
+    if (onInvalid !== 0) return onInvalid(error)
+    if (rethrow === true) throw error
+    else return e
+  }
+}
+
 module.exports = (SuperClass, opts) => {
   return class Shorthands extends SuperClass {
     // --- helpers  ---
@@ -13,35 +27,26 @@ module.exports = (SuperClass, opts) => {
      * @return {Shorthands} @chainable
      */
     encase(method, rethrow = false) {
-      let onValid = 0
-      let onInvalid = 0
-
       // const fn = typeof method === 'function'
       // or pass in a normal method...
       // let ref = fn ? method : this[method].bind(this)
       let ref = this[method].bind(this)
 
+      const config = {
+        onInvalid: 0,
+        onValid: 0,
+        rethrow,
+        ref,
+      }
+
       // @TODO improve this
       this.then = cb => {
-        onValid = cb
+        config.onValid = cb
         return this
       }
       this.catch = cb => {
-        onInvalid = cb
+        config.onInvalid = cb
         return this
-      }
-
-      const encased = (a, b, c, d, e) => {
-        let result
-        try {
-          result = ref(a, b, c, d, e)
-          return onValid === 0 ? result : onValid(result)
-        }
-        catch (error) {
-          if (onInvalid !== 0) return onInvalid(error)
-          if (rethrow === true) throw error
-          else return e
-        }
       }
 
       // should be a child factory really...
@@ -55,7 +60,7 @@ module.exports = (SuperClass, opts) => {
       //   return encased
       // }
 
-      this[method] = encased
+      this[method] = encase(config)
 
       return this
     }

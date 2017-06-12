@@ -11,7 +11,11 @@
 //   module.exports = require('./Chainable.all')
 // }
 
-const {Iterator, Instance, Primative} = require('./deps/symbols')
+const Iterator = require('./deps/symbols/iterator')
+const Instance = require('./deps/symbols/instance')
+const Primative = require('./deps/symbols/primative')
+
+const F = Function.prototype
 
 /**
  * @type {Chainable}
@@ -23,11 +27,8 @@ class Chainable {
   /**
    * @param {Chainable | any} parent
    */
-  constructor(parent: any) {
-    if (parent && (this.parent === null || this.parent === undefined)) {
-      this.parent = parent
-    }
-
+  constructor(parent) {
+    if (parent) this.parent = parent
     this.className = this.constructor.name
   }
 
@@ -104,7 +105,7 @@ class Chainable {
    * @see Chainable.parent
    * @return {Chainable | any}
    */
-  end(): Chainable | any {
+  end() {
     return this.parent
   }
 
@@ -123,11 +124,7 @@ class Chainable {
    * @param  {Function} [falseBrancher=Function.prototype] called when false
    * @return {ChainedMap}
    */
-  when(
-    condition: boolean,
-    trueBrancher: Function = Function.prototype,
-    falseBrancher: Function = Function.prototype
-  ): Chainable {
+  when(condition, trueBrancher = F, falseBrancher = F) {
     if (condition) {
       trueBrancher(this)
     }
@@ -142,7 +139,7 @@ class Chainable {
    * @since 0.3.0
    * @return {Chainable}
    */
-  clear(): Chainable {
+  clear() {
     this.store.clear()
     return this
   }
@@ -153,7 +150,7 @@ class Chainable {
    * @param {string | any} key
    * @return {Chainable}
    */
-  delete(key: any): Chainable {
+  delete(key) {
     this.store.delete(key)
     return this
   }
@@ -164,7 +161,7 @@ class Chainable {
    * @param {any} value
    * @return {boolean}
    */
-  has(value: any): boolean {
+  has(value) {
     return this.store.has(value)
   }
 
@@ -190,7 +187,7 @@ class Chainable {
    * @param {string} hint
    * @return {Primative}
    */
-  [Primative](hint: string) {
+  [Primative](hint) {
     if (hint === 'number' && this.toNumber) {
       return this.toNumber()
     }

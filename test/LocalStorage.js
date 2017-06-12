@@ -3,7 +3,9 @@ const log = require('fliplog')
 const Chain = require('../dist')
 
 class Canada extends Chain {
-  static init(parent) { return new Canada(parent) }
+  static init(parent) {
+    return new Canada(parent)
+  }
   constructor(parent) {
     super('parent')
     this.extend(['eh'])
@@ -12,16 +14,16 @@ class Canada extends Chain {
 
 const store = {}
 const storage = {
-  getItem(key) { return store[key] },
-  setItem(key, value) { store[key] = value },
+  getItem: key => store[key],
+  setItem: (key, value) => (store[key] = value),
 }
 const ls = {
-  get(key) { return JSON.parse(storage.getItem(key)) },
-  set(key, value) { storage.setItem(key, JSON.stringify(value)) },
+  get: key => JSON.parse(storage.getItem(key)),
+  set: (key, value) => storage.setItem(key, JSON.stringify(value)),
 }
 
 test('persist & rehydrate', t => {
-  const canada = Canada.init()
+  const canada = new Canada()
     .eh('eh!')
     .merge({canada: true})
     .tap('canada', value => '🇨🇦')
@@ -29,6 +31,5 @@ test('persist & rehydrate', t => {
 
   ls.set('canada', canada.entries())
   const hydrated = new Canada().from(ls.get('canada'))
-
   t.deepEqual(canada.entries(), hydrated.entries())
 })

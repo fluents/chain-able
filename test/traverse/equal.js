@@ -1,6 +1,6 @@
 var test = require('ava')
-var deepEqual = require('./lib/deep_equal')
-// var traverse = require('./')
+// var deepEqual = require('./lib/deep_equal')
+var {deepEqual} = require('./')
 
 test('deepDates', t => {
   t.plan(2)

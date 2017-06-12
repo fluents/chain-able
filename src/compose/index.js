@@ -1,4 +1,5 @@
 const ChainedMap = require('../ChainedMap')
+const isClass = require('../deps/is/class')
 const Define = require('./Define')
 const Observe = require('./Observe')
 const Shorthands = require('./Shorthands')
@@ -6,10 +7,9 @@ const Transform = require('./Transform')
 const Types = require('./Types')
 const DotProp = require('./DotProp')
 const Extend = require('./Extend')
+
 // @TODO child, immutable, Symbols (take out of Chainable)
 // const Symbols = require('./Symbols')
-
-const isClass = Obj => (/^\s*class\s/).test(Obj.toString())
 
 // optimize this as much as possible
 function compose(SuperClass = ChainedMap, o = true) {
