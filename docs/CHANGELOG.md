@@ -1,0 +1,47 @@
+# 3.0.0
+- MAJOR
+  - 🏷 version bump 📜 minor scripts
+  - 🆙.remapKey -> .remap (accepts an object, or .remapKey)
+  - 🗑🤖 .from in compose/Transform removed, transformers work in .merge, .set, .from, etc.
+  - 🗑 removed .whitelist from compose/Traverse
+  - transformers[key] is now an array, to .reduce values with, vs replacing and having only 1 transformer per key
+- PATCH:
+  - allow .transform to take in any traversable, nested conditional: compatible boolean to still use .entries(true) | this, but when an iteratable is passed in, returns traverser chain on that iteratable
+- MINOR:
+  - 📦⬇ remove izz
+  - 🆙🔬    update traverse tests with inlined equals
+  - 🆙🔬🗺 update remap test
+  - 📘🔬 example mobx test
+  - 🆙🔬👂 update & add more observe tests
+  - 🖇🔬 utils/is tests
+  - 🆙🎼🔬 update & add more dot-prop tests
+  - 🚨🔬⚒ failing merge tests that wanted .clone fixed
+  - 💣🛅🏗 fuse-box file added for building with quantum
+  - 📦🐈 yarn.lock
+  - 🏗 Makefile
+  - 👕⚒ lint autofixes & 📝 todo in 🎼 compose/Define
+  - 👾♻️⚡ simplify the symbol & typechecks in core lib
+  	- abstract out `reduce` for maps & `isObjWithKeys` into `is`
+  - 🎁⚒ dot-prop implemented with .get .set .has .delete in 🎼 compose/DotProp
+  - ⚒👂 observables fixed, only calls on changed
+    - ⚖️ ===? deps/transformers/eq added for traversable minimal deepEquals implementation
+  - 🏛️  refactor traverse with deps/is
+  - 🖇   traverser util for cloning, unused
+  - ❌🌊 remove some minor flowtypes for easier usage from raw source
+  - 👾 dopemerge simplified
+  - 📒🚚🖇 symbols & is[X] moved into individual files
+  	- 🖇🎯 to-test util (str->regex/fn)
+  	- 🖇🎯 str-to-regex util
+  	- 🖇🗺 map reduce util
+  	- 🖇🤸 split dot-prop-path-segments util
+  	- 🖇🆙 minor dot-prop change to use deps/is
+  	- 🍬 .getDecoration 🖇 use is & other deps
+    - index files for the folders are compat for experimentation when needed
+    - reduces file size
+      - instead of assigning data to an object & spreading the data into named variables
+      - additionally smaller variable names when uniquing those scoped variables in each file when bundling into a single file
+      - smaller functions are optimized faster (usually) by v8
+      - moves them out of every instantiated object as a property and only uses reference by scope
+      - ♻️⚡ abstract out `encase` fn
+  - 🔊 changelog added
+  - 🚨🔬 failing tests for traversing a map & set without transforming with .entries & .values first
