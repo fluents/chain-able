@@ -12,8 +12,8 @@ test('keys can be remapped', t => {
 
       /* prettier-ignore */
       this
-        .remapKey('dis', 'dat')
-        .remapKey('eh', 'canada')
+        .remap('dis', 'dat')
+        .remap('eh', 'canada')
     }
   }
 
@@ -21,6 +21,20 @@ test('keys can be remapped', t => {
   t.true(remap.get('dat') === 'dis')
   t.true(remap.get('canada') === 'eh')
   t.true(remap.get('other'))
+})
+
+test('keys can be remapped - using .set not .from', t => {
+  const remap = new Chain().remap('dis', 'dat').remap('eh', 'canada')
+  t.true(remap.set('dis', '___').get('dat') === '___')
+  t.true(remap.set('eh', '___').get('canada') === '___')
+})
+test('keys can be remapped - using an object', t => {
+  const remap = new Chain().remap({
+    dis: 'dat',
+    eh: 'canada',
+  })
+  t.true(remap.set('dis', '___').get('dat') === '___')
+  t.true(remap.set('eh', '___').get('canada') === '___')
 })
 
 test('values can be transformed', t => {
