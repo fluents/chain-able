@@ -1,6 +1,5 @@
 var test = require('ava')
-var traverse = require('./')
-var deepEqual = require('./lib/deep_equal')
+var {traverse, deepEqual} = require('./')
 var util = require('util')
 
 test('circular', t => {

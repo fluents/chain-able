@@ -1,9 +1,9 @@
 var test = require('ava')
-var traverse = require('./')
-var deepEqual = require('./lib/deep_equal')
+var {traverse, deepEqual} = require('./')
+// var deepEqual = require('./lib/deep_equal')
 
 test('super_deep', t => {
-  var util = require('util')
+  // var util = require('util')
   var a0 = make()
   var a1 = make()
   t.truthy(deepEqual(a0, a1))
