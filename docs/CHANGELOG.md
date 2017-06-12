@@ -45,3 +45,4 @@
       - ♻️⚡ abstract out `encase` fn
   - 🔊 changelog added
   - 🚨🔬 failing tests for traversing a map & set without transforming with .entries & .values first
+  - ⛑🛅🔬 safety in built for .entries, yay tests
