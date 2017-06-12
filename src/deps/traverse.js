@@ -1,4 +1,17 @@
+const isPureObj = require('./is/pureObj')
+const isRegExp = require('./is/regexp')
+const isError = require('./is/error')
+const isBoolean = require('./is/boolean')
+const isNumber = require('./is/number')
+const isString = require('./is/string')
+const isDate = require('./is/date')
+
+const isArray = Array.isArray
+const objectKeys = Object.keys
+const hasOwnProperty = (x, y) => Object.hasOwnProperty.call(x, y)
+
 // https://github.com/substack/js-traverse
+// @TODO: symbol
 var traverse = function(obj) {
   return new Traverse(obj)
 }
@@ -12,7 +25,7 @@ Traverse.prototype.get = function(ps) {
   var node = this.value
   for (var i = 0; i < ps.length; i++) {
     var key = ps[i]
-    if (!node || !hasOwnProperty.call(node, key)) {
+    if (!node || !hasOwnProperty(node, key)) {
       node = undefined
       break
     }
@@ -25,7 +38,7 @@ Traverse.prototype.has = function(ps) {
   var node = this.value
   for (var i = 0; i < ps.length; i++) {
     var key = ps[i]
-    if (!node || !hasOwnProperty.call(node, key)) {
+    if (!node || !hasOwnProperty(node, key)) {
       return false
     }
     node = node[key]
@@ -37,7 +50,7 @@ Traverse.prototype.set = function(ps, value) {
   var node = this.value
   for (var i = 0; i < ps.length - 1; i++) {
     var key = ps[i]
-    if (!hasOwnProperty.call(node, key)) node[key] = {}
+    if (!hasOwnProperty(node, key)) node[key] = {}
     node = node[key]
   }
   node[ps[i]] = value
@@ -90,7 +103,7 @@ Traverse.prototype.clone = function() {
       }
     }
 
-    if (typeof src === 'object' && src !== null) {
+    if (isPureObj(src)) {
       var dst = copy(src)
 
       parents.push(src)
@@ -179,7 +192,7 @@ function walk(root, cb, immutable) {
     if (!alive) return state
 
     function updateState() {
-      if (typeof state.node === 'object' && state.node !== null) {
+      if (isPureObj(state.node)) {
         if (!state.keys || state.node_ !== state.node) {
           state.keys = objectKeys(state.node)
         }
@@ -212,11 +225,7 @@ function walk(root, cb, immutable) {
 
     if (!keepGoing) return state
 
-    if (
-      typeof state.node === 'object' &&
-      state.node !== null &&
-      !state.circular
-    ) {
+    if (isPureObj(state.node) && !state.circular) {
       parents.push(state)
 
       updateState()
@@ -227,7 +236,7 @@ function walk(root, cb, immutable) {
         if (modifiers.pre) modifiers.pre.call(state, state.node[key], key)
 
         var child = walker(state.node[key])
-        if (immutable && hasOwnProperty.call(state.node, key)) {
+        if (immutable && hasOwnProperty(state.node, key)) {
           state.node[key] = child.node
         }
 
@@ -248,9 +257,21 @@ function walk(root, cb, immutable) {
 }
 
 function copy(src) {
-  if (typeof src === 'object' && src !== null) {
+  // require('fliplog').data(src).bold('copying').echo()
+  if (isPureObj(src)) {
     var dst
 
+    // const reduce = require('./reduce')
+    // const toarr = require('./to-arr')
+    // require('fliplog').underline('is obj').echo()
+    // @TODO:
+    // if (isMap(src)) {
+    //   require('fliplog').underline('is map').echo()
+    //   dst = reduce(src.entries())
+    // }
+    // else if (isSet(src)) {
+    //   dst = toarr(src)
+    // }
     if (isArray(src)) {
       dst = []
     }
@@ -279,6 +300,7 @@ function copy(src) {
       dst = {}
     }
     else {
+      // @NOTE: only happens if above getPrototypeOf does not exist
       var proto = (src.constructor && src.constructor.prototype) ||
       src.__proto__ || {}
       var T = function() {}
@@ -291,52 +313,23 @@ function copy(src) {
     })
     return dst
   }
-  else return src
-}
-
-var objectKeys =
-  Object.keys ||
-  function keys(obj) {
-    var res = []
-    for (var key in obj)
-      res.push(key)
-    return res
+  else {
+    // require('fliplog').red('is NOT OBJ').echo()
+    return src
   }
-
-function toS(obj) {
-  return Object.prototype.toString.call(obj)
-}
-function isDate(obj) {
-  return toS(obj) === '[object Date]'
-}
-function isRegExp(obj) {
-  return toS(obj) === '[object RegExp]'
-}
-function isError(obj) {
-  return toS(obj) === '[object Error]'
-}
-function isBoolean(obj) {
-  return toS(obj) === '[object Boolean]'
-}
-function isNumber(obj) {
-  return toS(obj) === '[object Number]'
-}
-function isString(obj) {
-  return toS(obj) === '[object String]'
 }
 
-var isArray =
-  Array.isArray ||
-  function isArray(xs) {
-    return Object.prototype.toString.call(xs) === '[object Array]'
-  }
-
+/**
+ * @TODO: unexpectedly breaks things iterating
+ * if you are relying on internal functionality
+ * (such as .path, .get, .value...) with map & set
+ *
+ * @desc if there is .forEach on the obj already, use it
+ * otherwise, call function for each
+ */
 var forEach = function(xs, fn) {
   if (xs.forEach) return xs.forEach(fn)
-  else
-    for (var i = 0; i < xs.length; i++) {
-      fn(xs[i], i, xs)
-    }
+  else for (var i = 0; i < xs.length; i++) fn(xs[i], i, xs)
 }
 
 forEach(objectKeys(Traverse.prototype), key => {
@@ -346,9 +339,3 @@ forEach(objectKeys(Traverse.prototype), key => {
     return t[key].apply(t, args)
   }
 })
-
-var hasOwnProperty =
-  Object.hasOwnProperty ||
-  function(obj, key) {
-    return key in obj
-  }
