@@ -245,7 +245,7 @@ class ChainedMap extends Chainable {
       Object.keys(self).forEach(k => {
         if (ignored(k)) return
         const val = self[k]
-        if (isFunction(val.entries)) {
+        if (val && isFunction(val.entries)) {
           Object.assign(reduced, {[k]: val.entries(true) || {}})
         }
       })
