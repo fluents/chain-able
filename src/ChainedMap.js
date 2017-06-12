@@ -97,13 +97,25 @@ module.exports = class extends Chainable {
 const Chainable = require('./Chainable')
 const MergeChain = require('./MergeChain')
 const dopemerge = require('./deps/dopemerge')
+const reduce = require('./deps/reduce')
+const isObjWithKeys = require('./deps/is/objWithKeys')
+const isMap = require('./deps/is/map')
+const isArray = require('./deps/is/array')
+const isFunction = require('./deps/is/function')
+const isReal = require('./deps/is/real')
 
 const ignored = k =>
   k === 'inspect' ||
   k === 'parent' ||
   k === 'store' ||
   k === 'shorthands' ||
-  k === 'decorated'
+  k === 'decorated' ||
+  // k === 'transformers' ||
+  k === 'className'
+
+const isMapish = x => x && (x instanceof Chainable || isMap(x))
+
+// const keys = (obj, fn) => Object.keys(obj).forEach(fn)
 
 /**
  * @tutorial https://ponyfoo.com/articles/es6-maps-in-depth
@@ -163,20 +175,18 @@ class ChainedMap extends Chainable {
    */
   from(obj) {
     Object.keys(obj).forEach(key => {
-      // const fn = this[k]
       const val = obj[key]
 
-      if (this[key] && this[key] instanceof Chainable) {
+      if (this[key] && this[key].merge) {
         return this[key].merge(val)
       }
-      else if (typeof this[key] === 'function') {
+      if (isFunction(this[key])) {
         // const fnStr = typeof fn === 'function' ? fn.toString() : ''
         // if (fnStr.includes('return this') || fnStr.includes('=> this')) {
         return this[key](val)
       }
-      else {
-        this.set(key, val)
-      }
+
+      return this.set(key, val)
     })
     return this
   }
@@ -208,9 +218,12 @@ class ChainedMap extends Chainable {
   clear() {
     this.store.clear()
     Object.keys(this).forEach(key => {
-      if (ignored(key)) return
-      if (this[key] instanceof Chainable) this[key].clear()
-      if (this[key] instanceof Map) this[key].clear()
+      /* prettier-ignore */
+      ignored(key)
+      ? 0
+      : isMapish(this[key])
+        ? this[key].clear()
+        : 0
     })
 
     return this
@@ -224,15 +237,7 @@ class ChainedMap extends Chainable {
    * @return {Object}
    */
   entries(chains = false) {
-    const entries = Array.from(this.store.entries())
-
-    let reduced = {}
-    if (entries.length !== 0) {
-      reduced = entries.reduce((acc, [key, value]) => {
-        acc[key] = value
-        return acc
-      }, {})
-    }
+    const reduced = reduce(this.store)
 
     if (chains === false) return reduced
 
@@ -240,7 +245,7 @@ class ChainedMap extends Chainable {
       Object.keys(self).forEach(k => {
         if (ignored(k)) return
         const val = self[k]
-        if (val && typeof val.entries === 'function') {
+        if (isFunction(val.entries)) {
           Object.assign(reduced, {[k]: val.entries(true) || {}})
         }
       })
@@ -310,14 +315,9 @@ class ChainedMap extends Chainable {
   clean(obj) {
     return Object.keys(obj).reduce((acc, key) => {
       const val = obj[key]
-      if (val === undefined || val === null) return acc
-      if (Array.isArray(val) && !val.length) return acc
-      if (
-        Object.prototype.toString.call(val) === '[object Object]' &&
-        Object.keys(val).length === 0
-      ) {
-        return acc
-      }
+      if (!isReal(val)) return acc
+      if (isArray(val) && !val.length) return acc
+      if (isObjWithKeys(val)) return acc
 
       acc[key] = val
 

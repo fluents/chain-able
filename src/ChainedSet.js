@@ -52,8 +52,9 @@ module.exports = class extends Chainable {
 };
 =======
 const Chainable = require('./Chainable')
-const {Species, Spreadable} = require('./deps/symbols')
 const toarr = require('./deps/to-arr')
+const Species = require('./deps/symbols/species')
+const Spreadable = require('./deps/symbols/spreadable')
 
 /**
  * @TODO could add .first .last ?
@@ -102,23 +103,20 @@ class ChainedSet extends Chainable {
   }
 }
 
-Object.defineProperty(ChainedSet.prototype, Spreadable, {
-  configurable: true,
-  enumerable: false,
-  get() {
-    return true
-  },
-})
+const d = objs => symbol => v =>
+  objs.map(obj =>
+    Object.defineProperty(obj, symbol, {
+      configurable: true,
+      enumerable: false,
+      get() {
+        return v
+      },
+    })
+  )
 
-const desc = {
-  configurable: true,
-  enumerable: false,
-  get() {
-    return Set
-  },
-}
-Object.defineProperty(ChainedSet.prototype, Species, desc)
-Object.defineProperty(ChainedSet, Species, desc)
+const set = d([ChainedSet.prototype, ChainedSet])
+set(Species)(Set)
+set(Spreadable)(true)
 
 module.exports = ChainedSet
 >>>>>>> 🔢 ChainedSet

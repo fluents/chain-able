@@ -22,7 +22,11 @@ module.exports = class {
 //   module.exports = require('./Chainable.all')
 // }
 
-const {Iterator, Instance, Primative} = require('./deps/symbols')
+const Iterator = require('./deps/symbols/iterator')
+const Instance = require('./deps/symbols/instance')
+const Primative = require('./deps/symbols/primative')
+
+const F = Function.prototype
 
 /**
  * @type {Chainable}
@@ -35,10 +39,7 @@ class Chainable {
    * @param {Chainable | any} parent
    */
   constructor(parent) {
-    if (parent && (this.parent === null || this.parent === undefined)) {
-      this.parent = parent
-    }
-
+    if (parent) this.parent = parent
     this.className = this.constructor.name
   }
 
@@ -134,11 +135,7 @@ class Chainable {
    * @param  {Function} [falseBrancher=Function.prototype] called when false
    * @return {ChainedMap}
    */
-  when(
-    condition,
-    trueBrancher = Function.prototype,
-    falseBrancher = Function.prototype
-  ) {
+  when(condition, trueBrancher = F, falseBrancher = F) {
     if (condition) {
       trueBrancher(this)
     }
