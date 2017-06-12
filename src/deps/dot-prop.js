@@ -1,27 +1,7 @@
 // https://github.com/sindresorhus/dot-prop/blob/master/index.js
 // https://github.com/sindresorhus/is-obj/blob/master/index.js
-function isObj(x) {
-  var type = typeof x
-  return x !== null && (type === 'object' || type === 'function')
-}
-
-function getPathSegments(path) {
-  const pathArr = path.split('.')
-  const parts = []
-
-  for (let i = 0; i < pathArr.length; i++) {
-    let p = pathArr[i]
-
-    while (p[p.length - 1] === '\\' && pathArr[i + 1] !== undefined) {
-      p = p.slice(0, -1) + '.'
-      p += pathArr[++i]
-    }
-
-    parts.push(p)
-  }
-
-  return parts
-}
+const isObj = require('./is/obj')
+const getPathSegments = require('./dot-segments')
 
 module.exports = {
   get(obj, path, value) {
@@ -56,6 +36,7 @@ module.exports = {
   },
 
   set(obj, path, value) {
+    let full = obj
     if (!isObj(obj) || typeof path !== 'string') {
       return obj
     }
@@ -75,13 +56,12 @@ module.exports = {
 
       obj = obj[p]
     }
-
-    return obj
   },
 
   delete(obj, path) {
+    let full = obj
     if (!isObj(obj) || typeof path !== 'string') {
-      return
+      return obj
     }
 
     const pathArr = getPathSegments(path)
@@ -116,7 +96,8 @@ module.exports = {
         }
 
         obj = obj[pathArr[i]]
-      } else {
+      }
+      else {
         return false
       }
     }
