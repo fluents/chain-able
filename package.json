@@ -46,7 +46,7 @@
     "license" : "MIT"
 =======
   "name": "chain-able",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "interfaces that describe their intentions.",
   "main:dev": "./index.cjs.dev.js",
   "main": "./index.cjs.js",
@@ -58,7 +58,10 @@
   "scripts": {
     "prepublish": "npm run build && npm run pretest && npm run cov && npm run test:built",
     "pretest": "npm run strip:all && npm run buble:all",
+    "pre:test:only": "npm run buble:tests",
+    "test:tests": "npm run pre:test:only && ava --verbose",
     "test": "ava --verbose",
+    "tests": "ava --verbose",
     "test:built": "ava test-dist/built.js",
     "test:all": "npm run test && npm run test:built",
     "cov": "nyc ava",
@@ -73,6 +76,7 @@
     "buble:tests": "buble -i test -o test-dist --no forOf,dangerousForOf,computedProperty,spreadRest",
     "buble:tests:sm": "buble -i test -o test-dist -m inline --no forOf,dangerousForOf,computedProperty,spreadRest",
     "buble:all": "npm run buble && npm run buble:tests",
+    "babel:all": "npm run babel && npm run babel:tests",
     "babel": "babel src/ --out-dir dist",
     "babel:tests": "babel test/ --out-dir test-dist",
     "strip": "flow-remove-types src/ --pretty --all --out-dir ./ --quiet",
@@ -121,6 +125,9 @@
     ]
   },
   "ava": {
+    "__files": [
+      "test-dist/traverse/set-map.js"
+    ],
     "_files": [
       "test-dist/built.js",
       "test-dist/chainsaw/*.js"
@@ -130,7 +137,8 @@
       "test-dist/*.js",
       "test-dist/deps/*.js",
       "test-dist/traverse/*.js",
-      "!test-dist/traverse/index.js",
+      "test-dist/is/*.js",
+      "!test-dist/is/index.js",
       "!test-dist/traverse/index.js",
       "!test-dist/traverse/lib/deep_equal.js",
       "!test-dist/built.js"
@@ -161,17 +169,16 @@
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-preset-env": "^1.4.0",
     "babel-preset-es2015": "^6.24.1",
-    "buble": "^0.15.2",
+    "buble": "0.15.2",
     "chainsaw": "^0.1.0",
     "coveralls": "^2.13.1",
     "deepmerge": "^1.3.2",
     "eslint-config-chain-able": "^1.0.0",
-    "fliplog": "^0.3.0",
+    "fliplog": "^0.3.13",
     "flow-remove-types": "*",
-    "fsbx": "^2.1.0-beta.4",
-    "fuse-box": "^2.0.0",
     "immutable": "^3.8.1",
     "inspector-gadget": "^1.0.0",
+    "mobx": "^3.1.14",
     "module-alias": "^2.0.0",
     "nyc": "^10.3.2",
     "optimize-js": "^1.0.3",
@@ -185,7 +192,8 @@
     "rollup-plugin-replace": "^1.1.1",
     "rollup-plugin-uglify": "^2.0.1",
     "traverse": "^0.6.6",
-    "uglify-es": "^3.0.13"
+    "uglify-es": "^3.0.15",
+    "uglify-js": "3.0.15"
   },
   "keywords": [
     "lego",
