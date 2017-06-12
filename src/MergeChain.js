@@ -1,5 +1,6 @@
 const dopemerge = require('./deps/dopemerge')
 const Chainable = require('./Chainable')
+const isFunction = require('./deps/is/function')
 
 /**
  * @since 1.0.0
@@ -82,7 +83,7 @@ class MergeChain extends Chainable {
    *  .merger(require('lodash.mergewith')())
    */
   merger(opts) {
-    if (typeof opts === 'function') return this.set('merger', opts)
+    if (isFunction(opts)) return this.set('merger', opts)
     return this.set('opts', opts)
   }
 
@@ -121,7 +122,7 @@ class MergeChain extends Chainable {
     // when using chains without a class & doing .merge (edge-case)
     const handleExisting = (key, value) => {
       // when fn is a full method, not an extended shorthand
-      const hasFn = typeof this.parent[key] === 'function'
+      const hasFn = isFunction(this.parent[key])
       const hasKey = this.parent.has(key)
       const set = (k, v) => (hasFn ? this.parent[k](v) : this.parent.set(k, v))
 
