@@ -1,4 +1,6 @@
 const dopemerge = require('../deps/dopemerge')
+const isString = require('../deps/is/string')
+const isObj = require('../deps/is/pureObj')
 
 module.exports = (SuperClass, opts) => {
   return class TypeChain extends SuperClass {
@@ -40,12 +42,11 @@ module.exports = (SuperClass, opts) => {
         })
 
       // notNullType
-      const t = name === null ? 0 : typeof name
-      if (t === 'string') {
+      if (isString(name)) {
         chain.name(name)
         return chain
       }
-      if (t === 'object') {
+      if (isObj(name)) {
         return chain.merge(name).end()
       }
 
@@ -87,12 +88,12 @@ module.exports = (SuperClass, opts) => {
 
         // @NOTE: should use `.encase` but we do not know this will inherit it
         // @TODO remove try catch unless `.encase` is used
-        try {
-          valid = validator(arg)
-        }
-        catch (e) {
-          valid = e
-        }
+        // try {
+        valid = validator(arg)
+        // }
+        // catch (e) {
+        // valid = e
+        // }
 
         // if (this.get('debug') === true) {
         //   // console.log('validating: ', {valid, arg, name})
