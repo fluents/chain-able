@@ -1,5 +1,6 @@
 const ChainedMap = require('./ChainedMap')
 const traverse = require('./deps/traverse')
+const tester = require('./deps/to-test')
 
 /**
  * @since 1.0.0
@@ -14,10 +15,6 @@ module.exports = class Traverser extends ChainedMap {
     super(parent)
     this.set('keys', []).set('vals', [])
     this.call = this.traverse.bind(this)
-  }
-
-  whitelist(whitelist = true) {
-    return this.set('whitelist', whitelist)
   }
 
   /**
@@ -92,39 +89,15 @@ module.exports = class Traverser extends ChainedMap {
    */
   traverse(shouldReturn) {
     if (this.has('onMatch') === false) this.onMatch()
-    const debug = this.get('debug')
-    const {
-      obj,
-      keys,
-      vals,
-      onMatch,
-      onNonMatch,
-      whitelist,
-      // build,
-    } = this.entries()
 
-    // let result = build === true ? new Map() : obj
+    const {obj, keys, vals, onMatch, onNonMatch} = this.entries()
     let result = obj
 
     // console.log('starting match...')
     // log.bold('key val matchers').fmtobj({keys, vals}).echo(debug)
 
-    const tester = (key, arg1, arg2) => {
-      const type = typeof key
-      // log
-      //   .dim('testing keys')
-      //   .data({test, arg1, matched: test.test(arg1)})
-      //   .echo(debug)
-      if (type === 'string') {
-        const test = new RegExp(key.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&'))
-        return !!test.test(arg1)
-      }
-      if (type === 'function' && !key.test) return !!key(arg1)
-      return !!key.test(arg1, arg2)
-    }
-
     // diff between keys and val is order of arg in ^ tester
-    const blackMatchit = (prop, val) => {
+    const matcher = (prop, val) => {
       for (let i = 0; i < keys.length; i++) {
         if (tester(keys[i], prop, val)) return true
       }
@@ -136,16 +109,11 @@ module.exports = class Traverser extends ChainedMap {
       return false
     }
 
-    // inverse the value if it is whitelist
-    const matcher = whitelist === true ?
-      (prop, val) => !blackMatchit(prop, val) :
-      blackMatchit
-
     // bound to the traverser
     traverse(obj).forEach(function(x) {
       // log.data({ x, match }).bold(this.key).echo()
-      const match = matcher(this.key, x)
-      if (match) {
+      // const match = matcher(this.key, x)
+      if (matcher(this.key, x)) {
         // log.data({ x }).bold(this.key).echo()
         onMatch(x, this)
       }
