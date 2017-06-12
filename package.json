@@ -147,7 +147,8 @@
     "rollup-plugin-uglify": "^2.0.1",
     "traverse": "^0.6.6",
     "uglify-es": "^3.0.15",
-    "uglify-js": "3.0.15"
+    "uglify-js": "3.0.15",
+    "validator": "^7.0.0"
   },
   "keywords": [
     "lego",

@@ -28,6 +28,7 @@ const validators = {
   // isWebUri: validUrl.isWebUri,
   // validUrl,
   isPhone: value => isNumeric(value) && isLength(trim(value), {min: 6}),
+  string: value => typeof value === 'string',
 }
 
 test(`
