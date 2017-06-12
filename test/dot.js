@@ -2,10 +2,6 @@ const test = require('ava')
 const log = require('fliplog')
 const {Chain} = require('../dist')
 
-// dot
-test.todo('can use dot-prop on current')
-test.todo('can use dot-prop on get')
-
 class DotChain extends Chain {
   constructor(parent) {
     super(parent)
@@ -18,8 +14,8 @@ class DotChain extends Chain {
       .dotted((first, accessor, full) => {
         // console.log({first, accessor, full, val: super.get(full)})
         if (first === 'nested') return this.nested.get(accessor.join('.'))
-        if (this.has(first)) return super.get(first)
-        if (this.has(full)) return super.get(full)
+        // @NOTE: this is really for when not extending `dot`
+        // if (this.has(first)) return super.get(first)
         return super.get(full)
       })
       .otherwise(full => {
@@ -32,7 +28,9 @@ class DotChain extends Chain {
   }
 }
 
-test('dot access', t => {
+test.todo('can disable dot')
+
+test('dotter access', t => {
   t.plan(4)
   const chain = new DotChain()
 
@@ -46,4 +44,60 @@ test('dot access', t => {
   chain.set('canada', '🇨🇦')
   t.true(chain.get('canada') === '🇨🇦')
   t.true(chain.get('not-set') === undefined)
+})
+
+// dot
+test.todo('can use dot-prop on current')
+
+test('can use dot-prop on .set', t => {
+  const chain = new Chain()
+  chain.set('moose.simple', 1)
+  t.pass()
+})
+
+test('can use dot-prop on .has', t => {
+  t.plan(2)
+  var chain = new Chain()
+  chain.set('moose.simple', true)
+  // var eh = ({
+  //   chain,
+  //   hasSimple: chain.has('moose.simple'),
+  //   getSimple: chain.get('moose.simple'),
+  //   hasNotReal: chain.has('moose.notReal'),
+  //   entries: chain.entries(),
+  // })
+
+  t.true(chain.has('moose.simple'))
+  t.false(!!chain.has('moose.notReal'))
+})
+
+test('can use dot-prop on .delete', t => {
+  t.plan(2)
+  const chain = new Chain()
+  chain.set('moose.canada.eh', true)
+  chain.set('moose.canada.igloo', true)
+
+  chain.delete('moose.canada.eh')
+  t.true(chain.has('moose.canada.igloo'))
+  t.true(chain.entries().moose.canada.igloo)
+})
+
+test('can use dot-prop on .delete', t => {
+  const chain = new Chain()
+  chain.set('moose.canada.eh', true)
+  chain.set('moose.canada.igloo', true)
+
+  chain.delete('moose.canada.eh')
+  t.true(chain.has('moose.canada.igloo'))
+  t.true(chain.entries().moose.canada.igloo)
+})
+
+test('can use dot-prop on .get', t => {
+  t.plan(1)
+  const chain = new Chain()
+  chain.set('moose.canada.eh', true)
+  chain.set('moose.canada.igloo', true)
+
+  chain.delete('moose.canada.eh')
+  t.true(chain.get('moose.canada.igloo'))
 })
