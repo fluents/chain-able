@@ -67,17 +67,17 @@ module.exports = (SuperClass = ChainedMap, opts) => {
 
     // these are the only 2 methods that really use the immutable
     // and return something aside from the chain
-    get(key: any, useImmutable = false): any {
+    get(key, useImmutable = false) {
       if (this.immutable !== undefined && useImmutable !== false) {
         return this.immutable.get(key)
       }
       return super.get(key)
     }
-    getIn(...args): any {
+    getIn(...args) {
       return this.immutable.getIn(...args)
     }
 
-    delete(key: any): Chainable {
+    delete(key) {
       if (this.immutable !== undefined) {
         this.immutable = this.immutable.delete(key)
       }
@@ -86,7 +86,7 @@ module.exports = (SuperClass = ChainedMap, opts) => {
       return this
     }
 
-    set(key: any, value: any): Chainable {
+    set(key, value) {
       if (this.immutable !== undefined) {
         this.immutable = this.immutable.set(key, value)
       }
@@ -94,7 +94,7 @@ module.exports = (SuperClass = ChainedMap, opts) => {
       return this
     }
 
-    merge(obj: Object): Chainable {
+    merge(obj) {
       if (this.immutable !== undefined) {
         this.immutable = this.immutable.merge(obj)
       }
@@ -102,7 +102,7 @@ module.exports = (SuperClass = ChainedMap, opts) => {
       return this
     }
 
-    equals(obj): boolean {
+    equals(obj) {
       if (obj !== null && typeof obj === 'object' && obj.immutable) {
         return this.immutable.equals(obj.immutable)
       }
@@ -113,7 +113,7 @@ module.exports = (SuperClass = ChainedMap, opts) => {
       this.immutable = this.immutable.setIn(...args)
       return this
     }
-    toJS(computed = false): boolean {
+    toJS(computed = false) {
       return this.immutable.toJS(computed)
     }
   }
