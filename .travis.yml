@@ -1,6 +1,7 @@
 language: node_js
 node_js:
 <<<<<<< HEAD
+<<<<<<< HEAD
   - '6.9'
   - '7.7'
 cache:
@@ -12,6 +13,9 @@ before_script:
 script:
   - yarn test
 =======
+=======
+  - "8"
+>>>>>>> Add node 8 to travis testing
   - "6"
   - "4"
   - "0.12"
