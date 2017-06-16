@@ -1,4 +1,4 @@
-module.exports = function toArr(ar) {
+module.exports = function(ar) {
   if (!ar) return []
   if (Array.isArray(ar)) return ar
   if (typeof ar === 'string') return ar.includes(',') ? ar.split(',') : [ar]

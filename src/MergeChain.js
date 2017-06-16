@@ -26,6 +26,8 @@ class MergeChain extends Chainable {
       return this
     }
 
+    // this.extend(['onExisting', 'onValue', 'obj'])
+
     this.set('onValue', () => true).set('merger', dopemerge)
     this.get = name => this.store.get(name)
   }

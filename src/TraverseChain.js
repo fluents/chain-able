@@ -15,19 +15,20 @@ module.exports = class Traverser extends ChainedMap {
     super(parent)
     this.set('keys', []).set('vals', [])
     this.call = this.traverse.bind(this)
+    // this.extend(['obj', 'keys', 'vals', 'onNonMatch'])
+    this.extend(['obj', 'keys', 'vals', 'onNonMatch'])
   }
 
   /**
    * @since 1.0.0
    * @alias data
    * @param  {Object | null} [obj=null]
-   * @param  {boolean} [isBuilder=null] whether it is a function returning sub traversers
    * @return {Cleaner} @chainable
    */
-  obj(obj = null, isBuilder = false) {
-    if (!obj) return this
-    return this.set('obj', obj) // .set('isBuilder', isBuilder)
-  }
+  // obj(obj = null) {
+  //   if (!obj) return this
+  //   return this.set('obj', obj)
+  // }
 
   /**
    * @since 1.0.0
@@ -36,9 +37,9 @@ module.exports = class Traverser extends ChainedMap {
    * @param  {Array<Regexp | Function>} tests
    * @return {Traverser} @chainable
    */
-  keys(tests) {
-    return this.set('keys', tests)
-  }
+  // keys(tests) {
+  //   return this.set('keys', tests)
+  // }
 
   /**
    * @since 1.0.0
@@ -47,9 +48,9 @@ module.exports = class Traverser extends ChainedMap {
    * @param  {Array<Regexp | Function>} tests
    * @return {Traverser} @chainable
    */
-  vals(tests) {
-    return this.set('vals', tests)
-  }
+  // vals(tests) {
+  //   return this.set('vals', tests)
+  // }
 
   /**
    * @since 1.0.0
@@ -58,8 +59,8 @@ module.exports = class Traverser extends ChainedMap {
    * @param  {Function} [cb=null] defaults to .remove
    * @return {Matcher} @chainable
    */
-  onMatch(cb = null) {
-    if (cb === null) {
+  onMatch(cb) {
+    if (!cb) {
       return this.set('onMatch', (arg, traverser) => {
         traverser.remove()
       })
@@ -75,9 +76,9 @@ module.exports = class Traverser extends ChainedMap {
    * @param  {Function} [cb=null] defaults to .remove
    * @return {Matcher} @chainable
    */
-  onNonMatch(cb = null) {
-    return this.set('onNonMatch', cb)
-  }
+  // onNonMatch(cb = null) {
+  //   return this.set('onNonMatch', cb)
+  // }
 
   /**
    * @since 1.0.0

@@ -1,1 +1,1 @@
-module.exports = o => (/^\s*class\s/).test(o.toString())
+module.exports = o => o && (/^\s*class\s/).test(o.toString())

@@ -79,6 +79,8 @@ function deepmerge(target, source, optsArg) {
 //   numberOperation: "+ * ^ toarr cb",
 //   promises... wait until finished then call merge???
 //   boolPrefer: 0, 1, true, false
+// boolAsRight: true,
+//
 // }
 
 function eqq(arr1, arr2) {
@@ -94,7 +96,6 @@ function getDefaults() {
     arrayMerge: defaultArrayMerge,
     stringToArray: true,
     boolToArray: false,
-    boolAsRight: true,
     ignoreTypes: ['null', 'undefined', 'NaN'],
     debug: true,
   }
