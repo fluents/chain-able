@@ -1,3 +1,4 @@
+const Chainable = require('../Chainable')
 const ChainedMap = require('../ChainedMap')
 const isClass = require('../deps/is/class')
 const Define = require('./Define')
@@ -11,18 +12,24 @@ const Extend = require('./Extend')
 // @TODO child, immutable, Symbols (take out of Chainable)
 // const Symbols = require('./Symbols')
 
+// @TODO ensure speed is not affected with additional checks
+// @TODO easy decorating with specific options
+//
 // optimize this as much as possible
-function compose(SuperClass = ChainedMap, o = true) {
-  let composed = SuperClass
+function compose(target = null, o = true) {
+  let composed = target
   let opts = o
   if (opts === true) {
-    // single arg
+    // single arg - using options
     if (typeof composed === 'object' && isClass(composed) === false) {
+      // console.log('using options, no class')
       opts = composed
       composed = ChainedMap
+      // console.log({opts, o, composed, target})
       // require('fliplog').bold('was not a class').data(composed, opts).exit()
     }
     else {
+      // console.log('one arg')
       opts = {
         symbols: true,
         define: true,
@@ -33,10 +40,21 @@ function compose(SuperClass = ChainedMap, o = true) {
         dot: true,
         extend: true,
       }
+
+      if (target) {
+        // console.log('one arg with class target')
+        composed = ChainedMap.compose(Chainable.compose(target))
+        // composed = compose(ChainedMap.compose(Chainable.compose(target)))
+      }
+      else {
+        // console.log('one arg with not class target...')
+        composed = ChainedMap
+      }
     }
   }
   else {
     opts = {}
+    // console.log('no options')
   }
 
   // if (opts.symbols === true) composed = Symbols(composed)
