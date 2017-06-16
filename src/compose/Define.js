@@ -1,9 +1,10 @@
 const ChainedMap = require('../ChainedMap')
 const camelCase = require('../deps/camel-case')
-const {Primative} = require('../deps/symbols')
+const Primative = require('../deps/symbols/primative')
 
 // https://www.youtube.com/watch?v=SwSle66O5sU
-const OFF = `${~315 >>> 3}@@`
+// const OFF = `${~315 >>> 3}@@`
+const OFF = `@@OFF`
 
 // @IDEA
 // could use a factory function for each chain,
