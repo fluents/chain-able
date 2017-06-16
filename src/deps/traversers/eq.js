@@ -1,26 +1,31 @@
-var traverse = require('../traverse')
+const traverse = require('../traverse')
+const toS = require('../is/toS')
+const isFunction = require('../is/function')
+const isRegExp = require('../is/regexp')
+const isDate = require('../is/date')
 
+// function isArguments(x) {
+//   return toS(x) === '[object Arguments]'
+// }
+// function sameKeysLength(x, y) {
+//   return Object.keys(x).length === Object.keys(y).length
+// }
+
+/* prettier-ignore */
 module.exports = function(a, b, loose) {
-  if (loose === void 0) loose = false
-
   var equal = true
   var node = b
 
   traverse(a).forEach(function(y) {
     var notEqual = function() {
       equal = false
-      //this.stop();
+      // this.stop();
       return undefined
     }
 
-    //if (node === undefined || node === null) return notEqual();
-
+    // if (node === undefined || node === null) return notEqual();
     if (!this.isRoot) {
-      /*
-            if (!Object.hasOwnProperty.call(node, this.key)) {
-                return notEqual();
-            }
-        */
+      // if (!Object.hasOwnProperty.call(node, this.key)) return notEqual()
       if (typeof node !== 'object') {
         return notEqual()
       }
@@ -33,17 +38,24 @@ module.exports = function(a, b, loose) {
       node = x
     })
 
-    var toS = function(o) {
-      return Object.prototype.toString.call(o)
-    }
+    // if (process.env.NODE_ENV !== 'production') {
+    //   console.log('types: ', {x: toS(x), y: toS(y)})
+    // }
 
     if (this.circular) {
+      // if (process.env.NODE_ENV !== 'production') {
+      //   console.log('circular')
+      // }
       if (traverse(b).get(this.circular.path) !== x) {
         notEqual()
       }
     }
     else if (typeof x !== typeof y) {
+      // if (process.env.NODE_ENV !== 'production') {
+      //   console.log('diff types')
+      // }
       if (loose === true && x == y) {
+        // ignore
       }
       else {
         notEqual()
@@ -60,8 +72,8 @@ module.exports = function(a, b, loose) {
     else if (x === y) {
       // nop
     }
-    else if (typeof x === 'function') {
-      if (x instanceof RegExp) {
+    else if (isFunction(x)) {
+      if (isRegExp(x)) {
         // both regexps on account of the __proto__ check
         if (x.toString() != y.toString()) {
           notEqual()
@@ -77,15 +89,15 @@ module.exports = function(a, b, loose) {
           notEqual()
         }
       }
-      else if (toS(y) === '[object RegExp]' || toS(x) === '[object RegExp]') {
+      else if (isRegExp(x) || isRegExp(y)) {
         if (!x || !y || x.toString() !== y.toString()) {
           notEqual()
         }
       }
-      else if (x instanceof Date || y instanceof Date) {
+      else if (isDate(x) || isDate(y)) {
         if (
-          !(x instanceof Date) ||
-          !(y instanceof Date) ||
+          !(isDate(x)) ||
+          !(isDate(y)) ||
           x.getTime() !== y.getTime()
         ) {
           notEqual()
@@ -93,8 +105,8 @@ module.exports = function(a, b, loose) {
       }
       else {
         var kx = Object.keys(x)
-        var ky = Object.keys(y)
-        if (kx.length !== ky.length) {
+        var ky = Object.keys(y).length
+        if (kx.length !== ky) {
           return notEqual()
         }
         for (var i = 0; i < kx.length; i++) {
