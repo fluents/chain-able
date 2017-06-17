@@ -12,7 +12,7 @@
 // }
 const Iterator = require('./deps/symbols/iterator')
 const Instance = require('./deps/symbols/instance')
-const Primative = require('./deps/symbols/primative')
+const Primitive = require('./deps/symbols/primitive')
 
 const F = Function.prototype
 
@@ -194,9 +194,9 @@ const C = SuperClass => {
      * @since 1.0.2
      * @example chain + 1 (calls this)
      * @param {string} hint
-     * @return {Primative}
+     * @return {Primitive}
      */
-    [Primative](hint) {
+    [Primitive](hint) {
       if (hint === 'number' && this.toNumber) {
         return this.toNumber()
       }
@@ -207,7 +207,7 @@ const C = SuperClass => {
       // default:
       // if (this.valueOf) return this.valueOf(hint)
       const methods = [
-        'toPrimative',
+        'toPrimitive',
         'toNumber',
         'toArray',
         'toJSON',
@@ -256,7 +256,7 @@ const C = SuperClass => {
         return (
           instance &&
           (Object.prototype.isPrototypeOf.call(instance, Chain) ||
-            !!instance.parent ||
+            !!instance.className ||
             !!instance.store)
         )
       },
