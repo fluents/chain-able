@@ -50,7 +50,12 @@ class FactoryChain extends Composed {
     return this.set('onDone', cb)
   }
 
-  prop(name, cb = null) {
+  /**
+   * @param  {Primative} name
+   * @param  {Function | null | undefined} [cb=undefined]
+   * @return {FactoryChain} @chainable
+   */
+  prop(name, cb) {
     this.tap('chainLength', len => len + 1)
 
     // console.log({name}, this.get('chainLength'))
@@ -65,7 +70,7 @@ class FactoryChain extends Composed {
 
     // @TODO need to spread as needed
     this[name] = args => {
-      if (cb === null) this.data[name] = args
+      if (cb === undefined) this.data[name] = args
       else cb(args)
 
       this._calls.add(name)
@@ -77,11 +82,11 @@ class FactoryChain extends Composed {
   }
 
   /**
-   * @param  {any} [prop=null] key of the data, or returns all data
+   * @param  {any} [prop=undefined] key of the data, or returns all data
    * @return {any}
    */
-  getData(prop = null) {
-    return prop === null ? this.data : this.data[prop]
+  getData(prop) {
+    return prop === undefined ? this.data : this.data[prop]
   }
 
   factory(obj = {}) {

@@ -43,3 +43,37 @@ test('factory people', t => {
 
   t.true(things.people.length === 2)
 })
+
+test('factory with .props', t => {
+  class Things extends Chain {
+    constructor(parent) {
+      super(parent)
+      this.people = new ChainedSet(this)
+    }
+    person() {
+      const person = new FactoryChain(this)
+      person
+        .props(['name', 'age', 'email'])
+        .chainUpDown(this.person)
+        .chainUpDowns(['person'])
+        .onDone(personChain => {
+          this.people.add(personChain)
+          return this
+        })
+
+      return person
+    }
+  }
+
+  const things = new Things()
+  /* prettier-ignore */
+  things
+      .person()
+        .name('sue')
+      .person()
+        .age(100)
+        .name('john')
+        .email('@')
+
+  t.true(things.people.length === 2)
+})
