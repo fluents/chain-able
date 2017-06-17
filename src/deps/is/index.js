@@ -14,8 +14,8 @@ const isSymbol = require('./symbol')
 const isFunction = require('./function')
 const isObj = require('./obj')
 const isClass = require('./class')
+const isArray = require('./array') // Array.isArray
 
-const isArray = Array.isArray
 const objectKeys = Object.keys
 const hasOwnProperty = (x, y) => Object.hasOwnProperty.call(x, y)
 

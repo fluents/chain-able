@@ -1,4 +1,4 @@
-const toS = require('./toS')
+const isObj = require('./obj')
 
 // Object.prototype.toString.call(val) === '[object Object]' &&
-module.exports = val => toS(val) && Object.keys(val).length === 0
+module.exports = val => isObj(val) && Object.keys(val).length !== 0
