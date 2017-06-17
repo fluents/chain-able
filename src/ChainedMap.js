@@ -62,7 +62,7 @@ const CM = SuperClass => {
      */
     tap(name, fn) {
       const old = this.get(name)
-      const updated = fn(old, dopemerge)
+      const updated = fn(old, dopemerge) // , this
       return this.set(name, updated)
     }
 
@@ -197,9 +197,9 @@ const CM = SuperClass => {
      * @param {Function | null} cb return the merger to the callback
      * @return {ChainedMap} @chainable
      */
-    merge(obj, cb = null) {
+    merge(obj, cb) {
       const merger = MergeChain.init(this)
-      if (cb === null) {
+      if (cb === undefined) {
         merger.merge(obj)
       }
       else {
@@ -223,7 +223,7 @@ const CM = SuperClass => {
         const val = obj[key]
         if (!isReal(val)) return acc
         if (isArray(val) && !val.length) return acc
-        if (isObjWithKeys(val)) return acc
+        if (!isObjWithKeys(val)) return acc
 
         acc[key] = val
 

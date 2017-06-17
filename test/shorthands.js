@@ -125,3 +125,28 @@ test('encase(method) x2 + fn * .then, .catch, .chainWrap, .wrap', t => {
     .wrap(chain => chain.couldThrow(true))
     .wrap(chain => chain.couldThrowToo(true))
 })
+
+test('.bindMethods', t => {
+  t.plan(1)
+  const chain = new Chain()
+  chain.bindMe = function() {
+    t.deepEqual(chain, this)
+  }
+  chain.bindMethods(['bindMe'])
+  chain.bindMe()
+})
+test('should rethrow', t => {
+  /* prettier-ignore */
+  try {
+    new Encased()
+      .wrap(encased => encased.fn = arg => {
+        throw new Error('encased yo')
+      }, true)
+      .encase('fn')
+      .catch(() => {})
+      .fn(true)
+  }
+  catch (e) {
+    t.pass()
+  }
+})
