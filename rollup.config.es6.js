@@ -1,9 +1,7 @@
 const uglify = require('rollup-plugin-uglify')
-const babili = require('rollup-plugin-babili')
 const clean = require('rollup-plugin-cleanup')
 const replace = require('rollup-plugin-replace')
 const filesize = require('rollup-plugin-filesize')
-const optimizeJs = require('optimize-js')
 const {minify} = require('uglify-es')
 const log = require('fliplog')
 const dev = require('./rollup.config.dev')
@@ -11,14 +9,8 @@ const pkg = require('./package')
 
 const {NODE_ENV} = process.env
 
-const optJs = {
-  name: 'optimizeJs',
-  transformBundle(code) {
-    return optimizeJs(code)
-  },
-}
-
-const plugins = dev.plugins
+const plugins = dev.plugins.slice(0)
+plugins.pop() // removeBuble
 
 plugins.push(
   replace({
@@ -26,8 +18,6 @@ plugins.push(
   })
 )
 
-// https://github.com/mishoo/UglifyJS2#minify-options-structure
-// should mangle...
 plugins.push(
   uglify(
     {
@@ -45,30 +35,13 @@ plugins.push(
         unused: true,
       },
 
-      sourceMap: true,
+      sourceMap: false,
       toplevel: false,
       ie8: false,
     },
     minify
   )
 )
-
-// plugins.push(optJs)
-
-// plugins.push(
-//   babili(
-//     {
-//       // minify: false,
-//       // mangle: {
-//       //   keepFnName: true,
-//       // },
-//       // deadcode: {
-//       //   keepFnName: true,
-//       // },
-//     }
-//   )
-// )
-// plugins.push(clean())
 
 plugins.push(
   filesize({
@@ -81,22 +54,12 @@ plugins.push(
 
 const config = {
   entry: './dist/index.js',
-  sourceMap: true, //'inline',
+  sourceMap: false, // 'inline',
   plugins,
   targets: [
     {
-      // sourceType: 'module', for optimizejs playing around
-      dest: pkg.main,
+      dest: pkg['main:dev:es6'],
       format: 'cjs',
-    },
-    {
-      dest: pkg.module,
-      format: 'es',
-    },
-    {
-      dest: pkg.amd,
-      format: 'amd',
-      moduleId: 'chain-able',
     },
   ],
 }
