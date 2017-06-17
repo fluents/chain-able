@@ -62,7 +62,6 @@ test('dist classes', t => {
   // const f = new F(c)
 
   const d = dist.dopemerge({eh: true}, {eh1: true})
-
   t.true(typeof d === 'object')
   t.true(c instanceof Chainable)
   t.true(s instanceof ChainedSet)

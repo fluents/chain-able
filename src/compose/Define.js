@@ -1,6 +1,6 @@
 const ChainedMap = require('../ChainedMap')
 const camelCase = require('../deps/camel-case')
-const Primative = require('../deps/symbols/primative')
+const Primitive = require('../deps/symbols/primitive')
 
 // https://www.youtube.com/watch?v=SwSle66O5sU
 // const OFF = `${~315 >>> 3}@@`
@@ -107,7 +107,7 @@ module.exports = (SuperClass = ChainedMap, opts) => {
      *  this.ehOh(true)
      *  this.ehOh() === this.getEhOh() === true
      *
-     *  // with defined set and get + symbol toPrimative
+     *  // with defined set and get + symbol toPrimitive
      *  this.ehOh = false
      *  this.ehOh == false
      *  this.ehOh.valueOf() === false
@@ -152,7 +152,7 @@ module.exports = (SuperClass = ChainedMap, opts) => {
             const getrAsFn = (arg2 = OFF) => {
               return setter(arg2) // getter
             }
-            getrAsFn[Primative] = hint => {
+            getrAsFn[Primitive] = hint => {
               return getter(OFF)
             }
             getrAsFn.valueOf = () => getter(OFF)

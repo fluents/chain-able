@@ -28,6 +28,7 @@ module.exports = (SuperClass, opts) => {
     }
 
     /**
+     * @override
      * @inheritdoc
      * @see .dot
      * @desc since we have a map,
@@ -54,6 +55,7 @@ module.exports = (SuperClass, opts) => {
       return super.set(key, val)
     }
     /**
+     * @override
      * @inheritdoc
      * @see .dot
      */
@@ -63,6 +65,7 @@ module.exports = (SuperClass, opts) => {
         : super.get(key)
     }
     /**
+     * @override
      * @inheritdoc
      * @see .dot
      */
@@ -73,6 +76,7 @@ module.exports = (SuperClass, opts) => {
     }
 
     /**
+     * @override
      * @inheritdoc
      * @see .dot
      */
