@@ -1,6 +1,6 @@
 // putting it here allows buble to ignore it
 const Iterator = require('../deps/symbols/iterator')
-const Primative = require('../deps/symbols/primative')
+const Primitive = require('../deps/symbols/primitive')
 const Instance = require('../deps/symbols/instance')
 
 module.exports = (SuperClass, opts) => {
@@ -78,9 +78,9 @@ module.exports = (SuperClass, opts) => {
      * @since 1.0.2
      * @example chain + 1 (calls this)
      * @param {string} hint
-     * @return {Primative}
+     * @return {Primitive}
      */
-    [Primative](hint) {
+    [Primitive](hint) {
       if (hint === 'number' && this.toNumber) {
         return this.toNumber()
       }
@@ -96,7 +96,7 @@ module.exports = (SuperClass, opts) => {
       // if (this.valueOf) return this.valueOf(hint)
       // if (this.toType !== undefined) return this.toType(hint)
 
-      if (this.toPrimative !== undefined) return this.toPrimative(hint)
+      if (this.toPrimitive !== undefined) return this.toPrimitive(hint)
       if (this.toNumber !== undefined) return this.toNumber(hint)
       if (this.toArray !== undefined) return this.toArray(hint)
       if (this.toJSON !== undefined) return this.toJSON(hint)

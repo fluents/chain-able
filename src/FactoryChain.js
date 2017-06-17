@@ -51,7 +51,7 @@ class FactoryChain extends Composed {
   }
 
   /**
-   * @param  {Primative} name
+   * @param  {Primitive} name
    * @param  {Function | null | undefined} [cb=undefined]
    * @return {FactoryChain} @chainable
    */
