@@ -1,6 +1,9 @@
 cwd := $(shell pwd)
 
-build:
+clean:
+	@echo 'todo'
+
+old:
 	npm run strip:all && npm run buble:all
 
 test:
@@ -9,4 +12,10 @@ test:
 cov:
 	npm run prepublish
 
-.PHONY: build test
+quick:
+	node _cli.js --quick --test
+
+build:
+	node _cli.js --production
+
+.PHONY: quick
