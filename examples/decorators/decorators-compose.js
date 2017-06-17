@@ -7,44 +7,7 @@ function argumentor() {
   return args
 }
 
-const camelCase = str =>
-  str.replace(/\s+/g, '_').replace(/[_.-](\w|$)/g, (m, x) => x.toUpperCase())
-
-class Snippet {
-  constructor() {
-    this.store = new Map()
-    this.get = key => this.store.get(key)
-    this.set = (key, val) => {
-      this.store.set(key, val)
-      return this
-    }
-
-    this.wrap = fn => methods => {
-      fn.apply(this, [methods])
-      return this
-    }
-
-    this.extend = methods =>
-      methods.forEach(method => {
-        this[method] = val => this.set(method, val)
-      })
-    this.extendGetSet = methods =>
-      methods.forEach(method => {
-        this[camelCase('get-' + method)] = () => this.get(method)
-        this[camelCase('set-' + method)] = val => this.set(method, val)
-        this.extend([method])
-      })
-
-    // this.map = fn => methods => methods.forEach(method => fn(method))
-    // this.extend = this.map(this.extend)
-    // this.extendGetSet = this.map(this.extendGetSet)
-
-    this.extend = this.wrap(this.extend)
-    this.extendGetSet = this.wrap(this.extendGetSet)
-  }
-}
-
-class Decorator extends Snippet {
+class Decorator extends Chain {
   constructor(parent) {
     super(parent)
 
@@ -72,7 +35,6 @@ class Decorator extends Snippet {
 
   // builds the factory
   abstractBuilder() {
-    debugger
     const args = argumentor.apply(null, arguments)
 
     // could be:
@@ -104,15 +66,15 @@ class Decorator extends Snippet {
     return this.methodFactory(target, name, descriptor)
   }
   classFactory(target) {
-    const composer = this.getCompose()
+    const storedComposer = this.getCompose()
 
     // @TODO: extend obj
-    if (typeof composer === 'object') {
-      Object.assign(target, composer)
+    if (typeof storedComposer === 'object') {
+      Object.assign(target, storedComposer)
       return target
     }
 
-    const composed = composer(target)
+    const composed = storedComposer(target)
 
     // so we can do anon callback decorators
     if (typeof composed !== 'function' && typeof compose !== 'object') {
@@ -133,7 +95,6 @@ class Decorator extends Snippet {
       const newDescriptor = {
         value() {
           const self = this || target
-          debugger
           return method.apply(self, arguments)
         },
         configurable: true,
