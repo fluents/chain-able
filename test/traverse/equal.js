@@ -6,7 +6,10 @@ test('deepDates', t => {
   t.plan(2)
 
   t.truthy(
-    deepEqual({d: new Date(), x: [1, 2, 3]}, {d: new Date(), x: [1, 2, 3]}),
+    deepEqual(
+      {d: new Date(0, 0, 0, 0), x: [1, 2, 3]},
+      {d: new Date(0, 0, 0, 0), x: [1, 2, 3]}
+    ),
     'dates should be equal'
   )
 
