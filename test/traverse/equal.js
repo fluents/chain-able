@@ -229,3 +229,20 @@ test('deepLevels', t => {
   t.truthy(!deepEqual(xs, []))
   t.pass()
 })
+
+test('null vs undefined', t => {
+  t.truthy(!deepEqual(null, undefined))
+  t.truthy(!deepEqual(undefined, null))
+  t.truthy(deepEqual(null, null))
+  t.truthy(deepEqual(undefined, undefined))
+  t.pass()
+})
+test('RegExp vs RegExp', t => {
+  t.truthy(deepEqual(new RegExp('.*'), new RegExp('.*')))
+  t.truthy(!deepEqual(new RegExp('not-the-same'), new RegExp('.*')))
+  t.pass()
+})
+test('ObjKeys', t => {
+  t.truthy(!deepEqual({one: true, two: true}, {one: true, three: false}))
+  t.pass()
+})

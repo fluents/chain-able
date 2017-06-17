@@ -134,9 +134,33 @@ class ChainedMap extends Chainable {
     this.shorthands = []
     this.store = new Map()
 
+<<<<<<< HEAD
     // @TODO for wrapping methods to force return `this`
     // this.chainableMethods = []
   }
+=======
+    /**
+     * @since 0.7.0
+     * @see this.set, this.get
+     * @desc   tap a value with a function
+     *         @modifies this.store.get(name)
+     *
+     * @example
+     *  chain
+     *    .set('moose', {eh: true})
+     *    .tap('moose', moose => {moose.eh = false; return moose})
+     *    .get('moose') === {eh: false}
+     *
+     * @param  {string | any} name key to `.get`
+     * @param  {Function} fn function to tap with
+     * @return {Chain} @chainable
+     */
+    tap(name, fn) {
+      const old = this.get(name)
+      const updated = fn(old, dopemerge) // , this
+      return this.set(name, updated)
+    }
+>>>>>>> 🆙🔬⚡ more improved test cov, minor perf
 
   /**
    * @since 0.7.0
@@ -296,12 +320,37 @@ class ChainedMap extends Chainable {
     if (cb === null) {
       merger.merge(obj)
     }
+<<<<<<< HEAD
     else {
       cb(merger.obj(obj))
+=======
+
+    /**
+     * @TODO needs to pass in additional opts somehow...
+     * @see dopemerge, MergeChain
+     * @since 0.4.0
+     *       ...as second arg? on instance property?
+     * @example chain.set('eh', [1]).merge({eh: [2]}).get('eh') === [1, 2]
+     * @desc merges an object with the current store
+     * @param {Object} obj object to merge
+     * @param {Function | null} cb return the merger to the callback
+     * @return {ChainedMap} @chainable
+     */
+    merge(obj, cb) {
+      const merger = MergeChain.init(this)
+      if (cb === undefined) {
+        merger.merge(obj)
+      }
+      else {
+        cb(merger.obj(obj))
+      }
+      return this
+>>>>>>> 🆙🔬⚡ more improved test cov, minor perf
     }
     return this
   }
 
+<<<<<<< HEAD
   /**
    * @since 0.4.0
    * @desc goes through the maps,
@@ -323,6 +372,30 @@ class ChainedMap extends Chainable {
 
       return acc
     }, {})
+=======
+    /**
+     * @since 0.4.0
+     * @desc goes through the maps,
+     *       and the map values,
+     *       reduces them to array
+     *       then to an object using the reduced values
+     *
+     * @param {Object} obj object to clean, usually .entries()
+     * @return {Object}
+     */
+    clean(obj) {
+      return Object.keys(obj).reduce((acc, key) => {
+        const val = obj[key]
+        if (!isReal(val)) return acc
+        if (isArray(val) && !val.length) return acc
+        if (!isObjWithKeys(val)) return acc
+
+        acc[key] = val
+
+        return acc
+      }, {})
+    }
+>>>>>>> 🆙🔬⚡ more improved test cov, minor perf
   }
 }
 

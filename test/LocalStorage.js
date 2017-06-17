@@ -3,9 +3,6 @@ const log = require('fliplog')
 const Chain = require('../dist')
 
 class Canada extends Chain {
-  static init(parent) {
-    return new Canada(parent)
-  }
   constructor(parent) {
     super('parent')
     this.extend(['eh'])

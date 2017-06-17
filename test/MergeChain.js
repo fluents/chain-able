@@ -1,6 +1,7 @@
 const test = require('ava')
 const log = require('fliplog')
-const {MergeChain, Chain} = require('../dist')
+const stress = require('./_stress')
+const {MergeChain, Chain, ChainedSet} = require('../dist')
 
 test('instantiate', t => {
   t.plan(1)
@@ -59,4 +60,14 @@ test('custom merger', t => {
   const merge = new MergeChain(chain).merger((a, b) => []).merge({emptyArr: []})
 
   t.true(chain.get('emptyArr').length === 0)
+})
+
+test('stress merger - map', t => {
+  const chain = new Chain()
+  stress(data => chain.merge(data))
+})
+
+test('stress merger - set', t => {
+  const chain = new ChainedSet()
+  stress(data => chain.merge(data))
 })
