@@ -18,14 +18,6 @@ let should = {
   production: true,
 }
 
-// @TODO: flags
-// cjs
-// es
-// amd
-// iife
-// './index.tsc.bundle.js',
-// './disted/chain-able-fuse.js',
-
 // src: [rollup, typescript, buble, babel, browserify, copy/strip]
 // setup argv
 const argvOpts = {
