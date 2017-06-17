@@ -1,11 +1,17 @@
+// const isReal = require('./is/real')
+
 module.exports = function(ar) {
-  if (!ar) return []
-  if (Array.isArray(ar)) return ar
+  // @NOTE: !'' === true
   if (typeof ar === 'string') return ar.includes(',') ? ar.split(',') : [ar]
+  if (!ar) return [ar]
+  if (Array.isArray(ar)) return ar
+  // @NOTE: .values is also on `Object`...
   if (ar instanceof Set || ar instanceof Map || ar.values) {
-    const vals = []
-    ar.values().forEach(v => vals.push(v))
-    return vals
+    return Array.from(ar.values(ar))
+    // @NOTE: when using `new Set().values`... no forEach o.o
+    // const vals = []
+    // ar.values().forEach(v => vals.push(v))
+    // return vals
   }
 
   return [ar]
