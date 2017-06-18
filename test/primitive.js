@@ -12,7 +12,11 @@ function average(data) {
   return Math.floor(sum / data.length)
 }
 
-class Primative extends Chain {
+class Primitive extends Chain {
+  /* istanbul ignore next: not calling this, ensuring string is called */
+  toNumber() {
+    return 1
+  }
   toString() {
     let str = ''
     const obj = this.entries()
@@ -27,16 +31,15 @@ class Iteratable extends ChainedSet {
   }
 }
 
-test('primative string', t => {
-  const obj = new Primative()
+test('primitive string', t => {
+  const obj = new Primitive()
   obj.set('factory', '🏭')
   obj.set('canada', '🇨🇦')
   const str = obj + ''
   t.true(str === `"factory":"🏭","canada":"🇨🇦",`)
-  // log.prettyformat(obj + '').exit()
 })
 
-test('primative number', t => {
+test('primitive number', t => {
   const nums = new Iteratable()
   nums.add(1).add(1).add(1).add(1).add(2) // .concat([1, 1, 1])
   t.true(+nums === 1)

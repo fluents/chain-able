@@ -27,6 +27,8 @@ const validators = {
   // isLength,
   // isWebUri: validUrl.isWebUri,
   // validUrl,
+
+  /* istanbul ignore next: all branches do not need to be called to fail purposefully */
   isPhone: value => isNumeric(value) && isLength(trim(value), {min: 6}),
   string: value => typeof value === 'string',
 }

@@ -22,6 +22,7 @@ test('encase(method) not existing', t => {
 
   try {
     new Encased().encase('never-ever')
+    /* istanbul ignore next: this means tests fail, shouldn't hit this */
     t.fail()
   }
   catch (e) {
@@ -34,7 +35,10 @@ test('encase(method) valid', t => {
   new Encased()
     .encase('couldThrow')
     .then(val => t.pass())
-    .catch(e => t.fail(e))
+    .catch(e => {
+      /* istanbul ignore next: this means tests fail, shouldn't hit this */
+      t.fail(e)
+    })
     .couldThrow('no throw!')
 })
 
@@ -50,7 +54,10 @@ test('encase(method) inValid', t => {
   t.plan(1)
   new Encased()
     .encase('couldThrow')
-    .then(val => t.fail(val))
+    .then(val => {
+      /* istanbul ignore next: this means tests fail, shouldn't hit this */
+      t.fail(val)
+    })
     .catch(e => t.pass(e))
     .couldThrow(true)
 })
@@ -72,7 +79,10 @@ test('encase(fn) valid', t => {
     .wrap(chain => (chain.fn = fn))
     .encase('fn')
     .then(arg => t.pass())
-    .catch(e => t.fail(e))
+    .catch(e => {
+      /* istanbul ignore next: this means tests fail, shouldn't hit this */
+      t.fail(e)
+    })
     .fn(false)
 })
 
