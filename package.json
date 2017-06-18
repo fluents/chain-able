@@ -5,6 +5,7 @@
   "main:dev": "./index.dev.js",
   "main:tsc": "./index.tsc.js",
   "main:iife": "./index.iife.js",
+  "main:umd": "./index.umd.js",
   "main:cjs": "./index.cjs.js",
   "main": "./index.cjs.js",
   "module": "./index.es.js",
@@ -13,6 +14,7 @@
   "alias": "./index.cjs.js",
   "amd": "./index.amd.js",
   "types": "typings/index.d.ts",
+  "typings": "typings/index.d.ts",
   "scripts": {
     "tsc": "tsc",
     "rollup": "rollup",
@@ -34,7 +36,7 @@
     "_build:tsc": "tsc",
     "_build:rollupts": "rollup -c rollup.config.typescript.js",
     "_build:rollup": "rollup -c && npm run build:dev",
-    "_build:dev": "rollup -c rollup.config.dev.js && rollup -c rollup.config.es6.js",
+    "_build:dev": "rollup -c rollup.config.dev.js",
     "buble": "buble -i dist -o dist --no forOf,dangerousForOf,computedProperty,spreadRest",
     "buble:sm": "buble -i dist -o dist -m inline --no forOf,dangerousForOf,computedProperty,spreadRest",
     "buble:tests": "buble -i test -o test-dist --no forOf,dangerousForOf,computedProperty,spreadRest",
@@ -46,7 +48,7 @@
     "strip": "flow-remove-types src/ --pretty --all --out-dir ./ --quiet",
     "strip:dist": "flow-remove-types src/ --all --out-dir ./dist --quiet",
     "strip:all": "npm run strip && npm run strip:dist",
-    "lint": "eslint src/**"
+    "lint": "eslint src/**.js src/**/*.js"
   },
   "nyc": {
     "all": false,
@@ -139,6 +141,7 @@
     "coveralls": "^2.13.1",
     "dargs": "^5.1.0",
     "deepmerge": "^1.3.2",
+    "eslint": "^4.0.0",
     "eslint-config-chain-able": "^1.0.0",
     "eslint-plugin-typescript": "^0.1.0",
     "flipfile": "^0.0.13",
@@ -172,9 +175,11 @@
     "validator": "^7.0.0"
   },
   "keywords": [
-    "lego",
+    "chains",
+    "chaining",
     "chain-able",
     "conditional",
+    "expressive",
     "fluent",
     "chain",
     "flipchain",
@@ -195,9 +200,9 @@
   },
   "directories": {
     "lib": "src",
-    "test": "test",
     "deps": "deps",
-    "compose": "compose"
+    "compose": "compose",
+    "dist": "dist"
   },
   "files": [
     "index.js",

@@ -6,6 +6,7 @@ const filesize = require('rollup-plugin-filesize')
 const optimizeJs = require('optimize-js')
 const {minify} = require('uglify-es')
 const log = require('fliplog')
+const buble = require('rollup-plugin-buble')
 const dev = require('./rollup.config.dev')
 const pkg = require('./package')
 
@@ -23,6 +24,17 @@ const plugins = dev.plugins
 plugins.push(
   replace({
     'process.env.NODE_ENV': JSON.stringify('production'),
+    // 'INLINE_SLICE': ``,
+  })
+)
+
+plugins.push(
+  buble({
+    transforms: {
+      // forOf: false,
+      // dangerousForOf: false,
+      // computedProperty: false,
+    },
   })
 )
 
@@ -72,8 +84,12 @@ plugins.push(
 
 plugins.push(
   filesize({
-    render(options, size, gzip) {
-      const {text, datas} = log.bold('size: ').fmtobj({size, gzip}).return()
+    render(options, size, gzip, rollup) {
+      // log.quick(this, options, size, gzip, rollup.format)
+      const {text, datas} = log
+        .bold(rollup.format + ' ')
+        .fmtobj({size, gzip})
+        .return()
       return text + datas
     },
   })
@@ -83,15 +99,26 @@ const config = {
   entry: './dist/index.js',
   sourceMap: true, //'inline',
   plugins,
+  cache: false,
   targets: [
     {
-      // sourceType: 'module', for optimizejs playing around
+      // sourceType: 'module', // for optimizejs playing around
       dest: pkg.main,
       format: 'cjs',
     },
     {
       dest: pkg.module,
       format: 'es',
+    },
+    {
+      moduleName: 'chainable',
+      dest: './disted/index.umd.js',
+      format: 'umd',
+    },
+    {
+      moduleName: 'chainable',
+      dest: './disted/index.iife.js',
+      format: 'iife',
     },
     {
       dest: pkg.amd,
