@@ -6,11 +6,10 @@ test('stress', t => {
   stress()
 })
 
-// stupid test cov
+/* istanbul ignore next: anon function for stress test */
 function anon() {}
-anon()
+/* istanbul ignore next: anon function for stress test */
 const anon2 = function() {}
-anon2()
 
 const datas = [
   null,
@@ -35,7 +34,7 @@ const datas = [
   anon,
   new Function(),
   Symbol('symbols'),
-  Symbol.toPrimative,
+  Symbol.toPrimitive,
   new Object(),
   Object.create(null),
   new Error(),
@@ -70,7 +69,6 @@ const datasObjs = [
   new String('str'),
   Object.assign(anon2, {keys: true}),
   {keys: true},
-  typeof global ? global : window,
   Symbol,
 ]
 

@@ -40,6 +40,31 @@ test('clear', t => {
   t.is(map.store.size, 0)
 })
 
+test('clean', t => {
+  const map = new ChainedMap()
+
+  map.set('emptyArr', [])
+  map.set('arr', [1])
+  map.set('nill', null)
+  map.set('emptyObj', {})
+  map.set('obj', {keys: true})
+  t.deepEqual(map.clean(map.entries()), {arr: [1], obj: {keys: true}})
+})
+
+test('clear - with sub-chainable', t => {
+  const map = new ChainedMap()
+  map.map = new ChainedMap(map)
+  map.map.set('clearme', 1)
+  map.set('a', 'alpha')
+  map.set('b', 'beta')
+  map.set('c', 'gamma')
+
+  t.is(map.store.size, 3)
+  t.is(map.clear(), map)
+  t.is(map.store.size, 0)
+  t.is(map.map.store.size, 0)
+})
+
 test('delete', t => {
   const map = new ChainedMap()
 

@@ -32,13 +32,13 @@ test('factory people', t => {
   /* prettier-ignore */
   things
     .person()
-      .name('sue')
+    .name('sue')
     // here it would not .end, but we call .person, which is a .chainUpDown,
     // so it ends and starts another one
     .person()
-      .age(100)
-      .name('john')
-      .email('@')
+    .age(100)
+    .name('john')
+    .email('@')
   // ^ since we called all 3 keys (age, name, email) it auto .end()s
 
   t.true(things.people.length === 2)
@@ -66,14 +66,21 @@ test('factory with .props', t => {
   }
 
   const things = new Things()
+  /* eslint-disable */
   /* prettier-ignore */
   things
-      .person()
-        .name('sue')
-      .person()
-        .age(100)
-        .name('john')
-        .email('@')
+    .person()
+      .name('sue')
+    .person()
+      .age(100)
+      .name('john')
+      .email('@')
 
   t.true(things.people.length === 2)
+})
+
+test('factory with .getData', t => {
+  const person = new FactoryChain(this)
+  const age = person.props(['name', 'age']).age(10).getData('age')
+  t.true(age === 10)
 })

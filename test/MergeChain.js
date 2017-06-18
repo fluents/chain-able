@@ -62,6 +62,13 @@ test('custom merger', t => {
   t.true(chain.get('emptyArr').length === 0)
 })
 
+test('custom merger - cb', t => {
+  t.plan(1)
+  const chain = getChain()
+  chain.merge({emptyArr: []}, (a, b) => [])
+  t.true(chain.get('emptyArr').length === 0)
+})
+
 test('stress merger - map', t => {
   const chain = new Chain()
   stress(data => chain.merge(data))

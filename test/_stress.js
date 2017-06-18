@@ -20,6 +20,13 @@ module.exports = cb => {
     // ignore
   }
 
+  // https://github.com/gotwarlost/istanbul/blob/master/ignoring-code-for-coverage.md
+  /* istanbul ignore next: tests run in node */
+  const g = typeof global ? global : window
+
+  /* istanbul ignore next: tests run in node */
+  const xml = g.XMLHttpRequest ? new g.XMLHttpRequest() : require('http')
+
   const datas = [
     class {},
     [],
@@ -30,14 +37,14 @@ module.exports = cb => {
     anon,
     throws,
     declaration,
-    new Function(),,
+    new Function(),
     Object.assign(declaration, {keys: true}),
+    {},
     new Object(),
     Object.create(null),
     new Error(),
-    typeof global ? global : window,
     Symbol('symbols'),
-    Symbol.toPrimative,
+    Symbol.hasInstance,
     '',
     new String('str'),
     'actual string',
@@ -55,6 +62,7 @@ module.exports = cb => {
     new RegExp('.*', 'gmi'),
     /me/,
     NaN,
+    Number(undefined),
     new Number(1),
     Infinity,
     1,
@@ -90,6 +98,8 @@ module.exports = cb => {
     Array,
     Set,
     Map,
+    g,
+    xml,
   ]
 
   if (cb) datas.map(data => cb(data))

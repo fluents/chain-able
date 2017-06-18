@@ -13,10 +13,7 @@ class Lists extends Chainable {
     return this
   }
   all() {
-    return new ChainedSet()
-      .merge(this.people)
-      .merge(this.places)
-      .values()
+    return new ChainedSet().merge(this.people).merge(this.places).values()
   }
 }
 
@@ -24,10 +21,7 @@ let fns = {}
 
 function add(lists) {
   // with a simple factory like method
-  lists
-    .add('people', 'sam')
-    .add('people', 'sue')
-    .add('places', 'moon')
+  lists.add('people', 'sam').add('people', 'sue').add('places', 'moon')
   return fns
 }
 function addDirect(lists) {
@@ -68,4 +62,17 @@ test('add, merge, append, prepend', t => {
     'moon',
     'sun',
   ])
+})
+
+test.failing('species', t => {
+  const set = new ChainedSet()
+  var fakeArray = new ChainedSet()
+  fakeArray.add(100)
+  fakeArray.add([200, 300])
+  var x = [1, 2, 3]
+
+  // x.concat(fakeArray)
+  const vals = fakeArray.values()
+  vals[Symbol.isConcatSpreadable] = true
+  t.deepEquals(x.concat(vals), [1, 2, 3100, 200, 300])
 })
