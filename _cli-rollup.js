@@ -57,6 +57,9 @@ if (format === 'tsc' || format === 'dev') {
 if (format === 'es') {
   dest = pkg.module
 }
+if (format === 'umd') {
+  dest = './disted/index.umd.js'
+}
 
 // use configured variables to export
 should = Object.assign(should, {
@@ -72,6 +75,9 @@ const targetConfig = {
 }
 if (should.format === 'amd') {
   targetConfig.moduleId = 'chain-able'
+}
+if (should.format === 'umd') {
+  targetConfig.moduleName = 'chainable'
 }
 
 const targets = [targetConfig]
@@ -108,6 +114,13 @@ if (should.production) {
     })
   )
 }
+// else {
+//   plugins.push(
+//     replace({
+//       'process.env.NODE_ENV': JSON.stringify('development'),
+//     })
+//   )
+// }
 
 if (should.uglify) {
   // https://github.com/mishoo/UglifyJS2#minify-options-structure

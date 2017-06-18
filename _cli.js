@@ -15,11 +15,13 @@
 // 6. ops:
 //   - run test
 // - run cov
-
+const {resolve} = require('path')
 const fwf = require('funwithflags')
 const Script = require('script-chain')
 const log = require('fliplog')
+const {read, write, del} = require('flipfile')
 
+const res = rel => resolve(__dirname, rel)
 log.startTimer('cli')
 
 // setup args
@@ -28,14 +30,42 @@ const argvOpts = {
   boolean: ['cov', 'src', 'copy', 'production'],
   string: ['format'],
   default: {
+    clean: true,
+    tests: false,
     cov: false,
     quick: false,
     production: false,
-    format: ['amd', 'iife', 'dev', 'es'],
+    format: ['amd', 'iife', 'dev', 'es', 'umd'],
   },
 }
 const argvs = fwf(process.argv.slice(2), argvOpts)
-const {production, quick, tests, cov} = argvs
+const {production, quick, tests, cov, clean} = argvs
+
+if (clean) {
+  const toClean = {
+    files: [
+      'browserified',
+      'Chainable',
+      'ChainedMap',
+      'FactoryChain',
+      'MergeChain',
+      'ChainedSet',
+      'TraverseChain',
+      'index.amd',
+      'index.cjs',
+      'index.dev',
+      'index.es',
+      'index',
+      'index.tsc.bundle',
+    ],
+    dirs: ['dist', 'test-dist', 'compose', 'coverage', '.nyc_output', 'deps'],
+  }
+
+  toClean.files.map(
+    file => del(res(file + '.js')) && del(res(file + '.js.map'))
+  )
+  toClean.dirs.map(file => del(res(file + '/')))
+}
 
 // script factory
 const script = (bin = 'rollup', flags = '') => {
@@ -88,7 +118,30 @@ class CLI {
     }
     return script('tsc')
   }
+  ts() {
+    const ts = require('typescript')
+    const source = read('./index.dev.js')
 
+    let result = ts.transpileModule(source, {
+      compilerOptions: {module: ts.ModuleKind.CommonJS},
+    })
+    write(require.resolve('./index.tsc.bundle.js'), result.outputText)
+
+    console.log(JSON.stringify(result))
+    process.exit()
+  }
+  optimizejs(url = './disted/index.umd.js') {
+    const optimizeJs = require('optimize-js')
+    const {read, write} = require('flipfile')
+    const file = require.resolve(url)
+    const code = read(file)
+    log.diff(code)
+    const optimized = optimizeJs(code)
+    log.diff(optimized)
+    write(file, optimized)
+    log.log()
+    return Promise.resolve()
+  }
   rollup(flags = '') {
     if (Array.isArray(flags)) return flags.map(flag => this.rollup(flag))
     const config = './_cli-rollup'
@@ -171,7 +224,7 @@ async function test() {
 }
 
 async function publishing() {
-  log.startTime('publishing')
+  log.startTimer('publishing')
   log.startTimer('amd')
   await cli.rollup('--environment format:amd')
   log.stopTimer('amd')
@@ -179,6 +232,10 @@ async function publishing() {
   log.startTimer('es')
   await cli.rollup('--environment format:es')
   log.stopTimer('es')
+
+  log.startTimer('umd')
+  await cli.rollup('--environment format:umd')
+  log.stopTimer('umd')
 
   // ignoring this one for now, already so many, don't want to build them all
   // await cli.rollup('--environment format:iife')
@@ -197,11 +254,12 @@ async function publishing() {
 
 async function all() {
   if (!quick) await src()
-  if (test) {
+  if (tests) {
     await compileTests()
     await test()
   }
   if (production) await publishing()
+  cli.optimizejs()
 
   // if (cov) await runCov()
   // // all ops are done
