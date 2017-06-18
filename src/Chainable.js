@@ -176,6 +176,7 @@ const C = SuperClass => {
 
     /**
      * @since 0.4.0
+     * @NOTE: look at Chainable to ensure not to use `new Array...`
      * @NOTE: moved from ChainedMap and ChainedSet to Chainable @2.0.2
      * @NOTE: this was [...] & Array.from(this.store.values())
      * @see https://kangax.github.io/compat-table/es6/#test-Array_static_methods
@@ -197,30 +198,35 @@ const C = SuperClass => {
      * @return {Primitive}
      */
     [Primitive](hint) {
+      if (hint === 'string') {
+        if (this.toJSON) return this.toJSON()
+        if (this.toString) this.toString()
+      }
       if (hint === 'number' && this.toNumber) {
         return this.toNumber()
       }
-      else if (hint === 'string' && this.toString) {
-        return this.toString()
-      }
+      return this.toString()
 
+      // @NOTE: simplified because
+      //        toArray + toBoolean + can't really be called so
+      //
       // default:
       // if (this.valueOf) return this.valueOf(hint)
-      const methods = [
-        'toPrimitive',
-        'toNumber',
-        'toArray',
-        'toJSON',
-        'toBoolean',
-        'toObject',
-      ]
-      for (let m = 0; m < methods.length; m++) {
-        if (this[methods[m]] !== undefined) {
-          return this[methods[m]](hint)
-        }
-      }
-
-      return this.toString()
+      // const methods = [
+      //   'toPrimitive',
+      //   'toNumber',
+      //   'toJSON',
+      //   // 'toArray',
+      //   // 'toBoolean',
+      //   // 'toObject',
+      // ]
+      // for (let m = 0; m < methods.length; m++) {
+      //   if (this[methods[m]] !== undefined) {
+      //     return this[methods[m]](hint)
+      //   }
+      // }
+      //
+      // return this.toString()
     }
   }
 
