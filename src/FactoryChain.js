@@ -14,10 +14,11 @@ class FactoryChain extends Composed {
     super(parent)
 
     this.data = {}
-    this.factory()
-    super.extend(['optional', 'required', 'chainUpDown']).set('chainLength', 0)
-    // super.extendIncrement(['chainLength'])
     this._calls = new ChainedSet(this)
+
+    this.factory()
+      .extend(['optional', 'required', 'chainUpDown', 'onDone'])
+      .set('len', 0)
   }
 
   /**
@@ -36,18 +37,13 @@ class FactoryChain extends Composed {
     return this
   }
 
-  // extend(props) {
-  //   super.extend(props)
-  //   return this
-  // }
-
+  /**
+   * @param  {Array<string>} names
+   * @return {FactoryChain} @chainable
+   */
   props(names) {
     names.forEach(name => this.prop(name))
     return this
-  }
-
-  onDone(cb) {
-    return this.set('onDone', cb)
   }
 
   /**
@@ -56,9 +52,9 @@ class FactoryChain extends Composed {
    * @return {FactoryChain} @chainable
    */
   prop(name, cb) {
-    this.tap('chainLength', len => len + 1)
+    this.tap('len', len => len + 1)
 
-    // console.log({name}, this.get('chainLength'))
+    // console.log({name}, this.get('len'))
 
     // so if we call a property twice,
     // chain back up to parent,
@@ -76,7 +72,7 @@ class FactoryChain extends Composed {
       this._calls.add(name)
 
       // aka magicReturn
-      return this._calls.length === this.get('chainLength') ? this.end() : this
+      return this._calls.length === this.get('len') ? this.end() : this
     }
     return this
   }

@@ -23,6 +23,7 @@ module.exports = {
   isObjWithKeys,
   // isArguments,
   isObj,
+  isObject: isObj,
   isFunction,
   isReal,
   isPureObj,

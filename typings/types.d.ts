@@ -64,7 +64,7 @@ declare interface Traverse {
   value: any
   nodes(): ArrOrObj
   map(fn: Fn): any
-  orEach(fn: Fn): void
+  forEach(x: Traverse.value, fn: (t: Traverse) => any): void
   reduce(fn, init): ArrOrObj
   paths(): ArrOrObj
   set(path: Primitive, value: any): boolean

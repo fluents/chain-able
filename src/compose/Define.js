@@ -1,4 +1,3 @@
-const ChainedMap = require('../ChainedMap')
 const camelCase = require('../deps/camel-case')
 const Primitive = require('../deps/symbols/primitive')
 
@@ -11,7 +10,7 @@ const OFF = `@@OFF`
 // exports a class that dynamically extends a specific class
 // for easier chained inheritence
 
-module.exports = (SuperClass = ChainedMap, opts) => {
+module.exports = (SuperClass, opts) => {
   /**
    * @TODO could put this all in extendable
    * @see http://2ality.com/2015/09/well-known-symbols-es6.html

@@ -1,5 +1,9 @@
 /**
- * ChildChain
+ * @desc ChildChain
+ * @TODO use this eventually in state
+ * @param {class} SuperClass
+ * @param {any} opts
+ * @return {Chainable}
  */
 module.exports = (SuperClass, opts) => {
   return class Child extends SuperClass {

@@ -13,10 +13,14 @@ module.exports = class Traverser extends ChainedMap {
    */
   constructor(parent) {
     super(parent)
-    this.set('keys', []).set('vals', [])
     this.call = this.traverse.bind(this)
-    // this.extend(['obj', 'keys', 'vals', 'onNonMatch'])
-    this.extend(['obj', 'keys', 'vals', 'onNonMatch'])
+
+    /* prettier-ignore */
+    this
+      .set('keys', [])
+      .set('vals', [])
+      .set('onMatch', (arg, traverser) => traverser.remove())
+      .extend(['obj', 'keys', 'vals', 'onNonMatch', 'onMatch'])
   }
 
   /**
@@ -59,15 +63,13 @@ module.exports = class Traverser extends ChainedMap {
    * @param  {Function} [cb=null] defaults to .remove
    * @return {Matcher} @chainable
    */
-  onMatch(cb) {
-    if (!cb) {
-      return this.set('onMatch', (arg, traverser) => {
-        traverser.remove()
-      })
-    }
-
-    return this.set('onMatch', cb)
-  }
+  // onMatch(cb) {
+  //   return this.set(
+  //     'onMatch',
+  //     cb ||
+  //       ()
+  //   )
+  // }
 
   /**
    * @since 1.0.0
@@ -89,8 +91,6 @@ module.exports = class Traverser extends ChainedMap {
    * @return {any} this.obj/data cleaned
    */
   traverse(shouldReturn) {
-    if (this.has('onMatch') === false) this.onMatch()
-
     const {obj, keys, vals, onMatch, onNonMatch} = this.entries()
     let result = obj
 
