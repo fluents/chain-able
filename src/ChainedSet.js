@@ -1,7 +1,5 @@
 const Chainable = require('./Chainable')
 const toarr = require('./deps/to-arr')
-const Species = require('./deps/symbols/species')
-const Spreadable = require('./deps/symbols/spreadable')
 
 /**
  * @TODO could add .first .last ?
@@ -50,19 +48,22 @@ class ChainedSet extends Chainable {
   }
 }
 
-const d = objs => symbol => v =>
-  objs.map(obj =>
-    Object.defineProperty(obj, symbol, {
-      configurable: true,
-      enumerable: false,
-      get() {
-        return v
-      },
-    })
-  )
-
-const set = d([ChainedSet.prototype, ChainedSet])
-set(Species)(Set)
-set(Spreadable)(true)
+// @NOTE: not really helping
+// http://2ality.com/2015/09/well-known-symbols-es6.html
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/isConcatSpreadable
+// const d = objs => symbol => v =>
+//   objs.map(obj =>
+//     Object.defineProperty(obj, symbol, {
+//       configurable: true,
+//       enumerable: false,
+//       get() {
+//         return v
+//       },
+//     })
+//   )
+//
+// const set = d([ChainedSet.prototype, ChainedSet])
+// set(Species)(Set)
+// set(Spreadable)(true)
 
 module.exports = ChainedSet

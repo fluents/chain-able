@@ -37,7 +37,10 @@ const CM = SuperClass => {
      */
     constructor(parent) {
       super(parent)
-      this.shorthands = []
+
+      // @NOTE: using `[]` deopts o.o
+      // eslint-disable-next-line
+      this.shorthands = new Array();
       this.store = new Map()
 
       // @TODO for wrapping methods to force return `this`
@@ -61,9 +64,13 @@ const CM = SuperClass => {
      * @return {Chain} @chainable
      */
     tap(name, fn) {
-      const old = this.get(name)
-      const updated = fn(old, dopemerge) // , this
-      return this.set(name, updated)
+      // @NOTE: longhand, sadness for shorter :-(
+      // ---
+      // const old = this.get(name)
+      // const updated = fn(old, dopemerge) // , this
+      // return this.set(name, updated)
+      // ---
+      return this.set(name, fn(this.get(name), dopemerge))
     }
 
     /**
@@ -124,12 +131,7 @@ const CM = SuperClass => {
     clear() {
       this.store.clear()
       Object.keys(this).forEach(key => {
-        /* prettier-ignore */
-        ignored(key)
-        ? 0
-        : isMapish(this[key])
-          ? this[key].clear()
-          : 0
+        if (!ignored(key) && isMapish(this[key])) this[key].clear()
       })
 
       return this
