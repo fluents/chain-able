@@ -1,5 +1,4 @@
 const props = require('../deps/props')
-const ChainedMap = require('../ChainedMap')
 
 const {ignored} = props
 let immutablejs
@@ -13,7 +12,7 @@ let immutablejs
  * https://facebook.github.io/immutable-js/docs/#/Collection
  */
 
-module.exports = (SuperClass = ChainedMap, opts) => {
+module.exports = (SuperClass, opts) => {
   return class ImmutableChain extends SuperClass {
     // @TODO not sure parent is best
     constructor(parent = null) {

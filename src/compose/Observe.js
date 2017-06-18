@@ -1,4 +1,3 @@
-const ChainedMap = require('../ChainedMap')
 const ChainedSet = require('../ChainedSet')
 const toarr = require('../deps/to-arr')
 const traverse = require('../deps/traverse')
@@ -8,7 +7,7 @@ const match = require('../deps/matcher')
 // scoped clones
 let objs = {}
 
-module.exports = (SuperClass = ChainedMap, opts) => {
+module.exports = (SuperClass, opts) => {
   /**
    * @see https://github.com/ReactiveX/rxjs/blob/master/src/Subscriber.ts
    * @see https://github.com/sindresorhus/awesome-observables

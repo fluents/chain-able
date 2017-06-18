@@ -46,6 +46,7 @@ function chain(obj, o = null) {
       }))
     }
 
+    /* eslint-disable no-confusing-arrow */
     /* prettier-ignore */
     return keys
       .map(key => d ? Object.getOwnPropertyDescriptor(obj, key) : key)

@@ -2,7 +2,6 @@
  * @since 2.0.0
  */
 
-const ChainedMap = require('../ChainedMap')
 const toarr = require('../deps/to-arr')
 const isObj = require('../deps/is/pureObj')
 // const {addPrefix, removePrefix} = require('../deps/prefix')
@@ -23,7 +22,7 @@ function getDecoration(decoration) {
 /**
  * @inheritdoc
  */
-module.exports = (SuperClass = ChainedMap, opts) => {
+module.exports = (SuperClass, opts) => {
   return class Extendable extends SuperClass {
     constructor(parent) {
       super(parent)
@@ -119,7 +118,7 @@ module.exports = (SuperClass = ChainedMap, opts) => {
      *  chain.eh == chain.canada
      * @return {ChainedMap}
      */
-    extendAlias(methods, name, thisArg = null) {
+    extendAlias(methods, name, thisArg) {
       /* prettier-ignore */
       toarr(methods)
         .forEach(method => (this[method] = this[name].bind(thisArg || this)))
@@ -133,7 +132,7 @@ module.exports = (SuperClass = ChainedMap, opts) => {
      * @param {any} [val='undefined']
      * @return {ChainedMap} @chainable
      */
-    extendWith(methods, val = undefined) {
+    extendWith(methods, val) {
       const isArr = Array.isArray(methods)
       const keys = isArr ? methods : Object.keys(methods)
 

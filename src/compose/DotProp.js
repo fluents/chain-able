@@ -12,9 +12,7 @@ const getPathSegments = require('../deps/dot-segments')
  * @param  {DotProp} thisArg
  * @return {boolean}
  */
-const shouldDot = (key, thisArg) => {
-  return thisArg._dot !== false && isDot(key)
-}
+const shouldDot = (key, thisArg) => thisArg._dot !== false && isDot(key)
 
 module.exports = (SuperClass, opts) => {
   return class DotProp extends SuperClass {
