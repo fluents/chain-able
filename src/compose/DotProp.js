@@ -12,9 +12,7 @@ const getPathSegments = require('../deps/dot-segments')
  * @param  {DotProp} thisArg
  * @return {boolean}
  */
-const shouldDot = (key, thisArg) => {
-  return thisArg._dot !== false && isDot(key)
-}
+const shouldDot = (key, thisArg) => thisArg._dot !== false && isDot(key)
 
 module.exports = (SuperClass, opts) => {
   return class DotProp extends SuperClass {
@@ -28,6 +26,7 @@ module.exports = (SuperClass, opts) => {
     }
 
     /**
+     * @override
      * @inheritdoc
      * @see .dot
      * @desc since we have a map,
@@ -54,6 +53,7 @@ module.exports = (SuperClass, opts) => {
       return super.set(key, val)
     }
     /**
+     * @override
      * @inheritdoc
      * @see .dot
      */
@@ -63,6 +63,7 @@ module.exports = (SuperClass, opts) => {
         : super.get(key)
     }
     /**
+     * @override
      * @inheritdoc
      * @see .dot
      */
@@ -73,6 +74,7 @@ module.exports = (SuperClass, opts) => {
     }
 
     /**
+     * @override
      * @inheritdoc
      * @see .dot
      */

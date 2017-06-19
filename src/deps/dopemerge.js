@@ -79,6 +79,8 @@ function deepmerge(target, source, optsArg) {
 //   numberOperation: "+ * ^ toarr cb",
 //   promises... wait until finished then call merge???
 //   boolPrefer: 0, 1, true, false
+// boolAsRight: true,
+//
 // }
 
 function eqq(arr1, arr2) {
@@ -94,19 +96,18 @@ function getDefaults() {
     arrayMerge: defaultArrayMerge,
     stringToArray: true,
     boolToArray: false,
-    boolAsRight: true,
-    ignoreTypes: ['null', 'undefined', 'NaN'],
-    debug: true,
+    ignoreTypes: ['null', 'undefined'],
+    // debug: true,
   }
 }
 
 // eslint-disable-next-line complexity
-function dopemerge(obj1, obj2, opts = {}) {
+function dopemerge(obj1, obj2, opts) {
   // if they are identical, fastest === check
   if (obj1 === obj2) return obj1
 
   // setup options
-  const options = Object.assign(getDefaults(), opts)
+  const options = Object.assign(getDefaults(), opts || {})
   const {ignoreTypes, stringToArray, boolToArray, clone} = options
 
   const types = [ezType(obj1), ezType(obj2)]

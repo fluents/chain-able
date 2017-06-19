@@ -1,13 +1,13 @@
-const ChainedMap = require('../ChainedMap')
 const ChainedSet = require('../ChainedSet')
 const toarr = require('../deps/to-arr')
 const traverse = require('../deps/traverse')
 const eq = require('../deps/traversers/eq')
+const match = require('../deps/matcher')
 
 // scoped clones
 let objs = {}
 
-module.exports = (SuperClass = ChainedMap, opts) => {
+module.exports = (SuperClass, opts) => {
   /**
    * @see https://github.com/ReactiveX/rxjs/blob/master/src/Subscriber.ts
    * @see https://github.com/sindresorhus/awesome-observables
@@ -33,17 +33,25 @@ module.exports = (SuperClass = ChainedMap, opts) => {
      */
     observe(properties, cb) {
       if (this.observers === undefined) {
-        this.observers = new ChainedSet(this)
+        this.observers = new ChainedSet() // (this)
       }
 
       /* prettier-ignore */
       this.observers
         .add(changed => {
           let data = {}
+          // @TODO: dot-prop here for observe...
           const props = toarr(properties)
-
-          if (props.includes('*')) {
-            data = this.entries()
+          if (props.map(prop => (/[!*]/).test(prop)).length) {
+            const entries = this.entries()
+            match(Object.keys(entries), props).map(key => {
+              data[key] = entries[key]
+            })
+            // could be done this way...
+            // const keys = this.store.keys()
+            // match(keys, props).map(key => {
+            //   data[key] = this.get(key)
+            // })
           }
           else {
             for (let i = 0; i < props.length; i++) {

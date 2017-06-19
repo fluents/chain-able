@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "module": "system",
+    "moduleResolution": "node",
+    "isolatedModules": false,
+    "target": "es5",
+    "noImplicitAny": false,
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noUnusedLocals": false,
+    "noImplicitUseStrict": false,
+    "removeComments": true,
+    "noLib": false,
+    "outFile": "index.tsc.bundle.js",
+    "preserveConstEnums": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "pretty": true,
+    "skipLibCheck": true,
+    "noEmitOnError": false,
+    "allowUnreachableCode": true
+  },
+  "include": [
+    "index.dev.js"
+  ]
+}

@@ -4,7 +4,7 @@
 
 module.exports = {
   Iterator: Symbol.iterator,
-  Primative: Symbol.toPrimitive,
+  Primitive: Symbol.toPrimitive,
   Instance: Symbol.hasInstance,
   Spreadable: Symbol.isConcatSpreadable,
   Species: Symbol.species,

@@ -1,3 +1,6 @@
+/* eslint no-new-wrappers: "off" */
+/* eslint eqeqeq: "off" */
+/* eslint func-style: "off" */
 const isPureObj = require('./is/pureObj')
 const isRegExp = require('./is/regexp')
 const isError = require('./is/error')
@@ -10,8 +13,23 @@ const isArray = Array.isArray
 const objectKeys = Object.keys
 const hasOwnProperty = (x, y) => Object.hasOwnProperty.call(x, y)
 
+/**
+ * @param {Array | Object | any} xs
+ * @param {Function} fn
+ * @TODO: unexpectedly breaks things iterating
+ * if you are relying on internal functionality
+ * (such as .path, .get, .value...) with map & set
+ *
+ * @desc if there is .forEach on the obj already, use it
+ * otherwise, call function for each
+ */
+var forEach = function(xs, fn) {
+  if (xs.forEach) xs.forEach(fn)
+  else for (var i = 0; i < xs.length; i++) fn(xs[i], i, xs)
+}
+
 // https://github.com/substack/js-traverse
-// @TODO: symbol
+// @TODO: symbol, map, set
 var traverse = function(obj) {
   return new Traverse(obj)
 }
@@ -48,7 +66,8 @@ Traverse.prototype.has = function(ps) {
 
 Traverse.prototype.set = function(ps, value) {
   var node = this.value
-  for (var i = 0; i < ps.length - 1; i++) {
+  var i = 0
+  for (; i < ps.length - 1; i++) {
     var key = ps[i]
     if (!hasOwnProperty(node, key)) node[key] = {}
     node = node[key]
@@ -94,7 +113,8 @@ Traverse.prototype.nodes = function() {
 }
 
 Traverse.prototype.clone = function() {
-  var parents = [], nodes = []
+  var parents = []
+  var nodes = []
 
   return (function clone(src) {
     for (var i = 0; i < parents.length; i++) {
@@ -293,20 +313,21 @@ function copy(src) {
     else if (isString(src)) {
       dst = new String(src)
     }
-    else if (Object.create && Object.getPrototypeOf) {
+    else {
+      //if (Object.create && Object.getPrototypeOf)
       dst = Object.create(Object.getPrototypeOf(src))
     }
-    else if (src.constructor === Object) {
-      dst = {}
-    }
-    else {
-      // @NOTE: only happens if above getPrototypeOf does not exist
-      var proto = (src.constructor && src.constructor.prototype) ||
-      src.__proto__ || {}
-      var T = function() {}
-      T.prototype = proto
-      dst = new T()
-    }
+    // else if (src.constructor === Object) {
+    //   dst = {}
+    // }
+    // else {
+    //   // @NOTE: only happens if above getPrototypeOf does not exist
+    //   var proto = (src.constructor && src.constructor.prototype) ||
+    //   src.__proto__ || {}
+    //   var T = function() {}
+    //   T.prototype = proto
+    //   dst = new T()
+    // }
 
     forEach(objectKeys(src), key => {
       dst[key] = src[key]
@@ -319,22 +340,12 @@ function copy(src) {
   }
 }
 
-/**
- * @TODO: unexpectedly breaks things iterating
- * if you are relying on internal functionality
- * (such as .path, .get, .value...) with map & set
- *
- * @desc if there is .forEach on the obj already, use it
- * otherwise, call function for each
- */
-var forEach = function(xs, fn) {
-  if (xs.forEach) return xs.forEach(fn)
-  else for (var i = 0; i < xs.length; i++) fn(xs[i], i, xs)
-}
-
 forEach(objectKeys(Traverse.prototype), key => {
   traverse[key] = function(obj) {
     var args = [].slice.call(arguments, 1)
+    // for (var $len = arguments.length, args = new Array($len)
+    //  i = 1; i < $len; ++i), args[i] = arguments[i]
+
     var t = new Traverse(obj)
     return t[key].apply(t, args)
   }

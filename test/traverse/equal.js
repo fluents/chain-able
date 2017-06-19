@@ -6,7 +6,10 @@ test('deepDates', t => {
   t.plan(2)
 
   t.truthy(
-    deepEqual({d: new Date(), x: [1, 2, 3]}, {d: new Date(), x: [1, 2, 3]}),
+    deepEqual(
+      {d: new Date(0, 0, 0, 0), x: [1, 2, 3]},
+      {d: new Date(0, 0, 0, 0), x: [1, 2, 3]}
+    ),
     'dates should be equal'
   )
 
@@ -227,5 +230,22 @@ test('deepUn', t => {
 test('deepLevels', t => {
   var xs = [1, 2, [3, 4, [5, 6]]]
   t.truthy(!deepEqual(xs, []))
+  t.pass()
+})
+
+test('null vs undefined', t => {
+  t.truthy(!deepEqual(null, undefined))
+  t.truthy(!deepEqual(undefined, null))
+  t.truthy(deepEqual(null, null))
+  t.truthy(deepEqual(undefined, undefined))
+  t.pass()
+})
+test('RegExp vs RegExp', t => {
+  t.truthy(deepEqual(new RegExp('.*'), new RegExp('.*')))
+  t.truthy(!deepEqual(new RegExp('not-the-same'), new RegExp('.*')))
+  t.pass()
+})
+test('ObjKeys', t => {
+  t.truthy(!deepEqual({one: true, two: true}, {one: true, three: false}))
   t.pass()
 })

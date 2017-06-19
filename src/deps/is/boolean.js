@@ -1,4 +1,5 @@
 const toS = require('./toS')
 
-module.exports = obj =>
-  obj === true || obj === false || toS(obj) === '[object Boolean]'
+// || typeof x === 'boolean'  || (/true|false/).test(x)
+module.exports = x =>
+  x === true || x === false || toS(x) === '[object Boolean]'

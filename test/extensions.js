@@ -1,6 +1,14 @@
 const test = require('ava')
-const log = require('fliplog')
+// const log = require('fliplog')
 const Chain = require('../dist')
+
+test('.init', t => {
+  t.plan(1)
+  const map = new Chain()
+  const init = Chain.init()
+
+  t.deepEqual(init, map)
+})
 
 test('extendIncrement', t => {
   const chain = new Chain()

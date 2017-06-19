@@ -14,10 +14,11 @@ class FactoryChain extends Composed {
     super(parent)
 
     this.data = {}
-    this.factory()
-    super.extend(['optional', 'required', 'chainUpDown']).set('chainLength', 0)
-    // super.extendIncrement(['chainLength'])
     this._calls = new ChainedSet(this)
+
+    this.factory()
+      .extend(['optional', 'required', 'chainUpDown', 'onDone'])
+      .set('len', 0)
   }
 
   /**
@@ -36,24 +37,24 @@ class FactoryChain extends Composed {
     return this
   }
 
-  // extend(props) {
-  //   super.extend(props)
-  //   return this
-  // }
-
+  /**
+   * @param  {Array<string>} names
+   * @return {FactoryChain} @chainable
+   */
   props(names) {
     names.forEach(name => this.prop(name))
     return this
   }
 
-  onDone(cb) {
-    return this.set('onDone', cb)
-  }
+  /**
+   * @param  {Primitive} name
+   * @param  {Function | null | undefined} [cb=undefined]
+   * @return {FactoryChain} @chainable
+   */
+  prop(name, cb) {
+    this.tap('len', len => len + 1)
 
-  prop(name, cb = null) {
-    this.tap('chainLength', len => len + 1)
-
-    // console.log({name}, this.get('chainLength'))
+    // console.log({name}, this.get('len'))
 
     // so if we call a property twice,
     // chain back up to parent,
@@ -65,23 +66,23 @@ class FactoryChain extends Composed {
 
     // @TODO need to spread as needed
     this[name] = args => {
-      if (cb === null) this.data[name] = args
+      if (cb === undefined) this.data[name] = args
       else cb(args)
 
       this._calls.add(name)
 
       // aka magicReturn
-      return this._calls.length === this.get('chainLength') ? this.end() : this
+      return this._calls.length === this.get('len') ? this.end() : this
     }
     return this
   }
 
   /**
-   * @param  {any} [prop=null] key of the data, or returns all data
+   * @param  {any} [prop=undefined] key of the data, or returns all data
    * @return {any}
    */
-  getData(prop = null) {
-    return prop === null ? this.data : this.data[prop]
+  getData(prop) {
+    return prop === undefined ? this.data : this.data[prop]
   }
 
   factory(obj = {}) {

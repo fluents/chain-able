@@ -55,9 +55,15 @@ module.exports = (SuperClass, opts) => {
       return this
     }
 
-    compute(key, cb) {
+    /**
+     * @TODO: do this...
+     * @param  {Primitive} key
+     * @param  {Function} fn
+     * @return {This} @chainable
+     */
+    compute(key, fn) {
       return this.transform(key, value => {
-        cb(value, this)
+        fn(value, this)
         return value
       })
     }

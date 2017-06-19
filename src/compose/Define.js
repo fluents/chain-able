@@ -1,16 +1,16 @@
-const ChainedMap = require('../ChainedMap')
 const camelCase = require('../deps/camel-case')
-const {Primative} = require('../deps/symbols')
+const Primitive = require('../deps/symbols/primitive')
 
 // https://www.youtube.com/watch?v=SwSle66O5sU
-const OFF = `${~315 >>> 3}@@`
+// const OFF = `${~315 >>> 3}@@`
+const OFF = `@@OFF`
 
 // @IDEA
 // could use a factory function for each chain,
 // exports a class that dynamically extends a specific class
 // for easier chained inheritence
 
-module.exports = (SuperClass = ChainedMap, opts) => {
+module.exports = (SuperClass, opts) => {
   /**
    * @TODO could put this all in extendable
    * @see http://2ality.com/2015/09/well-known-symbols-es6.html
@@ -106,7 +106,7 @@ module.exports = (SuperClass = ChainedMap, opts) => {
      *  this.ehOh(true)
      *  this.ehOh() === this.getEhOh() === true
      *
-     *  // with defined set and get + symbol toPrimative
+     *  // with defined set and get + symbol toPrimitive
      *  this.ehOh = false
      *  this.ehOh == false
      *  this.ehOh.valueOf() === false
@@ -151,7 +151,7 @@ module.exports = (SuperClass = ChainedMap, opts) => {
             const getrAsFn = (arg2 = OFF) => {
               return setter(arg2) // getter
             }
-            getrAsFn[Primative] = hint => {
+            getrAsFn[Primitive] = hint => {
               return getter(OFF)
             }
             getrAsFn.valueOf = () => getter(OFF)

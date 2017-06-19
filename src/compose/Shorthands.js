@@ -84,7 +84,7 @@ module.exports = (SuperClass, opts) => {
      * @param  {Function | null} [fn=null]
      * @return {This} @chainable
      */
-    chainWrap(name, fn = null) {
+    chainWrap(name, fn) {
       let ref = fn || this[name]
       this[name] = (a, b, c) => {
         ref.call(this, a, b, c)

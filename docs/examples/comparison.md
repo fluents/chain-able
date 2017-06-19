@@ -1,15 +1,23 @@
 ```js
-const {str, eh, dat} = new Chain()
+const {str, eh, dat, easy} = new Chain()
   .transform('str', val => val + '🤖')
-  .set('str', 'yo') // ^ yo🤖
+  .set('str', 'yo')
   .when(env === 'production', chain => chain.tap('str', str => str + '👆'))
 
+  // adds methods
   .extend(['dis'])
-  .remapKey('dis', 'dat')
-  .dis('into dat') // .get('dat') === 'into-dat'
+  .remap({dis: 'dat'})
+  .dis('into dat')
+
+  .extendGetSet(['easy'])
+  .setEasy(true)
 
   .typed('eh').type(val => val === true)
-  .observe('eh', data => data.eh === true)
+  .observe('eh', data => console.log(data.eh))
+
+  .observe('dot.prop', data => console.log(data))
+  .set('dot.prop', 1)
+
   .merge({eh: true})
 
   .entries()

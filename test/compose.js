@@ -53,3 +53,15 @@ test('.className', t => {
   const chain = new Composed()
   t.true(typeof chain.className === 'string')
 })
+
+test('extend class as decorator', t => {
+  class Target {
+    get extended() {
+      return true
+    }
+  }
+  class ComposedTarget extends compose(Target) {}
+  const map = new ComposedTarget({isParent: true})
+  t.deepEqual(map.parent, {isParent: true})
+  t.true(map.extended)
+})
