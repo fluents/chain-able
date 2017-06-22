@@ -1,25 +1,29 @@
-const ChainedSet = require('../ChainedSet')
 const toarr = require('../deps/to-arr')
 const traverse = require('../deps/traverse')
 const eq = require('../deps/traversers/eq')
 const match = require('../deps/matcher')
+const getPathSegments = require('../deps/dot-segments')
+const dot = require('../deps/dot-prop')
 
 // scoped clones
-let objs = {}
+let objs = new Map()
 
 module.exports = (SuperClass, opts) => {
   /**
    * @see https://github.com/ReactiveX/rxjs/blob/master/src/Subscriber.ts
    * @see https://github.com/sindresorhus/awesome-observables
+   * @see https://medium.com/@benlesh/learning-observable-by-building-observable-d5da57405d87
    */
   return class Observe extends SuperClass {
     /**
+     * @since 4.0.0 <- refactored with dot-prop
+     * @since 1.0.0
+     *
+     * @TODO: gotta update `data` if `deleting` too...
+     * @TODO: un-observe
      * @TODO should hash these callback properties
      * @TODO just throttle the `.set` to allow easier version of .commit
      * @TODO .unobserve
-     * @see https://medium.com/@benlesh/learning-observable-by-building-observable-d5da57405d87
-     * @since 1.0.0
-     * @alias on
      *
      * @example
      *   chain
@@ -28,48 +32,34 @@ module.exports = (SuperClass, opts) => {
      *     .eh(true)
      *
      * @param  {string} properties
-     * @param  {Function} cb
+     * @param  {Function} fn
      * @return {Chain} @chainable
      */
-    observe(properties, cb) {
-      if (this.observers === undefined) {
-        this.observers = new ChainedSet() // (this)
-      }
+    observe(properties, fn) {
+      const props = toarr(properties)
+      const hashKey = props.join('_')
+      let data = {}
 
       /* prettier-ignore */
-      this.observers
-        .add(changed => {
-          let data = {}
-          // @TODO: dot-prop here for observe...
-          const props = toarr(properties)
-          if (props.map(prop => (/[!*]/).test(prop)).length) {
-            const entries = this.entries()
-            match(Object.keys(entries), props).map(key => {
-              data[key] = entries[key]
-            })
-            // could be done this way...
-            // const keys = this.store.keys()
-            // match(keys, props).map(key => {
-            //   data[key] = this.get(key)
-            // })
-          }
-          else {
-            for (let i = 0; i < props.length; i++) {
-              data[props[i]] = this.get(props[i])
-            }
-          }
+      return this.meta('observers', changed => {
+        // match the keys, make the data out of it
+        const m = match(changed.key, props)
+        for (let i = 0; i < m.length; i++) {
+          // data[m[i]] = this.get(m[i])
+          const segments = getPathSegments(m[i])
+          dot.set(data, segments, this.get(segments))
+        }
 
-          const keys = props.join('_')
-          if (eq(objs[keys], data)) {
-            return this
-          }
+        // if we have called it at least once...
+        // when it hasn't changed, leave it
+        if (objs.has(hashKey) && eq(objs.get(hashKey), data)) return
 
-          objs[keys] = traverse(data).clone()
+        // it did change - clone it for next deepEquals check
+        objs.set(hashKey, traverse(data).clone())
 
-          cb(data, this)
-        })
-
-      return this
+        // call the observer - it matched & data changed
+        fn.call(this, data, this)
+      })
     }
   }
 }
