@@ -8,6 +8,7 @@ const dopemerge = require('./deps/dopemerge')
 const traverse = require('./deps/traverse')
 // easy
 const FactoryChain = require('./FactoryChain')
+const MethodChain = require('./MethodChain')
 // composer
 const compose = require('./compose')
 
@@ -16,39 +17,29 @@ const exp = compose()
 exp.init = parent => new exp(parent)
 exp.Chain = exp
 exp.compose = compose
+
+// deps
 exp.traverse = traverse
 exp.toArr = require('./deps/to-arr') // exp.toarr =
-exp.camelCase = require('./deps/to-arr')
+exp.camelCase = require('./deps/camel-case')
 exp.dot = require('./deps/dot-prop')
 exp.eq = require('./deps/traversers/eq')
 exp.matcher = require('./deps/matcher')
-// exp.saw = require('./deps/chainsaw')
-
-// exp.decorate = target => compose(ChainedMap.compose(Chainable.compose(target)))
-
-// function d(name, opts) {
-//   Object.defineProperty(exp, name, {
-//     configurable: true,
-//     enumerable: false,
-//     get() {
-//       return Composer(opts)
-//     },
-//   })
-// }
-// d('Types', {types: true})
+exp.is = require('./deps/is')
+exp.reduce = require('./deps/reduce')
+exp.meta = require('./deps/meta')
 
 // core
 exp.Chainable = Chainable
 exp.ChainedSet = ChainedSet
 exp.ChainedMap = ChainedMap
 exp.FactoryChain = FactoryChain
+exp.MethodChain = MethodChain
+
 // merge
 exp.MergeChain = MergeChain
-exp.dopemerge = dopemerge
+exp.merge = dopemerge
 
-// fn.__esModule = true
-// fn.default = fn
-
-exports = module.exports = exp
-exports.default = exp
-Object.defineProperty(exports, '__esModule', {value: true})
+// @NOTE: no need for exporting as an __esModule,
+// it adds additional checking wrapper
+module.exports = exp
