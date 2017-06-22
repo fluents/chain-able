@@ -1,6 +1,12 @@
 const isPureObj = require('./is/pureObj')
 const isArray = require('./is/array')
 const toS = require('./is/toS')
+const ObjectKeys = require('./util/keys')
+const ObjectAssign = require('./util/assign')
+const isUndefined = require('./is/undefined')
+
+// const isRegExp = require('./is/regexp')
+// const isDate = require('./is/date')
 
 const ezType = x => (isArray(x) ? 'array' : typeof x)
 
@@ -25,8 +31,10 @@ function cloneIfNeeded(value, optsArg) {
 
 function defaultArrayMerge(target, source, optsArg) {
   var destination = target.slice()
-  source.forEach((v, i) => {
-    if (typeof destination[i] === 'undefined') {
+
+  for (var i = 0; i < source.length; i++) {
+    var v = source[i]
+    if (isUndefined(destination[i])) {
       destination[i] = cloneIfNeeded(v, optsArg)
     }
     else if (isMergeableObj(v)) {
@@ -35,25 +43,29 @@ function defaultArrayMerge(target, source, optsArg) {
     else if (target.indexOf(v) === -1) {
       destination.push(cloneIfNeeded(v, optsArg))
     }
-  })
+  }
   return destination
 }
 
 function mergeObj(target, source, optsArg) {
   var destination = {}
   if (isMergeableObj(target)) {
-    Object.keys(target).forEach(key => {
-      destination[key] = cloneIfNeeded(target[key], optsArg)
-    })
+    var targetKeys = ObjectKeys(target)
+    for (var k = 0; k < targetKeys.length; k++) {
+      destination[targetKeys[k]] = cloneIfNeeded(target[targetKeys[k]], optsArg)
+    }
   }
-  Object.keys(source).forEach(key => {
+  var sourceKeys = ObjectKeys(source)
+  for (var s = 0; s < sourceKeys.length; s++) {
+    var key = sourceKeys[s]
     if (!isMergeableObj(source[key]) || !target[key]) {
       destination[key] = cloneIfNeeded(source[key], optsArg)
     }
     else {
       destination[key] = deepmerge(target[key], source[key], optsArg)
     }
-  })
+  }
+
   return destination
 }
 
@@ -107,7 +119,7 @@ function dopemerge(obj1, obj2, opts) {
   if (obj1 === obj2) return obj1
 
   // setup options
-  const options = Object.assign(getDefaults(), opts || {})
+  const options = ObjectAssign(getDefaults(), opts || {})
   const {ignoreTypes, stringToArray, boolToArray, clone} = options
 
   const types = [ezType(obj1), ezType(obj2)]
@@ -119,23 +131,21 @@ function dopemerge(obj1, obj2, opts) {
 
   const eq = eqCurry(types)
 
-  // check types to prefer
-  switch (true) {
-    case eq(['boolean', 'boolean']): {
-      return boolToArray ? [obj1, obj2] : obj2
-    }
-    case eq(['string', 'string']): {
-      return stringToArray ? [obj1, obj2] : obj1 + obj2
-    }
-    case eq(['array', 'string']): {
-      return (clone ? obj1.slice(0) : obj1).concat([obj2])
-    }
-    case eq(['string', 'array']): {
-      return (clone ? obj2.slice(0) : obj2).concat([obj1])
-    }
-    default: {
-      return deepmerge(obj1, obj2, options)
-    }
+  // uglifier optimizes into a wicked ternary
+  if (eq(['boolean', 'boolean'])) {
+    return boolToArray ? [obj1, obj2] : obj2
+  }
+  else if (eq(['string', 'string'])) {
+    return stringToArray ? [obj1, obj2] : obj1 + obj2
+  }
+  else if (eq(['array', 'string'])) {
+    return (clone ? obj1.slice(0) : obj1).concat([obj2])
+  }
+  else if (eq(['string', 'array'])) {
+    return (clone ? obj2.slice(0) : obj2).concat([obj1])
+  }
+  else {
+    return deepmerge(obj1, obj2, options)
   }
 }
 
