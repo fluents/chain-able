@@ -1,6 +1,17 @@
-const eq = require('./eq')
+// const eq = require('./eq')
 const traverse = require('../traverse')
 const dot = require('../dot-prop')
+
+// const isObj = require('../is/obj')
+// const isReal = require('../is/real')
+// isDate
+// isRegExp
+// isError
+// isBoolean
+// isNumber
+// isString
+// isArray
+// objectKeys
 const {
   isObjWithKeys,
   isObj,
@@ -99,7 +110,7 @@ function clone(obj) {
       // src = dst
     }
     else {
-      require('fliplog').dim(path).data({dst, x, obj}).echo()
+      // require('fliplog').dim(path).data({dst, x, obj}).echo()
       console.log('\n')
 
       if (!isObj(dst)) {

@@ -3,6 +3,8 @@ const toS = require('../is/toS')
 const isFunction = require('../is/function')
 const isRegExp = require('../is/regexp')
 const isDate = require('../is/date')
+const hasOwnProperty = require('../util/hasOwnProperty')
+const ObjectKeys = require('../util/keys')
 
 // function isArguments(x) {
 //   return toS(x) === '[object Arguments]'
@@ -104,14 +106,14 @@ module.exports = function(a, b, loose) {
         }
       }
       else {
-        var kx = Object.keys(x)
-        var ky = Object.keys(y).length
+        var kx = ObjectKeys(x)
+        var ky = ObjectKeys(y).length
         if (kx.length !== ky) {
           return notEqual()
         }
         for (var i = 0; i < kx.length; i++) {
           var k = kx[i]
-          if (!Object.hasOwnProperty.call(y, k)) {
+          if (!hasOwnProperty(y, k)) {
             notEqual()
           }
         }
