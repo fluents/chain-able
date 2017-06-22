@@ -1,18 +1,26 @@
+// https://github.com/mariocasciaro/object-path/blob/master/index.js
 // https://github.com/sindresorhus/dot-prop/blob/master/index.js
 // https://github.com/sindresorhus/is-obj/blob/master/index.js
 const isObj = require('./is/obj')
+const isArray = require('./is/array')
+const isEnumerable = require('./is/enumerable')
 const getPathSegments = require('./dot-segments')
+
+// const isDot = require('./is/dot')
+// const isDottable = (obj, path) => isObj(obj) && isDot(path)
+const isDottable = (obj, path) =>
+  (isObj(obj) && typeof path === 'string') || isArray(path)
 
 module.exports = {
   get(obj, path, value) {
-    if (!isObj(obj) || typeof path !== 'string') {
+    if (!isDottable(obj, path)) {
       return value === undefined ? obj : value
     }
 
     const pathArr = getPathSegments(path)
 
     for (let i = 0; i < pathArr.length; i++) {
-      if (!Object.prototype.propertyIsEnumerable.call(obj, pathArr[i])) {
+      if (!isEnumerable(obj, pathArr[i])) {
         return value
       }
 
@@ -36,9 +44,8 @@ module.exports = {
   },
 
   set(obj, path, value) {
-    let full = obj
-    if (!isObj(obj) || typeof path !== 'string') {
-      return obj
+    if (!isDottable(obj, path)) {
+      return
     }
 
     const pathArr = getPathSegments(path)
@@ -59,9 +66,8 @@ module.exports = {
   },
 
   delete(obj, path) {
-    let full = obj
-    if (!isObj(obj) || typeof path !== 'string') {
-      return obj
+    if (!isDottable(obj, path)) {
+      return
     }
 
     const pathArr = getPathSegments(path)
@@ -83,7 +89,7 @@ module.exports = {
   },
 
   has(obj, path) {
-    if (!isObj(obj) || typeof path !== 'string') {
+    if (!isDottable(obj, path)) {
       return false
     }
 
