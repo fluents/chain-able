@@ -1,6 +1,8 @@
 const dopemerge = require('./deps/dopemerge')
 const Chainable = require('./Chainable')
 const isFunction = require('./deps/is/function')
+const isMapish = require('./deps/is/mapish')
+const ObjectKeys = require('./deps/util/keys')
 
 /**
  * @since 1.0.0
@@ -106,7 +108,7 @@ class MergeChain extends Chainable {
     const obj = this.has('obj') === true && !obj2 ? this.get('obj') : obj2 || {}
     const merger = this.get('merger')
     const sh = this.parent.shorthands || []
-    const keys = Object.keys(obj)
+    const keys = ObjectKeys(obj)
 
     // @TODO do this
     // if (obj2 instanceof Chainable) {
@@ -166,7 +168,7 @@ class MergeChain extends Chainable {
         // console.log('used onValue returning false')
         continue
       }
-      else if (method instanceof Chainable) {
+      else if (isMapish(method)) {
         // when property itself is a Chainable
         this.parent[key].merge(value)
       }
