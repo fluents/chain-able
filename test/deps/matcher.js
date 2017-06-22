@@ -2,6 +2,11 @@ const test = require('ava')
 const log = require('fliplog')
 const m = require('../../dist/deps/matcher')
 
+test('matcher *', t => {
+  t.truthy(m('canada.arr.0', 'canada.*').length)
+  t.falsy(m('canada', 'canada.*').length)
+})
+
 test('matcher()', t => {
   const matched = m(['foo', 'bar'], ['fo*', 'ba*', '!bar'])
   t.deepEqual(matched, ['foo'])
