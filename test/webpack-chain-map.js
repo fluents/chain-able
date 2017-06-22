@@ -1,5 +1,6 @@
 const test = require('ava')
 const ChainedMap = require('../dist/ChainedMap')
+const clean = require('../dist/deps/clean')
 
 test('is Chainable', t => {
   const parent = {parent: true}
@@ -28,6 +29,7 @@ test('get', t => {
   t.is(map.get('a'), 'alpha')
 })
 
+test.todo('.clear(false)')
 test('clear', t => {
   const map = new ChainedMap()
 
@@ -48,7 +50,7 @@ test('clean', t => {
   map.set('nill', null)
   map.set('emptyObj', {})
   map.set('obj', {keys: true})
-  t.deepEqual(map.clean(map.entries()), {arr: [1], obj: {keys: true}})
+  t.deepEqual(clean(map.entries()), {arr: [1], obj: {keys: true}})
 })
 
 test('clear - with sub-chainable', t => {
