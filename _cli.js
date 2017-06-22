@@ -30,7 +30,7 @@ const argvOpts = {
   boolean: ['cov', 'src', 'copy', 'production'],
   string: ['format'],
   default: {
-    clean: true,
+    clean: false,
     tests: false,
     cov: false,
     quick: false,
@@ -45,6 +45,7 @@ if (clean) {
   const toClean = {
     files: [
       'browserified',
+      'MethodChain',
       'Chainable',
       'ChainedMap',
       'FactoryChain',
@@ -58,7 +59,15 @@ if (clean) {
       'index',
       'index.tsc.bundle',
     ],
-    dirs: ['dist', 'test-dist', 'compose', 'coverage', '.nyc_output', 'deps'],
+    dirs: [
+      'dist',
+      'test-dist',
+      'disted',
+      'compose',
+      'coverage',
+      '.nyc_output',
+      'deps',
+    ],
   }
 
   toClean.files.map(
