@@ -8,10 +8,11 @@ const isBoolean = require('./is/boolean')
 const isNumber = require('./is/number')
 const isString = require('./is/string')
 const isDate = require('./is/date')
-
-const isArray = Array.isArray
-const objectKeys = Object.keys
-const hasOwnProperty = (x, y) => Object.hasOwnProperty.call(x, y)
+// was inline for size?
+const isArray = require('./is/array')
+const hasOwnProperty = require('./util/hasOwnProperty')
+const objectKeys = require('./util/keys')
+const argumentor = require('./argumentor')
 
 /**
  * @param {Array | Object | any} xs
@@ -25,24 +26,35 @@ const hasOwnProperty = (x, y) => Object.hasOwnProperty.call(x, y)
  */
 var forEach = function(xs, fn) {
   if (xs.forEach) xs.forEach(fn)
-  else for (var i = 0; i < xs.length; i++) fn(xs[i], i, xs)
+  else for (let i = 0; i < xs.length; i++) fn(xs[i], i, xs)
 }
 
-// https://github.com/substack/js-traverse
-// @TODO: symbol, map, set
 var traverse = function(obj) {
   return new Traverse(obj)
 }
 module.exports = traverse
 
+/**
+ * @TODO: symbol, map, set
+ * @tutorial https://github.com/substack/js-traverse
+ * @classdesc Traverse.js
+ * @param {Travcersable} obj
+ * @constructor
+ */
 function Traverse(obj) {
   this.value = obj
 }
 
+/**
+ * @see this.forEach
+ * @todo hasOwnProperty
+ * @param  {Array<string>} ps paths
+ * @return {any} value at dot-prop
+ */
 Traverse.prototype.get = function(ps) {
-  var node = this.value
-  for (var i = 0; i < ps.length; i++) {
-    var key = ps[i]
+  let node = this.value
+  for (let i = 0; i < ps.length; i++) {
+    const key = ps[i]
     if (!node || !hasOwnProperty(node, key)) {
       node = undefined
       break
@@ -52,10 +64,15 @@ Traverse.prototype.get = function(ps) {
   return node
 }
 
+/**
+ * @see hasOwnProperty
+ * @param  {Array<string>} ps paths
+ * @return {boolean}
+ */
 Traverse.prototype.has = function(ps) {
-  var node = this.value
-  for (var i = 0; i < ps.length; i++) {
-    var key = ps[i]
+  let node = this.value
+  for (let i = 0; i < ps.length; i++) {
+    const key = ps[i]
     if (!node || !hasOwnProperty(node, key)) {
       return false
     }
@@ -65,10 +82,10 @@ Traverse.prototype.has = function(ps) {
 }
 
 Traverse.prototype.set = function(ps, value) {
-  var node = this.value
-  var i = 0
+  let node = this.value
+  let i = 0
   for (; i < ps.length - 1; i++) {
-    var key = ps[i]
+    const key = ps[i]
     if (!hasOwnProperty(node, key)) node[key] = {}
     node = node[key]
   }
@@ -76,18 +93,38 @@ Traverse.prototype.set = function(ps, value) {
   return value
 }
 
+/**
+ * @see walk
+ * @param  {Function} cb
+ * @return {any}
+ */
 Traverse.prototype.map = function(cb) {
   return walk(this.value, cb, true)
 }
 
+/**
+ * @param  {Function} cb
+ * @return {any} this.value
+ */
 Traverse.prototype.forEach = function(cb) {
   this.value = walk(this.value, cb, false)
   return this.value
 }
 
+/**
+ * @since 4.0.0
+ * @param  {Function} cb
+ * @return {any} this.value
+ */
+Traverse.prototype.forEachs = function(cb) {
+  return this.forEach(function(x) {
+    cb.call(this, this, x)
+  })
+}
+
 Traverse.prototype.reduce = function(cb, init) {
-  var skip = arguments.length === 1
-  var acc = skip ? this.value : init
+  const skip = arguments.length === 1
+  let acc = skip ? this.value : init
   this.forEach(function(x) {
     if (!this.isRoot || !skip) {
       acc = cb.call(this, acc, x)
@@ -97,7 +134,7 @@ Traverse.prototype.reduce = function(cb, init) {
 }
 
 Traverse.prototype.paths = function() {
-  var acc = []
+  const acc = []
   this.forEach(function(x) {
     acc.push(this.path)
   })
@@ -105,7 +142,7 @@ Traverse.prototype.paths = function() {
 }
 
 Traverse.prototype.nodes = function() {
-  var acc = []
+  const acc = []
   this.forEach(function(x) {
     acc.push(this.node)
   })
@@ -113,18 +150,18 @@ Traverse.prototype.nodes = function() {
 }
 
 Traverse.prototype.clone = function() {
-  var parents = []
-  var nodes = []
+  let parents = []
+  let nodes = []
 
   return (function clone(src) {
-    for (var i = 0; i < parents.length; i++) {
+    for (let i = 0; i < parents.length; i++) {
       if (parents[i] === src) {
         return nodes[i]
       }
     }
 
     if (isPureObj(src)) {
-      var dst = copy(src)
+      let dst = copy(src)
 
       parents.push(src)
       nodes.push(dst)
@@ -144,17 +181,17 @@ Traverse.prototype.clone = function() {
 }
 
 function walk(root, cb, immutable) {
-  var path = []
-  var parents = []
-  var alive = true
+  let path = []
+  let parents = []
+  let alive = true
 
   return (function walker(node_) {
-    var node = immutable ? copy(node_) : node_
-    var modifiers = {}
+    // both are objs with properties that get changed but
+    const node = immutable ? copy(node_) : node_
+    const modifiers = {}
+    let keepGoing = true
 
-    var keepGoing = true
-
-    var state = {
+    const state = {
       node,
       node_,
       path: [].concat(path),
@@ -219,7 +256,7 @@ function walk(root, cb, immutable) {
 
         state.isLeaf = state.keys.length == 0
 
-        for (var i = 0; i < parents.length; i++) {
+        for (let i = 0; i < parents.length; i++) {
           if (parents[i].node_ === node_) {
             state.circular = parents[i]
             break
@@ -237,14 +274,18 @@ function walk(root, cb, immutable) {
 
     updateState()
 
+    // @NOTE added last `,state` arg to not have it have to use `this`,
+    // but broke some things so moved to another fn
+    //
     // use return values to update if defined
-    var ret = cb.call(state, state.node)
+    let ret = cb.call(state, state.node)
     if (ret !== undefined && state.update) state.update(ret)
 
     if (modifiers.before) modifiers.before.call(state, state.node)
 
     if (!keepGoing) return state
 
+    // when it's some sort of itertable object, loop it further
     if (isPureObj(state.node) && !state.circular) {
       parents.push(state)
 
@@ -255,7 +296,7 @@ function walk(root, cb, immutable) {
 
         if (modifiers.pre) modifiers.pre.call(state, state.node[key], key)
 
-        var child = walker(state.node[key])
+        const child = walker(state.node[key])
         if (immutable && hasOwnProperty(state.node, key)) {
           state.node[key] = child.node
         }
@@ -279,7 +320,7 @@ function walk(root, cb, immutable) {
 function copy(src) {
   // require('fliplog').data(src).bold('copying').echo()
   if (isPureObj(src)) {
-    var dst
+    let dst
 
     // const reduce = require('./reduce')
     // const toarr = require('./to-arr')
@@ -342,11 +383,10 @@ function copy(src) {
 
 forEach(objectKeys(Traverse.prototype), key => {
   traverse[key] = function(obj) {
-    var args = [].slice.call(arguments, 1)
-    // for (var $len = arguments.length, args = new Array($len)
-    //  i = 1; i < $len; ++i), args[i] = arguments[i]
+    // var args = [].slice.call(arguments, 1)
+    let args = argumentor.apply(null, arguments).slice(1)
 
-    var t = new Traverse(obj)
+    const t = new Traverse(obj)
     return t[key].apply(t, args)
   }
 })
