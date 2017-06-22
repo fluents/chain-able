@@ -2,7 +2,7 @@ const test = require('ava')
 const log = require('fliplog')
 const {Chain} = require('../dist')
 
-test(`can call`, t => {
+test(`can observe a string property with .set`, t => {
   const chain = new Chain()
 
   /* prettier-ignore */
@@ -15,7 +15,7 @@ test(`can call`, t => {
     .eh(true)
 })
 
-test(`observe is called for multiple properties`, t => {
+test(`observe is called for [properties]`, t => {
   const chain = new Chain()
   t.plan(2)
 
@@ -40,8 +40,19 @@ test(`observe is called only when changed`, t => {
   chain
     .extend(['eh', 'timbuck'])
     .observe(['eh', 'timbuck'], data => {
-      if (called++ === 0) return t.true(data.eh)
-      t.false(data.timbuck)
+      // log.data({data}).echo()
+      called = called + 1
+      if (called === 1) {
+        // undefined the first time
+        t.true(data.eh && data.timbuck === undefined)
+      }
+      else if (called === 2) {
+        t.true(data.eh === true && data.timbuck === false)
+      }
+      // istanbul-ignore next: should never be called
+      else if (called === 3) {
+        t.fail()
+      }
     })
     .eh(true)
     .timbuck(false)
@@ -49,7 +60,7 @@ test(`observe is called only when changed`, t => {
     .timbuck(false)
 })
 
-test(`observe can use magic match`, t => {
+test(`observe can use magic *`, t => {
   const chain = new Chain()
   t.plan(1)
 
@@ -64,7 +75,7 @@ test(`observe can use magic match`, t => {
     .timbuck(false)
 })
 
-test(`observe can use magic with function or regexes too`, t => {
+test(`observe can use magic with [function, regexp] too`, t => {
   const chain = new Chain()
   t.plan(2)
 
@@ -79,7 +90,23 @@ test(`observe can use magic with function or regexes too`, t => {
     .timbuck(false)
 })
 
-test.failing(`observe works for dot prop`, t => {
+test(`observe works for .* prop `, t => {
+  t.plan(3)
+
+  const chain = new Chain()
+  chain
+    .observe(['canada.*'], data => {
+      log.data({data}).echo()
+      t.truthy(data.canada.eh)
+    })
+    .merge({canada: {eh: true}})
+    .merge({canada: {arr: [0, {'1': 2}], eh: {again: true}}})
+    .set('canada.eh', 1)
+    .set('canada', {})
+    .set('not-canada', {})
+})
+
+test(`observe works for dot prop`, t => {
   const chain = new Chain()
   t.plan(2)
 
@@ -87,10 +114,11 @@ test.failing(`observe works for dot prop`, t => {
   chain
     .extend(['timbuck'])
     .observe(['canada.eh'], data => {
-      return t.true(data.canada.eh)
+      // log.data({data}).echo()
+      return t.truthy(data.canada.eh)
     })
     .merge({canada: {eh: true}})
     .set('canada.eh', 1)
-    .eh(true)
+    .set('eh', false)
     .timbuck(true)
 })

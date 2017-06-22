@@ -2,36 +2,34 @@ const test = require('ava')
 const log = require('fliplog')
 const {Chain} = require('../dist')
 
-class DotChain extends Chain {
-  constructor(parent) {
-    super(parent)
-    this.nested = new Chain(this)
-    this.nested.set('eh', true)
-  }
-  get(key) {
-    const dotter = this.dotter()
-      .name(key)
-      .dotted((first, accessor, full) => {
-        // console.log({first, accessor, full, val: super.get(full)})
-        if (first === 'nested') return this.nested.get(accessor.join('.'))
-        // @NOTE: this is really for when not extending `dot`
-        // if (this.has(first)) return super.get(first)
-        return super.get(full)
-      })
-      .otherwise(full => {
-        // console.log('otherwise', {full})
-        return super.get(full)
-      })
-      .value()
-
-    return dotter
-  }
-}
-
-test.todo('can disable dot')
-
-test('dotter access', t => {
+test.failing('dotter access', t => {
   t.plan(4)
+  class DotChain extends Chain {
+    constructor(parent) {
+      super(parent)
+      this.nested = new Chain(this)
+      this.nested.set('eh', true)
+    }
+    get(key) {
+      const dotter = this.dotter()
+        .name(key)
+        .dotted((first, accessor, full) => {
+          // console.log({first, accessor, full, val: super.get(full)})
+          if (first === 'nested') return this.nested.get(accessor.join('.'))
+          // @NOTE: this is really for when not extending `dot`
+          // if (this.has(first)) return super.get(first)
+          return super.get(full)
+        })
+        .otherwise(full => {
+          // console.log('otherwise', {full})
+          return super.get(full)
+        })
+        .value()
+
+      return dotter
+    }
+  }
+
   const chain = new DotChain()
 
   const nested = chain.get('nested.eh')
@@ -46,8 +44,9 @@ test('dotter access', t => {
   t.true(chain.get('not-set') === undefined)
 })
 
-// dot
-test.todo('can use dot-prop on current')
+test.todo('can disable dot')
+test.todo('can use dot-prop on .current')
+test.todo('can use dot-prop on Arrays')
 
 test('can use dot-prop on .set', t => {
   const chain = new Chain()
@@ -100,4 +99,17 @@ test('can use dot-prop on .get', t => {
 
   chain.delete('moose.canada.eh')
   t.true(chain.get('moose.canada.igloo'))
+})
+
+test('can use dot-prop with an array', t => {
+  t.plan(1)
+  const chain = new Chain()
+  chain.set('moose.canada.eh', true)
+  t.true(chain.get(['moose', 'canada', 'eh']))
+})
+
+test('can use dot-prop fallback value', t => {
+  t.plan(1)
+  const chain = new Chain()
+  t.true(chain.get(['moose', 'canada', 'igloo'], true))
 })
