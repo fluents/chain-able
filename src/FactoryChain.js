@@ -1,7 +1,6 @@
-const ChainedSet = require('./ChainedSet')
 const compose = require('./compose')
 
-const Composed = compose({extend: true})
+const Composed = compose()
 
 /**
  * @inheritdoc
@@ -14,7 +13,7 @@ class FactoryChain extends Composed {
     super(parent)
 
     this.data = {}
-    this._calls = new ChainedSet(this)
+    this._calls = new Set()
 
     this.factory()
       .extend(['optional', 'required', 'chainUpDown', 'onDone'])
@@ -29,15 +28,16 @@ class FactoryChain extends Composed {
    */
   chainUpDowns(methods) {
     methods.forEach(m => {
-      this[m] = (arg1, arg2, arg3, arg4, arg5) => {
+      this[m] = () => {
         this.end()
-        return this.parent[m](arg1, arg2, arg3, arg4, arg5)
+        return this.parent[m].apply(this.parent, arguments)
       }
     })
     return this
   }
 
   /**
+   * @since 2.0.0
    * @param  {Array<string>} names
    * @return {FactoryChain} @chainable
    */
@@ -53,8 +53,6 @@ class FactoryChain extends Composed {
    */
   prop(name, cb) {
     this.tap('len', len => len + 1)
-
-    // console.log({name}, this.get('len'))
 
     // so if we call a property twice,
     // chain back up to parent,
@@ -78,6 +76,7 @@ class FactoryChain extends Composed {
   }
 
   /**
+   * @since 2.0.0
    * @param  {any} [prop=undefined] key of the data, or returns all data
    * @return {any}
    */
@@ -85,6 +84,12 @@ class FactoryChain extends Composed {
     return prop === undefined ? this.data : this.data[prop]
   }
 
+  /**
+   * @since 2.0.0
+   * @desc adds `.end` which checks how many methods have been called
+   * @param  {Object} [obj={}]
+   * @return {FactoryChain} @chainable
+   */
   factory(obj = {}) {
     this.end = arg => {
       if (obj.end !== undefined) {
