@@ -1,5 +1,9 @@
 const TraverseChain = require('../TraverseChain')
 const isObj = require('../deps/is/obj')
+const ObjectKeys = require('../deps/util/keys')
+const dotPropPaths = require('../deps/dot-prop-paths')
+const TRANSFORMERS_KEY = require('../deps/meta/transformers')
+const OBSERVERS_KEY = require('../deps/meta/observers')
 
 module.exports = (SuperClass, opts) => {
   return class Transform extends SuperClass {
@@ -24,18 +28,10 @@ module.exports = (SuperClass, opts) => {
         )
     }
 
-    // but could specify the key
-    // could .tap methods with like .decorate
-    // this is super expensive
-    // afterNext(cb) {
-    //   // loop each fn
-    //   // wrap
-    // }
-
     /**
      * @TODO dot-prop here
      * @since 1.0.2
-     * @TODO handle transformers with an array...
+     * @TODO handle[transformers] with an array...
      * @see obj-chain
      *
      * @example
@@ -49,46 +45,34 @@ module.exports = (SuperClass, opts) => {
      * @return {This} @chainable
      */
     transform(key, value) {
-      if (this.transformers === undefined) this.transformers = {}
-      if (this.transformers[key]) this.transformers[key].push(value)
-      else this.transformers[key] = [value]
-      return this
+      return this.meta(TRANSFORMERS_KEY, key, value)
     }
 
     /**
-     * @TODO: do this...
-     * @param  {Primitive} key
-     * @param  {Function} fn
-     * @return {This} @chainable
-     */
-    compute(key, fn) {
-      return this.transform(key, value => {
-        fn(value, this)
-        return value
-      })
-    }
-
-    /**
-     * @TODO dot-prop here
+     * @override
      * @inheritdoc
      * @see this.observe, this.transform
      * @since 1.0.0
      */
-    set(prop, val) {
+    set(key, val, dotPropKey = undefined) {
       let value = val
-      let key = prop
 
       /* prettier-ignore */
-      if (this.transformers !== undefined && this.transformers[key] !== undefined) {
-        for (let i = 0; i < this.transformers[key].length; i++) {
-          value = this.transformers[key][i].call(this, value, this)
-        }
+      const transformers = this.meta(TRANSFORMERS_KEY, key)
+      for (let t = 0; t < transformers.length; t++) {
+        value = transformers[t].call(this, value, this)
       }
 
       super.set(key, value)
 
-      if (this.observers !== undefined) {
-        this.observers.values().forEach(observer => observer({key, value}))
+      const data = {key: dotPropKey, value}
+      if (dotPropKey === undefined) {
+        data.key = isObj(value) ? dotPropPaths(key, value) : key
+      }
+
+      const observers = this.meta(OBSERVERS_KEY)
+      for (let o = 0; o < observers.length; o++) {
+        observers[o](data)
       }
 
       return this
@@ -101,8 +85,8 @@ module.exports = (SuperClass, opts) => {
      * @since 1.0.0
      * @example
      *  this
-     *    .remapKeys()
-     *    .remapKey('dis', 'dat')
+     *    .remap('dis', 'dat')
+     *    .remap({dis: 'dat'})
      *    .from({dis: true})
      *  == {dat: true}
      *
@@ -115,7 +99,7 @@ module.exports = (SuperClass, opts) => {
       if (!isObj(from)) remap = {[from]: to}
 
       /* prettier-ignore */
-      Object.keys(remap).forEach(key => this.transform(key, val => {
+      ObjectKeys(remap).forEach(key => this.transform(key, val => {
         this.set(remap[key], val)
         return val
       }))
