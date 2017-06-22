@@ -4,3 +4,12 @@ play
 .babelrc
 rollup.config.js
 rollup.config.dev.js
+.coveralls.yml
+_play
+_quick
+_todos
+disted
+bench
+examples
+test
+test-dist
