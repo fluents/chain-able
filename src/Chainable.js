@@ -1,23 +1,26 @@
-// @TODO use build script with .replace for each
-// const isNode =
-//   typeof process === 'object' &&
-//   typeof process.release === 'object' &&
-//   process.release.name === 'node'
-//
-// if (isNode) {
-//   module.exports = require('./Chainable.node')
-// }
-// else {
-//   module.exports = require('./Chainable.all')
-// }
 const Iterator = require('./deps/symbols/iterator')
 const Instance = require('./deps/symbols/instance')
 const Primitive = require('./deps/symbols/primitive')
+const isPrototypeOf = require('./deps/is/prototypeOf')
+const isMap = require('./deps/is/map')
+const isSet = require('./deps/is/set')
+const isString = require('./deps/is/string')
+const ObjectKeys = require('./deps/util/keys')
+const ObjectDefine = require('./deps/define')
+const ignored = require('./deps/ignored')
 
 const F = Function.prototype
+const shouldClear = (key, property) =>
+  !ignored(key) && (isMap(property) || isSet(property) || property.store)
 
-// = Function
 const C = SuperClass => {
+  if (process.env.NODE_ENV === 'development') {
+    if (!SuperClass || !SuperClass.prototype) {
+      console.log({SuperClass})
+      throw new TypeError('did not have a super class')
+    }
+  }
+
   /**
    * @type {Chainable}
    * @prop {Chainable | any} parent
@@ -29,12 +32,6 @@ const C = SuperClass => {
      * @param {Chainable | any} parent
      */
     constructor(parent) {
-      // var expression = `return ` + (conditions[name] || name)
-      // var keys = Object.keys(conditions)
-      // var fn = new Function(keys, expression)
-      // const evaluation = fn.apply(undefined, Object.values(conditions))
-      // var expression = `console.log('eh oh!!!'); return this`
-      // super(['arg1 = this'], expression)
       super()
 
       if (parent) this.parent = parent
@@ -54,10 +51,10 @@ const C = SuperClass => {
      * @return {Object} {value: undefined | any, done: true | false}
      */
     [Iterator]() {
-      const entries = this.entries ? this.entries() : false
       const values = this.values()
       const size = this.store.size
-      const keys = entries === false ? new Array(size) : Object.keys(entries)
+      const entries = this.entries ? this.entries() : false
+      const keys = entries === false ? new Array(size) : ObjectKeys(entries)
 
       return {
         i: 0,
@@ -79,18 +76,6 @@ const C = SuperClass => {
         },
       }
     }
-
-    /**
-     * @NOTE could just do chain.values().forEach...
-     * @desc loop over values
-     * @since 1.0.2
-     * @param {Function} cb
-     * @return {Chainable} @chainable
-     */
-    // forEach(cb) {
-    //   this.values().forEach(cb, this)
-    //   return this
-    // }
 
     /**
      * @since 1.0.2
@@ -119,7 +104,10 @@ const C = SuperClass => {
     }
 
     /**
-     * @description
+     * @since 4.0.0 <- added string-as-has(condition)
+     * @since 2.0.0
+     *
+     * @desc
      *  when the condition is true,
      *  trueBrancher is called,
      *  else, falseBrancher is called
@@ -128,14 +116,21 @@ const C = SuperClass => {
      *  const prod = process.env.NODE_ENV === 'production'
      *  chains.when(prod, c => c.set('prod', true), c => c.set('prod', false))
      *
-     * @param  {boolean} condition
-     * @param  {Function} [trueBrancher=Function.prototype] called when true
-     * @param  {Function} [falseBrancher=Function.prototype] called when false
+     * @param  {boolean | string} condition when string, checks this.get
+     * @param  {Function} [trueBrancher=Function] called when true
+     * @param  {Function} [falseBrancher=Function] called when false
      * @return {ChainedMap}
      */
     when(condition, trueBrancher = F, falseBrancher = F) {
       if (condition) {
-        trueBrancher(this)
+        if (isString(condition)) {
+          if (this.get(condition)) {
+            trueBrancher(this)
+          }
+        }
+        else {
+          trueBrancher(this)
+        }
       }
       else {
         falseBrancher(this)
@@ -145,11 +140,30 @@ const C = SuperClass => {
     }
 
     /**
-     * @since 0.3.0
-     * @return {Chainable}
+     * @since 4.0.0 (moved only to Chainable, added option to clear this keys)
+     * @since 0.4.0 (in ChainedMap)
+     * @since 0.3.0 (in Chainable)
+     *
+     * @desc clears the map,
+     *       goes through this properties,
+     *       calls .clear if they are instanceof Chainable or Map
+     *
+     * @see https://github.com/fliphub/flipchain/issues/2
+     * @param {boolean | undefined} [clearPropertiesThatAreChainLike=true]
+     * @return {Chainable} @chainable
      */
-    clear() {
+    clear(clearPropertiesThatAreChainLike) {
       this.store.clear()
+
+      if (clearPropertiesThatAreChainLike === false) return this
+
+      const keys = ObjectKeys(this)
+      for (let k = 0; k < keys.length; k++) {
+        const key = keys[k]
+        const property = this[key]
+        if (shouldClear(key, property)) this[key].clear()
+      }
+
       return this
     }
 
@@ -198,79 +212,41 @@ const C = SuperClass => {
      * @return {Primitive}
      */
     [Primitive](hint) {
-      if (hint === 'string') {
-        if (this.toJSON) return this.toJSON()
-        if (this.toString) this.toString()
-      }
-      if (hint === 'number' && this.toNumber) {
-        return this.toNumber()
-      }
+      if (hint === 'string' && this.toJSON) return this.toJSON()
+      else if (hint === 'number' && this.toNumber) return this.toNumber()
       return this.toString()
-
-      // @NOTE: simplified because
-      //        toArray + toBoolean + can't really be called so
-      //
-      // default:
-      // if (this.valueOf) return this.valueOf(hint)
-      // const methods = [
-      //   'toPrimitive',
-      //   'toNumber',
-      //   'toJSON',
-      //   // 'toArray',
-      //   // 'toBoolean',
-      //   // 'toObject',
-      // ]
-      // for (let m = 0; m < methods.length; m++) {
-      //   if (this[methods[m]] !== undefined) {
-      //     return this[methods[m]](hint)
-      //   }
-      // }
-      //
-      // return this.toString()
     }
   }
 
-  function define(Chain) {
+  function defineOnChainable(Chain) {
     /**
      * @since 0.5.0
      * @example for (var i = 0; i < chain.length; i++)
      * @see ChainedMap.store
      * @return {number}
      */
-    Object.defineProperty(Chain, 'length', {
-      configurable: true,
+    ObjectDefine(Chain, 'length', {
       enumerable: false,
       get() {
         return this.store.size
       },
     })
-    Object.defineProperty(Chain, Instance, {
-      configurable: true,
+    ObjectDefine(Chain, Instance, {
       enumerable: false,
-      // writable: false,
       value: (instance, thisArg) => {
-        // @NOTE depreciated mixins because of speed, but will use this elsewhere
-        // if (thisArg && thisArg.mixed !== undefined) {
-        //   for (let m = 0; m < thisArg.mixed.length; m++) {
-        //     const mixin = thisArg.mixed[m]
-        //     if (mixin && typeof mixin === 'object' && instance instanceof mixin) {
-        //       return true
-        //     }
-        //   }
-        // }
-
         return (
           instance &&
-          (Object.prototype.isPrototypeOf.call(instance, Chain) ||
+          (isPrototypeOf(instance, Chain) ||
             !!instance.className ||
-            !!instance.store)
+            !!instance.store ||
+            !!instance.meta)
         )
       },
     })
   }
 
-  define(Chainable)
-  define(Chainable.prototype)
+  defineOnChainable(Chainable)
+  defineOnChainable(Chainable.prototype)
   return Chainable
 }
 
