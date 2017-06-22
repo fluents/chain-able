@@ -1,12 +1,15 @@
-<<<<<<< HEAD
-test/
-.gitignore
-.travis.yml
-=======
 play
 .flowconfig
 .editorconfig
 .babelrc
 rollup.config.js
 rollup.config.dev.js
->>>>>>> 📇💚 pkg, .travis .editor .flow .git .npm .yarn
+.coveralls.yml
+_play
+_quick
+_todos
+disted
+bench
+examples
+test
+test-dist

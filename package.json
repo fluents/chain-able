@@ -46,7 +46,7 @@
     "license" : "MIT"
 =======
   "name": "chain-able",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "description": "interfaces that describe their intentions.",
   "main:dev": "./index.dev.js",
   "main:tsc": "./index.tsc.js",
@@ -65,6 +65,7 @@
     "tsc": "tsc",
     "rollup": "rollup",
     "ava": "ava",
+    "webpack": "webpack --verbose",
     "prepublish": "npm run build && npm run pretest && npm run cov && npm run test:built",
     "pretest": "npm run strip:all && npm run buble:all",
     "pre:test:only": "npm run buble:tests",
@@ -138,7 +139,7 @@
   },
   "ava": {
     "__files": [
-      "test-dist/traverse/set-map.js"
+      "test-dist/define.js"
     ],
     "_files": [
       "test-dist/built.js",
@@ -146,7 +147,29 @@
     ],
     "files": [
       "!index.*.js",
-      "test-dist/*.js",
+      "test-dist/Chainable.js",
+      "test-dist/ChainedSet.js",
+      "test-dist/compose.js",
+      "test-dist/define.js",
+      "test-dist/dot.js",
+      "test-dist/examples-v1-pt1.js",
+      "test-dist/examples-v1-pt2.js",
+      "test-dist/extensions.js",
+      "test-dist/factory.js",
+      "test-dist/iteration.js",
+      "test-dist/LocalStorage.js",
+      "!test-dist/MergeChain.js",
+      "test-dist/MobX.js",
+      "test-dist/observe.js",
+      "test-dist/parent.js",
+      "test-dist/remap.js",
+      "test-dist/shorthands.js",
+      "test-dist/traverse.js",
+      "test-dist/typed.js",
+      "test-dist/webpack-chain-map.js",
+      "test-dist/webpack-chain-set.js",
+      "test-dist/dot.js",
+      "test-dist/observe.js",
       "test-dist/deps/*.js",
       "test-dist/traverse/*.js",
       "test-dist/is/*.js",
@@ -158,6 +181,38 @@
     "source": [
       "dist/**",
       "!src/**/*"
+    ],
+    "verbose": true,
+    "concurrency": 3,
+    "failFast": false,
+    "failWithoutAssertions": false,
+    "powerAssert": true,
+    "require": [
+      "babel-core/register"
+    ],
+    "babel": "inherit"
+  },
+  "ava2": {
+    "files": [
+      "test/*.js",
+      "!index.*.js",
+      "!test/dot.js",
+      "!test/observe.js",
+      "!test/deps/*.js",
+      "!test/traverse/*.js",
+      "!test/is/*.js",
+      "!test/is/index.js",
+      "!test/traverse/index.js",
+      "!test/traverse/lib/deep_equal.js",
+      "!test/built.js"
+    ],
+    "source": [
+      "src/**/*",
+      "src/*",
+      "src/**",
+      "dist/*",
+      "dist/**",
+      "dist/**/*"
     ],
     "verbose": true,
     "concurrency": 5,
@@ -194,6 +249,7 @@
     "fliplog": "^1.0.0",
     "flow-remove-types": "^1.2.1",
     "funwithflags": "^1.0.2",
+    "fuse-box": "^2.1.0",
     "immutable": "^3.8.1",
     "inspector-gadget": "^1.0.0",
     "mobx": "^3.1.14",
@@ -218,7 +274,8 @@
     "typescript-eslint-parser": "^3.0.0",
     "uglify-es": "^3.0.15",
     "uglify-js": "3.0.15",
-    "validator": "^7.0.0"
+    "validator": "^7.0.0",
+    "webpack": "3.0.0"
   },
   "keywords": [
     "chains",
@@ -245,6 +302,7 @@
     "url": "https://github.com/fluents/chain-able/issues"
   },
   "directories": {
+    "typings": "typings",
     "lib": "src",
     "deps": "deps",
     "compose": "compose",
