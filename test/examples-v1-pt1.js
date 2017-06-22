@@ -9,7 +9,7 @@ class Advanced extends Chain {
     super(parent)
     this.list = new ChainedSet(this)
     this.extend(['eh'])
-    this.extendWith(['canada'], true)
+    this.method(['canada']).default(true).build()
   }
 
   addName(name) {
