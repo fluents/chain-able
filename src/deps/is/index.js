@@ -16,9 +16,6 @@ const isObj = require('./obj')
 const isClass = require('./class')
 const isArray = require('./array') // Array.isArray
 
-const objectKeys = Object.keys
-const hasOwnProperty = (x, y) => Object.hasOwnProperty.call(x, y)
-
 module.exports = {
   isObjWithKeys,
   // isArguments,
@@ -38,7 +35,5 @@ module.exports = {
   isMap,
   isSet,
   isSymbol,
-  objectKeys,
   isArray,
-  hasOwnProperty,
 }
