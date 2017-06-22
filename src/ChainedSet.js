@@ -2,6 +2,10 @@ const Chainable = require('./Chainable')
 const toarr = require('./deps/to-arr')
 
 /**
+ * @NOTE had Symbol.isConcatSpreadable but it was not useful
+ * @see http://2ality.com/2015/09/well-known-symbols-es6.html
+ * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/isConcatSpreadable
+ *
  * @TODO could add .first .last ?
  * @tutorial https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
  * @prop {Set} store
@@ -43,27 +47,12 @@ class ChainedSet extends Chainable {
    * @return {ChainedSet} @chainable
    */
   merge(arr) {
-    toarr(arr).forEach(v => this.store.add(v))
+    const mergeable = toarr(arr)
+    for (let i = 0; i < mergeable.length; i++) {
+      this.store.add(mergeable[i])
+    }
     return this
   }
 }
-
-// @NOTE: not really helping
-// http://2ality.com/2015/09/well-known-symbols-es6.html
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/isConcatSpreadable
-// const d = objs => symbol => v =>
-//   objs.map(obj =>
-//     Object.defineProperty(obj, symbol, {
-//       configurable: true,
-//       enumerable: false,
-//       get() {
-//         return v
-//       },
-//     })
-//   )
-//
-// const set = d([ChainedSet.prototype, ChainedSet])
-// set(Species)(Set)
-// set(Spreadable)(true)
 
 module.exports = ChainedSet

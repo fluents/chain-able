@@ -2,24 +2,11 @@ const Chainable = require('./Chainable')
 const MergeChain = require('./MergeChain')
 const dopemerge = require('./deps/dopemerge')
 const reduce = require('./deps/reduce')
-const isObjWithKeys = require('./deps/is/objWithKeys')
-const isMap = require('./deps/is/map')
-const isArray = require('./deps/is/array')
+const reduceEntries = require('./deps/reduce-entries')
 const isFunction = require('./deps/is/function')
-const isReal = require('./deps/is/real')
-
-const ignored = k =>
-  k === 'inspect' ||
-  k === 'parent' ||
-  k === 'store' ||
-  k === 'shorthands' ||
-  k === 'decorated' ||
-  // k === 'transformers' ||
-  k === 'className'
-
-const isMapish = x => isMap(x) || x instanceof Chainable
-
-// const keys = (obj, fn) => Object.keys(obj).forEach(fn)
+const ObjectKeys = require('./deps/util/keys')
+const getMeta = require('./deps/meta')
+const SHORTHANDS_KEY = require('./deps/meta/shorthands')
 
 // CM = ComposeMap
 const CM = SuperClass => {
@@ -38,13 +25,22 @@ const CM = SuperClass => {
     constructor(parent) {
       super(parent)
 
-      // @NOTE: using `[]` deopts o.o
-      // eslint-disable-next-line
-      this.shorthands = new Array();
       this.store = new Map()
+      this.meta = getMeta(this)
+    }
 
-      // @TODO for wrapping methods to force return `this`
-      // this.chainableMethods = []
+    /* prettier-ignore */
+    methods(names) { return this.method(names) }
+
+    /**
+     * @since 4.0.0
+     * @alias methods
+     * @param  {string | Array<string> | Primitive} names
+     * @return {MethodChain}
+     */
+    method(names) {
+      const MethodChain = require('./MethodChain')
+      return new MethodChain(this).name(names)
     }
 
     /**
@@ -66,8 +62,8 @@ const CM = SuperClass => {
     tap(name, fn) {
       // @NOTE: longhand, sadness for shorter :-(
       // ---
-      // const old = this.get(name)
-      // const updated = fn(old, dopemerge) // , this
+      // const existing = this.get(name)
+      // const updated = fn(existing, dopemerge)
       // return this.set(name, updated)
       // ---
       return this.set(name, fn(this.get(name), dopemerge))
@@ -87,20 +83,24 @@ const CM = SuperClass => {
      * @return {Chainable} @chainable
      */
     from(obj) {
-      Object.keys(obj).forEach(key => {
+      const keys = ObjectKeys(obj)
+
+      for (let k = 0; k < keys.length; k++) {
+        const key = keys[k]
         const val = obj[key]
+        const fn = this[key]
 
-        if (this[key] && this[key].merge) {
-          return this[key].merge(val)
+        if (fn && fn.merge) {
+          fn.merge(val)
         }
-        if (isFunction(this[key])) {
-          // const fnStr = typeof fn === 'function' ? fn.toString() : ''
-          // if (fnStr.includes('return this') || fnStr.includes('=> this')) {
-          return this[key](val)
+        else if (isFunction(fn)) {
+          fn.call(this, val)
         }
+        else {
+          this.set(key, val)
+        }
+      }
 
-        return this.set(key, val)
-      })
       return this
     }
 
@@ -113,31 +113,14 @@ const CM = SuperClass => {
      */
     extend(methods) {
       methods.forEach(method => {
-        this.shorthands.push(method)
+        this.meta(SHORTHANDS_KEY, method)
         this[method] = value => this.set(method, value)
       })
       return this
     }
 
     /**
-     * @since 0.4.0
-     * @desc clears the map,
-     *       goes through this properties,
-     *       calls .clear if they are instanceof Chainable or Map
-     *
-     * @see https://github.com/fliphub/flipchain/issues/2
-     * @return {ChainedMap} @chainable
-     */
-    clear() {
-      this.store.clear()
-      Object.keys(this).forEach(key => {
-        if (!ignored(key) && isMapish(this[key])) this[key].clear()
-      })
-
-      return this
-    }
-
-    /**
+     * @since 4.0.0 <- improved reducing
      * @since 0.4.0
      * @desc spreads the entries from ChainedMap.store (Map)
      *       return store.entries, plus all chain properties if they exist
@@ -146,31 +129,23 @@ const CM = SuperClass => {
      */
     entries(chains = false) {
       const reduced = reduce(this.store)
-
       if (chains === false) return reduced
 
-      const add = self => {
-        Object.keys(self).forEach(k => {
-          if (ignored(k)) return
-          const val = self[k]
-          if (val && isFunction(val.entries)) {
-            Object.assign(reduced, {[k]: val.entries(true) || {}})
-          }
-        })
-
-        return {add, reduced}
-      }
-
-      return add(this).add(reduced).reduced
+      const reducer = reduceEntries(reduced)
+      reducer(this)
+      reducer(reduced)
+      return reduced
     }
 
     /**
+     * @since 4.0.0 <- moved debug here
      * @since 0.4.0
      * @example chain.set('eh', true).get('eh') === true
-     * @param  {any} key
+     * @param  {Primitive} key
      * @return {any}
      */
     get(key) {
+      if (key === 'debug') return this.meta.debug
       return this.store.get(key)
     }
 
@@ -208,29 +183,6 @@ const CM = SuperClass => {
         cb(merger.obj(obj))
       }
       return this
-    }
-
-    /**
-     * @since 0.4.0
-     * @desc goes through the maps,
-     *       and the map values,
-     *       reduces them to array
-     *       then to an object using the reduced values
-     *
-     * @param {Object} obj object to clean, usually .entries()
-     * @return {Object}
-     */
-    clean(obj) {
-      return Object.keys(obj).reduce((acc, key) => {
-        const val = obj[key]
-        if (!isReal(val)) return acc
-        if (isArray(val) && !val.length) return acc
-        if (!isObjWithKeys(val)) return acc
-
-        acc[key] = val
-
-        return acc
-      }, {})
     }
   }
 }
