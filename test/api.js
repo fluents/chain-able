@@ -24,7 +24,7 @@ test('dist/built tests - for src', t => {
   const p = new P()
   // const f = new F(c)
 
-  const d = dist.dopemerge({eh: true}, {eh1: true})
+  const d = dist.merge({eh: true}, {eh1: true})
   t.true(typeof d === 'object')
   t.true(c instanceof Chainable)
   t.true(s instanceof ChainedSet)
@@ -36,7 +36,7 @@ test('dist/built tests - for src', t => {
 
   const objs = [n, m, p]
 
-  p.extendGetSet(['canada'])
+  p.methods(['canada']).getSet().define().build()
   p.setCanada(true)
   p.getCanada()
   p.canada = false

@@ -27,6 +27,9 @@ test('traversal with .onMatch', t => {
       t.true(typeof traverser.remove === 'function')
       t.true(typeof traverser.update === 'function')
     })
+    .onNonMatch(val => {
+      // ignore
+    })
     .call(true)
 })
 

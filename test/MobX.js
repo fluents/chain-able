@@ -6,12 +6,13 @@ const {Chain, toArr} = require('../dist')
 class ChainInc extends Chain {
   getSetIncrement(names) {
     toArr(names).map(name =>
-      this.set(name, 0).extendGetSet([
-        {
-          set: () => this.tap(name, x => x + 1),
-          name,
-        },
-      ])
+      this.method(name)
+        .initial(0)
+        .getSet()
+        // .define()
+        .onSet(() => this.tap(name, x => x + 1))
+        .onCall(() => this.tap(name, x => x + 1))
+        .build()
     )
 
     return this

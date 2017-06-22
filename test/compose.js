@@ -4,15 +4,7 @@ const {compose} = require('../dist')
 // const ChainedMap = require('../ChainedMap')
 // const compose = require('../compose')
 
-const PreComposed = compose({
-  define: false,
-  dot: false,
-  observe: false,
-  shorthands: false,
-  transform: false,
-  types: false,
-  extend: false,
-})
+const PreComposed = compose()
 
 class Composed extends PreComposed {}
 

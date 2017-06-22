@@ -73,7 +73,7 @@ test('dist classes', t => {
 
   const objs = [n, m, p]
 
-  p.extendGetSet(['canada'])
+  p.methods(['canada']).getSet().define().build()
   p.setCanada(true)
   p.getCanada()
   p.canada = false

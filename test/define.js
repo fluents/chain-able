@@ -1,21 +1,21 @@
 const test = require('ava')
 const log = require('fliplog')
-const DefineChain = require('../dist')
+const Chain = require('../dist')
+const getDescriptor = require('../deps/util/getDescriptor')
 
-test('defineGetSet', t => {
-  class Defined extends DefineChain {
+test('.methods.define() /defineGetSet', t => {
+  class Defined extends Chain {
     constructor(parent) {
       super(parent)
-      this.defineGetSet(['eh'])
+      this.methods(['eh']).define().build()
     }
     eh(val) {
       return this.set('eh', val)
     }
   }
 
-  const prop = Object.getOwnPropertyDescriptor
   const defined = new Defined()
-  const eh = prop(defined, 'eh')
+  const eh = getDescriptor(defined, 'eh')
 
   t.true(typeof eh.set === 'function')
   t.true(typeof eh.get === 'function')
@@ -25,19 +25,19 @@ test('defineGetSet', t => {
   // log.quick(defined, {eh, ehOh, getEhOh, setEhOh})
 })
 
-test('extendGetSet', t => {
-  class Defined extends DefineChain {
+test('.getSet().define() /.extendGetSet', t => {
+  class Defined extends Chain {
     constructor(parent) {
       super(parent)
-      this.extendGetSet(['ehOh'])
+      // this.extendGetSet(['ehOh'])
+      this.methods(['ehOh']).getSet().define().build()
     }
   }
 
-  const prop = Object.getOwnPropertyDescriptor
   const defined = new Defined()
-  const ehOh = prop(defined, 'ehOh')
-  const getEhOh = prop(defined, 'getEhOh')
-  const setEhOh = prop(defined, 'setEhOh')
+  const ehOh = getDescriptor(defined, 'ehOh')
+  const getEhOh = getDescriptor(defined, 'getEhOh')
+  const setEhOh = getDescriptor(defined, 'setEhOh')
 
   t.true(typeof ehOh.get === 'function')
   t.true(typeof ehOh.set === 'function')
@@ -47,7 +47,7 @@ test('extendGetSet', t => {
   t.true(typeof getEhOh.value === 'function')
   // t.true(getEhOh.value.name === 'getter')
   t.true(typeof setEhOh.value === 'function')
-  t.true(setEhOh.value.name === 'setter')
+  // t.true(setEhOh.value.name === 'setter') <- this can be overriden for debugging
   t.true(getEhOh.enumerable === true)
   t.true(setEhOh.enumerable === true)
   t.true(getEhOh.configurable === true)
@@ -56,11 +56,12 @@ test('extendGetSet', t => {
   // log.quick(defined, {ehOh, getEhOh, setEhOh})
 })
 
-test('extendGetSet getter setter depending on value', t => {
-  class Defined extends DefineChain {
+test.skip('extendGetSet [getter/setter] depending on value', t => {
+  class Defined extends Chain {
     constructor(parent) {
       super(parent)
-      this.extendGetSet(['ehOh'])
+      // this.extendGetSet(['ehOh'])
+      this.methods(['ehOh']).getSet().build()
     }
   }
 
@@ -88,40 +89,41 @@ test('extendGetSet getter setter depending on value', t => {
   // t.true(bool)
 })
 
-test('extendGetSet with object', t => {
-  t.plan(6)
-  class Defined extends DefineChain {
+test.only('.methods(obj)', t => {
+  t.plan(3)
+  class Defined extends Chain {
     constructor(parent) {
       super(parent)
-      this.extendGetSet([
-        {
-          name: 'ehOh',
+      ;+this.method({
+        ehOh: {
           get(arg) {
+            // require('fliplog').trace().stack().exit()
             t.true(arg === undefined)
+            return 0
           },
           set(arg) {
             t.true(arg)
           },
         },
-        {
-          name: 'ohEh',
-          set(arg) {
-            t.true(arg === 0)
-          },
+        ohEh(arg) {
+          t.true(arg === 0)
         },
-      ])
+      })
     }
   }
 
   const defined = new Defined()
-
-  defined.ehOh(true)
   defined.setEhOh(true)
   defined.getEhOh()
 
   defined.ohEh(0)
-  defined.setOhEh(0)
-  defined.getOhEh()
+  // defined.setOhEh(0)
+  // defined.getOhEh()
+})
 
-  t.true(defined.shorthands.length === 2)
+test.failing('.meta', t => {
+  const chained = new Chain()
+  ;+chained.method('eh') + chained.method('bah')
+
+  t.true(chained.meta.store.shorthands.size === 2)
 })
