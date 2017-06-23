@@ -2,6 +2,7 @@
 const ChainedMap = require('./ChainedMapBase')
 const meta = require('./deps/meta')
 const DECORATED_KEY = require('./deps/meta/decorated')
+const SHORTHANDS_KEY = require('./deps/meta/shorthands')
 // .
 const toarr = require('./deps/to-arr')
 const argumentor = require('./deps/argumentor')
@@ -65,17 +66,11 @@ const schemaFactory = nestedSchema => argForValidation => {
  * @param  {Object} built
  * @return {MethodChain} @chainable
  */
-function validatorMethodFactory(name, parent, built) {
-  // core domain of this fn, used by validators and configured fns
-  const type = built.type
-
-  // create our validator in the factory,
-  // then encase it, prepare a TypeError factory
-  const validator = validatorFactory(type)
+function methodEncasingFactory(name, parent, built, functionToEncase, type) {
+  const error = typeError(name, type, functionToEncase, parent)
 
   // require('fliplog').data({validator: validator.toString(), type}).exit()
-  const encasedValidator = encase(validator)
-  const error = typeError(name, type, validator, parent)
+  const encased = encase(functionToEncase)
 
   // our configured functions, with fallback defaults
   const set = built.call || built.set
@@ -87,7 +82,7 @@ function validatorMethodFactory(name, parent, built) {
     // nodejs way - error first, data second, instance last
     const callInvalid = e => onInvalid.call(this, error(arg, e), arg, this)
 
-    encasedValidator
+    encased
       .onInvalid(e => {
         return callInvalid(e)
       })
@@ -100,10 +95,21 @@ function validatorMethodFactory(name, parent, built) {
         // @NOTE: onValid defaults to this... this.set(name, arg)
         return onValid.call(this, arg, this)
       })
-      .call(arg)
+      .call(this, arg)
 
     return this
   }
+}
+
+function validatorMethodFactory(name, parent, built) {
+  // core domain of this fn, used by validators and configured fns
+  const type = built.type
+
+  // create our validator in the factory,
+  // then encase it, prepare a TypeError factory
+  const validator = validatorFactory(type)
+
+  return methodEncasingFactory(name, parent, built, validator, type)
 }
 
 // https://github.com/iluwatar/java-design-patterns/tree/master/property
@@ -151,10 +157,15 @@ class MethodChain extends ChainedMap {
     ])
 
     // shorthand
-    this.method = this.methods = name => this.build().methods(name)
+    this.method = this.methods = name => {
+      if (!this.length) return this.name(name)
+      return this.build().methods(name)
+    }
 
     // default argument...
-    this.encase = x => set('encase', parent[x] || x)
+    this.encase = x => {
+      return set('encase', parent[x] || x || true)
+    }
 
     // alias
     this.then = this.onValid.bind(this)
@@ -249,16 +260,29 @@ class MethodChain extends ChainedMap {
    *       observables for all the way down...
    */
   schema(obj) {
+    const {onInvalid, onValid} = this.entries()
+
     const keys = ObjectKeys(obj)
+
     for (let k = 0; k < keys.length; k++) {
       const key = keys[k]
       const value = obj[key]
+
+      let builder = this.parent.method(key)
+      if (onInvalid) builder.onInvalid(onInvalid)
+      if (onValid) builder.onValid(onValid)
+
       if (isObj(value)) {
-        schemaFactory(value)
+        const traversableValidator = schemaFactory(value)
+        traversableValidator.schema = value
+        builder.type(traversableValidator)
       }
       else {
-        this.parent.method(key).type(value).define().build()
+        builder.type(value).define()
       }
+
+      this.parent.meta('schema', key, value)
+      builder.build()
     }
 
     return this
@@ -349,10 +373,13 @@ class MethodChain extends ChainedMap {
       if (existing.configurable === false) return
       // use existing property, when configurable
       method = existing.value
+      method.decorated = true
       this.onCall(method).onSet(method)
     }
     else if (parent[name]) {
       method = parent[name]
+      method.decorated = true
+      this.onCall(method).onSet(method)
     }
 
     // scope it once for factories & type building, then get it again
@@ -371,6 +398,13 @@ class MethodChain extends ChainedMap {
     if (built.type) {
       const validatorMethod = validatorMethodFactory(name, parent, built)
       this.set('call', validatorMethod).set('set', validatorMethod)
+      built = entries()
+    }
+    else if (built.encase) {
+      const encased = methodEncasingFactory(name, parent, built, method)
+      encased.encased = method
+      this.set('call', encased).set('set', encased)
+      method = encased
       built = entries()
     }
 
@@ -443,18 +477,31 @@ class MethodChain extends ChainedMap {
     if (existing) descriptor = ObjectAssign(existing, descriptor)
 
     const target = this.get('decorationTarget') || parent
+
     ObjectDefine(target, name, descriptor)
-    if (shouldAddGetterSetter) getSetFactory(target, name, {get, set})
+
+    if (shouldAddGetterSetter) {
+      if (target.meta) target.meta(SHORTHANDS_KEY, name, set)
+      getSetFactory(target, name, {get, set})
+    }
+
     aliasFactory(name, target, built.alias)
 
-    // require('fliplog').quick({
-    //   t: this,
-    //   descriptor,
-    //   shouldDefineGetSet,
-    //   method,
-    //   target,
-    //   name,
-    // })
+    // if (built.metadata) {
+    //   target.meta(SHORTHANDS_KEY, name, set)
+    // }
+    // require('fliplog')
+    //   .bold('decorate')
+    //   .data({
+    //     // t: this,
+    //     descriptor,
+    //     shouldDefineGetSet,
+    //     method,
+    //     str: method.toString(),
+    //     // target,
+    //     name,
+    //   })
+    //   .echo()
   }
 
   // ---

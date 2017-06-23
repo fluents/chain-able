@@ -1,3 +1,4 @@
+const MethodChain = require('./MethodChain')
 const ChainedMapBase = require('./ChainedMapBase')
 const dopemerge = require('./deps/dopemerge')
 const isFunction = require('./deps/is/function')
@@ -23,8 +24,7 @@ class MergeChain extends ChainedMapBase {
   constructor(parent) {
     super(parent)
 
-    // this.extend(['onExisting', 'onValue', 'obj'])
-
+    this.extend(['onExisting', 'onValue', 'obj'])
     this.set('onValue', () => true).set('merger', dopemerge)
   }
 
@@ -36,9 +36,9 @@ class MergeChain extends ChainedMapBase {
    * @param  {Function} cb
    * @return {MergeChain} @chainable
    */
-  onExisting(cb) {
-    return this.set('onExisting', cb)
-  }
+  // onExisting(cb) {
+  //   return this.set('onExisting', cb)
+  // }
 
   /**
    * @since 1.0.1
@@ -47,9 +47,9 @@ class MergeChain extends ChainedMapBase {
    * @param  {Function} cb
    * @return {MergeChain} @chainable
    */
-  onValue(cb) {
-    return this.set('onValue', cb)
-  }
+  // onValue(cb) {
+  //   return this.set('onValue', cb)
+  // }
 
   /**
    * @since 1.0.2
@@ -57,9 +57,9 @@ class MergeChain extends ChainedMapBase {
    * @param  {Object} obj
    * @return {MergeChain} @chainable
    */
-  obj(obj) {
-    return this.set('obj', obj)
-  }
+  // obj(obj) {
+  //   return this.set('obj', obj)
+  // }
 
   /**
    * @since 1.0.2
@@ -182,3 +182,8 @@ class MergeChain extends ChainedMapBase {
 }
 
 module.exports = MergeChain
+
+// @TODO re-enable this later
+// module.exports = new MethodChain(MergeChain.prototype)
+//   .methods(['onExisting', 'onValue', 'obj'])
+//   .build(MergeChain)

@@ -42,10 +42,8 @@ function getMeta(_this) {
     else if (name === OBSERVERS_KEY) {
       store[name] = new Set()
     }
-    /* istanbul ignore next: dev */
-    else if (process.env.NODE_ENV !== 'production') {
-      console.log({name, value})
-      throw new Error('must use a valid .meta key')
+    else {
+      store[name] = new Map()
     }
   }
 
