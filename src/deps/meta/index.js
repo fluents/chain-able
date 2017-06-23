@@ -1,3 +1,6 @@
+// without it, the arguments & caller are uglier when drbugging
+'use strict'
+
 const isSet = require('../is/set')
 const ArrayFrom = require('../util/from')
 const concat = require('../concat')

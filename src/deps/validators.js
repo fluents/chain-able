@@ -6,22 +6,23 @@
  * @param  {Object} validators
  */
 
-// const isString = require('../deps/is/string')
-// const isObj = require('../deps/is/pureObj')
-// const isNumber = require('../deps/is/number')
-// const traverse = require('../deps/traverse')
+const is = require('../deps/is')
 const isArray = require('../deps/is/array')
 const isReal = require('../deps/is/real')
 const isFunction = require('../deps/is/function')
 const ObjectKeys = require('../deps/util/keys')
+const ChainedMap = require('../ChainedMapBase')
 
-const ChainedMap = require('../ChainedMap')
-const DotProp = require('../compose/DotProp')(ChainedMap)
-let validators = new DotProp()
+let validators = new ChainedMap()
 
-const is = require('../deps/is')
 /* prettier-ignore */
-ObjectKeys(is).forEach(key => (is[key.toLowerCase().replace('is', '')] = is[key]))
+const validationKeys = ObjectKeys(is)
+for (let i = 0; i < validationKeys.length; i++) {
+  const key = validationKeys[i]
+  const transformedKey = key.toLowerCase().replace('is', '')
+  is[transformedKey] = is[key]
+}
+
 validators.from(is)
 
 // @TODO: can use these to return noops with error logging on development

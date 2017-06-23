@@ -1,6 +1,4 @@
-const compose = require('./compose')
-
-const Composed = compose()
+const ChainedMap = require('./ChainedMap')
 
 /**
  * @inheritdoc
@@ -8,7 +6,7 @@ const Composed = compose()
  * @prop {Set} _calls
  * @type {Map}
  */
-class FactoryChain extends Composed {
+class FactoryChain extends ChainedMap {
   constructor(parent) {
     super(parent)
 

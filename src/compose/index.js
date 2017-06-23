@@ -5,17 +5,17 @@ const Shorthands = require('./Shorthands')
 const Transform = require('./Transform')
 const DotProp = require('./DotProp')
 
+const ComposableExtensions = [Observe, Shorthands, Transform, DotProp]
+
 /**
  * @param  {Class | Function | undefined} target
  * @param  {Array | undefined} extensions
  * @return {Class | Function}
  */
 function compose(target, extensions) {
-  let extend = extensions === undefined
-    ? [Observe, Shorthands, Transform, DotProp]
-    : extensions
-
+  let extend = extensions === undefined ? ComposableExtensions : extensions
   let composed = target
+
   if (target && target instanceof Object) {
     composed = ChainedMap.compose(Chainable.compose(target))
   }
