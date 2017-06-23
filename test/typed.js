@@ -137,9 +137,9 @@ test(`4.0.0`, t => {
 
 test.todo('use methodChain on obj')
 
-test.failing(`4.0.0 - MethodChain`, t => {
+test(`4.0.0 - MethodChain`, t => {
   const MethodChain = require('../dist/MethodChain')
-  var chain = new MethodChain(obj)
+  var chain = new MethodChain({})
   // const built =
   chain
     .name('eh_oh')
@@ -161,7 +161,8 @@ test.failing(`4.0.0 - MethodChain`, t => {
   // built.ehOh = !!'INVALID'
 })
 
-test.failing(`restore from backup`, t => {
+/* istanbul ignore next: depreciated */
+test.failing(`old depreciated .typed`, t => {
   const typed = new Chain()
 
   /* prettier-ignore */
@@ -228,64 +229,4 @@ test.failing(`restore from backup`, t => {
 
   /* istanbul ignore next: hit = fail (no error) */
   t.fail()
-})
-
-test.todo('.schema')
-test.todo('.!schema')
-test.todo('.schema[]')
-test.todo('.?schema')
-test.todo('.schema|')
-
-test.skip('schema.add(validator)', t => {
-  const is = require('../deps/is')
-
-  is.enums = enums => x => enums.includes(x)
-  is['*'] = x => true
-
-  const chain = new Chain()
-  chain.schema().add(is)
-})
-
-test('.method().alias().getSet().onInvalid().onValid().type().returns()', t => {
-  const chain = new Chain()
-  ;+chain
-    .method('ehOh')
-    .alias(['canada'])
-    .getSet()
-    .define()
-    .onInvalid(e => +require('fliplog').error(e))
-    .onValid(() => console.log('valid'))
-    .type('?string[]')
-    .returns(chain)
-})
-
-test.failing('.schema', t => {
-  const chain = new Chain()
-
-  /* prettier-ignore */
-  chain
-    .schema({
-      id: '?number',
-      users: '?object|array',
-      topic: '?string[]',
-      status: ['enabled', 'disabled'],
-      roles: '?array',
-      comments: [
-        {
-          admin: 'boolean',
-          text: 'string',
-          author: 'users',
-        },
-      ],
-      creator: {
-        email: 'email',
-        name: 'string',
-        id: 'uuid',
-      },
-      updated_at: 'date',
-      summary: 'string',
-    })
-
-  chain.set('canada.eh', true)
-  console.log(chain)
 })

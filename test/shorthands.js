@@ -3,6 +3,9 @@ const log = require('fliplog')
 const Chain = require('../dist')
 
 class Encased extends Chain {
+  encase(method) {
+    return this.method(method).encase(method)
+  }
   couldThrow(shouldThrow = false) {
     if (shouldThrow === true) {
       throw new Error('should throw')
@@ -17,27 +20,27 @@ class Encased extends Chain {
   }
 }
 
-test.skip('.encase(method) not existing', t => {
-  t.plan(1)
+// test('.encase(method) not existing', t => {
+//   t.plan(1)
+//
+//   try {
+//     new Encased().encase('neverEver').build().neverEver()
+//     /* istanbul ignore next: this means tests fail, shouldn't hit this */
+//     t.fail()
+//   }
+//   catch (e) {
+//     return t.pass()
+//   }
+//   /* istanbul ignore next: this means tests fail, shouldn't hit this */
+//   t.fail()
+// })
 
-  try {
-    new Encased().encase('never-ever')
-    /* istanbul ignore next: this means tests fail, shouldn't hit this */
-    t.fail()
-  }
-  catch (e) {
-    return t.pass()
-  }
-  /* istanbul ignore next: this means tests fail, shouldn't hit this */
-  t.fail()
-})
-
-test.only('.method().encase().onValid', t => {
+test('.method().encase().onValid', t => {
   t.plan(1)
   new Encased()
     .method('couldThrow')
     .encase()
-    .then(val => t.pass())
+    .then(val => t.truthy(val))
     .catch(e => {
       /* istanbul ignore next: this means tests fail, shouldn't hit this */
       t.fail(e)
@@ -46,7 +49,7 @@ test.only('.method().encase().onValid', t => {
     .couldThrow('no throw!')
 })
 
-test.failing('.method().encase().onValid - no .catch', t => {
+test('.method().encase().onValid - no .catch', t => {
   t.plan(1)
   new Encased()
     .method('couldThrow')
@@ -56,7 +59,7 @@ test.failing('.method().encase().onValid - no .catch', t => {
     .couldThrow('no throw!')
 })
 
-test.failing('.method().encase().onInvalid()', t => {
+test('.method().encase().onInvalid()', t => {
   t.plan(1)
   new Encased()
     .method('couldThrow')
@@ -70,12 +73,16 @@ test.failing('.method().encase().onInvalid()', t => {
     .couldThrow(true)
 })
 
-test.skip('.method().encase() onInvalid() - no .then', t => {
+test('.method().encase() onInvalid() - no .then', t => {
   t.plan(1)
-  new Encased().encase('').build().catch(e => t.pass()).couldThrow(true)
+  new Encased()
+    .encase('couldThrow')
+    .catch(e => t.pass())
+    .build()
+    .couldThrow(true)
 })
 
-test.failing('encase(fn) valid', t => {
+test('encase(fn) valid', t => {
   t.plan(1)
 
   const fn = arg => {
@@ -85,8 +92,7 @@ test.failing('encase(fn) valid', t => {
 
   new Encased()
     .wrap(chain => (chain.fn = fn))
-    .method('fn')
-    .encase()
+    .encase('fn')
     .then(arg => t.pass())
     .catch(e => {
       /* istanbul ignore next: this means tests fail, shouldn't hit this */
@@ -96,7 +102,7 @@ test.failing('encase(fn) valid', t => {
     .fn(false)
 })
 
-test.failing('.wrap(fn).method(name).encase(name).onInvalid()', t => {
+test('.wrap(fn).method(name).encase(name).onInvalid()', t => {
   t.plan(1)
 
   /* prettier-ignore */
@@ -149,23 +155,23 @@ test.failing('.wrap(fn).method(name).encase(name).onInvalid()', t => {
 //     .wrap(chain => chain.couldThrowToo(true))
 // })
 
-test.skip('should rethrow', t => {
-  /* prettier-ignore */
-  try {
-    new Encased()
-      .wrap(encased => encased.fn = arg => {
-        throw new Error('encased yo')
-      }, true)
-      .encase('fn')
-      .catch(() => {})
-      .fn(true)
-  }
-  catch (e) {
-    return t.pass()
-  }
-  /* istanbul ignore next: this means tests fail, shouldn't hit this */
-  t.fail()
-})
+// test.skip('should rethrow', t => {
+//   /* prettier-ignore */
+//   try {
+//     new Encased()
+//       .wrap(encased => encased.fn = arg => {
+//         throw new Error('encased yo')
+//       }, true)
+//       .encase('fn')
+//       .catch(() => {})
+//       .fn(true)
+//   }
+//   catch (e) {
+//     return t.pass()
+//   }
+//   /* istanbul ignore next: this means tests fail, shouldn't hit this */
+//   t.fail()
+// })
 
 test('.bindMethods', t => {
   t.plan(1)
