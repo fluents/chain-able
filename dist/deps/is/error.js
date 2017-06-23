@@ -1,5 +1,0 @@
-var toS = require('./toS')
-
-module.exports = function (obj) { return obj instanceof Error || toS(obj) === '[object Error]'; }
-
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZXJyb3IuanMiLCJzb3VyY2VzIjpbImVycm9yLmpzIl0sInNvdXJjZXNDb250ZW50IjpbImNvbnN0IHRvUyA9IHJlcXVpcmUoJy4vdG9TJylcblxubW9kdWxlLmV4cG9ydHMgPSBvYmogPT4gb2JqIGluc3RhbmNlb2YgRXJyb3IgfHwgdG9TKG9iaikgPT09ICdbb2JqZWN0IEVycm9yXSdcbiJdLCJuYW1lcyI6WyJjb25zdCJdLCJtYXBwaW5ncyI6IkFBQUFBLEdBQUssQ0FBQyxHQUFHLEdBQUcsT0FBTyxDQUFDLE9BQU8sQ0FBQzs7QUFFNUIsTUFBTSxDQUFDLE9BQU8sR0FBRyxVQUFBLEdBQUcsQ0FBQSxDQUFDLEFBQUcsU0FBQSxHQUFHLFlBQVksS0FBSyxJQUFJLEdBQUcsQ0FBQyxHQUFHLENBQUMsS0FBSyxnQkFBZ0IsR0FBQTsifQ==

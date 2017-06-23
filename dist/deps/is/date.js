@@ -1,5 +1,0 @@
-var toS = require('./toS')
-
-module.exports = function (obj) { return obj instanceof Date || toS(obj) === '[object Date]'; }
-
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZGF0ZS5qcyIsInNvdXJjZXMiOlsiZGF0ZS5qcyJdLCJzb3VyY2VzQ29udGVudCI6WyJjb25zdCB0b1MgPSByZXF1aXJlKCcuL3RvUycpXG5cbm1vZHVsZS5leHBvcnRzID0gb2JqID0+IG9iaiBpbnN0YW5jZW9mIERhdGUgfHwgdG9TKG9iaikgPT09ICdbb2JqZWN0IERhdGVdJ1xuIl0sIm5hbWVzIjpbImNvbnN0Il0sIm1hcHBpbmdzIjoiQUFBQUEsR0FBSyxDQUFDLEdBQUcsR0FBRyxPQUFPLENBQUMsT0FBTyxDQUFDOztBQUU1QixNQUFNLENBQUMsT0FBTyxHQUFHLFVBQUEsR0FBRyxDQUFBLENBQUMsQUFBRyxTQUFBLEdBQUcsWUFBWSxJQUFJLElBQUksR0FBRyxDQUFDLEdBQUcsQ0FBQyxLQUFLLGVBQWUsR0FBQTsifQ==

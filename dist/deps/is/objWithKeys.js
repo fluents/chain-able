@@ -1,6 +1,0 @@
-var isObj = require('./obj')
-
-// Object.prototype.toString.call(val) === '[object Object]' &&
-module.exports = function (val) { return isObj(val) && Object.keys(val).length !== 0; }
-
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoib2JqV2l0aEtleXMuanMiLCJzb3VyY2VzIjpbIm9ialdpdGhLZXlzLmpzIl0sInNvdXJjZXNDb250ZW50IjpbImNvbnN0IGlzT2JqID0gcmVxdWlyZSgnLi9vYmonKVxuXG4vLyBPYmplY3QucHJvdG90eXBlLnRvU3RyaW5nLmNhbGwodmFsKSA9PT0gJ1tvYmplY3QgT2JqZWN0XScgJiZcbm1vZHVsZS5leHBvcnRzID0gdmFsID0+IGlzT2JqKHZhbCkgJiYgT2JqZWN0LmtleXModmFsKS5sZW5ndGggIT09IDBcbiJdLCJuYW1lcyI6WyJjb25zdCJdLCJtYXBwaW5ncyI6IkFBQUFBLEdBQUssQ0FBQyxLQUFLLEdBQUcsT0FBTyxDQUFDLE9BQU8sQ0FBQzs7O0FBRzlCLE1BQU0sQ0FBQyxPQUFPLEdBQUcsVUFBQSxHQUFHLENBQUEsQ0FBQyxBQUFHLFNBQUEsS0FBSyxDQUFDLEdBQUcsQ0FBQyxJQUFJLE1BQU0sQ0FBQyxJQUFJLENBQUMsR0FBRyxDQUFDLENBQUMsTUFBTSxLQUFLLENBQUMsR0FBQTsifQ==

@@ -1,5 +1,0 @@
-var toS = require('./toS')
-
-module.exports = function (obj) { return obj instanceof Map || toS(obj) === '[object Map]'; }
-
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWFwLmpzIiwic291cmNlcyI6WyJtYXAuanMiXSwic291cmNlc0NvbnRlbnQiOlsiY29uc3QgdG9TID0gcmVxdWlyZSgnLi90b1MnKVxuXG5tb2R1bGUuZXhwb3J0cyA9IG9iaiA9PiBvYmogaW5zdGFuY2VvZiBNYXAgfHwgdG9TKG9iaikgPT09ICdbb2JqZWN0IE1hcF0nXG4iXSwibmFtZXMiOlsiY29uc3QiXSwibWFwcGluZ3MiOiJBQUFBQSxHQUFLLENBQUMsR0FBRyxHQUFHLE9BQU8sQ0FBQyxPQUFPLENBQUM7O0FBRTVCLE1BQU0sQ0FBQyxPQUFPLEdBQUcsVUFBQSxHQUFHLENBQUEsQ0FBQyxBQUFHLFNBQUEsR0FBRyxZQUFZLEdBQUcsSUFBSSxHQUFHLENBQUMsR0FBRyxDQUFDLEtBQUssY0FBYyxHQUFBOyJ9

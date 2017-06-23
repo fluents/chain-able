@@ -1,5 +1,0 @@
-var toS = require('./toS')
-
-module.exports = function (obj) { return obj instanceof Set || toS(obj) === '[object Set]'; }
-
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2V0LmpzIiwic291cmNlcyI6WyJzZXQuanMiXSwic291cmNlc0NvbnRlbnQiOlsiY29uc3QgdG9TID0gcmVxdWlyZSgnLi90b1MnKVxuXG5tb2R1bGUuZXhwb3J0cyA9IG9iaiA9PiBvYmogaW5zdGFuY2VvZiBTZXQgfHwgdG9TKG9iaikgPT09ICdbb2JqZWN0IFNldF0nXG4iXSwibmFtZXMiOlsiY29uc3QiXSwibWFwcGluZ3MiOiJBQUFBQSxHQUFLLENBQUMsR0FBRyxHQUFHLE9BQU8sQ0FBQyxPQUFPLENBQUM7O0FBRTVCLE1BQU0sQ0FBQyxPQUFPLEdBQUcsVUFBQSxHQUFHLENBQUEsQ0FBQyxBQUFHLFNBQUEsR0FBRyxZQUFZLEdBQUcsSUFBSSxHQUFHLENBQUMsR0FBRyxDQUFDLEtBQUssY0FBYyxHQUFBOyJ9

@@ -1,5 +1,0 @@
-var isPureObj = require('./pureObj')
-
-module.exports = function (x) { return isPureObj(x) || typeof x === 'function'; }
-
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoib2JqLmpzIiwic291cmNlcyI6WyJvYmouanMiXSwic291cmNlc0NvbnRlbnQiOlsiY29uc3QgaXNQdXJlT2JqID0gcmVxdWlyZSgnLi9wdXJlT2JqJylcblxubW9kdWxlLmV4cG9ydHMgPSB4ID0+IGlzUHVyZU9iaih4KSB8fCB0eXBlb2YgeCA9PT0gJ2Z1bmN0aW9uJ1xuIl0sIm5hbWVzIjpbImNvbnN0Il0sIm1hcHBpbmdzIjoiQUFBQUEsR0FBSyxDQUFDLFNBQVMsR0FBRyxPQUFPLENBQUMsV0FBVyxDQUFDOztBQUV0QyxNQUFNLENBQUMsT0FBTyxHQUFHLFVBQUEsQ0FBQyxDQUFBLENBQUMsQUFBRyxTQUFBLFNBQVMsQ0FBQyxDQUFDLENBQUMsSUFBSSxPQUFPLENBQUMsS0FBSyxVQUFVLEdBQUE7In0=

@@ -1,6 +1,0 @@
-var Chainable = require('../../Chainable')
-var isMap = require('./map')
-
-module.exports = function (x) { return isMap(x) || x instanceof Chainable; }
-
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWFwaXNoLmpzIiwic291cmNlcyI6WyJtYXBpc2guanMiXSwic291cmNlc0NvbnRlbnQiOlsiY29uc3QgQ2hhaW5hYmxlID0gcmVxdWlyZSgnLi4vLi4vQ2hhaW5hYmxlJylcbmNvbnN0IGlzTWFwID0gcmVxdWlyZSgnLi9tYXAnKVxuXG5tb2R1bGUuZXhwb3J0cyA9IHggPT4gaXNNYXAoeCkgfHwgeCBpbnN0YW5jZW9mIENoYWluYWJsZVxuIl0sIm5hbWVzIjpbImNvbnN0Il0sIm1hcHBpbmdzIjoiQUFBQUEsR0FBSyxDQUFDLFNBQVMsR0FBRyxPQUFPLENBQUMsaUJBQWlCLENBQUM7QUFDNUNBLEdBQUssQ0FBQyxLQUFLLEdBQUcsT0FBTyxDQUFDLE9BQU8sQ0FBQzs7QUFFOUIsTUFBTSxDQUFDLE9BQU8sR0FBRyxVQUFBLENBQUMsQ0FBQSxDQUFDLEFBQUcsU0FBQSxLQUFLLENBQUMsQ0FBQyxDQUFDLElBQUksQ0FBQyxZQUFZLFNBQVMsR0FBQTsifQ==

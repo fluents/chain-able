@@ -1,6 +1,0 @@
-/* istanbul ignore next: wip build */
-module.exports = process.env.NODE_ENV === 'production'
-  ? 'shorthands'
-  : 'shorthands'
-
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2hvcnRoYW5kcy5qcyIsInNvdXJjZXMiOlsic2hvcnRoYW5kcy5qcyJdLCJzb3VyY2VzQ29udGVudCI6WyIvKiBpc3RhbmJ1bCBpZ25vcmUgbmV4dDogd2lwIGJ1aWxkICovXG5tb2R1bGUuZXhwb3J0cyA9IHByb2Nlc3MuZW52Lk5PREVfRU5WID09PSAncHJvZHVjdGlvbidcbiAgPyAnc2hvcnRoYW5kcydcbiAgOiAnc2hvcnRoYW5kcydcbiJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtBQUNBLE1BQU0sQ0FBQyxPQUFPLEdBQUcsT0FBTyxDQUFDLEdBQUcsQ0FBQyxRQUFRLEtBQUssWUFBWTtJQUNsRCxZQUFZO0lBQ1osWUFBWTsifQ==
