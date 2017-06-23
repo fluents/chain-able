@@ -89,7 +89,7 @@ test.skip('extendGetSet [getter/setter] depending on value', t => {
   // t.true(bool)
 })
 
-test.only('.methods(obj)', t => {
+test('.methods(obj)', t => {
   t.plan(3)
   class Defined extends Chain {
     constructor(parent) {

@@ -9,9 +9,11 @@ test('works with dist', t => {
     'ChainedMap',
     'FactoryChain',
     'MergeChain',
+    'MethodChain',
     'Chain',
-    'dopemerge',
+    'merge',
     'compose',
+    'clean',
   ]
   t.plan(exported.length)
   exported
@@ -26,9 +28,11 @@ test('dist classes', t => {
     'ChainedMap',
     'FactoryChain',
     'MergeChain',
+    'MethodChain',
     'Chain',
-    'dopemerge',
+    'merge',
     'compose',
+    'clean',
   ]
 
   const {
@@ -38,7 +42,8 @@ test('dist classes', t => {
     ChainedMap,
     FactoryChain,
     compose,
-    dopemerge,
+    merge,
+    clean,
   } = dist
 
   class N extends Chain {}
@@ -61,7 +66,7 @@ test('dist classes', t => {
   const p = new P()
   // const f = new F(c)
 
-  const d = dist.dopemerge({eh: true}, {eh1: true})
+  const d = dist.merge({eh: true}, {eh1: true})
   t.true(typeof d === 'object')
   t.true(c instanceof Chainable)
   t.true(s instanceof ChainedSet)
@@ -111,8 +116,8 @@ test('dist classes', t => {
     obj.set('eh', 'eh')
     obj.has('eh')
     obj.get('eh')
-    obj.clean(obj.entries())
-    obj.clean(obj.entries(true))
+    clean(obj.entries())
+    clean(obj.entries(true))
     obj.merge({silly: true, eh: false})
     obj.values()
     obj.delete('extra')
@@ -123,7 +128,7 @@ test('dist classes', t => {
     obj + 1
     obj + ''
     let vals = []
-    for (o of obj) {
+    for (var o of obj) {
       vals.push(o)
     }
   })

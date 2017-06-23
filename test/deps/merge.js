@@ -426,15 +426,15 @@ test('should treat regular expressions like primitive values', t => {
 
 test(`should treat regular expressions like primitive values and should not
   clone even with clone option`, t => {
-  var target = {key1: /abc/}
-  var src = {key1: /efg/}
-  var expected = {key1: /efg/}
+    var target = {key1: /abc/}
+    var src = {key1: /efg/}
+    var expected = {key1: /efg/}
 
-  var output = merge(target, src, {clone: true})
+    var output = merge(target, src, {clone: true})
 
-  t.truthy(output.key1 == src.key1)
-  t.pass()
-})
+    t.truthy(output.key1 == src.key1)
+    t.pass()
+  })
 
 test('should treat dates like primitives', t => {
   var monday = new Date('2016-09-27T01:08:12.761Z')
