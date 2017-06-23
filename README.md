@@ -56,7 +56,7 @@
 [define]: https://github.com/fluents/chain-able/wiki/define
 [extendGetSet]: https://github.com/fluents/chain-able/wiki/define#extendGetSet
 [defineGetSet]: https://github.com/fluents/chain-able/wiki/define#defineGetSet
-
+[autoIncrement]: https://github.com/fluents/chain-able/wiki/api
 [api]: https://github.com/fluents/chain-able/wiki/api
 
 > interfaces that describe their intentions
