@@ -93,7 +93,7 @@
   },
   "ava": {
     "__files": [
-      "test-dist/define.js"
+      "test-dist/schema.js"
     ],
     "_files": [
       "test-dist/built.js",
@@ -101,6 +101,7 @@
     ],
     "files": [
       "!index.*.js",
+      "test-dist/schema.js",
       "test-dist/Chainable.js",
       "test-dist/ChainedSet.js",
       "test-dist/compose.js",
