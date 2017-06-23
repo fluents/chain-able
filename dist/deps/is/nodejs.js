@@ -1,0 +1,7 @@
+// @TODO use build script with .replace for each
+module.exports =
+  typeof process === 'object' &&
+  typeof process.release === 'object' &&
+  process.release.name === 'node'
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibm9kZWpzLmpzIiwic291cmNlcyI6WyJub2RlanMuanMiXSwic291cmNlc0NvbnRlbnQiOlsiLy8gQFRPRE8gdXNlIGJ1aWxkIHNjcmlwdCB3aXRoIC5yZXBsYWNlIGZvciBlYWNoXG5tb2R1bGUuZXhwb3J0cyA9XG4gIHR5cGVvZiBwcm9jZXNzID09PSAnb2JqZWN0JyAmJlxuICB0eXBlb2YgcHJvY2Vzcy5yZWxlYXNlID09PSAnb2JqZWN0JyAmJlxuICBwcm9jZXNzLnJlbGVhc2UubmFtZSA9PT0gJ25vZGUnXG4iXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFDQSxNQUFNLENBQUMsT0FBTztFQUNaLE9BQU8sT0FBTyxLQUFLLFFBQVE7RUFDM0IsT0FBTyxPQUFPLENBQUMsT0FBTyxLQUFLLFFBQVE7RUFDbkMsT0FBTyxDQUFDLE9BQU8sQ0FBQyxJQUFJLEtBQUssTUFBTTsifQ==

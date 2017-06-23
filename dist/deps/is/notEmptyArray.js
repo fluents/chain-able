@@ -1,0 +1,5 @@
+var isArray = require('./array')
+
+module.exports = function (x) { return isArray(x) && x.length !== 0; }
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibm90RW1wdHlBcnJheS5qcyIsInNvdXJjZXMiOlsibm90RW1wdHlBcnJheS5qcyJdLCJzb3VyY2VzQ29udGVudCI6WyJjb25zdCBpc0FycmF5ID0gcmVxdWlyZSgnLi9hcnJheScpXG5cbm1vZHVsZS5leHBvcnRzID0geCA9PiBpc0FycmF5KHgpICYmIHgubGVuZ3RoICE9PSAwXG4iXSwibmFtZXMiOlsiY29uc3QiXSwibWFwcGluZ3MiOiJBQUFBQSxHQUFLLENBQUMsT0FBTyxHQUFHLE9BQU8sQ0FBQyxTQUFTLENBQUM7O0FBRWxDLE1BQU0sQ0FBQyxPQUFPLEdBQUcsVUFBQSxDQUFDLENBQUEsQ0FBQyxBQUFHLFNBQUEsT0FBTyxDQUFDLENBQUMsQ0FBQyxJQUFJLENBQUMsQ0FBQyxNQUFNLEtBQUssQ0FBQyxHQUFBOyJ9

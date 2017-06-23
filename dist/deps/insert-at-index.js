@@ -1,0 +1,20 @@
+// http://stackoverflow.com/questions/7032550/javascript-insert-an-array-inside-another-array
+// http://stackoverflow.com/questions/1348178/a-better-way-to-splice-an-array-into-an-array-in-javascript/41465578#41465578
+// http://stackoverflow.com/questions/38060705/replace-element-at-specific-position-in-an-array-without-mutating-it
+// function insertArrAt(array, index, arrayToInsert) {
+//   // Array.prototype.splice.apply(array, [index, 0].concat(arrayToInsert))
+//   // return array.slice.apply([index, 0].concat(arrayToInsert))
+//   return array.slice(index, 0).apply([index, 0].concat(arrayToInsert))
+//   return array
+// }
+
+module.exports = function insertAtIndex(arr, index, val) {
+  if (index < arr.length) {
+    return [...arr.slice(0, index), ...val, ...arr.slice(index + 1)]
+  }
+  else {
+    return [...arr, ...Array(index - arr.length), ...val]
+  }
+}
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5zZXJ0LWF0LWluZGV4LmpzIiwic291cmNlcyI6WyJpbnNlcnQtYXQtaW5kZXguanMiXSwic291cmNlc0NvbnRlbnQiOlsiLy8gaHR0cDovL3N0YWNrb3ZlcmZsb3cuY29tL3F1ZXN0aW9ucy83MDMyNTUwL2phdmFzY3JpcHQtaW5zZXJ0LWFuLWFycmF5LWluc2lkZS1hbm90aGVyLWFycmF5XG4vLyBodHRwOi8vc3RhY2tvdmVyZmxvdy5jb20vcXVlc3Rpb25zLzEzNDgxNzgvYS1iZXR0ZXItd2F5LXRvLXNwbGljZS1hbi1hcnJheS1pbnRvLWFuLWFycmF5LWluLWphdmFzY3JpcHQvNDE0NjU1NzgjNDE0NjU1Nzhcbi8vIGh0dHA6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvMzgwNjA3MDUvcmVwbGFjZS1lbGVtZW50LWF0LXNwZWNpZmljLXBvc2l0aW9uLWluLWFuLWFycmF5LXdpdGhvdXQtbXV0YXRpbmctaXRcbi8vIGZ1bmN0aW9uIGluc2VydEFyckF0KGFycmF5LCBpbmRleCwgYXJyYXlUb0luc2VydCkge1xuLy8gICAvLyBBcnJheS5wcm90b3R5cGUuc3BsaWNlLmFwcGx5KGFycmF5LCBbaW5kZXgsIDBdLmNvbmNhdChhcnJheVRvSW5zZXJ0KSlcbi8vICAgLy8gcmV0dXJuIGFycmF5LnNsaWNlLmFwcGx5KFtpbmRleCwgMF0uY29uY2F0KGFycmF5VG9JbnNlcnQpKVxuLy8gICByZXR1cm4gYXJyYXkuc2xpY2UoaW5kZXgsIDApLmFwcGx5KFtpbmRleCwgMF0uY29uY2F0KGFycmF5VG9JbnNlcnQpKVxuLy8gICByZXR1cm4gYXJyYXlcbi8vIH1cblxubW9kdWxlLmV4cG9ydHMgPSBmdW5jdGlvbiBpbnNlcnRBdEluZGV4KGFyciwgaW5kZXgsIHZhbCkge1xuICBpZiAoaW5kZXggPCBhcnIubGVuZ3RoKSB7XG4gICAgcmV0dXJuIFsuLi5hcnIuc2xpY2UoMCwgaW5kZXgpLCAuLi52YWwsIC4uLmFyci5zbGljZShpbmRleCArIDEpXVxuICB9XG4gIGVsc2Uge1xuICAgIHJldHVybiBbLi4uYXJyLCAuLi5BcnJheShpbmRleCAtIGFyci5sZW5ndGgpLCAuLi52YWxdXG4gIH1cbn1cbiJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7Ozs7OztBQVVBLE1BQU0sQ0FBQyxPQUFPLEdBQUcsU0FBUyxhQUFhLENBQUMsR0FBRyxFQUFFLEtBQUssRUFBRSxHQUFHLEVBQUU7RUFDdkQsSUFBSSxLQUFLLEdBQUcsR0FBRyxDQUFDLE1BQU0sRUFBRTtJQUN0QixPQUFPLENBQUMsR0FBRyxHQUFHLENBQUMsS0FBSyxDQUFDLENBQUMsRUFBRSxLQUFLLENBQUMsRUFBRSxHQUFHLEdBQUcsRUFBRSxHQUFHLEdBQUcsQ0FBQyxLQUFLLENBQUMsS0FBSyxHQUFHLENBQUMsQ0FBQyxDQUFDO0dBQ2pFO09BQ0k7SUFDSCxPQUFPLENBQUMsR0FBRyxHQUFHLEVBQUUsR0FBRyxLQUFLLENBQUMsS0FBSyxHQUFHLEdBQUcsQ0FBQyxNQUFNLENBQUMsRUFBRSxHQUFHLEdBQUcsQ0FBQztHQUN0RDtDQUNGOyJ9

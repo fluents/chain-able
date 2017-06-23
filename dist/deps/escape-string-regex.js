@@ -1,0 +1,3 @@
+module.exports = function (str) { return str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&'); }
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZXNjYXBlLXN0cmluZy1yZWdleC5qcyIsInNvdXJjZXMiOlsiZXNjYXBlLXN0cmluZy1yZWdleC5qcyJdLCJzb3VyY2VzQ29udGVudCI6WyJtb2R1bGUuZXhwb3J0cyA9IHN0ciA9PiBzdHIucmVwbGFjZSgvW3xcXFxce30oKVtcXF1eJCsqPy5dL2csICdcXFxcJCYnKVxuIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE1BQU0sQ0FBQyxPQUFPLEdBQUcsVUFBQSxHQUFHLENBQUEsQ0FBQyxBQUFHLFNBQUEsR0FBRyxDQUFDLE9BQU8sQ0FBQyxxQkFBcUIsRUFBRSxNQUFNLENBQUMsR0FBQTsifQ==

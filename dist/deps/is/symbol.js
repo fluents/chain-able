@@ -1,0 +1,5 @@
+var toS = require('./toS')
+
+module.exports = function (obj) { return toS(obj) === '[object Symbol]'; }
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3ltYm9sLmpzIiwic291cmNlcyI6WyJzeW1ib2wuanMiXSwic291cmNlc0NvbnRlbnQiOlsiY29uc3QgdG9TID0gcmVxdWlyZSgnLi90b1MnKVxuXG5tb2R1bGUuZXhwb3J0cyA9IG9iaiA9PiB0b1Mob2JqKSA9PT0gJ1tvYmplY3QgU3ltYm9sXSdcbiJdLCJuYW1lcyI6WyJjb25zdCJdLCJtYXBwaW5ncyI6IkFBQUFBLEdBQUssQ0FBQyxHQUFHLEdBQUcsT0FBTyxDQUFDLE9BQU8sQ0FBQzs7QUFFNUIsTUFBTSxDQUFDLE9BQU8sR0FBRyxVQUFBLEdBQUcsQ0FBQSxDQUFDLEFBQUcsU0FBQSxHQUFHLENBQUMsR0FBRyxDQUFDLEtBQUssaUJBQWlCLEdBQUE7In0=

@@ -1,0 +1,4 @@
+// obj[Symbol.toStringTag]
+module.exports = function (obj) { return Object.prototype.toString.call(obj); }
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidG9TLmpzIiwic291cmNlcyI6WyJ0b1MuanMiXSwic291cmNlc0NvbnRlbnQiOlsiLy8gb2JqW1N5bWJvbC50b1N0cmluZ1RhZ11cbm1vZHVsZS5leHBvcnRzID0gb2JqID0+IE9iamVjdC5wcm90b3R5cGUudG9TdHJpbmcuY2FsbChvYmopXG4iXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFDQSxNQUFNLENBQUMsT0FBTyxHQUFHLFVBQUEsR0FBRyxDQUFBLENBQUMsQUFBRyxTQUFBLE1BQU0sQ0FBQyxTQUFTLENBQUMsUUFBUSxDQUFDLElBQUksQ0FBQyxHQUFHLENBQUMsR0FBQTsifQ==

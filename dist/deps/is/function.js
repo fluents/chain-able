@@ -1,0 +1,4 @@
+// || x instanceof Function
+module.exports = function (x) { return typeof x === 'function'; }
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZnVuY3Rpb24uanMiLCJzb3VyY2VzIjpbImZ1bmN0aW9uLmpzIl0sInNvdXJjZXNDb250ZW50IjpbIi8vIHx8IHggaW5zdGFuY2VvZiBGdW5jdGlvblxubW9kdWxlLmV4cG9ydHMgPSB4ID0+IHR5cGVvZiB4ID09PSAnZnVuY3Rpb24nXG4iXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFDQSxNQUFNLENBQUMsT0FBTyxHQUFHLFVBQUEsQ0FBQyxDQUFBLENBQUMsQUFBRyxTQUFBLE9BQU8sQ0FBQyxLQUFLLFVBQVUsR0FBQTsifQ==

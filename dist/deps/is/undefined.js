@@ -1,0 +1,3 @@
+module.exports = function (x) { return x === undefined || typeof x === 'undefined'; }
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidW5kZWZpbmVkLmpzIiwic291cmNlcyI6WyJ1bmRlZmluZWQuanMiXSwic291cmNlc0NvbnRlbnQiOlsibW9kdWxlLmV4cG9ydHMgPSB4ID0+IHggPT09IHVuZGVmaW5lZCB8fCB0eXBlb2YgeCA9PT0gJ3VuZGVmaW5lZCdcbiJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxNQUFNLENBQUMsT0FBTyxHQUFHLFVBQUEsQ0FBQyxDQUFBLENBQUMsQUFBRyxTQUFBLENBQUMsS0FBSyxTQUFTLElBQUksT0FBTyxDQUFDLEtBQUssV0FBVyxHQUFBOyJ9

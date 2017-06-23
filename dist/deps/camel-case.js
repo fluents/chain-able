@@ -1,0 +1,13 @@
+/**
+ * @tutorial https://github.com/substack/camelize/blob/master/test/camel.js
+ * @tutorial https://github.com/andrewplummer/Sugar/blob/9c018a257a38714b81f7df033b74d236dbf1e861/lib/string.js
+ * @tutorial http://stackoverflow.com/questions/2970525/converting-any-string-into-camel-case
+ * @tutorial https://github.com/sindresorhus/camelcase
+ * @param  {string} str
+ * @return {string}
+ *
+ * s.charAt(0).toLowerCase() + string.slice(1)
+ */
+module.exports = function (str) { return str.replace(/\s+/g, '_').replace(/[_.-](\w|$)/g, function (m, x) { return x.toUpperCase(); }); }
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2FtZWwtY2FzZS5qcyIsInNvdXJjZXMiOlsiY2FtZWwtY2FzZS5qcyJdLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIEB0dXRvcmlhbCBodHRwczovL2dpdGh1Yi5jb20vc3Vic3RhY2svY2FtZWxpemUvYmxvYi9tYXN0ZXIvdGVzdC9jYW1lbC5qc1xuICogQHR1dG9yaWFsIGh0dHBzOi8vZ2l0aHViLmNvbS9hbmRyZXdwbHVtbWVyL1N1Z2FyL2Jsb2IvOWMwMThhMjU3YTM4NzE0YjgxZjdkZjAzM2I3NGQyMzZkYmYxZTg2MS9saWIvc3RyaW5nLmpzXG4gKiBAdHV0b3JpYWwgaHR0cDovL3N0YWNrb3ZlcmZsb3cuY29tL3F1ZXN0aW9ucy8yOTcwNTI1L2NvbnZlcnRpbmctYW55LXN0cmluZy1pbnRvLWNhbWVsLWNhc2VcbiAqIEB0dXRvcmlhbCBodHRwczovL2dpdGh1Yi5jb20vc2luZHJlc29yaHVzL2NhbWVsY2FzZVxuICogQHBhcmFtICB7c3RyaW5nfSBzdHJcbiAqIEByZXR1cm4ge3N0cmluZ31cbiAqXG4gKiBzLmNoYXJBdCgwKS50b0xvd2VyQ2FzZSgpICsgc3RyaW5nLnNsaWNlKDEpXG4gKi9cbm1vZHVsZS5leHBvcnRzID0gc3RyID0+XG4gIHN0ci5yZXBsYWNlKC9cXHMrL2csICdfJykucmVwbGFjZSgvW18uLV0oXFx3fCQpL2csIChtLCB4KSA9PiB4LnRvVXBwZXJDYXNlKCkpXG4iXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7Ozs7Ozs7QUFVQSxNQUFNLENBQUMsT0FBTyxHQUFHLFVBQUEsR0FBRyxDQUFBLENBQUMsQUFDbkIsU0FBQSxHQUFHLENBQUMsT0FBTyxDQUFDLE1BQU0sRUFBRSxHQUFHLENBQUMsQ0FBQyxPQUFPLENBQUMsY0FBYyxFQUFFLFNBQUEsQ0FBQyxDQUFDLEVBQUUsQ0FBQyxFQUFFLEFBQUcsU0FBQSxDQUFDLENBQUMsV0FBVyxFQUFFLEdBQUEsQ0FBQyxHQUFBOyJ9

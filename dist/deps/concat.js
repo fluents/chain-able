@@ -1,0 +1,5 @@
+var toarr = require('./to-arr')
+
+module.exports = function (one, two) { return toarr(one || []).concat(toarr(two)); }
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29uY2F0LmpzIiwic291cmNlcyI6WyJjb25jYXQuanMiXSwic291cmNlc0NvbnRlbnQiOlsiY29uc3QgdG9hcnIgPSByZXF1aXJlKCcuL3RvLWFycicpXG5cbm1vZHVsZS5leHBvcnRzID0gKG9uZSwgdHdvKSA9PiB0b2FycihvbmUgfHwgW10pLmNvbmNhdCh0b2Fycih0d28pKVxuIl0sIm5hbWVzIjpbImNvbnN0Il0sIm1hcHBpbmdzIjoiQUFBQUEsR0FBSyxDQUFDLEtBQUssR0FBRyxPQUFPLENBQUMsVUFBVSxDQUFDOztBQUVqQyxNQUFNLENBQUMsT0FBTyxHQUFHLFNBQUEsQ0FBQyxHQUFHLEVBQUUsR0FBRyxFQUFFLEFBQUcsU0FBQSxLQUFLLENBQUMsR0FBRyxJQUFJLEVBQUUsQ0FBQyxDQUFDLE1BQU0sQ0FBQyxLQUFLLENBQUMsR0FBRyxDQUFDLENBQUMsR0FBQTsifQ==

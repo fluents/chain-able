@@ -1,0 +1,5 @@
+// could add exports to each file here,
+// but adds overhead
+// unless shaking with rollup
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VzIjpbImluZGV4LmpzIl0sInNvdXJjZXNDb250ZW50IjpbIi8vIGNvdWxkIGFkZCBleHBvcnRzIHRvIGVhY2ggZmlsZSBoZXJlLFxuLy8gYnV0IGFkZHMgb3ZlcmhlYWRcbi8vIHVubGVzcyBzaGFraW5nIHdpdGggcm9sbHVwXG4iXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7OzsifQ==

@@ -1,0 +1,5 @@
+var toS = require('./toS')
+
+module.exports = function (obj) { return obj instanceof RegExp || toS(obj) === '[object RegExp]'; }
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicmVnZXhwLmpzIiwic291cmNlcyI6WyJyZWdleHAuanMiXSwic291cmNlc0NvbnRlbnQiOlsiY29uc3QgdG9TID0gcmVxdWlyZSgnLi90b1MnKVxuXG5tb2R1bGUuZXhwb3J0cyA9IG9iaiA9PiBvYmogaW5zdGFuY2VvZiBSZWdFeHAgfHwgdG9TKG9iaikgPT09ICdbb2JqZWN0IFJlZ0V4cF0nXG4iXSwibmFtZXMiOlsiY29uc3QiXSwibWFwcGluZ3MiOiJBQUFBQSxHQUFLLENBQUMsR0FBRyxHQUFHLE9BQU8sQ0FBQyxPQUFPLENBQUM7O0FBRTVCLE1BQU0sQ0FBQyxPQUFPLEdBQUcsVUFBQSxHQUFHLENBQUEsQ0FBQyxBQUFHLFNBQUEsR0FBRyxZQUFZLE1BQU0sSUFBSSxHQUFHLENBQUMsR0FBRyxDQUFDLEtBQUssaUJBQWlCLEdBQUE7In0=
