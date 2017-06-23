@@ -1,4 +1,4 @@
-const ChainedMap = require('./ChainedMap')
+const ChainedMapBase = require('./ChainedMapBase')
 const traverse = require('./deps/traverse')
 const tester = require('./deps/to-test')
 
@@ -18,7 +18,7 @@ const matchFactory = (keys, vals) => (prop, val) => {
  * @since 1.0.0
  * @type {Set}
  */
-module.exports = class Traverser extends ChainedMap {
+module.exports = class Traverser extends ChainedMapBase {
   /**
    * @inheritdoc
    * @modifies this.call

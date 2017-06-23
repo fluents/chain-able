@@ -1,6 +1,6 @@
 // core
-const Chainable = require('./Chainable')
 const ChainedMap = require('./ChainedMap')
+const Chainable = require('./Chainable')
 const ChainedSet = require('./ChainedSet')
 // merge
 const MergeChain = require('./MergeChain')
@@ -23,11 +23,11 @@ exp.traverse = traverse
 exp.toArr = require('./deps/to-arr') // exp.toarr =
 exp.camelCase = require('./deps/camel-case')
 exp.dot = require('./deps/dot-prop')
-exp.eq = require('./deps/traversers/eq')
 exp.matcher = require('./deps/matcher')
 exp.is = require('./deps/is')
 exp.reduce = require('./deps/reduce')
 exp.meta = require('./deps/meta')
+exp.eq = require('./deps/traversers/eq')
 
 // core
 exp.Chainable = Chainable

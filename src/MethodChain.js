@@ -1,12 +1,14 @@
+// core
+const ChainedMap = require('./ChainedMapBase')
+const meta = require('./deps/meta')
+const DECORATED_KEY = require('./deps/meta/decorated')
+// .
 const toarr = require('./deps/to-arr')
 const argumentor = require('./deps/argumentor')
 // error
 const encase = require('./deps/encase')
 const camelCase = require('./deps/camel-case')
 const typeError = require('./deps/type-error')
-// core
-const meta = require('./deps/meta')
-const DECORATED_KEY = require('./deps/meta/decorated')
 // is
 const isObj = require('./deps/is/obj')
 const isArray = require('./deps/is/array')
@@ -16,7 +18,6 @@ const traverse = require('./deps/traverse')
 // obj
 const hasOwnProperty = require('./deps/util/hasOwnProperty')
 const getDescriptor = require('./deps/util/getDescriptor')
-const ChainedMap = require('./ChainedMap')
 const ObjectDefine = require('./deps/define')
 const ObjectKeys = require('./deps/util/keys')
 const ObjectAssign = require('./deps/util/assign')

@@ -1,5 +1,5 @@
+const ChainedMapBase = require('./ChainedMapBase')
 const dopemerge = require('./deps/dopemerge')
-const Chainable = require('./Chainable')
 const isFunction = require('./deps/is/function')
 const isMapish = require('./deps/is/mapish')
 const ObjectKeys = require('./deps/util/keys')
@@ -8,7 +8,7 @@ const ObjectKeys = require('./deps/util/keys')
  * @since 1.0.0
  * @type {Map}
  */
-class MergeChain extends Chainable {
+class MergeChain extends ChainedMapBase {
   /**
    * @param  {Chainable} parent required, for merging
    * @return {MergeChain} @chainable
@@ -22,16 +22,10 @@ class MergeChain extends Chainable {
    */
   constructor(parent) {
     super(parent)
-    this.store = new Map()
-    this.set = (name, val) => {
-      this.store.set(name, val)
-      return this
-    }
 
     // this.extend(['onExisting', 'onValue', 'obj'])
 
     this.set('onValue', () => true).set('merger', dopemerge)
-    this.get = name => this.store.get(name)
   }
 
   /**
