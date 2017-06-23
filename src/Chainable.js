@@ -33,7 +33,6 @@ const C = SuperClass => {
      */
     constructor(parent) {
       super()
-
       if (parent) this.parent = parent
       this.className = this.constructor.name
     }
@@ -75,23 +74,6 @@ const C = SuperClass => {
           return {value: [key, val], done: false}
         },
       }
-    }
-
-    /**
-     * @since 1.0.2
-     * @desc
-     *      checks mixins,
-     *      checks prototype,
-     *      checks if it has a store
-     *      or parent or className
-     *
-     * @example new Chainable() instanceof Chainable
-     * @type {Symbol.wellknown}
-     * @param {Chainable | Object | any} instance
-     * @return {boolean} instanceof
-     */
-    [Instance](instance) {
-      return Chainable[Instance](instance, this)
     }
 
     /**
@@ -245,12 +227,12 @@ const C = SuperClass => {
     })
   }
 
-  defineOnChainable(Chainable)
+  // defineOnChainable(Chainable)
   defineOnChainable(Chainable.prototype)
   return Chainable
 }
 
-const c = C(Object)
+const c = C(class {})
 c.compose = C
 
 module.exports = c
