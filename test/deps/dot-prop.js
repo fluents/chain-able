@@ -1,5 +1,6 @@
 const test = require('ava')
 const m = require('../../dist/deps/dot-prop')
+const paths = require('../../dist/deps/dot-prop-paths')
 
 test('get', t => {
   const f1 = {foo: {bar: 1}}
@@ -196,4 +197,17 @@ test('has', t => {
 
   t.is(m.has({'foo.baz': {bar: true}}, 'foo\\.baz.bar'), true)
   t.is(m.has({'fo.ob.az': {bar: true}}, 'fo\\.ob\\.az.bar'), true)
+})
+
+test('paths', t => {
+  const arr = paths({level: {one: true}})
+
+  // triggers cache
+  const cached = paths({level: {one: true}})
+
+  t.deepEqual(arr, cached)
+
+  // triggers unique paths
+  const includes = paths({level: {one: true}, canada: {arr: [0, 1, 2]}})
+  t.true(Array.isArray(includes))
 })

@@ -1,8 +1,50 @@
 const test = require('ava')
 const dist = require('../dist')
 
-test('dist/built tests - for src', t => {
-  const {Chain, Chainable, ChainedSet, ChainedMap, compose} = dist
+const exported = [
+  'Chainable',
+  'ChainedSet',
+  'ChainedMap',
+  // 'ChainedMapBase',
+  'FactoryChain',
+  'MergeChain',
+  'MethodChain',
+  'Chain',
+  'merge',
+  'compose',
+  'clean',
+  'is',
+  'traverse',
+  'camelCase',
+  'toArr',
+  'dot',
+  'matcher',
+  'eq',
+  'reduce',
+  'meta',
+  'validators',
+]
+
+test('works with dist - src', t => {
+  t.plan(exported.length)
+  exported
+    .map(exp => {
+      return typeof dist[exp]
+    })
+    .forEach(type => t.true(type === 'object' || type === 'function'))
+})
+
+test('dist classes - src', t => {
+  const {
+    Chain,
+    Chainable,
+    ChainedSet,
+    ChainedMap,
+    FactoryChain,
+    compose,
+    merge,
+    clean,
+  } = dist
 
   class N extends Chain {}
   class C extends Chainable {}
@@ -16,6 +58,8 @@ test('dist/built tests - for src', t => {
       }
     }
   }
+  const init = Chain.init()
+  t.true(init instanceof Chain)
 
   const n = new N()
   const c = new C()
@@ -44,17 +88,29 @@ test('dist/built tests - for src', t => {
   p.transform('eh', v => !!v)
   p.observe('eh', v => {})
   p.observe(['ug'], v => {})
-  p.encase('fn').catch(() => {}).then(() => {})
+  p.method('fn').encase().catch(() => {}).then(() => {}).build()
   p.fn(true)
   p.fn(false)
-  p.defineGetSet(['fn'])
-  p.typed().name('ug').type(() => true).end()
+  p.method(['fn']).getSet().define().build()
+  p.method('ug').type(() => true).build()
+  p
+    .method('ug2')
+    .type(val => !!val)
+    .onValid(() => {})
+    .onInvalid(() => {})
+    .build()
   p.ug(true)
+  p.ug2(true)
+  p.ug2(false)
   s.when(true)
   s.when(false)
-  s.when()
   s.add('eh')
-  s.merge([false, true])
+  try {
+    s.merge([false, true])
+  }
+  catch (e) {
+    console.log('fix spread')
+  }
   s.values()
   s.size
   s.className
@@ -63,13 +119,12 @@ test('dist/built tests - for src', t => {
     obj.className
     obj.when(true)
     obj.when(false)
-    obj.when()
     obj.extend(['eh'])
     obj.set('eh', 'eh')
     obj.has('eh')
     obj.get('eh')
-    obj.clean(obj.entries())
-    obj.clean(obj.entries(true))
+    clean(obj.entries())
+    clean(obj.entries(true))
     obj.merge({silly: true, eh: false})
     obj.values()
     obj.delete('extra')

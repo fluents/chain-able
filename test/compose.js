@@ -13,6 +13,17 @@ test('composable', t => {
   t.deepEqual(map.parent, {isParent: true})
 })
 
+test('compose custom extensions', t => {
+  class CustomTarget {}
+  const CustomComposer = SuperClass => {
+    class Customed extends SuperClass {}
+    return Customed
+  }
+  const CustomComposed = compose(CustomTarget, [CustomComposer])
+  const map = new CustomComposed()
+  t.true(map instanceof CustomTarget)
+})
+
 test('clearable', t => {
   const map = new Composed({isParent: true}).set('eh', 'eh!')
 

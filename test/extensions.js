@@ -14,7 +14,7 @@ test.skip('.init', t => {
 test('.autoIncrement()', t => {
   const chain = new Chain()
   // extendIncrement
-  chain.methods(['index']).autoIncrement().build().index().index().index()
+  chain.methods(['index']).autoIncrement().build().index().index(+1).index()
   const index = chain.get('index')
   t.true(index === 3)
 })

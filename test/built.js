@@ -1,6 +1,6 @@
 const test = require('ava')
 const log = require('fliplog')
-const dist = require('../index.cjs.js')
+const dist = require('../index.dev.js')
 
 const exported = [
   'Chainable',
@@ -14,13 +14,24 @@ const exported = [
   'merge',
   'compose',
   'clean',
+  'is',
+  'traverse',
+  'camelCase',
+  'toArr',
+  'dot',
+  'matcher',
+  'eq',
+  'reduce',
+  'meta',
+  'validators',
 ]
 
 test('works with dist', t => {
   t.plan(exported.length)
-  console.log({exported})
   exported
-    .map(exp => typeof dist[exp])
+    .map(exp => {
+      return typeof dist[exp]
+    })
     .forEach(type => t.true(type === 'object' || type === 'function'))
 })
 
@@ -79,9 +90,14 @@ test('dist classes', t => {
   p.method('fn').encase().catch(() => {}).then(() => {}).build()
   p.fn(true)
   p.fn(false)
-  p.defineGetSet(['fn'])
-  p.typed().name('ug').type(() => true).end()
-  p.typed('ug2').type(val => !!val).onValid(() => {}).onInvalid(() => {})
+  p.method(['fn']).getSet().define().build()
+  p.method('ug').type(() => true).build()
+  p
+    .method('ug2')
+    .type(val => !!val)
+    .onValid(() => {})
+    .onInvalid(() => {})
+    .build()
   p.ug(true)
   p.ug2(true)
   p.ug2(false)

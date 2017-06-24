@@ -1,5 +1,4 @@
 var test = require('ava')
-// var deepEqual = require('./lib/deep_equal')
 var {deepEqual} = require('./')
 
 test('deepDates', t => {
@@ -243,6 +242,21 @@ test('null vs undefined', t => {
 test('RegExp vs RegExp', t => {
   t.truthy(deepEqual(new RegExp('.*'), new RegExp('.*')))
   t.truthy(!deepEqual(new RegExp('not-the-same'), new RegExp('.*')))
+  t.pass()
+})
+test('Fn vs Fn', t => {
+  const noop = function() {
+    /* noop */
+  }
+  const noops = function() {
+    /* noops */
+  }
+  noops.eh = true
+  noop()
+  noops()
+
+  t.truthy(deepEqual(noop, noop))
+  t.truthy(!deepEqual(noop, noops))
   t.pass()
 })
 test('ObjKeys', t => {

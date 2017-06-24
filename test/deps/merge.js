@@ -1,4 +1,5 @@
 const test = require('ava')
+const log = require('fliplog')
 const merge = require('../../dist/deps/dopemerge')
 // const merge = require('deepmerge')
 
@@ -569,4 +570,55 @@ test('dates should copy correctly in an array', t => {
 
   t.deepEqual(actual, expected)
   t.pass()
+})
+
+test('=== values are returned', t => {
+  var eqeqeq = []
+  var actual = merge(eqeqeq, eqeqeq)
+
+  t.deepEqual(actual, eqeqeq)
+  t.pass()
+})
+
+test('[array, string]', t => {
+  var actual = merge([], 'string')
+  var expected = ['string']
+  t.deepEqual(actual, expected)
+
+  var actual2 = merge([], 'string', {clone: true})
+  var expected2 = ['string']
+  t.deepEqual(actual2, expected2)
+})
+
+test('[string, array]', t => {
+  var actual = merge('string', [])
+  var expected = ['string']
+
+  t.deepEqual(actual, expected)
+})
+
+test('[string, string]', t => {
+  var actual = merge('one', 'two', {stringToArray: false})
+  t.deepEqual(actual, 'onetwo')
+
+  var actualArr = merge('one', 'two', {stringToArray: true})
+  t.deepEqual(actualArr, ['one', 'two'])
+})
+
+test('[boolean, boolean]', t => {
+  var actual = merge(true, false, {boolToArray: false})
+  t.deepEqual(actual, false)
+
+  var actualArr = merge(true, false, {boolToArray: true})
+  t.deepEqual(actualArr, [true, false])
+})
+
+test('[undefined, true], [null, true], [true, null], [true, undefined]', t => {
+  t.deepEqual(merge(undefined, true), true)
+
+  t.deepEqual(merge(null, true), true)
+
+  t.deepEqual(merge(true, undefined), true)
+
+  t.deepEqual(merge(true, null), true)
 })

@@ -13,7 +13,8 @@ class Lists extends Chainable {
     return this
   }
   all() {
-    return new ChainedSet().merge(this.people).merge(this.places).values()
+    const {people, places} = this
+    return new ChainedSet().merge(people).merge(places).values()
   }
 }
 
@@ -53,6 +54,31 @@ function makeTests() {
 test('add, merge, append, prepend', t => {
   const {result} = makeTests().add().addDirect().prepend().merge()
   t.deepEqual(result.all(), [
+    'first',
+    'sam',
+    'sue',
+    'joe',
+    'frank',
+    'john',
+    'moon',
+    'sun',
+  ])
+})
+
+test('add, merge, append, prepend - raw', t => {
+  const lists = new Lists()
+
+  lists.add('people', 'sam').add('people', 'sue').add('places', 'moon')
+
+  // directly
+  lists.places.add('sun')
+
+  // operations
+  lists.people.add('joe')
+  lists.people.prepend('first')
+  lists.people.merge(['frank', 'john'])
+
+  t.deepEqual(lists.all(), [
     'first',
     'sam',
     'sue',

@@ -1,6 +1,8 @@
 const test = require('ava')
+const Instance = require('../../dist/deps/symbols/instance')
+const ObjectDefine = require('../../dist/deps/define')
 const stress = require('../_stress')
-const {isMap, isSet, isFunction, isObjWithKeys} = require('./')
+const {isMap, isSet, isFunction, isObjWithKeys, isPrototypeOf} = require('./')
 
 test('stress', t => {
   stress()
@@ -96,4 +98,35 @@ test('should work for Set', t => {
 test('objWithKeys', t => {
   datas.map(data => t.false(isObjWithKeys(data)))
   datasObjs.map(data => t.true(isObjWithKeys(data)))
+})
+
+// @NOTE: these tests are compiled so `isClass` is not helpful
+// test.failing('isClass', t => {
+//   console.log(class classy {}.toString())
+//   t.true(isClass(class Classy {}))
+//   t.false(isClass({}))
+// })
+
+test('isPrototypeOf', t => {
+  class SuperProto {}
+  class SubProto extends SuperProto {}
+  var sub = new SubProto()
+
+  // SuperProto.isPrototypeOf(sub)
+  t.true(isPrototypeOf(Object.getPrototypeOf(sub), sub))
+  // t.true(isPrototypeOf(Classy, Object))
+  t.false(isPrototypeOf(RegExp, sub))
+})
+test('isPrototypeOf on instance', t => {
+  class SuperProto {}
+  class SubProto extends SuperProto {}
+
+  ObjectDefine(SubProto.prototype, Instance, {
+    enumerable: false,
+    value: instance => isPrototypeOf(SubProto.prototype, instance),
+  })
+  var sub = new SubProto()
+
+  t.false(new RegExp() instanceof SubProto)
+  t.true(sub instanceof SubProto)
 })

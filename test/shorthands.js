@@ -182,3 +182,19 @@ test('.bindMethods', t => {
   chain.methods(['bindMe']).bind().build()
   chain.bindMe()
 })
+
+test('.return()', t => {
+  t.plan(1)
+  const chain = new Chain()
+  t.true(chain.set('t', 1).return(true))
+})
+
+test('.setIfEmpty', t => {
+  const chain = new Chain()
+  chain.set('a', 1)
+  chain.setIfEmpty('a', 2)
+  chain.setIfEmpty('b', 3)
+
+  t.true(chain.get('a') === 1)
+  t.true(chain.get('b') === 3)
+})

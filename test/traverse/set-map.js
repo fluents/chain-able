@@ -2,6 +2,7 @@ var test = require('ava')
 var log = require('fliplog')
 var traverse = require('./')
 
+/* istanbul ignore next: is a failing test */
 test.failing('Map can iterate in order with leaves', t => {
   var acc = []
 
@@ -23,6 +24,7 @@ test.failing('Map can iterate in order with leaves', t => {
   )
 })
 
+/* istanbul ignore next: is a failing test */
 test.failing('Set can iterate in order', t => {
   var acc = []
 

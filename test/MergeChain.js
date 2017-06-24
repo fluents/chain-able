@@ -65,7 +65,10 @@ test('custom merger', t => {
 test('custom merger - cb', t => {
   t.plan(1)
   const chain = getChain()
-  chain.merge({emptyArr: []}, (a, b) => [])
+  chain.set('emptyArr', [])
+  chain.merge({emptyArr: []}, mergeChain => {
+    return mergeChain.onExisting((a, b) => []).merger((a, b) => []).merge()
+  })
   t.true(chain.get('emptyArr').length === 0)
 })
 

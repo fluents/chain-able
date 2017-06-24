@@ -19,6 +19,25 @@ test.skip('schema.add(validator)', t => {
   chain.schema().add(is)
 })
 
+test('.!schema()', t => {
+  t.plan(1)
+
+  const chain = new Chain()
+  chain.methods().define().schema({
+    notString: '!string',
+  })
+
+  // valid
+  chain.notString = new Date(0, 0, 0, 0)
+
+  try {
+    chain.notString = 'string!'
+  }
+  catch (e) {
+    t.true(e instanceof TypeError)
+  }
+})
+
 test('.method().alias().getSet().onInvalid().onValid().type().returns()', t => {
   const chain = new Chain()
   ;+chain
@@ -37,6 +56,7 @@ test('.schema - shared .onInvalid', t => {
   /* prettier-ignore */
   chain
     .methods()
+    .define()
     .onInvalid((error, arg, c) => log.data(error).echo(false))
     .schema({
       id: '?number',
@@ -87,11 +107,13 @@ test('typed - shorthand', t => {
 })
 
 test('.schema - nested', t => {
+  t.plan(2)
   const chain = new Chain()
   /* prettier-ignore */
   chain
     .methods()
-    .onInvalid((error, arg, c) => log.data(error).echo(false))
+    .onValid(created => t.true(isDate(created.at)))
+    .onInvalid(error => t.true(error instanceof TypeError))
     .schema({
       status: ['enabled', 'disabled'],
       comments: [
@@ -107,4 +129,78 @@ test('.schema - nested', t => {
     })
 
   chain.created({at: new Date()})
+  chain.created({at: 'NOT-DATE'})
+})
+
+test.failing('.schema - nested + enum', t => {
+  t.plan(2)
+  const chain = new Chain()
+  /* prettier-ignore */
+  chain
+    .methods()
+    .onValid(created => t.true(isDate(created.at)))
+    .onInvalid(error => t.true(error instanceof TypeError))
+    .schema({
+      status: ['enabled', 'disabled'],
+      comments: [
+        {
+          admin: 'boolean',
+          text: 'string',
+          author: 'users',
+        },
+      ],
+    })
+
+  chain.status('enabled')
+  chain.comments([{}])
+})
+
+test('.schema[]', t => {
+  const chain = new Chain()
+  /* prettier-ignore */
+  chain
+    .methods()
+    .getSet()
+    .schema({
+      eh: 'string[]',
+    })
+
+  chain.setEh('string')
+  chain.setEh(['string'])
+  try {
+    chain.setEh(false)
+  }
+  catch (e) {
+    return t.true(e instanceof Error)
+  }
+
+  /* istanbul ignore next: fail */
+  t.fail()
+})
+
+test('.schema|', t => {
+  t.plan(1)
+  const chain = new Chain()
+  /* prettier-ignore */
+  chain
+    .methods()
+    .getSet()
+    .schema({
+      eh: 'string|boolean',
+      eh2: 'boolean|string',
+    })
+
+  chain.setEh('string')
+  chain.setEh(false)
+  chain.setEh2('string')
+  chain.setEh2(false)
+  try {
+    chain.setEh(100)
+  }
+  catch (e) {
+    return t.true(e instanceof Error)
+  }
+
+  /* istanbul ignore next: fail */
+  t.fail()
 })
