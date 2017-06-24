@@ -1,6 +1,7 @@
 const ChainedMapBase = require('./ChainedMapBase')
 const traverse = require('./deps/traverse')
 const tester = require('./deps/to-test')
+const isTrue = require('./deps/is/true')
 
 // @TODO: should use matcher,
 // @TODO: should inprove the callback data...
@@ -61,7 +62,7 @@ module.exports = class Traverser extends ChainedMapBase {
     })
 
     this.set('traversed', result)
-    return shouldReturn === true ? result : this
+    return isTrue(shouldReturn) ? result : this
   }
 
   /**

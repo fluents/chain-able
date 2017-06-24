@@ -8,6 +8,7 @@ const isBoolean = require('./is/boolean')
 const isNumber = require('./is/number')
 const isString = require('./is/string')
 const isDate = require('./is/date')
+const isUndefined = require('./is/undefined')
 // was inline for size?
 const isArray = require('./is/array')
 const hasOwnProperty = require('./util/hasOwnProperty')
@@ -214,7 +215,7 @@ function walk(root, cb, immutable) {
       },
       remove(stopHere) {
         // @NOTE safety
-        if (state.parent === undefined) {
+        if (isUndefined(state.parent)) {
           return
         }
         else if (isArray(state.parent.node)) {
@@ -279,7 +280,7 @@ function walk(root, cb, immutable) {
     //
     // use return values to update if defined
     let ret = cb.call(state, state.node)
-    if (ret !== undefined && state.update) state.update(ret)
+    if (!isUndefined(ret) && state.update) state.update(ret)
 
     if (modifiers.before) modifiers.before.call(state, state.node)
 

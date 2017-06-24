@@ -1,5 +1,7 @@
 const TraverseChain = require('../TraverseChain')
 const isObj = require('../deps/is/obj')
+const isTrue = require('../deps/is/true')
+const isUndefined = require('../deps/is/undefined')
 const ObjectKeys = require('../deps/util/keys')
 const dotPropPaths = require('../deps/dot-prop-paths')
 const TRANSFORMERS_KEY = require('../deps/meta/transformers')
@@ -22,7 +24,7 @@ module.exports = (SuperClass, opts) => {
       return new TraverseChain(this)
         .obj(useThis === false
           ? this.entries(true)
-          : useThis === true
+          : isTrue(useThis)
             ? this
             : useThis
         )
@@ -53,11 +55,15 @@ module.exports = (SuperClass, opts) => {
      * @inheritdoc
      * @see this.observe, this.transform
      * @since 1.0.0
+     * @param {Primitive} key
+     * @param {any} val
+     * @param {undefined | string | Array<string>} dotPropKey
+     * @return {Chainable} @chainable
      */
-    set(key, val, dotPropKey = undefined) {
+    set(key, val, dotPropKey) {
       let value = val
 
-      /* prettier-ignore */
+      // get
       const transformers = this.meta(TRANSFORMERS_KEY, key)
       for (let t = 0; t < transformers.length; t++) {
         value = transformers[t].call(this, value, this)
@@ -66,10 +72,11 @@ module.exports = (SuperClass, opts) => {
       super.set(key, value)
 
       const data = {key: dotPropKey, value}
-      if (dotPropKey === undefined) {
+      if (isUndefined(dotPropKey)) {
         data.key = isObj(value) ? dotPropPaths(key, value) : key
       }
 
+      // get
       const observers = this.meta(OBSERVERS_KEY)
       for (let o = 0; o < observers.length; o++) {
         observers[o](data)
@@ -90,6 +97,7 @@ module.exports = (SuperClass, opts) => {
      *    .from({dis: true})
      *  == {dat: true}
      *
+     * @see this.transform
      * @param  {string} from property name
      * @param  {string} to property name to change key to
      * @return {Chain} @chainable

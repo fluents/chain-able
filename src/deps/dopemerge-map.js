@@ -12,40 +12,42 @@ const dopemerge = require('./dopemerge')
 
 function dopemergeMap(obj1, obj2) {
   const maps = [isMap(obj1), isMap(obj2)]
+
+  // eslint-disable-next-line
   const eq = (one, two) => maps[0] == one && maps[1] == two
+
   let dest = obj1
   let src = obj2
-  switch (true) {
-    // both maps
-    case eq(true, true): {
-      src = reduce(obj2)
-      break
-    }
-    // obj1 is map
-    // case maps.includes(true)
-    case eq(true, false): {
-      src = obj2
-      break
-    }
-    // obj2 is map
-    case eq(false, true): {
-      src = reduce(obj2)
-      break
-    }
-    // false, false
-    default: {
-      return dopemerge(obj1, obj2)
-    }
+
+  /* prettier-ignore */
+  // both maps
+  if (eq(true, true)) {
+    src = reduce(obj2)
   }
+  // obj1 is map
+  // case maps.includes(true)
+  else if (eq(true, false)) {
+    src = obj2
+  }
+  // obj2 is map
+  else if (eq(false, true)) {
+    src = reduce(obj2)
+  }
+  // false, false
+  else {
+    return dopemerge(obj1, obj2)
+  }
+
   const keys = Object.keys(src)
-  keys.forEach(key => {
+  for (var i = 0; i < keys.length; i++) {
+    const key = keys[i]
     if (dest.has(key) === false) {
       dest.set(key, src[key])
     }
     else {
       dest.set(key, dopemerge(dest.get(key), src[key]))
     }
-  })
+  }
 
   return dest
 }

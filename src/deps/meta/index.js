@@ -3,6 +3,7 @@
 
 const isSet = require('../is/set')
 const ArrayFrom = require('../util/from')
+const isUndefined = require('../is/undefined')
 const concat = require('../concat')
 const toarr = require('../to-arr')
 const TRANSFORMERS_KEY = require('./transformers')
@@ -30,7 +31,7 @@ function getMeta(_this) {
   /* eslint-disable */
   /* prettier-ignore */
   const ensureInitialized = (name, value) => {
-    if (store[name] !== undefined) return
+    if (!isUndefined(store[name])) return
 
     if (
       name === TRANSFORMERS_KEY ||
@@ -47,13 +48,32 @@ function getMeta(_this) {
     }
   }
 
-  const has = (key, prop = undefined) => {
-    if (prop === undefined) return !!store[key].size
+  /**
+   * @since  4.0.0
+   * @param  {Primitive} key
+   * @param  {Primitive | undefined} [prop=undefined]
+   * @return {boolean}
+   */
+  const has = (key, prop) => {
+    if (isUndefined(prop)) return !!store[key].size
     return store[key].has(prop)
   }
-  const get = (key, prop = undefined) => {
+  /**
+   * @since  4.0.0
+   * @param  {Primitive} key
+   * @param  {Primitive | undefined} [prop=undefined]
+   * @return {any}
+   */
+  const get = (key, prop) => {
     return has(key, prop) ? store[key].get(prop) : []
   }
+  /**
+   * @since  4.0.0
+   * @param  {Primitive} key
+   * @param  {Primitive | undefined} [prop=undefined]
+   * @param  {Primitive | undefined} [value=undefined]
+   * @return {void}
+   */
   const set = (key, prop, value) => {
     const storage = store[key]
     // when it's a set, we have no `prop`, we just have .add
@@ -71,20 +91,20 @@ function getMeta(_this) {
   /**
    * THIS IS BEST!!! A SINGLE MINIFIABLE FUNCTION, NO PROPERTY NESTING
    * @param {Primitive} key
-   * @param {Primitive | undefined} prop
-   * @param {undefined | any} value (when no value, it's a getter)
+   * @param {Primitive | undefined} [prop=undefined]
+   * @param {undefined | any} [value=undefined] (when no value, it's a getter)
    */
-  function meta(key, prop = undefined, value = undefined) {
+  function meta(key, prop, value) {
     ensureInitialized(key)
 
     // if (process.env.NODE_ENV !== 'production') {
     //  console.log('USING META', {key, prop, value})
     // }
 
-    if (value === undefined) {
+    if (isUndefined(value)) {
       // when we want to just access the property, return an array
       // @example `.meta('transformers')`
-      if (prop === undefined) {
+      if (isUndefined(prop)) {
         return store[key].size === 0 ? [] : ArrayFrom(store[key].values())
       } else if (!isSet(store[key])) {
         // @TODO: !!!!!! if (get(key, prop)) isSet?
@@ -103,7 +123,7 @@ function getMeta(_this) {
   }
   // for debugging
   meta.store = store
-  meta.debug = false
+  // meta.debug = false
 
   return meta
 }

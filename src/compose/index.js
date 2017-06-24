@@ -1,3 +1,4 @@
+const isUndefined = require('../deps/is/undefined')
 const Chainable = require('../Chainable')
 const ChainedMap = require('../ChainedMap')
 const Observe = require('./Observe')
@@ -13,7 +14,7 @@ const ComposableExtensions = [Observe, Shorthands, Transform, DotProp]
  * @return {Class | Function}
  */
 function compose(target, extensions) {
-  let extend = extensions === undefined ? ComposableExtensions : extensions
+  let extend = isUndefined(extensions) ? ComposableExtensions : extensions
   let composed = target
 
   if (target && target instanceof Object) {

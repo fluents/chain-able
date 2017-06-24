@@ -1,6 +1,7 @@
 /**
  * @since 2.0.0
  */
+const isUndefined = require('../deps/is/undefined')
 
 module.exports = (SuperClass, opts) => {
   return class Shorthands extends SuperClass {
@@ -24,7 +25,7 @@ module.exports = (SuperClass, opts) => {
      * @return {Chainable} @chainable
      */
     debug(should) {
-      this.meta.debug = should === undefined ? true : should
+      this.meta.debug = isUndefined(should) ? true : should
       return this
     }
 
@@ -52,7 +53,7 @@ module.exports = (SuperClass, opts) => {
      * @return {This} @chainable
      */
     setIfEmpty(name, value) {
-      if (this.has('name') === false) this.set(name, value)
+      if (this.has(name) === false) this.set(name, value)
       return this
     }
 

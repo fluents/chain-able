@@ -1,3 +1,4 @@
+const isUndefined = require('./deps/is/undefined')
 const MergeChain = require('./MergeChain')
 const MethodChain = require('./MethodChain')
 const ChainedMapCore = require('./ChainedMapBase')
@@ -35,7 +36,7 @@ const CM = SuperClass => {
      */
     merge(obj, cb) {
       const merger = MergeChain.init(this)
-      if (cb === undefined) {
+      if (isUndefined(cb)) {
         merger.merge(obj)
       }
       else {

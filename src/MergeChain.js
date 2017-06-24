@@ -2,6 +2,8 @@ const MethodChain = require('./MethodChain')
 const ChainedMapBase = require('./ChainedMapBase')
 const dopemerge = require('./deps/dopemerge')
 const isFunction = require('./deps/is/function')
+const isUndefined = require('./deps/is/undefined')
+const isTrue = require('./deps/is/true')
 const isMapish = require('./deps/is/mapish')
 const ObjectKeys = require('./deps/util/keys')
 
@@ -99,7 +101,7 @@ class MergeChain extends ChainedMapBase {
     const onExisting = this.get('onExisting')
     const onValue = this.get('onValue')
     const opts = this.get('opts') || {}
-    const obj = this.has('obj') === true && !obj2 ? this.get('obj') : obj2 || {}
+    const obj = isTrue(this.has('obj')) && !obj2 ? this.get('obj') : obj2 || {}
     const merger = this.get('merger')
     const sh = this.parent.shorthands || []
     const keys = ObjectKeys(obj)
@@ -126,13 +128,13 @@ class MergeChain extends ChainedMapBase {
 
       // check if it is shorthanded
       // has a value already
-      if (hasKey === true) {
+      if (isTrue(hasKey)) {
         // get that value
         const existing = this.parent.get(key)
 
         // if we have a cb, call it
         // default to dopemerge
-        if (onExisting === undefined) {
+        if (isUndefined(onExisting)) {
           // console.log('no onExisting', {existing, value, key})
           set(key, merger(existing, value, opts))
         }
@@ -157,9 +159,9 @@ class MergeChain extends ChainedMapBase {
       const value = obj[key]
       const method = this.parent[key]
 
+      /* istanbul ignore next: sourcemaps trigger istanbul here incorrectly */
       // use onValue when set
       if (!onValue(value, key, this)) {
-        // console.log('used onValue returning false')
         continue
       }
       else if (isMapish(method)) {

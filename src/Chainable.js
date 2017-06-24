@@ -4,18 +4,21 @@ const Primitive = require('./deps/symbols/primitive')
 const isPrototypeOf = require('./deps/is/prototypeOf')
 const isMap = require('./deps/is/map')
 const isSet = require('./deps/is/set')
+const isUndefined = require('./deps/is/undefined')
 const isString = require('./deps/is/string')
 const ObjectKeys = require('./deps/util/keys')
 const ObjectDefine = require('./deps/define')
 const ignored = require('./deps/ignored')
+const ENV_DEVELOPMENT = require('./deps/env/dev')
 
 const F = Function.prototype
 const shouldClear = (key, property) =>
-  !ignored(key) && (isMap(property) || isSet(property) || property.store)
+  !ignored(key) &&
+  (isMap(property) || isSet(property) || (property && property.store))
 
 const C = SuperClass => {
   /* istanbul ignore next: dev */
-  if (process.env.NODE_ENV === 'development') {
+  if (ENV_DEVELOPMENT) {
     if (!SuperClass || !SuperClass.prototype) {
       console.log({SuperClass})
       throw new TypeError('did not have a super class')
@@ -65,7 +68,7 @@ const C = SuperClass => {
           if (entries) key = keys[i]
 
           // done - no more values, or iteration reached size
-          if ((key === undefined && val === undefined) || size <= i) {
+          if ((isUndefined(key) && isUndefined(val)) || size <= i) {
             return {value: undefined, done: true}
           }
 
@@ -217,12 +220,12 @@ const C = SuperClass => {
     ObjectDefine(Chain, Instance, {
       enumerable: false,
       value: instance => {
-        return (
+        return !!(
           instance &&
-          (isPrototypeOf(instance, Chain) ||
-            !!instance.className ||
-            !!instance.store ||
-            !!instance.meta)
+          (isPrototypeOf(Chain, instance) ||
+            instance.className ||
+            instance.store ||
+            instance.meta)
         )
       },
     })

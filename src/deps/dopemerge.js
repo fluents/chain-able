@@ -1,6 +1,8 @@
 const isPureObj = require('./is/pureObj')
 const isArray = require('./is/array')
 const toS = require('./is/toS')
+const isNull = require('./is/null')
+const isTrue = require('./is/true')
 const ObjectKeys = require('./util/keys')
 const ObjectAssign = require('./util/assign')
 const isUndefined = require('./is/undefined')
@@ -8,7 +10,21 @@ const isUndefined = require('./is/undefined')
 // const isRegExp = require('./is/regexp')
 // const isDate = require('./is/date')
 
-const ezType = x => (isArray(x) ? 'array' : typeof x)
+/**
+ * @desc when Array -> 'array'
+ *       when null -> 'null'
+ *       else `typeof x`
+ * @param  {any} x
+ * @return {string} type
+ */
+/* prettier-ignore */
+const ezType = x => {
+  return isArray(x)
+    ? 'array'
+    : isNull(x)
+      ? 'null'
+      : typeof x
+}
 
 // @TODO convert forEach for faster loops
 function isMergeableObj(val) {
@@ -24,7 +40,7 @@ function emptyTarget(val) {
   return isArray(val) ? [] : {}
 }
 function cloneIfNeeded(value, optsArg) {
-  return optsArg.clone === true && isMergeableObj(value)
+  return isTrue(optsArg.clone) && isMergeableObj(value)
     ? deepmerge(emptyTarget(value), value, optsArg)
     : value
 }
@@ -126,8 +142,8 @@ function dopemerge(obj1, obj2, opts) {
 
   // check one then check the other
   // @TODO might want to push undefined null nan into array but...
-  if (ignoreTypes.includes(types[0]) === true) return obj2
-  if (ignoreTypes.includes(types[1]) === true) return obj1
+  if (isTrue(ignoreTypes.includes(types[0]))) return obj2
+  if (isTrue(ignoreTypes.includes(types[1]))) return obj1
 
   const eq = eqCurry(types)
 

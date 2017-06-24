@@ -1,40 +1,45 @@
+/* eslint complexity: "off" */
+/* eslint func-style: "off" */
+/* eslint no-proto: "off" */
+/* eslint consistent-return: "off" */
+/* eslint eqeqeq: "off" */
+
 const traverse = require('../traverse')
-const toS = require('../is/toS')
+const isNullOrUndefined = require('../is/nullOrUndefined')
+const isTrue = require('../is/true')
 const isFunction = require('../is/function')
 const isRegExp = require('../is/regexp')
 const isDate = require('../is/date')
+const isPureObj = require('../is/pureObj')
+const isObjLoose = require('../is/objLoose')
 const hasOwnProperty = require('../util/hasOwnProperty')
 const ObjectKeys = require('../util/keys')
 
-// function isArguments(x) {
-//   return toS(x) === '[object Arguments]'
-// }
-// function sameKeysLength(x, y) {
-//   return Object.keys(x).length === Object.keys(y).length
-// }
+// const isArguments = x => toS(x) === '[object Arguments]'
+// const sameKeysLength = (x, y) => Object.keys(x).length === Object.keys(y).length
 
 /* prettier-ignore */
 module.exports = function(a, b, loose) {
-  var equal = true
-  var node = b
+  let equal = true
+  let node = b
 
   traverse(a).forEach(function(y) {
-    var notEqual = function() {
+    const notEqual = function() {
       equal = false
       // this.stop();
-      return undefined
+      // return undefined;
     }
 
     // if (node === undefined || node === null) return notEqual();
     if (!this.isRoot) {
       // if (!Object.hasOwnProperty.call(node, this.key)) return notEqual()
-      if (typeof node !== 'object') {
+      if (!isObjLoose(node)) {
         return notEqual()
       }
       node = node[this.key]
     }
 
-    var x = node
+    let x = node
 
     this.post(function() {
       node = x
@@ -52,19 +57,19 @@ module.exports = function(a, b, loose) {
         notEqual()
       }
     }
+    else if (isNullOrUndefined(x) || isNullOrUndefined(y)) {
+      if (x !== y) {
+        notEqual()
+      }
+    }
     else if (typeof x !== typeof y) {
       // if (process.env.NODE_ENV !== 'production') {
       //   console.log('diff types')
       // }
-      if (loose === true && x == y) {
+      if (isTrue(loose) && x == y) {
         // ignore
       }
       else {
-        notEqual()
-      }
-    }
-    else if (x === null || y === null || x === undefined || y === undefined) {
-      if (x !== y) {
         notEqual()
       }
     }
@@ -85,13 +90,14 @@ module.exports = function(a, b, loose) {
         notEqual()
       }
     }
-    else if (typeof x === 'object') {
-      if (toS(y) === '[object Arguments]' || toS(x) === '[object Arguments]') {
-        if (toS(x) !== toS(y)) {
-          notEqual()
-        }
-      }
-      else if (isRegExp(x) || isRegExp(y)) {
+    else if (isPureObj(x)) {
+      // @NOTE: this is never called
+      // if (toS(y) === '[object Arguments]' || toS(x) === '[object Arguments]') {
+      //   if (toS(x) !== toS(y)) {
+      //     notEqual()
+      //   }
+      // }
+      if (isRegExp(x) || isRegExp(y)) {
         if (!x || !y || x.toString() !== y.toString()) {
           notEqual()
         }
@@ -106,14 +112,13 @@ module.exports = function(a, b, loose) {
         }
       }
       else {
-        var kx = ObjectKeys(x)
-        var ky = ObjectKeys(y).length
-        if (kx.length !== ky) {
+        const xKeys = ObjectKeys(x)
+        const yKeys = ObjectKeys(y).length
+        if (xKeys.length !== yKeys) {
           return notEqual()
         }
-        for (var i = 0; i < kx.length; i++) {
-          var k = kx[i]
-          if (!hasOwnProperty(y, k)) {
+        for (let k = 0; k < xKeys.length; k++) {
+          if (!hasOwnProperty(y, xKeys[k])) {
             notEqual()
           }
         }

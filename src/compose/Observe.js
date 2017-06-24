@@ -4,6 +4,7 @@ const eq = require('../deps/traversers/eq')
 const match = require('../deps/matcher')
 const getPathSegments = require('../deps/dot-segments')
 const dot = require('../deps/dot-prop')
+const OBSERVERS_KEY = require('../deps/meta/observers')
 
 // scoped clones
 let objs = new Map()
@@ -31,7 +32,7 @@ module.exports = (SuperClass, opts) => {
      *     .observe('eh', data => data.eh === true)
      *     .eh(true)
      *
-     * @param  {string} properties
+     * @param  {Matchable} properties
      * @param  {Function} fn
      * @return {Chain} @chainable
      */
@@ -41,7 +42,7 @@ module.exports = (SuperClass, opts) => {
       let data = {}
 
       /* prettier-ignore */
-      return this.meta('observers', changed => {
+      return this.meta(OBSERVERS_KEY, changed => {
         // match the keys, make the data out of it
         const m = match(changed.key, props)
         for (let i = 0; i < m.length; i++) {

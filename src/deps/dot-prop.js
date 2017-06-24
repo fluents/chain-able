@@ -3,7 +3,9 @@
 // https://github.com/sindresorhus/is-obj/blob/master/index.js
 const isObj = require('./is/obj')
 const isArray = require('./is/array')
+const isNullOrUndefined = require('./is/nullOrUndefined')
 const isEnumerable = require('./is/enumerable')
+const isUndefined = require('./is/undefined')
 const getPathSegments = require('./dot-segments')
 
 // const isDot = require('./is/dot')
@@ -14,7 +16,7 @@ const isDottable = (obj, path) =>
 module.exports = {
   get(obj, path, value) {
     if (!isDottable(obj, path)) {
-      return value === undefined ? obj : value
+      return isUndefined(value) ? obj : value
     }
 
     const pathArr = getPathSegments(path)
@@ -26,7 +28,7 @@ module.exports = {
 
       obj = obj[pathArr[i]]
 
-      if (obj === undefined || obj === null) {
+      if (isNullOrUndefined(obj)) {
         // `obj` is either `undefined` or `null` so we want to stop the loop, and
         // if this is not the last bit of the path, and
         // if it did't return `undefined`

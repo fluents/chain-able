@@ -1,4 +1,6 @@
 const ChainedMap = require('./ChainedMap')
+const isUndefined = require('./deps/is/undefined')
+const isTrue = require('./deps/is/true')
 
 /**
  * @inheritdoc
@@ -44,6 +46,7 @@ class FactoryChain extends ChainedMap {
     return this
   }
 
+  /* istanbul ignore next: sourcemaps trigger istanbul here incorrectly */
   /**
    * @param  {Primitive} name
    * @param  {Function | null | undefined} [cb=undefined]
@@ -55,14 +58,14 @@ class FactoryChain extends ChainedMap {
     // so if we call a property twice,
     // chain back up to parent,
     // add a new chain
-    if (this[name] !== undefined && this.has('chainUpDown') === true) {
+    if (!isUndefined(this[name]) && isTrue(this.has('chainUpDown'))) {
       this.end()
       return this.get('chainUpDown')()[name](cb)
     }
 
     // @TODO need to spread as needed
     this[name] = args => {
-      if (cb === undefined) this.data[name] = args
+      if (isUndefined(cb)) this.data[name] = args
       else cb(args)
 
       this._calls.add(name)
@@ -79,18 +82,20 @@ class FactoryChain extends ChainedMap {
    * @return {any}
    */
   getData(prop) {
-    return prop === undefined ? this.data : this.data[prop]
+    /* istanbul ignore next: sourcemaps trigger istanbul here incorrectly */
+    return isUndefined(prop) ? this.data : this.data[prop]
   }
 
+  /* istanbul ignore next: sourcemaps trigger istanbul here incorrectly */
   /**
    * @since 2.0.0
    * @desc adds `.end` which checks how many methods have been called
    * @param  {Object} [obj={}]
    * @return {FactoryChain} @chainable
    */
-  factory(obj = {}) {
+  factory(obj) {
     this.end = arg => {
-      if (obj.end !== undefined) {
+      if (obj && !isUndefined(obj.end)) {
         const ended = obj.end(this.data, this.parent, this, arg)
         if (ended && ended !== this) return ended
       }
