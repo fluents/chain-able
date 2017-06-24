@@ -3,15 +3,15 @@ const traverse = require('./traverse')
 const isObj = require('./is/obj')
 const isArray = require('./is/array')
 
-// https://stackoverflow.com/questions/1947995/when-should-i-use-delete-vs-setting-elements-to-null-in-javascript
-// https://v8project.blogspot.ca/2015/08/getting-garbage-collection-for-free.html
-// https://github.com/natewatson999/js-gc
-// https://github.com/siddMahen/node-gc
-// http://buildnewgames.com/garbage-collector-friendly-code/
-// https://stackoverflow.com/questions/27597335/ensuring-object-can-be-garbage-collected
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management
-
 /**
+ * @see https://stackoverflow.com/questions/1947995/when-should-i-use-delete-vs-setting-elements-to-null-in-javascript
+ * @see https://v8project.blogspot.ca/2015/08/getting-garbage-collection-for-free.html
+ * @see https://github.com/natewatson999/js-gc
+ * @see https://github.com/siddMahen/node-gc
+ * @see http://buildnewgames.com/garbage-collector-friendly-code/
+ * @see https://stackoverflow.com/questions/27597335/ensuring-object-can-be-garbage-collected
+ * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management
+ *
  * @TODO: , blacklist = []
  * @TODO: put all GC events into a cached map and debounce the operation
  *
@@ -21,20 +21,20 @@ const isArray = require('./is/array')
  * @param {Array<string>} ignore
  * @return {void}
  */
-function markForGarbageCollection(obj, ignore = ['parent']) {
-  // if (!isObj(obj)) return
-
+function markForGarbageCollection(obj) {
   let props = ObjectProperties(obj)
   if (props.length > 10) {
     traverse(obj).forEachs(traverser => {
-      const {value, path} = traverser
+      const {value} = traverser
 
-      const shouldIgnore = path
-        .map(pathPart => ignore.includes(pathPart))
-        .includes(true)
+      // @NOTE: just delete the main path first, later we can use cleaner
+      // const shouldIgnore = path
+      //   .map(pathPart => ignore.includes(pathPart))
+      //   .includes(true)
+      //   !shouldIgnore &&
 
       // ensure the longest paths in traverser are used...
-      if (!shouldIgnore && !isArray(value) && !isObj(value)) {
+      if (!isArray(value) && !isObj(value)) {
         traverser.remove()
       }
     })
