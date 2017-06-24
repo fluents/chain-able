@@ -20,6 +20,7 @@
     "rollup": "rollup",
     "ava": "ava",
     "webpack": "webpack --verbose",
+    "dox": "doxdox 'src/**/*.js' --layout markdown --output docs/bits/doxdox.md",
     "prepublish": "npm run build && npm run pretest && npm run cov && npm run test:built",
     "pretest": "npm run strip:all && npm run buble:all",
     "pre:test:only": "npm run buble:tests",
@@ -93,7 +94,7 @@
   },
   "ava": {
     "__files": [
-      "test-dist/schema.js"
+      "test-dist/deps/reduce.js"
     ],
     "_files": [
       "test-dist/built.js",
@@ -101,6 +102,7 @@
     ],
     "files": [
       "!index.*.js",
+      "test-dist/api.js",
       "test-dist/schema.js",
       "test-dist/Chainable.js",
       "test-dist/ChainedSet.js",
@@ -197,6 +199,7 @@
     "coveralls": "^2.13.1",
     "dargs": "^5.1.0",
     "deepmerge": "^1.3.2",
+    "doxdox": "^2.0.3",
     "eslint": "^4.0.0",
     "eslint-config-chain-able": "^1.0.0",
     "eslint-plugin-typescript": "^0.1.0",

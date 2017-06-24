@@ -48,6 +48,7 @@ if (clean) {
       'MethodChain',
       'Chainable',
       'ChainedMap',
+      'ChainedMapBase',
       'FactoryChain',
       'MergeChain',
       'ChainedSet',
@@ -229,6 +230,11 @@ async function test() {
   log.startTimer('test')
   await cli.test()
   log.stopTimer('test')
+  if (cov) {
+    log.startTimer('cov')
+    await cli.cov()
+    log.stopTimer('cov')
+  }
   // cov
 }
 

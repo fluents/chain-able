@@ -111,6 +111,7 @@ if (should.production) {
   plugins.push(
     replace({
       'process.env.NODE_ENV': JSON.stringify('production'),
+      'debug': false,
     })
   )
 }
