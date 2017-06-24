@@ -6,12 +6,12 @@
  * @param  {Object} validators
  */
 
-const is = require('../deps/is')
-const isArray = require('../deps/is/array')
-const isReal = require('../deps/is/real')
-const isFunction = require('../deps/is/function')
-const ObjectKeys = require('../deps/util/keys')
-const ChainedMap = require('../ChainedMapBase')
+const is = require('../is')
+const isArray = require('../is/array')
+const isReal = require('../is/real')
+const isFunction = require('../is/function')
+const ObjectKeys = require('../util/keys')
+const ChainedMap = require('../../ChainedMapBase')
 
 let validators = new ChainedMap()
 
@@ -94,7 +94,7 @@ const factory = fullKey => {
   }
 
   if (!has(`!${key}`)) {
-    set(`!${key}`, v => !get(key[key])(v))
+    set(`!${key}`, v => !fn(v))
   }
 
   return get(fullKey)

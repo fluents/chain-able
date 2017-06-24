@@ -1,29 +1,38 @@
+/**
+ * @TODO clarify .set vs .call
+ * @see https://github.com/iluwatar/java-design-patterns/tree/master/property
+ * @see https://github.com/iluwatar/java-design-patterns/tree/master/prototype
+ */
+/* eslint-disable complexity */
+/* eslint-disable import/max-dependencies */
+
 // core
 const ChainedMap = require('./ChainedMapBase')
 const meta = require('./deps/meta')
 const DECORATED_KEY = require('./deps/meta/decorated')
 const SHORTHANDS_KEY = require('./deps/meta/shorthands')
-// .
-const toarr = require('./deps/to-arr')
-const argumentor = require('./deps/argumentor')
-// error
-const encase = require('./deps/encase')
-const camelCase = require('./deps/camel-case')
-const typeError = require('./deps/type-error')
-// is
-const isObj = require('./deps/is/obj')
-const isArray = require('./deps/is/array')
-const isFunction = require('./deps/is/function')
-const validatorFactory = require('./deps/validators')
-const traverse = require('./deps/traverse')
+const ENV_DEVELOPMENT = require('./deps/env/dev')
+// schema
+const validatorMethodFactory = require('./deps/validators/methodFactory')
+const schemaFactory = require('./deps/validators/schemaFactory')
+const methodEncasingFactory = require('./deps/encase/factory')
 // obj
 const hasOwnProperty = require('./deps/util/hasOwnProperty')
 const getDescriptor = require('./deps/util/getDescriptor')
 const ObjectDefine = require('./deps/define')
 const ObjectKeys = require('./deps/util/keys')
 const ObjectAssign = require('./deps/util/assign')
+// utils
+const toarr = require('./deps/to-arr')
+const argumentor = require('./deps/argumentor')
+const camelCase = require('./deps/camel-case')
 const markForGarbageCollection = require('./deps/gc')
-const dot = require('./deps/dot-prop')
+// is
+const isObj = require('./deps/is/obj')
+const isArray = require('./deps/is/array')
+const isFunction = require('./deps/is/function')
+const isUndefined = require('./deps/is/undefined')
+const isTrue = require('./deps/is/true')
 
 // const timer = require('fliplog').fliptime()
 
@@ -39,81 +48,6 @@ function aliasFactory(name, parent, aliases) {
     }
   }
 }
-
-const schemaFactory = nestedSchema => argForValidation => {
-  let valid = true
-  traverse(nestedSchema).forEach(function(x) {
-    const key = this.key
-    const validator = validatorFactory(x)
-    if (!validator(dot.get(argForValidation, key))) {
-      valid = false
-      this.stop()
-    }
-  })
-  return valid
-}
-
-/**
- * @since 4.0.0
- *
- * @TODO: only encase on option
- * @TODO: define .name on the function
- *
- * @desc create a validator factory for types
- *
- * @param  {string} name
- * @param  {Object | Function} parent
- * @param  {Object} built
- * @return {MethodChain} @chainable
- */
-function methodEncasingFactory(name, parent, built, functionToEncase, type) {
-  const error = typeError(name, type, functionToEncase, parent)
-
-  // require('fliplog').data({validator: validator.toString(), type}).exit()
-  const encased = encase(functionToEncase)
-
-  // our configured functions, with fallback defaults
-  const set = built.call || built.set
-  const onValid = built.onValid || set
-  const onInvalid = built.onInvalid || (arg => error(arg).reThrow())
-
-  // eslint-disable-next-line func-style
-  return function typedOnCall(arg) {
-    // nodejs way - error first, data second, instance last
-    const callInvalid = e => onInvalid.call(this, error(arg, e), arg, this)
-
-    encased
-      .onInvalid(e => {
-        return callInvalid(e)
-      })
-      .onValid(result => {
-        // require('fliplog').data({result, arg}).exit()
-
-        // we'll be opinionated and say either `false` or `throw`
-        if (result === false) return callInvalid()
-
-        // @NOTE: onValid defaults to this... this.set(name, arg)
-        return onValid.call(this, arg, this)
-      })
-      .call(this, arg)
-
-    return this
-  }
-}
-
-function validatorMethodFactory(name, parent, built) {
-  // core domain of this fn, used by validators and configured fns
-  const type = built.type
-
-  // create our validator in the factory,
-  // then encase it, prepare a TypeError factory
-  const validator = validatorFactory(type)
-
-  return methodEncasingFactory(name, parent, built, validator, type)
-}
-
-// https://github.com/iluwatar/java-design-patterns/tree/master/property
-// https://github.com/iluwatar/java-design-patterns/tree/master/prototype
 
 // @TODO: to use as a function
 // function _methods() {}
@@ -260,7 +194,7 @@ class MethodChain extends ChainedMap {
    *       observables for all the way down...
    */
   schema(obj) {
-    const {onInvalid, onValid} = this.entries()
+    const {onInvalid, onValid, define, getSet} = this.entries()
 
     const keys = ObjectKeys(obj)
 
@@ -271,14 +205,16 @@ class MethodChain extends ChainedMap {
       let builder = this.parent.method(key)
       if (onInvalid) builder.onInvalid(onInvalid)
       if (onValid) builder.onValid(onValid)
+      if (define) builder.define()
+      if (getSet) builder.getSet()
 
       if (isObj(value)) {
-        const traversableValidator = schemaFactory(value)
+        const traversableValidator = schemaFactory(key, value)
         traversableValidator.schema = value
         builder.type(traversableValidator)
       }
       else {
-        builder.type(value).define()
+        builder.type(value)
       }
 
       this.parent.meta('schema', key, value)
@@ -315,10 +251,11 @@ class MethodChain extends ChainedMap {
     delete this.parent
     markForGarbageCollection(this)
 
+    // very fast - timer & ensuring props are cleaned
     // timer.stop('gc').log('gc')
     // require('fliplog').quick(this)
 
-    return returnValue === undefined ? parent : returnValue
+    return isUndefined(returnValue) ? parent : returnValue
   }
 
   /**
@@ -328,6 +265,9 @@ class MethodChain extends ChainedMap {
    *
    * @since 4.0.0
    * @protected
+   * @param {Primitive} name
+   * @param {Object} parent
+   * @param {Object} built
    */
   _defaults(name, parent, built) {
     // defaults
@@ -355,7 +295,8 @@ class MethodChain extends ChainedMap {
 
   /**
    * @protected
-   * @TODO: add to shorthands..
+   * @TODO: add to .meta(shorthands)
+   * @TODO: reduce complexity if perf allows
    * @NOTE: scoping here adding default functions have to rescope arguments
    * @param {Primitive} name
    * @param {Object} parent
@@ -433,12 +374,12 @@ class MethodChain extends ChainedMap {
         // eslint-disable-next-line prefer-rest-params
         const result = ref.apply(parent, args)
 
-        return callReturns === true
+        return isTrue(callReturns)
           ? returns.apply(parent, [result].concat(args))
           : returns
       }
     }
-    if (initial !== undefined) {
+    if (!isUndefined(initial)) {
       parent.set(name, initial)
     }
 
@@ -450,7 +391,7 @@ class MethodChain extends ChainedMap {
      */
 
     /* istanbul ignore next: dev */
-    if (process.env.NODE_ENV !== 'production') {
+    if (ENV_DEVELOPMENT) {
       ObjectDefine(get, 'name', {value: camelCase(`get-${name}`)})
       ObjectDefine(set, 'name', {value: camelCase(`set-${name}`)})
       ObjectDefine(call, 'name', {value: camelCase(`call-${name}`)})
@@ -475,6 +416,15 @@ class MethodChain extends ChainedMap {
     // --- could be a method too ---
     let descriptor = shouldDefineGetSet ? {get, set} : {value: method}
     if (existing) descriptor = ObjectAssign(existing, descriptor)
+
+    // [TypeError: Invalid property descriptor.
+    // Cannot both specify accessors and a value or writable attribute, #<Object>]
+    if (descriptor.value && descriptor.get) {
+      delete descriptor.value
+    }
+    if (!isUndefined(descriptor.writable)) {
+      delete descriptor.writable
+    }
 
     const target = this.get('decorationTarget') || parent
 
@@ -519,8 +469,8 @@ class MethodChain extends ChainedMap {
     if (!parentToDecorate) {
       parentToDecorate = this.parent.parent
     }
-    else if (!parentToDecorate) {
-      if (process.env.NODE_ENV === 'development') {
+    if (!parentToDecorate) {
+      if (ENV_DEVELOPMENT) {
         throw new Error('must provide parent argument')
       }
       return this
@@ -528,7 +478,9 @@ class MethodChain extends ChainedMap {
     this.decorationTarget(parentToDecorate)
 
     // can use this to "undecorate"
-    parentToDecorate.meta = parentToDecorate.meta || meta(parentToDecorate)
+    if (!parentToDecorate.meta) {
+      parentToDecorate.meta = meta(parentToDecorate)
+    }
 
     // default returns result of calling function,
     // else .parentToDecorate
