@@ -1,0 +1,127 @@
+# 4.0.0 https://github.com/fluents/chain-able/releases/tag/v4.0.0
+- MAJOR
+  - .when(string) string now checks .has
+  - moved .clean
+  - observable dot prop
+  - caching
+  - removed many classes
+  - MethodChain
+    - removed .extendsGetSet, .defineGetSet, .extendIncrement, .extendWith, .extendAlias, .decorateParent, .typed
+    - replaced ^ with .alias(), .getSet(), .decorate(obj), .define(), .autoIncrement(), .default(), .initial(), .bind(), .encase(), .call(), .get(), .set(), .returns(), .camelCase(), .factory(for extending), .build with + support
+    - removed compose/Extend, compose/Child, compose/immutable, compose/Extend, compose/Types, compose/Symbols, compose/Debug, compose/define
+    - .schema feature
+      - optional types, array types, or types
+  - integrated histories from deepmerge, dot-prop, traverse-js, webpack-chain (all commit hashes change, extremely likely they are not used anywhere, even so there is a branch backup so hardly 100% breaking)
+  - took out unsable-to-be-used method `instanceof` static instance on Chainable
+- PATCH
+  - tsc for dev version
+  - exported more deps
+  - fixed `hasInstance` Object.prototype.instanceOf.call in Chainable
+  - 🤸 split ChainedMap for circular usage (in MethodChain & MergeChain & TraverseChain)
+  - inlined methods in MergeChain & TraverseChain
+- MINOR
+  - fix typo on `.setIfEmpty`
+  - dot-prop array paths
+  - validator factories
+  - traverser
+    - eq: optimized typechecks, const & let, size
+    - traverse-js: optimized argument slicing, const & let, jsdocs
+  - many more tests
+    - covered reduce for tests
+    - covered
+    - all old tests updated to new .method api
+    -
+  - fix sourcemaps for tests for more accurate coverage (was failing the unused built code such as Object.create)
+- merge
+  - covered all branches of dopemerge tests
+  - fixed `null` ignored type on ezTypes in dopemerge
+  - renamed .dopemerge -> .merge for exports
+  - optimized forEach loops
+  - optimized switch case into if-else for uglification
+  - map & set merger (unused)
+- build
+  - webpack build config experiment to check new scope hoisting size
+  - fusebox updates - close to rollup size
+  - optimizejs
+- utils
+  - argumentor util (used in traverser, from deopt checks)
+  - concat util
+  - move out old `isNode` into utils from Chainable
+  - 🆕🖇 isMapish util
+  - 🖇 entries util
+  - ⚡ 🖇  isIgnored as a util
+  - isEnumerable, isPrototypeOf, isEmptyArray, isUndefined, isIterator (merged to kind-of repo)
+  - garbage collector
+  - reduce (moved from Chainable)
+  - clean (moved from Chainable)
+  - encase (moved from compose/Extend)
+- dot-prop
+  - re-add caching
+  - observable
+  - dot-prop paths tests
+  - dot-prop paths experiment for alternative regex implementation & minor optimization for size
+  - dot-prop paths traverser to gather paths of objects
+- matcher
+  - re-add caching
+
+# 3.1.0 https://github.com/fluents/chain-able/releases/tag/3.1.0
+- stress test https://github.com/aretecode/stress-test
+- export more things
+- add magic glob matcher forked from matcher
+- more tests
+- stress tests
+- improved traversal
+- fixed typos / bad spelling
+- decorator support / top-down composable
+- full typescript definitions
+- convoluted crazy rollup typescript buble build script running...
+- ...all while keeping the same size :-D
+
+# 3.0.0 https://github.com/fluents/chain-able/releases/tag/v3.0.0
+- MAJOR
+  - 🏷 version bump 📜 minor scripts
+  - 🆙.remapKey -> .remap (accepts an object, or .remapKey)
+  - 🗑🤖 .from in compose/Transform removed, transformers work in .merge, .set, .from, etc.
+  - 🗑 removed .whitelist from compose/Traverse
+  - transformers[key] is now an array, to .reduce values with, vs replacing and having only 1 transformer per key
+- PATCH:
+  - allow .transform to take in any traversable, nested conditional: compatible boolean to still use .entries(true) | this, but when an iteratable is passed in, returns traverser chain on that iteratable
+- MINOR:
+  - 📦⬇ remove izz
+  - 🆙🔬    update traverse tests with inlined equals
+  - 🆙🔬🗺 update remap test
+  - 📘🔬 example mobx test
+  - 🆙🔬👂 update & add more observe tests
+  - 🖇🔬 utils/is tests
+  - 🆙🎼🔬 update & add more dot-prop tests
+  - 🚨🔬⚒ failing merge tests that wanted .clone fixed
+  - 💣🛅🏗 fuse-box file added for building with quantum
+  - 📦🐈 yarn.lock
+  - 🏗 Makefile
+  - 👕⚒ lint autofixes & 📝 todo in 🎼 compose/Define
+  - 👾♻️⚡ simplify the symbol & typechecks in core lib
+  	- abstract out `reduce` for maps & `isObjWithKeys` into `is`
+  - 🎁⚒ dot-prop implemented with .get .set .has .delete in 🎼 compose/DotProp
+  - ⚒👂 observables fixed, only calls on changed
+    - ⚖️ ===? deps/transformers/eq added for traversable minimal deepEquals implementation
+  - 🏛️  refactor traverse with deps/is
+  - 🖇   traverser util for cloning, unused
+  - ❌🌊 remove some minor flowtypes for easier usage from raw source
+  - 👾 dopemerge simplified
+  - 📒🚚🖇 symbols & is[X] moved into individual files
+  	- 🖇🎯 to-test util (str->regex/fn)
+  	- 🖇🎯 str-to-regex util
+  	- 🖇🗺 map reduce util
+  	- 🖇🤸 split dot-prop-path-segments util
+  	- 🖇🆙 minor dot-prop change to use deps/is
+  	- 🍬 .getDecoration 🖇 use is & other deps
+    - index files for the folders are compat for experimentation when needed
+    - reduces file size
+      - instead of assigning data to an object & spreading the data into named variables
+      - additionally smaller variable names when uniquing those scoped variables in each file when bundling into a single file
+      - smaller functions are optimized faster (usually) by v8
+      - moves them out of every instantiated object as a property and only uses reference by scope
+      - ♻️⚡ abstract out `encase` fn
+  - 🔊 changelog added
+  - 🚨🔬 failing tests for traversing a map & set without transforming with .entries & .values first
+  - ⛑🛅🔬 safety in built for .entries, yay tests
