@@ -1,5 +1,7 @@
 'use strict'
 
+const isTrue = require('../is/true')
+
 /**
  * @see https://github.com/fluture-js/Fluture#encase
  * @since 4.0.0 <- moved out into a dep
@@ -17,7 +19,7 @@ const encase = call => (onValid, onInvalid, rethrow) => (a, b, c) => {
   }
   catch (error) {
     if (onInvalid) return onInvalid(error)
-    if (rethrow === true) throw error
+    if (isTrue(rethrow)) throw error
     else return error
   }
 }
@@ -35,8 +37,15 @@ module.exports = call => {
   let onValid
   let rethrow
 
-  const config = arg => {
-    return encased(onValid, onInvalid, rethrow)(arg)
+  // @TODO;
+  // let noTryCatch
+  // config.noTryCatch = bool => {
+  //   noTryCatch = bool
+  // }
+
+  const config = (a, b, c) => {
+    // console.log('calling encased scope', {a, b, c})
+    return encased(onValid, onInvalid, rethrow)(a, b, c)
   }
 
   config.onInvalid = fn => {
@@ -57,5 +66,3 @@ module.exports = call => {
 
   return config
 }
-
-// module.exports = encase
