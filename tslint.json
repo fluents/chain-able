@@ -1,0 +1,16 @@
+{
+	"rules": {
+		"indent": 2,
+		"no-unused-expression": false,
+		"no-duplicate-variable": true,
+		"no-unused-variable": true,
+		"no-consecutive-blank-lines": [
+			true
+		],
+		"class-name": true,
+		"semicolon": [
+			"never"
+		],
+		"triple-equals": false
+	}
+}
