@@ -1,11 +1,14 @@
-import {PlainObj, Matchable} from './generic'
+import {
+  PlainObj,
+  Matchable,
+  Iterator,
+  MapIterator,
+  SetIterator,
+  ValidMap,
+  ValidSet,
+  ValidCollectionKey,
+} from './generic'
 
-// https://basarat.gitbooks.io/typescript/docs/iterators.html
-interface Iterator<T> {
-	next(value?: any): IteratorResult<T>
-	return?(value?: any): IteratorResult<T>
-	throw?(e?: any): IteratorResult<T>
-}
 // https://github.com/Microsoft/TypeScript/issues/2491
 // enum ObjectWithKeys {
 // 	// [prop: string]: 0...255
@@ -19,15 +22,17 @@ export type PropertyIsEnumerable = boolean
 export type PrototypeOf = boolean
 export type ObjectWithKeys = PlainObj
 
-export type Setish = Set<any>
-export type Mapish = Map<any, any>
-export type MapIterator = Iterator<any>
-export type SetIterator = Iterator<any>
+export interface MapishEntries {
+  (arg: any): Array<string | any>
+}
+export interface Mapish extends ValidMap {
+  // entries: MapishEntries | ValidCollectionKey
+}
 export type notEmptyArray = [any]
 
 // https://github.com/Microsoft/TypeScript/issues/1289
 export function toArray(arg): any[]
-export function notEmptyArray(o: any): o is notEmptyArray
+export function isNotEmptyArray(o: any): o is notEmptyArray
 
 export function isString(o: any): o is string
 export function isNumber(o: any): o is number
@@ -46,7 +51,7 @@ export function isEnumerable(o: any, prop: any): PropertyIsEnumerable
 export function isError(o: any): o is Error
 
 export function isMap(o: any): o is Mapish
-export function isSet(o: any): o is Setish
+export function isSet(o: any): o is ValidSet
 export function isIterator(o: any): o is MapIterator | SetIterator
 
 export function isDate(o: any): o is Date
@@ -68,32 +73,34 @@ export function isClass(o: any): 'o.toString().includes(class)' | boolean
 export function isMapish(o: any): o is Mapish
 
 export const is = {
-	isArray,
-	notEmptyArray,
-	isString,
-	isNumber,
-	isFunction,
-	isObj,
-	isObjWithKeys,
-	isEnumerable,
-	isError,
-	isMap,
-	isSet,
-	isIterator,
-	isDate,
-	isRegExp,
-	isPureObj,
-	isSymbol,
-	isReal,
-	isBoolean,
-	toS,
+  isArray,
+  isString,
+  isNumber,
+  isFunction,
+  isObj,
+  isObjWithKeys,
+  isEnumerable,
+  isError,
+  isMap,
+  isSet,
+  isIterator,
+  isDate,
+  isRegExp,
+  isPureObj,
+  isSymbol,
+  isReal,
+  isBoolean,
+  isNull,
+  isUndefined,
+  isTrue,
+  toS,
 
-	isStringOrNumber,
-	isNull,
-	isUndefined,
-	isNullOrUndef,
-	isTrue,
-	isFalse,
-	isDot,
-	isMapish,
+  // only available as `chain-able/deps/is/*` without the `is`
+  // @example `chain-able/deps/is/stringOrNumber`, `chain-able/deps/is/dot`
+  isNotEmptyArray,
+  isStringOrNumber,
+  isNullOrUndef,
+  isFalse,
+  isDot,
+  isMapish,
 }
