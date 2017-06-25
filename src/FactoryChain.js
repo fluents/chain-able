@@ -2,6 +2,9 @@ const ChainedMap = require('./ChainedMap')
 const isUndefined = require('./deps/is/undefined')
 const isTrue = require('./deps/is/true')
 
+const CHAIN_UP_DOWN_KEY = 'chainUpDown'
+const ON_DONE_KEY = 'onDone'
+
 /**
  * @inheritdoc
  * @prop {Object} data
@@ -16,7 +19,7 @@ class FactoryChain extends ChainedMap {
     this._calls = new Set()
 
     this.factory()
-      .extend(['optional', 'required', 'chainUpDown', 'onDone'])
+      .extend(['optional', 'required', CHAIN_UP_DOWN_KEY, ON_DONE_KEY])
       .set('len', 0)
   }
 
@@ -58,9 +61,9 @@ class FactoryChain extends ChainedMap {
     // so if we call a property twice,
     // chain back up to parent,
     // add a new chain
-    if (!isUndefined(this[name]) && isTrue(this.has('chainUpDown'))) {
+    if (!isUndefined(this[name]) && isTrue(this.has(CHAIN_UP_DOWN_KEY))) {
       this.end()
-      return this.get('chainUpDown')()[name](cb)
+      return this.get(CHAIN_UP_DOWN_KEY)()[name](cb)
     }
 
     // @TODO need to spread as needed
@@ -99,8 +102,8 @@ class FactoryChain extends ChainedMap {
         const ended = obj.end(this.data, this.parent, this, arg)
         if (ended && ended !== this) return ended
       }
-      else if (this.has('onDone')) {
-        const ended = this.get('onDone')(this.data, this.parent, this, arg)
+      else if (this.has(ON_DONE_KEY)) {
+        const ended = this.get(ON_DONE_KEY)(this.data, this.parent, this, arg)
         if (ended && ended !== this) return ended
       }
 

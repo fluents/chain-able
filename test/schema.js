@@ -6,10 +6,7 @@ const {is, reduce} = Chain
 const {isDate} = is
 
 test.todo('.schema')
-test.todo('.!schema')
-test.todo('.schema[]')
 test.todo('.?schema')
-test.todo('.schema|')
 
 test.skip('schema.add(validator)', t => {
   is.enums = enums => x => enums.includes(x)
@@ -17,6 +14,48 @@ test.skip('schema.add(validator)', t => {
 
   const chain = new Chain()
   chain.schema().add(is)
+})
+
+test.failing('.schema - array', t => {
+  const chain = new Chain()
+
+  chain.methods().define().schema({
+    comments: [
+      {
+        admin: 'boolean',
+        text: 'string',
+      },
+    ],
+  })
+
+  chain.commends([
+    {
+      admin: true,
+      text: 'eh',
+    },
+  ])
+  chain.commends([
+    {
+      text: 'eh',
+    },
+  ])
+  chain.commends([
+    {
+      admin: 'eh',
+    },
+  ])
+  chain.commends([
+    {
+      admin: false,
+    },
+  ])
+  chain.commends([{}])
+  chain.commends({})
+
+  t.fail()
+})
+test.failing('.schema - enum - use `eq`', t => {
+  t.fail()
 })
 
 test('.!schema()', t => {

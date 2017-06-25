@@ -15,6 +15,8 @@ const matchFactory = (keys, vals) => (prop, val) => {
   return false
 }
 
+const TRAVERSED_KEY = 1
+
 /**
  * @since 1.0.0
  * @type {Set}
@@ -61,7 +63,7 @@ module.exports = class Traverser extends ChainedMapBase {
       }
     })
 
-    this.set('traversed', result)
+    this.set(TRAVERSED_KEY, result)
     return isTrue(shouldReturn) ? result : this
   }
 
@@ -71,6 +73,6 @@ module.exports = class Traverser extends ChainedMapBase {
    * @return {Object | Array | any}
    */
   traversed() {
-    return this.get('traversed')
+    return this.get(TRAVERSED_KEY)
   }
 }

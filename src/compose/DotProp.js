@@ -20,7 +20,7 @@ module.exports = (SuperClass, opts) => {
      * @param  {boolean} [useDot=true]
      * @return {DotProp} @chainable
      */
-    dot(useDot = true) {
+    dot(useDot) {
       this.meta.dot = useDot
       return this
     }

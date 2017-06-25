@@ -119,63 +119,67 @@ class MethodChain extends ChainedMap {
     this.returns = (x, callReturns) =>
       set('returns', x || parent).set('callReturns', callReturns)
 
-    // @NOTE  replaces shorthands.chainWrap
+    // @NOTE replaces shorthands.chainWrap
     this.chainable = this.returns
 
+    // @NOTE these would be .remap
     this.onSet = x => set('set', x)
     this.onGet = x => set('get', x)
     this.onCall = x => set('call', x)
 
+    // @NOTE these would be .transform
     this.alias = aliases =>
       this.tap('alias', (old, merge) => merge(old, toarr(aliases)))
     this.factory = factory =>
       this.tap('factories', (old, merge) => merge(old, toarr(factory)))
 
-    /**
-     * @since 4.0.0
-     * @param  {string | Object | Array<string>} methods
-     * @return {MethodChain}
-     */
-    this.name = methods => {
-      let names = methods
-
-      /**
-       * @desc this is a factory for building methods
-       *       schema defaults value to `.type`
-       *       this defaults values to `.onCall`
-       */
-      if (!isArray(methods) && isObj(methods)) {
-        names = ObjectKeys(methods)
-        names.forEach(method =>
-          this.factory(name => {
-            const obj = methods[name]
-
-            if (isFunction(obj)) {
-              // @TODO: IS THIS THE BEST DEFAULT?!
-              this.define(false)
-              this.onCall(obj)
-              // .onSet(obj).onGet(obj)
-            }
-            else {
-              this.from(obj)
-              // @NOTE: this is reserved
-              if (obj.set) this.onSet(obj.set)
-              if (obj.get) this.onGet(obj.get)
-              if (obj.call) this.onCall(obj.call)
-              if (obj.set && obj.get) {
-                this.define().getSet()
-              }
-            }
-          })
-        )
-      }
-      return set('names', names)
-    }
-
     this.camelCase = () => set('camel', true)
 
-    this.define = (x = true) => set('define', x)
-    this.getSet = (x = true) => set('getSet', x)
+    // @NOTE: x = true is much prettier, but compiles badly
+    const defaultToTrue = x => (isUndefined(x) ? true : x)
+    this.define = x => set('define', defaultToTrue(x))
+    this.getSet = x => set('getSet', defaultToTrue(x))
+  }
+
+  /**
+   * @since 4.0.0
+   * @param  {string | Object | Array<string>} methods
+   * @return {MethodChain}
+   */
+  name(methods) {
+    let names = methods
+
+    /**
+     * @desc this is a factory for building methods
+     *       schema defaults value to `.type`
+     *       this defaults values to `.onCall`
+     */
+    if (!isArray(methods) && isObj(methods)) {
+      names = ObjectKeys(methods)
+      names.forEach(method =>
+        this.factory(name => {
+          const obj = methods[name]
+
+          if (isFunction(obj)) {
+            // @TODO: IS THIS THE BEST DEFAULT?!
+            this.define(false)
+            this.onCall(obj)
+            // .onSet(obj).onGet(obj)
+          }
+          else {
+            this.from(obj)
+            // @NOTE: this is reserved
+            if (obj.set) this.onSet(obj.set)
+            if (obj.get) this.onGet(obj.get)
+            if (obj.call) this.onCall(obj.call)
+            if (obj.set && obj.get) {
+              this.define().getSet()
+            }
+          }
+        })
+      )
+    }
+    return this.set('names', names)
   }
 
   /**
@@ -227,17 +231,14 @@ class MethodChain extends ChainedMap {
       if (define) builder.define()
       if (getSet) builder.getSet()
 
+      let type = value
       if (isObj(value)) {
         const traversableValidator = schemaFactory(key, value)
         traversableValidator.schema = value
-        builder.type(traversableValidator)
+        type = traversableValidator
       }
-      else {
-        builder.type(value)
-      }
-
       this.parent.meta(SCHEMA_KEY, key, value)
-      builder.build()
+      builder.type(type).build()
     }
 
     return this

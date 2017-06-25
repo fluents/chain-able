@@ -6,6 +6,13 @@ const isUndefined = require('./deps/is/undefined')
 const isTrue = require('./deps/is/true')
 const isMapish = require('./deps/is/mapish')
 const ObjectKeys = require('./deps/util/keys')
+const SHORTHANDS_KEY = require('./deps/meta/shorthands')
+
+const ON_EXISTING_KEY = 'onExisting'
+const ON_VALUE_KEY = 'onValue'
+const MERGER_KEY = 'merger'
+const MERGER_OPTIONS_KEY = 'opts'
+const OBJ_KEY = 'obj'
 
 /**
  * @since 1.0.0
@@ -26,42 +33,12 @@ class MergeChain extends ChainedMapBase {
   constructor(parent) {
     super(parent)
 
-    this.extend(['onExisting', 'onValue', 'obj'])
-    this.set('onValue', () => true).set('merger', dopemerge)
+    /* prettier-ignore */
+    this
+      .extend([ON_EXISTING_KEY, ON_VALUE_KEY, OBJ_KEY])
+      .set(ON_VALUE_KEY, () => true)
+      .set(MERGER_KEY, dopemerge)
   }
-
-  /**
-   * @since 1.0.0
-   * @desc can pass in a function same as .merge,
-   *       but say, .set instead of merge
-   *
-   * @param  {Function} cb
-   * @return {MergeChain} @chainable
-   */
-  // onExisting(cb) {
-  //   return this.set('onExisting', cb)
-  // }
-
-  /**
-   * @since 1.0.1
-   * @desc can pass in a function to check values, such as ignoring notReal
-   * @example .onValue(val => val !== null && val !== undefined)
-   * @param  {Function} cb
-   * @return {MergeChain} @chainable
-   */
-  // onValue(cb) {
-  //   return this.set('onValue', cb)
-  // }
-
-  /**
-   * @since 1.0.2
-   * @desc for using custom callback
-   * @param  {Object} obj
-   * @return {MergeChain} @chainable
-   */
-  // obj(obj) {
-  //   return this.set('obj', obj)
-  // }
 
   /**
    * @since 1.0.2
@@ -83,8 +60,8 @@ class MergeChain extends ChainedMapBase {
    *  .merger(require('lodash.mergewith')())
    */
   merger(opts) {
-    if (isFunction(opts)) return this.set('merger', opts)
-    return this.set('opts', opts)
+    if (isFunction(opts)) return this.set(MERGER_KEY, opts)
+    return this.set(MERGER_OPTIONS_KEY, opts)
   }
 
   /**
@@ -98,12 +75,16 @@ class MergeChain extends ChainedMapBase {
    * @return {MergeChain} @chainable
    */
   merge(obj2) {
-    const onExisting = this.get('onExisting')
-    const onValue = this.get('onValue')
-    const opts = this.get('opts') || {}
-    const obj = isTrue(this.has('obj')) && !obj2 ? this.get('obj') : obj2 || {}
-    const merger = this.get('merger')
-    const sh = this.parent.shorthands || []
+    // better uglifying
+    const parent = this.parent
+    const get = key => this.get(key)
+
+    const onExisting = get(ON_EXISTING_KEY)
+    const onValue = get(ON_VALUE_KEY)
+    const opts = get(MERGER_OPTIONS_KEY)
+    const obj = obj2 || get(OBJ_KEY) // @TODO: else, throw error on dev
+    const merger = get(MERGER_KEY)
+    const shorthands = parent.meta(SHORTHANDS_KEY)
     const keys = ObjectKeys(obj)
 
     // @TODO do this
@@ -122,15 +103,15 @@ class MergeChain extends ChainedMapBase {
     // when using chains without a class & doing .merge (edge-case)
     const handleExisting = (key, value) => {
       // when fn is a full method, not an extended shorthand
-      const hasFn = isFunction(this.parent[key])
-      const hasKey = this.parent.has(key)
-      const set = (k, v) => (hasFn ? this.parent[k](v) : this.parent.set(k, v))
+      const hasFn = isFunction(parent[key])
+      const hasKey = parent.has(key)
+      const set = (k, v) => (hasFn ? parent[k](v) : parent.set(k, v))
 
       // check if it is shorthanded
       // has a value already
       if (isTrue(hasKey)) {
         // get that value
-        const existing = this.parent.get(key)
+        const existing = parent.get(key)
 
         // if we have a cb, call it
         // default to dopemerge
@@ -157,7 +138,7 @@ class MergeChain extends ChainedMapBase {
     for (let k = 0, len = keys.length; k < len; k++) {
       const key = keys[k]
       const value = obj[key]
-      const method = this.parent[key]
+      const method = parent[key]
 
       /* istanbul ignore next: sourcemaps trigger istanbul here incorrectly */
       // use onValue when set
@@ -166,20 +147,20 @@ class MergeChain extends ChainedMapBase {
       }
       else if (isMapish(method)) {
         // when property itself is a Chainable
-        this.parent[key].merge(value)
+        parent[key].merge(value)
       }
-      else if (method || sh.includes(key)) {
+      else if (method || shorthands[key]) {
         // console.log('has method or shorthand')
         handleExisting(key, value)
       }
       else {
         // console.log('went to default')
         // default to .set on the store
-        this.parent.set(key, value)
+        parent.set(key, value)
       }
     }
 
-    return this.parent
+    return parent
   }
 }
 
