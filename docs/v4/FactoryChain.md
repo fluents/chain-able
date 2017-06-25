@@ -1,12 +1,21 @@
 a shorthand extension method which allows easy decorating & undecorating of a parent for easy chains up & down
 
-<!-- <details>
-<summary</summary>
-<summary>
-  <span><code>👀  <u>a shorthand extension method which allows easy decorating & undecorating of a parent for easy chains up & down  <a href="#">🔗</a></u></code></span>
-</summary> -->
+## declaration
+```ts
+interface FactoryChain extends Composable, ChainedMapBase {
+  data(prop?: Primitive): Obj
+  chainUpDowns(methods: string[]): FactoryChain
+  props(methods: string[]): FactoryChain
+  prop(name: string, cb?: Fn): FactoryChain
+  onDone(fn: Fn): FactoryChain
+  getData(key?: Primitive): Obj | any
+  factory(obj: Obj): FactoryChain | ChainAble
+  optional(methods: string[]): FactoryChain
+  required(methods: string[]): FactoryChain
+}
+```
 
-[test](https://github.com/fluents/chain-able/blob/4.0.2/test/parent.js)
+## example
 
 ```js
 class Decorator extends Chain {
@@ -41,3 +50,7 @@ master.easy(true)
 isTrue(master.get('easy-peasy'))
 isTrue(master.eh.get('advanced') === 'a+')
 ```
+
+## related
+- [source](https://github.com/fluents/chain-able/tree/master/src/FactoryChain.js)
+- [test](https://github.com/fluents/chain-able/tree/master/test/parent.js)
