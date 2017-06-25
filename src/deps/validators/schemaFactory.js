@@ -35,9 +35,11 @@ const schemaFactory = (property, nestedSchema) => {
   // const paths = dotPropPaths(property, nestedSchema)
   // nestedSchema = {[property]: nestedSchema}
 
+  /**
+   * @param  {any} input
+   * @return {boolean} valid
+   */
   return input => {
-    let valid = true
-
     const longestPaths = dotPropPaths(false, input, true)
     for (let l = 0; l < longestPaths.length; l++) {
       const fullPath = longestPaths[l]
@@ -53,7 +55,7 @@ const schemaFactory = (property, nestedSchema) => {
         return false
       }
     }
-    return valid
+    return true
   }
 }
 module.exports = schemaFactory

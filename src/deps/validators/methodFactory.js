@@ -1,6 +1,7 @@
 const methodEncasingFactory = require('../encase/factory')
 const validatorFactory = require('./validatorFactory')
 
+// @TODO: pass in .type instead?
 function validatorMethodFactory(name, parent, built) {
   // core domain of this fn, used by validators and configured fns
   const type = built.type

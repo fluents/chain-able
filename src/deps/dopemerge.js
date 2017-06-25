@@ -51,7 +51,7 @@ function defaultArrayMerge(target, source, optsArg) {
     // @see https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Bitwise_NOT
     // === -1
     // eslint-disable-next-line prefer-includes/prefer-includes
-    else if (~target.indexOf(v)) {
+    else if (!~target.indexOf(v)) {
       destination.push(cloneIfNeeded(v, optsArg))
     }
   }
@@ -96,7 +96,9 @@ function deepmerge(target, source, optsArg) {
 // eslint-disable-next-line complexity
 function dopemerge(obj1, obj2, opts) {
   // if they are identical, fastest === check
-  if (obj1 === obj2) return obj1
+  if (obj1 === obj2) {
+    return obj1
+  }
 
   // setup options
   const options = ObjectAssign(
@@ -119,24 +121,28 @@ function dopemerge(obj1, obj2, opts) {
 
   // check one then check the other
   // @TODO might want to push undefined null nan into array but...
-  if (isTrue(ignoreTypes.includes(ezType(obj1)))) return obj2
-  if (isTrue(ignoreTypes.includes(ezType(obj2)))) return obj1
+  if (isTrue(ignoreTypes.includes(ezType(obj1)))) {
+    return obj2
+  }
+  else if (isTrue(ignoreTypes.includes(ezType(obj2)))) {
+    return obj1
+  }
 
   // uglifier optimizes into a wicked ternary
   // if (eq(['boolean', 'boolean'])) {
-  if (isBoolean(obj1) && isBoolean(obj2)) {
+  else if (isBoolean(obj1) && isBoolean(obj2)) {
     return boolToArray ? [obj1, obj2] : obj2
   }
+  // else if (eq(['string', 'string'])) {
   else if (isString(obj1) && isString(obj2)) {
-    // else if (eq(['string', 'string'])) {
     return stringToArray ? [obj1, obj2] : obj1 + obj2
   }
+  // else if (eq(['array', 'string'])) {
   else if (isArray(obj1) && isString(obj2)) {
-    // else if (eq(['array', 'string'])) {
     return (clone ? obj1.slice(0) : obj1).concat([obj2])
   }
+  // else if (eq(['string', 'array'])) {
   else if (isString(obj1) && isArray(obj2)) {
-    // else if (eq(['string', 'array'])) {
     return (clone ? obj2.slice(0) : obj2).concat([obj1])
   }
   else {
