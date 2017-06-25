@@ -1,5 +1,5 @@
 import {Primitive, Obj, Fn} from './generic'
-import {Chain, Chainable, ChainableI, Composable, ParentType} from './_mediator'
+import {Chainable, ChainableI, Composable, ParentType} from './_mediator'
 
 // this.data, this.parent, this, arg
 export interface OnDoneFactoryFn extends Function {

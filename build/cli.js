@@ -36,7 +36,7 @@ const argvOpts = {
     cov: false,
     quick: false,
     production: true,
-    format: ['amd', 'iife', 'dev', 'es', 'umd'],
+    format: ['amd', 'iife', 'dev', 'es', 'cjs', 'umd'],
   },
 }
 const argvs = fwf(process.argv.slice(2), argvOpts)
@@ -243,25 +243,25 @@ async function test() {
 }
 
 async function publishing() {
-  // log.startTimer('publishing')
-  // log.startTimer('amd')
-  // await cli.rollup('--environment format:amd')
-  // log.stopTimer('amd')
-  //
-  // log.startTimer('es')
-  // await cli.rollup('--environment format:es')
-  // log.stopTimer('es')
+  log.startTimer('publishing')
+  log.startTimer('amd')
+  await cli.rollup('--environment format:amd')
+  log.stopTimer('amd')
+
+  log.startTimer('es')
+  await cli.rollup('--environment format:es')
+  log.stopTimer('es')
+
+  log.startTimer('cjs')
+  await cli.rollup('--environment format:cjs')
+  log.stopTimer('cjs')
+
+  // ignoring this one for now, already so many, don't want to build them all
+  await cli.rollup('--environment format:iife')
 
   log.startTimer('umd')
   await cli.rollup('--environment format:umd --verbose --debug')
   log.stopTimer('umd')
-
-  // log.startTimer('cjs')
-  // await cli.rollup('--environment format:cjs')
-  // log.stopTimer('cjs')
-
-  // ignoring this one for now, already so many, don't want to build them all
-  // await cli.rollup('--environment format:iife')
 
   try {
     log

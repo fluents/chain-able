@@ -1,6 +1,6 @@
 import {Primitive, Obj, Generator, ToPrimativeHint, condition} from './generic'
-import {Class, ParentType} from './_mediator'
-import {Composable, ComposedClass, Composed, Composer} from './compose'
+import {ParentType} from './_mediator'
+import {Composable, Composed, Composer} from './compose'
 import {Chain, ChainInstanceFn} from './Chain'
 
 export interface ChainableI extends Composable {

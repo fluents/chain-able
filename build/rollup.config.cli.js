@@ -59,8 +59,7 @@ switch (format) {
     break
   }
   case 'cjs': {
-    dest = pkg.main
-    should.optimizejs = true
+    // dest = pkg.main
     break
   }
   case 'tsc':
@@ -109,13 +108,14 @@ const plugins = [
 if (should.buble) {
   log.blue('buble').echo()
   const buble = require('rollup-plugin-buble')
-  buble({
+  const bubleOpts = {
     transforms: {
       // forOf: false,
       // dangerousForOf: false,
       // computedProperty: false,
     },
-  })
+  }
+  plugins.push(buble())
 }
 
 if (should.production) {
