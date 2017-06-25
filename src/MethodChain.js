@@ -34,7 +34,19 @@ const isFunction = require('./deps/is/function')
 const isUndefined = require('./deps/is/undefined')
 const isTrue = require('./deps/is/true')
 
-// const timer = require('fliplog').fliptime()
+const DEFAULTED_KEY = 'defaulted'
+const SCHEMA_KEY = 'schema'
+const METHOD_KEYS = [
+  'onInvalid',
+  'onValid',
+  'initial',
+  'default',
+  'type',
+  'callReturns',
+  'target',
+]
+
+// const SET_KEY = METHOD_KEYS[0]
 
 function getSetFactory(_this, name, desc) {
   _this[camelCase(`set-${name}`)] = desc.set
@@ -42,7 +54,7 @@ function getSetFactory(_this, name, desc) {
 }
 
 function aliasFactory(name, parent, aliases) {
-  if (aliases) {
+  if (!isUndefined(aliases)) {
     for (let a = 0; a < aliases.length; a++) {
       ObjectDefine(parent, aliases[a], getDescriptor(parent, name))
     }
@@ -61,6 +73,11 @@ function aliasFactory(name, parent, aliases) {
 // }
 
 /**
+ * @TODO: maybe abstract the most re-usable core as a protected class
+ *        so the shorthands could be used, and more functionality made external
+ *
+ * @TODO: need to separate schema from here as external functionality & add .add
+ *
  * @since 4.0.0
  *
  * @TODO: .prop - for things on the instance, not in the store?
@@ -80,15 +97,7 @@ class MethodChain extends ChainedMap {
 
     this.toNumber = () => this.build(0)
 
-    this.extend([
-      'onInvalid',
-      'onValid',
-      'initial',
-      'default',
-      'type',
-      'callReturns',
-      'decorationTarget',
-    ])
+    this.extend(METHOD_KEYS)
 
     // shorthand
     this.method = this.methods = name => {
@@ -153,17 +162,6 @@ class MethodChain extends ChainedMap {
               if (obj.set) this.onSet(obj.set)
               if (obj.get) this.onGet(obj.get)
               if (obj.call) this.onCall(obj.call)
-              // aka, ^ this.from !!!!
-              // if (obj.type) this.type(obj.type)
-              // if (obj.define) this.define(true)
-              // if (obj.getSet) this.getSet(true)
-              // if (obj.alias) this.alias(obj.alias)
-              // if (obj.factory) this.factory(obj.factory)
-              // if (obj.onValid) this.onValid(obj.onValid)
-              // if (obj.onInvalid) this.onInvalid(obj.onInvalid)
-              // if (obj.initial) this.initial(obj.initial)
-              // if (obj.default) this.default(obj.default)
-              // if (obj.returns) this.returns(obj.returns)
               if (obj.set && obj.get) {
                 this.define().getSet()
               }
@@ -181,6 +179,19 @@ class MethodChain extends ChainedMap {
   }
 
   /**
+   * @see deps/validators/validatorFactory
+   * @since 4.0.0 <- used with schema, used in method chain
+   * @since 3.0.0 <- took out
+   * @since 1.0.0
+   * @param  {Object} lib
+   * @return {MethodChain} @chainable
+   */
+  validators(lib) {
+    schemaFactory.merge(lib)
+    return this
+  }
+
+  /**
    * @since 4.0.0
    * @param {Object} obj schema
    * @return {MethodChain} @chainable
@@ -194,8 +205,7 @@ class MethodChain extends ChainedMap {
    *       observables for all the way down...
    */
   schema(obj) {
-    const {onInvalid, onValid, define, getSet} = this.entries()
-
+    const {onValid, onInvalid, define, getSet} = this.entries()
     const keys = ObjectKeys(obj)
 
     for (let k = 0; k < keys.length; k++) {
@@ -203,6 +213,15 @@ class MethodChain extends ChainedMap {
       const value = obj[key]
 
       let builder = this.parent.method(key)
+
+      // @TODO:
+      // const entryKeys = ObjectKeys(entries)
+      // const entries = this.entries()
+      // for (let e = 0; e < entryKeys.length; e++) {
+      //   const entryKey = entryKeys[e]
+      //   const entry = entries[entryKey]
+      //   builder[entryKey](entry)
+      // }
       if (onInvalid) builder.onInvalid(onInvalid)
       if (onValid) builder.onValid(onValid)
       if (define) builder.define()
@@ -217,7 +236,7 @@ class MethodChain extends ChainedMap {
         builder.type(value)
       }
 
-      this.parent.meta('schema', key, value)
+      this.parent.meta(SCHEMA_KEY, key, value)
       builder.build()
     }
 
@@ -275,20 +294,20 @@ class MethodChain extends ChainedMap {
     const defaultOnGet = () => parent.get(name)
 
     // so we know if we defaulted them
-    defaultOnSet.defaulted = true
-    defaultOnGet.defaulted = true
+    defaultOnSet[DEFAULTED_KEY] = true
+    defaultOnGet[DEFAULTED_KEY] = true
 
-    // when we've defaulted already for another method,
+    // when we've[DEFAULTED_KEY] already for another method,
     // we need a new function,
     // else the name will be scoped incorrectly
     const {call, set, get} = built
-    if (!get || get.defaulted) {
+    if (!get || get[DEFAULTED_KEY]) {
       this.onGet(defaultOnGet)
     }
-    if (!call || call.defaulted) {
+    if (!call || call[DEFAULTED_KEY]) {
       this.onCall(defaultOnSet)
     }
-    if (!set || set.defaulted) {
+    if (!set || set[DEFAULTED_KEY]) {
       this.onSet(defaultOnSet)
     }
   }
@@ -310,16 +329,26 @@ class MethodChain extends ChainedMap {
     // could ternary `let method =` here
     if (hasOwnProperty(parent, name)) {
       existing = getDescriptor(parent, name)
+
       // avoid `TypeError: Cannot redefine property:`
       if (existing.configurable === false) return
+
       // use existing property, when configurable
       method = existing.value
-      method.decorated = true
+
+      if (ENV_DEVELOPMENT) {
+        method.decorated = true
+      }
+
       this.onCall(method).onSet(method)
     }
     else if (parent[name]) {
       method = parent[name]
-      method.decorated = true
+
+      if (ENV_DEVELOPMENT) {
+        method.decorated = true
+      }
+
       this.onCall(method).onSet(method)
     }
 
@@ -336,14 +365,24 @@ class MethodChain extends ChainedMap {
 
     built = entries()
 
+    // wrap in encasing when we have a validator or .encase
     if (built.type) {
       const validatorMethod = validatorMethodFactory(name, parent, built)
+
+      if (ENV_DEVELOPMENT) {
+        validatorMethod.type = built.type
+      }
+
       this.set('call', validatorMethod).set('set', validatorMethod)
       built = entries()
     }
     else if (built.encase) {
       const encased = methodEncasingFactory(name, parent, built, method)
-      encased.encased = method
+
+      if (ENV_DEVELOPMENT) {
+        encased.encased = method
+      }
+
       this.set('call', encased).set('set', encased)
       method = encased
       built = entries()
@@ -355,7 +394,7 @@ class MethodChain extends ChainedMap {
     const defaultValue = built.default
 
     // can only have `call` or `get/set`...
-    const {get, set, call, initial, bind, returns, callReturns} = built
+    const {get, set, call, initial, bind, returns, callReturns, alias} = built
 
     // default method, if we do not have one already
     if (!method) {
@@ -379,6 +418,7 @@ class MethodChain extends ChainedMap {
           : returns
       }
     }
+
     if (!isUndefined(initial)) {
       parent.set(name, initial)
     }
@@ -392,10 +432,21 @@ class MethodChain extends ChainedMap {
 
     /* istanbul ignore next: dev */
     if (ENV_DEVELOPMENT) {
-      ObjectDefine(get, 'name', {value: camelCase(`get-${name}`)})
-      ObjectDefine(set, 'name', {value: camelCase(`set-${name}`)})
-      ObjectDefine(call, 'name', {value: camelCase(`call-${name}`)})
+      ObjectDefine(get, 'name', {value: camelCase(`${get.name}+get-${name}`)})
+      ObjectDefine(set, 'name', {value: camelCase(`${set.name}+set-${name}`)})
+      ObjectDefine(call, 'name', {
+        value: camelCase(`${call.name}+call-${name}`),
+      })
       ObjectDefine(method, 'name', {value: camelCase(`${name}`)})
+      if (built.type) method.type = built.type
+      if (initial) method.initial = initial
+      if (bind) method.bound = bind
+      if (returns) method.returns = returns
+      if (alias) method.alias = alias
+      if (callReturns) method.callReturns = callReturns
+      if (get) method._get = get
+      if (set) method._set = set
+      if (call != set) method._call = call
     }
 
     /* istanbul ignore next: dev */
@@ -414,7 +465,8 @@ class MethodChain extends ChainedMap {
     // ----------------- ;stripped ------------
 
     // --- could be a method too ---
-    let descriptor = shouldDefineGetSet ? {get, set} : {value: method}
+    const getterSetter = {get, set}
+    let descriptor = shouldDefineGetSet ? getterSetter : {value: method}
     if (existing) descriptor = ObjectAssign(existing, descriptor)
 
     // [TypeError: Invalid property descriptor.
@@ -426,16 +478,16 @@ class MethodChain extends ChainedMap {
       delete descriptor.writable
     }
 
-    const target = this.get('decorationTarget') || parent
+    const target = this.get('target') || parent
 
     ObjectDefine(target, name, descriptor)
 
     if (shouldAddGetterSetter) {
       if (target.meta) target.meta(SHORTHANDS_KEY, name, set)
-      getSetFactory(target, name, {get, set})
+      getSetFactory(target, name, getterSetter)
     }
 
-    aliasFactory(name, target, built.alias)
+    aliasFactory(name, target, alias)
 
     // if (built.metadata) {
     //   target.meta(SHORTHANDS_KEY, name, set)
@@ -475,12 +527,11 @@ class MethodChain extends ChainedMap {
       }
       return this
     }
-    this.decorationTarget(parentToDecorate)
+    this.target(parentToDecorate)
 
     // can use this to "undecorate"
-    if (!parentToDecorate.meta) {
-      parentToDecorate.meta = meta(parentToDecorate)
-    }
+    // if (!parentToDecorate.meta) <- checks already inside of meta()
+    parentToDecorate.meta = meta(parentToDecorate)
 
     // default returns result of calling function,
     // else .parentToDecorate
@@ -491,7 +542,7 @@ class MethodChain extends ChainedMap {
       /* prettier-ignore */
       return this
         .returns(parentToDecorate)
-        .callReturns(function returnsFunction(result, ...args) {
+        .callReturns(function returnsFunction(result) {
           return result || parentToDecorate
         })
     })
