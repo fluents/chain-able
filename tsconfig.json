@@ -13,7 +13,7 @@
     "noImplicitUseStrict": false,
     "removeComments": true,
     "noLib": false,
-    "outFile": "index.tsc.bundle.js",
+    "outFile": "dists/tsc/bundle.js",
     "preserveConstEnums": true,
     "suppressImplicitAnyIndexErrors": true,
     "pretty": true,
@@ -22,6 +22,6 @@
     "allowUnreachableCode": true
   },
   "include": [
-    "index.dev.js"
+    "dists/dev/index.js"
   ]
 }

@@ -2,7 +2,7 @@ const {resolve} = require('path')
 const webpack = require('webpack')
 
 const {DefinePlugin} = webpack
-const res = rel => resolve(__dirname, rel)
+const res = rel => resolve(__dirname + '../', rel)
 
 module.exports = {
   entry: res('./src/index.js'),

@@ -8,7 +8,7 @@ const {minify} = require('uglify-es')
 const log = require('fliplog')
 const buble = require('rollup-plugin-buble')
 const dev = require('./rollup.config.dev')
-const pkg = require('./package')
+const pkg = require('../package')
 
 const {NODE_ENV} = process.env
 

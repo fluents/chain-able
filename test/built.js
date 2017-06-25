@@ -1,8 +1,10 @@
 const test = require('ava')
 const log = require('fliplog')
-const dist = require('../index.dev.js')
+const devDist = require('../dists/cjs')
+const cjsDist = require('../dists/dev')
+const umd = require('../dists/umd')
 
-const exported = [
+const exportedNames = [
   'Chainable',
   'ChainedSet',
   'ChainedMap',
@@ -25,17 +27,18 @@ const exported = [
   'meta',
   'validators',
 ]
+const dists = [cjsDist, umd] // [devDist]
 
-test('works with dist', t => {
+function testExportNames(t, exported, dist) {
   t.plan(exported.length)
   exported
     .map(exp => {
       return typeof dist[exp]
     })
     .forEach(type => t.true(type === 'object' || type === 'function'))
-})
+}
 
-test('dist classes', t => {
+function testDistedAPI(t, dist) {
   const {
     Chain,
     Chainable,
@@ -138,4 +141,14 @@ test('dist classes', t => {
       vals.push(o)
     }
   })
+}
+
+test('works with dist', t => {
+  testExportNames(t, exportedNames, dists[0])
+  // dists.map(dist => testExportNames(t, exportedNames, dist))
+})
+
+test('dist classes', t => {
+  testDistedAPI(t, dists[0])
+  // dists.map(dist => testDistedAPI(t, dist))
 })

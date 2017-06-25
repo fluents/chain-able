@@ -1,7 +1,8 @@
 const nodeResolve = require('rollup-plugin-node-resolve')
 const commonjs = require('rollup-plugin-commonjs')
 const log = require('fliplog')
-const pkg = require('./package')
+const pkg = require('../package')
+const replace = require('rollup-plugin-replace')
 
 const plugins = [
   nodeResolve({
@@ -14,6 +15,12 @@ const plugins = [
     include: '**/**',
   }),
 ]
+plugins.push(
+  replace({
+    'process.env.NODE_ENV': JSON.stringify('production'),
+    // 'INLINE_SLICE': ``,
+  })
+)
 
 const config = {
   // useStrict: false,
@@ -25,7 +32,8 @@ const config = {
   targets: [
     {
       dest: pkg['main:dev'],
-      format: 'cjs',
+      format: 'umd',
+      moduleName: 'chainable',
     },
   ],
 }

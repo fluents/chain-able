@@ -23,6 +23,7 @@ const {read, write, del} = require('flipfile')
 
 const res = rel => resolve(__dirname, rel)
 log.startTimer('cli')
+log.registerCatch()
 
 // setup args
 // src: [rollup, typescript, buble, babel, browserify, copy/strip]
@@ -34,12 +35,17 @@ const argvOpts = {
     tests: false,
     cov: false,
     quick: false,
-    production: false,
+    production: true,
     format: ['amd', 'iife', 'dev', 'es', 'umd'],
   },
 }
 const argvs = fwf(process.argv.slice(2), argvOpts)
 const {production, quick, tests, cov, clean} = argvs
+
+const OPTIMIZE_JS_FILE = 'dists/umd.index.js'
+const TSC_SOURCE = 'dists/dev/index.js'
+const TSC_OUT = 'dists/tsc/bundle.js'
+const ROLLUP_CONFIG_CLI = './rollup.config.cli.js'
 
 if (clean) {
   const toClean = {
@@ -53,12 +59,7 @@ if (clean) {
       'MergeChain',
       'ChainedSet',
       'TraverseChain',
-      'index.amd',
-      'index.cjs',
-      'index.dev',
-      'index.es',
       'index',
-      'index.tsc.bundle',
     ],
     dirs: [
       'dist',
@@ -71,21 +72,22 @@ if (clean) {
     ],
   }
 
-  toClean.files.map(
-    file => del(res(file + '.js')) && del(res(file + '.js.map'))
-  )
+  toClean.files.map(file => del(res('../' + file + '.js')))
+  toClean.files.map(file => del(res('../' + file + '.js.map')))
   toClean.dirs.map(file => del(res(file + '/')))
 }
 
 // script factory
 const script = (bin = 'rollup', flags = '') => {
-  const scripty = new Script().stdout('inherit').debug(false).add().npm(bin)
-
-  flags.split(' ').map(flag => scripty.raw(flag))
+  let scripty = new Script()
   scripty.remember = {
     start() {},
     finish() {},
   }
+
+  scripty = scripty.stdout('inherit').debug(false).add().npm(bin)
+  flags.split(' ').map(flag => scripty.raw(flag))
+
   return scripty.run()
 }
 
@@ -130,17 +132,17 @@ class CLI {
   }
   ts() {
     const ts = require('typescript')
-    const source = read('./index.dev.js')
+    const source = read(TSC_SOURCE)
 
     let result = ts.transpileModule(source, {
       compilerOptions: {module: ts.ModuleKind.CommonJS},
     })
-    write(require.resolve('./index.tsc.bundle.js'), result.outputText)
+    write(require.resolve(TSC_OUT), result.outputText)
 
     console.log(JSON.stringify(result))
     process.exit()
   }
-  optimizejs(url = './disted/index.umd.js') {
+  optimizejs(url = OPTIMIZE_JS_FILE) {
     const optimizeJs = require('optimize-js')
     const {read, write} = require('flipfile')
     const file = require.resolve(url)
@@ -154,7 +156,7 @@ class CLI {
   }
   rollup(flags = '') {
     if (Array.isArray(flags)) return flags.map(flag => this.rollup(flag))
-    const config = './_cli-rollup'
+    const config = ROLLUP_CONFIG_CLI
     return script('rollup', '-c ' + require.resolve(config) + ' ' + flags)
   }
 
@@ -207,17 +209,19 @@ async function src() {
   await cli.rollup('--environment format:dev')
   log.stopTimer('dev')
 
+  // @NOTE: not using ts now, got worse as manual optimizations got better
   // typescript the rollup
-  log.startTimer('tsc')
-  await cli.tsc()
-  log.stopTimer('tsc')
-
-  // rollup the typescripted rollup... o.o
-  log.startTimer('tsc2')
-  await cli.rollup('--environment format:tsc')
-  log.stopTimer('tsc2')
-  log.stopTimer('src')
-  log.echoTimer('src')
+  // log.startTimer('tsc')
+  // await cli.tsc()
+  // log.stopTimer('tsc')
+  //
+  // // rollup the typescripted rollup... o.o
+  // log.startTimer('tsc2')
+  // await cli.rollup('--environment format:tsc')
+  // log.stopTimer('tsc2')
+  //
+  // log.stopTimer('src')
+  // log.echoTimer('src')
 }
 
 async function compileTests() {
@@ -239,32 +243,41 @@ async function test() {
 }
 
 async function publishing() {
-  log.startTimer('publishing')
-  log.startTimer('amd')
-  await cli.rollup('--environment format:amd')
-  log.stopTimer('amd')
-
-  log.startTimer('es')
-  await cli.rollup('--environment format:es')
-  log.stopTimer('es')
+  // log.startTimer('publishing')
+  // log.startTimer('amd')
+  // await cli.rollup('--environment format:amd')
+  // log.stopTimer('amd')
+  //
+  // log.startTimer('es')
+  // await cli.rollup('--environment format:es')
+  // log.stopTimer('es')
 
   log.startTimer('umd')
-  await cli.rollup('--environment format:umd')
+  await cli.rollup('--environment format:umd --verbose --debug')
   log.stopTimer('umd')
+
+  // log.startTimer('cjs')
+  // await cli.rollup('--environment format:cjs')
+  // log.stopTimer('cjs')
 
   // ignoring this one for now, already so many, don't want to build them all
   // await cli.rollup('--environment format:iife')
 
-  log
-    .stopTime('publishing')
-    .echoTimer('publishing')
-    .echoTimer('copy')
-    .echoTimer('dev')
-    .echoTimer('tsc')
-    .echoTimer('tsc2')
-    .echoTimer('tsctests')
-    .echoTimer('amd')
-    .echoTimer('es')
+  try {
+    log
+      .stopTimer('publishing')
+      .echoTimer('publishing')
+      .echoTimer('copy')
+      .echoTimer('dev')
+      .echoTimer('tsc')
+      .echoTimer('tsc2')
+      .echoTimer('tsctests')
+      .echoTimer('amd')
+      .echoTimer('es')
+  }
+  catch (e) {
+    // some typo on one timer not running prob tests
+  }
 }
 
 async function all() {
@@ -274,7 +287,7 @@ async function all() {
     await test()
   }
   if (production) await publishing()
-  cli.optimizejs()
+  // cli.optimizejs()
 
   // if (cov) await runCov()
   // // all ops are done
