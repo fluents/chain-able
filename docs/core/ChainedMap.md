@@ -7,7 +7,7 @@
   - [minimal](#-minimal)
   - [diving deeper](#-diving-deeper)
   - [sugar](#-sugar)
-- [tap][#-tap]
+- [tap](#tap)
 - [related](#-related)
 
 ## definition
@@ -17,31 +17,31 @@
 // because MergeChain & MethodChain extend this
 // yet .method & .merge use those chains
 class ChainedMapBase extends Chainable {
-	public meta: Meta
-	public store: Map<any, any> // = new Map()
+  public meta: Meta
+  public store: Map<any, any> // = new Map()
 
-	public values(): Primitive[]
-	public extend(methods: string[]): ChainAble
+  public values(): Primitive[]
+  public extend(methods: string[]): ChainAble
 
-	// MapIterator -> `{[key]: value}`
-	// with all chain properties if they exist
-	public entries(reduceInstanceProperties: boolean): Obj
+  // MapIterator -> `{[key]: value}`
+  // with all chain properties if they exist
+  public entries(reduceInstanceProperties: boolean): Obj
 
-	public from(obj: Obj): ChainAble
-	public tap(name: Primitive, fn: FnTap): ChainAble
+  public from(obj: Obj): ChainAble
+  public tap(name: Primitive, fn: FnTap): ChainAble
 
-	public get(name: Primitive): Primitive
-	public set(name: Primitive, value: Primitive): ChainAble
+  public get(name: Primitive): Primitive
+  public set(name: Primitive, value: Primitive): ChainAble
 }
 
 interface MergeFn extends FunctionWithSingleArg {
-	(merger: MergeChain): any
+  (merger: MergeChain): any
 }
 
 class ChainedMap extends ChainedMapBase {
-	public method(names: strings): MethodChain
-	public methods(names: strings): MethodChain
-	public merge(objToMerge: Obj, fn?: MergeFn): ChainAble
+  public method(names: strings): MethodChain
+  public methods(names: strings): MethodChain
+  public merge(objToMerge: Obj, fn?: MergeFn): ChainAble
 }
 ```
 
@@ -63,6 +63,7 @@ chain.get('canada') === '🇨🇦'
 chain.delete('canada')
 chain.has('canada') === false
 ```
+
 
 ### 🏊 diving deeper
 
@@ -98,9 +99,9 @@ const {canada} = new ChainedMap()
 ```
 
 
-### 👆 tap
+### tap
 
-tap a value with a function
+👆 tap a value with a function
 
 ```js
 new Chain()

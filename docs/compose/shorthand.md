@@ -1,4 +1,4 @@
-# 👂 `shorthand` [🎼 ](https://github.com/fluents/chain-able/wiki/compose)
+# 🖐 `shorthand` [🎼 ](https://github.com/fluents/chain-able/wiki/compose)
 
 > shorthand easy helper functions
 

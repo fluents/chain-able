@@ -21,11 +21,11 @@
 ```ts
 // extends Set
 class ChainedSet extends Chainable {
-	public add(value: any): ChainedSet
-	public prepend(value: any): ChainedSet
-	public merge(arr: MergeableArray): ChainedSet
-	public has(value: any): boolean
-	public values(): any[]
+  public add(value: any): ChainedSet
+  public prepend(value: any): ChainedSet
+  public merge(arr: MergeableArray): ChainedSet
+  public has(value: any): boolean
+  public values(): any[]
 }
 ```
 

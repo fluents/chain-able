@@ -144,7 +144,7 @@ cleaned === {
 - [tests][traversetests]
 - [dep tests][traversetestsdep]
 
-[traversesrc]: https://github.com/fluents/chain-able/blob/4.0.2/src/TraverseChain.js
-[traversetests]: https://github.com/fluents/chain-able/blob/4.0.2/test/traverse.js
-[traversetestsdep]: https://github.com/fluents/chain-able/tree/4.0.2/test/traverse
+[traversesrc]: https://github.com/fluents/chain-able/tree/master/src/TraverseChain.js
+[traversetests]: https://github.com/fluents/chain-able/tree/master/test/traverse.js
+[traversetestsdep]: https://github.com/fluents/chain-able/tree/master/test/traverse
 [js-traverse]: https://github.com/substack/js-traverse

@@ -1,8 +1,9 @@
 # 4.0.0 https://github.com/fluents/chain-able/releases/tag/v4.0.0
+- test cov 90 -> 96%
 - MAJOR
   - .when(string) string now checks .has
   - moved .clean
-  - observable dot prop
+  - observable dot.prop
   - caching
   - removed many classes
   - MethodChain
@@ -11,9 +12,12 @@
     - removed compose/Extend, compose/Child, compose/immutable, compose/Extend, compose/Types, compose/Symbols, compose/Debug, compose/define
     - .schema feature
       - optional types, array types, or types
+      - 📐🛂🏭 refactor out schema factory
   - integrated histories from deepmerge, dot-prop, traverse-js, webpack-chain (all commit hashes change, extremely likely they are not used anywhere, even so there is a branch backup so hardly 100% breaking)
+  - completely redid type definitions
   - took out unsable-to-be-used method `instanceof` static instance on Chainable
 - PATCH
+  - updating all docs
   - tsc for dev version
   - exported more deps
   - fixed `hasInstance` Object.prototype.instanceOf.call in Chainable
@@ -28,10 +32,12 @@
     - traverse-js: optimized argument slicing, const & let, jsdocs
   - many more tests
     - covered reduce for tests
-    - covered
+    - covered almost all traverser branches
     - all old tests updated to new .method api
     -
   - fix sourcemaps for tests for more accurate coverage (was failing the unused built code such as Object.create)
+  - 👕 tslint
+  - 🏰🏗 refactor build  system
 - merge
   - covered all branches of dopemerge tests
   - fixed `null` ignored type on ezTypes in dopemerge
@@ -44,6 +50,7 @@
   - fusebox updates - close to rollup size
   - optimizejs
 - utils
+  - 🖇🌊 typechecking utils null, undefined, objloose, strornum, class, false, true, updated all clients
   - argumentor util (used in traverser, from deopt checks)
   - concat util
   - move out old `isNode` into utils from Chainable
@@ -53,14 +60,20 @@
   - isEnumerable, isPrototypeOf, isEmptyArray, isUndefined, isIterator (merged to kind-of repo)
   - garbage collector
   - reduce (moved from Chainable)
+  - 🖇 false/true/eqCurry/ezType/charCodeAtZero/length/typeof utils
+  - 🖇 length -1 util, strange
   - clean (moved from Chainable)
   - encase (moved from compose/Extend)
+    - 📐⛑🏭refactor encase factory
+  -  ♻️ abstract 🏰 refactor 🛂validators - split into more reusable functions for later
+  - 🚑🐛 fix `isUndefined` & `isNull` in validators stripping to .null & 2x the obj size
 - dot-prop
   - re-add caching
   - observable
   - dot-prop paths tests
   - dot-prop paths experiment for alternative regex implementation & minor optimization for size
   - dot-prop paths traverser to gather paths of objects
+    - 👣 longest paths option
 - matcher
   - re-add caching
 

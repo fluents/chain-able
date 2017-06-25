@@ -1,3 +1,5 @@
+# ⛓ Chainable
+
 [map]: https://ponyfoo.com/articles/es6-maps-in-depth
 [compose]: https://github.com/fluents/chain-able/wiki/Compose
 
@@ -16,28 +18,29 @@ these core functions call `chain.store`, when updating the `store`, `this` is re
 
 ```ts
 class Chainable {
-	public parent?: Chainable
+  public parent?: Chainable
   public compose: Composer
 
-	constructor(parent: ParentType)
+  constructor(parent: ParentType)
 
-	public readonly length: number
-	public end(): Chainable | any
+  public readonly length: number
+  public end(): Chainable | any
 
   // when string, uses this.has(condition)
-	public when(condition: truthy | string, trueBrancher?: Fn, falseBrancher?: Fn): Chainable
+  public when(condition: truthy | string, trueBrancher?: Fn, falseBrancher?: Fn): Chainable
 
+  // clears the store, resets to empty
   public clear(): Chainable
-	public delete(key: Primitive): Chainable
-	public has(value: Primitive): boolean
+  public delete(key: Primitive): Chainable
+  public has(value: Primitive): boolean
 
-	public [Symbol.iterator](): void
-	public [Symbol.toPrimitive](hint: string): string | number | any
-	public [Symbol.hasInstance]: boolean
+  public [Symbol.iterator](): void
+  public [Symbol.toPrimitive](hint: string): string | number | any
+  public [Symbol.hasInstance]: boolean
 }
 ```
-
-# ⛓ Chainable
+<!--  -->
+<!-- # ⛓ Chainable -->
 
 <!-- ##### `.clear(): Chain` [🔗 docs][clear]
 
@@ -80,7 +83,7 @@ clean:
 *       then to an object using the reduced values -->
 [merge]: https://github.com/fluents/chain-able/wiki/merge
 
-#### Map & Set .store wrappers
+<!-- #### Map & Set .store wrappers
 - clear(): `Chain` _clears the store, resets to empty_
 - values(): `[index: value]` _spreads the entries from ChainedMap.store.values_
 - delete(): `Chain`
@@ -94,7 +97,7 @@ clean:
   ```js
   const prod = process.env.NODE_ENV === 'production'
   chains.when(prod, c => c.set('prod', true), c => c.set('prod', false))
-  ```
+  ``` -->
   <!-- _when the condition is true,_
   _trueBrancher is called,_
   _else, falseBrancher is called_ -->

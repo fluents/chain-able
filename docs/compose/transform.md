@@ -1,7 +1,6 @@
 # 🤖 `transform` [🎼 ](https://github.com/fluents/chain-able/wiki/compose)
 
 - [definitions](#definitions)
-- [tap](#-tap)
 - [remap](#-remap)
 - [transform](#-transform)
 - [traverse](#-traverse)
@@ -34,9 +33,11 @@ const chain = new Chain()
 ```
 
 ### 🤖 transform
-- [source][transformsrc] [tests][transformtests]
-[transformsrc]: https://github.com/fluents/chain-able/blob/4.0.2/src/compose/Transform.js
-[transformtests]: https://github.com/fluents/chain-able/blob/4.0.2/test/MobX.js
+- [source][transformsrc]
+- [tests][transformtests]
+
+[transformsrc]: https://github.com/fluents/chain-able/tree/master/src/compose/Transform.js
+[transformtests]: https://github.com/fluents/chain-able/tree/master/test/MobX.js
 [MethodChain]: https://github.com/fluents/chain-able/wiki/MethodChain
 
 _works for all other [MethodChain][] extensions as well_

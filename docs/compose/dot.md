@@ -10,7 +10,7 @@
 ```ts
 // overrides .set, .has, .get, .delete with dot.prop access
 interface DotProp extends Composable, ChainedMap {
-	dot(enabled: boolean): ChainAble
+  dot(enabled: boolean): ChainAble
 }
 ```
 
