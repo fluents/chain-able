@@ -7,11 +7,11 @@ const isSet = require('./deps/is/set')
 const isUndefined = require('./deps/is/undefined')
 const isString = require('./deps/is/string')
 const ObjectKeys = require('./deps/util/keys')
+const charCodeAtZero = require('./deps/util/charCodeAtZero')
 const ObjectDefine = require('./deps/define')
 const ignored = require('./deps/ignored')
 const ENV_DEVELOPMENT = require('./deps/env/dev')
 
-const F = Function.prototype
 const shouldClear = (key, property) =>
   !ignored(key) &&
   (isMap(property) || isSet(property) || (property && property.store))
@@ -56,8 +56,8 @@ const C = SuperClass => {
     [Iterator]() {
       const values = this.values()
       const size = this.store.size
-      const entries = this.entries ? this.entries() : false
-      const keys = entries === false ? new Array(size) : ObjectKeys(entries)
+      const entries = this.entries ? this.entries() : 0
+      const keys = entries === 0 ? new Array(size) : ObjectKeys(entries)
 
       return {
         i: 0,
@@ -107,18 +107,20 @@ const C = SuperClass => {
      * @param  {Function} [falseBrancher=Function] called when false
      * @return {ChainedMap}
      */
-    when(condition, trueBrancher = F, falseBrancher = F) {
+    when(condition, trueBrancher, falseBrancher) {
       if (condition) {
-        if (isString(condition)) {
-          if (this.get(condition)) {
+        if (!isUndefined(trueBrancher)) {
+          if (isString(condition)) {
+            if (this.get(condition)) {
+              trueBrancher(this)
+            }
+          }
+          else {
             trueBrancher(this)
           }
         }
-        else {
-          trueBrancher(this)
-        }
       }
-      else {
+      else if (!isUndefined(trueBrancher)) {
         falseBrancher(this)
       }
 
@@ -194,12 +196,27 @@ const C = SuperClass => {
      * @see http://2ality.com/2015/09/well-known-symbols-es6.html#default-tostring-tags
      * @since 1.0.2
      * @example chain + 1 (calls this)
-     * @param {string} hint
+     * @param {string} hint enum[default, string, number]
      * @return {Primitive}
      */
     [Primitive](hint) {
-      if (hint === 'string' && this.toJSON) return this.toJSON()
-      else if (hint === 'number' && this.toNumber) return this.toNumber()
+      /* prettier-ignore */
+      /**
+       * hint === 'number'
+       * `s`tring is 115
+       * `n`umber is 110
+       * 110 & 4 = 1
+       * 115 & 4 = 0
+       *
+       * if (hint === 'string' && this.toJSON) return this.toJSON()
+       * else if (hint === 'number' && this.toNumber) return this.toNumber()
+       */
+      if ((charCodeAtZero(hint) & 4) && this.toNumber) return this.toNumber()
+
+      // hint === 'string'
+      if (this.toJSON) return this.toJSON()
+
+      // hint === 'default'
       return this.toString()
     }
   }
@@ -222,11 +239,11 @@ const C = SuperClass => {
       value: instance => {
         return !!(
           instance &&
-          (isPrototypeOf(Chain, instance) ||
-            instance.className ||
-            instance.store ||
-            instance.meta)
+          (isPrototypeOf(Chain, instance) || instance.store)
         )
+        // not-needed
+        // instance.className ||
+        // instance.meta)
       },
     })
   }

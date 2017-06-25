@@ -112,17 +112,6 @@ Traverse.prototype.forEach = function(cb) {
   return this.value
 }
 
-/**
- * @since 4.0.0
- * @param  {Function} cb
- * @return {any} this.value
- */
-Traverse.prototype.forEachs = function(cb) {
-  return this.forEach(function(x) {
-    cb.call(this, this, x)
-  })
-}
-
 Traverse.prototype.reduce = function(cb, init) {
   const skip = arguments.length === 1
   let acc = skip ? this.value : init

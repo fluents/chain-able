@@ -33,14 +33,15 @@ function getMeta(_this) {
   const ensureInitialized = (name, value) => {
     if (!isUndefined(store[name])) return
 
-    if (
-      name === TRANSFORMERS_KEY ||
-      name === SHORTHANDS_KEY ||
-      name === DECORATED_KEY
-    ) {
-      store[name] = new Map()
-    }
-    else if (name === OBSERVERS_KEY) {
+    // if (
+    //   name === TRANSFORMERS_KEY ||
+    //   name === SHORTHANDS_KEY ||
+    //   name === DECORATED_KEY
+    // ) {
+    //   store[name] = new Map()
+    // }
+    // else
+    if (name === OBSERVERS_KEY) {
       store[name] = new Set()
     }
     else {
@@ -55,9 +56,9 @@ function getMeta(_this) {
    * @return {boolean}
    */
   const has = (key, prop) => {
-    if (isUndefined(prop)) return !!store[key].size
-    return store[key].has(prop)
-  }
+    if (isUndefined(prop)) return !!store[key].size;
+    return store[key].has(prop);
+  };
   /**
    * @since  4.0.0
    * @param  {Primitive} key
@@ -65,8 +66,8 @@ function getMeta(_this) {
    * @return {any}
    */
   const get = (key, prop) => {
-    return has(key, prop) ? store[key].get(prop) : []
-  }
+    return has(key, prop) ? store[key].get(prop) : [];
+  };
   /**
    * @since  4.0.0
    * @param  {Primitive} key
@@ -75,18 +76,18 @@ function getMeta(_this) {
    * @return {void}
    */
   const set = (key, prop, value) => {
-    const storage = store[key]
+    const storage = store[key];
     // when it's a set, we have no `prop`, we just have .add
     // so `prop = value` && `value = undefined`
     if (isSet(storage)) {
-      storage.add(prop)
+      storage.add(prop);
     } else {
       // if (!has(key, prop)) return
-      const existing = storage.get(prop)
-      const val = concat(existing, value)
-      storage.set(prop, val)
+      const existing = storage.get(prop);
+      const val = concat(existing, value);
+      storage.set(prop, val);
     }
-  }
+  };
 
   /**
    * THIS IS BEST!!! A SINGLE MINIFIABLE FUNCTION, NO PROPERTY NESTING
@@ -95,37 +96,44 @@ function getMeta(_this) {
    * @param {undefined | any} [value=undefined] (when no value, it's a getter)
    */
   function meta(key, prop, value) {
-    ensureInitialized(key)
-
     // if (process.env.NODE_ENV !== 'production') {
     //  console.log('USING META', {key, prop, value})
     // }
 
+    /* prettier-ignore */
     if (isUndefined(value)) {
       // when we want to just access the property, return an array
       // @example `.meta('transformers')`
       if (isUndefined(prop)) {
-        return store[key].size === 0 ? [] : ArrayFrom(store[key].values())
-      } else if (!isSet(store[key])) {
+        if (isUndefined(store[key])) return []
+        else return store[key].size === 0 ? [] : ArrayFrom(store[key].values())
+      }
+      else if (!isSet(store[key])) {
+        if (isUndefined(store[key])) return []
         // @TODO: !!!!!! if (get(key, prop)) isSet?
         //
         // otherwise, we want to return the key for that specific property
         // @example `.meta('transformers', 'eh')`
-        return toarr(get(key, prop))
-      } else {
+        else return toarr(get(key, prop))
+      }
+      else {
+        ensureInitialized(key);
         set(key, prop)
       }
-    } else {
-      // we have a value, let's add it
-      set(key, prop, value)
     }
-    return _this
+    else {
+      ensureInitialized(key);
+
+      // we have a value, let's add it
+      set(key, prop, value);
+    }
+    return _this;
   }
   // for debugging
-  meta.store = store
+  meta.store = store;
   // meta.debug = false
 
-  return meta
+  return meta;
 }
 
-module.exports = getMeta
+module.exports = getMeta;

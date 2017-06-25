@@ -11,8 +11,7 @@ module.exports = map => {
 
   // only need to do this if we actually have values in our Map
   if (map.size !== 0) {
-    const entries = ArrayFrom(map.entries())
-    reduced = entries.reduce((acc, [key, value]) => {
+    reduced = ArrayFrom(map.entries()).reduce((acc, [key, value]) => {
       acc[key] = value
       return acc
     }, {})

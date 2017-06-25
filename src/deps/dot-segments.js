@@ -15,6 +15,8 @@
 
 // const cache = require('./cache')
 const isArray = require('./is/array')
+const isUndefined = require('./is/undefined')
+const lengthMinusOne = require('./util/lengthMinusOne')
 
 let cache
 module.exports = path => {
@@ -41,7 +43,7 @@ module.exports = path => {
      *          '\.'  -1 === '\\'      (true)
      *                +1 !== undefined (false, eh)
      */
-    while (p[p.length - 1] === '\\' && pathArr[i + 1] !== undefined) {
+    while (p[lengthMinusOne(p)] === '\\' && !isUndefined(pathArr[i + 1])) {
       p = p.slice(0, -1) + '.' + pathArr[++i]
     }
 
