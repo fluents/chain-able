@@ -1,5 +1,4 @@
 const Chainable = require('./Chainable')
-const MergeChain = require('./MergeChain')
 const dopemerge = require('./deps/dopemerge')
 const reduce = require('./deps/reduce')
 const reduceEntries = require('./deps/reduce-entries')
