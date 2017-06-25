@@ -1,3 +1,1 @@
-module.exports = function isTrue(o) {
-  return o === true
-}
+module.exports = o => o === true

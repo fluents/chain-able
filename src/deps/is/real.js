@@ -3,4 +3,6 @@
 //
 // eslint-disable-next-line no-self-compare
 // && x !== x
-module.exports = x => x !== null && x !== undefined && !Number.isNaN(x)
+const isNullOrUndefined = require('./nullOrUndefined')
+
+module.exports = x => !isNullOrUndefined(x) && !Number.isNaN(x)

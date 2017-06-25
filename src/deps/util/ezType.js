@@ -1,6 +1,7 @@
-const isArray = require('./array')
-const isNull = require('./null')
+const isArray = require('../is/array')
+const isNull = require('../is/null')
 
+/* prettier-ignore */
 /**
  * @desc when Array -> 'array'
  *       when null -> 'null'
@@ -8,8 +9,7 @@ const isNull = require('./null')
  * @param  {any} x
  * @return {string} type
  */
-/* prettier-ignore */
-const ezType = x => {
+module.exports = x => {
   return isArray(x)
     ? 'array'
     : isNull(x)

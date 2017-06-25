@@ -2,8 +2,9 @@
  * @since 2.0.0
  */
 const isUndefined = require('../deps/is/undefined')
+const isFunction = require('../deps/is/function')
 
-module.exports = (SuperClass, opts) => {
+module.exports = SuperClass => {
   return class Shorthands extends SuperClass {
     // --- helpers  ---
     constructor(parent) {
@@ -60,6 +61,7 @@ module.exports = (SuperClass, opts) => {
     // --- added new ChainedMapExtendable stuff ---
 
     /**
+     * @since 3.0.0
      * @desc return a value at the end of a chain regardless
      * @param  {any} value value to return at the end of a chain
      * @return {any}
@@ -69,12 +71,13 @@ module.exports = (SuperClass, opts) => {
     }
 
     /**
+     * @since 2.0.0
      * @desc execute something and return this
      * @param  {any} fn
      * @return {This} @chainable
      */
     wrap(fn) {
-      if (typeof fn === 'function') fn.call(this, this)
+      if (isFunction(fn)) fn.call(this, this)
       return this
     }
   }

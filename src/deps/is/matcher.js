@@ -1,1 +1,3 @@
-module.exports = x => typeof x === 'function' || x instanceof RegExp
+const isFunction = require('./function')
+
+module.exports = x => isFunction(x) || x instanceof RegExp

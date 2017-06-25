@@ -24,6 +24,7 @@ const isMatcher = require('./matcher')
 // const isClass = require('./class')
 // const isEnumerable = require('./enumerable')
 // const isMapish = require('./mapish')
+// isTrue
 
 module.exports = {
   isObjWithKeys,
@@ -42,8 +43,8 @@ module.exports = {
   isMap,
   isSet,
   isSymbol,
-  isArray,
   isPrototypeOf,
+  isArray,
   // new
   isIterator,
   isUndefined,

@@ -1,3 +1,4 @@
 const isArray = require('./array')
+const isString = require('./string')
 
-module.exports = k => (typeof k === 'string' && k.includes('.')) || isArray(k)
+module.exports = k => isArray(k) || (isString(k) && k.includes('.'))
