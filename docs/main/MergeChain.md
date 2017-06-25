@@ -15,10 +15,10 @@
 
 - [definition](#definition)
 - [.from](#from)
-- [process](#process)
 - [examples](#-examples)
   - [minimal](#-minimal)
   - [persist & hydrate](#-persist-and-hydrate)
+- [process](#process)
 - [related](#-related)
 
 ### definition:
@@ -26,21 +26,21 @@
 ```ts
 type Mergeable = Obj | Arr
 
-export interface DopeMergeOptions {
-	arrayMerge?: Fn
-	stringToArray?: boolean = true
-	boolToArray?: boolean = false
-	ignoreTypes?: string[] = ['null', 'undefined', 'NaN']
-	debug?: boolean = undefined
+interface DopeMergeOptions {
+  arrayMerge?: Fn
+  stringToArray?: boolean = true
+  boolToArray?: boolean = false
+  ignoreTypes?: string[] = ['null', 'undefined', 'NaN']
+  debug?: boolean = undefined
 }
 
 function dopemerge(obj1: Mergeable, obj2: Mergeable, opts?: DopeMergeOptions): Mergeable
 
 class MergeChain extends ChainedMapBase {
-  onExisting(fn?: Fn): MergeChain
-  onValue(fn?: Fn): MergeChain
-  obj(obj: Obj): MergeChain
-  merge(objToMerge: Obj): MergeChain
+  public onValue(fn?: Fn): MergeChain
+  public onExisting(fn?: Fn): MergeChain
+  public obj(obj: Obj): MergeChain
+  public merge(objToMerge: Obj): MergeChain
 }
 ```
 
@@ -49,23 +49,6 @@ class MergeChain extends ChainedMapBase {
 - a simplified, optimized `.merge` which works similar, but **does not deeply merge objects** unless the properties are _chainable instances_
 - by default, **overrides existing values** or sets them initially
 - mainly used for _hydrating_ or _transferring_ (for example, to-from _localStorage_, to-from _webworker_)
-
-
-# process
-
-- in [ChainedSet][ChainedSet] `arg` is an `Iteratable` (e.g. `Array`)
-- in [ChainedMap][ChainedMap] `arg` is an `Object`
-- iterate over the object keys:
-  - if there an instance _property_ matching the _key_
-    - if it's a chainable instance (e.g. `this.list = new ChainedSet(this)`)
-      - call `.merge` on the instance
-    - else if it's a _method_
-      - if the _method_ is in `.shorthands` (added for every [`.extend`][Extend])
-      - if the _value_ is in the store, [tap](tap) the value & deeply merge the value with the existing one
-      - call the _method_ with the _value_
-  - default/fallback
-    - if existing value, deeply _value-_ *merge*
-    - `.set`
 
 
 ## 📘 examples
@@ -105,6 +88,23 @@ const canada = Canada.init()
 ls.set('canada', canada)
 const hydrated = new Canada().from(ls.get('canada'))
 ```
+
+
+# process
+
+- in [ChainedSet][ChainedSet] `arg` is an `Iteratable` (e.g. `Array`)
+- in [ChainedMap][ChainedMap] `arg` is an `Object`
+- iterate over the object keys:
+  - if there an instance _property_ matching the _key_
+    - if it's a chainable instance (e.g. `this.list = new ChainedSet(this)`)
+      - call `.merge` on the instance
+    - else if it's a _method_
+      - if the _method_ is in `.shorthands` (added for every [`.extend`][Extend])
+      - if the _value_ is in the store, [tap](tap) the value & deeply merge the value with the existing one
+      - call the _method_ with the _value_
+  - default/fallback
+    - if existing value, deeply _value-_ *merge*
+    - `.set`
 
 # 🔗 related
 

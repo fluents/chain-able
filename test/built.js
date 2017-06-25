@@ -27,7 +27,7 @@ const exportedNames = [
   'meta',
   'validators',
 ]
-const dists = [cjsDist, umd] // [devDist]
+const dists = [cjsDist, umd, devDist]
 
 function testExportNames(t, exported, dist) {
   t.plan(exported.length)

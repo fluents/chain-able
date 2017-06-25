@@ -19,79 +19,41 @@
 [license-url]: https://spdx.org/licenses/MIT
 [gitter-badge]: https://img.shields.io/gitter/room/fliphub/pink.svg
 [gitter-url]: https://gitter.im/fliphub/Lobby
-[flipfam-image]: https://img.shields.io/badge/%F0%9F%8F%97%20%F0%9F%92%A0-flipfam-9659F7.svg
-[flipfam-url]: https://www.npmjs.com/package/flipfam
 
+[wiki]: https://github.com/fluents/chain-able/wiki
+[deps]: https://github.com/fluents/chain-able/wiki/deps
+[parent]: https://github.com/fluents/chain-able/wiki/parent
+[analogy]: https://github.com/fluents/chain-able/wiki/analogy
+[Observe]: https://github.com/fluents/chain-able/wiki/Observe
+[DotProp]: https://github.com/fluents/chain-able/wiki/DotProp
+[Schema]: https://github.com/fluents/chain-able/wiki/Schema
+[Transform]: https://github.com/fluents/chain-able/wiki/Transform
+[Shorthand]: https://github.com/fluents/chain-able/wiki/Shorthand
+[API]: https://github.com/fluents/chain-able/wiki/api
+[compose]: https://github.com/fluents/chain-able/wiki/Compose
+[Chainable]: https://github.com/fluents/chain-able/wiki/Chainable
+[ChainedMap]: https://github.com/fluents/chain-able/wiki/ChainedMap
+[ChainedSet]: https://github.com/fluents/chain-able/wiki/ChainedSet
+[FactoryChain]: https://github.com/fluents/chain-able/wiki/FactoryChain
+[MergeChain]: https://github.com/fluents/chain-able/wiki/MergeChain
+[MethodChain]: https://github.com/fluents/chain-able/wiki/MethodChain
+[TraverseChain]: https://github.com/fluents/chain-able/wiki/TraverseChain
+[CHANGELOG]: https://github.com/fluents/chain-able/blob/master/docs/CHANGELOG.md
+[Snippet]: https://github.com/fluents/chain-able/wiki/Snippet
+[Examples]: https://github.com/fluents/chain-able/wiki/Examples
+[ExamplesPrimitives]: https://github.com/fluents/chain-able/wiki/Primitives
+[ExamplesLocalStorage]: https://github.com/fluents/chain-able/wiki/LocalStorage
+[ExamplesExpressive]: https://github.com/fluents/chain-able/wiki/LocalStorage
+[ExamplesComparison]: https://github.com/fluents/chain-able/wiki/Comparison
+[ExamplesIteratable]: https://github.com/fluents/chain-able/wiki/Iteratable
+[TypeDefs]: https://github.com/fluents/chain-able/tree/master/typings
+[Tests]: https://github.com/fluents/chain-able/tree/master/test
+[Src]: https://github.com/fluents/chain-able/tree/master/src
 [map]: https://ponyfoo.com/articles/es6-maps-in-depth
 [set]: https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Set
-[compose]: https://github.com/fluents/chain-able/wiki/compose
-[iteratable]: https://github.com/fluents/chain-able/wiki/iteratable
-
-[type]: https://github.com/fluents/chain-able/wiki/type
-[factory]: https://github.com/fluents/chain-able/wiki/factory
-[parent]: https://github.com/fluents/chain-able/wiki/parent
-
-[extend]: https://github.com/fluents/chain-able/wiki/extend
-[alias]: https://github.com/fluents/chain-able/wiki/extend#extendalias
-[increment]: https://github.com/fluents/chain-able/wiki/extend#extendincrement
-[truefalse]: https://github.com/fluents/chain-able/wiki/Extend#extendfalse
-
-[transform]: https://github.com/fluents/chain-able/wiki/transform
-[remap]: https://github.com/fluents/chain-able/wiki/transformable#-remap
-[tap]: https://github.com/fluents/chain-able/wiki/transformable#tap
-[traversable]: https://github.com/fluents/chain-able/wiki/transformable#traversable
-
-[dotprop]: https://github.com/fluents/chain-able/wiki/shorthand#dot-prop
-
-[shorthand]: https://github.com/fluents/chain-able/wiki/shorthand#setifempty
-[chainwrap]: https://github.com/fluents/chain-able/wiki/shorthand#chainwrapmethods-array-chain
-[bindmethods]: https://github.com/fluents/chain-able/wiki/shorthand#bindmethodsmethods-array-chain
-[setifempty]: https://github.com/fluents/chain-able/wiki/shorthand#setifempty
-
-[immutable]: https://github.com/fluents/chain-able/wiki/immutable
-
-[primatives]: https://github.com/fluents/chain-able/wiki/primatives
-[snippet]: https://github.com/fluents/chain-able/wiki/snippet
-
-[define]: https://github.com/fluents/chain-able/wiki/define
-[extendGetSet]: https://github.com/fluents/chain-able/wiki/define#extendGetSet
-[defineGetSet]: https://github.com/fluents/chain-able/wiki/define#defineGetSet
-[autoIncrement]: https://github.com/fluents/chain-able/wiki/api
-[api]: https://github.com/fluents/chain-able/wiki/api
+[cov]: https://coveralls.io/github/fluents/chain-able?branch=master
 
 > interfaces that describe their intentions
-
-# 🗣 expressive
-
-### traditional
-```js
-class Traditional {
-  constructor() {
-    this.data = {}
-  }
-  build(index, name, object) {
-    this.data.index = index
-    this.data.name = name
-    this.data.object = object
-  }
-}
-const classico = new Traditional()
-classico.build(1, 'string', {object: true})
-```
-
-### fluent
-```js
-class Fluent extends Chain {
-  constructor(parent) {
-    super(parent)
-    this.extend(['index', 'name', 'object'])
-  }
-}
-const chain = new Chain()
-  .index(1)
-  .name('string')
-  .object(true)
-```
 
 
 ### 📦 install
@@ -104,75 +66,66 @@ npm i chain-able --save
 # 🏰 benefits
 
 writing an api using chain-able means:
-- write **1** api,
+- write **1** api
 - get **3** apis as a result!
   - 🍉 persistable, rehydratable, & transferrable configurations
   - ⛓ fluent/chainable api
   - 🍦 vanilla object syntax
 
-<!-- - 🏗 customizable -->
-<!-- - ⚙ configurable -->
-<!-- - 🎼 composable -->
-<!-- - 👾 simplifications of the complex -->
-<!-- - ☮️ compatible -->
-<!-- - 🙌 agnostic -->
-
 # 🎁 features
-- [api][api]
-  - [iteratable][iteratable]
-  - [expressive](#-expressive)
-  - [seamless native integration][primatives]
-- [transformable][transform]
-  - [debuggable][transform] <!-- needs more explanation -->
-  - [traversable][traversable]
-  - [remappable][remap]
-  - [tap][tap]
-- [observable](#-observable)
-- [easy deep merging](#-chainable)
-- [runtime types & schema][type] <!-- methods... -->
-- [`.method()`][extend]
-  - [alias][alias]
-  - [autoIncrement][autoIncrement]
-  - [getSet][truefalse]
-  - [define][define]
-- [dot-prop][dotprop]
-- [shorthand][shorthand]
-  - [.chainWrap][chainwrap]
-  - [.bindMethods][bindmethods]
-  - [.setIfEmpty][setifempty]
-- [nestable factories][parent]
-- [compose & decorators][compose]
+
+- [expressive, clearly communicative code][wiki]
+- [runtime type validation][Schema]
+- [🔬 230+ tests][Tests] with [96%+ code coverage][cov]
+- ⚡ [performant & tiny][Src] `~7kb` _(gzip)_ [_300 byte_ minimal version available as snippet][snippet]
+
+<details><summary><em><b>more...</b></em></summary>
+
+- [🌐 api][API]
+  - [⛓ Chainable][Chainable]
+  - [🗺 ChainedMap][ChainedMap]
+  - [🔢 ChainedSet][ChainedSet]
+  - [🍴 extends Map & Set, same transparent api][map]
+  - [🔣 symbols to make usage even easier][Chainable]
+- [🍭 iteratable][ExamplesIteratable]
+- [🗣 expressive][ExamplesExpressive]
+- [👾 makes solving complex problems simple][Examples]
+- [💆 seamless native integration][ExamplesPrimitives]
+- [🎼 compose & decorate][compose]
+  - [👂 observe with Wildcard/Glob, RegExp, Functions][Observe]
+  - [🤖 transform][Transform]
+  - [🕵 debug][Shorthand]
+  - [👣 traverse **any** data][TraverseChain]
+  - [⚖️ fast deepEquals][Transform]
+  - [🗺 remap][Transform]
+  - [👆 tap][ChainedMap]
+  - [🔋 toggleable dot.prop][DotProp]
+  - [🖐 shorthands, wrap, return, setIfEmpty][Shorthand]
+- [🛂 types, schemas, validation][Schema]
+- [🔌 method builder][MethodChain]
+  - [`onCall`][MethodChain]
+  - [`onSet`][MethodChain]
+  - [`onGet`][MethodChain]
+  - [`type`][MethodChain]
+  - [`define`][MethodChain]
+  - [`getSet`][MethodChain]
+  - [`default`][MethodChain]
+  - [`initial`][MethodChain]
+  - [`bind`][MethodChain]
+  - [`camelCase`][MethodChain]
+  - [`autoIncrement`][MethodChain]
+  - [`factory`][MethodChain]
+  - [`returns`][MethodChain]
+  - [`callReturns`][MethodChain]
+  - [`decorate (any object!)`][MethodChain]
+- [🏭 infinitely nestable understandable factories][FactoryChain]
+- [▶️◀️ easy deep merging][MergeChain]
+- [☮️ compatibility - typescript, nodejs,  webpack, rollup, fusebox, babel, buble, amd][API]
 - ⚡ performant & tiny `~7kb` _(gzip)_ [_300 byte_ minimal version available as snippet][snippet]
 
-<!-- - [▶️◀️ easy deep merging](#-chainable)
-- [🌐 api][api]
-  - [🍭 iteratable][iteratable]
-  - [🗣 expressive](#-expressive)
-  - [💆 seamless native integration][primatives]
-- [🤖 transformable][transform]
-  - [🕵 debuggable][transform]
-  - [👣 traversable][traversable]
-  - [🗺 remappable][remap]
-  - [👆 tap][tap]
-- [🎼 composable][compose]
-  - [👂 observable](#-observable)
-  - [🛂 types & validation][type]
-  - [🔌 extend][extend]
-    - [alias][alias]
-    - [increment][increment]
-    - [true/false][truefalse]
-  - [dot-prop][dotprop]
-  - [shorthand][shorthand]
-    - [.chainWrap][chainwrap]
-    - [.bindMethods][bindmethods]
-    - [.setIfEmpty][setifempty]
-  - [define][define]
-    - [extendGetSet][extendGetSet]
-    - [defineGetSet][defineGetSet]
-  - [❄️ immutable][immutable]
-- [🏭 nestable factories][parent]
-- ⚡ performant & tiny `~7kb` _(gzip)_ [_300 byte_ minimal version available as snippet][snippet] -->
+</details>
 
+-----
 
 ### 🔗 related
 
