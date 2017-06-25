@@ -1,8 +1,8 @@
-<<<<<<< HEAD
 root = true
 
 [*]
-indent_style = tab
+indent_style = space
+indent_size = 2
 end_of_line = lf
 charset = utf-8
 trim_trailing_whitespace = true
@@ -17,10 +17,6 @@ root = true
 [*.{js}]
 charset = utf-8
 
-[*]
-trim_trailing_whitespace = true
-insert_final_newline = true
-
 # 2 space indentation
 [*.{md,js,jsx,scss,hbs}]
 indent_style = space
@@ -28,6 +24,3 @@ indent_size = 2
 
 # Format Config
 [{package.json,.alexrc,babelrc,.eslintignore,.eslintrc,.markdownlint.json,.proselintrc}]
->>>>>>> 📇💚 pkg, .travis .editor .flow .git .npm .yarn
-indent_style = space
-indent_size = 2
