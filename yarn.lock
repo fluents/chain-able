@@ -2967,9 +2967,9 @@ funwithflags@*, funwithflags@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/funwithflags/-/funwithflags-1.0.2.tgz#9fc2f1eb3830714942e79eb93a26517640ac18b7"
 
-fuse-box@2.2.0-beta.16:
-  version "2.2.0-beta.16"
-  resolved "https://registry.yarnpkg.com/fuse-box/-/fuse-box-2.2.0-beta.16.tgz#3fb524f5785a5a9397443b2db6ba91749240ee65"
+fuse-box@2.2.0-beta.21:
+  version "2.2.0-beta.21"
+  resolved "https://registry.yarnpkg.com/fuse-box/-/fuse-box-2.2.0-beta.21.tgz#b8432a8e8baa14f3dad1f2ff631a6f6a6a41aed1"
   dependencies:
     acorn "^5.0.3"
     acorn-es7 "^0.1.0"
@@ -5213,7 +5213,7 @@ repeating@^2.0.0:
   dependencies:
     is-finite "^1.0.0"
 
-request@2.79.0, request@^2.79.0:
+request@2.79.0:
   version "2.79.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.79.0.tgz#4dfe5bf6be8b8cdc37fcf93e04b65577722710de"
   dependencies:
@@ -5238,7 +5238,7 @@ request@2.79.0, request@^2.79.0:
     tunnel-agent "~0.4.1"
     uuid "^3.0.0"
 
-request@^2.81.0:
+request@^2.79.0, request@^2.81.0:
   version "2.81.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.81.0.tgz#c6928946a0e06c5f8d6f8a9333469ffda46298a0"
   dependencies:

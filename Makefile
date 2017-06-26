@@ -3,6 +3,11 @@ cwd := $(shell pwd)
 # copy -recursively -forced
 copy:
 	cp -R -f eh dists/
+strip:
+  npm run strip && npm run strip:dist
+
+lint:
+  npm run lint
 
 # remove dist, -force -recursively even if it exists and is a folder
 clean:
@@ -13,6 +18,10 @@ old:
 
 test:
 	npm run test
+testall:
+  npm run test && npm run test:built
+cli:
+  node build/cli.js
 
 cov:
 	npm run prepublish
@@ -21,8 +30,9 @@ quick:
 	node build/cli.js --quick --test
 
 build:
-	node build/cli.js --production
-
+  npm run strip:all && npm run cli && npm run gzip
+buildprod:
+  node build/cli.js --production
 
 
 .PHONY: clean, quick

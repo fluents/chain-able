@@ -1,16 +1,16 @@
 const {resolve} = require('path')
-const moduleAlias = require('module-alias')
 
-// moduleAlias.addPath(resolve(__dirname, './node_modules'))
-// moduleAlias.addPath(resolve(__dirname, '../../../fuse-box/fuse-box-master'))
-// moduleAlias.addPath(
-//   resolve(__dirname, '../../../fuse-box/fuse-box-master/modules')
-// )
-// moduleAlias.addPath(
-//   resolve(__dirname, '../../../fuse-box/fuse-box-master/node_modules')
-// )
-// // moduleAlias.addPath(resolve(__dirname, '../../../'))
-// moduleAlias.addPath(resolve(__dirname, './node_modules'))
+const cwd = process.cwd()
+const res = rel => resolve(cwd, rel)
+
+// @NOTE: for building fuse locally
+// const moduleAlias = require('module-alias')
+// moduleAlias.addPath(res('./node_modules'))
+// moduleAlias.addPath(res('../../../fuse-box/fuse-box-master'))
+// moduleAlias.addPath(res('../../../fuse-box/fuse-box-master/modules'))
+// moduleAlias.addPath(res('../../../fuse-box/fuse-box-master/node_modules'))
+// moduleAlias.addPath(res('../../../'))
+// moduleAlias.addPath(res('./node_modules'))
 
 const {
   FuseBox,
@@ -18,19 +18,16 @@ const {
   BublePlugin,
   JSONPlugin,
   UglifyJSPlugin,
-  PrepackPlugin,
 } = require('fuse-box')
 // } = require('../../../fuse-box/fuse-box-master')
 
 let fuse = new FuseBox({
-  // homeDir: __dirname + '/dist',
-  homeDir: __dirname,
-  // sourcemaps: true,
-  output: 'disted/$name.js',
+  homeDir: cwd,
+  sourcemaps: true,
+  output: res('dists/fuse/$name.js'),
   cache: false,
-  // bakeAPI: 'index.js',
-  log: true, // '!filelist',
-  // debug: true,
+  log: true,
+  debug: true,
   globals: {default: '*'},
   natives: {
     process: false,
@@ -39,15 +36,15 @@ let fuse = new FuseBox({
     http: false,
   },
   plugins: [
-    // PrepackPlugin(),
     JSONPlugin(),
     // BublePlugin({}),
     QuantumPlugin({
+      hoisting: true,
       ensureES5: true,
-      bakeApiIntoBundle: 'chain-able-fuse',
-      target: 'server',
+      bakeApiIntoBundle: 'chain',
       removeExportsInterop: true,
-      uglify: false,
+      // @TODO: uglify needs a fix
+      // uglify: true,
       treeshake: true,
       containedAPI: true,
     }),
@@ -55,10 +52,5 @@ let fuse = new FuseBox({
 })
 
 // fuse.dev()
-fuse
-  .bundle('chain-able-fuse')
-  .target('server')
-  // .instructions(`> [index.cjs.dev.es6.js]`) //  -fliplog
-  .instructions(`> [dist/index.js]`) //  -fliplog
-
+fuse.bundle('chain').instructions(`> [dist/index.js]`)
 fuse.run()
