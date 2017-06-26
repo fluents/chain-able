@@ -7,13 +7,16 @@ const {isDate} = is
 
 test.todo('.schema')
 test.todo('.?schema')
+test.todo('.&schema')
+test.todo('.[enum:,/]schema')
 
-test.skip('schema.add(validator)', t => {
+test('schema.add(validator)', t => {
+  const custom = {}
   is.enums = enums => x => enums.includes(x)
   is['*'] = x => true
 
   const chain = new Chain()
-  chain.schema().add(is)
+  chain.methods().schema().add(custom)
 })
 
 test.failing('.schema - array', t => {
@@ -96,7 +99,7 @@ test('.schema - shared .onInvalid', t => {
   chain
     .methods()
     .define()
-    .onInvalid((error, arg, c) => log.data(error).echo(false))
+    .onInvalid((error, arg, key, instance) => log.data(error).echo(false))
     .schema({
       id: '?number',
       users: '?object|array',
@@ -137,7 +140,7 @@ test('typed - shorthand', t => {
     // can be used shorthand
     .method('short')
     // .onValid((val, c) => c.set('eh', val))
-    .onInvalid((error, arg, instance) => log.data(error).echo(false))
+    .onInvalid((error, arg, key, instance) => log.data(error).echo(false))
     .type(x => typeof x === 'string')
     .build()
 
@@ -154,14 +157,6 @@ test('.schema - nested', t => {
     .onValid(created => t.true(isDate(created.at)))
     .onInvalid(error => t.true(error instanceof TypeError))
     .schema({
-      status: ['enabled', 'disabled'],
-      comments: [
-        {
-          admin: 'boolean',
-          text: 'string',
-          author: 'users',
-        },
-      ],
       created: {
         at: 'date',
       },
@@ -171,7 +166,7 @@ test('.schema - nested', t => {
   chain.created({at: 'NOT-DATE'})
 })
 
-test.failing('.schema - nested + enum', t => {
+test.failing('.schema - nested + array', t => {
   t.plan(2)
   const chain = new Chain()
   /* prettier-ignore */

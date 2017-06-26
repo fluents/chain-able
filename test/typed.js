@@ -13,6 +13,7 @@ const {isPhone, isString} = {
 
 const testChecklist = `
     ✔ multiple validators
+    ✔ encase validators
     ✔ onInvalid
     ✔ onValid
     ✔ throw on oncaught invalid
@@ -31,6 +32,7 @@ test(testChecklist, t => {
   typed
     .method('eh')
     .type(isPhone)
+    .encase()
     .onValid((val, chain) => chain.set('eh', val))
     .onInvalid((val, chain) => console.log('ignore it.'))
     .build()
@@ -160,6 +162,21 @@ test(`4.0.0 - MethodChain`, t => {
   // built.ehOh = 'eh'
   // built.ehOh = !!'INVALID'
 })
+
+// test(`custom validators`, t => {
+//   const creation = new Chain
+//     .method('ignloo')
+//     .type(arg => arg && typeof arg === 'string' && arg.includes('cold'))
+//     .name('eh')
+//     .onInvalid((invalidVal, chain) => {
+//       t.true(invalidVal === null || invalidVal === true)
+//     })
+//     .onValid(validVal => {
+//       t.true(!!validVal)
+//     })
+//
+//   creation.eh()
+// })
 
 /* istanbul ignore next: depreciated */
 test.failing(`old depreciated .typed`, t => {

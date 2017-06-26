@@ -13,3 +13,6 @@ export * from './ChainedMap'
 export * from './FactoryChain'
 export * from './compose'
 export * from './schema'
+
+import { Chain } from './chain'
+export default Chain

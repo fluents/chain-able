@@ -1,4 +1,32 @@
-# 4.0.0 https://github.com/fluents/chain-able/releases/tag/v4.0.0
+# 4.0.0-alpha.2
+- 📘 examples
+  - adding examples
+  - adding examples submodule/repo
+  - adding decorators
+  - 🍭 not-bundled/exported importable decorators
+- 🏰 refactor
+  - ⛓ MethodChain
+    - 🌐 add name to onValid onInvalid
+    - 🔌 plugins for ^
+  - ⛑ encase - MAJOR remove .rethrow - put into error enhancer
+- 🖇 utils/deps
+  - 🎁 add eqeq
+  - 🎁 add `not`
+  - ♻️ abstract getPrototypeOf
+  - 📒🚚 move dopemerge & validators/types & reduce/
+  - ⚒ fix some types
+- 🌐 api/core
+- 👣 traverser
+  - 🛁 clean
+  - ℹ️️ more docs
+  - 🎁 map & set support https://github.com/fluents/chain-able/issues/21
+- 🏗 minor build updates
+  - ⚙ fix editor config
+  - 💣🛅 fuse-box scope hoisting run - close to rollup size!
+  - 🛁 clean & comment fuse.js
+  - 🍶📜 more scripts in makefile
+
+# 4.0.0-alpha.1 https://github.com/fluents/chain-able/releases/tag/v4.0.0-alpha.1
 - test cov 90 -> 96%
 - MAJOR
   - .when(string) string now checks .has

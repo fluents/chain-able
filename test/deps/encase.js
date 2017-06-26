@@ -2,7 +2,8 @@ const test = require('ava')
 const log = require('fliplog')
 const encase = require('../../dist/deps/encase')
 
-test('encase.rethrow', t => {
+/* istanbul ignore next: depreciated */
+test.failing('encase.rethrow', t => {
   t.plan(1)
   const encased = encase(function() {
     throw new Error('rethrow yay')

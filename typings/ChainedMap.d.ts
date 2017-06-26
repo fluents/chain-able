@@ -17,7 +17,7 @@ import {Chain} from './Chain'
 export interface ChainedMapI extends Composable {
   meta: Meta
   store: ValidMap
-  entries(reduceInstanceProperties: boolean): Obj
+  entries(reduceInstanceProperties?: boolean): Obj
   from(obj: Obj): Chain
   extend(methods: string[]): Chain
   tap(name: Primitive, fn: FnTap): Chain
@@ -44,7 +44,7 @@ export declare class ChainedMapBase extends Chainable {
   public tap(name: Primitive, fn: FnTap): Chain
 
   public get(name: Primitive): Primitive
-  public set(name: Primitive, value: Primitive, dotPropKey?: any): ChainAble
+  public set(name: Primitive, value: Primitive, dotPropKey?: any): Chain
 }
 export declare class ChainedMap extends ChainedMapBase {
   public method(names: strings): MethodChain

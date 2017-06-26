@@ -1,7 +1,7 @@
-const isFunction = require('./is/function')
-const ignored = require('./ignored')
-const ObjectKeys = require('./util/keys')
-const ObjectAssign = require('./util/assign')
+const isFunction = require('../is/function')
+const ignored = require('../ignored')
+const ObjectKeys = require('../util/keys')
+const ObjectAssign = require('../util/assign')
 
 /**
  * @since 4.0.0
