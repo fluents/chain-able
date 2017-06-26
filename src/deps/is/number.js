@@ -1,11 +1,11 @@
 const toS = require('./toS')
-const isObj = require('./obj')
-const isSymbol = require('./symbol')
 
 module.exports = obj =>
   typeof obj === 'number' || toS(obj) === '[object Number]'
 
 /// was not needed except for abstract ==
+// const isObj = require('./obj')
+// const isSymbol = require('./symbol')
 // ||
 // (isObj(obj) || isSymbol(obj)
 //   ? false

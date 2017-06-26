@@ -12,6 +12,7 @@ const isRegExp = require('../is/regexp')
 const isDate = require('../is/date')
 const isPureObj = require('../is/pureObj')
 const isObjLoose = require('../is/objLoose')
+const isEqEq = require('../is/eqeq')
 const hasOwnProperty = require('../util/hasOwnProperty')
 const ObjectKeys = require('../util/keys')
 
@@ -66,7 +67,7 @@ module.exports = function(a, b, loose) {
       // if (process.env.NODE_ENV !== 'production') {
       //   console.log('diff types')
       // }
-      if (isTrue(loose) && x == y) {
+      if (isTrue(loose) && isEqEq(x, y)) {
         // ignore
       }
       else {
