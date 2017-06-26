@@ -15,6 +15,7 @@ const compose = require('./compose')
 // export
 const exp = compose()
 exp.init = parent => new exp(parent)
+exp.builder = obj => new MethodChain(obj)
 exp.Chain = exp
 exp.compose = compose
 

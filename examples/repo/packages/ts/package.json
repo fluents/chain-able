@@ -1,0 +1,16 @@
+{
+  "name": "chain-able-examples",
+  "version": "4.0.0",
+  "scripts": {
+    "start": "ts-node playground",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "chain-able": "latest"
+  },
+  "devDependencies": {
+    "typescript": "latest",
+    "tslint": "latest",
+    "prettier": "latest"
+  }
+}

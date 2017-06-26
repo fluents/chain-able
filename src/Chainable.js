@@ -21,7 +21,7 @@ const C = SuperClass => {
   if (ENV_DEVELOPMENT) {
     if (!SuperClass || !SuperClass.prototype) {
       console.log({SuperClass})
-      throw new TypeError('did not have a super class')
+      throw new TypeError('did not have a super class / target base')
     }
   }
 
