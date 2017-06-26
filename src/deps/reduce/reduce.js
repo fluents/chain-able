@@ -1,4 +1,4 @@
-const ArrayFrom = require('./util/from')
+const ArrayFrom = require('../util/from')
 
 /**
  * @since 4.0.0
