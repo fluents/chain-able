@@ -1,6 +1,7 @@
 /* eslint no-new-wrappers: "off" */
 /* eslint eqeqeq: "off" */
 /* eslint func-style: "off" */
+/* eslint complexity: "off" */
 const isPureObj = require('./is/pureObj')
 const isRegExp = require('./is/regexp')
 const isError = require('./is/error')
@@ -9,11 +10,16 @@ const isNumber = require('./is/number')
 const isString = require('./is/string')
 const isDate = require('./is/date')
 const isUndefined = require('./is/undefined')
-// was inline for size?
 const isArray = require('./is/array')
-const hasOwnProperty = require('./util/hasOwnProperty')
-const objectKeys = require('./util/keys')
+const isMap = require('./is/map')
+const isSet = require('./is/set')
+const isEqEq = require('./is/eqeq')
 const argumentor = require('./argumentor')
+const ObjectKeys = require('./util/keys')
+const hasOwnProperty = require('./util/hasOwnProperty')
+const getPrototypeOf = require('./util/getPrototypeOf')
+const reduce = require('./reduce')
+const toarr = require('./to-arr')
 
 /**
  * @param {Array | Object | any} xs
@@ -30,6 +36,10 @@ var forEach = function(xs, fn) {
   else for (let i = 0; i < xs.length; i++) fn(xs[i], i, xs)
 }
 
+/**
+ * @param {Traversable} obj
+ * @constructor
+ */
 var traverse = function(obj) {
   return new Traverse(obj)
 }
@@ -39,8 +49,8 @@ module.exports = traverse
  * @TODO: symbol, map, set
  * @tutorial https://github.com/substack/js-traverse
  * @classdesc Traverse.js
- * @param {Travcersable} obj
- * @constructor
+ * @param {Traversable} obj
+ * @prop {any} value
  */
 function Traverse(obj) {
   this.value = obj
@@ -82,6 +92,12 @@ Traverse.prototype.has = function(ps) {
   return true
 }
 
+/**
+ * @see    dot-prop
+ * @param  {Array<string>} ps paths
+ * @param  {any} value
+ * @return {any} value passed in
+ */
 Traverse.prototype.set = function(ps, value) {
   let node = this.value
   let i = 0
@@ -112,6 +128,13 @@ Traverse.prototype.forEach = function(cb) {
   return this.value
 }
 
+/**
+ * @desc   calls cb for each loop that is not root
+ *         defaults initial value to `this.value`
+ * @param  {Function} cb
+ * @param  {Object | Array | any} init
+ * @return {Object | Array | any}
+ */
 Traverse.prototype.reduce = function(cb, init) {
   const skip = arguments.length === 1
   let acc = skip ? this.value : init
@@ -123,6 +146,9 @@ Traverse.prototype.reduce = function(cb, init) {
   return acc
 }
 
+/**
+ * @return {Array<string>}
+ */
 Traverse.prototype.paths = function() {
   const acc = []
   this.forEach(function(x) {
@@ -131,6 +157,9 @@ Traverse.prototype.paths = function() {
   return acc
 }
 
+/**
+ * @return {Array<any>}
+ */
 Traverse.prototype.nodes = function() {
   const acc = []
   this.forEach(function(x) {
@@ -139,6 +168,9 @@ Traverse.prototype.nodes = function() {
   return acc
 }
 
+/**
+ * @return {any}
+ */
 Traverse.prototype.clone = function() {
   let parents = []
   let nodes = []
@@ -156,7 +188,7 @@ Traverse.prototype.clone = function() {
       parents.push(src)
       nodes.push(dst)
 
-      forEach(objectKeys(src), key => {
+      forEach(ObjectKeys(src), key => {
         dst[key] = clone(src[key])
       })
 
@@ -170,11 +202,26 @@ Traverse.prototype.clone = function() {
   })(this.value)
 }
 
+/**
+ * @param  {any}   root
+ * @param  {Function} cb
+ * @param  {boolean}   immutable
+ * @return {any}
+ */
 function walk(root, cb, immutable) {
   let path = []
   let parents = []
   let alive = true
 
+  /**
+   * @emits before
+   * @emits pre
+   * @emits post
+   * @emits after
+   *
+   * @param  {any} node_
+   * @return {State} see types
+   */
   return (function walker(node_) {
     // both are objs with properties that get changed but
     const node = immutable ? copy(node_) : node_
@@ -191,6 +238,11 @@ function walk(root, cb, immutable) {
       isRoot: path.length === 0,
       level: path.length,
       circular: null,
+      /**
+       * @param  {Function} x
+       * @param  {boolean} stopHere
+       * @return {void}
+       */
       update(x, stopHere) {
         if (!state.isRoot) {
           state.parent.node[state.key] = x
@@ -198,10 +250,18 @@ function walk(root, cb, immutable) {
         state.node = x
         if (stopHere) keepGoing = false
       },
+      /**
+       * @param  {boolean} stopHere
+       * @return {void}
+       */
       delete(stopHere) {
         delete state.parent.node[state.key]
         if (stopHere) keepGoing = false
       },
+      /**
+       * @param  {boolean} stopHere
+       * @return {void}
+       */
       remove(stopHere) {
         // @NOTE safety
         if (isUndefined(state.parent)) {
@@ -216,17 +276,17 @@ function walk(root, cb, immutable) {
         if (stopHere) keepGoing = false
       },
       keys: null,
-      before(f) {
-        modifiers.before = f
+      before(fn) {
+        modifiers.before = fn
       },
-      after(f) {
-        modifiers.after = f
+      after(fn) {
+        modifiers.after = fn
       },
-      pre(f) {
-        modifiers.pre = f
+      pre(fn) {
+        modifiers.pre = fn
       },
-      post(f) {
-        modifiers.post = f
+      post(fn) {
+        modifiers.post = fn
       },
       stop() {
         alive = false
@@ -238,13 +298,23 @@ function walk(root, cb, immutable) {
 
     if (!alive) return state
 
+    /**
+     * @desc updates if needed:
+     *       @modifies keys
+     *       @modifies circular
+     *       @modifies isLeaf
+     *       @modifies notLeaf
+     *       @modifies notRoot
+     * @return {void}
+     */
     function updateState() {
       if (isPureObj(state.node)) {
         if (!state.keys || state.node_ !== state.node) {
-          state.keys = objectKeys(state.node)
+          state.keys = ObjectKeys(state.node)
         }
 
-        state.isLeaf = state.keys.length == 0
+        // @NOTE was ==
+        state.isLeaf = state.keys.length === 0
 
         for (let i = 0; i < parents.length; i++) {
           if (parents[i].node_ === node_) {
@@ -291,8 +361,9 @@ function walk(root, cb, immutable) {
           state.node[key] = child.node
         }
 
-        child.isLast = i == state.keys.length - 1
-        child.isFirst = i == 0
+        // @NOTE was ==
+        child.isLast = i === state.keys.length - 1
+        child.isFirst = i === 0
 
         if (modifiers.post) modifiers.post.call(state, child)
 
@@ -307,22 +378,24 @@ function walk(root, cb, immutable) {
   })(root).node
 }
 
+/**
+ * @TODO   does not respect ObjectDescriptors
+ * @NOTE   wicked ternary
+ * @param  {any} src
+ * @return {any}
+ */
 function copy(src) {
   // require('fliplog').data(src).bold('copying').echo()
   if (isPureObj(src)) {
     let dst
 
-    // const reduce = require('./reduce')
-    // const toarr = require('./to-arr')
     // require('fliplog').underline('is obj').echo()
-    // @TODO:
-    // if (isMap(src)) {
-    //   require('fliplog').underline('is map').echo()
-    //   dst = reduce(src.entries())
-    // }
-    // else if (isSet(src)) {
-    //   dst = toarr(src)
-    // }
+    if (isMap(src)) {
+      dst = reduce(src.entries())
+    }
+    else if (isSet(src)) {
+      dst = toarr(src)
+    }
     if (isArray(src)) {
       dst = []
     }
@@ -346,7 +419,7 @@ function copy(src) {
     }
     else {
       //if (Object.create && Object.getPrototypeOf)
-      dst = Object.create(Object.getPrototypeOf(src))
+      dst = Object.create(getPrototypeOf(src))
     }
     // else if (src.constructor === Object) {
     //   dst = {}
@@ -360,7 +433,7 @@ function copy(src) {
     //   dst = new T()
     // }
 
-    forEach(objectKeys(src), key => {
+    forEach(ObjectKeys(src), key => {
       dst[key] = src[key]
     })
     return dst
@@ -371,12 +444,14 @@ function copy(src) {
   }
 }
 
-forEach(objectKeys(Traverse.prototype), key => {
+/**
+ * @desc adds methods to Traverser
+ */
+forEach(ObjectKeys(Traverse.prototype), key => {
   traverse[key] = function(obj) {
-    // var args = [].slice.call(arguments, 1)
-    let args = argumentor.apply(null, arguments).slice(1)
-
     const t = new Traverse(obj)
-    return t[key].apply(t, args)
+
+    // args = argumentor.apply(null, arguments).slice(1)
+    return t[key].apply(t, argumentor.apply(null, arguments).slice(1))
   }
 })
