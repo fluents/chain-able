@@ -82,7 +82,7 @@ class FactoryChain extends ChainedMap {
   /**
    * @since 2.0.0
    * @param  {any} [prop=undefined] key of the data, or returns all data
-   * @return {any}
+   * @return {any} this.data
    */
   getData(prop) {
     /* istanbul ignore next: sourcemaps trigger istanbul here incorrectly */
@@ -98,16 +98,15 @@ class FactoryChain extends ChainedMap {
    */
   factory(obj) {
     this.end = arg => {
-      if (obj && !isUndefined(obj.end)) {
-        const ended = obj.end(this.data, this.parent, this, arg)
-        if (ended && ended !== this) return ended
-      }
-      else if (this.has(ON_DONE_KEY)) {
-        const ended = this.get(ON_DONE_KEY)(this.data, this.parent, this, arg)
-        if (ended && ended !== this) return ended
-      }
+      let ended
 
-      return this.parent
+      if (obj && !isUndefined(obj.end)) ended = obj.end
+      else if (this.has(ON_DONE_KEY)) ended = this.get(ON_DONE_KEY)
+
+      if (ended) ended = ended.call(this, this.data, this.parent, this, arg)
+
+      if (ended && ended !== this) return ended
+      else return this.parent
     }
 
     return this
