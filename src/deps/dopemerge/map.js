@@ -1,20 +1,14 @@
-const reduce = require('./reduce')
+const ObjectKeys = require('./util/keys')
 const isMap = require('./is/map')
+const reduce = require('./reduce')
 const dopemerge = require('./dopemerge')
 
-// const keys = Object.keys(validators)
-// keys.forEach(key => {
-//   let validator = validators[key]
-//   if (scoped.has(key))
-//     validator = dopemerge(map.get(key), validators[key])
-//   scoped.set(key)
-// })
-
 function dopemergeMap(obj1, obj2) {
-  const maps = [isMap(obj1), isMap(obj2)]
+  const oneIsMap = isMap(obj1)
+  const twoIsMap = isMap(obj2)
 
   // eslint-disable-next-line
-  const eq = (one, two) => maps[0] == one && maps[1] == two
+  const eq = (one, two) => oneIsMap == one && twoIsMap == two
 
   let dest = obj1
   let src = obj2
@@ -25,7 +19,6 @@ function dopemergeMap(obj1, obj2) {
     src = reduce(obj2)
   }
   // obj1 is map
-  // case maps.includes(true)
   else if (eq(true, false)) {
     src = obj2
   }
@@ -38,7 +31,7 @@ function dopemergeMap(obj1, obj2) {
     return dopemerge(obj1, obj2)
   }
 
-  const keys = Object.keys(src)
+  const keys = ObjectKeys(src)
   for (var i = 0; i < keys.length; i++) {
     const key = keys[i]
     if (dest.has(key) === false) {
@@ -52,6 +45,7 @@ function dopemergeMap(obj1, obj2) {
   return dest
 }
 
+// test
 var targetMap = new Map()
 targetMap.set('true', false)
 targetMap.set('obj', {obj: []})

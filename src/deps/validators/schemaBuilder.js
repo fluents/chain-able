@@ -1,6 +1,6 @@
 const dotPropPaths = require('../dot-prop-paths')
 const dot = require('../dot-prop')
-const validatorFactory = require('./validatorFactory')
+const validationBuilder = require('./validatorBuilder')
 
 /**
  * @example
@@ -45,7 +45,7 @@ const schemaFactory = (property, nestedSchema) => {
       const fullPath = longestPaths[l]
       const type = dot.get(nestedSchema, fullPath)
       const value = dot.get(input, fullPath.split('.'))
-      const validator = validatorFactory(type)
+      const validator = validationBuilder(type)
 
       // console.log({value, fullPath, type})
       // console.log(validator.toString(), validator(value))

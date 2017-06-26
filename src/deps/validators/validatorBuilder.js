@@ -11,6 +11,7 @@ const is = require('../is')
 const isArray = require('../is/array')
 const isReal = require('../is/real')
 const isFunction = require('../is/function')
+const not = require('../util/not')
 const dopemerge = require('../dopemerge')
 const camelCase = require('../camel-case')
 
@@ -52,6 +53,7 @@ merge(is)
 // @NOTE: putting these as functions increased size 20 bytes: worth it
 // ----
 
+// @TODO: bitwise fn crazyness for this
 // @SIZE: another 10bytes for these fns
 const isNotRealOrIsEmptyString = x => !isReal(x) || x === ''
 
@@ -70,7 +72,7 @@ function typeListFactory(fullKey) {
 
   // ensure we have all validators - sets up conditionals
   for (let v = 0; v < validTypes.length; v++) {
-    factory(validTypes[v])
+    builder(validTypes[v])
   }
 
   // go through all valid options, if any are true, good to go
@@ -108,7 +110,7 @@ function arithmeticTypeFactory(fullKey) {
     set(typeOrArrayOrType, x => fn(x) || isArrayOf(fn)(x))
   }
   if (!has(notType)) {
-    set(notType, x => !fn(x))
+    set(notType, not(fn))
   }
 
   return get(fullKey)
@@ -122,12 +124,13 @@ function arithmeticTypeFactory(fullKey) {
 /* prettier-ignore */
 /**
  * @since 4.0.0
+ * @desc @pattern @builder -> builds using multiple factories depending on conditons
+ *       or abstractFactory whatever
  * @see https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Default_parameters
- * @TODO split into fns
  * @param  {string | Function | Primitive} fullKey
  * @return {Function}
  */
-function factory(fullKey) {
+function builder(fullKey) {
   // @NOTE: else is for uglifying ternaries, even though else if is not needed
 
   // opinionated: if it's a function, it's a validator...
@@ -146,9 +149,9 @@ function factory(fullKey) {
   }
 }
 
-factory.has = has
-factory.get = get
-factory.set = set
-factory.merge = merge
-factory.map = validators
-module.exports = factory
+builder.has = has
+builder.get = get
+builder.set = set
+builder.merge = merge
+builder.map = validators
+module.exports = builder
