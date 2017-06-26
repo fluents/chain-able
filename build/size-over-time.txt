@@ -22,7 +22,7 @@
 8266
 2017:51:06/25/17:06:51:43
 ---
-21
+21 <- bug here with optimize js
 2017:51:06/25/17:08:51:17
 ---
 21
@@ -31,6 +31,72 @@
 21
 2017:18:06/25/17:09:18:02
 ---
-8299
+8299 <- compiled with buble again
 2017:26:06/25/17:09:26:06
+---
+8440 <- map & set traverse,
+2017:01:06/25/17:23:01:37
+---
+8420
+// split into too many factories too dry, in validators readme,
+// set/get/call into onset
+// added name param to valid invalid
+// allowed configurable validators so not all are trycatch
+// metadata in error
+2017:23:06/25/17:23:23:59
+---
+8463 <- into plugins, added .builder export
+2017:58:06/26/17:00:58:30
+---
+8509 <- moved autoincrement & name to plugins
+2017:13:06/26/17:01:13:30
+---
+8503 <- inlined camel name ternary in build loop
+2017:17:06/26/17:01:17:28
+---
+8499 <- shortened & simplified factory.end + added .call
+2017:23:06/26/17:01:23:28
+---
+8429 <- .call the plugins & remove arrow functions & use .initial() > .set('initial')
+2017:38:06/26/17:01:38:20
+---
+8241 <- with no schema
+2017:41:06/26/17:01:41:15
+---
+8208 <- with no encase
+2017:42:06/26/17:01:42:33
+---
+8040 <- with no objPlugin
+2017:43:06/26/17:01:43:33
+---
+7636 <- with no decorate
+2017:44:06/26/17:01:44:11
+---
+7103 <- with no types
+2017:47:06/26/17:01:47:37
+
+---
+7056 <- no mth chain
+2017:50:06/26/17:01:50:51
+---
+6751 <- no fct
+2017:51:06/26/17:01:51:46
+---
+6731 <- no obs
+2017:52:06/26/17:01:52:26
+---
+4172 <- no mrg traverse
+2017:53:06/26/17:01:53:00
+---
+3839 <- no compose n dot
+2017:53:06/26/17:01:53:36
+---
+3726 <- just map set chainable no deps
+2017:55:06/26/17:01:55:20
+---
+8429
+2017:56:06/26/17:01:56:31
+---
+8429
+2017:16:06/26/17:03:16:26
 ---
