@@ -1,6 +1,9 @@
-const traverse = require('./traverse')
-const cache = require('./cache')
+const isTrue = require('../is/true')
+const includes = require('../util/includes')
+const traverse = require('../traverse')
+const cache = require('../cache')
 
+/* prettier-ignore */
 /**
  * @since 4.0.0
  * @NOTE had `onlyLongest` & `asString` but can just .join(',') to match
@@ -14,7 +17,6 @@ module.exports = function(key, value, longest) {
   if (cache.has(value)) return cache.get(value)
 
   let paths = []
-  // let pathsString = ''
 
   // gather all paths in the object
   // filter to ensure only the longest paths are kept
@@ -22,29 +24,25 @@ module.exports = function(key, value, longest) {
   // .map the paths to `dot-prop`,
   // `matcher` takes in an array so it will work for all
   traverse(value).forEach(function(x) {
+    const currentPath = this.path
+
     // ignore
-    if (!this.path || !this.path.length) return
-    // if (paths.includes(this.path)) return
+    if (!currentPath || !currentPath.length) return
 
     // dot-prop the array of paths
     // if we have a key, prefix it
-    const path =
+    paths.push(
       (key ? key + '.' : '') +
-      (this.path.join ? this.path.join('.') : this.path)
-
-    // concat a string of all paths so we can unique each branch
-    // @example `canada.arr.0` vs `canada.arr`
-    // if (pathsString.includes(path)) return
-
-    // pathsString += ';' + path
-    paths.push(path)
+      (currentPath.join ? currentPath.join('.') : currentPath)
+    )
   })
 
-  if (longest) {
-    paths = paths.filter(
-      path =>
-        !paths.some(otherPath => otherPath !== path && otherPath.includes(path))
-    )
+  if (isTrue(longest)) {
+    // concat a string of all paths so we can unique each branch
+    // @example `canada.arr.0` vs `canada.arr`
+    paths = paths.filter(path => !paths.some(otherPath =>
+      otherPath !== path && includes(otherPath, path)
+    ))
   }
 
   cache.set(value, paths)

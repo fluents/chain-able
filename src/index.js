@@ -23,7 +23,7 @@ exp.compose = compose
 exp.traverse = traverse
 exp.toArr = require('./deps/to-arr') // exp.toarr =
 exp.camelCase = require('./deps/camel-case')
-exp.dot = require('./deps/dot-prop')
+exp.dot = require('./deps/dot')
 exp.matcher = require('./deps/matcher')
 exp.is = require('./deps/is')
 exp.validators = require('./deps/validators')

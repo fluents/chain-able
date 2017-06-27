@@ -1,22 +1,6 @@
-// same thing, but while loop is 3x faster
-// function regexed(path) {
-//   return path
-//     .replace(/\\./g, '__e46__')
-//     .replace(/\./g, '__46__')
-//     .replace(/(__e46__)/g, '.')
-//     .split(/__46__/)
-//
-//   /* also the same */
-//   return path
-//     .replace(/\\./g, '__e46__')
-//     .split('.')
-//     .map(l => l.replace('__e46__', '.'))
-// }
-
-// const cache = require('./cache')
-const isArray = require('./is/array')
-const isUndefined = require('./is/undefined')
-const lengthMinusOne = require('./util/lengthMinusOne')
+const isArray = require('../is/array')
+const isUndefined = require('../is/undefined')
+const lengthMinusOne = require('../util/lengthMinusOne')
 
 let cache
 module.exports = path => {

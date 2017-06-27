@@ -3,7 +3,7 @@ const isObj = require('../deps/is/obj')
 const isTrue = require('../deps/is/true')
 const isUndefined = require('../deps/is/undefined')
 const ObjectKeys = require('../deps/util/keys')
-const dotPropPaths = require('../deps/dot-prop-paths')
+const dotPropPaths = require('../deps/dot/paths')
 const TRANSFORMERS_KEY = require('../deps/meta/transformers')
 const OBSERVERS_KEY = require('../deps/meta/observers')
 
