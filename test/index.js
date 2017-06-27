@@ -1,19 +1,19 @@
-const test = require('ava')
-const ChainedMap = require('../dist/ChainedMap')
+const ChainedMap = require('../src/ChainedMap')
 
+const todo = console.log
 // child
-test.todo('can use factory')
-test.todo('can get each .current')
+todo('can use factory')
+todo('can get each .current')
 
 // merge
-test.todo('dopemerge')
+todo('dopemerge')
 
-test('tap', t => {
+test('tap', () => {
   const tapped = new ChainedMap().set('eh', 'eh').tap('eh', val => val + '!')
-  t.true(tapped.get('eh') === 'eh!')
+  expect(tapped.get('eh') === 'eh!').toBe(true)
 })
 
-test('tap replacing .concat and .append', t => {
+test('tap replacing .concat and .append', () => {
   const {str, arr} = new ChainedMap()
     .set('str', 'emptyish')
     .tap('str', str => str + '+')
@@ -21,6 +21,6 @@ test('tap replacing .concat and .append', t => {
     .tap('arr', arr => arr.concat([2]))
     .entries()
 
-  t.deepEqual(str, 'emptyish+')
-  t.deepEqual(arr, [1, 2])
+  expect(str).toEqual('emptyish+')
+  expect(arr).toEqual([1, 2])
 })

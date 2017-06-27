@@ -1,5 +1,4 @@
-const test = require('ava')
-const {Chain, ChainedSet} = require('../dist')
+const {Chain, ChainedSet} = require('../src')
 
 class Advanced extends Chain {
   static init(parent) {
@@ -71,20 +70,20 @@ function fixture() {
     .addName('thing two')
 }
 
-test('has', t => {
-  t.true(fixture().has('igloo'))
-  t.false(fixture().has('something-that-currently-does-not-exist'))
+test('has', () => {
+  expect(fixture().has('igloo')).toBe(true)
+  expect(fixture().has('something-that-currently-does-not-exist')).toBe(false)
 })
 
-test('get', t => {
-  t.is(fixture().get('eh'), 'eh!')
+test('get', () => {
+  expect(fixture().get('eh')).toBe('eh!')
 })
 
-test('toConfig', t => {
-  t.is(typeof fixture().toConfig(), 'object')
+test('toConfig', () => {
+  expect(typeof fixture().toConfig()).toBe('object')
 })
 
-test('merge', t => {
+test('merge', () => {
   const result = fixture().toConfig()
   const hydrated = Advanced.init().from(result).toConfig()
   const merged = Advanced.init().merge(hydrated).from({igloo: 'whaaaat'})
@@ -94,14 +93,14 @@ test('merge', t => {
   // with a snapshot of the object data saved as `mergedResult`
   const mergedResult = merged.toConfig()
 
-  t.deepEqual(hydrated, {
+  expect(hydrated).toEqual({
     igloo: 'brr',
     canada: true,
     eh: 'eh!',
     list: ['thing one', 'thing two'],
     // debug: false,
   })
-  t.deepEqual(mergedResult, {
+  expect(mergedResult).toEqual({
     // igloo: ['brr', 'whaaaat'],
     igloo: 'whaaaat',
     canada: true,

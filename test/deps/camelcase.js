@@ -1,14 +1,13 @@
 // https://github.com/substack/camelize/blob/master/test/camel.js
-const test = require('ava')
-const log = require('fliplog')
-const camelize = require('../../dist/deps/camel-case')
+const log = require('fliplog');
+const camelize = require('../../src/deps/camel-case')
 
-test('camelCase', t => {
-  t.true(camelize('one two') == 'oneTwo')
-  t.true(camelize('one.two') == 'oneTwo')
-  t.true(camelize('one_two') == 'oneTwo')
-  t.true(camelize('foo-bar') == 'fooBar')
-  t.true(camelize('onetwo') == 'onetwo')
+test('camelCase', () => {
+  expect(camelize('one two') == 'oneTwo').toBe(true)
+  expect(camelize('one.two') == 'oneTwo').toBe(true)
+  expect(camelize('one_two') == 'oneTwo').toBe(true)
+  expect(camelize('foo-bar') == 'fooBar').toBe(true)
+  expect(camelize('onetwo') == 'onetwo').toBe(true)
 
-  t.true(camelize('zero one-two-three_four.five') == 'zeroOneTwoThreeFourFive')
+  expect(camelize('zero one-two-three_four.five') == 'zeroOneTwoThreeFourFive').toBe(true)
 })

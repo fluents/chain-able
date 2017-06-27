@@ -1,6 +1,5 @@
-const test = require('ava')
 const log = require('fliplog')
-const Chain = require('../dist')
+const Chain = require('../src')
 
 class Canada extends Chain {
   constructor(parent) {
@@ -19,7 +18,7 @@ const ls = {
   set: (key, value) => storage.setItem(key, JSON.stringify(value)),
 }
 
-test('persist & rehydrate', t => {
+test('persist & rehydrate', () => {
   const canada = new Canada()
     .eh('eh!')
     .merge({canada: true})
@@ -28,5 +27,5 @@ test('persist & rehydrate', t => {
 
   ls.set('canada', canada.entries())
   const hydrated = new Canada().from(ls.get('canada'))
-  t.deepEqual(canada.entries(), hydrated.entries())
+  expect(canada.entries()).toEqual(hydrated.entries())
 })

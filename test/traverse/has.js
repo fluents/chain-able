@@ -1,15 +1,12 @@
-var test = require('ava')
 var traverse = require('./')
 
-test('has', t => {
+test('has', () => {
   var obj = {a: 2, b: [4, 5, {c: 6}]}
 
-  t.deepEqual(traverse(obj).has(['b', 2, 'c']), true)
-  t.deepEqual(traverse(obj).has(['b', 2, 'c', 0]), false)
-  t.deepEqual(traverse(obj).has(['b', 2, 'd']), false)
-  t.deepEqual(traverse(obj).has([]), true)
-  t.deepEqual(traverse(obj).has(['a']), true)
-  t.deepEqual(traverse(obj).has(['a', 2]), false)
-
-  t.pass()
+  expect(traverse(obj).has(['b', 2, 'c'])).toEqual(true)
+  expect(traverse(obj).has(['b', 2, 'c', 0])).toEqual(false)
+  expect(traverse(obj).has(['b', 2, 'd'])).toEqual(false)
+  expect(traverse(obj).has([])).toEqual(true)
+  expect(traverse(obj).has(['a'])).toEqual(true)
+  expect(traverse(obj).has(['a', 2])).toEqual(false)
 })

@@ -1,7 +1,6 @@
-var test = require('ava')
 var traverse = require('./')
 
-test('stringify', t => {
+test('stringify', () => {
   var obj = [5, 6, -3, [7, 8, -2, 1], {f: 10, g: -13}]
 
   var s = ''
@@ -39,6 +38,5 @@ test('stringify', t => {
     }
   })
 
-  t.deepEqual(s, JSON.stringify(obj))
-  t.pass()
+  expect(s).toEqual(JSON.stringify(obj))
 })

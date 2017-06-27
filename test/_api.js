@@ -25,16 +25,13 @@ const exportedNames = [
 
 // @TODO: use `is` to validate these
 // @TODO: use schema & decorators
-function testExportedNames(t, dist, exported = exportedNames) {
-  t.plan(exported.length)
-  exported
-    .map(exp => {
-      return typeof dist[exp]
-    })
-    .forEach(type => t.true(type === 'object' || type === 'function'))
+function testExportedNames(dist, exported = exportedNames) {
+  return exported.map(
+    exp => dist.is.isFunction(dist[exp]) || dist.is.isObj(dist[exp])
+  )
 }
 
-function testDistedAPI(t, dist) {
+function testDistedAPI(dist) {
   const {
     Chain,
     Chainable,
@@ -68,14 +65,15 @@ function testDistedAPI(t, dist) {
   const f = new F(c)
 
   const d = dist.merge({eh: true}, {eh1: true})
-  t.true(typeof d === 'object')
-  t.true(c instanceof Chainable)
-  t.true(s instanceof ChainedSet)
-  t.true(m instanceof ChainedMap)
-  t.true(f instanceof ChainedMap)
-  t.true(f instanceof FactoryChain)
-  t.true(p instanceof Chainable)
-  t.true(n instanceof Chainable)
+  var TEST = []
+  TEST.push(typeof d === 'object')
+  TEST.push(c instanceof Chainable)
+  TEST.push(s instanceof ChainedSet)
+  TEST.push(m instanceof ChainedMap)
+  TEST.push(f instanceof ChainedMap)
+  TEST.push(f instanceof FactoryChain)
+  TEST.push(p instanceof Chainable)
+  TEST.push(n instanceof Chainable)
 
   const objs = [n, m, p]
   merge(null, undefined)
@@ -119,8 +117,8 @@ function testDistedAPI(t, dist) {
   p.canada = false
   p.canada
   p.transform('eh', v => !!v)
-  p.observe('eh', v => {})
-  p.observe(['ug'], v => {})
+  p.observe('eh', NO_OP)
+  p.observe(['ug'], NO_OP)
   p.method('fn').encase().catch(() => {}).then(() => {}).build()
   p.fn(true)
   p.fn(false)
@@ -147,9 +145,9 @@ function testDistedAPI(t, dist) {
     obj.size
     obj.className
     obj.when('name')
-    obj.when(true, () => t.pass(), () => t.fail())
-    obj.when(false, () => t.fail(), () => t.pass())
-    obj.when(true, () => t.pass())
+    obj.when(true, NO_OP, () => fail('called false'))
+    obj.when(false, NO_OP, () => t.pass())
+    obj.when(true, NO_OP)
     obj.when(true)
     obj.when(false)
     obj.extend(['eh'])

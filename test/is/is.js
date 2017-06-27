@@ -1,10 +1,9 @@
-const test = require('ava')
-const Instance = require('../../dist/deps/symbols/instance')
-const ObjectDefine = require('../../dist/deps/define')
+const Instance = require('../../src/deps/symbols/instance')
+const ObjectDefine = require('../../src/deps/define')
 const stress = require('../_stress')
 const {isMap, isSet, isFunction, isObjWithKeys, isPrototypeOf} = require('./')
 
-test('stress', t => {
+test('stress', () => {
   stress()
 })
 
@@ -65,59 +64,59 @@ const datas = [
   Array,
   Set,
   Map,
+  Symbol,
 ]
 
 const datasObjs = [
   new String('str'),
   Object.assign(anon2, {keys: true}),
   {keys: true},
-  Symbol,
 ]
 
-test('should work for Map', t => {
+test('should work for Map', () => {
   var map = new Map()
-  t.true(isMap(map))
-  t.true(isFunction(map.set))
-  t.true(isFunction(map.get))
+  expect(isMap(map)).toBe(true)
+  expect(isFunction(map.set)).toBe(true)
+  expect(isFunction(map.get)).toBe(true)
 
-  datas.map(data => t.false(isMap(data)))
-  t.false(isMap(new Set()))
-  t.false(isFunction(map.add))
+  datas.map(data => expect(isMap(data)).toBe(false))
+  expect(isMap(new Set())).toBe(false)
+  expect(isFunction(map.add)).toBe(false)
 })
 
-test('should work for Set', t => {
+test('should work for Set', () => {
   var set = new Set()
-  t.true(isSet(set))
-  t.true(isFunction(set.add))
+  expect(isSet(set)).toBe(true)
+  expect(isFunction(set.add)).toBe(true)
 
-  datas.map(data => t.false(isSet(data)))
-  t.false(isFunction(set.set))
-  t.false(isFunction(set.get))
+  datas.map(data => expect(isSet(data)).toBe(false))
+  expect(isFunction(set.set)).toBe(false)
+  expect(isFunction(set.get)).toBe(false)
 })
 
-test('objWithKeys', t => {
-  datas.map(data => t.false(isObjWithKeys(data)))
-  datasObjs.map(data => t.true(isObjWithKeys(data)))
+test('objWithKeys', () => {
+  datas.map(data => expect(isObjWithKeys(data)).toBe(false))
+  datasObjs.map(data => expect(isObjWithKeys(data)).toBe(true))
 })
 
 // @NOTE: these tests are compiled so `isClass` is not helpful
-// test.failing('isClass', t => {
+// test.skip('isClass', t => {
 //   console.log(class classy {}.toString())
 //   t.true(isClass(class Classy {}))
 //   t.false(isClass({}))
 // })
 
-test('isPrototypeOf', t => {
+test('isPrototypeOf', () => {
   class SuperProto {}
   class SubProto extends SuperProto {}
   var sub = new SubProto()
 
   // SuperProto.isPrototypeOf(sub)
-  t.true(isPrototypeOf(Object.getPrototypeOf(sub), sub))
+  expect(isPrototypeOf(Object.getPrototypeOf(sub), sub)).toBe(true)
   // t.true(isPrototypeOf(Classy, Object))
-  t.false(isPrototypeOf(RegExp, sub))
+  expect(isPrototypeOf(RegExp, sub)).toBe(false)
 })
-test('isPrototypeOf on instance', t => {
+test('isPrototypeOf on instance', () => {
   class SuperProto {}
   class SubProto extends SuperProto {}
 
@@ -127,6 +126,6 @@ test('isPrototypeOf on instance', t => {
   })
   var sub = new SubProto()
 
-  t.false(new RegExp() instanceof SubProto)
-  t.true(sub instanceof SubProto)
+  expect(new RegExp() instanceof SubProto).toBe(false)
+  expect(sub instanceof SubProto).toBe(true)
 })

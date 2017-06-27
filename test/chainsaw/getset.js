@@ -1,8 +1,7 @@
-var test = require('ava')
 var chainsaw = require('../../src/deps/chainsaw')
 
-test('getset', t => {
-  t.plan(4)
+test('getset', () => {
+  expect.assertions(4)
   var ch = chainsaw(function(saw) {
     var num = 0
 
@@ -17,24 +16,24 @@ test('getset', t => {
     }
 
     saw.on('end', () => {
-      t.true(times == 3)
+      expect(times == 3).toBe(true)
     })
   })
 
   var times = 0
   ch
     .get(x => {
-      t.true(x == 0)
+      expect(x == 0).toBe(true)
       times++
     })
     .set(10)
     .get(x => {
-      t.true(x == 10)
+      expect(x == 10).toBe(true)
       times++
     })
     .set(20)
     .get(x => {
-      t.true(x == 20)
+      expect(x == 20).toBe(true)
       times++
     })
 })

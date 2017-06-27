@@ -1,34 +1,33 @@
-var test = require('ava')
 var {traverse, deepEqual} = require('./')
 var util = require('util')
 
-test('circular', t => {
-  t.plan(1)
+test('circular', () => {
+  expect.assertions(1)
 
   var obj = {x: 3}
   obj.y = obj
   traverse(obj).forEach(function(x) {
     if (this.path.join('') == 'y') {
-      t.true(util.inspect(this.circular.node) == util.inspect(obj))
+      expect(util.inspect(this.circular.node) == util.inspect(obj)).toBe(true)
     }
   })
 })
 
-test('deepCirc', t => {
-  t.plan(2)
+test('deepCirc', () => {
+  expect.assertions(2)
   var obj = {x: [1, 2, 3], y: [4, 5]}
   obj.y[2] = obj
 
   var times = 0
   traverse(obj).forEach(function(x) {
     if (this.circular) {
-      t.deepEqual(this.circular.path, [])
-      t.true(deepEqual(this.path, ['y', 2], true))
+      expect(this.circular.path).toEqual([])
+      expect(deepEqual(this.path, ['y', 2], true)).toBe(true)
     }
   })
 })
 
-test('doubleCirc', t => {
+test('doubleCirc', () => {
   var obj = {x: [1, 2, 3], y: [4, 5]}
   obj.y[2] = obj
   obj.x.push(obj.y)
@@ -40,7 +39,7 @@ test('doubleCirc', t => {
     }
   })
 
-  const de = (a, b) => t.true(deepEqual(a, b, true))
+  const de = (a, b) => expect(deepEqual(a, b, true)).toBe(true)
   de(circs[0].self.path, ['x', 3, 2])
   de(circs[0].circ.path, [])
 
@@ -48,10 +47,9 @@ test('doubleCirc', t => {
   de(circs[1].circ.path, [])
 
   de(circs.length, 2)
-  t.pass()
 })
 
-test('circDubForEach', t => {
+test('circDubForEach', () => {
   var obj = {x: [1, 2, 3], y: [4, 5]}
   obj.y[2] = obj
   obj.x.push(obj.y)
@@ -60,11 +58,10 @@ test('circDubForEach', t => {
     if (this.circular) this.update('...')
   })
 
-  t.deepEqual(obj, {x: [1, 2, 3, [4, 5, '...']], y: [4, 5, '...']})
-  t.pass()
+  expect(obj).toEqual({x: [1, 2, 3, [4, 5, '...']], y: [4, 5, '...']})
 })
 
-test('circDubMap', t => {
+test('circDubMap', () => {
   var obj = {x: [1, 2, 3], y: [4, 5]}
   obj.y[2] = obj
   obj.x.push(obj.y)
@@ -75,37 +72,34 @@ test('circDubMap', t => {
     }
   })
 
-  t.deepEqual(c, {x: [1, 2, 3, [4, 5, '...']], y: [4, 5, '...']})
-  t.pass()
+  expect(c).toEqual({x: [1, 2, 3, [4, 5, '...']], y: [4, 5, '...']})
 })
 
-test('circClone', t => {
+test('circClone', () => {
   var obj = {x: [1, 2, 3], y: [4, 5]}
   obj.y[2] = obj
   obj.x.push(obj.y)
 
   var clone = traverse.clone(obj)
-  t.truthy(obj !== clone)
+  expect(obj !== clone).toBeTruthy()
 
-  t.truthy(clone.y[2] === clone)
-  t.truthy(clone.y[2] !== obj)
-  t.truthy(clone.x[3][2] === clone)
-  t.truthy(clone.x[3][2] !== obj)
-  t.deepEqual(clone.x.slice(0, 3), [1, 2, 3])
-  t.deepEqual(clone.y.slice(0, 2), [4, 5])
-  t.pass()
+  expect(clone.y[2] === clone).toBeTruthy()
+  expect(clone.y[2] !== obj).toBeTruthy()
+  expect(clone.x[3][2] === clone).toBeTruthy()
+  expect(clone.x[3][2] !== obj).toBeTruthy()
+  expect(clone.x.slice(0, 3)).toEqual([1, 2, 3])
+  expect(clone.y.slice(0, 2)).toEqual([4, 5])
 })
 
-test('circMapScrub', t => {
+test('circMapScrub', () => {
   var obj = {a: 1, b: 2}
   obj.c = obj
 
   var scrubbed = traverse(obj).map(function(node) {
     if (this.circular) this.remove()
   })
-  t.deepEqual(Object.keys(scrubbed).sort(), ['a', 'b'])
-  t.truthy(deepEqual(scrubbed, {a: 1, b: 2}, true))
+  expect(Object.keys(scrubbed).sort()).toEqual(['a', 'b'])
+  expect(deepEqual(scrubbed, {a: 1, b: 2}, true)).toBeTruthy()
 
-  t.truthy(deepEqual(obj.c, obj, true))
-  t.pass()
+  expect(deepEqual(obj.c, obj, true)).toBeTruthy()
 })

@@ -1,8 +1,7 @@
-var test = require('ava')
 var chainsaw = require('../../dist/deps/chainsaw')
 
-test('attr', t => {
-  t.plan(4)
+test('attr', () => {
+  expect.assertions(4)
 
   var xy = []
   var ch = chainsaw(function(saw) {
@@ -14,13 +13,13 @@ test('attr', t => {
       y() {
         xy.push('y')
         saw.next()
-        t.deepEqual(xy, ['x', 'y'])
+        expect(xy).toEqual(['x', 'y'])
       },
     }
   })
-  t.truthy(ch.h)
-  t.truthy(ch.h.x)
-  t.truthy(ch.h.y)
+  expect(ch.h).toBeTruthy()
+  expect(ch.h.x).toBeTruthy()
+  expect(ch.h.y).toBeTruthy()
 
   ch.h.x().h.y()
 })

@@ -1,8 +1,7 @@
 var {EventEmitter} = require('events')
-var test = require('ava')
 var traverse = require('./')
 
-test('check instanceof on node elems', t => {
+test('check instanceof on node elems', () => {
   var counts = {emitter: 0}
 
   traverse([
@@ -14,7 +13,5 @@ test('check instanceof on node elems', t => {
     if (node instanceof EventEmitter) counts.emitter++
   })
 
-  t.deepEqual(counts.emitter, 2)
-
-  t.pass()
+  expect(counts.emitter).toEqual(2)
 })

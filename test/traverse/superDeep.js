@@ -1,23 +1,17 @@
-var test = require('ava')
 var {traverse, deepEqual} = require('./')
 // var deepEqual = require('./lib/deep_equal')
 
-test('super_deep', t => {
+test('super_deep', () => {
   // var util = require('util')
   var a0 = make()
   var a1 = make()
-  t.truthy(deepEqual(a0, a1))
+  expect(deepEqual(a0, a1)).toBeTruthy()
 
   a0.c.d.moo = true
-  t.truthy(!deepEqual(a0, a1))
+  expect(!deepEqual(a0, a1)).toBeTruthy()
 
   a1.c.d.moo = true
-  t.truthy(deepEqual(a0, a1))
-
-  // TODO: this one
-  //a0.c.a = a1;
-  //t.truthy(!deepEqual(a0, a1));
-  t.pass()
+  expect(deepEqual(a0, a1)).toBeTruthy()
 })
 
 function make() {

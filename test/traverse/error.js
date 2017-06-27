@@ -1,10 +1,7 @@
-var test = require('ava')
 var traverse = require('./')
 
-test('traverse an Error', t => {
+test('traverse an Error', () => {
   var obj = new Error('test')
   var results = traverse(obj).map(node => {})
-  t.deepEqual(results, {message: 'test'})
-
-  t.pass()
+  expect(results).toEqual({message: 'test'})
 })

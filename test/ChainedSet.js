@@ -1,6 +1,5 @@
-const test = require('ava')
 const log = require('fliplog')
-const {Chainable, ChainedSet} = require('../dist')
+const {Chainable, ChainedSet} = require('../src')
 
 class Lists extends Chainable {
   constructor(parent) {
@@ -51,9 +50,9 @@ function makeTests() {
   return fns
 }
 
-test('add, merge, append, prepend', t => {
+test('add, merge, append, prepend', () => {
   const {result} = makeTests().add().addDirect().prepend().merge()
-  t.deepEqual(result.all(), [
+  expect(result.all()).toEqual([
     'first',
     'sam',
     'sue',
@@ -65,7 +64,7 @@ test('add, merge, append, prepend', t => {
   ])
 })
 
-test('add, merge, append, prepend - raw', t => {
+test('add, merge, append, prepend - raw', () => {
   const lists = new Lists()
 
   lists.add('people', 'sam').add('people', 'sue').add('places', 'moon')
@@ -78,7 +77,7 @@ test('add, merge, append, prepend - raw', t => {
   lists.people.prepend('first')
   lists.people.merge(['frank', 'john'])
 
-  t.deepEqual(lists.all(), [
+  expect(lists.all()).toEqual([
     'first',
     'sam',
     'sue',
@@ -90,7 +89,7 @@ test('add, merge, append, prepend - raw', t => {
   ])
 })
 
-test.failing('species', t => {
+test.skip('species', () => {
   const set = new ChainedSet()
   var fakeArray = new ChainedSet()
   fakeArray.add(100)
@@ -100,5 +99,5 @@ test.failing('species', t => {
   // x.concat(fakeArray)
   const vals = fakeArray.values()
   vals[Symbol.isConcatSpreadable] = true
-  t.deepEquals(x.concat(vals), [1, 2, 3100, 200, 300])
+  expect(x.concat(vals)).toEqual([1, 2, 3100, 200, 300])
 })

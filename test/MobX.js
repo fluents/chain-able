@@ -1,7 +1,6 @@
-const test = require('ava')
 const log = require('fliplog')
 
-const {Chain, toArr} = require('../dist')
+const {Chain, toArr} = require('../src')
 
 class ChainInc extends Chain {
   getSetIncrement(names) {
@@ -60,7 +59,7 @@ class TodoStore extends ChainInc {
 //   }
 // }
 
-test('todostore', t => {
+test('todostore', () => {
   const _todos = new TodoStore()
 
   _todos.add({eh: true})
@@ -69,31 +68,14 @@ test('todostore', t => {
 
   const {completed, pending, total, todos} = _todos.entries()
 
-  t.deepEqual(
-    {todos, completed: +completed, pending: +pending, total: +total},
-    {
-      todos: [
-        {task: {eh: true}, completed: false, assignee: null},
-        {task: {eh: false}, completed: false, assignee: null},
-        {task: {moose: 'eh!'}, completed: true, assignee: null},
-      ],
-      completed: 1,
-      pending: 2,
-      total: 3,
-    }
-  )
-  t.pass()
-  // log.quick({todos, completed: +completed, pending: +pending, total: +total})
-  // delete todos.getCompleted
-  // delete todos.setCompleted
-  // delete todos.getPending
-  // delete todos.setPending
-  //
-  // log.quick({
-  //   todos,
-  //   pending: +todos.pending,
-  //   completed: +todos.completed,
-  // })
-  //
-  // log.quick(todos)
+  expect({todos, completed: +completed, pending: +pending, total: +total}).toEqual({
+    todos: [
+      {task: {eh: true}, completed: false, assignee: null},
+      {task: {eh: false}, completed: false, assignee: null},
+      {task: {moose: 'eh!'}, completed: true, assignee: null},
+    ],
+    completed: 1,
+    pending: 2,
+    total: 3,
+  })
 })

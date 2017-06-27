@@ -1,18 +1,17 @@
-var test = require('ava')
 var chainsaw = require('../../src/deps/chainsaw')
 
-test('builder', t => {
-  t.plan(4)
+test('builder', () => {
+  expect.assertions(4)
 
   var cx = chainsaw(function(saw) {
     this.x = function() {}
   })
-  t.truthy(cx.x)
+  expect(cx.x).toBeTruthy()
 
   var cy = chainsaw(saw => {
     return {y() {}}
   })
-  t.truthy(cy.y)
+  expect(cy.y).toBeTruthy()
 
   var cz = chainsaw(saw => {
     return {
@@ -21,9 +20,9 @@ test('builder', t => {
       },
     }
   })
-  t.truthy(cz.z)
+  expect(cz.z).toBeTruthy()
 
   cz.z(function() {
-    t.truthy(this.z)
+    expect(this.z).toBeTruthy()
   })
 })

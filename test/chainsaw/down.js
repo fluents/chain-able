@@ -1,8 +1,7 @@
-var test = require('ava')
 var chainsaw = require('../../src/deps/chainsaw')
 
-test('down', t => {
-  t.plan(1)
+test('down', done => {
+  expect.assertions(1)
 
   var error = null
   var s
@@ -31,12 +30,10 @@ test('down', t => {
       this.raise('pow')
     })
     .do(() => {
-      t.fail('raise didn\'t skip over this do block')
+      done.fail('raise didn\'t skip over this do block')
     })
     .catch(err => {
-      t.true(err == 'pow')
+      expect(err == 'pow').toBe(true)
     })
-    .do(() => {
-      t.pass()
-    })
+    .do(() => {})
 })

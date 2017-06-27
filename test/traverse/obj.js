@@ -1,11 +1,10 @@
-var test = require('ava')
 var traverse = require('./')
 
-test('traverse an object with nested functions', t => {
-  t.plan(1)
+test('traverse an object with nested functions', () => {
+  expect.assertions(1)
 
   function Cons(x) {
-    t.deepEqual(x, 10)
+    expect(x).toEqual(10)
   }
   traverse(new Cons(10))
 })

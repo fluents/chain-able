@@ -1,36 +1,35 @@
-const test = require('ava')
 const log = require('fliplog')
-const m = require('../../dist/deps/matcher')
+const m = require('../../src/deps/matcher')
 
-test('matcher *', t => {
-  t.truthy(m('canada.arr.0', 'canada.*').length)
-  t.falsy(m('canada', 'canada.*').length)
+test('matcher *', () => {
+  expect(m('canada.arr.0', 'canada.*').length).toBeTruthy()
+  expect(m('canada', 'canada.*').length).toBeFalsy()
 })
 
-test('matcher()', t => {
+test('matcher()', () => {
   const matched = m(['foo', 'bar'], ['fo*', 'ba*', '!bar'])
-  t.deepEqual(matched, ['foo'])
+  expect(matched).toEqual(['foo'])
 
-  t.deepEqual(m(['foo', 'bar'], ['foo']), ['foo'])
-  t.deepEqual(m(['foo', 'bar'], ['bar']), ['bar'])
-  t.deepEqual(m(['foo', 'bar'], ['fo*', 'ba*', '!bar']), ['foo'])
-  t.deepEqual(m(['foo', 'bar', 'moo'], ['!*o']), ['bar'])
-  t.throws(() => m([], []))
+  expect(m(['foo', 'bar'], ['foo'])).toEqual(['foo'])
+  expect(m(['foo', 'bar'], ['bar'])).toEqual(['bar'])
+  expect(m(['foo', 'bar'], ['fo*', 'ba*', '!bar'])).toEqual(['foo'])
+  expect(m(['foo', 'bar', 'moo'], ['!*o'])).toEqual(['bar'])
+  expect(() => m([], [])).toThrow()
 })
 
-test('matcher().length', t => {
-  t.truthy(m('unicorn', 'unicorn').length)
-  t.truthy(m('unicorn', 'uni*').length)
-  t.truthy(m('unicorn', '*corn').length)
-  t.truthy(m('unicorn', 'un*rn').length)
-  t.truthy(m(['foo unicorn bar'], '*unicorn*').length)
-  t.truthy(m('unicorn', ['*'], []).length)
+test('matcher().length', () => {
+  expect(m('unicorn', 'unicorn').length).toBeTruthy()
+  expect(m('unicorn', 'uni*').length).toBeTruthy()
+  expect(m('unicorn', '*corn').length).toBeTruthy()
+  expect(m('unicorn', 'un*rn').length).toBeTruthy()
+  expect(m(['foo unicorn bar'], '*unicorn*').length).toBeTruthy()
+  expect(m('unicorn', ['*'], []).length).toBeTruthy()
 
-  t.falsy(m('unicorn', '!unicorn').length)
-  t.falsy(m('unicorn', '!uni*').length)
-  t.falsy(m('unicorn', 'uni\\*').length)
+  expect(m('unicorn', '!unicorn').length).toBeFalsy()
+  expect(m('unicorn', '!uni*').length).toBeFalsy()
+  expect(m('unicorn', 'uni\\*').length).toBeFalsy()
 })
 
-test.failing('matcher - with empty strings for matching with', t => {
-  t.falsy(m('unicorn', '').length)
+test.skip('matcher - with empty strings for matching with', () => {
+  expect(m('unicorn', '').length).toBeFalsy()
 })

@@ -1,9 +1,8 @@
-var test = require('ava')
 var log = require('fliplog')
 var traverse = require('./')
 
 /* istanbul ignore next: is a failing test */
-test.failing('Map can iterate in order with leaves', t => {
+test.skip('Map can iterate in order with leaves', () => {
   var acc = []
 
   const map = new Map()
@@ -17,15 +16,11 @@ test.failing('Map can iterate in order with leaves', t => {
     if (this.isLeaf) acc.push(x)
   })
 
-  t.deepEqual(
-    acc.join(' '),
-    '1 2 3 4 5 6 7 8 9',
-    'Traversal in the right(?) order'
-  )
+  expect(acc.join(' ')).toEqual('1 2 3 4 5 6 7 8 9')
 })
 
 /* istanbul ignore next: is a failing test */
-test.failing('Set can iterate in order', t => {
+test.skip('Set can iterate in order', () => {
   var acc = []
 
   const set = new Set()
@@ -38,9 +33,5 @@ test.failing('Set can iterate in order', t => {
     if (this.isLeaf) acc.push(x)
   })
 
-  t.deepEqual(
-    acc.join(' '),
-    '1 2 3 4 5 6 7 8 9',
-    'Traversal in the right(?) order'
-  )
+  expect(acc.join(' ')).toEqual('1 2 3 4 5 6 7 8 9')
 })

@@ -1,6 +1,6 @@
 {
   "name": "chain-able",
-  "version": "4.0.0",
+  "version": "4.0.0-beta.2",
   "description": "interfaces that describe their intentions.",
   "main:es6": "src/index.js",
   "main:dev": "dists/dev/index.js",
@@ -27,6 +27,8 @@
   },
   "scripts": {
     "123": "npm run strip:all && buble:all && npm run cli",
+    "___": " --runInBand",
+    "jest": "jest",
     "cli": "node build/cli.js",
     "rollcli": "rollup --config build/cli-rollup.js --environment format:dev",
     "optimize": "optimize-js dists/umd/index.js > dists/umd/index.js",
@@ -36,13 +38,13 @@
     "webpack": "webpack --verbose",
     "gzip": "gzip-size dists/umd/index.js --raw && gzip-size dists/umd/index.js --raw >> build/size-over-time.txt && date +%Y:%M:%D:%H:%M:%S >> build/size-over-time.txt && echo --- >> build/size-over-time.txt",
     "dox": "doxdox 'src/**/*.js' --layout markdown --output docs/bits/doxdox.md",
-    "prepublish": "npm run build && npm run pretest && npm run cov && npm run test:built",
+    "prepublish": "npm run build && npm run pretest && jest --coverage && npm run test:built",
     "pretest": "npm run strip:all && npm run buble:all",
     "pre:test:only": "npm run buble:tests",
     "test:tests": "npm run pre:test:only && ava --verbose",
-    "test": "ava --verbose",
+    "test": "jest",
     "tests": "ava --verbose",
-    "test:built": "ava test-dist/built.js",
+    "test:built": "jest test-dist/built.js",
     "cov": "nyc ava",
     "cov:report": "nyc report",
     "cov:eralls": "coveralls < coverage/lcov.info",
@@ -101,6 +103,83 @@
       "lcov",
       "html",
       "text"
+    ]
+  },
+  "_____": [
+    "/test/",
+    "/src/"
+  ],
+  "jest": {
+    "transformIgnorePatterns": [
+      "/node_modules/",
+      "/src/deps/_r|meta|external|env|primitives/",
+      "/src/deps/external/lodash/",
+      "/src/deps/external/",
+      "/src/deps/cache/scoped.js",
+      "/src/deps/class-names.js",
+      "/src/deps/dopemerge/map.js",
+      "/src/compose/decorators.js",
+      "/src/conditional/",
+      "/src/deps/util/flatten.js",
+      "/src/deps/is/class|node|stringOrNumber.js",
+      "/src/deps/reduce/objects.js",
+      "/src/deps/symbols/index|species|spreadable.js",
+      "/src/deps/prefix|index|uniq|eqCurry|typeof|insert-at-index|nonEnumerableTypes.js",
+      "/src/plugins/index.js"
+    ],
+    "useStderr": true,
+    "debug": true,
+    "verbose": true,
+    "globals": {
+      "__DEV__": true
+    },
+    "watch": false,
+    "cache": false,
+    "setupTestFrameworkScriptFile": "./_test-setup.js",
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "test/**/*.js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "\\\\node_modules\\\\",
+      "src/deps/_r|meta|external|env|primitives",
+      "src/deps/external/lodash",
+      "src/deps/external",
+      "src/deps/cache/scoped.js",
+      "src/deps/class-names.js",
+      "src/deps/dopemerge/map.js",
+      "src/deps/util/flatten|charCodeAtZero.js",
+      "src/deps/is/class|node|stringOrNumber.js",
+      "src/deps/reduce/objects.js",
+      "src/deps/symbols/index|species|spreadable.js",
+      "src/deps/prefix|index|uniq|eqCurry|typeof|insert-at-index|nonEnumerableTypes.js",
+      "src/compose/decorators.js",
+      "src/deps/conditional/bitwise",
+      "src/deps/conditional/bitwise/bitwise.js",
+      "src/deps/conditional/bitwise/ez.js",
+      "src/plugins/index.js"
+    ],
+    "coverageReporters": [
+      "json",
+      "text",
+      "lcov",
+      "clover"
+    ],
+    "automock": false,
+    "bail": false,
+    "browser": false,
+    "cache": false,
+    "rootDir": ".",
+    "testRegex": "(test/)(.*).js$",
+    "testPathIgnorePatterns": [
+      "node_modules",
+      "test/built.js",
+      "test/_stress.js",
+      "test/_api.js",
+      "test/is/index.js",
+      "test/MergeChain.js",
+      "test/chainsaw",
+      "test/traverse/index.js"
     ]
   },
   "ava": {
@@ -213,6 +292,7 @@
     "doxdox": "^2.0.3",
     "eslint": "^4.0.0",
     "eslint-config-chain-able": "^1.0.0",
+    "eslint-plugin-jest": "^20.0.3",
     "eslint-plugin-typescript": "^0.1.0",
     "flipfile": "^0.0.13",
     "fliplog": "^1.0.0",
@@ -222,6 +302,8 @@
     "gzip-size-cli": "^2.0.0",
     "immutable": "^3.8.1",
     "inspector-gadget": "^1.0.0",
+    "jest": "^20.0.4",
+    "lodash": "^4.17.4",
     "mobx": "^3.1.14",
     "module-alias": "^2.0.0",
     "nyc": "^10.3.2",

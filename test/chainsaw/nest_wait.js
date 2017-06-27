@@ -1,8 +1,7 @@
-var test = require('ava')
 var chainsaw = require('../../src/deps/chainsaw')
 
-test('nest wait', t => {
-  t.plan(4)
+test('nest wait', () => {
+  expect.assertions(4)
 
   var ch = (function() {
     var vars = {}
@@ -40,7 +39,7 @@ test('nest wait', t => {
 
           times.z = Date.now()
           var dt = times.z - times.x
-          t.truthy(dt >= 50 && dt < 75)
+          expect(dt >= 50 && dt < 75).toBeTruthy()
         })
     })
     .do(vars => {
@@ -51,13 +50,11 @@ test('nest wait', t => {
     })
     .wait(100)
     .do(vars => {
-      t.deepEqual(order, [1, 2, 3, 4])
-      t.deepEqual(vars, {x: 'x', y: 'y', z: 'z'})
+    expect(order).toEqual([1, 2, 3, 4])
+    expect(vars).toEqual({x: 'x', y: 'y', z: 'z'})
 
-      times.end = Date.now()
-      var dt = times.end - times.y
-      t.truthy(dt >= 100 && dt < 125)
-
-      t.pass()
-    })
+    times.end = Date.now()
+    var dt = times.end - times.y
+    expect(dt >= 100 && dt < 125).toBeTruthy()
+  })
 })
