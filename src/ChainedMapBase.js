@@ -56,8 +56,7 @@ const CMC = SuperClass => {
 
     /**
      * @since 0.5.0
-     * @TODO needs improvements like parsing stringify
-     *       since it is just .merge atm
+     * @TODO could alao add parsing stringified
      *
      * @desc checks each property of the object
      *       calls the chains accordingly
@@ -111,6 +110,12 @@ const CMC = SuperClass => {
      *       return store.entries, plus all chain properties if they exist
      * @param  {boolean} [chains=false] if true, returns all properties that are chains
      * @return {Object}
+     *
+     * @example
+     *
+     *  map.set('a', 'alpha').set('b', 'beta').entries()
+     *   => {a: 'alpha', b: 'beta'}
+     *
      */
     entries(chains = false) {
       const reduced = reduce(this.store)

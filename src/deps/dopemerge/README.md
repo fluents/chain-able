@@ -11,6 +11,21 @@
 +---------+----------+
 ```
 
+
+
++─ ─ ─ ─ ─ ─ ─ ─ ─ ─ +
+|          x         |
+|                    |
+|                    |
+|                    |
+|x         x        x|
+|                    |
+|                    |
+|                    |
+|                    |
+|          x         |
++─ ─ ─ ─ ─ ─ ─ ─ ─ ─ +
+
 // and all in reverse, done
 Special = Regex|Map|Set|Promise|Symbol|Function
 String Number

@@ -1,1 +1,2 @@
-module.exports = (x, y) => Object.prototype.hasOwnProperty.call(x, y)
+module.exports = (haystack, needle) =>
+  Object.prototype.hasOwnProperty.call(haystack, needle)

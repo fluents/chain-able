@@ -1,5 +1,5 @@
-const dotPropPaths = require('../dot-prop-paths')
-const dot = require('../dot-prop')
+const dotPropPaths = require('../dot/paths')
+const dot = require('../dot')
 const validationBuilder = require('./validatorBuilder')
 
 /**

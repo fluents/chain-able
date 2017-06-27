@@ -1,0 +1,15 @@
+var KEY_UNDEFINED = 8
+var KEY_NULL = 9
+var KEY_STRING = 10
+var KEY_NUMBER = 11
+var KEY_FUNCTION = 12
+var KEY_ARRAY = 13
+
+module.exports = {
+  KEY_UNDEFINED,
+  KEY_NULL,
+  KEY_STRING,
+  KEY_NUMBER,
+  KEY_FUNCTION,
+  KEY_ARRAY,
+}
