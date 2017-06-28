@@ -1,5 +1,6 @@
+const ENV_DEBUG = require('../env/debug')
 const dotPropPaths = require('../dot/paths')
-const dot = require('../dot')
+const dotGet = require('../dot/get')
 const validationBuilder = require('./validatorBuilder')
 
 /**
@@ -32,9 +33,6 @@ const validationBuilder = require('./validatorBuilder')
 
 // @TODO: debug mode here
 const schemaFactory = (property, nestedSchema) => {
-  // const paths = dotPropPaths(property, nestedSchema)
-  // nestedSchema = {[property]: nestedSchema}
-
   /**
    * @param  {any} input
    * @return {boolean} valid
@@ -43,15 +41,13 @@ const schemaFactory = (property, nestedSchema) => {
     const longestPaths = dotPropPaths(false, input, true)
     for (let l = 0; l < longestPaths.length; l++) {
       const fullPath = longestPaths[l]
-      const type = dot.get(nestedSchema, fullPath)
-      const value = dot.get(input, fullPath.split('.'))
+      const type = dotGet(nestedSchema, fullPath)
+      const value = dotGet(input, fullPath.split('.'))
       const validator = validationBuilder(type)
 
-      // console.log({value, fullPath, type})
-      // console.log(validator.toString(), validator(value))
-
+      // @@DEBUGGER
       if (!validator(value)) {
-        // console.log('invalid!')
+        // @@DEBUGGER
         return false
       }
     }

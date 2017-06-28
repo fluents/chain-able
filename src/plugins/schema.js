@@ -4,13 +4,16 @@
 const ENV_DEVELOPMENT = require('../deps/env/dev')
 const ObjectKeys = require('../deps/util/keys')
 const isObj = require('../deps/is/obj')
+const isArray = require('../deps/is/array')
 const isUndefined = require('../deps/is/undefined')
 // logic
 const meta = require('../deps/meta')
 const schemaBuilder = require('../deps/validators/schemaBuilder')
 const validatorBuilder = require('../deps/validators/validatorBuilder')
+const or = require('../deps/conditional/or')
 
 const SCHEMA_KEY = 'schema'
+const isObjOrArray = or(isObj, isArray)
 
 /**
  * @desc handles:
@@ -66,7 +69,7 @@ module.exports = function(obj) {
     if (getSet) builder.getSet()
 
     let type = value
-    if (isObj(value)) {
+    if (isObjOrArray(value)) {
       // could just assign to type
       const traversableValidator = schemaBuilder(key, value)
 

@@ -9,18 +9,7 @@ const isDate = require('../is/date')
 const isBoolean = require('../is/boolean')
 const isString = require('../is/string')
 const simpleKindOf = require('../util/simpleKindOf')
-
-// @TODO: should convert vars to const & let
-// @TODO: need to have uglify ignore & not evaluate this...
-/* uglify ignore */
-// let NULL_TYPE = 'null'
-// let ARRAY_TYPE = 'array'
-// let STRING_TYPE = 'string'
-// let BOOL_TYPE = 'boolean'
-// let COMBO_BOOL_BOOL = [BOOL_TYPE, BOOL_TYPE]
-// let COMBO_STRING_STRING = [STRING_TYPE, STRING_TYPE]
-// let COMBO_ARRAY_STRING = [ARRAY_TYPE, STRING_TYPE]
-// let COMBO_STRING_ARRAY = [STRING_TYPE, ARRAY_TYPE]
+const includes = require('../conditional/includes')
 
 // 1: not null object
 // 2: object toString is not a date or regex
@@ -71,7 +60,8 @@ function mergeObj(target, source, optsArg) {
     var key = sourceKeys[s]
     if (!isMergeableObj(source[key]) || !target[key]) {
       destination[key] = cloneIfNeeded(source[key], optsArg)
-    } else {
+    }
+    else {
       destination[key] = deepmerge(target[key], source[key], optsArg)
     }
   }
@@ -119,10 +109,10 @@ function dopemerge(obj1, obj2, opts) {
   // const clone = true
 
   // check one then check the other
-  if (isTrue(ignoreTypes.includes(simpleKindOf(obj1)))) {
+  if (isTrue(includes(ignoreTypes, simpleKindOf(obj1)))) {
     return obj2
   }
-  else if (isTrue(ignoreTypes.includes(simpleKindOf(obj2)))) {
+  else if (isTrue(includes(ignoreTypes, simpleKindOf(obj2)))) {
     return obj1
   }
 

@@ -1,6 +1,5 @@
 const isArray = require('../is/array')
 const isNull = require('../is/null')
-const {KEY_ARRAY, KEY_NULL, access} = require('../meta/keymap')
 
 /* prettier-ignore */
 /**
@@ -11,14 +10,9 @@ const {KEY_ARRAY, KEY_NULL, access} = require('../meta/keymap')
  * @return {string} type
  */
 module.exports = x => {
-  // return isArray(x)
-  //   ? 'ARRAY'
-  //   : isNull(x)
-  //     ? 'NULLARY'
-  //     : typeof x
   return isArray(x)
-    ? access(KEY_ARRAY)
+    ? 'array'
     : isNull(x)
-      ? access(KEY_NULL)
+      ? 'null'
       : typeof x
 }

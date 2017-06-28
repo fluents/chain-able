@@ -11,41 +11,26 @@ const is = require('../is')
 const isArray = require('../is/array')
 const isReal = require('../is/real')
 const isFunction = require('../is/function')
-const not = require('../util/not')
 const dopemerge = require('../dopemerge')
 const camelCase = require('../camel-case')
+const not = require('../conditional/not')
+const and = require('../conditional/and')
+const or = require('../conditional/or')
+const all = require('../conditional/all')
 
 let validators = new ChainedMap()
 
 // eslint-disable-next-line
 const stripArithmeticSymbols = x => x.replace(/[?\[\]!\|]/g, '')
-
-// @NOTE isNull & isUndefined to lowercase is no good...
-//       one way to do it, but not as good
-// const TYPES = ['null', 'undefined']
-// const REPLACE = ['nill', 'undef']
-// .replace(TYPES[0], REPLACE[0])
-// .replace(TYPES[1], REPLACE[1])
-//
-// @NOTE: removed this in favor of escaping the key
-//        plus this 2x the map size
-//
-// const ObjectKeys = require('../util/keys')
-// const validationKeys = ObjectKeys(is)
-// for (let i = 0; i < validationKeys.length; i++) {
-//   const key = validationKeys[i]
-//   const transformedKey = key.toLowerCase().replace('is', '')
-//   is[transformedKey] = is[key]
-// }
-
-// s.charAt(0).toUpperCase()
 const escapedKey = x => camelCase('is-' + x)
 
+// @TODO: .remap!!!
 // @TODO: can use these to return noops with error logging on development
 const has = key => validators.has(key) || validators.get(escapedKey(key))
 const set = (key, value) => validators.set(key, value)
 const get = key => validators.get(key) || validators.get(escapedKey(key))
 const merge = x => validators.from(dopemerge(validators.entries(), x))
+const doesNotHave = not(has)
 
 merge(is)
 
@@ -53,13 +38,12 @@ merge(is)
 // @NOTE: putting these as functions increased size 20 bytes: worth it
 // ----
 
-// @TODO: bitwise fn crazyness for this
 // @SIZE: another 10bytes for these fns
-const isNotRealOrIsEmptyString = x => !isReal(x) || x === ''
+const isNotRealOrIsEmptyString = and(not(isReal), x => x === '')
 
-// @NOTE: @TODO: this doesn't follow our opinionated `valid == !false | Error`
-const isArrayOf = fn => x =>
-  isArray(x) && x.map(nested => fn(nested)).includes(true)
+// const isArrayOf = predicate => x => isArray(x) && x.every(predicate)
+const isArrayOf = predicate => and(isArray, all(predicate))
+const includesAndOr = x => x.includes('|') || x.includes('&')
 
 function typeListFactory(fullKey) {
   // already have it
@@ -68,17 +52,18 @@ function typeListFactory(fullKey) {
   }
 
   // get all types
-  let validTypes = fullKey.split('|')
+  let orTypes = fullKey.split('|')
+  let andTypes = fullKey.split('&')
 
   // ensure we have all validators - sets up conditionals
-  for (let v = 0; v < validTypes.length; v++) {
-    builder(validTypes[v])
+  for (let v = 0; v < orTypes.length; v++) {
+    builder(orTypes[v])
   }
 
   // go through all valid options, if any are true, good to go
   set(fullKey, x => {
-    for (let v = 0; v < validTypes.length; v++) {
-      if (get(validTypes[v])(x)) {
+    for (let v = 0; v < orTypes.length; v++) {
+      if (get(orTypes[v])(x)) {
         return true
       }
     }
@@ -88,14 +73,9 @@ function typeListFactory(fullKey) {
   return get(fullKey)
 }
 
-function enumTypeFactory(fullKey) {
-  const key = 'enum:' + fullKey.join('|')
-  if (!has(key)) {
-    set(key, x => fullKey.includes(x))
-  }
-  return get(key)
-}
-
+// @TODO how to iterate properly with the bitwise fn + AND
+//       add another param? ignore overly complex |& things? just allow 1?
+//       just show how to use these shorthand fn builders
 function arithmeticTypeFactory(fullKey) {
   const key = stripArithmeticSymbols(fullKey)
   let fn = get(key)
@@ -103,13 +83,15 @@ function arithmeticTypeFactory(fullKey) {
   const typeOrArrayOrType = `${key}[]`
   const notType = `!${key}`
 
-  if (!has(optionalType)) {
-    set(optionalType, x => fn(x) || isNotRealOrIsEmptyString(x))
+  const isValidOrNotRealOrEmptyStr = or(fn, isNotRealOrIsEmptyString)
+  const isValidOrArrayOfValid = or(fn, isArrayOf(fn))
+  if (doesNotHave(optionalType)) {
+    set(optionalType, isValidOrNotRealOrEmptyStr)
   }
-  if (!has(typeOrArrayOrType)) {
-    set(typeOrArrayOrType, x => fn(x) || isArrayOf(fn)(x))
+  if (doesNotHave(typeOrArrayOrType)) {
+    set(typeOrArrayOrType, isValidOrArrayOfValid)
   }
-  if (!has(notType)) {
+  if (doesNotHave(notType)) {
     set(notType, not(fn))
   }
 
@@ -132,16 +114,13 @@ function arithmeticTypeFactory(fullKey) {
  */
 function builder(fullKey) {
   // @NOTE: else is for uglifying ternaries, even though else if is not needed
+  // @NOTE if key is number, iterating the array
 
   // opinionated: if it's a function, it's a validator...
   if (isFunction(fullKey)) {
     return fullKey
   }
-  else if (isArray(fullKey)) {
-    return enumTypeFactory(fullKey)
-  }
-  // @NOTE if key is number, iterating the array
-  else if (fullKey.includes('|')) {
+  else if (includesAndOr(fullKey)) {
     return typeListFactory(fullKey)
   }
   else {

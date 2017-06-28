@@ -1,5 +1,5 @@
 const ENV_DEVELOPMENT = require('../deps/env/dev')
-const not = require('../deps/util/not')
+const not = require('../deps/conditional/not')
 const isFalse = require('../deps/is/false')
 const withSpecification = require('../deps/encase/withSpecification')
 const validatorBuilder = require('../deps/validators/validatorBuilder')

@@ -1,5 +1,5 @@
 const isTrue = require('../is/true')
-const includes = require('../util/includes')
+const includes = require('../conditional/includes')
 const traverse = require('../traverse')
 const cache = require('../cache')
 
