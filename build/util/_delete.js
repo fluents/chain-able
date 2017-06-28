@@ -1,6 +1,7 @@
 const {unlinkSync, rmdirSync} = require('fs')
 
 /**
+ * @TODO: use trash
  * @see http://stackoverflow.com/questions/8496212/node-js-fs-unlink-function-causes-eperm-error/20920795
  * @description delete a file
  * @since 0.0.1

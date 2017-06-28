@@ -34,7 +34,7 @@ const createBundle = options => {
 
   const bundleOptions = {
     dest,
-    // indent: true,
+    indent: true,
     format,
     // globals: Object.assign(moduleGlobals, rollupConfig.moduleGlobals),
     moduleName,

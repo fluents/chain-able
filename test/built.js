@@ -1,7 +1,9 @@
+require('./__testsetup')
+const test = require('ava')
 const log = require('fliplog')
-const devDist = require('../srcs/cjs')
-const cjsDist = require('../srcs/dev')
-const umd = require('../srcs/umd')
+const devDist = require('../dists/cjs')
+const cjsDist = require('../dists/dev')
+const umd = require('../dists/umd')
 const {testExportedNames, testDistedAPI} = require('./_api')
 
 const dists = [cjsDist, umd, devDist]

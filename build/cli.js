@@ -69,6 +69,7 @@ if (clean) {
       'test-dist',
       'disted',
       'dists',
+      'dist',
       'compose',
       'plugins',
       'coverage',
@@ -79,7 +80,8 @@ if (clean) {
 
   toClean.files.map(file => del(res('../' + file + '.js')))
   toClean.files.map(file => del(res('../' + file + '.js.map')))
-  toClean.dirs.map(file => del(res(file + '/')))
+  toClean.dirs.map(file => del(res('../' + file + '/')))
+  process.exit()
 }
 
 // script factory

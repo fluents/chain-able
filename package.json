@@ -46,12 +46,14 @@
     "gzip": "gzip-size dists/umd/index.js --raw && gzip-size dists/umd/index.js --raw >> build/size-over-time.txt && date +%Y:%M:%D:%H:%M:%S >> build/size-over-time.txt && echo --- >> build/size-over-time.txt",
     "dox": "doxdox 'src/**/*.js' --layout markdown --output docs/bits/doxdox.md",
     "prepublish": "npm run strip:root && npm run build && npm run pretest && jest --coverage && npm run test:built",
+    "postpublish": "npm run cli -- --clean",
     "pretest": "npm run strip:dist && npm run buble",
     "pre:test:only": "npm run buble:tests",
     "test:tests": "npm run pre:test:only && ava --verbose",
     "test": "jest",
     "tests": "ava --verbose",
-    "test:built": "jest test-dist/built.js",
+    "test:built": "ava test/built.js",
+    "test:built:jest": "jest test/built.js --testPathIgnorePatterns=\"\" --testRegex=\"test/built.js\"",
     "cov": "nyc ava",
     "cov:report": "nyc report",
     "cov:eralls": "coveralls < coverage/lcov.info",
@@ -140,7 +142,7 @@
       "__DEV__": true
     },
     "watch": false,
-    "cache": false,
+    "cache": true,
     "setupTestFrameworkScriptFile": "./test/__testsetup.js",
     "collectCoverageFrom": [
       "src/**/*.js",
@@ -189,13 +191,6 @@
     ]
   },
   "ava": {
-    "__files": [
-      "test-dist/schema.js"
-    ],
-    "_files": [
-      "test-dist/built.js",
-      "test-dist/chainsaw/*.js"
-    ],
     "files": [
       "!index.*.js",
       "test-dist/*.js"
@@ -251,6 +246,7 @@
     "module-alias": "^2.0.0",
     "nyc": "^10.3.2",
     "optimize-js": "^1.0.3",
+    "ramda": "^0.24.1",
     "rimraf": "^2.6.1",
     "rollup": "^0.43.0",
     "rollup-plugin-babili": "^3.0.0",
