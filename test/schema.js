@@ -1,4 +1,4 @@
-// const log = require('fliplog')
+const log = require('fliplog')
 const Chain = require('../src')
 
 const {is, reduce} = Chain
@@ -10,13 +10,21 @@ todo('.?schema')
 todo('.&schema')
 todo('.[enum:,/]schema')
 
-test('schema.add(validator)', () => {
+test('.addTypes(validator)', () => {
+  expect.assertions(1)
   const custom = {}
-  is.enums = enums => x => enums.includes(x)
-  is['*'] = x => true
+  custom.enums = enums => x => enums.includes(x)
+  custom['*'] = x => true
 
   const chain = new Chain()
-  chain.methods().schema().add(custom)
+  chain.methods().addTypes(custom).schema({
+    enumd: custom.enums(['me!']),
+    star: '*',
+  })
+
+  chain.enumd('me!').star('*')
+
+  expect(() => chain.enumd(false)).toThrow()
 })
 
 test.skip('.schema - array', done => {
@@ -57,9 +65,6 @@ test.skip('.schema - array', done => {
 
   done.fail()
 })
-test.skip('.schema - enum - use `eq`', done => {
-  done.fail()
-})
 
 test('.!schema()', () => {
   expect.assertions(1)
@@ -76,8 +81,8 @@ test('.!schema()', () => {
 })
 
 test('.method().alias().getSet().onInvalid().onValid().type().returns()', () => {
-  const chain = new Chain()
-  ;+chain
+  const chain = new Chain();
+  +chain
     .method('ehOh')
     .alias(['canada'])
     .getSet()
@@ -164,41 +169,73 @@ test('.schema - nested', () => {
   chain.created({at: 'NOT-DATE'})
 })
 
-// test.skip('.schema - nested + array', () => {
-//   expect.assertions(2)
-//   const chain = new Chain()
-//   /* prettier-ignore */
-//   chain
-//     .methods()
-//     .onValid(created => expect(isDate(created.at)).toBe(true))
-//     .onInvalid(error => expect(error instanceof TypeError).toBe(true))
-//     .schema({
-//       status: ['enabled', 'disabled'],
-//       comments: [
-//         {
-//           admin: 'boolean',
-//           text: 'string',
-//           author: 'users',
-//         },
-//       ],
-//     })
-//
-//   chain.status('enabled')
-//   chain.comments([{}])
-// })
+test('.schema enum', () => {
+  expect.assertions(1)
 
-test.only('.schema[]', () => {
+  const chain = new Chain()
+  chain.methods().schema({status: 'enabled|disabled'}).status('enabled')
+
+  expect(() => chain.status('other')).toThrow()
+})
+
+test.skip('.schema - nested + array', () => {
+  expect.assertions(2)
+
+  const chain = new Chain()
+  chain
+    .methods()
+    .onValid(created => expect(isDate(created.at)).toBe(true))
+    .onInvalid(error => expect(error instanceof TypeError).toBe(true))
+    .schema({
+      status: ['enabled', 'disabled'],
+      comments: [
+        {
+          admin: 'boolean',
+          text: 'string',
+          author: 'users',
+        },
+      ],
+    })
+
+  chain.status('enabled')
+  chain.comments([{}])
+})
+
+test('.schema[] .call', () => {
   expect.assertions(1)
   const chain = new Chain()
-  chain.methods().getSet().schema({
-    eh: 'string|string[]',
-  })
+  chain
+    .methods()
+    .getSet()
+    .schema({eh: 'string|string[]'})
+    .setEh('string')
+    .setEh(['string'])
 
-  chain.setEh('string')
-  chain.setEh(['string'])
-  // chain.setEh(false)
   expect(() => chain.eh(false)).toThrow()
-  console.log('!!!!!!!!!!!! ONLY VALIDATES ON .CALL NOT .SET')
+})
+
+test('.schema[] .set', () => {
+  expect.assertions(1)
+  const chain = new Chain()
+  chain
+    .methods()
+    .getSet()
+    .schema({eh: 'string|string[]'})
+    .setEh('string')
+    .setEh(['string'])
+
+  expect(() => chain.setEh(false)).toThrow()
+})
+
+test.skip('arrayof', t => {
+  new Chain().methods().schema({
+    prop: [
+      {
+        nested: 'boolean',
+        optional: '?string',
+      },
+    ],
+  })
 })
 
 test('.schema|', () => {

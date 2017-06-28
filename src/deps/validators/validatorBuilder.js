@@ -10,6 +10,7 @@ const ChainedMap = require('../../ChainedMapBase')
 const is = require('../is')
 const isArray = require('../is/array')
 const isReal = require('../is/real')
+const isString = require('../is/string')
 const isFunction = require('../is/function')
 const dopemerge = require('../dopemerge')
 const camelCase = require('../camel-case')
@@ -23,13 +24,15 @@ let validators = new ChainedMap()
 // eslint-disable-next-line
 const stripArithmeticSymbols = x => x.replace(/[?\[\]!\|]/g, '')
 const escapedKey = x => camelCase('is-' + x)
+const enummy = enums => x => enums === x || enums.includes(x)
 
 // @TODO: .remap!!!
 // @TODO: can use these to return noops with error logging on development
+const get = key =>
+  validators.get(key) || validators.get(escapedKey(key)) || enummy(key)
+const merge = x => validators.from(dopemerge(validators.entries(), x))
 const has = key => validators.has(key) || validators.get(escapedKey(key))
 const set = (key, value) => validators.set(key, value)
-const get = key => validators.get(key) || validators.get(escapedKey(key))
-const merge = x => validators.from(dopemerge(validators.entries(), x))
 const doesNotHave = not(has)
 
 merge(is)
@@ -115,15 +118,23 @@ function arithmeticTypeFactory(fullKey) {
 function builder(fullKey) {
   // @NOTE: else is for uglifying ternaries, even though else if is not needed
   // @NOTE if key is number, iterating the array
-
   // opinionated: if it's a function, it's a validator...
   if (isFunction(fullKey)) {
+    if (process.env.DEBUG === true) {
+      console.log('IS FUNCTION', {fullKey})
+    }
     return fullKey
   }
-  else if (includesAndOr(fullKey)) {
+  else if (isString(fullKey) && includesAndOr(fullKey)) {
+    if (process.env.DEBUG === true) {
+      console.log('has and or', {fullKey})
+    }
     return typeListFactory(fullKey)
   }
   else {
+    if (process.env.DEBUG === true) {
+      console.log('is arithmetic type', {fullKey}, arithmeticTypeFactory(fullKey))
+    }
     return arithmeticTypeFactory(fullKey)
   }
 }

@@ -16,6 +16,7 @@
   - 📒🚚 move dopemerge & validators/types & reduce/
   - ⚒ fix some types
 - 🌐 api/core
+  🔬 +tests ♻️ abstract dist api tests + type tests
 - 👣 traverser
   - 🛁 clean
   - ℹ️️ more docs

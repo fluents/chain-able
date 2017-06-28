@@ -6,11 +6,13 @@ const isMap = require('./deps/is/map')
 const isSet = require('./deps/is/set')
 const isUndefined = require('./deps/is/undefined')
 const isString = require('./deps/is/string')
+const eq = require('./deps/conditional/eq')
 const ObjectKeys = require('./deps/util/keys')
-const charCodeAtZero = require('./deps/util/charCodeAtZero')
 const ObjectDefine = require('./deps/define')
 const ignored = require('./deps/ignored')
 const ENV_DEVELOPMENT = require('./deps/env/dev')
+
+const isNumberEnum = eq('number')
 
 const shouldClear = (key, property) =>
   !ignored(key) &&
@@ -210,46 +212,40 @@ const C = SuperClass => {
        *
        * if (hint === 'string' && this.toJSON) return this.toJSON()
        * else if (hint === 'number' && this.toNumber) return this.toNumber()
+       * if (charCodeAtZero(hint) & 4)
        */
-      if ((charCodeAtZero(hint) & 4) && this.toNumber) return this.toNumber()
+      if (isNumberEnum(hint) && this.toNumber) return this.toNumber()
 
       // hint === 'string'
-      if (this.toJSON) return this.toJSON()
+      else if (this.toJSON) return this.toJSON()
 
       // hint === 'default'
-      return this.toString()
+      else return this.toString()
     }
   }
 
-  function defineOnChainable(Chain) {
-    /**
-     * @since 0.5.0
-     * @example for (var i = 0; i < chain.length; i++)
-     * @see ChainedMap.store
-     * @return {number}
-     */
-    ObjectDefine(Chain, 'length', {
-      enumerable: false,
-      get() {
-        return this.store.size
-      },
-    })
-    ObjectDefine(Chain, Instance, {
-      enumerable: false,
-      value: instance => {
-        return !!(
-          instance &&
-          (isPrototypeOf(Chain, instance) || instance.store)
-        )
-        // not-needed
-        // instance.className ||
-        // instance.meta)
-      },
-    })
-  }
+  /**
+   * @since 0.5.0
+   * @example for (var i = 0; i < chain.length; i++)
+   * @see ChainedMap.store
+   * @return {number}
+   */
+  ObjectDefine(Chainable.prototype, 'length', {
+    enumerable: false,
+    get() {
+      return this.store.size
+    },
+  })
+  ObjectDefine(Chainable.prototype, Instance, {
+    enumerable: false,
+    value: instance => {
+      return !!(
+        instance &&
+        (isPrototypeOf(Chainable.prototype, instance) || instance.store)
+      )
+    },
+  })
 
-  // defineOnChainable(Chainable)
-  defineOnChainable(Chainable.prototype)
   return Chainable
 }
 

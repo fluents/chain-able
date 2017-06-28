@@ -17,6 +17,7 @@ const objPlugin = require('./plugins/obj')
 const encasePlugin = require('./plugins/encase')
 const decoratePlugin = require('./plugins/decorate')
 const autoIncrementPlugin = require('./plugins/autoIncrement')
+const validatorBuilder = require('./deps/validators/validatorBuilder')
 // obj
 const hasOwnProperty = require('./deps/util/hasOwnProperty')
 const getDescriptor = require('./deps/util/getDescriptor')
@@ -137,6 +138,18 @@ class MethodChain extends ChainedMap {
     // @NOTE shorthands.bindMethods
     this.bind = target => set('bind', isUndefined(target) ? parent : target)
 
+    /**
+     * @see deps/validators/validatorFactory
+     * @since 4.0.0 <- used with schema, used in method chain
+     * @since 3.0.0 <- took out
+     * @since 1.0.0
+     * @param  {Object} custom
+     * @return {MethodChain} @chainable
+     */
+    this.addTypes = types => {
+      validatorBuilder.merge(types)
+      return this
+    }
     this.plugin(typesPlugin)
   }
 
