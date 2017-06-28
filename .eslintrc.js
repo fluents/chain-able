@@ -7,4 +7,8 @@ module.exports = {
     'prefer-rest-params': 'OFF',
   },
   plugins: ['jest'],
+  globals: {
+    expect: true,
+    test: true,
+  },
 }

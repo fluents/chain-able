@@ -154,7 +154,7 @@ class MethodChain extends ChainedMap {
   }
 
   /**
-   * @since 4.0.0-alpha.2 <- moved to plugin
+   * @since 4.0.0-beta.1 <- moved to plugin
    * @since 4.0.0
    * @param  {string | Object | Array<string>} methods
    * @return {MethodChain}
@@ -177,7 +177,7 @@ class MethodChain extends ChainedMap {
   }
 
   /**
-   * @since 4.0.0-alpha.2 <- moved to plugin
+   * @since 4.0.0-beta.1 <- moved to plugin
    * @since 4.0.0
    * @param {Object} obj schema
    * @return {MethodChain} @chainable
@@ -484,7 +484,7 @@ class MethodChain extends ChainedMap {
   // ---
 
   /**
-   * @since 4.0.0-alpha.2 <- moved to plugin
+   * @since 4.0.0-beta.1 <- moved to plugin
    * @since 4.0.0 <- moved from Extend
    * @since 1.0.0
    * @alias extendParent
@@ -503,7 +503,7 @@ class MethodChain extends ChainedMap {
   }
 
   /**
-   * @since 4.0.0-alpha.2 <- moved to plugin
+   * @since 4.0.0-beta.1 <- moved to plugin
    * @since 4.0.0 <- renamed from .extendIncrement
    * @since 0.4.0
    * @desc adds a plugin to increment the value on every call

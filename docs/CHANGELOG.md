@@ -1,31 +1,44 @@
-# 4.0.0-alpha.2
-- 📘 examples
-  - adding examples
-  - adding examples submodule/repo
-  - adding decorators
-  - 🍭 not-bundled/exported importable decorators
-- 🏰 refactor
-  - ⛓ MethodChain
-    - 🌐 add name to onValid onInvalid
-    - 🔌 plugins for ^
-  - ⛑ encase - MAJOR remove .rethrow - put into error enhancer
-- 🖇 utils/deps
-  - 🎁 add eqeq
-  - 🎁 add `not`
-  - ♻️ abstract getPrototypeOf
-  - 📒🚚 move dopemerge & validators/types & reduce/
-  - ⚒ fix some types
-- 🌐 api/core
-  🔬 +tests ♻️ abstract dist api tests + type tests
-- 👣 traverser
-  - 🛁 clean
-  - ℹ️️ more docs
-  - 🎁 map & set support https://github.com/fluents/chain-able/issues/21
-- 🏗 minor build updates
+# 4.0.0-beta.1
+- 🔬 tests 🃏
+  - 🃏 convert to jest
+  - more +tests
+  - ♻️ abstract dist api tests + type tests
+  - 🔬 ava for built
+  - 🃏👕🔌 jest lint plugin
+- 🏗 build
+  - 🎡 playground for rollup uglify testing repl style
+  - 🖥🛁 cli clean on postpublish
+  - 🏰🗞️ refactor to use rollup node api
+  - 🔊 debugger build replacement export for easy usage with `debugger`ing by clients
   - ⚙ fix editor config
   - 💣🛅 fuse-box scope hoisting run - close to rollup size!
   - 🛁 clean & comment fuse.js
   - 🍶📜 more scripts in makefile
+- 📘 examples
+  - + examples
+  - + examples submodule/repo
+  - + decorators
+  - 🍭 not-bundled/exported importable decorators
+  - flatten the examples folder
+  - 📖 lots more docs
+- 🏰 refactor
+  - ⛓ MethodChain
+    - ❗🌐 add name/key as first arg in .onValid .onInvalid
+    - 🔌 plugins for ^
+  - ⛑ encase - MAJOR remove .rethrow - put into error enhancer
+- 🖇 utils/deps
+  - 🎁 add `conditional`
+    - `eq`, `not`, `or`, `and`, `some`, `all`, `includes`
+  - ♻️ abstract getPrototypeOf
+  - ⚒ fix some types
+  - 🐣 isNotNested schema validation fix
+  - rename ezType -> simpleKindOf
+- 📒🚚 move
+  - dopemerge & validators/types & reduce/ & dot-prop
+- 👣 traverser
+  - 🛁 clean
+  - ℹ️️ more docs
+  - 🎁 map & set support https://github.com/fluents/chain-able/issues/21
 
 # 4.0.0-alpha.1 https://github.com/fluents/chain-able/releases/tag/v4.0.0-alpha.1
 - test cov 90 -> 96%
