@@ -75,7 +75,7 @@ const chain = new CommentChain()
 
 chain
   .methods()
-  .onInvalid((error, arg, instance) => console.error(error))
+  .onInvalid((error, key, arg, instance) => console.error(error))
   .schema({
     enabled: 'boolean',
     data: '!string',
