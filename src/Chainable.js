@@ -211,7 +211,7 @@ const C = SuperClass => {
        * if (hint === 'string' && this.toJSON) return this.toJSON()
        * else if (hint === 'number' && this.toNumber) return this.toNumber()
        */
-      if ((charCodeAtZero(hint) & 4) && this.toNumber) return this.toNumber()
+      if (hint === 'number' && this.toNumber) return this.toNumber()
 
       // hint === 'string'
       if (this.toJSON) return this.toJSON()

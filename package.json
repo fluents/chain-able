@@ -128,7 +128,6 @@
       "/src/plugins/index.js"
     ],
     "useStderr": true,
-    "debug": true,
     "verbose": true,
     "globals": {
       "__DEV__": true
