@@ -1,6 +1,8 @@
-if (should.optimizejs) {
+const log = require('fliplog')
+const optimizeJs = require('optimize-js')
+
+module.exports = () => {
   log.yellow('optimizejs').echo()
-  const optimizeJs = require('optimize-js')
 
   const optJs = {
     name: 'optimizeJs',
@@ -23,5 +25,6 @@ if (should.optimizejs) {
       return {code: optimized}
     },
   }
-  plugins.push(optJs)
+
+  return optJs
 }

@@ -19,10 +19,13 @@ const {resolve} = require('path')
 const fwf = require('funwithflags')
 const Script = require('script-chain')
 const log = require('fliplog')
-const {read, write, del} = require('flipfile')
+const {read, write} = require('flipfile')
+const {del} = require('./util')
 
 const res = rel => resolve(__dirname, rel)
-log.startTimer('cli')
+
+const timer = log.fliptime()
+timer.start('cli')
 log.registerCatch()
 
 // setup args
@@ -65,7 +68,9 @@ if (clean) {
       'dist',
       'test-dist',
       'disted',
+      'dists',
       'compose',
+      'plugins',
       'coverage',
       '.nyc_output',
       'deps',
@@ -159,6 +164,9 @@ class CLI {
     const config = ROLLUP_CONFIG_CLI
     return script('rollup', '-c ' + require.resolve(config) + ' ' + flags)
   }
+  rollupNode(overrides = {}) {
+    return require('./build')(overrides)
+  }
 
   buble() {
     const sourcemaps = true
@@ -194,86 +202,140 @@ class CLI {
 
 // use the cli class, time the operations, use the argv setup
 
-log.startTimer('go')
+timer.start('go')
 const cli = new CLI()
 
 async function src() {
-  log.startTimer('src')
+  timer.start('src')
   // copy
-  log.startTimer('copy')
+  timer.start('copy')
   await cli.copy()
-  log.stopTimer('copy')
+  timer.stop('copy')
 
   // rollup
-  log.startTimer('dev')
-  await cli.rollup('--environment format:dev')
-  log.stopTimer('dev')
+  // timer.start('dev')
+  // await cli.rollup('--environment format:dev')
+  // timer.stop('dev')
 
   // @NOTE: not using ts now, got worse as manual optimizations got better
   // typescript the rollup
-  // log.startTimer('tsc')
+  // timer.start('tsc')
   // await cli.tsc()
-  // log.stopTimer('tsc')
+  // timer.stop('tsc')
   //
   // // rollup the typescripted rollup... o.o
-  // log.startTimer('tsc2')
+  // timer.start('tsc2')
   // await cli.rollup('--environment format:tsc')
-  // log.stopTimer('tsc2')
+  // timer.stop('tsc2')
   //
-  // log.stopTimer('src')
-  // log.echoTimer('src')
+  // timer.stop('src')
+  // log.log('src')
 }
 
 async function compileTests() {
-  log.startTimer('tests')
+  timer.start('tests')
   await cli.tsc(true)
-  log.stopTimer('tests').echoTimer('tests')
+  timer.stop('tests').log('tests')
 }
 
 async function test() {
-  log.startTimer('test')
+  timer.start('test')
   await cli.test()
-  log.stopTimer('test')
+  timer.stop('test')
   if (cov) {
-    log.startTimer('cov')
+    timer.start('cov')
     await cli.cov()
-    log.stopTimer('cov')
+    timer.stop('cov')
   }
   // cov
 }
 
+const devWith = opts =>
+  Object.assign(
+    {
+      format: 'umd',
+      verbose: true,
+      env: 'development',
+      development: true,
+      production: false,
+      uglify: false,
+    },
+    opts
+  )
+const prodWith = opts =>
+  Object.assign(
+    {
+      env: 'production',
+      development: false,
+      production: true,
+      uglify: true,
+      replace: true,
+    },
+    opts
+  )
+
 async function publishing() {
-  log.startTimer('publishing')
-  log.startTimer('amd')
-  await cli.rollup('--environment format:amd')
-  log.stopTimer('amd')
+  timer.start('publishing')
+  timer.start('amd')
 
-  log.startTimer('es')
-  await cli.rollup('--environment format:es')
-  log.stopTimer('es')
+  const rollupProdWith = opts => cli.rollupNode(prodWith(opts))
 
-  log.startTimer('cjs')
-  await cli.rollup('--environment format:cjs')
-  log.stopTimer('cjs')
+  // await cli.rollup('--environment format:amd')
+  await rollupProdWith({format: 'amd'})
+  timer.stop('amd')
+
+  timer.start('es')
+  // await cli.rollup('--environment format:es')
+  await rollupProdWith({format: 'es'})
+  timer.stop('es')
+
+  timer.start('cjs')
+  // await cli.rollup('--environment format:cjs')
+  await rollupProdWith({format: 'cjs'})
+  timer.stop('cjs')
 
   // ignoring this one for now, already so many, don't want to build them all
-  await cli.rollup('--environment format:iife')
+  // await cli.rollup('--environment format:iife')
+  await rollupProdWith({format: 'iife'})
 
-  log.startTimer('umd')
-  await cli.rollup('--environment format:umd --verbose --debug')
-  log.stopTimer('umd')
+  timer.start('umd')
+  // await cli.rollup('--environment format:umd --verbose --debug')
+  await rollupProdWith({format: 'umd', verbose: true})
+
+  // debugger
+  await cli.rollupNode(
+    devWith({
+      exportName: 'debugger',
+      debugger: true,
+      debug: true,
+      replace: {debugger: true},
+    })
+  )
+  // dev
+  await cli.rollupNode(
+    devWith({
+      exportName: 'dev',
+    })
+  )
+  // node
+  await cli.rollupNode(
+    devWith({
+      exportName: 'node',
+    })
+  )
+  timer.stop('umd')
 
   try {
-    log
-      .stopTimer('publishing')
-      .echoTimer('publishing')
-      .echoTimer('copy')
-      .echoTimer('dev')
-      .echoTimer('tsc')
-      .echoTimer('tsc2')
-      .echoTimer('tsctests')
-      .echoTimer('amd')
-      .echoTimer('es')
+    timer
+      .stop('publishing')
+      .log('publishing')
+      .log('copy')
+      .log('dev')
+      .log('tsc')
+      .log('tsc2')
+      .log('tsctests')
+      .log('amd')
+      .log('es')
   }
   catch (e) {
     // some typo on one timer not running prob tests
@@ -282,15 +344,15 @@ async function publishing() {
 
 async function all() {
   if (!quick) await src()
-  if (tests) {
-    await compileTests()
-    await test()
-  }
+  // if (tests) {
+  //   await compileTests()
+  //   await test()
+  // }
   if (production) await publishing()
   // cli.optimizejs()
 
   // if (cov) await runCov()
   // // all ops are done
-  // log.stopTimer('go').echoTimer('go')
+  // timer.stop('go').log('go')
 }
 all()

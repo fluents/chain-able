@@ -100,3 +100,75 @@
 8429
 2017:16:06/26/17:03:16:26
 ---
+8429
+2017:07:06/26/17:05:07:19
+---
+8429
+2017:25:06/26/17:05:25:15
+---
+8429
+2017:07:06/26/17:09:07:36
+---
+9304 <- utils test
+2017:48:06/26/17:23:48:40
+---
+8695 <- some things are not removed yet, for testing, adding jest
+2017:38:06/27/17:04:38:29
+---
+8695
+2017:40:06/27/17:04:40:08
+---
+8695
+2017:44:06/27/17:04:44:37
+---
+8695
+2017:45:06/27/17:04:45:58
+---
+8725  <- pre-trying meta keymap
+2017:02:06/27/17:07:02:00
+---
+9022 <- with curry
+2017:58:06/27/17:08:58:55
+---
+8904 <- with meta
+2017:17:06/27/17:21:17:02
+---
+8682 <- no meta (80/20 not sure if it's worth it)
+2017:18:06/27/17:21:18:55
+---
+8684 <- fixed commonjs module happening on bitmask masks file but added includes in conditionals
+2017:27:06/27/17:21:27:01
+---
+9035 <- fn for isNotRealOrIsEmptyString
+2017:36:06/27/17:21:36:05
+---
+9032 <- ^ with bitwise...
+2017:38:06/27/17:21:38:33
+---
+8492 <- removed the experiment stuff with curying, keymap, bitwise
+2017:38:06/27/17:23:38:07
+---
+27858 <- had dev export non compressed with updated build system
+2017:42:06/28/17:01:42:47
+---
+8805 <- wasn't running buble, using outdated dist
+2017:44:06/28/17:01:44:04
+---
+8463 <- added back using dist
+2017:06:06/28/17:02:06:59
+---
+8463 <- somehow stayed the same size after fixing simple valuesin schema
+2017:35:06/28/17:03:35:33
+---
+8555 <- ^ nvm fixed strip copying
+2017:39:06/28/17:03:39:01
+---
+8559 <- move schemaAdding to methodChain
+2017:45:06/28/17:03:45:57
+---
+8559
+2017:49:06/28/17:03:49:37
+---
+8559
+2017:51:06/28/17:03:51:50
+---
