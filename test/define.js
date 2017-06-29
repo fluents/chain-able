@@ -1,6 +1,6 @@
 const log = require('fliplog')
 const Chain = require('../src')
-const getDescriptor = require('../deps/util/getDescriptor')
+const getDescriptor = require('../src/deps/util/getDescriptor')
 
 test('.methods.define() /defineGetSet', () => {
   class Defined extends Chain {

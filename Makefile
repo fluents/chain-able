@@ -1,3 +1,4 @@
+# 📜📒 Makefile
 # learn more here: https://gist.github.com/isaacs/62a2d1825d04437c6f08
 cwd := $(shell pwd)
 
@@ -112,6 +113,6 @@ travis:
 	&& $(MAKE) jestserial
 
 prepublish:
-	$(MAKE) build && $(MAKE) cov && $(MAKE) testdist
+	$(MAKE) buildcombo && $(MAKE) cov && $(MAKE) testdist
 
 .PHONY: clean, quick
