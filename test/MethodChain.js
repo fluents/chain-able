@@ -1,7 +1,7 @@
 const log = require('fliplog')
-const Chain = require('../src')
+const {Chain, MethodChain} = require('../src')
 
-const {isUndefined} = chain.is
+const {isUndefined} = Chain.is
 
 test('.returns().callReturns()', () => {
   const chain = new Chain()
@@ -59,31 +59,26 @@ test('.method(object) .call() & .get().set()', () => {
 })
 
 test('plugins', () => {
-  const autoGetSet = (name, parent) => {
-    const onSet = arg =>
-      (isUndefined(arg) ? parent.set(name, arg) : parent.get(name))
-    const onGet = arg =>
+  function autoGetSet(name, parent) {
+    const auto = arg =>
       (isUndefined(arg) ? parent.get(name) : parent.set(name, arg))
 
     // so we know if we defaulted them
-    onSet.autoGetSet = true
-    onGet.autoGetSet = true
-    return this.onSet(onSet).onGet(onGet)
+    auto.autoGetSet = true
+    return this.onSet(auto).onGet(auto).onCall(auto)
   }
 
   const chain = new Chain()
-  chain.methods('eh').plugins(autoGetSet).build()
+  chain.methods('eh').plugin(autoGetSet).build()
   expect(chain.eh(1)).toBe(chain)
   expect(chain.eh()).toBe(1)
 })
 
 test('addTypes', () => {
+  MethodChain.addTypes({magik: x => typeof x === 'string'})
+
   const chain = new Chain()
-  chain
-    .methods('eh')
-    .addTypes({magic: x => typeof x === 'string'})
-    .type('magic')
-    .build()
+  chain.methods('magic').type('magik').build()
 
   expect(typeof chain.magic).toBe('function')
 })

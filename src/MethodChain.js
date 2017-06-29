@@ -635,21 +635,17 @@ class MethodChain extends ChainedMap {
  *
  * @example
  *
- *   // make it, add it
- *   const autoGetSetPlugin = (name, parent) => {
- *     const onSet = arg =>
- *       (isUndefined(arg) ? parent.set(name, arg) : parent.get(name))
- *     const onGet = arg =>
+ *   function autoGetSet(name, parent) {
+ *     const auto = arg =>
  *       (isUndefined(arg) ? parent.get(name) : parent.set(name, arg))
  *
- *     //so we know if we decorated them
- *     onSet.auto = true
- *     onGet.auto = true
- *     return this.onSet(onSet).onGet(onGet)
+ *     //so we know if we defaulted them
+ *     auto.autoGetSet = true
+ *     return this.onSet(auto).onGet(auto).onCall(auto)
  *   }
  *   MethodChain.addPlugin({autoGetSet})
  *
- *   // use it
+ *
  *   const chain = new Chain()
  *   chain.methods('eh').autoGetSet().build()
  *
@@ -691,7 +687,7 @@ MethodChain.addPlugin = plugin => {
  */
 MethodChain.addTypes = types => {
   validatorBuilder.merge(types)
-  return this
+  return MethodChain
 }
 
 module.exports = MethodChain

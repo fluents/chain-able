@@ -21,7 +21,7 @@ const Script = require('script-chain')
 const log = require('fliplog')
 const {read, write} = require('flipfile')
 const {del} = require('./util')
-const docdown = require('../_modules/docdown')
+const docdown = require('../_modules/_docdown')
 
 const res = rel => resolve(__dirname, rel)
 
