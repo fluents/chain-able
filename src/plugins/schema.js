@@ -34,11 +34,6 @@ const isObjOrArray = x => (isObj(x) && !isFunction(x)) || isArray(x)
  * @return {MethodFactory} @chainable
  */
 module.exports = function schema(obj) {
-  if (isUndefined(obj)) {
-    // @@DEBUGGER
-    return this
-  }
-
   const parent = this.parent
   const {onValid, onInvalid, define, getSet} = this.entries()
   const keys = ObjectKeys(obj)

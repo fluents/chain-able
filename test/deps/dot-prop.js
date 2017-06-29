@@ -55,6 +55,18 @@ test('get', () => {
   expect(m.get(undefined, 'foo.bar', false)).toBe(false)
 })
 
+test('invalid dot-props', () => {
+  expect(m.set('', '', '')).toBe(undefined)
+  expect(m.set(false, '', '')).toBe(undefined)
+  expect(m.set(false, null, '')).toBe(undefined)
+  expect(m.set(false, null, undefined)).toBe(undefined)
+
+  expect(m.delete('', '')).toBe(undefined)
+  expect(m.delete(false, '')).toBe(undefined)
+  expect(m.delete(false, null)).toBe(undefined)
+  expect(m.delete(false, null, undefined)).toBe(undefined)
+})
+
 test('set', () => {
   const func = () => 'test'
   let f1 = {}

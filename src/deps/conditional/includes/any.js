@@ -7,8 +7,14 @@ const includes = require('./includes')
  * @return {boolean}
  */
 function strHasAny(needle, haystack) {
-  for (let i = 0, len = haystack.length; i < len; i++)
-    if (includes(needle, haystack[i])) return true
+  if (needle.includes(haystack)) {
+    return true
+  }
+  for (let i = 0, len = haystack.length; i < len; i++) {
+    if (haystack[i].includes(needle)) {
+      return true
+    }
+  }
   return false
 }
 
@@ -19,9 +25,14 @@ function strHasAny(needle, haystack) {
  * @return {boolean}
  */
 function arrayHasAny(needles, haystack) {
+  if (needles.includes(haystack)) {
+    return true
+  }
   // loop needles
   for (let i = 0; i < needles.length; i++) {
-    if (strHasAny(needles[i], haystack)) return true
+    if (strHasAny(needles[i], haystack)) {
+      return true
+    }
   }
   return false
 }
@@ -35,5 +46,7 @@ function arrayHasAny(needles, haystack) {
  */
 function includesAny(needle, haystack) {
   if (isArray(needle)) return arrayHasAny(needle, haystack)
-  return strHasAny(needle, haystack)
+  else return strHasAny(needle, haystack)
 }
+
+module.exports = includesAny

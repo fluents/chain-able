@@ -31,6 +31,7 @@ module.exports = function validatorPlugin(name, parent, built) {
     const encase = encaseType(name, parent, built)
     const validatorMethod = encase(validator, type, spec)
 
+    /* istanbul ignore next: dev */
     if (ENV_DEVELOPMENT) {
       validatorMethod.type = type
     }

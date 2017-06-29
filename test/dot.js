@@ -1,5 +1,5 @@
 const log = require('fliplog')
-const {Chain} = require('../src')
+const {Chain, toArr} = require('../src')
 
 /* istanbul ignore next: depreciated */
 // test.skip('.dotter access', t => {
@@ -44,7 +44,6 @@ const {Chain} = require('../src')
 //   t.true(chain.get('not-set') === undefined)
 // })
 const todo = console.log
-todo('can disable dot')
 todo('can use dot-prop on .current')
 todo('can use dot-prop on Arrays')
 
@@ -111,4 +110,12 @@ test('can use dot-prop fallback value', () => {
   expect.assertions(1)
   const chain = new Chain()
   expect(chain.get(['moose', 'canada', 'igloo'], true)).toBe(true)
+})
+
+test('can disable dot-prop', () => {
+  expect.assertions(1)
+  const chain = new Chain()
+  chain.dot(false)
+  chain.set('moose.simple', 1)
+  expect(toArr(chain.store.keys()).includes('moose.simple')).toBe(true)
 })

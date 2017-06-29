@@ -1,5 +1,6 @@
 const log = require('fliplog')
 const m = require('../../src/deps/matcher')
+const toTest = require('../../src/deps/to-test')
 
 test('matcher *', () => {
   expect(m('canada.arr.0', 'canada.*').length).toBeTruthy()
@@ -32,4 +33,31 @@ test('matcher().length', () => {
 
 test.skip('matcher - with empty strings for matching with', () => {
   expect(m('unicorn', '').length).toBeFalsy()
+})
+
+test('matcher - alpha omega', () => {
+  expect(m('unicorn', 'unicorn', true, true).length).toBeTruthy()
+  expect(m('nicor', 'unicorn', true, true).length).toBeFalsy()
+})
+
+test('to-test', () => {
+  expect(toTest('kinga', 'kinga')).toBeTruthy()
+  expect(toTest('kinga', 'nope')).toBeFalsy()
+
+  expect(toTest(new RegExp(/kinga/), 'kinga')).toBeTruthy()
+  expect(toTest(new RegExp(/kinga/), 'nope')).toBeFalsy()
+
+  expect(toTest(x => x === 'kinga', 'kinga')).toBeTruthy()
+  expect(toTest(x => x === 'kinga', 'nope')).toBeFalsy()
+
+  expect(toTest({test: x => x === 'kinga'}, 'kinga')).toBeTruthy()
+  expect(toTest({test: x => x === 'kinga'}, 'nope')).toBeFalsy()
+
+  // @TODO this is only implemented in traverse
+  // expect(
+  //   toTest([x => x === 'kinga', new RegExp(/kinga/), 'kinga'], 'kinga')
+  // ).toBeTruthy()
+  // expect(
+  //   toTest([x => x === 'kinga', new RegExp(/kinga/), 'kinga'], 'nope')
+  // ).toBeFalsy()
 })

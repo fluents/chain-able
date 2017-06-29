@@ -28,7 +28,7 @@ const isArray = require('./is/array')
  */
 function markForGarbageCollection(obj) {
   let props = ObjectProperties(obj)
-  // if (props.length > 10) {
+
   traverse(obj).forEach(function(x) {
     const {value} = this
 
@@ -38,12 +38,12 @@ function markForGarbageCollection(obj) {
     //   .includes(true)
     //   !shouldIgnore &&
 
+    /* istanbul ignore else: safety for bottom up */
     // ensure the longest paths in traverser are used...
     if (!isArray(value) && !isObj(value)) {
       this.remove()
     }
   })
-  // }
 
   // simple fast easy cleanup
   for (let p = 0; p < props.length; p++) {

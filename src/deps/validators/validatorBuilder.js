@@ -5,8 +5,8 @@
  *       @modifies this.validators
  * @param  {Object} validators
  */
-
 const ChainedMap = require('../../ChainedMapBase')
+const ENV_DEBUG = require('../env/debug')
 const is = require('../is')
 const isArray = require('../is/array')
 const isReal = require('../is/real')
@@ -120,20 +120,23 @@ function builder(fullKey) {
   // @NOTE if key is number, iterating the array
   // opinionated: if it's a function, it's a validator...
   if (isFunction(fullKey)) {
-    if (process.env.DEBUG === true) {
-      console.log('IS FUNCTION', {fullKey})
+    /* istanbul ignore next: dev */
+    if (ENV_DEBUG) {
+      console.log('functionType', {fullKey})
     }
     return fullKey
   }
   else if (isString(fullKey) && includesAndOr(fullKey)) {
-    if (process.env.DEBUG === true) {
-      console.log('has and or', {fullKey})
+    /* istanbul ignore next: dev */
+    if (ENV_DEBUG) {
+      console.log('andOrType', {fullKey})
     }
     return typeListFactory(fullKey)
   }
   else {
-    if (process.env.DEBUG === true) {
-      console.log('is arithmetic type', {fullKey}, arithmeticTypeFactory(fullKey))
+    /* istanbul ignore next: dev */
+    if (ENV_DEBUG) {
+      console.log('arithmeticType', {fullKey}, arithmeticTypeFactory(fullKey))
     }
     return arithmeticTypeFactory(fullKey)
   }

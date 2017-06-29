@@ -7,8 +7,11 @@ const includes = require('./includes')
  * @return {boolean}
  */
 function strHasAll(needle, haystack) {
+  if (needle === haystack) {
+    return true
+  }
   for (let i = 0, len = haystack.length; i < len; i++)
-    if (!includes(needle, haystack[i])) return false
+    if (!includes(haystack[i], needle)) return false
   return true
 }
 
@@ -35,5 +38,7 @@ function arrayHasAll(needles, haystack) {
  */
 function includesAll(needle, haystack) {
   if (isArray(needle)) return arrayHasAll(needle, haystack)
-  return strHasAll(needle, haystack)
+  else return strHasAll(needle, haystack)
 }
+
+module.exports = includesAll

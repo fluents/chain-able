@@ -132,6 +132,9 @@ module.exports = function(a, b, loose) {
       }
     }
     // isString(x) || isBoolean(x) || isNumber(x) || isIterator(x)
+    else if (toS(x) === toS(y) && x !== y) {
+      notEqual()
+    }
     else if (toS(x) !== toS(y)) {
       notEqual()
     }

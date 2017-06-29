@@ -117,7 +117,7 @@ class MethodChain extends ChainedMap {
     this.catch = this.onInvalid.bind(this)
 
     this.returns = (x, callReturns) =>
-      set('returns', x || parent).set('callReturns', callReturns)
+      set('returns', x || parent).callReturns(callReturns)
 
     // @NOTE replaces shorthands.chainWrap
     this.chainable = this.returns

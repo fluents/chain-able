@@ -15,6 +15,7 @@ test('should work for objects', () => {
 
 test('should work for dates', () => {
   expect(isDate(new Date())).toBe(true)
+  expect(isObj(new Date())).toBe(true)
   stress(isDate)
 })
 
@@ -22,6 +23,7 @@ test('should work for arrays', () => {
   expect(isArray([])).toBe(true)
   expect(isArray([1, 2, 3])).toBe(true)
   expect(isArray(new Array())).toBe(true)
+  expect(isObj(new Array())).toBe(true)
   stress(isArray)
 })
 
@@ -29,6 +31,13 @@ test('should work for regular expressions', () => {
   expect(isRegExp(/[\s\S]+/)).toBe(true)
   expect(isRegExp(new RegExp('^' + 'foo$'))).toBe(true)
   stress(isRegExp)
+})
+
+test('should not mark regular expressions as Functions, but they are PureObjects', () => {
+  expect(isFunction(/[\s\S]+/)).toBe(false)
+  expect(isFunction(new RegExp('^' + 'foo$'))).toBe(false)
+  expect(isObj(/[\s\S]+/)).toBe(true)
+  expect(isObj(new RegExp('^' + 'foo$'))).toBe(true)
 })
 
 test('should work for functions', () => {
@@ -39,5 +48,6 @@ test('should work for functions', () => {
 
 test('should work for Errors', () => {
   expect(isError(new Error(''))).toBe(true)
+  expect(isObj(new Error(''))).toBe(true)
   stress(isError)
 })

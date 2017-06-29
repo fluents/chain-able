@@ -3,16 +3,20 @@ var {deepEqual} = require('./')
 test('deepDates', () => {
   expect.assertions(2)
 
-  expect(deepEqual(
-    {d: new Date(0, 0, 0, 0), x: [1, 2, 3]},
-    {d: new Date(0, 0, 0, 0), x: [1, 2, 3]}
-  )).toBeTruthy()
+  expect(
+    deepEqual(
+      {d: new Date(0, 0, 0, 0), x: [1, 2, 3]},
+      {d: new Date(0, 0, 0, 0), x: [1, 2, 3]}
+    )
+  ).toBeTruthy()
 
   var d0 = new Date()
   return new Promise(res => setTimeout(res, 5)).then(val => {
-    expect(!deepEqual({d: d0, x: [1, 2, 3]}, {d: new Date(), x: [1, 2, 3]})).toBeTruthy()
+    expect(
+      !deepEqual({d: d0, x: [1, 2, 3]}, {d: new Date(), x: [1, 2, 3]})
+    ).toBeTruthy()
     return Promise.resolve()
-  });
+  })
 })
 
 test('deepCircular', () => {
@@ -44,18 +48,20 @@ test('deepInstances', () => {
 
   expect(!deepEqual([new RegExp(/./)], [/../])).toBeTruthy()
 
-  expect(!deepEqual(
-    [
-      function(x) {
-        return x * 2
-      },
-    ],
-    [
-      function(x) {
-        return x * 2
-      },
-    ]
-  )).toBeTruthy()
+  expect(
+    !deepEqual(
+      [
+        function(x) {
+          return x * 2
+        },
+      ],
+      [
+        function(x) {
+          return x * 2
+        },
+      ]
+    )
+  ).toBeTruthy()
 
   var f = function(x) {
     return x * 2
@@ -72,20 +78,26 @@ test('falsy', () => {
 
   expect(!deepEqual([null], [undefined])).toBeTruthy()
 
-  expect(!deepEqual(
-    {a: 1, b: 2, c: [3, undefined, 5]},
-    {a: 1, b: 2, c: [3, null, 5]}
-  )).toBeTruthy()
+  expect(
+    !deepEqual(
+      {a: 1, b: 2, c: [3, undefined, 5]},
+      {a: 1, b: 2, c: [3, null, 5]}
+    )
+  ).toBeTruthy()
 
-  expect(!deepEqual(
-    {a: 1, b: 2, c: [3, undefined, 5]},
-    {a: 1, b: 2, c: [3, null, 5]}
-  )).toBeTruthy()
+  expect(
+    !deepEqual(
+      {a: 1, b: 2, c: [3, undefined, 5]},
+      {a: 1, b: 2, c: [3, null, 5]}
+    )
+  ).toBeTruthy()
 
-  expect(!deepEqual(
-    {a: 1, b: 2, c: [3, undefined, 5]},
-    {a: 1, b: 2, c: [3, null, 5]}
-  )).toBeTruthy()
+  expect(
+    !deepEqual(
+      {a: 1, b: 2, c: [3, undefined, 5]},
+      {a: 1, b: 2, c: [3, null, 5]}
+    )
+  ).toBeTruthy()
 })
 
 test('deletedArrayEqual', () => {
@@ -120,21 +132,25 @@ test('emptyKeyEqual', () => {
 })
 
 test('deepArguments', () => {
-  expect(!deepEqual(
-    [4, 5, 6],
-    (function() {
-      return arguments
-    })(4, 5, 6)
-  )).toBeTruthy()
+  expect(
+    !deepEqual(
+      [4, 5, 6],
+      (function() {
+        return arguments
+      })(4, 5, 6)
+    )
+  ).toBeTruthy()
 
-  expect(deepEqual(
-    (function() {
-      return arguments
-    })(4, 5, 6),
-    (function() {
-      return arguments
-    })(4, 5, 6)
-  )).toBeTruthy()
+  expect(
+    deepEqual(
+      (function() {
+        return arguments
+      })(4, 5, 6),
+      (function() {
+        return arguments
+      })(4, 5, 6)
+    )
+  ).toBeTruthy()
 })
 
 test('deepUn', () => {
@@ -150,6 +166,23 @@ test('deepUn', () => {
 test('deepLevels', () => {
   var xs = [1, 2, [3, 4, [5, 6]]]
   expect(!deepEqual(xs, [])).toBeTruthy()
+})
+
+test('number, string, Error, Promise', () => {
+  const ErrorOne = new Error('1')
+  expect(deepEqual(1, 1)).toBe(true)
+  expect(deepEqual(1, 0)).toBe(false)
+  expect(deepEqual('string', 'string')).toBe(true)
+  expect(deepEqual('1', '1')).toBe(true)
+  expect(deepEqual(ErrorOne, ErrorOne)).toBe(true)
+  expect(deepEqual('1', 1)).toBe(false)
+  expect(deepEqual(new Promise(r => r()), 'string')).toBe(false)
+  expect(deepEqual(new Error(), '1')).toBe(false)
+  expect(deepEqual(new Promise(r => r()), new Error('2'))).toBe(false)
+})
+
+test('!!! fail on Error message', () => {
+  expect(deepEqual(new Error('1'), new Error('2'))).toBe(true)
 })
 
 test('null vs undefined', () => {
@@ -177,5 +210,7 @@ test('Fn vs Fn', () => {
   expect(!deepEqual(noop, noops)).toBeTruthy()
 })
 test('ObjKeys', () => {
-  expect(!deepEqual({one: true, two: true}, {one: true, three: false})).toBeTruthy()
+  expect(
+    !deepEqual({one: true, two: true}, {one: true, three: false})
+  ).toBeTruthy()
 })

@@ -33,7 +33,7 @@ test('traversal with .onMatch', () => {
     .call(true)
 })
 
-test('traversal', () => {
+test('.traverse(false)', () => {
   const eh = {
     me: true,
     nested: {
@@ -62,6 +62,49 @@ test('traversal', () => {
 
   // log.quick(cleaned)
   expect(cleaned).toEqual({
+    me: true,
+    nested: {
+      really: {
+        deep: {
+          not: 'eh',
+          canada: true,
+          modules: [{}],
+        },
+        notme: 'eh',
+      },
+    },
+  })
+})
+
+test('.traverse(true)', () => {
+  const eh = {
+    me: true,
+    nested: {
+      really: {
+        deep: {
+          super: false,
+          not: 'eh',
+          canada: true,
+          modules: [{parser: 'hi'}],
+        },
+        matchme: 'minime',
+        notme: 'eh',
+      },
+    },
+  }
+
+  const chain = new Chain()
+  Object.assign(chain, eh)
+  const cleaned = chain
+    .merge(eh)
+    .traverse(true)
+    .keys([/super/, /parser/, /store/, /meta/])
+    .vals([/minime/])
+    .call(true)
+
+  // log.quick(cleaned)
+  expect(cleaned).toEqual({
+    className: 'DotProp',
     me: true,
     nested: {
       really: {
