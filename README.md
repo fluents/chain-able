@@ -9,6 +9,8 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b1d92a30c4aa43df9a6233cfadde2307)](https://www.codacy.com/app/aretecode/chain-able?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=fluents/chain-able&amp;utm_campaign=Badge_Grade)
 [![gzip size](http://img.badgesize.io/https://unpkg.com/chain-able@3.0.0/index.amd.js?compression=gzip)](https://unpkg.com/chain-able@3.0.0)
 [![fluent](https://img.shields.io/badge/⛓-fluent-9659F7.svg)](https://github.com/fluents/awesome-fluents)
+[![fluent](https://img.shields.io/badge/🎡-playground-black.svg)](https://aretecode.github.io/chain-able-playground/)
+
 
 <!-- https://david-dm.org/fluents/chain-able.svg -->
 [david-deps-img]: https://img.shields.io/badge/0-dependencies-blue.svg
@@ -135,5 +137,7 @@ writing an api using chain-able means:
 - thanks to [Sindre Sorhus](https://github.com/sindresorhus) for the simple [dot-prop](https://github.com/sindresorhus/dot-prop) access
 - thanks to [Josh Duff](https://github.com/KyleAMathews) for [deep merging](https://github.com/KyleAMathews/deepmerge)
 - based on [webpack-chain](https://github.com/mozilla-rpweb/webpack-chain), but not webpack-specific.
+- thanks to [Jon Schlinkert](https://github.com/jonschlinkert/kind-of) & [inferno](https://github.com/infernojs/inferno/blob/master/packages/inferno-shared/src/index.ts) for type checking inspirations
 - transpiled with [buble](https://gitlab.com/Rich-Harris/buble)
 - [Martin Fowler on FluentInterface](https://www.martinfowler.com/bliki/FluentInterface.html)
+<!-- - thanks to [ramda](https://github.com/ramda/ramda/tree/master/src/internal) & [lodash](https://github.com/lodash/lodash) for the currying -->

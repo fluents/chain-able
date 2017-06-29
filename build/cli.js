@@ -31,9 +31,10 @@ log.registerCatch()
 // setup args
 // src: [rollup, typescript, buble, babel, browserify, copy/strip]
 const argvOpts = {
-  boolean: ['cov', 'src', 'copy', 'production', 'docs'],
+  boolean: ['cov', 'src', 'copy', 'production', 'docs', 'optimize'],
   string: ['format'],
   default: {
+    optimize: true,
     docs: false,
     clean: false,
     tests: false,
@@ -46,9 +47,9 @@ const argvOpts = {
 const argvs = fwf(process.argv.slice(2), argvOpts)
 const {production, quick, tests, cov, clean, docs} = argvs
 
-const OPTIMIZE_JS_FILE = 'dists/umd.index.js'
-const TSC_SOURCE = 'dists/dev/index.js'
-const TSC_OUT = 'dists/tsc/bundle.js'
+const OPTIMIZE_JS_FILE = '../dists/umd/index.js'
+const TSC_SOURCE = '../dists/dev/index.js'
+const TSC_OUT = '../dists/tsc/bundle.js'
 const ROLLUP_CONFIG_CLI = './rollup.config.cli.js'
 
 if (clean) {
@@ -158,7 +159,7 @@ class CLI {
     const optimized = optimizeJs(code)
     log.diff(optimized)
     write(file, optimized)
-    log.log()
+    log.echo()
     return Promise.resolve()
   }
   rollup(flags = '') {
@@ -406,7 +407,7 @@ async function all() {
   //   await test()
   // }
   if (production) await publishing()
-  // cli.optimizejs()
+  await cli.optimizejs()
 
   // if (cov) await runCov()
   // // all ops are done

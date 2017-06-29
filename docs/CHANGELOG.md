@@ -1,4 +1,4 @@
-# 4.0.0-beta.1
+# 4.0.0-beta.2
 - 🔬 tests 🃏
   - 🃏 convert to jest
   - more +tests
@@ -13,7 +13,11 @@
   - ⚙ fix editor config
   - 💣🛅 fuse-box scope hoisting run - close to rollup size!
   - 🛁 clean & comment fuse.js
-  - 🍶📜 more scripts in makefile
+  - 📜📒 all scripts moved to makefile
+  - 📛 🎡 playground badge
+  - ⚡ enable optimizejs
+  - 📦🐈 use yarn to run makefile scripts instead of npm
+  - 💸💚 cache for travis
 - 📘 examples
   - + examples
   - + examples submodule/repo
@@ -40,7 +44,7 @@
   - ℹ️️ more docs
   - 🎁 map & set support https://github.com/fluents/chain-able/issues/21
 
-# 4.0.0-alpha.1 https://github.com/fluents/chain-able/releases/tag/v4.0.0-alpha.1
+# 4.0.0-beta.1 https://github.com/fluents/chain-able/releases/tag/v4.0.0-alpha.1
 - test cov 90 -> 96%
 - MAJOR
   - .when(string) string now checks .has

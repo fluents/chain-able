@@ -130,3 +130,58 @@
 8578
 2017:30:06/28/17:17:30:12
 ---
+8578
+2017:58:06/28/17:17:58:44
+---
+8578
+2017:32:06/28/17:18:32:25
+---
+8606
+2017:42:06/28/17:18:42:57
+--- dists/umd/index.js --raw
+
+> chain-able@4.0.0-beta.2 gzip /Users/james/code/__priority/_chains/chain-able
+> gzip-size dists/umd/index.js --raw && gzip-size dists/umd/index.js --raw >> build/size-over-time.txt && date +%Y:%M:%D:%H:%M:%S >> build/size-over-time.txt && echo --- >> build/size-over-time.txt "dists/umd/index.js" "--raw"
+
+8606
+8606
+2017:42:06/28/17:18:42:58
+--- dists/umd/index.js --raw
+2017:42:06/28/17:18:42:58
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8606
+Done in 0.25s.
+2017:19:06/28/17:19:19:25
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8606
+Done in 0.24s.
+2017:30:06/28/17:19:30:11
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8606
+Done in 0.26s.
+2017:31:06/28/17:19:31:23
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8606
+Done in 0.25s.
+2017:32:06/28/17:19:32:39
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8606
+Done in 0.26s.
+2017:33:06/28/17:19:33:31
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8606
+Done in 0.26s.
+2017:34:06/28/17:19:34:20
+---
