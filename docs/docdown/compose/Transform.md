@@ -52,6 +52,9 @@
 1. `from` *(string)*: property name
 2. `to` *(string)*: property name to change key to
 
+#### Returns
+*(Chain)*: @chainable
+
 #### Example
 ```js
 this
@@ -85,6 +88,9 @@ this
 2. `val` *(any)*:
 3. `dotPropKey` *(|string|string&#91;&#93;)*:
 
+#### Returns
+*(Chainable)*: @chainable
+
 ---
 
 <!-- /div -->
@@ -108,6 +114,9 @@ this
 #### Arguments
 1. `key` *(Function|string)*: currently just string
 2. `value` *(Function)*:
+
+#### Returns
+*(This)*: @chainable
 
 #### Example
 ```js
@@ -138,6 +147,9 @@ this
 
 #### Arguments
 1. `[useThis=false]` *(boolean|traversable)*:
+
+#### Returns
+*(ChainedMapExtendable)*: @chainable
 
 ---
 

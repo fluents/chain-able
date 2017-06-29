@@ -185,3 +185,39 @@ $ gzip-size dists/umd/index.js --raw
 Done in 0.26s.
 2017:34:06/28/17:19:34:20
 ---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8606
+Done in 0.26s.
+2017:21:06/28/17:20:21:31
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8606
+Done in 0.25s.
+2017:28:06/28/17:20:28:09
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8606
+Done in 0.27s.
+2017:33:06/28/17:20:33:05
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8606
+Done in 0.27s.
+2017:11:06/28/17:21:11:59
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8606
+Done in 0.26s.
+2017:42:06/29/17:00:42:42
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8606
+Done in 0.30s.
+2017:16:06/29/17:03:16:40
+---

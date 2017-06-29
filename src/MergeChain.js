@@ -17,6 +17,7 @@ const OBJ_KEY = 'obj'
 /**
  * @since 1.0.0
  * @type {Map}
+ * @extends {ChainedMapBase}
  */
 class MergeChain extends ChainedMapBase {
   /**
@@ -41,23 +42,25 @@ class MergeChain extends ChainedMapBase {
   }
 
   /**
-   * @since 1.0.2
    * @desc options for merging with dopemerge
    *       @modifies this.merger | this.opts
-   * @param  {Object | Function} opts
+   *
+   * @since 1.0.2
+   * @param  {Object | Function} opts when object: options for the merger. when function: is the merger
    * @return {MergeChain} @chainable
+   * @see dopemerge
    *
    * @example
-   * {
-   *   stringToArray: true,
-   *   boolToArray: false,
-   *   boolAsRight: true,
-   *   ignoreTypes: ['null', 'undefined', 'NaN'],
-   *   debug: false,
-   * }
+   *   {
+   *     stringToArray: true,
+   *     boolToArray: false,
+   *     boolAsRight: true,
+   *     ignoreTypes: ['null', 'undefined', 'NaN'],
+   *     debug: false,
+   *   }
    *
    * @example
-   *  .merger(require('lodash.mergewith')())
+   *    .merger(require('lodash.mergewith')())
    */
   merger(opts) {
     if (isFunction(opts)) return this.set(MERGER_KEY, opts)
@@ -65,14 +68,25 @@ class MergeChain extends ChainedMapBase {
   }
 
   /**
+   * @desc merges object in, goes through all keys, checks cbs, dopemerges
+   *
    * @since 1.0.0
    *
+   * @param  {Object} [obj2=undefined] object to merge in, defaults to this.get('obj')
+   * @return {MergeChain} @chainable
+   *
+   * @see ChainedMap
    * @TODO issue here if we extend without shorthands &
    *       we want to merge existing values... :s
    *
-   * @desc merges object in, goes through all keys, checks cbs, dopemerges
-   * @param  {Object} obj2 object to merge in
-   * @return {MergeChain} @chainable
+   *
+   * @example
+   *
+   *  const chain = new Chain()
+   *  chain.merge({canada: {eh: true}})
+   *  chain.merge({canada: {arr: [0, {'1': 2}], eh: {again: true}}})
+   *  chain.entries()
+   *  //=> {canada:{ eh: {again: true}, arr: [0, {'1': 2}] }}
    */
   merge(obj2) {
     // better uglifying

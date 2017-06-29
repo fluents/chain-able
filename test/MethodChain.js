@@ -1,6 +1,8 @@
 const log = require('fliplog')
 const Chain = require('../src')
 
+const {isUndefined} = chain.is
+
 test('.returns().callReturns()', () => {
   const chain = new Chain()
   ;+chain
@@ -54,4 +56,34 @@ test('.method(object) .call() & .get().set()', () => {
   const call = chain.canada('canada!!!')
   expect(call).toBe(chain)
   expect(chain.get('canada')).toBe('canada!!!')
+})
+
+test('plugins', () => {
+  const autoGetSet = (name, parent) => {
+    const onSet = arg =>
+      (isUndefined(arg) ? parent.set(name, arg) : parent.get(name))
+    const onGet = arg =>
+      (isUndefined(arg) ? parent.get(name) : parent.set(name, arg))
+
+    // so we know if we defaulted them
+    onSet.autoGetSet = true
+    onGet.autoGetSet = true
+    return this.onSet(onSet).onGet(onGet)
+  }
+
+  const chain = new Chain()
+  chain.methods('eh').plugins(autoGetSet).build()
+  expect(chain.eh(1)).toBe(chain)
+  expect(chain.eh()).toBe(1)
+})
+
+test('addTypes', () => {
+  const chain = new Chain()
+  chain
+    .methods('eh')
+    .addTypes({magic: x => typeof x === 'string'})
+    .type('magic')
+    .build()
+
+  expect(typeof chain.magic).toBe('function')
 })

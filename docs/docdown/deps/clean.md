@@ -30,6 +30,9 @@
 #### Arguments
 1. `obj` *(Object): object to clean, usually .entries()*
 
+#### Returns
+*(Object)*:
+
 ---
 
 <!-- /div -->

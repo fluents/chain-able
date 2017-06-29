@@ -66,6 +66,9 @@
 1. `method` *(string)*:
 2. `[rethrow=false]` *(boolean)*: or `1` to rechain?
 
+#### Returns
+*(Shorthands)*: @chainable
+
 ---
 
 <!-- /div -->
@@ -88,6 +91,9 @@
 
 #### Arguments
 1. `[should=true]` *(boolean)*:
+
+#### Returns
+*(Chainable)*: @chainable
 
 ---
 
@@ -132,6 +138,9 @@
 #### Arguments
 1. `value` *(any)*: value to return at the end of a chain
 
+#### Returns
+*(any)*:
+
 ---
 
 <!-- /div -->
@@ -156,6 +165,9 @@
 1. `name` *(string)*:
 2. `value` *(any)*:
 
+#### Returns
+*(This)*: @chainable
+
 ---
 
 <!-- /div -->
@@ -178,6 +190,9 @@
 
 #### Arguments
 1. `fn` *(any)*:
+
+#### Returns
+*(This)*: @chainable
 
 ---
 

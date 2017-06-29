@@ -160,10 +160,13 @@
 
 <!-- div -->
 
-<h3 id="clone"><a href="#clone">#</a>&nbsp;<code>clone</code></h3>
+<h3 id="clone"><a href="#clone">#</a>&nbsp;<code>clone()</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L174 "View in source") [&#x24C9;][1]
 
 
+
+#### Returns
+*(any)*:
 
 ---
 
@@ -185,6 +188,9 @@
 #### Arguments
 1. `src` *(any)*:
 
+#### Returns
+*(any)*:
+
 ---
 
 <!-- /div -->
@@ -204,6 +210,9 @@
 
 #### Arguments
 1. `stopHere` *(boolean)*:
+
+#### Returns
+*(void)*:
 
 ---
 
@@ -240,6 +249,9 @@
 #### Arguments
 1. `cb` *(Function)*:
 
+#### Returns
+*(any)*: this.value
+
 ---
 
 <!-- /div -->
@@ -271,6 +283,9 @@
 #### Arguments
 1. `ps` *(string&#91;&#93;)*: paths
 
+#### Returns
+*(any)*: value at dot-prop
+
 ---
 
 <!-- /div -->
@@ -290,6 +305,9 @@
 
 #### Arguments
 1. `ps` *(string&#91;&#93;)*: paths
+
+#### Returns
+*(boolean)*:
 
 ---
 
@@ -311,6 +329,9 @@
 #### Arguments
 1. `cb` *(Function)*:
 
+#### Returns
+*(any)*:
+
 ---
 
 <!-- /div -->
@@ -323,10 +344,13 @@
 
 <!-- div -->
 
-<h3 id="nodes"><a href="#nodes">#</a>&nbsp;<code>nodes</code></h3>
+<h3 id="nodes"><a href="#nodes">#</a>&nbsp;<code>nodes()</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L163 "View in source") [&#x24C9;][1]
 
 
+
+#### Returns
+*(&#42;)*:
 
 ---
 
@@ -340,10 +364,13 @@
 
 <!-- div -->
 
-<h3 id="paths"><a href="#paths">#</a>&nbsp;<code>paths</code></h3>
+<h3 id="paths"><a href="#paths">#</a>&nbsp;<code>paths()</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L152 "View in source") [&#x24C9;][1]
 
 
+
+#### Returns
+*(&#42;)*:
 
 ---
 
@@ -366,6 +393,9 @@
 1. `cb` *(Function)*:
 2. `init` *(Array|Object|any)*:
 
+#### Returns
+*(&#42;)*:
+
 ---
 
 <!-- /div -->
@@ -385,6 +415,9 @@
 
 #### Arguments
 1. `stopHere` *(boolean)*:
+
+#### Returns
+*(void)*:
 
 ---
 
@@ -406,6 +439,9 @@
 #### Arguments
 1. `node_` *(any)*:
 
+#### Returns
+*(State)*: see types
+
 ---
 
 <!-- /div -->
@@ -426,6 +462,9 @@
 #### Arguments
 1. `ps` *(string&#91;&#93;)*: paths
 2. `value` *(any)*:
+
+#### Returns
+*(any)*: value passed in
 
 ---
 
@@ -468,6 +507,9 @@
 1. `x` *(Function)*:
 2. `stopHere` *(boolean)*:
 
+#### Returns
+*(void)*:
+
 ---
 
 <!-- /div -->
@@ -484,6 +526,9 @@
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L310 "View in source") [&#x24C9;][1]
 
 
+
+#### Returns
+*(void)*:
 
 ---
 
@@ -506,6 +551,9 @@
 1. `root` *(any)*:
 2. `cb` *(Function)*:
 3. `immutable` *(boolean)*:
+
+#### Returns
+*(any)*:
 
 ---
 

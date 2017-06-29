@@ -31,6 +31,9 @@
 1. `properties` *(Matchable)*:
 2. `fn` *(Function)*:
 
+#### Returns
+*(Chain)*: @chainable
+
 #### Example
 ```js
 chain

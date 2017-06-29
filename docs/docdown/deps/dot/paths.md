@@ -32,6 +32,9 @@
 2. `value` *(Traversable)*:
 3. `longest` *(|boolean)*:
 
+#### Returns
+*(&#42;)*: paths
+
 ---
 
 <!-- /div -->

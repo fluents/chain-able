@@ -37,7 +37,7 @@ clean:
 lint:
 	yarn run lint -- src/**.js src/**/*.js
 
-docs:
+docgen:
 	node build/cli --docs
 
 dox:
@@ -76,8 +76,11 @@ rollupcli:
 cov:
 	yarn run jest -- --coverage
 
-jestserial:
+jestserialcov:
 	yarn run jest --coverage --runInBand
+
+jestserial:
+	yarn run jest --runInBand
 
 coveralls:
 	yarn run coveralls -- < coverage/lcov.info

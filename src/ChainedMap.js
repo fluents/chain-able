@@ -3,7 +3,20 @@ const MergeChain = require('./MergeChain')
 const MethodChain = require('./MethodChain')
 const ChainedMapCore = require('./ChainedMapBase')
 
-// CM = ComposeMap
+/**
+ * @desc ChainedMap composer
+ * @alias ComposeMap
+ * @param {Class | Object | Composable} [SuperClass=ChainedMapBase] class to extend
+ * @return {Class} ChainedMap
+ * @see ChainedMapBase
+ *
+ * @example
+ *    const heh = class {}
+ *    const composed = ChainedMap.compose(heh)
+ *    const hehchain = new Composed()
+ *    hehchain instanceof heh
+ *    //=> true
+ */
 const CM = SuperClass => {
   const Composed = SuperClass === ChainedMapCore
     ? SuperClass
@@ -11,36 +24,57 @@ const CM = SuperClass => {
 
   class ChainedMap extends Composed {
     /* prettier-ignore */
+    /* @private */
     methods(names) { return this.method(names) }
 
     /**
      * @since 4.0.0
+     * @category methods
      * @alias methods
-     * @param  {string | Array<string> | Primitive} names
-     * @return {MethodChain}
+     * @see MethodChain
+     * @param  {string | Array<string> | Primitive} names method names to add to the object
+     * @return {MethodChain} @chainable
+     *
+     * @example
+     *
+     *   const chain = new Chain()
+     *   chain.method('eh').build()
+     *   chain.eh(true)
+     *   chain.get('eh')
+     *   // => true
      */
     method(names) {
       return new MethodChain(this).name(names)
     }
 
     /**
-     * @TODO needs to pass in additional opts somehow...
-     * @see dopemerge, MergeChain
-     * @since 0.4.0
-     *       ...as second arg? on instance property?
-     * @example chain.set('eh', [1]).merge({eh: [2]}).get('eh') === [1, 2]
      * @desc merges an object with the current store
+     * @since 0.4.0
+     * @category merge
+     *
      * @param {Object} obj object to merge
-     * @param {Function | null} cb return the merger to the callback
+     * @param {Function | null} [handleMergeFn=undefined] return the merger to the callback
      * @return {ChainedMap} @chainable
+     *
+     * @TODO needs to pass in additional opts somehow...
+     * @see dopemerge
+     * @see MergeChain
+     *
+     * @example
+     *
+     *    chain.set('eh', [1])
+     *    chain.merge({eh: [2]})
+     *    chain.get('eh')
+     *    // => [1, 2]
+     *
      */
-    merge(obj, cb) {
+    merge(obj, handleMergeFn) {
       const merger = MergeChain.init(this)
-      if (isUndefined(cb)) {
+      if (isUndefined(handleMergeFn)) {
         merger.merge(obj)
       }
       else {
-        cb(merger.obj(obj))
+        handleMergeFn(merger.obj(obj))
       }
       return this
     }

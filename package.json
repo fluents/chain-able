@@ -1,6 +1,6 @@
 {
   "name": "chain-able",
-  "version": "4.0.0-beta.2",
+  "version": "4.0.0-beta.3",
   "description": "interfaces that describe their intentions.",
   "main:es6": "src/index.js",
   "main:dev": "dists/dev/index.js",
@@ -12,7 +12,7 @@
   "js:next": "dists/es/index.js",
   "main": "dists/umd/index.js",
   "module": "dists/umd/index.js",
-  "web": "dists/cjs/index.js",
+  "web": "dists/web/index.js",
   "browser": "dists/cjs/index.js",
   "alias": "dists/cjs/index.js",
   "amd": "dists/amd/index.js",
@@ -22,14 +22,13 @@
     "moduleName": "ChainAble",
     "entry": "src/index.js",
     "distEntry": "dist/index.js",
-    "_tscEntry": "dists/tsc/index.js",
     "tscEntry": "dists/dev/index.js",
     "rollupConfig": {
       "moduleName": "ChainAble",
       "entry": "src/index.js",
       "distEntry": "dist/index.js",
-      "_tscEntry": "dists/tsc/index.js",
-      "tscEntry": "dists/dev/index.js"
+      "tscEntry": "dists/dev/index.js",
+      "webEntry": "src/index.web.js"
     }
   },
   "scripts": {
@@ -49,8 +48,7 @@
     "lint": "eslint",
     "build": "make build",
     "prepublish": "make prepublish",
-    "postpublish": "make clean",
-    "pretest": "make pretest"
+    "postpublish": "make clean"
   },
   "nyc": {
     "all": false,
@@ -112,7 +110,8 @@
       "/src/deps/reduce/objects.js",
       "/src/deps/symbols/index|species|spreadable.js",
       "/src/deps/prefix|index|uniq|eqCurry|typeof|insert-at-index|nonEnumerableTypes.js",
-      "/src/plugins/index.js"
+      "/src/plugins/index.js",
+      "/_modules"
     ],
     "useStderr": true,
     "verbose": true,
@@ -128,6 +127,7 @@
     ],
     "coveragePathIgnorePatterns": [
       "\\\\node_modules\\\\",
+      "_modules",
       "src/deps/_r|meta|external|env|primitives",
       "src/deps/external/lodash",
       "src/deps/external",
@@ -157,6 +157,7 @@
     "rootDir": ".",
     "testRegex": "(test/)(.*).js$",
     "testPathIgnorePatterns": [
+      "_modules",
       "node_modules",
       "test/__testsetup.js",
       "test/built.js",
@@ -211,6 +212,7 @@
     "eslint": "^4.0.0",
     "eslint-config-chain-able": "^1.0.0",
     "eslint-plugin-jest": "^20.0.3",
+    "eslint-plugin-jsdoc": "^3.1.1",
     "eslint-plugin-typescript": "^0.1.0",
     "flipfile": "^0.0.13",
     "fliplog": "^1.0.0",

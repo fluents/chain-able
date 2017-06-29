@@ -24,10 +24,11 @@ class FactoryChain extends ChainedMap {
   }
 
   /**
-   * @TODO should have a debug log for this
    * @desc chain back up to parent for any of these
+   * @since 2.0.0
    * @param  {Array<string>} methods
    * @return {FactoryChain} @chainable
+   * @TODO should have a debug log for this
    */
   chainUpDowns(methods) {
     methods.forEach(m => {
@@ -51,8 +52,8 @@ class FactoryChain extends ChainedMap {
 
   /* istanbul ignore next: sourcemaps trigger istanbul here incorrectly */
   /**
-   * @param  {Primitive} name
-   * @param  {Function | null | undefined} [cb=undefined]
+   * @param  {Primitive} name property name
+   * @param  {Function | null | undefined} [cb=undefined] callback for the property
    * @return {FactoryChain} @chainable
    */
   prop(name, cb) {
@@ -91,8 +92,8 @@ class FactoryChain extends ChainedMap {
 
   /* istanbul ignore next: sourcemaps trigger istanbul here incorrectly */
   /**
-   * @since 2.0.0
    * @desc adds `.end` which checks how many methods have been called
+   * @since 2.0.0
    * @param  {Object} [obj={}]
    * @return {FactoryChain} @chainable
    */

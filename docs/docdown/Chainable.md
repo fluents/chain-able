@@ -4,13 +4,6 @@
 
 <!-- div -->
 
-## `ObjectDefine`
-* <a href="#ObjectDefine">`ObjectDefine`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
 ## `[Iterator]`
 * <a href="#[Iterator]">`&#91;Iterator&#93;`</a>
 
@@ -27,6 +20,13 @@
 
 ## `clear`
 * <a href="#clear">`clear`</a>
+
+<!-- /div -->
+
+<!-- div -->
+
+## `compose`
+* <a href="#compose">`compose`</a>
 
 <!-- /div -->
 
@@ -71,45 +71,26 @@
 
 <!-- div -->
 
-## `ObjectDefine`
-
-<!-- div -->
-
-<h3 id="ObjectDefine"><a href="#ObjectDefine">#</a>&nbsp;<code>ObjectDefine()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L231 "View in source") [&#x24C9;][1]
-
-
-
-#### Since
-0.5.0
-
-#### Example
-```js
-for (var i = 0; i < chain.length; i++)
-```
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
 ## `[Iterator]`
 
 <!-- div -->
 
 <h3 id="[Iterator]"><a href="#[Iterator]">#</a>&nbsp;<code>[Iterator]()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L55 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L66 "View in source") [&#x24C9;][1]
 
 
 
 #### Since
 0.5.0
 
+#### Returns
+*(Object)*: {value: undefined | any, done: true | false}
+
 #### Example
 ```js
-for (var [key, val] of chainable) {}
+const chain = new Chain().set('eh', 1)
+   for (var [key, val] of chain) console.log({[key]: val})
+   //=> {eh: 1}
 ```
 ---
 
@@ -124,7 +105,7 @@ for (var [key, val] of chainable) {}
 <!-- div -->
 
 <h3 id="[Primitive]"><a href="#[Primitive]">#</a>&nbsp;<code>[Primitive](hint)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L201 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L283 "View in source") [&#x24C9;][1]
 
 
 
@@ -134,9 +115,17 @@ for (var [key, val] of chainable) {}
 #### Arguments
 1. `hint` *(string)*: enum&#91;default, string, number&#93;
 
+#### Returns
+*(Primitive)*:
+
 #### Example
 ```js
-chain + 1 (calls this)
+const chain = new Chain()
+ chain.toNumber = () => 1
+ +chain;
+ //=> 1
+ chain + 1
+ //=>
 ```
 ---
 
@@ -151,7 +140,7 @@ chain + 1 (calls this)
 <!-- div -->
 
 <h3 id="clear"><a href="#clear">#</a>&nbsp;<code>clear([clearPropertiesThatAreChainLike=true])</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L142 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L177 "View in source") [&#x24C9;][1]
 
 
 
@@ -159,8 +148,49 @@ chain + 1 (calls this)
 4.0.0 *(moved only to Chainable, added option to clear this keys)*
 
 #### Arguments
-1. `[clearPropertiesThatAreChainLike=true]` *(|boolean)*:
+1. `[clearPropertiesThatAreChainLike=true]` *(|boolean)*: checks properties on the object, if they are `chain-like`, clears them as well
 
+#### Returns
+*(Chainable)*: @chainable
+
+#### Example
+```js
+const chain = new Chain()
+ chain.set('eh', 1)
+ chain.entries()
+ //=> {eh: 1}
+ chain.clear()
+ chain.entries()
+ //=> {}
+```
+---
+
+<!-- /div -->
+
+<!-- /div -->
+
+<!-- div -->
+
+## `compose`
+
+<!-- div -->
+
+<h3 id="compose"><a href="#compose">#</a>&nbsp;<code>compose</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L343 "View in source") [&#x24C9;][1]
+
+
+
+#### Since
+3.0.0
+
+#### Example
+```js
+class Target {}
+ const TargetChain = Chainable.compose(Target)
+ const chain = new TargetChain()
+ chain instanceof Target
+ //=> true
+```
 ---
 
 <!-- /div -->
@@ -174,7 +204,7 @@ chain + 1 (calls this)
 <!-- div -->
 
 <h3 id="delete"><a href="#delete">#</a>&nbsp;<code>delete(key)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L163 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L212 "View in source") [&#x24C9;][1]
 
 
 
@@ -182,8 +212,21 @@ chain + 1 (calls this)
 0.3.0
 
 #### Arguments
-1. `key` *(any|string)*:
+1. `key` *(Primitive)*: on a Map: key referencing the value. on a Set: the index
 
+#### Returns
+*(Chainable)*:
+
+#### Example
+```js
+const chain = new Chain()
+   chain.set('eh', 1)
+   chain.get('eh')
+   // => 1
+   chain.delete('eh', 1)
+   chain.get('eh')
+   // => undefined
+```
 ---
 
 <!-- /div -->
@@ -197,13 +240,23 @@ chain + 1 (calls this)
 <!-- div -->
 
 <h3 id="end"><a href="#end">#</a>&nbsp;<code>end()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L87 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L106 "View in source") [&#x24C9;][1]
 
 
 
 #### Since
 0.4.0
 
+#### Returns
+*(&#42;)*:
+
+#### Example
+```js
+const parent = 'eh'
+   const child = newChain(parent)
+   child.end()
+   //=> 'eh'
+```
 ---
 
 <!-- /div -->
@@ -216,8 +269,8 @@ chain + 1 (calls this)
 
 <!-- div -->
 
-<h3 id="has"><a href="#has">#</a>&nbsp;<code>has(value)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L174 "View in source") [&#x24C9;][1]
+<h3 id="has"><a href="#has">#</a>&nbsp;<code>has(keyOrValue)</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L232 "View in source") [&#x24C9;][1]
 
 
 
@@ -225,11 +278,18 @@ chain + 1 (calls this)
 0.3.0
 
 #### Arguments
-1. `value` *(any)*:
+1. `keyOrValue` *(any)*: key when Map, value when Set
+
+#### Returns
+*(boolean)*:
 
 #### Example
 ```js
-if (chain.has('eh') === false) chain.set('eh', true)
+const chain = new Chain()
+  chain.set('eh', 1).has('eh')
+  //=> true
+  chain.has('canada')
+  //=> false
 ```
 ---
 
@@ -244,13 +304,23 @@ if (chain.has('eh') === false) chain.set('eh', true)
 <!-- div -->
 
 <h3 id="values"><a href="#values">#</a>&nbsp;<code>values()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L188 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L254 "View in source") [&#x24C9;][1]
 
 
 
 #### Since
 0.4.0
 
+#### Returns
+*(&#42;)*:
+
+#### Example
+```js
+const chain = new Chain()
+ chain.set('eh', 1)
+ chain.values()
+ //=> [1]
+```
 ---
 
 <!-- /div -->
@@ -264,7 +334,7 @@ if (chain.has('eh') === false) chain.set('eh', true)
 <!-- div -->
 
 <h3 id="when"><a href="#when">#</a>&nbsp;<code>when(condition, [trueBrancher=Function], [falseBrancher=Function])</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L109 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L132 "View in source") [&#x24C9;][1]
 
 
 
@@ -275,6 +345,9 @@ if (chain.has('eh') === false) chain.set('eh', true)
 1. `condition` *(boolean|string)*: when string, checks this.get
 2. `[trueBrancher=Function]` *(Function)*: called when true
 3. `[falseBrancher=Function]` *(Function)*: called when false
+
+#### Returns
+*(ChainedMap)*:
 
 #### Example
 ```js
@@ -289,4 +362,4 @@ const prod = process.env.NODE_ENV === 'production'
 
 <!-- /div -->
 
- [1]: #objectdefine "Jump back to the TOC."
+ [1]: #[iterator] "Jump back to the TOC."

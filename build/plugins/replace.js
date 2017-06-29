@@ -1,7 +1,8 @@
 const replacePlugin = require('rollup-plugin-replace')
 
-const replace = {}
 module.exports = should => {
+  const replace = {}
+
   if (should.env === 'development') {
     should.development = true
   }

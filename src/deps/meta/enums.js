@@ -13,3 +13,15 @@ module.exports = {
   KEY_FUNCTION,
   KEY_ARRAY,
 }
+
+// @TODO: should convert vars to const & let
+// @TODO: need to have uglify ignore & not evaluate this...
+/* uglify ignore */
+// let NULL_TYPE = 'null'
+// let ARRAY_TYPE = 'array'
+// let STRING_TYPE = 'string'
+// let BOOL_TYPE = 'boolean'
+// let COMBO_BOOL_BOOL = [BOOL_TYPE, BOOL_TYPE]
+// let COMBO_STRING_STRING = [STRING_TYPE, STRING_TYPE]
+// let COMBO_ARRAY_STRING = [ARRAY_TYPE, STRING_TYPE]
+// let COMBO_STRING_ARRAY = [STRING_TYPE, ARRAY_TYPE]

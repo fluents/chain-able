@@ -4,6 +4,20 @@
 
 <!-- div -->
 
+## `CM`
+* <a href="#CM">`CM`</a>
+
+<!-- /div -->
+
+<!-- div -->
+
+## `ComposeMap`
+* <a href="#CM" class="alias">`ComposeMap` -> `CM`</a>
+
+<!-- /div -->
+
+<!-- div -->
+
 ## `merge`
 * <a href="#merge">`merge`</a>
 
@@ -29,25 +43,71 @@
 
 <!-- div -->
 
+## `CM`
+
+<!-- div -->
+
+<h3 id="CM"><a href="#CM">#</a>&nbsp;<code>CM([SuperClass=ChainedMapBase])</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMap.js#L20 "View in source") [&#x24C9;][1]
+
+
+
+#### Aliases
+*ComposeMap*
+
+#### Arguments
+1. `[SuperClass=ChainedMapBase]` *(Class|Composable|Object)*: class to extend
+
+#### Returns
+*(Class)*: ChainedMap
+
+#### Example
+```js
+const heh = class {}
+   const composed = ChainedMap.compose(heh)
+   const hehchain = new Composed()
+   hehchain instanceof heh
+   //=> true
+```
+---
+
+<!-- /div -->
+
+<!-- /div -->
+
+<!-- div -->
+
+## `ComposeMap`
+
+<!-- /div -->
+
+<!-- div -->
+
 ## `merge`
 
 <!-- div -->
 
-<h3 id="merge"><a href="#merge">#</a>&nbsp;<code>merge(obj, cb)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMap.js#L37 "View in source") [&#x24C9;][1]
+<h3 id="merge"><a href="#merge">#</a>&nbsp;<code>merge(obj, [handleMergeFn=undefined])</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMap.js#L71 "View in source") [&#x24C9;][1]
 
 
 
 #### Since
-0.4.0 ...as second arg? on instance property?
+0.4.0
 
 #### Arguments
 1. `obj` *(Object)*: object to merge
-2. `cb` *(|Function)*: return the merger to the callback
+2. `[handleMergeFn=undefined]` *(|Function)*: return the merger to the callback
+
+#### Returns
+*(ChainedMap)*: @chainable
 
 #### Example
 ```js
-chain.set('eh', [1]).merge({eh: [2]}).get('eh') === [1, 2]
+chain.set('eh', [1])
+   chain.merge({eh: [2]})
+   chain.get('eh')
+   // => [1, 2]
 ```
 ---
 
@@ -62,7 +122,7 @@ chain.set('eh', [1]).merge({eh: [2]}).get('eh') === [1, 2]
 <!-- div -->
 
 <h3 id="method"><a href="#method">#</a>&nbsp;<code>method(names)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMap.js#L22 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMap.js#L46 "View in source") [&#x24C9;][1]
 
 
 
@@ -73,8 +133,19 @@ chain.set('eh', [1]).merge({eh: [2]}).get('eh') === [1, 2]
 *methods*
 
 #### Arguments
-1. `names` *(Primitive|string|string&#91;&#93;)*:
+1. `names` *(Primitive|string|string&#91;&#93;)*: method names to add to the object
 
+#### Returns
+*(MethodChain)*: @chainable
+
+#### Example
+```js
+const chain = new Chain()
+  chain.method('eh').build()
+  chain.eh(true)
+  chain.get('eh')
+  // => true
+```
 ---
 
 <!-- /div -->
@@ -89,4 +160,4 @@ chain.set('eh', [1]).merge({eh: [2]}).get('eh') === [1, 2]
 
 <!-- /div -->
 
- [1]: #merge "Jump back to the TOC."
+ [1]: #cm "Jump back to the TOC."

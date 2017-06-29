@@ -21,6 +21,7 @@ const Script = require('script-chain')
 const log = require('fliplog')
 const {read, write} = require('flipfile')
 const {del} = require('./util')
+const docdown = require('../_modules/docdown')
 
 const res = rel => resolve(__dirname, rel)
 
@@ -171,7 +172,6 @@ class CLI {
     return require('./build')(overrides)
   }
   docs() {
-    var docdown = require('docdown')
     var find = require('chain-able-find')
     const entry = res('../src')
     const found = find
@@ -332,52 +332,61 @@ async function publishing() {
   timer.start('publishing')
   timer.start('amd')
 
-  const rollupProdWith = opts => cli.rollupNode(prodWith(opts))
-
-  // await cli.rollup('--environment format:amd')
-  await rollupProdWith({format: 'amd'})
-  timer.stop('amd')
-
-  timer.start('es')
-  // await cli.rollup('--environment format:es')
-  await rollupProdWith({format: 'es'})
-  timer.stop('es')
-
-  timer.start('cjs')
-  // await cli.rollup('--environment format:cjs')
-  await rollupProdWith({format: 'cjs'})
-  timer.stop('cjs')
-
-  // ignoring this one for now, already so many, don't want to build them all
-  // await cli.rollup('--environment format:iife')
-  await rollupProdWith({format: 'iife'})
-
-  timer.start('umd')
-  // await cli.rollup('--environment format:umd --verbose --debug')
-  await rollupProdWith({format: 'umd', verbose: true})
+  // const rollupProdWith = opts => cli.rollupNode(prodWith(opts))
+  //
+  // // await cli.rollup('--environment format:amd')
+  // await rollupProdWith({format: 'amd'})
+  // timer.stop('amd')
+  //
+  // timer.start('es')
+  // // await cli.rollup('--environment format:es')
+  // await rollupProdWith({format: 'es'})
+  // timer.stop('es')
+  //
+  // timer.start('cjs')
+  // // await cli.rollup('--environment format:cjs')
+  // await rollupProdWith({format: 'cjs'})
+  // timer.stop('cjs')
+  //
+  // // ignoring this one for now, already so many, don't want to build them all
+  // // await cli.rollup('--environment format:iife')
+  // await rollupProdWith({format: 'iife'})
+  //
+  // timer.start('umd')
 
   // debugger
   await cli.rollupNode(
     devWith({
-      exportName: 'debugger',
-      debugger: true,
-      debug: true,
-      replace: {debugger: true},
+      exportName: 'web',
+      entry: res('../src/index.web.js'),
     })
   )
-  // dev
-  await cli.rollupNode(
-    devWith({
-      exportName: 'dev',
-    })
-  )
-  // node
-  await cli.rollupNode(
-    devWith({
-      exportName: 'node',
-    })
-  )
-  timer.stop('umd')
+  // debugger
+  // await cli.rollupNode(
+  //   devWith({
+  //     exportName: 'debugger',
+  //     debugger: true,
+  //     debug: true,
+  //     replace: {debugger: true},
+  //   })
+  // )
+  // // dev
+  // await cli.rollupNode(
+  //   devWith({
+  //     exportName: 'dev',
+  //   })
+  // )
+  // // node
+  // await cli.rollupNode(
+  //   devWith({
+  //     exportName: 'node',
+  //   })
+  // )
+  //
+  // // await cli.rollup('--environment format:umd --verbose --debug')
+  // await rollupProdWith({format: 'umd', verbose: true})
+  //
+  // timer.stop('umd')
 
   try {
     timer

@@ -20,12 +20,12 @@
   - [Transform][Transform]
 - [Examples][Examples]
   - [LocalStorage][ExamplesLocalStorage]
+  - [Inferno State][ExamplesInferno]
   - [Iteratable][ExamplesIteratable]
   - [Primitives][ExamplesPrimitives]
   - [Comparison][ExamplesComparison]
   - [Snippet][Snippet]
 - [CHANGELOG][CHANGELOG]
-
 
 [wiki]: https://github.com/fluents/chain-able/wiki
 [deps]: https://github.com/fluents/chain-able/wiki/deps
@@ -53,6 +53,7 @@
 [ExamplesExpressive]: https://github.com/fluents/chain-able/wiki/LocalStorage
 [ExamplesComparison]: https://github.com/fluents/chain-able/wiki/Comparison
 [ExamplesIteratable]: https://github.com/fluents/chain-able/wiki/Iteratable
+[ExamplesInferno]: https://jsfiddle.net/wqxuags2/28/
 [TypeDefs]: https://github.com/fluents/chain-able/tree/master/typings
 [Tests]: https://github.com/fluents/chain-able/tree/master/test
 [Src]: https://github.com/fluents/chain-able/tree/master/src

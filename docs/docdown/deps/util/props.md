@@ -27,6 +27,9 @@
 #### Arguments
 1. `obj` *(Object)*:
 
+#### Returns
+*(&#42;)*:
+
 ---
 
 <!-- /div -->

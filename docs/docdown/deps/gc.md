@@ -31,6 +31,9 @@
 1. `obj` *(Object)*:
 2. `ignore` *(string&#91;&#93;)*:
 
+#### Returns
+*(void)*:
+
 ---
 
 <!-- /div -->

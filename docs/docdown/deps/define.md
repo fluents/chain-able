@@ -20,7 +20,7 @@
 <!-- div -->
 
 <h3 id="exports"><a href="#exports">#</a>&nbsp;<code>exports(obj, name, descriptor)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/define.js#L13 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/define.js#L19 "View in source") [&#x24C9;][1]
 
 
 
@@ -28,13 +28,16 @@
 4.0.0
 
 #### Arguments
-1. `obj` *(Object)*:
-2. `name` *(Primitive)*:
-3. `descriptor` *(Object)*:
+1. `obj` *(Object)*: object to define on
+2. `name` *(Primitive)*: property name to define
+3. `descriptor` *(Object)*: object descriptor
+
+#### Returns
+*(void)*:
 
 #### Example
 ```js
-var desc = Object.getOwnPropertyDescriptor(obj, 'eh')
+var desc = Object.getOwnPropertyDescriptor(obj, 'eh', {get: () => console.log('eh')})
 ```
 ---
 

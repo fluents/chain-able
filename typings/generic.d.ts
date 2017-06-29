@@ -83,3 +83,12 @@ interface Iterator<T, S> {
 export type MapIterator = Iterator<any, 'Map Iterator'>
 export type SetIterator = Iterator<any, 'Set Iterator'>
 export type Generator = Iterator<any, 'GeneratorFunction'>
+
+export interface ObjectDefine {
+  configurable: boolean
+  enumerable: boolean
+  writable: boolean
+  value: any
+  get: Function
+  set: Function
+}

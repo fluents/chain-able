@@ -97,6 +97,9 @@
 #### Arguments
 1. `[useDot=true]` *(boolean)*:
 
+#### Returns
+*(DotProp)*: @chainable
+
 ---
 
 <!-- /div -->
@@ -184,6 +187,9 @@
 #### Arguments
 1. `key` *(string)*:
 2. `thisArg` *(DotProp)*:
+
+#### Returns
+*(boolean)*:
 
 ---
 

@@ -75,18 +75,22 @@ function aliasFactory(name, parent, aliases) {
 //   return new MethodChain(this.obj)
 // }
 
+const plugins = {}
+
 /**
- * @TODO: maybe abstract the most re-usable core as a protected class
- *        so the shorthands could be used, and more functionality made external
- *
- * @TODO: need to separate schema from here as external functionality & add .add
+ * @member MethodChain
+ * @inheritdoc
+ * @class
+ * @extends {ChainedMap}
+ * @type {Map}
  *
  * @since 4.0.0
  *
- * @TODO: .prop - for things on the instance, not in the store?
+ * @TODO maybe abstract the most re-usable core as a protected class
+ *        so the shorthands could be used, and more functionality made external
+ * @TODO need to separate schema from here as external functionality & add .add
+ * @TODO .prop - for things on the instance, not in the store?
  *        !!! .sponge - absorn properties into the store
- *
- * @type {Map}
  */
 class MethodChain extends ChainedMap {
   constructor(parent) {
@@ -122,7 +126,24 @@ class MethodChain extends ChainedMap {
     // @NOTE replaces shorthands.chainWrap
     this.chainable = this.returns
 
-    // @NOTE these would be .transform
+    /**
+     * @desc alias methods
+     * @since 2.0.0
+     *
+     * @param  {string | Array<string>} aliases aliases to remap to the current method being built
+     * @return {MethodChain} @chainable
+     *
+     * @NOTE these would be .transform
+     *
+     * @example
+     *
+     *     const chain = new Chain()
+     *     chain.methods(['canada']).alias(['eh']).build()
+     *     chain.eh('actually...canada o.o')
+     *     chain.get('canada')
+     *     //=> 'actually...canada o.o')
+     *
+     */
     this.alias = aliases =>
       this.tap('alias', (old, merge) => merge(old, toarr(aliases)))
     this.plugin = plugin =>
@@ -137,27 +158,29 @@ class MethodChain extends ChainedMap {
     // @TODO: unless these use scoped vars, they should be on proto
     // @NOTE shorthands.bindMethods
     this.bind = target => set('bind', isUndefined(target) ? parent : target)
+    // this.autoGetSet = () => this.plugin(autoGetSetPlugin)
 
-    /**
-     * @see deps/validators/validatorFactory
-     * @since 4.0.0 <- used with schema, used in method chain
-     * @since 3.0.0 <- took out
-     * @since 1.0.0
-     * @param  {Object} custom
-     * @return {MethodChain} @chainable
-     */
-    this.addTypes = types => {
-      validatorBuilder.merge(types)
-      return this
-    }
     this.plugin(typesPlugin)
   }
 
   /**
+   * @desc setup methods to build
+   * @category builder
+   * @memberOf MethodChain
+   *
    * @since 4.0.0-beta.1 <- moved to plugin
    * @since 4.0.0
-   * @param  {string | Object | Array<string>} methods
-   * @return {MethodChain}
+   *
+   * @param  {string | Object | Array<string>} methods method names to build
+   * @return {MethodChain} @chainable
+   *
+   * @example
+   *
+   *    var obj = {}
+   *    new MethodChain(obj).name('eh').build()
+   *    typeof obj.eh
+   *    //=> 'function'
+   *
    */
   name(methods) {
     let names = methods
@@ -179,6 +202,10 @@ class MethodChain extends ChainedMap {
   /**
    * @since 4.0.0-beta.1 <- moved to plugin
    * @since 4.0.0
+   *
+   * @category types
+   * @memberOf MethodChain
+   *
    * @param {Object} obj schema
    * @return {MethodChain} @chainable
    *
@@ -198,13 +225,23 @@ class MethodChain extends ChainedMap {
   }
 
   /**
-   * @TODO: if passing in a name that already exists, operations are decorations... (partially done)
-   * @see https://github.com/iluwatar/java-design-patterns/tree/master/step-builder
-   *
-   * @since 4.0.0
    * @desc set the actual method, also need .context - use .parent
+   * @memberOf MethodChain
+   * @since 4.0.0
+   *
    * @param  {any} [returnValue=undefined] returned at the end of the function for ease of use
    * @return {MethodChain} @chainable
+   *
+   * @TODO if passing in a name that already exists, operations are decorations... (partially done)
+   * @see https://github.com/iluwatar/java-design-patterns/tree/master/step-builder
+   *
+   * @example
+   *    var obj = {}
+   *    const one = new MethodChain(obj).methods('eh').getSet().build(1)
+   *    //=> 1
+   *
+   *    typeof obj.getEh
+   *    //=> 'function'
    */
   build(returnValue) {
     const parent = this.parent
@@ -230,16 +267,22 @@ class MethodChain extends ChainedMap {
   }
 
   /**
-   * @TODO: optimize the size of this
+   * @memberOf MethodChain
+   *
+   * @since 4.0.0
+   * @protected
+   * @param {Primitive} name method name
+   * @param {Object} parent being decorated
+   * @param {Object} built method being built
+   * @return {void}
+   *
+   * @TODO optimize the size of this
    *        with some bitwise operators
    *        hashing the things that have been defaulted
    *        also could be plugin
    *
-   * @since 4.0.0
-   * @protected
-   * @param {Primitive} name
-   * @param {Object} parent
-   * @param {Object} built
+   * @example
+   *  ._defaults('', {}, {})
    */
   _defaults(name, parent, built) {
     // defaults
@@ -267,13 +310,16 @@ class MethodChain extends ChainedMap {
 
   /**
    * @protected
-   * @TODO: allow config of method var in plugns since it is scoped...
-   * @TODO: add to .meta(shorthands)
-   * @TODO: reduce complexity if perf allows
-   * @NOTE: scoping here adding default functions have to rescope arguments
+   * @since 4.0.0-alpha.1
+   *
    * @param {Primitive} name
    * @param {Object} parent
    * @return {void}
+   *
+   * @TODO allow config of method var in plugns since it is scoped...
+   * @TODO add to .meta(shorthands)
+   * @TODO reduce complexity if perf allows
+   * @NOTE scoping here adding default functions have to rescope arguments
    */
   _build(name, parent) {
     let method
@@ -484,14 +530,66 @@ class MethodChain extends ChainedMap {
   // ---
 
   /**
+   * @desc add methods to the parent for easier chaining
+   * @alias extendParent
+   *
    * @since 4.0.0-beta.1 <- moved to plugin
    * @since 4.0.0 <- moved from Extend
    * @since 1.0.0
-   * @alias extendParent
-   * @desc add methods to the parent for easier chaining
-   * @see ChainedMap.parent
-   * @param {Object} parentToDecorate
+   *
+   * @param {Object} [parentToDecorate=undefined] decorate a specific parent shorthand
    * @return {ChainedMap} @chainable
+   *
+   * @see plugins/decorate
+   * @see ChainedMap.parent
+   *
+   * @example
+   *
+   *  var obj = {}
+   *  new MethodChain({}).name('eh').decorate(obj).build()
+   *  typeof obj.eh
+   *  //=> 'function'
+   *
+   * @example
+   *
+   *     class Decorator extends Chain {
+   *       constructor(parent) {
+   *         super(parent)
+   *         this.methods(['easy']).decorate(parent).build()
+   *         this.methods('advanced')
+   *           .onCall(this.advanced.bind(this))
+   *           .decorate(parent)
+   *           .build()
+   *       }
+   *       advanced(arg) {
+   *         this.set('advanced', arg)
+   *         return this.parent
+   *       }
+   *       easy(arg) {
+   *         this.parent.set('easy-peasy', arg)
+   *       }
+   *     }
+   *
+   *     class Master extends Chain {
+   *       constructor(parent) {
+   *         super(parent)
+   *         this.eh = new Decorator(this)
+   *       }
+   *     }
+   *
+   *     const master = new Master()
+   *
+   *     master.get('easy-peasy')
+   *     //=> true
+   *
+   *     master.eh.get('advanced')
+   *     //=> 'a+'
+   *
+   * @example
+   *
+   *    +chain.method('ehOh').decorate(null)
+   *    //=> @throws Error('must provide parent argument')
+   *
    */
   decorate(parentToDecorate) {
     if (ENV_DEVELOPMENT) {
@@ -503,17 +601,97 @@ class MethodChain extends ChainedMap {
   }
 
   /**
-   * @since 4.0.0-beta.1 <- moved to plugin
-   * @since 4.0.0 <- renamed from .extendIncrement
-   * @since 0.4.0
    * @desc adds a plugin to increment the value on every call
    *        @modifies this.initial
    *        @modifies this.onCall
+   *
+   * @since 4.0.0-beta.1 <- moved to plugin
+   * @since 4.0.0 <- renamed from .extendIncrement
+   * @since 0.4.0
+   *
    * @return {MethodChain} @chainable
+   *
+   * @see plugins/autoIncrement
+   *
+   * @example
+   *
+   *     chain.methods(['index']).autoIncrement().build().index().index(+1).index()
+   *     chain.get('index')
+   *     //=> 3
+   *
    */
   autoIncrement() {
     return this.plugin(autoIncrementPlugin)
   }
+}
+
+/**
+ * @desc add plugins easily
+ * @static
+ * @since 4.0.0-beta.2
+ *
+ * @param {Plugin} plugin plugin to add
+ * @return {MethodChain} @chainable
+ *
+ * @example
+ *
+ *   // make it, add it
+ *   const autoGetSetPlugin = (name, parent) => {
+ *     const onSet = arg =>
+ *       (isUndefined(arg) ? parent.set(name, arg) : parent.get(name))
+ *     const onGet = arg =>
+ *       (isUndefined(arg) ? parent.get(name) : parent.set(name, arg))
+ *
+ *     //so we know if we decorated them
+ *     onSet.auto = true
+ *     onGet.auto = true
+ *     return this.onSet(onSet).onGet(onGet)
+ *   }
+ *   MethodChain.addPlugin({autoGetSet})
+ *
+ *   // use it
+ *   const chain = new Chain()
+ *   chain.methods('eh').autoGetSet().build()
+ *
+ *   chain.eh(1)
+ *   //=> chain
+ *   chain.eh()
+ *   //=> 1 *
+ *
+ */
+MethodChain.addPlugin = plugin => {
+  plugins.push(plugins)
+  return MethodChain
+}
+
+/**
+ * @static
+ *
+ * @since 4.0.0 <- used with schema, used in method chain
+ * @since 3.0.0 <- took out
+ * @since 1.0.0
+ *
+ * @param  {Object} types custom Types
+ * @return {MethodChain} @chainable
+ *
+ * @see deps/validators/validatorFactory
+ *
+ * @example
+ *
+ *   MethodChain.addTypes({yaya: x => typeof x === 'string'})
+ *
+ *   const chain = new Chain().methods('eh').type('yaya').build()
+ *
+ *   chain.eh('good')
+ *   //=> chain
+ *
+ *   chain.eh(!!'throws')
+ *   //=> TypeError(false != {yaya: x => typeof x === 'string'})
+ *
+ */
+MethodChain.addTypes = types => {
+  validatorBuilder.merge(types)
+  return this
 }
 
 module.exports = MethodChain

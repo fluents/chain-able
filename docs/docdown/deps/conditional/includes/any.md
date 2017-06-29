@@ -42,6 +42,9 @@
 1. `needles` *(string&#91;&#93;)*:
 2. `haystack` *(string&#91;&#93;)*:
 
+#### Returns
+*(boolean)*:
+
 ---
 
 <!-- /div -->
@@ -63,6 +66,9 @@
 1. `needle` *(string|string&#91;&#93;)*:
 2. `haystack` *(string&#91;&#93;)*:
 
+#### Returns
+*(boolean)*:
+
 ---
 
 <!-- /div -->
@@ -83,6 +89,9 @@
 #### Arguments
 1. `needle` *(string)*:
 2. `haystack` *(string&#91;&#93;)*:
+
+#### Returns
+*(boolean)*:
 
 ---
 

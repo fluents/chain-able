@@ -79,6 +79,44 @@ function typeListFactory(fullKey) {
 // @TODO how to iterate properly with the bitwise fn + AND
 //       add another param? ignore overly complex |& things? just allow 1?
 //       just show how to use these shorthand fn builders
+
+/**
+ * @desc transform arithmetic strings into types
+ * @since 4.0.0-alpha.1
+ * @category types
+ *
+ * @param  {Matchable} fullKey arithmetic type key
+ * @return {Matchable} function to match with, with .inspect for easy debugging
+ *
+ * @see is
+ * @todo coercing values to certain types: arithmeticTypeFactory('<value>')
+ *
+ * @example
+ *
+ *   arithmeticTypeFactory('?string')
+ *   //=> x => !isReal(x) || isString(x)
+ *
+ * @example
+ *
+ *   arithmeticTypeFactory('?string|string[]')
+ *   //=> x => isString(x) || isArrayOf(isString)(x)
+ *
+ * @example
+ *
+ *   arithmeticTypeFactory('!string')
+ *   //=> x => not(isString)(x)
+ *
+ * @example
+ *
+ *   MethodChain.addType({star: x => true})
+ *   arithmeticTypeFactory('object|function|star')
+ *   //=> x => isObj(x) || isFunction(x) || isStar(x)
+ *
+ * @example
+ *
+ *   arithmeticTypeFactory('===')
+ *   //=> x => (['===']).includes(x)
+ */
 function arithmeticTypeFactory(fullKey) {
   const key = stripArithmeticSymbols(fullKey)
   let fn = get(key)
@@ -108,17 +146,42 @@ function arithmeticTypeFactory(fullKey) {
 // v- annoying on comments with ifs
 /* prettier-ignore */
 /**
- * @since 4.0.0
  * @desc @pattern @builder -> builds using multiple factories depending on conditons
  *       or abstractFactory whatever
+ *       opinionated: if it's a function, it's a validator...
+ *
+ * @since 4.0.0
+ * @param  {string | Function | Primitive} fullKey arithmetic key to the validator
+ * @return {Function} validator
+ *
  * @see https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Default_parameters
- * @param  {string | Function | Primitive} fullKey
- * @return {Function}
+ * @NOTE if/else is for uglifying ternaries, even though else if is not needed
+ * @NOTE if key is number, iterating the array
+ *
+ * @example
+ *
+ *    // functionType
+ *    const isString = x => typeof x === 'string'
+ *    builder(isString)
+ *    // => isString
+ *
+ * @example
+ *
+ *    // stringType (built in, or custom-keyed validator, or eqeqeq)
+ *    builder('string')
+ *    // => isString
+ *
+ *    const enummy = builder('enum')
+ *    // => x => ['enum'].includes(x)
+ *
+ * @example
+ *
+ *    // arithmeticType
+ *    builder('string|string[]')
+ *    // => isString || isArrayOf(isString)
+ *
  */
 function builder(fullKey) {
-  // @NOTE: else is for uglifying ternaries, even though else if is not needed
-  // @NOTE if key is number, iterating the array
-  // opinionated: if it's a function, it's a validator...
   if (isFunction(fullKey)) {
     /* istanbul ignore next: dev */
     if (ENV_DEBUG) {
