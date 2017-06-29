@@ -1,1 +1,1 @@
-module.exports = require('../../dist/deps/is')
+module.exports = require('../../src/deps/is')

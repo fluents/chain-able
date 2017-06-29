@@ -46,7 +46,7 @@ function getMeta(_this) {
     //   store[name] = new Map()
     // }
     // else
-    if (name === OBSERVERS_KEY) {
+    if (isInKeyMapAsSet(name)) {
       store[name] = new Set()
     }
     else {

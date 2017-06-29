@@ -33,22 +33,22 @@ module.exports = (method, type) => (arg, thrown, meta) => {
   )
 
   // put it back in its place
-  if (thrown.message) error.message += thrown.message
-  if (thrown.stack) error.stack = thrown.stack
+  if (thrown && thrown.message) error.message += thrown.message
+  if (thrown && thrown.stack) error.stack = thrown.stack
 
   /* istanbul ignore next: dev */
   if (ENV_DEVELOPMENT) {
     // since we are just inspecting the metadata on dev
     error.inspect = () => {
       const devMsg = 'inspecting on development'
-      const thrownMsg = `thrown: ${thrown.message}`
+      const thrownMsg = `thrown: ${thrown}`
       const eMsg = `compare: ${error.message}`
       const errorName = `name: ${error.name}`
       const argMsg = `arg: ${arg};\nstr: ${toS(
         arg
       )} ${typeof arg};\njson: ${JSON.stringify(arg)}`
       const typeMsg = `type: ${type}`
-      const stackMsg = 'stack: ' + thrown.stack
+      const stackMsg = 'stack: ' + error.stack
       const dashMsg = `-----`
       let msg = `\n${dashMsg} ${devMsg} ${dashMsg}\n`
       if (meta) msg += `meta: ${JSON.stringify(meta)}\n`

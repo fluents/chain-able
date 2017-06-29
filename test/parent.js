@@ -1,6 +1,5 @@
-const test = require('ava')
 const log = require('fliplog')
-const Chain = require('../dist')
+const Chain = require('../src')
 
 class Decorator extends Chain {
   constructor(parent) {
@@ -27,15 +26,15 @@ class Master extends Chain {
   }
 }
 
-test('.decorate(parent)', t => {
+test('.decorate(parent)', () => {
   const master = new Master()
   master.advanced('a+')
   master.easy(true)
-  t.true(master.get('easy-peasy'))
-  t.true(master.eh.get('advanced') === 'a+')
+  expect(master.get('easy-peasy')).toBe(true)
+  expect(master.eh.get('advanced') === 'a+').toBe(true)
 })
-test.failing('.decorate(parent).get(notstore.child)', t => {
+test.skip('.decorate(parent).get(notstore.child)', () => {
   const master = new Master()
   master.advanced('a+')
-  t.true(master.get('eh.advanced') === 'a+')
+  expect(master.get('eh.advanced') === 'a+').toBe(true)
 })

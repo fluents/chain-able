@@ -1,7 +1,7 @@
 /**
  * @since 2.0.0
  */
-const dot = require('../deps/dot-prop')
+const dot = require('../deps/dot')
 const isDot = require('../deps/is/dot')
 
 /**

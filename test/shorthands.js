@@ -1,6 +1,5 @@
-const test = require('ava')
 const log = require('fliplog')
-const Chain = require('../dist')
+const Chain = require('../src')
 
 class Encased extends Chain {
   encase(method) {
@@ -35,55 +34,55 @@ class Encased extends Chain {
 //   t.fail()
 // })
 
-test('.method().encase().onValid', t => {
-  t.plan(1)
+test('.method().encase().onValid', () => {
+  expect.assertions(1)
   new Encased()
     .method('couldThrow')
     .encase()
-    .then(val => t.truthy(val))
+    .then(val => expect(val).toBeTruthy())
     .catch(e => {
       /* istanbul ignore next: this means tests fail, shouldn't hit this */
-      t.fail(e)
+      fail(e)
     })
     .build()
     .couldThrow('no throw!')
 })
 
-test('.method().encase().onValid - no .catch', t => {
-  t.plan(1)
+test('.method().encase().onValid - no .catch', () => {
+  expect.assertions(1)
   new Encased()
     .method('couldThrow')
     .encase()
-    .then(val => t.pass())
+    .then(val => expect(true).toBe(true))
     .build()
     .couldThrow('no throw!')
 })
 
-test('.method().encase().onInvalid()', t => {
-  t.plan(1)
+test('.method().encase().onInvalid()', () => {
+  expect.assertions(1)
   new Encased()
     .method('couldThrow')
     .encase()
     .then(val => {
       /* istanbul ignore next: this means tests fail, shouldn't hit this */
-      t.fail(val)
+      fail(val)
     })
-    .catch(e => t.pass(e))
+    .catch(e => expect(true).toBe(true))
     .build()
     .couldThrow(true)
 })
 
-test('.method().encase() onInvalid() - no .then', t => {
-  t.plan(1)
+test('.method().encase() onInvalid() - no .then', () => {
+  expect.assertions(1)
   new Encased()
     .encase('couldThrow')
-    .catch(e => t.pass())
+    .catch(e => expect(true).toBe(true))
     .build()
     .couldThrow(true)
 })
 
-test('encase(fn) valid', t => {
-  t.plan(1)
+test('encase(fn) valid', () => {
+  expect.assertions(1)
 
   const fn = arg => {
     if (arg === false) return 'the test'
@@ -93,17 +92,17 @@ test('encase(fn) valid', t => {
   new Encased()
     .wrap(chain => (chain.fn = fn))
     .encase('fn')
-    .then(arg => t.pass())
+    .then(arg => expect(true).toBe(true))
     .catch(e => {
       /* istanbul ignore next: this means tests fail, shouldn't hit this */
-      t.fail(e)
+      fail(e)
     })
     .build()
     .fn(false)
 })
 
-test('.wrap(fn).method(name).encase(name).onInvalid()', t => {
-  t.plan(1)
+test('.wrap(fn).method(name).encase(name).onInvalid()', () => {
+  expect.assertions(1)
 
   /* prettier-ignore */
   new Encased()
@@ -112,7 +111,7 @@ test('.wrap(fn).method(name).encase(name).onInvalid()', t => {
     })
     .method('fn')
     .encase()
-    .catch(() => t.pass())
+    .catch(() => expect(true).toBe(true))
     .build()
     .fn(true)
 })
@@ -173,28 +172,28 @@ test('.wrap(fn).method(name).encase(name).onInvalid()', t => {
 //   t.fail()
 // })
 
-test('.bindMethods', t => {
-  t.plan(1)
+test('.bindMethods', () => {
+  expect.assertions(1)
   const chain = new Chain()
   chain.bindMe = function() {
-    t.deepEqual(chain, this)
+    expect(chain).toEqual(this)
   }
   chain.methods(['bindMe']).bind().build()
   chain.bindMe()
 })
 
-test('.return()', t => {
-  t.plan(1)
+test('.return()', () => {
+  expect.assertions(1)
   const chain = new Chain()
-  t.true(chain.set('t', 1).return(true))
+  expect(chain.set('t', 1).return(true)).toBe(true)
 })
 
-test('.setIfEmpty', t => {
+test('.setIfEmpty', () => {
   const chain = new Chain()
   chain.set('a', 1)
   chain.setIfEmpty('a', 2)
   chain.setIfEmpty('b', 3)
 
-  t.true(chain.get('a') === 1)
-  t.true(chain.get('b') === 3)
+  expect(chain.get('a') === 1).toBe(true)
+  expect(chain.get('b') === 3).toBe(true)
 })

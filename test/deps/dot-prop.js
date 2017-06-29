@@ -1,117 +1,130 @@
-const test = require('ava')
-const m = require('../../dist/deps/dot-prop')
-const paths = require('../../dist/deps/dot-prop-paths')
+const m = require('../../src/deps/dot')
+const paths = require('../../src/deps/dot/paths')
 
-test('get', t => {
+test('get', () => {
   const f1 = {foo: {bar: 1}}
-  t.is(m.get(f1), f1)
+  expect(m.get(f1)).toBe(f1)
   f1[''] = 'foo'
-  t.is(m.get(f1, ''), 'foo')
-  t.is(m.get(f1, 'foo'), f1.foo)
-  t.is(m.get({foo: 1}, 'foo'), 1)
-  t.is(m.get({foo: null}, 'foo'), null)
-  t.is(m.get({foo: undefined}, 'foo'), undefined)
-  t.is(m.get({foo: {bar: true}}, 'foo.bar'), true)
-  t.is(m.get({foo: {bar: {baz: true}}}, 'foo.bar.baz'), true)
-  t.is(m.get({foo: {bar: {baz: null}}}, 'foo.bar.baz'), null)
-  t.is(m.get({foo: {bar: 'a'}}, 'foo.fake'), undefined)
-  t.is(m.get({foo: {bar: 'a'}}, 'foo.fake.fake2'), undefined)
-  t.is(m.get({foo: {bar: 'a'}}, 'foo.fake.fake2', 'some value'), 'some value')
-  t.is(m.get({'\\': true}, '\\'), true)
-  t.is(m.get({'\\foo': true}, '\\foo'), true)
-  t.is(m.get({'bar\\': true}, 'bar\\'), true)
-  t.is(m.get({'foo\\bar': true}, 'foo\\bar'), true)
-  t.is(m.get({'\\.foo': true}, '\\\\.foo'), true)
-  t.is(m.get({'bar\\.': true}, 'bar\\\\.'), true)
-  t.is(m.get({'foo\\.bar': true}, 'foo\\\\.bar'), true)
-  t.is(m.get({foo: 1}, 'foo.bar'), undefined)
+  expect(m.get(f1, '')).toBe('foo')
+  expect(m.get(f1, 'foo')).toBe(f1.foo)
+  expect(m.get({foo: 1}, 'foo')).toBe(1)
+  expect(m.get({foo: null}, 'foo')).toBe(null)
+  expect(m.get({foo: undefined}, 'foo')).toBe(undefined)
+  expect(m.get({foo: {bar: true}}, 'foo.bar')).toBe(true)
+  expect(m.get({foo: {bar: {baz: true}}}, 'foo.bar.baz')).toBe(true)
+  expect(m.get({foo: {bar: {baz: null}}}, 'foo.bar.baz')).toBe(null)
+  expect(m.get({foo: {bar: 'a'}}, 'foo.fake')).toBe(undefined)
+  expect(m.get({foo: {bar: 'a'}}, 'foo.fake.fake2')).toBe(undefined)
+  expect(m.get({foo: {bar: 'a'}}, 'foo.fake.fake2', 'some value')).toBe(
+    'some value'
+  )
+  expect(m.get({'\\': true}, '\\')).toBe(true)
+  expect(m.get({'\\foo': true}, '\\foo')).toBe(true)
+  expect(m.get({'bar\\': true}, 'bar\\')).toBe(true)
+  expect(m.get({'foo\\bar': true}, 'foo\\bar')).toBe(true)
+  expect(m.get({'\\.foo': true}, '\\\\.foo')).toBe(true)
+  expect(m.get({'bar\\.': true}, 'bar\\\\.')).toBe(true)
+  expect(m.get({'foo\\.bar': true}, 'foo\\\\.bar')).toBe(true)
+  expect(m.get({foo: 1}, 'foo.bar')).toBe(undefined)
 
   const f2 = {}
   Object.defineProperty(f2, 'foo', {
     value: 'bar',
     enumerable: false,
   })
-  t.is(m.get(f2, 'foo'), undefined)
-  t.is(m.get({}, 'hasOwnProperty'), undefined)
+  expect(m.get(f2, 'foo')).toBe(undefined)
+  expect(m.get({}, 'hasOwnProperty')).toBe(undefined)
 
   function fn() {}
   fn.foo = {bar: 1}
-  t.is(m.get(fn), fn)
-  t.is(m.get(fn, 'foo'), fn.foo)
-  t.is(m.get(fn, 'foo.bar'), 1)
+  expect(m.get(fn)).toBe(fn)
+  expect(m.get(fn, 'foo')).toBe(fn.foo)
+  expect(m.get(fn, 'foo.bar')).toBe(1)
   fn() // empty note
 
   const f3 = {foo: null}
-  t.is(m.get(f3, 'foo.bar'), undefined)
-  t.is(m.get(f3, 'foo.bar', 'some value'), 'some value')
+  expect(m.get(f3, 'foo.bar')).toBe(undefined)
+  expect(m.get(f3, 'foo.bar', 'some value')).toBe('some value')
 
-  t.is(m.get({'foo.baz': {bar: true}}, 'foo\\.baz.bar'), true)
-  t.is(m.get({'fo.ob.az': {bar: true}}, 'fo\\.ob\\.az.bar'), true)
+  expect(m.get({'foo.baz': {bar: true}}, 'foo\\.baz.bar')).toBe(true)
+  expect(m.get({'fo.ob.az': {bar: true}}, 'fo\\.ob\\.az.bar')).toBe(true)
 
-  t.is(m.get(null, 'foo.bar', false), false)
-  t.is(m.get('foo', 'foo.bar', false), false)
-  t.is(m.get([], 'foo.bar', false), false)
-  t.is(m.get(undefined, 'foo.bar', false), false)
+  expect(m.get(null, 'foo.bar', false)).toBe(false)
+  expect(m.get('foo', 'foo.bar', false)).toBe(false)
+  expect(m.get([], 'foo.bar', false)).toBe(false)
+  expect(m.get(undefined, 'foo.bar', false)).toBe(false)
 })
 
-test('set', t => {
+test('invalid dot-props', () => {
+  expect(m.set('', '', '')).toBe(undefined)
+  expect(m.set(false, '', '')).toBe(undefined)
+  expect(m.set(false, null, '')).toBe(undefined)
+  expect(m.set(false, null, undefined)).toBe(undefined)
+
+  expect(m.delete('', '')).toBe(undefined)
+  expect(m.delete(false, '')).toBe(undefined)
+  expect(m.delete(false, null)).toBe(undefined)
+  expect(m.delete(false, null, undefined)).toBe(undefined)
+})
+
+test('set', () => {
   const func = () => 'test'
   let f1 = {}
   func() // empty note
 
   m.set(f1, 'foo', 2)
-  t.is(f1.foo, 2)
+  expect(f1.foo).toBe(2)
 
   f1 = {foo: {bar: 1}}
   m.set(f1, 'foo.bar', 2)
-  t.is(f1.foo.bar, 2)
+  expect(f1.foo.bar).toBe(2)
 
   m.set(f1, 'foo.bar.baz', 3)
-  t.is(f1.foo.bar.baz, 3)
+  expect(f1.foo.bar.baz).toBe(3)
 
   m.set(f1, 'foo.bar', 'test')
-  t.is(f1.foo.bar, 'test')
+  expect(f1.foo.bar).toBe('test')
 
   m.set(f1, 'foo.bar', null)
-  t.is(f1.foo.bar, null)
+  expect(f1.foo.bar).toBe(null)
 
   m.set(f1, 'foo.bar', false)
-  t.is(f1.foo.bar, false)
+  expect(f1.foo.bar).toBe(false)
 
   m.set(f1, 'foo.bar', undefined)
-  t.is(f1.foo.bar, undefined)
+  expect(f1.foo.bar).toBe(undefined)
 
   m.set(f1, 'foo.fake.fake2', 'fake')
-  t.is(f1.foo.fake.fake2, 'fake')
+  expect(f1.foo.fake.fake2).toBe('fake')
 
   m.set(f1, 'foo.function', func)
-  t.is(f1.foo.function, func)
+  expect(f1.foo.function).toBe(func)
 
   function fn() {}
   m.set(fn, 'foo.bar', 1)
-  t.is(fn.foo.bar, 1)
+  expect(fn.foo.bar).toBe(1)
   fn() // empty note
 
   f1.fn = fn
   m.set(f1, 'fn.bar.baz', 2)
-  t.is(f1.fn.bar.baz, 2)
+  expect(f1.fn.bar.baz).toBe(2)
 
   const f2 = {foo: null}
   m.set(f2, 'foo.bar', 2)
-  t.is(f2.foo.bar, 2)
+  expect(f2.foo.bar).toBe(2)
 
   const f3 = {}
   m.set(f3, '', 3)
-  t.is(f3[''], 3)
+  expect(f3['']).toBe(3)
 
   m.set(f1, 'foo\\.bar.baz', true)
-  t.is(f1['foo.bar'].baz, true)
+  expect(f1['foo.bar'].baz).toBe(true)
 
   m.set(f1, 'fo\\.ob\\.ar.baz', true)
-  t.is(f1['fo.ob.ar'].baz, true)
+  expect(f1['fo.ob.ar'].baz).toBe(true)
 })
 
-test('delete', t => {
+test('delete', () => {
   const func = () => 'test'
   func.foo = 'bar'
 
@@ -132,32 +145,32 @@ test('delete', t => {
     },
   }
 
-  t.is(f1.foo.bar.baz.c, 'c')
+  expect(f1.foo.bar.baz.c).toBe('c')
   m.delete(f1, 'foo.bar.baz.c')
-  t.is(f1.foo.bar.baz.c, undefined)
+  expect(f1.foo.bar.baz.c).toBe(undefined)
 
-  t.is(f1.top.dog, 'sindre')
+  expect(f1.top.dog).toBe('sindre')
   m.delete(f1, 'top')
-  t.is(f1.top, undefined)
+  expect(f1.top).toBe(undefined)
 
-  t.is(f1.foo.bar.baz.func.foo, 'bar')
+  expect(f1.foo.bar.baz.func.foo).toBe('bar')
   m.delete(f1, 'foo.bar.baz.func.foo')
-  t.is(f1.foo.bar.baz.func.foo, undefined)
+  expect(f1.foo.bar.baz.func.foo).toBe(undefined)
 
-  t.is(f1.foo.bar.baz.func, func)
+  expect(f1.foo.bar.baz.func).toBe(func)
   m.delete(f1, 'foo.bar.baz.func')
-  t.is(f1.foo.bar.baz.func, undefined)
+  expect(f1.foo.bar.baz.func).toBe(undefined)
 
   m.set(f1, 'foo\\.bar.baz', true)
-  t.is(f1['foo.bar'].baz, true)
+  expect(f1['foo.bar'].baz).toBe(true)
   m.delete(f1, 'foo\\.bar.baz')
-  t.is(f1['foo.bar'].baz, undefined)
+  expect(f1['foo.bar'].baz).toBe(undefined)
 
   const f2 = {}
   m.set(f2, 'foo.bar\\.baz', true)
-  t.is(f2.foo['bar.baz'], true)
+  expect(f2.foo['bar.baz']).toBe(true)
   m.delete(f2, 'foo.bar\\.baz')
-  t.is(f2.foo['bar.baz'], undefined)
+  expect(f2.foo['bar.baz']).toBe(undefined)
 
   f2.dotted = {
     sub: {
@@ -166,48 +179,48 @@ test('delete', t => {
     },
   }
   m.delete(f2, 'dotted.sub.dotted\\.prop')
-  t.is(f2.dotted.sub['dotted.prop'], undefined)
-  t.is(f2.dotted.sub.other, 'prop')
+  expect(f2.dotted.sub['dotted.prop']).toBe(undefined)
+  expect(f2.dotted.sub.other).toBe('prop')
 
   const f3 = {foo: null}
   m.delete(f3, 'foo.bar')
-  t.deepEqual(f3, {foo: null})
+  expect(f3).toEqual({foo: null})
 })
 
-test('has', t => {
+test('has', () => {
   const f1 = {foo: {bar: 1}}
-  t.is(m.has(f1), false)
-  t.is(m.has(f1, 'foo'), true)
-  t.is(m.has({foo: 1}, 'foo'), true)
-  t.is(m.has({foo: null}, 'foo'), true)
-  t.is(m.has({foo: undefined}, 'foo'), true)
-  t.is(m.has({foo: {bar: true}}, 'foo.bar'), true)
-  t.is(m.has({foo: {bar: {baz: true}}}, 'foo.bar.baz'), true)
-  t.is(m.has({foo: {bar: {baz: null}}}, 'foo.bar.baz'), true)
-  t.is(m.has({foo: {bar: 'a'}}, 'foo.fake.fake2'), false)
-  t.is(m.has({foo: null}, 'foo.bar'), false)
-  t.is(m.has({foo: ''}, 'foo.bar'), false)
+  expect(m.has(f1)).toBe(false)
+  expect(m.has(f1, 'foo')).toBe(true)
+  expect(m.has({foo: 1}, 'foo')).toBe(true)
+  expect(m.has({foo: null}, 'foo')).toBe(true)
+  expect(m.has({foo: undefined}, 'foo')).toBe(true)
+  expect(m.has({foo: {bar: true}}, 'foo.bar')).toBe(true)
+  expect(m.has({foo: {bar: {baz: true}}}, 'foo.bar.baz')).toBe(true)
+  expect(m.has({foo: {bar: {baz: null}}}, 'foo.bar.baz')).toBe(true)
+  expect(m.has({foo: {bar: 'a'}}, 'foo.fake.fake2')).toBe(false)
+  expect(m.has({foo: null}, 'foo.bar')).toBe(false)
+  expect(m.has({foo: ''}, 'foo.bar')).toBe(false)
 
   function fn() {}
   fn.foo = {bar: 1}
-  t.is(m.has(fn), false)
-  t.is(m.has(fn, 'foo'), true)
-  t.is(m.has(fn, 'foo.bar'), true)
+  expect(m.has(fn)).toBe(false)
+  expect(m.has(fn, 'foo')).toBe(true)
+  expect(m.has(fn, 'foo.bar')).toBe(true)
   fn() // empty note
 
-  t.is(m.has({'foo.baz': {bar: true}}, 'foo\\.baz.bar'), true)
-  t.is(m.has({'fo.ob.az': {bar: true}}, 'fo\\.ob\\.az.bar'), true)
+  expect(m.has({'foo.baz': {bar: true}}, 'foo\\.baz.bar')).toBe(true)
+  expect(m.has({'fo.ob.az': {bar: true}}, 'fo\\.ob\\.az.bar')).toBe(true)
 })
 
-test('paths', t => {
+test('paths', () => {
   const arr = paths({level: {one: true}})
 
   // triggers cache
   const cached = paths({level: {one: true}})
 
-  t.deepEqual(arr, cached)
+  expect(arr).toEqual(cached)
 
   // triggers unique paths
   const includes = paths({level: {one: true}, canada: {arr: [0, 1, 2]}})
-  t.true(Array.isArray(includes))
+  expect(Array.isArray(includes)).toBe(true)
 })

@@ -1,8 +1,7 @@
-var test = require('ava')
 var chainsaw = require('../../src/deps/chainsaw')
 
-test('trap', t => {
-  t.plan(3)
+test('trap', () => {
+  expect.assertions(3)
 
   var error = null
   var ch = chainsaw(function(saw) {
@@ -57,11 +56,11 @@ test('trap', t => {
       setTimeout(this.bind(null, 2), 25)
     })
     .join((x, y) => {
-      t.true(x[0] == 1)
-      t.true(y[0] == 2)
+      expect(x[0] == 1).toBe(true)
+      expect(y[0] == 2).toBe(true)
       joined = true
     })
     .do(() => {
-      t.truthy(joined)
+      expect(joined).toBeTruthy()
     })
 })

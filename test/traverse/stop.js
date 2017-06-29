@@ -1,7 +1,6 @@
-var test = require('ava')
 var traverse = require('./')
 
-test('stop', t => {
+test('stop', () => {
   var visits = 0
   traverse('abcdefghij'.split('')).forEach(function(node) {
     if (typeof node === 'string') {
@@ -10,11 +9,10 @@ test('stop', t => {
     }
   })
 
-  t.deepEqual(visits, 5)
-  t.pass()
+  expect(visits).toEqual(5)
 })
 
-test('stopMap', t => {
+test('stopMap', () => {
   var s = traverse('abcdefghij'.split(''))
     .map(function(node) {
       if (typeof node === 'string') {
@@ -24,11 +22,10 @@ test('stopMap', t => {
     })
     .join('')
 
-  t.deepEqual(s, 'ABCDEfghij')
-  t.pass()
+  expect(s).toEqual('ABCDEfghij')
 })
 
-test('stopReduce', t => {
+test('stopReduce', () => {
   var obj = {
     a: [4, 5],
     b: [6, [7, 8, 9]],
@@ -41,6 +38,5 @@ test('stopReduce', t => {
     return acc
   }, [])
 
-  t.deepEqual(xs, [4, 5, 6])
-  t.pass()
+  expect(xs).toEqual([4, 5, 6])
 })

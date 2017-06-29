@@ -1,7 +1,8 @@
-const test = require('ava')
 const log = require('fliplog')
-const Chain = require('../dist')
-const ChainedSet = require('../dist/ChainedSet')
+const Chain = require('../src')
+const ChainedSet = require('../src/ChainedSet')
+
+const stringify = x => JSON.stringify(x, null, 2)
 
 /**
  * @param  {Array<number>} data
@@ -20,9 +21,12 @@ class Primitive extends Chain {
   toString() {
     let str = ''
     const obj = this.entries()
-    const keys = Object.keys(obj)
-    keys.forEach(prop => (str += `"${prop}":"${obj[prop]}",`))
+    // const keys = Object.keys(obj)
+    str = stringify(obj)
     return str
+  }
+  toJSON() {
+    return this.toString()
   }
 }
 class Iteratable extends ChainedSet {
@@ -31,23 +35,24 @@ class Iteratable extends ChainedSet {
   }
 }
 
-test('primitive string', t => {
+// @NOTE emoji = not so good for tests that aren't testing emoji
+test('primitive string', () => {
   const obj = new Primitive()
-  obj.set('factory', '🏭')
-  obj.set('canada', '🇨🇦')
-  const str = obj + ''
-  t.true(str === `"factory":"🏭","canada":"🇨🇦",`)
+  obj.set('factory', '1') // 🏭
+  obj.set('canada', 'c') // 🇨🇦
+  const str = `${obj}`
+  expect(str).toEqual(stringify({factory: '1', canada: 'c'}))
 })
 
-test('primitive number', t => {
+test('primitive number', () => {
   const nums = new Iteratable()
   nums.add(1).add(1).add(1).add(1).add(2) // .concat([1, 1, 1])
-  t.true(+nums === 1)
+  expect(+nums).toEqual(1)
 })
 
-test('value array concat', t => {
+test('value array concat', () => {
   const nums = new Iteratable()
   nums.add(1).add(1).add(1).add(1).add(2)
   const arr = [].concat(nums.values())
-  t.deepEqual(arr, nums.values())
+  expect(arr).toEqual(nums.values())
 })

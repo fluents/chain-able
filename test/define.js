@@ -1,9 +1,8 @@
-const test = require('ava')
 const log = require('fliplog')
-const Chain = require('../dist')
-const getDescriptor = require('../deps/util/getDescriptor')
+const Chain = require('../src')
+const getDescriptor = require('../src/deps/util/getDescriptor')
 
-test('.methods.define() /defineGetSet', t => {
+test('.methods.define() /defineGetSet', () => {
   class Defined extends Chain {
     constructor(parent) {
       super(parent)
@@ -18,15 +17,15 @@ test('.methods.define() /defineGetSet', t => {
   const defined = new Defined()
   const eh = getDescriptor(defined, 'eh')
 
-  t.true(typeof eh.set === 'function')
-  t.true(typeof eh.get === 'function')
-  t.true(eh.enumerable === true)
-  t.true(eh.configurable === true)
+  expect(typeof eh.set === 'function').toBe(true)
+  expect(typeof eh.get === 'function').toBe(true)
+  expect(eh.enumerable === true).toBe(true)
+  expect(eh.configurable === true).toBe(true)
 
   // log.quick(defined, {eh, ehOh, getEhOh, setEhOh})
 })
 
-test('.getSet().define() /.extendGetSet', t => {
+test('.getSet().define() /.extendGetSet', () => {
   class Defined extends Chain {
     constructor(parent) {
       super(parent)
@@ -40,24 +39,24 @@ test('.getSet().define() /.extendGetSet', t => {
   const getEhOh = getDescriptor(defined, 'getEhOh')
   const setEhOh = getDescriptor(defined, 'setEhOh')
 
-  t.true(typeof ehOh.get === 'function')
-  t.true(typeof ehOh.set === 'function')
-  t.true(ehOh.enumerable === true)
-  t.true(ehOh.configurable === true)
+  expect(typeof ehOh.get === 'function').toBe(true)
+  expect(typeof ehOh.set === 'function').toBe(true)
+  expect(ehOh.enumerable === true).toBe(true)
+  expect(ehOh.configurable === true).toBe(true)
 
-  t.true(typeof getEhOh.value === 'function')
+  expect(typeof getEhOh.value === 'function').toBe(true)
   // t.true(getEhOh.value.name === 'getter')
-  t.true(typeof setEhOh.value === 'function')
+  expect(typeof setEhOh.value === 'function').toBe(true)
   // t.true(setEhOh.value.name === 'setter') <- this can be overriden for debugging
-  t.true(getEhOh.enumerable === true)
-  t.true(setEhOh.enumerable === true)
-  t.true(getEhOh.configurable === true)
-  t.true(setEhOh.configurable === true)
+  expect(getEhOh.enumerable === true).toBe(true)
+  expect(setEhOh.enumerable === true).toBe(true)
+  expect(getEhOh.configurable === true).toBe(true)
+  expect(setEhOh.configurable === true).toBe(true)
 
   // log.quick(defined, {ehOh, getEhOh, setEhOh})
 })
 
-test.failing('extendGetSet [getter/setter] depending on value', t => {
+test.skip('extendGetSet [getter/setter] depending on value', () => {
   class Defined extends Chain {
     constructor(parent) {
       super(parent)
@@ -70,19 +69,19 @@ test.failing('extendGetSet [getter/setter] depending on value', t => {
 
   defined.ehOh(true)
 
-  t.true(defined.length === 1)
+  expect(defined.length === 1).toBe(true)
 
   const ehOh = defined.ehOh()
-  t.true(ehOh)
+  expect(ehOh).toBe(true)
   defined.ehOh = false
 
-  const loose = defined.ehOh == false
+  // const loose = defined.ehOh == false
   const coerced = ~defined.ehOh === -1
   const valueOf = defined.ehOh.valueOf() === false
 
-  t.true(loose)
-  t.true(coerced)
-  t.true(valueOf)
+  // expect(loose).toBe(true)
+  expect(coerced).toBe(true)
+  expect(valueOf).toBe(true)
 
   // failing
   // const bool = !!defined.ehOh == false
@@ -90,8 +89,8 @@ test.failing('extendGetSet [getter/setter] depending on value', t => {
   // t.true(bool)
 })
 
-test('.methods(obj)', t => {
-  t.plan(3)
+test('.methods(obj)', () => {
+  expect.assertions(3)
   class Defined extends Chain {
     constructor(parent) {
       super(parent)
@@ -99,15 +98,15 @@ test('.methods(obj)', t => {
         ehOh: {
           get(arg) {
             // require('fliplog').trace().stack().exit()
-            t.true(arg === undefined)
+            expect(arg === undefined).toBe(true)
             return 0
           },
           set(arg) {
-            t.true(arg)
+            expect(arg).toBe(true)
           },
         },
         ohEh(arg) {
-          t.true(arg === 0)
+          expect(arg === 0).toBe(true)
         },
       })
     }
@@ -122,9 +121,9 @@ test('.methods(obj)', t => {
   // defined.getOhEh()
 })
 
-test.failing('.meta', t => {
+test.skip('.meta', () => {
   const chained = new Chain()
   ;+chained.method('eh') + chained.method('bah')
 
-  t.true(chained.meta.store.shorthands.size === 2)
+  expect(chained.meta.store.shorthands.size === 2).toBe(true)
 })

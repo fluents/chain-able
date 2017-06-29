@@ -1,25 +1,33 @@
-const test = require('ava')
 const log = require('fliplog')
-const Chain = require('../dist')
+const Chain = require('../src')
 
 const {is, reduce} = Chain
 const {isDate} = is
 
-test.todo('.schema')
-test.todo('.?schema')
-test.todo('.&schema')
-test.todo('.[enum:,/]schema')
+const todo = console.log
+todo('.schema')
+todo('.?schema')
+todo('.&schema')
+todo('.[enum:,/]schema')
 
-test('schema.add(validator)', t => {
+test('.addTypes(validator)', () => {
+  expect.assertions(1)
   const custom = {}
-  is.enums = enums => x => enums.includes(x)
-  is['*'] = x => true
+  custom.enums = enums => x => enums.includes(x)
+  custom['*'] = x => true
 
   const chain = new Chain()
-  chain.methods().schema().add(custom)
+  chain.methods().addTypes(custom).schema({
+    enumd: custom.enums(['me!']),
+    star: '*',
+  })
+
+  chain.enumd('me!').star('*')
+
+  expect(() => chain.enumd(false)).toThrow()
 })
 
-test.failing('.schema - array', t => {
+test.skip('.schema - array', done => {
   const chain = new Chain()
 
   chain.methods().define().schema({
@@ -55,14 +63,11 @@ test.failing('.schema - array', t => {
   chain.commends([{}])
   chain.commends({})
 
-  t.fail()
-})
-test.failing('.schema - enum - use `eq`', t => {
-  t.fail()
+  done.fail()
 })
 
-test('.!schema()', t => {
-  t.plan(1)
+test('.!schema()', () => {
+  expect.assertions(1)
 
   const chain = new Chain()
   chain.methods().define().schema({
@@ -72,34 +77,31 @@ test('.!schema()', t => {
   // valid
   chain.notString = new Date(0, 0, 0, 0)
 
-  try {
-    chain.notString = 'string!'
-  }
-  catch (e) {
-    t.true(e instanceof TypeError)
-  }
+  expect(() => (chain.notString = 'string!')).toThrow()
 })
 
-test('.method().alias().getSet().onInvalid().onValid().type().returns()', t => {
-  const chain = new Chain()
-  ;+chain
+test('.method().alias().getSet().onInvalid().onValid().type().returns()', () => {
+  const chain = new Chain();
+  +chain
     .method('ehOh')
     .alias(['canada'])
     .getSet()
     .define()
-    .onInvalid(e => log.data(e).echo(false))
+    .onInvalid(e => {})
+    // .onInvalid(e => log.data(e).echo(false))
     .onValid(() => console.log('valid'))
     .type('?string[]')
     .returns(chain)
 })
 
-test('.schema - shared .onInvalid', t => {
+test('.schema - shared .onInvalid', () => {
   const chain = new Chain()
   /* prettier-ignore */
   chain
     .methods()
     .define()
-    .onInvalid((error, arg, key, instance) => log.data(error).echo(false))
+    // .onInvalid((error, arg, key, instance) => log.data(error).echo(false))
+    .onInvalid((error, arg, key, instance) => {})
     .schema({
       id: '?number',
       users: '?object|array',
@@ -125,22 +127,23 @@ test('.schema - shared .onInvalid', t => {
 
   // valid
   chain.created_at = new Date(0, 0, 0, 0)
-  t.true(isDate(chain.created_at))
+  expect(isDate(chain.created_at)).toBe(true)
 
   // invalid
   chain.updated_at = false
 
-  log.prettyformat(reduce(chain.meta.store.schema)).bold('schema:').echo()
-  delete chain.meta
-  log.data(chain).echo()
+  // log.prettyformat(reduce(chain.meta.store.schema)).bold('schema:').echo()
+  // delete chain.meta
+  // log.data(chain).echo()
 })
 
-test('typed - shorthand', t => {
+test('typed - shorthand', () => {
   const typed = new Chain()
     // can be used shorthand
     .method('short')
     // .onValid((val, c) => c.set('eh', val))
-    .onInvalid((error, arg, key, instance) => log.data(error).echo(false))
+    // log.data(error).echo(false)
+    .onInvalid((error, arg, key, instance) => {})
     .type(x => typeof x === 'string')
     .build()
 
@@ -148,14 +151,14 @@ test('typed - shorthand', t => {
   typed.short(!'boolean')
 })
 
-test('.schema - nested', t => {
-  t.plan(2)
+test('.schema - nested', () => {
+  expect.assertions(2)
   const chain = new Chain()
   /* prettier-ignore */
   chain
     .methods()
-    .onValid(created => t.true(isDate(created.at)))
-    .onInvalid(error => t.true(error instanceof TypeError))
+    .onValid(created => expect(isDate(created.at)).toBe(true))
+    .onInvalid(error => expect(error instanceof TypeError).toBe(true))
     .schema({
       created: {
         at: 'date',
@@ -166,14 +169,23 @@ test('.schema - nested', t => {
   chain.created({at: 'NOT-DATE'})
 })
 
-test.failing('.schema - nested + array', t => {
-  t.plan(2)
+test('.schema enum', () => {
+  expect.assertions(1)
+
   const chain = new Chain()
-  /* prettier-ignore */
+  chain.methods().schema({status: 'enabled|disabled'}).status('enabled')
+
+  expect(() => chain.status('other')).toThrow()
+})
+
+test.skip('.schema - nested + array', () => {
+  expect.assertions(2)
+
+  const chain = new Chain()
   chain
     .methods()
-    .onValid(created => t.true(isDate(created.at)))
-    .onInvalid(error => t.true(error instanceof TypeError))
+    .onValid(created => expect(isDate(created.at)).toBe(true))
+    .onInvalid(error => expect(error instanceof TypeError).toBe(true))
     .schema({
       status: ['enabled', 'disabled'],
       comments: [
@@ -189,52 +201,55 @@ test.failing('.schema - nested + array', t => {
   chain.comments([{}])
 })
 
-test('.schema[]', t => {
+test('.schema[] .call', () => {
+  expect.assertions(1)
   const chain = new Chain()
-  /* prettier-ignore */
   chain
     .methods()
     .getSet()
-    .schema({
-      eh: 'string[]',
-    })
+    .schema({eh: 'string|string[]'})
+    .setEh('string')
+    .setEh(['string'])
 
-  chain.setEh('string')
-  chain.setEh(['string'])
-  try {
-    chain.setEh(false)
-  }
-  catch (e) {
-    return t.true(e instanceof Error)
-  }
-
-  /* istanbul ignore next: fail */
-  t.fail()
+  expect(() => chain.eh(false)).toThrow()
 })
 
-test('.schema|', t => {
-  t.plan(1)
+test('.schema[] .set', () => {
+  expect.assertions(1)
   const chain = new Chain()
-  /* prettier-ignore */
   chain
     .methods()
     .getSet()
-    .schema({
-      eh: 'string|boolean',
-      eh2: 'boolean|string',
-    })
+    .schema({eh: 'string|string[]'})
+    .setEh('string')
+    .setEh(['string'])
+
+  expect(() => chain.setEh(false)).toThrow()
+})
+
+test.skip('arrayof', t => {
+  new Chain().methods().schema({
+    prop: [
+      {
+        nested: 'boolean',
+        optional: '?string',
+      },
+    ],
+  })
+})
+
+test('.schema|', () => {
+  expect.assertions(1)
+  const chain = new Chain()
+  chain.methods().getSet().schema({
+    eh: 'string|boolean',
+    eh2: 'boolean|string',
+  })
 
   chain.setEh('string')
   chain.setEh(false)
   chain.setEh2('string')
   chain.setEh2(false)
-  try {
-    chain.setEh(100)
-  }
-  catch (e) {
-    return t.true(e instanceof Error)
-  }
 
-  /* istanbul ignore next: fail */
-  t.fail()
+  expect(() => chain.setEh(100)).toThrow()
 })

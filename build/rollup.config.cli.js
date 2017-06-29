@@ -1,13 +1,8 @@
 const {resolve} = require('path')
-const nodeResolve = require('rollup-plugin-node-resolve')
-const commonjs = require('rollup-plugin-commonjs')
-const replace = require('rollup-plugin-replace')
-const filesize = require('rollup-plugin-filesize')
-const uglify = require('rollup-plugin-uglify')
-const {minify} = require('uglify-es')
 const log = require('fliplog')
 const pkg = require('../package')
-const argv = require('./_args')
+const {argv} = require('./util')
+const plugins = require('./plugins')
 
 const cwd = process.cwd()
 let {format, tsc, production} = argv
@@ -93,120 +88,6 @@ should = Object.assign(should, {
 targetConfig.dest = dest
 targetConfig.format = format
 
-const plugins = [
-  nodeResolve({
-    jsnext: true,
-    module: true,
-    main: true,
-    preferBuiltins: true,
-  }),
-  commonjs({
-    include: '**/**',
-  }),
-]
-
-if (should.buble) {
-  log.blue('buble').echo()
-  const buble = require('rollup-plugin-buble')
-  const bubleOpts = {
-    transforms: {
-      // forOf: false,
-      // dangerousForOf: false,
-      // computedProperty: false,
-    },
-  }
-  plugins.push(buble())
-}
-
-if (should.production) {
-  log.bold('production').echo()
-  plugins.push(
-    replace({
-      'process.env.NODE_ENV': JSON.stringify('production'),
-      'process.env.DEBUG': false,
-    })
-  )
-}
-// else {
-//   plugins.push(
-//     replace({
-//       'process.env.NODE_ENV': JSON.stringify('development'),
-//     })
-//   )
-// }
-
-// https://github.com/mishoo/UglifyJS2/pull/733/files !!!
-if (should.uglify) {
-  // https://github.com/mishoo/UglifyJS2#minify-options-structure
-  // should mangle...
-  plugins.push(
-    uglify(
-      {
-        warnings: true,
-        parse: {
-          // parse options
-          html5_comments: false,
-          shebang: false,
-        },
-        compress: {
-          // compress options
-          dead_code: true,
-          drop_debugger: true,
-          booleans: true,
-          unused: true,
-          comparisons: true,
-          conditionals: true,
-          hoist_funs: true,
-          if_return: true,
-          join_vars: true,
-          cascade: true,
-          collapse_vars: true,
-
-          // only 1 getters - length
-          pure_getters: true,
-
-          // @TODO:
-          // pure_funcs: true, side_effects: false,
-          keep_fargs: false,
-          keep_fnames: false, // for now
-          passes: 3,
-        },
-
-        mangle: {
-          properties: false,
-          //  {
-          //    name_cache: resolve('./tmp/namecache.json'),
-          //    unsafe: true,
-          //    builtins: true,
-          //  }
-          toplevel: true,
-
-          // ties to compression opt
-          keep_fnames: false,
-        },
-
-        sourceMap: true,
-        toplevel: true,
-        ie8: false,
-      },
-      minify
-    )
-  )
-}
-
-plugins.push(
-  filesize({
-    render(options, size, gzip, rollup) {
-      // log.quick(this, options, size, gzip, rollup.format)
-      const {text, datas} = log
-        .bold(rollup.format + ' ')
-        .fmtobj({size, gzip})
-        .return()
-      return text + datas
-    },
-  })
-)
-
 const config = {
   // useStrict: false,
   // external: ['inspector-gadget'],
@@ -218,7 +99,7 @@ const config = {
   },
 
   sourceMap: should.sourceMap,
-  plugins,
+  plugins: plugins(should),
   targets,
 }
 
@@ -226,5 +107,33 @@ const config = {
 // Object.assign(config, targetConfig, config)
 
 // log.data(config).bold('config').echo()
+
+// old targets
+// targets: [
+//   {
+//     // sourceType: 'module', // for optimizejs playing around
+//     dest: pkg.main,
+//     format: 'cjs',
+//   },
+//   {
+//     dest: pkg.module,
+//     format: 'es',
+//   },
+//   {
+//     moduleName: 'chainable',
+//     dest: './disted/index.umd.js',
+//     format: 'umd',
+//   },
+//   {
+//     moduleName: 'chainable',
+//     dest: './disted/index.iife.js',
+//     format: 'iife',
+//   },
+//   {
+//     dest: pkg.amd,
+//     format: 'amd',
+//     moduleId: 'chain-able',
+//   },
+// ],
 
 module.exports = config

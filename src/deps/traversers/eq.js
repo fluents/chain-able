@@ -5,6 +5,8 @@
 /* eslint eqeqeq: "off" */
 
 const traverse = require('../traverse')
+const ObjectKeys = require('../util/keys')
+const hasOwnProperty = require('../util/hasOwnProperty')
 const isNullOrUndefined = require('../is/nullOrUndefined')
 const isTrue = require('../is/true')
 const isFunction = require('../is/function')
@@ -13,9 +15,12 @@ const isDate = require('../is/date')
 const isPureObj = require('../is/pureObj')
 const isObjLoose = require('../is/objLoose')
 const isEqEq = require('../is/eqeq')
-const hasOwnProperty = require('../util/hasOwnProperty')
-const ObjectKeys = require('../util/keys')
+const toS = require('../is/toS')
 
+// const isString = require('../is/string')
+// const isNumber = require('../is/number')
+// const isBoolean = require('../is/boolean')
+// const isPrimitive = x => isString(x) || isBoolean(x) || isNumber(x)
 // const isArguments = x => toS(x) === '[object Arguments]'
 // const sameKeysLength = (x, y) => Object.keys(x).length === Object.keys(y).length
 
@@ -80,17 +85,18 @@ module.exports = function(a, b, loose) {
     else if (x === y) {
       // nop
     }
-    else if (isFunction(x)) {
-      if (isRegExp(x)) {
-        // both regexps on account of the __proto__ check
-        if (x.toString() != y.toString()) {
-          notEqual()
-        }
-      }
-      else if (x !== y) {
-        notEqual()
-      }
-    }
+    // @NOTE: .toString will be covered for functions and regexes in PureObject
+    // else if (isRegExp(x)) {
+    //   // both regexps on account of the __proto__ check
+    //   if (x.toString() != y.toString()) {
+    //     notEqual()
+    //   }
+    // }
+    // else if (isFunction(x)) {
+    //   if (x !== y) {
+    //     notEqual()
+    //   }
+    // }
     else if (isPureObj(x)) {
       // @NOTE: this is never called
       // if (toS(y) === '[object Arguments]' || toS(x) === '[object Arguments]') {
@@ -113,6 +119,7 @@ module.exports = function(a, b, loose) {
         }
       }
       else {
+        // @NOTE: it will traverse through values if they are == here
         const xKeys = ObjectKeys(x)
         const yKeys = ObjectKeys(y).length
         if (xKeys.length !== yKeys) {
@@ -124,6 +131,13 @@ module.exports = function(a, b, loose) {
           }
         }
       }
+    }
+    // isString(x) || isBoolean(x) || isNumber(x) || isIterator(x)
+    else if (toS(x) === toS(y) && x !== y) {
+      notEqual()
+    }
+    else if (toS(x) !== toS(y)) {
+      notEqual()
     }
   })
 

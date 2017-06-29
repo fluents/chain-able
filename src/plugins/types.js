@@ -1,5 +1,5 @@
 const ENV_DEVELOPMENT = require('../deps/env/dev')
-const not = require('../deps/util/not')
+const not = require('../deps/conditional/not')
 const isFalse = require('../deps/is/false')
 const withSpecification = require('../deps/encase/withSpecification')
 const validatorBuilder = require('../deps/validators/validatorBuilder')
@@ -31,6 +31,7 @@ module.exports = function validatorPlugin(name, parent, built) {
     const encase = encaseType(name, parent, built)
     const validatorMethod = encase(validator, type, spec)
 
+    /* istanbul ignore next: dev */
     if (ENV_DEVELOPMENT) {
       validatorMethod.type = type
     }

@@ -1,8 +1,7 @@
-var test = require('ava')
 var chainsaw = require('../../src/deps/chainsaw')
 
-test('nest', t => {
-  t.plan(2)
+test('nest', () => {
+  expect.assertions(2)
 
   var ch = (function() {
     var vars = {}
@@ -33,8 +32,7 @@ test('nest', t => {
       order.push(4)
     })
     .do(vars => {
-      t.deepEqual(order, [1, 2, 3, 4])
-      t.deepEqual(vars, {x: 'x', y: 'y', z: 'z'})
-      t.pass()
-    })
+    expect(order).toEqual([1, 2, 3, 4])
+    expect(vars).toEqual({x: 'x', y: 'y', z: 'z'})
+  })
 })

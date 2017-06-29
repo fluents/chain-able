@@ -1,8 +1,7 @@
-var test = require('ava')
 var chainsaw = require('../../src/deps/chainsaw')
 
-test('jump', t => {
-  t.plan(2)
+test('jump', () => {
+  expect.assertions(2)
 
   var xs = [4, 5, 6, -4, 8, 9, -1, 8]
   var xs_ = []
@@ -20,8 +19,8 @@ test('jump', t => {
     }
 
     saw.on('end', () => {
-      t.deepEqual(xs, [8])
-      t.deepEqual(xs_, [1, 1, 1, 1, 2, 3, 2, 3, 2, 3])
+      expect(xs).toEqual([8])
+      expect(xs_).toEqual([1, 1, 1, 1, 2, 3, 2, 3, 2, 3])
     })
   })
 

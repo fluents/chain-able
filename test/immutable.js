@@ -1,10 +1,10 @@
-const test = require('ava')
 const immutable = require('immutable')
 const log = require('fliplog')
-const {compose} = require('../dist')
+const {compose} = require('../src')
 
-test.todo('can use any immutable type')
-test.failing('simple', t => {
+const todo = console.log
+todo('can use any immutable type')
+test.skip('simple', () => {
   const ImmutableChain = new compose({immutable: true})
   const {
     Seq,
@@ -36,15 +36,15 @@ test.failing('simple', t => {
   chain2.set('gooses', true) // differentiation from chain1
 
   const js = chain2.toJS()
-  t.true(js.eh !== undefined)
+  expect(js.eh !== undefined).toBe(true)
 
   // immutable lib equals
-  t.true(is(chain2.immutable, chain2.immutable))
-  t.false(is(chain.immutable, chain2.immutable))
+  expect(is(chain2.immutable, chain2.immutable)).toBe(true)
+  expect(is(chain.immutable, chain2.immutable)).toBe(false)
 
   // chain equals
-  t.true(chain2.equals(chain2))
-  t.false(chain2.equals(chain))
+  expect(chain2.equals(chain2)).toBe(true)
+  expect(chain2.equals(chain)).toBe(false)
 
   // for debugging
   //

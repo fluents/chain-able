@@ -4,13 +4,24 @@
 const ENV_DEVELOPMENT = require('../deps/env/dev')
 const ObjectKeys = require('../deps/util/keys')
 const isObj = require('../deps/is/obj')
+const isArray = require('../deps/is/array')
 const isUndefined = require('../deps/is/undefined')
+const isFunction = require('../deps/is/undefined')
 // logic
-const meta = require('../deps/meta')
 const schemaBuilder = require('../deps/validators/schemaBuilder')
 const validatorBuilder = require('../deps/validators/validatorBuilder')
 
 const SCHEMA_KEY = 'schema'
+
+const isObjOrArray = x => (isObj(x) && !isFunction(x)) || isArray(x)
+
+// const meta = require('../deps/meta')
+// const or = require('../deps/conditional/or')
+// const and = require('../deps/conditional/and')
+// const not = require('../deps/conditional/not')
+// const condition = Condition(Condition.is(isFunction).and().not(isObj)).or(isArray)
+// const isObjNotFn = and(not(isFunction), isObj)
+// const isObjOrArray = or(isObjNotFn, isArray)
 
 /**
  * @desc handles:
@@ -22,21 +33,7 @@ const SCHEMA_KEY = 'schema'
  * @param  {Schema} obj
  * @return {MethodFactory} @chainable
  */
-module.exports = function(obj) {
-  /**
-   * @see deps/validators/validatorFactory
-   * @since 4.0.0 <- used with schema, used in method chain
-   * @since 3.0.0 <- took out
-   * @since 1.0.0
-   * @param  {Object} custom
-   * @return {MethodChain} @chainable
-   */
-  this.add = custom => {
-    validatorBuilder.merge(custom)
-    return this
-  }
-  if (isUndefined(obj)) return this
-
+module.exports = function schema(obj) {
   const parent = this.parent
   const {onValid, onInvalid, define, getSet} = this.entries()
   const keys = ObjectKeys(obj)
@@ -66,7 +63,9 @@ module.exports = function(obj) {
     if (getSet) builder.getSet()
 
     let type = value
-    if (isObj(value)) {
+    if (isObjOrArray(value)) {
+      // @@DEBUGGER
+
       // could just assign to type
       const traversableValidator = schemaBuilder(key, value)
 
@@ -89,5 +88,5 @@ module.exports = function(obj) {
     builder.type(type).build()
   }
 
-  return this
+  return parent
 }

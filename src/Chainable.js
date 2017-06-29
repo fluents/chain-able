@@ -7,7 +7,6 @@ const isSet = require('./deps/is/set')
 const isUndefined = require('./deps/is/undefined')
 const isString = require('./deps/is/string')
 const ObjectKeys = require('./deps/util/keys')
-const charCodeAtZero = require('./deps/util/charCodeAtZero')
 const ObjectDefine = require('./deps/define')
 const ignored = require('./deps/ignored')
 const ENV_DEVELOPMENT = require('./deps/env/dev')
@@ -211,7 +210,7 @@ const C = SuperClass => {
        * if (hint === 'string' && this.toJSON) return this.toJSON()
        * else if (hint === 'number' && this.toNumber) return this.toNumber()
        */
-      if ((charCodeAtZero(hint) & 4) && this.toNumber) return this.toNumber()
+      if (hint === 'number' && this.toNumber) return this.toNumber()
 
       // hint === 'string'
       if (this.toJSON) return this.toJSON()
@@ -221,35 +220,26 @@ const C = SuperClass => {
     }
   }
 
-  function defineOnChainable(Chain) {
-    /**
-     * @since 0.5.0
-     * @example for (var i = 0; i < chain.length; i++)
-     * @see ChainedMap.store
-     * @return {number}
-     */
-    ObjectDefine(Chain, 'length', {
-      enumerable: false,
-      get() {
-        return this.store.size
-      },
-    })
-    ObjectDefine(Chain, Instance, {
-      enumerable: false,
-      value: instance => {
-        return !!(
-          instance &&
-          (isPrototypeOf(Chain, instance) || instance.store)
-        )
-        // not-needed
-        // instance.className ||
-        // instance.meta)
-      },
-    })
-  }
+  const ChainPrototype = Chainable.prototype
 
-  // defineOnChainable(Chainable)
-  defineOnChainable(Chainable.prototype)
+  /**
+   * @since 0.5.0
+   * @example for (var i = 0; i < chain.length; i++)
+   * @see ChainedMap.store
+   * @return {number}
+   */
+  ObjectDefine(ChainPrototype, 'length', {
+    enumerable: false,
+    get() {
+      return this.store.size
+    },
+  })
+  ObjectDefine(ChainPrototype, Instance, {
+    enumerable: false,
+    value: instance =>
+      instance && (isPrototypeOf(ChainPrototype, instance) || instance.store),
+  })
+
   return Chainable
 }
 

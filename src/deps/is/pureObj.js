@@ -1,6 +1,6 @@
 const isObjLoose = require('./objLoose')
-const isNull = require('./null')
+const isNullOrUndef = require('./nullOrUndefined')
 
 // @TODO: !Array.isArray?
 // https://github.com/sindresorhus/is-obj/blob/master/index.js
-module.exports = x => !isNull(x) && isObjLoose(x)
+module.exports = x => !isNullOrUndef(x) && isObjLoose(x)

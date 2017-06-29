@@ -1,10 +1,10 @@
-const test = require('ava')
 const log = require('fliplog')
-const Chain = require('../dist')
+const Chain = require('../src')
 
-test.todo('keys can be mapped in reverse for back to api!')
+const todo = console.log
+todo('keys can be mapped in reverse for back to api!')
 
-test('keys can be remapped', t => {
+test('keys can be remapped', () => {
   // window.remapTest.from({eh: 'canada eh!', dis: 'like dis n like dat n like dis uh huh', mchammer: 'cannot touch this'})
   class RemapTest extends Chain {
     constructor(parent) {
@@ -18,26 +18,26 @@ test('keys can be remapped', t => {
   }
 
   const remap = new RemapTest().from({dis: 'dis', eh: 'eh', other: true})
-  t.true(remap.get('dat') === 'dis')
-  t.true(remap.get('canada') === 'eh')
-  t.true(remap.get('other'))
+  expect(remap.get('dat') === 'dis').toBe(true)
+  expect(remap.get('canada') === 'eh').toBe(true)
+  expect(remap.get('other')).toBe(true)
 })
 
-test('keys can be remapped - using .set not .from', t => {
+test('keys can be remapped - using .set not .from', () => {
   const remap = new Chain().remap('dis', 'dat').remap('eh', 'canada')
-  t.true(remap.set('dis', '___').get('dat') === '___')
-  t.true(remap.set('eh', '___').get('canada') === '___')
+  expect(remap.set('dis', '___').get('dat') === '___').toBe(true)
+  expect(remap.set('eh', '___').get('canada') === '___').toBe(true)
 })
-test('keys can be remapped - using an object', t => {
+test('keys can be remapped - using an object', () => {
   const remap = new Chain().remap({
     dis: 'dat',
     eh: 'canada',
   })
-  t.true(remap.set('dis', '___').get('dat') === '___')
-  t.true(remap.set('eh', '___').get('canada') === '___')
+  expect(remap.set('dis', '___').get('dat') === '___').toBe(true)
+  expect(remap.set('eh', '___').get('canada') === '___').toBe(true)
 })
 
-test('values can be transformed', t => {
+test('values can be transformed', () => {
   class TransformTest extends Chain {
     constructor(parent) {
       super(parent)
@@ -47,7 +47,7 @@ test('values can be transformed', t => {
   }
 
   const transform = new TransformTest().set('dis', 'string')
-  t.true(transform.get('dis') === 'string')
+  expect(transform.get('dis') === 'string').toBe(true)
   transform.set('dis', {id: 'string'})
-  t.true(transform.get('dis') === 'string')
+  expect(transform.get('dis') === 'string').toBe(true)
 })

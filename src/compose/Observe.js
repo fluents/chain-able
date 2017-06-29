@@ -2,8 +2,8 @@ const toarr = require('../deps/to-arr')
 const traverse = require('../deps/traverse')
 const eq = require('../deps/traversers/eq')
 const match = require('../deps/matcher')
-const getPathSegments = require('../deps/dot-segments')
-const dot = require('../deps/dot-prop')
+const getPathSegments = require('../deps/dot/segments')
+const dot = require('../deps/dot')
 const OBSERVERS_KEY = require('../deps/meta/observers')
 
 // scoped clones

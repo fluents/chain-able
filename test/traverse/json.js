@@ -1,7 +1,6 @@
-var test = require('ava')
 var traverse = require('./')
 
-test('json test', t => {
+test('json test', () => {
   var id = 54
   var callbacks = {}
   var obj = {moo() {}, foo: [2, 3, 4, function() {}]}
@@ -14,39 +13,21 @@ test('json test', t => {
     }
   })
 
-  t.deepEqual(scrubbed.moo, '[Function]', 'obj.moo replaced with "[Function]"')
+  expect(scrubbed.moo).toEqual('[Function]')
 
-  t.deepEqual(
-    scrubbed.foo[3],
-    '[Function]',
-    'obj.foo[3] replaced with "[Function]"'
-  )
+  expect(scrubbed.foo[3]).toEqual('[Function]')
 
-  t.deepEqual(
-    scrubbed,
-    {
-      moo: '[Function]',
-      foo: [2, 3, 4, '[Function]'],
-    },
-    'Full JSON string matches'
-  )
+  expect(scrubbed).toEqual({
+    moo: '[Function]',
+    foo: [2, 3, 4, '[Function]'],
+  })
 
-  t.deepEqual(typeof obj.moo, 'function', 'Original obj.moo still a function')
+  expect(typeof obj.moo).toEqual('function')
 
-  t.deepEqual(
-    typeof obj.foo[3],
-    'function',
-    'Original obj.foo[3] still a function'
-  )
+  expect(typeof obj.foo[3]).toEqual('function')
 
-  t.deepEqual(
-    callbacks,
-    {
-      54: {id: 54, f: obj.moo, path: ['moo']},
-      55: {id: 55, f: obj.foo[3], path: ['foo', '3']},
-    },
-    'Check the generated callbacks list'
-  )
-
-  t.pass()
+  expect(callbacks).toEqual({
+    54: {id: 54, f: obj.moo, path: ['moo']},
+    55: {id: 55, f: obj.foo[3], path: ['foo', '3']},
+  })
 })

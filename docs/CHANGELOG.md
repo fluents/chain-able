@@ -1,32 +1,50 @@
-# 4.0.0-alpha.2
+# 4.0.0-beta.2
+- 🔬 tests 🃏
+  - 🃏 convert to jest
+  - more +tests
+  - ♻️ abstract dist api tests + type tests
+  - 🔬 ava for built
+  - 🃏👕🔌 jest lint plugin
+- 🏗 build
+  - 🎡 playground for rollup uglify testing repl style
+  - 🖥🛁 cli clean on postpublish
+  - 🏰🗞️ refactor to use rollup node api
+  - 🔊 debugger build replacement export for easy usage with `debugger`ing by clients
+  - ⚙ fix editor config
+  - 💣🛅 fuse-box scope hoisting run - close to rollup size!
+  - 🛁 clean & comment fuse.js
+  - 📜📒 all scripts moved to makefile
+  - 📛 🎡 playground badge
+  - ⚡ enable optimizejs
+  - 📦🐈 use yarn to run makefile scripts instead of npm
+  - 💸💚 cache for travis
 - 📘 examples
-  - adding examples
-  - adding examples submodule/repo
-  - adding decorators
+  - + examples
+  - + examples submodule/repo
+  - + decorators
   - 🍭 not-bundled/exported importable decorators
+  - flatten the examples folder
+  - 📖 lots more docs
 - 🏰 refactor
   - ⛓ MethodChain
-    - 🌐 add name to onValid onInvalid
+    - ❗🌐 add name/key as first arg in .onValid .onInvalid
     - 🔌 plugins for ^
   - ⛑ encase - MAJOR remove .rethrow - put into error enhancer
 - 🖇 utils/deps
-  - 🎁 add eqeq
-  - 🎁 add `not`
+  - 🎁 add `conditional`
+    - `eq`, `not`, `or`, `and`, `some`, `all`, `includes`
   - ♻️ abstract getPrototypeOf
-  - 📒🚚 move dopemerge & validators/types & reduce/
   - ⚒ fix some types
-- 🌐 api/core
+  - 🐣 isNotNested schema validation fix
+  - rename ezType -> simpleKindOf
+- 📒🚚 move
+  - dopemerge & validators/types & reduce/ & dot-prop
 - 👣 traverser
   - 🛁 clean
   - ℹ️️ more docs
   - 🎁 map & set support https://github.com/fluents/chain-able/issues/21
-- 🏗 minor build updates
-  - ⚙ fix editor config
-  - 💣🛅 fuse-box scope hoisting run - close to rollup size!
-  - 🛁 clean & comment fuse.js
-  - 🍶📜 more scripts in makefile
 
-# 4.0.0-alpha.1 https://github.com/fluents/chain-able/releases/tag/v4.0.0-alpha.1
+# 4.0.0-beta.1 https://github.com/fluents/chain-able/releases/tag/v4.0.0-alpha.1
 - test cov 90 -> 96%
 - MAJOR
   - .when(string) string now checks .has

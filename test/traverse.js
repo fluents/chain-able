@@ -1,8 +1,7 @@
-const test = require('ava')
 const log = require('fliplog')
-const Chain = require('../dist')
+const Chain = require('../src')
 
-test('traversal with function callback for vals and keys', t => {
+test('traversal with function callback for vals and keys', () => {
   const result = new Chain()
     .merge({flat: 0, three: 3, one: {two: true}})
     .traverse(false)
@@ -10,22 +9,23 @@ test('traversal with function callback for vals and keys', t => {
     .vals([val => val === 0])
     .call(true)
 
-  t.deepEqual(result, {one: {two: true}})
+  expect(result).toEqual({one: {two: true}})
 })
 
-test.todo('with .onNonMatch')
+const todo = console.log
+todo('with .onNonMatch')
 
-test('traversal with .onMatch', t => {
-  t.plan(4)
+test('traversal with .onMatch', () => {
+  expect.assertions(4)
   new Chain()
     .merge({flat: 0, one: {two: true}})
     .traverse(false)
     .vals([/true/])
     .onMatch((current, traverser) => {
-      t.deepEqual(traverser.path.join('.'), 'one.two')
-      t.true(current === true)
-      t.true(typeof traverser.remove === 'function')
-      t.true(typeof traverser.update === 'function')
+      expect(traverser.path.join('.')).toEqual('one.two')
+      expect(current === true).toBe(true)
+      expect(typeof traverser.remove === 'function').toBe(true)
+      expect(typeof traverser.update === 'function').toBe(true)
     })
     .onNonMatch(val => {
       // ignore
@@ -33,7 +33,7 @@ test('traversal with .onMatch', t => {
     .call(true)
 })
 
-test('traversal', t => {
+test('.traverse(false)', () => {
   const eh = {
     me: true,
     nested: {
@@ -61,7 +61,50 @@ test('traversal', t => {
     .call(true)
 
   // log.quick(cleaned)
-  t.deepEqual(cleaned, {
+  expect(cleaned).toEqual({
+    me: true,
+    nested: {
+      really: {
+        deep: {
+          not: 'eh',
+          canada: true,
+          modules: [{}],
+        },
+        notme: 'eh',
+      },
+    },
+  })
+})
+
+test('.traverse(true)', () => {
+  const eh = {
+    me: true,
+    nested: {
+      really: {
+        deep: {
+          super: false,
+          not: 'eh',
+          canada: true,
+          modules: [{parser: 'hi'}],
+        },
+        matchme: 'minime',
+        notme: 'eh',
+      },
+    },
+  }
+
+  const chain = new Chain()
+  Object.assign(chain, eh)
+  const cleaned = chain
+    .merge(eh)
+    .traverse(true)
+    .keys([/super/, /parser/, /store/, /meta/])
+    .vals([/minime/])
+    .call(true)
+
+  // log.quick(cleaned)
+  expect(cleaned).toEqual({
+    className: 'DotProp',
     me: true,
     nested: {
       really: {

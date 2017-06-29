@@ -1,7 +1,6 @@
-var test = require('ava')
 var traverse = require('./')
 
-test('dateEach', t => {
+test('dateEach', () => {
   var obj = {x: new Date(), y: 10, z: 5}
 
   var counts = {}
@@ -11,26 +10,24 @@ test('dateEach', t => {
     counts[time] = (counts[time] || 0) + 1
   })
 
-  t.deepEqual(counts, {
+  expect(counts).toEqual({
     object: 1,
     Date: 1,
     number: 2,
   })
-  t.pass()
 })
 
-test('dateMap', t => {
+test('dateMap', () => {
   var obj = {x: new Date(), y: 10, z: 5}
 
   var res = traverse(obj).map(function(node) {
     if (typeof node === 'number') this.update(node + 100)
   })
 
-  t.truthy(obj.x !== res.x)
-  t.deepEqual(res, {
+  expect(obj.x !== res.x).toBeTruthy()
+  expect(res).toEqual({
     x: obj.x,
     y: 110,
     z: 105,
   })
-  t.pass()
 })

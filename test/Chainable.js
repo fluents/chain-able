@@ -1,61 +1,59 @@
-const test = require('ava')
 const log = require('fliplog')
-const {Chainable, ChainedMap, ChainedSet, Chain} = require('../dist')
+const {Chainable, ChainedMap, ChainedSet, Chain} = require('../src')
 
-test('can use core Chainable', t => {
+test('can use core Chainable', () => {
   const chain = new Chainable()
-  t.pass()
 })
 
-test('ChainedSet inherits Chainable', t => {
+test('ChainedSet inherits Chainable', () => {
   const chain = new ChainedSet()
-  t.true(chain instanceof Chainable)
+  expect(chain instanceof Chainable).toBe(true)
 })
 
-test('ChainedMap inherits Chainable', t => {
+test('ChainedMap inherits Chainable', () => {
   const chain = new ChainedMap()
-  t.true(chain instanceof Chainable)
+  expect(chain instanceof Chainable).toBe(true)
 })
 
-test('Chain(compose) inherits Chainable', t => {
+test('Chain(compose) inherits Chainable', () => {
   const chain = new Chain()
-  t.true(chain instanceof Chainable)
+  expect(chain instanceof Chainable).toBe(true)
 })
 
 // 'Chainable core methods work as expected'
-test('.end', t => {
+test('.end', () => {
   const parent = {isParent: true}
   const chain = new Chainable(parent)
-  t.deepEqual(chain.end(), parent)
+  expect(chain.end()).toEqual(parent)
 })
 
-test('.when', t => {
-  t.plan(2)
+test('.when', () => {
+  expect.assertions(2)
   const chain = new Chainable()
-  chain.when(true, c => t.true(!!c))
-  chain.when(false, () => {}, c => t.true(!!c))
+  chain.when(true, c => expect(!!c).toBe(true))
+  chain.when(false, () => {}, c => expect(!!c).toBe(true))
 })
 
-test('.has', t => {
-  t.plan(2)
+test('.has', () => {
+  expect.assertions(2)
   const chain = new Chain()
-  t.true(chain.has('not-set') === false)
+  expect(chain.has('not-set') === false).toBe(true)
   chain.set('isset', true)
-  t.true(chain.has('isset') === true)
+  expect(chain.has('isset') === true).toBe(true)
 })
 
-test('.delete', t => {
-  t.plan(1)
+test('.delete', () => {
+  expect.assertions(1)
   const chain = new Chain()
   chain.set('isset', true)
   chain.delete('isset')
-  t.true(chain.has('isset') === false)
+  expect(chain.has('isset') === false).toBe(true)
 })
 
-test('.clear', t => {
-  t.plan(1)
+test('.clear', () => {
+  expect.assertions(1)
   const chain = new Chain()
   chain.set('isset', true)
   chain.clear()
-  t.true(chain.has('isset') === false)
+  expect(chain.has('isset') === false).toBe(true)
 })

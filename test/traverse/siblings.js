@@ -1,7 +1,6 @@
-var test = require('ava')
 var traverse = require('./')
 
-test('siblings', t => {
+test('siblings', () => {
   var obj = {a: 1, b: 2, c: [4, 5, 6]}
 
   var res = traverse(obj).reduce(function(acc, x) {
@@ -23,7 +22,7 @@ test('siblings', t => {
     return acc
   }, {})
 
-  t.deepEqual(res, {
+  expect(res).toEqual({
     '/': {siblings: [], key: undefined, index: -1},
     '/a': {siblings: ['a', 'b', 'c'], key: 'a', index: 0},
     '/b': {siblings: ['a', 'b', 'c'], key: 'b', index: 1},
@@ -32,6 +31,4 @@ test('siblings', t => {
     '/c/1': {siblings: ['0', '1', '2'], key: '1', index: 1},
     '/c/2': {siblings: ['0', '1', '2'], key: '2', index: 2},
   })
-
-  t.pass()
 })

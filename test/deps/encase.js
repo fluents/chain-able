@@ -1,10 +1,9 @@
-const test = require('ava')
 const log = require('fliplog')
-const encase = require('../../dist/deps/encase')
+const encase = require('../../src/deps/encase')
 
 /* istanbul ignore next: depreciated */
-test.failing('encase.rethrow', t => {
-  t.plan(1)
+test.skip('encase.rethrow', () => {
+  expect.assertions(1)
   const encased = encase(function() {
     throw new Error('rethrow yay')
   })
@@ -18,29 +17,29 @@ test.failing('encase.rethrow', t => {
     console.log('value', {value})
   }
   catch (e) {
-    return t.true(e instanceof Error, 'was rethrown')
+    return expect(e instanceof Error).toBe(true)
   }
 
   /* istanbul ignore next: tests fails if this is hit */
-  t.fail()
+  fail()
 })
 
-test('encase - return error', t => {
-  t.plan(1)
+test('encase - return error', () => {
+  expect.assertions(1)
   const encased = encase(function() {
     throw new Error('rethrow yay')
   })
 
   const error = encased()
-  t.true(error instanceof Error)
+  expect(error instanceof Error).toBe(true)
 })
 
-test('encase - result', t => {
-  t.plan(1)
+test('encase - result', () => {
+  expect.assertions(1)
   const encased = encase(function() {
     return true
   })
 
   const result = encased()
-  t.true(result)
+  expect(result).toBe(true)
 })

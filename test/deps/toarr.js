@@ -1,33 +1,32 @@
 // https://github.com/substack/camelize/blob/master/test/camel.js
-const test = require('ava')
 const log = require('fliplog')
-const toarr = require('../../dist/deps/to-arr')
-const isArray = require('../../dist/deps/is/array')
+const toarr = require('../../src/deps/to-arr')
+const isArray = require('../../src/deps/is/array')
 
-test('toarr', t => {
-  const truth = a => t.true(isArray(a))
+test('toarr', () => {
+  const truth = a => expect(isArray(a)).toBe(true)
 
   truth(toarr([]))
   truth(toarr(''))
 
   const eq = (a, b) => {
     for (var prop in a) {
-      t.true(b[prop] == a[prop])
+      expect(b[prop] === a[prop]).toBe(true)
     }
   }
   eq(toarr(''), [''])
   eq(toarr('1,2'), ['1', '2'])
 })
 
-test('toarr - iterator', t => {
+test('toarr - iterator', () => {
   const map = new Map()
   map.set('eh', true)
   const arr = toarr(map.entries())
-  t.true(isArray(arr))
+  expect(isArray(arr)).toBe(true)
 })
 
-test('toarr - !', t => {
+test('toarr - !', () => {
   const arr = toarr('').concat(toarr(false)).concat(toarr(null))
-  t.true(isArray(arr))
-  t.deepEqual(arr, ['', false, null])
+  expect(isArray(arr)).toBe(true)
+  expect(arr).toEqual(['', false, null])
 })

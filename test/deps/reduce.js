@@ -1,13 +1,12 @@
-const test = require('ava')
 const log = require('fliplog')
-const reduceEntries = require('../../dist/deps/reduce-entries')
-const reduce = require('../../dist/deps/reduce')
+const reduceEntries = require('../../src/deps/reduce/entries')
+const reduce = require('../../src/deps/reduce')
 
-test('reduce calls .entries()', t => {
-  t.plan(2)
+test('reduce calls .entries()', () => {
+  expect.assertions(2)
 
   var emptyMap = new Map()
-  t.deepEqual(reduceEntries(reduce(emptyMap))({}), {})
+  expect(reduceEntries(reduce(emptyMap))({})).toEqual({})
 
   const map = new Map()
   map.set('eh', true)
@@ -50,5 +49,5 @@ test('reduce calls .entries()', t => {
     },
   }
 
-  t.deepEqual(ignored, ignoredExpected)
+  expect(ignored).toEqual(ignoredExpected)
 })

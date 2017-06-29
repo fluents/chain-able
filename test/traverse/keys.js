@@ -1,7 +1,6 @@
-var test = require('ava')
 var traverse = require('./index.js')
 
-test('sort test', t => {
+test('sort test', () => {
   var acc = []
   traverse({
     a: 30,
@@ -21,7 +20,5 @@ test('sort test', t => {
     if (this.isLeaf) acc.push(node)
   })
 
-  t.deepEqual(acc.join(' '), '9 30 22', 'Traversal in a custom order')
-
-  t.pass()
+  expect(acc.join(' ')).toEqual('9 30 22')
 })

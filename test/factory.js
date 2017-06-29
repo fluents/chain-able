@@ -1,8 +1,7 @@
-const test = require('ava')
 const log = require('fliplog')
-const {Chain, FactoryChain, ChainedSet} = require('../dist')
+const {Chain, FactoryChain, ChainedSet} = require('../src')
 
-test.failing('factory people', t => {
+test.skip('factory people', () => {
   class Things extends Chain {
     constructor(parent) {
       super(parent)
@@ -41,10 +40,10 @@ test.failing('factory people', t => {
     .email('@')
   // ^ since we called all 3 keys (age, name, email) it auto .end()s
 
-  t.true(things.people.length === 2)
+  expect(things.people.length === 2).toBe(true)
 })
 
-test.failing('factory with .props', t => {
+test.skip('factory with .props', () => {
   class Things extends Chain {
     constructor(parent) {
       super(parent)
@@ -76,11 +75,11 @@ test.failing('factory with .props', t => {
       .name('john')
       .email('@')
 
-  t.true(things.people.length === 2)
+  expect(things.people.length === 2).toBe(true)
 })
 
-test('factory with .getData', t => {
+test('factory with .getData', () => {
   const person = new FactoryChain(this)
   const age = person.props(['name', 'age']).age(10).getData('age')
-  t.true(age === 10)
+  expect(age === 10).toBe(true)
 })

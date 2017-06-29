@@ -1,6 +1,6 @@
-const ObjectKeys = require('./util/keys')
-const isMap = require('./is/map')
-const reduce = require('./reduce')
+const ObjectKeys = require('../util/keys')
+const isMap = require('../is/map')
+const reduce = require('../reduce')
 const dopemerge = require('./dopemerge')
 
 function dopemergeMap(obj1, obj2) {

@@ -27,7 +27,7 @@ function methodEncasingFactory(name, parent, built) {
     const enhanceError = typeError(name, type, fnToEncase, parent)
 
     // if specification is not passed in, undefined defaults to tryCatch
-    const encased = encase(fnToEncase, specification || undefined)
+    const encased = encase(fnToEncase, specification)
 
     // our configured functions, with fallback defaults
     const onSet = built.onCall || built.onSet
