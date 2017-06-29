@@ -85,17 +85,18 @@ module.exports = function(a, b, loose) {
     else if (x === y) {
       // nop
     }
-    else if (isFunction(x)) {
-      if (isRegExp(x)) {
-        // both regexps on account of the __proto__ check
-        if (x.toString() != y.toString()) {
-          notEqual()
-        }
-      }
-      else if (x !== y) {
-        notEqual()
-      }
-    }
+    // @NOTE: .toString will be covered for functions and regexes in PureObject
+    // else if (isRegExp(x)) {
+    //   // both regexps on account of the __proto__ check
+    //   if (x.toString() != y.toString()) {
+    //     notEqual()
+    //   }
+    // }
+    // else if (isFunction(x)) {
+    //   if (x !== y) {
+    //     notEqual()
+    //   }
+    // }
     else if (isPureObj(x)) {
       // @NOTE: this is never called
       // if (toS(y) === '[object Arguments]' || toS(x) === '[object Arguments]') {

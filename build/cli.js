@@ -31,9 +31,10 @@ log.registerCatch()
 // setup args
 // src: [rollup, typescript, buble, babel, browserify, copy/strip]
 const argvOpts = {
-  boolean: ['cov', 'src', 'copy', 'production'],
+  boolean: ['cov', 'src', 'copy', 'production', 'docs'],
   string: ['format'],
   default: {
+    docs: false,
     clean: false,
     tests: false,
     cov: false,
@@ -43,7 +44,7 @@ const argvOpts = {
   },
 }
 const argvs = fwf(process.argv.slice(2), argvOpts)
-const {production, quick, tests, cov, clean} = argvs
+const {production, quick, tests, cov, clean, docs} = argvs
 
 const OPTIMIZE_JS_FILE = 'dists/umd.index.js'
 const TSC_SOURCE = 'dists/dev/index.js'
@@ -151,7 +152,6 @@ class CLI {
   }
   optimizejs(url = OPTIMIZE_JS_FILE) {
     const optimizeJs = require('optimize-js')
-    const {read, write} = require('flipfile')
     const file = require.resolve(url)
     const code = read(file)
     log.diff(code)
@@ -169,7 +169,58 @@ class CLI {
   rollupNode(overrides = {}) {
     return require('./build')(overrides)
   }
+  docs() {
+    var docdown = require('docdown')
+    var find = require('chain-able-find')
+    const entry = res('../src')
+    const found = find
+      .init()
+      .recursive(true)
+      .ignoreDirs(['ignant'])
+      .matchFiles(['**/*.js'])
+      .abs(true)
+      .sync(true)
+      .find(entry)
+      .results()
+    var markdowns = {}
+    var outputs = {}
+    // log.quick(found)
+    found.map(filepath => {
+      // log.quick({
+      //   path: filepath,
+      //   url:
+      //     'https://github.com/fluents/chain-able/blob/master' +
+      //       filepath.replace(res('../'), ''),
+      // })
+      const relatived = filepath.replace(res('../'), '')
+      var markdown = docdown({
+        path: filepath,
+        url: 'https://github.com/fluents/chain-able/blob/master' + relatived,
+      })
 
+      const filepathBasename = relatived.replace('/src/', '')
+      const docpath = (res('../docs/docdown/') +
+        '/' +
+        filepathBasename).replace('.js', '.md')
+      markdowns[filepathBasename] = markdown
+      outputs[docpath] = markdown
+      write(docpath, markdown)
+    })
+
+    // log.quick(outputs)
+    // log.quick(Object.keys(outputs))
+    // log.quick(Object.keys(markdowns))
+
+    // var walk = require('./util/walk')
+    // var dirs = walk(res('../src'))
+
+    // dirs.forEach(filePath => {
+    // var markdown = docdown({
+    //   path: filepath,
+    //   url: 'https://github.com/fluents/d/blob/master/my.js',
+    // })
+    // })
+  }
   buble() {
     const sourcemaps = true
     const scripts = new Script()
@@ -345,6 +396,10 @@ async function publishing() {
 }
 
 async function all() {
+  if (docs) {
+    await cli.docs()
+    process.exit()
+  }
   if (!quick) await src()
   // if (tests) {
   //   await compileTests()

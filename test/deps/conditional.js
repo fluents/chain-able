@@ -10,7 +10,6 @@ const not = require('../../src/deps/conditional/not')
 const some = require('../../src/deps/conditional/some')
 const eq = require('../../src/deps/conditional/eq')
 const includes = require('../../src/deps/conditional/includes')
-const includesAnyOrAll = require('../../src/deps/conditional/includes/anyOrAll')
 const includesAll = require('../../src/deps/conditional/includes/all')
 const includesAny = require('../../src/deps/conditional/includes/any')
 const stress = require('../_stress')
@@ -76,12 +75,6 @@ test('includes', () => {
   expect(includes(['haystack'], 'hay')).toBe(false)
   // stress(includes)
 })
-test('includesAnyOrAll', () => {
-  expect(includesAnyOrAll('hay', 'hay')).toBe(true)
-  expect(includesAnyOrAll(['any'], 'any')).toBe(true)
-  expect(includesAnyOrAll(['none'], 'any')).toBe(false)
-  // stress(includesAnyOrAll)
-})
 test('includesAll', () => {
   expect(includesAll('hay', 'hay')).toBe(true)
   expect(includesAll(['any'], 'any')).toBe(true)
@@ -93,5 +86,12 @@ test('includesAny', () => {
   expect(includesAny(['any'], 'any')).toBe(true)
   expect(includesAny(['none'], 'any')).toBe(false)
   expect(includesAny('none', 'any')).toBe(false)
+  // was marked rom anyOrAll but removed
+  expect(includesAny('hay'.split(''), 'hay')).toBe(true)
+  expect(includesAny('any'.split(''), 'any')).toBe(true)
+
+  // has `n`
+  expect(includesAny(['n', '0', 'n', 'e'], 'any')).toBe(true)
+  // stress(includesAnyOrAll)
   // stress(includesAny)
 })
