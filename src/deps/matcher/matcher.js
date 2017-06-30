@@ -1,13 +1,13 @@
 /**
  * @member matcher
  * @see https://github.com/sindresorhus/matcher/blob/master/index.js
+ * @symb 🎯
  */
-
-const toarr = require('./to-arr')
+const ObjectAssign = require('../util/assign')
+const isMatcher = require('../is/matcher')
+const cache = require('../cache')
+const toarr = require('../to-arr')
 const toRegExp = require('./to-regexp')
-const isMatcher = require('./is/matcher')
-const ObjectAssign = require('./util/assign')
-const cache = require('./cache')
 
 const m = {}
 
@@ -15,6 +15,7 @@ const m = {}
  * @desc turn any string[], function[], or RegExp[] into a matcher
  * @memberOf matcher
  * @since 3.0.0
+ * @func make
  *
  * @param  {Array<string> | string | Function | RegExp} pattern a matchable pattern
  * @param  {boolean | undefined} shouldNegate turn into a negated regex
@@ -79,8 +80,11 @@ m.make = (pattern, shouldNegate, alphaOmega) => {
 }
 
 /**
- * @since 3.0.0
  * @desc same as .make but also accepts inputs, and returns an array
+ * @memberOf matcher
+ * @func match
+ * @since 3.0.0
+ *
  * @param  {Array<string> | string} inputs input to use patterns as predicates on
  * @param  {Array<string> | string | Function | RegExp} patterns predicates to match with, transformed to Matcher
  * @param  {boolean | undefined} shouldNegate should negate, passed to matcher.make
@@ -88,7 +92,7 @@ m.make = (pattern, shouldNegate, alphaOmega) => {
  * @return {Array<any>}
  *
  * @see Matcher.make
- *
+ * @see compose/Observe
  *
  * @example
  *
@@ -148,5 +152,8 @@ m.matcher = (inputs, patterns, shouldNegate, alphaOmega) => {
 
   return matchesToReturn
 }
+
+/** @TODO: replace to-test **/
+// m.test = (inputs, patterns) => m.matcher(inputs, patterns).length !== 0
 
 module.exports = ObjectAssign(m.matcher, m)

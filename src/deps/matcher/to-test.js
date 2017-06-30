@@ -1,6 +1,6 @@
+const isString = require('../is/string')
+const isFunction = require('../is/function')
 const esc = require('./escape-string-regex')
-const isString = require('./is/string')
-const isFunction = require('./is/function')
 
 /**
  * @desc like matcher, but .isMatch

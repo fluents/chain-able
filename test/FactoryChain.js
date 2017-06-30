@@ -1,7 +1,7 @@
 const log = require('fliplog')
 const {Chain, FactoryChain, ChainedSet} = require('../src')
 
-test.skip('factory people', () => {
+test('factory people', () => {
   class Things extends Chain {
     constructor(parent) {
       super(parent)
@@ -15,7 +15,7 @@ test.skip('factory people', () => {
         .prop('name')
         .prop('age')
         .prop('email')
-        .chainUpDown(this.person)
+        .onChainUpDown(this.person)
         .chainUpDowns(['person'])
         .onDone(personChain => {
           this.people.add(personChain)
@@ -40,10 +40,10 @@ test.skip('factory people', () => {
     .email('@')
   // ^ since we called all 3 keys (age, name, email) it auto .end()s
 
-  expect(things.people.length === 2).toBe(true)
+  expect(things.people.length).toBe(2)
 })
 
-test.skip('factory with .props', () => {
+test('factory with .props', () => {
   class Things extends Chain {
     constructor(parent) {
       super(parent)
@@ -53,7 +53,7 @@ test.skip('factory with .props', () => {
       const person = new FactoryChain(this)
       person
         .props(['name', 'age', 'email'])
-        .chainUpDown(this.person)
+        .onChainUpDown(this.person)
         .chainUpDowns(['person'])
         .onDone(personChain => {
           this.people.add(personChain)
@@ -81,5 +81,5 @@ test.skip('factory with .props', () => {
 test('factory with .getData', () => {
   const person = new FactoryChain(this)
   const age = person.props(['name', 'age']).age(10).getData('age')
-  expect(age === 10).toBe(true)
+  expect(age).toBe(10)
 })
