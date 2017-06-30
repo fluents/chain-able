@@ -1,4 +1,4 @@
-const isPureObj = require('../is/pureObj')
+const isObjStrict = require('../is/objStrict')
 const isArray = require('../is/array')
 const isTrue = require('../is/true')
 const ObjectKeys = require('../util/keys')
@@ -14,7 +14,7 @@ const includes = require('../conditional/includes')
 // 1: not null object
 // 2: object toString is not a date or regex
 function isMergeableObj(val) {
-  return isPureObj(val) && !isRegExp(val) && !isDate(val)
+  return isObjStrict(val) && !isRegExp(val) && !isDate(val)
 }
 function emptyTarget(val) {
   return isArray(val) ? [] : {}

@@ -1,5 +1,6 @@
 const ObjectKeys = require('../util/keys')
 const isMap = require('../is/map')
+const isFalse = require('../is/false')
 const reduce = require('../reduce')
 const dopemerge = require('./dopemerge')
 
@@ -34,7 +35,7 @@ function dopemergeMap(obj1, obj2) {
   const keys = ObjectKeys(src)
   for (var i = 0; i < keys.length; i++) {
     const key = keys[i]
-    if (dest.has(key) === false) {
+    if (isFalse(dest.has(key))) {
       dest.set(key, src[key])
     }
     else {

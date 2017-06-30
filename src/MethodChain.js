@@ -1,7 +1,14 @@
 /**
  * @TODO clarify .set vs .call
- * @see https://github.com/iluwatar/java-design-patterns/tree/master/property
- * @see https://github.com/iluwatar/java-design-patterns/tree/master/prototype
+ * {@link https://github.com/iluwatar/java-design-patterns/tree/master/property property-pattern}
+ * {@link https://github.com/iluwatar/java-design-patterns/tree/master/prototype prototype-pattern}
+ * {@link https://github.com/iluwatar/java-design-patterns/tree/master/step-builder step-builder-pattern}
+ * {@link https://github.com/iluwatar/java-design-patterns/tree/master/builder builder-pattern}
+ * {@link https://github.com/addyosmani/essential-js-design-patterns/blob/master/diagrams/mixins.png mixin-png}
+ * {@link https://sourcemaking.com/design_patterns/creational_patterns creational-patterns}
+ * {@link https://sourcemaking.com/design_patterns/factory_method factory-method}
+ * {@link https://medium.com/javascript-scene/javascript-factory-functions-vs-constructor-functions-vs-classes-2f22ceddf33e constructors}
+ * {@link https://www.sitepoint.com/factory-functions-javascript/ js-factory-functions}
  */
 /* eslint complexity: "OFF" */
 /* eslint import/max-dependencies: "OFF" */
@@ -17,7 +24,8 @@ const objPlugin = require('./plugins/obj')
 const encasePlugin = require('./plugins/encase')
 const decoratePlugin = require('./plugins/decorate')
 const autoIncrementPlugin = require('./plugins/autoIncrement')
-const validatorBuilder = require('./deps/validators/validatorBuilder')
+const autoGetSetPlugin = require('./plugins/autoGetSet')
+// const validatorBuilder = require('./deps/validators/validatorBuilder')
 // obj
 const hasOwnProperty = require('./deps/util/hasOwnProperty')
 const getDescriptor = require('./deps/util/getDescriptor')
@@ -34,6 +42,8 @@ const isObj = require('./deps/is/obj')
 const isArray = require('./deps/is/array')
 const isUndefined = require('./deps/is/undefined')
 const isTrue = require('./deps/is/true')
+const isFalse = require('./deps/is/false')
+const isObjWithKeys = require('./deps/is/objWithKeys')
 
 const DEFAULTED_KEY = 'defaulted'
 const METHOD_KEYS = [
@@ -75,7 +85,7 @@ function aliasFactory(name, parent, aliases) {
 //   return new MethodChain(this.obj)
 // }
 
-const plugins = {}
+let methodFactories
 
 /**
  * @member MethodChain
@@ -147,7 +157,7 @@ class MethodChain extends ChainedMap {
     this.alias = aliases =>
       this.tap('alias', (old, merge) => merge(old, toarr(aliases)))
     this.plugin = plugin =>
-      this.tap('plugns', (old, merge) => merge(old, toarr(plugin)))
+      this.tap('plugins', (old, merge) => merge(old, toarr(plugin)))
 
     this.camelCase = () => set('camel', true)
 
@@ -158,9 +168,18 @@ class MethodChain extends ChainedMap {
     // @TODO: unless these use scoped vars, they should be on proto
     // @NOTE shorthands.bindMethods
     this.bind = target => set('bind', isUndefined(target) ? parent : target)
-    // this.autoGetSet = () => this.plugin(autoGetSetPlugin)
+    this.autoGetSet = () => this.plugin(autoGetSetPlugin)
 
     this.plugin(typesPlugin)
+
+    if (isObjWithKeys(methodFactories)) {
+      ObjectKeys(methodFactories).forEach(factoryName => {
+        this[factoryName] = arg => methodFactories[factoryName].call(this, arg)
+        if (ENV_DEVELOPMENT) {
+          this[factoryName].methodFactory = true
+        }
+      })
+    }
   }
 
   /**
@@ -311,12 +330,13 @@ class MethodChain extends ChainedMap {
   /**
    * @protected
    * @since 4.0.0-alpha.1
+   * @memberOf MethodChain
    *
    * @param {Primitive} name
    * @param {Object} parent
    * @return {void}
    *
-   * @TODO allow config of method var in plugns since it is scoped...
+   * @TODO allow config of method var in plugins since it is scoped...
    * @TODO add to .meta(shorthands)
    * @TODO reduce complexity if perf allows
    * @NOTE scoping here adding default functions have to rescope arguments
@@ -331,7 +351,7 @@ class MethodChain extends ChainedMap {
       existing = getDescriptor(parent, name)
 
       // avoid `TypeError: Cannot redefine property:`
-      if (existing.configurable === false) {
+      if (isFalse(existing.configurable)) {
         return
       }
 
@@ -354,18 +374,18 @@ class MethodChain extends ChainedMap {
       this.onCall(method).onSet(method)
     }
 
-    // scope it once for plugns & type building, then get it again
+    // scope it once for plugins & type building, then get it again
     let built = entries()
 
     this._defaults(name, parent, built)
 
-    // plugns can add methods,
+    // plugins can add methods,
     // useful as plugins/presets & decorators for multi-name building
-    const plugns = built.plugns
-    if (plugns) {
-      for (let plugin = 0; plugin < plugns.length; plugin++) {
+    const instancePlugins = built.plugins
+    if (instancePlugins) {
+      for (let plugin = 0; plugin < instancePlugins.length; plugin++) {
         built = entries()
-        plugns[plugin].call(this, name, parent, built)
+        instancePlugins[plugin].call(this, name, parent, built)
       }
     }
 
@@ -532,6 +552,7 @@ class MethodChain extends ChainedMap {
   /**
    * @desc add methods to the parent for easier chaining
    * @alias extendParent
+   * @memberOf MethodChain
    *
    * @since 4.0.0-beta.1 <- moved to plugin
    * @since 4.0.0 <- moved from Extend
@@ -592,6 +613,7 @@ class MethodChain extends ChainedMap {
    *
    */
   decorate(parentToDecorate) {
+    /* istanbul ignore next: ENV_DEBUG_OR_DEV */
     if (ENV_DEVELOPMENT) {
       if (!(parentToDecorate || this.parent.parent)) {
         throw new Error('must provide parent argument')
@@ -605,6 +627,7 @@ class MethodChain extends ChainedMap {
    *        @modifies this.initial
    *        @modifies this.onCall
    *
+   * @memberOf MethodChain
    * @since 4.0.0-beta.1 <- moved to plugin
    * @since 4.0.0 <- renamed from .extendIncrement
    * @since 0.4.0
@@ -626,12 +649,12 @@ class MethodChain extends ChainedMap {
 }
 
 /**
- * @desc add plugins easily
+ * @desc add methodFactories easily
  * @static
  * @since 4.0.0-beta.2
  *
- * @param {Plugin} plugin plugin to add
- * @return {MethodChain} @chainable
+ * @param {Object} methodFactory factories to add
+ * @return {void}
  *
  * @example
  *
@@ -655,39 +678,14 @@ class MethodChain extends ChainedMap {
  *   //=> 1 *
  *
  */
-MethodChain.addPlugin = plugin => {
-  plugins.push(plugins)
-  return MethodChain
+MethodChain.add = function addMethodFactories(methodFactory) {
+  ObjectAssign(methodFactories, methodFactory)
 }
+methodFactories = MethodChain.add
 
-/**
- * @static
- *
- * @since 4.0.0 <- used with schema, used in method chain
- * @since 3.0.0 <- took out
- * @since 1.0.0
- *
- * @param  {Object} types custom Types
- * @return {MethodChain} @chainable
- *
- * @see deps/validators/validatorFactory
- *
- * @example
- *
- *   MethodChain.addTypes({yaya: x => typeof x === 'string'})
- *
- *   const chain = new Chain().methods('eh').type('yaya').build()
- *
- *   chain.eh('good')
- *   //=> chain
- *
- *   chain.eh(!!'throws')
- *   //=> TypeError(false != {yaya: x => typeof x === 'string'})
- *
- */
-MethodChain.addTypes = types => {
-  validatorBuilder.merge(types)
-  return MethodChain
-}
+// MethodChain.addTypes = types => {
+//   validatorBuilder.merge(types)
+//   return MethodChain
+// }
 
 module.exports = MethodChain
