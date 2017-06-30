@@ -1,26 +1,24 @@
 const ChainedMapBase = require('./ChainedMapBase')
 const traverse = require('./deps/traverse')
-const tester = require('./deps/to-test')
 const isTrue = require('./deps/is/true')
-
-// @TODO: should use matcher,
-// @TODO: should inprove the callback data...
-const matchFactory = (keys, vals) => (prop, val) => {
-  for (let i = 0; i < keys.length; i++) {
-    if (tester(keys[i], prop, val)) return true
-  }
-  for (let i = 0; i < vals.length; i++) {
-    if (tester(vals[i], val, prop)) return true
-  }
-  return false
-}
+const matchFactory = require('./deps/matcher/any-key-val')
 
 const TRAVERSED_KEY = 1
+const EXTENSION_KEYS = ['obj', 'keys', 'vals', 'onNonMatch', 'onMatch', 'clone']
 
 /**
  * @since 1.0.0
  * @type {Map}
  * @extends {ChainedMapBase}
+ *
+ * @memberOf Chainable
+ * @member Traverse
+ * @see deps/traverse
+ * @category traverse
+ * @types TraverseChain
+ * @tests TraverseChain
+ * @symb 👣
+ *
  * @prop {Object} obj
  * @prop {Array<Matcher>} [keys]
  * @prop {Array<Matcher>} [vals]
@@ -32,6 +30,11 @@ module.exports = class Traverser extends ChainedMapBase {
   /**
    * @inheritdoc
    * @modifies this.call
+   *
+   * @example
+   *
+   *    new Traverser({})
+   *
    */
   constructor(parent) {
     super(parent)
@@ -39,10 +42,10 @@ module.exports = class Traverser extends ChainedMapBase {
 
     /* prettier-ignore */
     this
-      .set('keys', [])
-      .set('vals', [])
-      .set('onMatch', (arg, traverser) => traverser.remove())
-      .extend(['obj', 'keys', 'vals', 'onNonMatch', 'onMatch', 'clone'])
+      .extend(EXTENSION_KEYS)
+      .keys([])
+      .vals([])
+      .onMatch((arg, traverser) => traverser.remove())
   }
 
   /**
@@ -53,6 +56,8 @@ module.exports = class Traverser extends ChainedMapBase {
    * @since 1.0.0
    * @param  {boolean} [shouldReturn=false] returns traversed object
    * @return {any} this.obj/data cleaned
+   *
+   * @memberOf TraverseChain
    *
    * @example
    *
@@ -105,7 +110,7 @@ module.exports = class Traverser extends ChainedMapBase {
 
   /**
    * @since 1.0.0
-   * @see this.traverse
+   * @see TraverseChain.traverse
    * @return {Object | Array | any} traversed
    *
    * @example
