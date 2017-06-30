@@ -1,4 +1,8 @@
 const Instance = require('../../src/deps/symbols/instance')
+const isGenerator = require('../../src/deps/is/generator')
+const isPromise = require('../../src/deps/is/promise')
+const isAsync = require('../../src/deps/is/async')
+const isAsyncish = require('../../src/deps/is/asyncish')
 const ObjectDefine = require('../../src/deps/define')
 const stress = require('../_stress')
 const {isMap, isSet, isFunction, isObjWithKeys, isPrototypeOf} = require('./')
@@ -66,7 +70,11 @@ const datas = [
   Map,
   Symbol,
 ]
-
+var generatorFunction = function* named() {
+  return true
+}
+async function asyncFunction() {}
+const emptyPromise = new Promise(r => r)
 const datasObjs = [
   new String('str'),
   Object.assign(anon2, {keys: true}),
@@ -128,4 +136,61 @@ test('isPrototypeOf on instance', () => {
 
   expect(new RegExp() instanceof SubProto).toBe(false)
   expect(sub instanceof SubProto).toBe(true)
+})
+
+test('isPromise', () => {
+  expect(isPromise(emptyPromise)).toBe(true)
+  expect(isPromise(asyncFunction)).toBe(false)
+
+  expect(isPromise({})).toBe(false)
+  expect(isPromise(Object.create(null))).toBe(false)
+  expect(isPromise(null)).toBe(false)
+  expect(isPromise(new Set())).toBe(false)
+  expect(isPromise(function() {})).toBe(false)
+  expect(isPromise('')).toBe(false)
+  expect(isPromise(1)).toBe(false)
+  stress(isPromise)
+})
+
+test('isGenerator', () => {
+  expect(isGenerator(generatorFunction)).toBe(true)
+
+  expect(isGenerator(emptyPromise)).toBe(false)
+  expect(isGenerator(asyncFunction)).toBe(false)
+  expect(isGenerator({})).toBe(false)
+  expect(isGenerator(Object.create(null))).toBe(false)
+  expect(isGenerator(null)).toBe(false)
+  expect(isGenerator(new Set())).toBe(false)
+  expect(isGenerator(function() {})).toBe(false)
+  expect(isGenerator('')).toBe(false)
+  expect(isGenerator(1)).toBe(false)
+  stress(isGenerator)
+})
+
+test('isAsync & isAsyncish', () => {
+  expect(isAsync(asyncFunction)).toBe(true)
+  expect(isAsync(emptyPromise)).toBe(false)
+
+  expect(isAsync(generatorFunction)).toBe(false)
+  expect(isAsync({})).toBe(false)
+  expect(isAsync(Object.create(null))).toBe(false)
+  expect(isAsync(null)).toBe(false)
+  expect(isAsync(new Set())).toBe(false)
+  expect(isAsync(function() {})).toBe(false)
+  expect(isAsync('')).toBe(false)
+  expect(isAsync(1)).toBe(false)
+
+  expect(isAsyncish(asyncFunction)).toBe(true)
+  expect(isAsyncish(emptyPromise)).toBe(true)
+
+  expect(isAsyncish(generatorFunction)).toBe(false)
+  expect(isAsyncish({})).toBe(false)
+  expect(isAsyncish(Object.create(null))).toBe(false)
+  expect(isAsyncish(null)).toBe(false)
+  expect(isAsyncish(new Set())).toBe(false)
+  expect(isAsyncish(function() {})).toBe(false)
+  expect(isAsyncish('')).toBe(false)
+  expect(isAsyncish(1)).toBe(false)
+  stress(isAsync)
+  stress(isAsyncish)
 })
