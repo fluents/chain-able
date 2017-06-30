@@ -9,7 +9,11 @@ const isError = require('../is/error')
 const validationBuilder = require('./validatorBuilder')
 
 const isNotNested = x =>
-  isStringOrNumber(x) || isBoolean(x) || !isReal(x) || isError(x) || isRegExp(x)
+  isStringOrNumber(x) ||
+  isBoolean(x) ||
+  !isReal(x) ||
+  isError(x) ||
+  isRegExp(x)
 
 const validateType = (type, value, nestedSchema) => {
   const validator = nestedSchema || validationBuilder(type)
@@ -121,7 +125,7 @@ const schemaFactory = (property, nestedSchema) => {
     return true
   }
 
-  /* istanbul ignore next: ENV_DEBUG_OR_DEV */
+  /* istanbul ignore next: devs */
   if (ENV_DEVELOPMENT) {
     typeValidator.inspect = () => ({property, nestedSchema})
     typeValidator.toString = () =>

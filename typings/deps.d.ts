@@ -17,9 +17,6 @@ import {
 import {ChainedMapI, Composable, MethodChain} from './_mediator'
 import {MergeChain, dopemerge} from './merge'
 
-// loose = false
-export declare function eq(one: any, two: any, loose?: boolean): boolean
-
 export declare function camelCase(str: string): string
 export declare function toarr(arr: Arr): Arr
 
@@ -34,29 +31,6 @@ export interface DotPropSegments {
 }
 export interface DotPropPaths {
   (key: Primitive, value: Traversable, longest?: boolean): Array<string>
-}
-export function escapeStringRegExp(str: string): string
-// calls escapeStringRegExp
-export function toRegExp(str: string): string
-export function toTest(matchable: Matchable): boolean
-export function uniq(value: any, index: number, arr: Arr): boolean
-export function define(obj: Object, name: Primitive, descriptor: Object): never
-export function concat(one: any, two: any): Array<any>
-
-// match
-// alphaOmega = false, shouldNegate = false
-export interface MagicMatchers {
-  make(
-    pattern: Matchable | Matchable[],
-    shouldNegate?: boolean,
-    alphaOmega?: boolean
-  ): Matchable
-  matcher(
-    inputs: any[],
-    patterns: Matchable[],
-    shouldNegate?: boolean,
-    alphaOmega?: boolean
-  ): Array<any>
 }
 
 // undefined and null values are removed

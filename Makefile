@@ -107,6 +107,9 @@ distcombo:
 	$(MAKE) copysrc && $(MAKE) buble
 
 buildcombo:
+	$(MAKE) distcombo && $(MAKE) cli
+
+buildcombofuse:
 	$(MAKE) distcombo && $(MAKE) cli && $(MAKE) fuse && $(MAKE) webpack && $(MAKE) gzip
 
 travis:

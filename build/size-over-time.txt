@@ -221,3 +221,478 @@ $ gzip-size dists/umd/index.js --raw
 Done in 0.30s.
 2017:16:06/29/17:03:16:40
 ---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8606
+Done in 0.26s.
+2017:23:06/30/17:05:23:33
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+9581 <- has dev code conditionals
+Done in 0.25s.
+2017:27:06/30/17:05:27:34
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+9581
+Done in 0.24s.
+2017:34:06/30/17:05:34:22
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+9581
+Done in 0.26s.
+2017:36:06/30/17:05:36:25
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+9581
+Done in 0.23s.
+2017:37:06/30/17:05:37:31
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+9581
+Done in 0.26s.
+2017:38:06/30/17:05:38:37
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45040
+Done in 0.26s.
+2017:39:06/30/17:05:39:30
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45040
+Done in 0.28s.
+2017:41:06/30/17:05:41:02
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+9581
+Done in 0.25s.
+2017:42:06/30/17:05:42:36
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45040
+Done in 0.28s.
+2017:42:06/30/17:05:42:54
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45040
+Done in 0.27s.
+2017:46:06/30/17:05:46:05
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45040
+Done in 0.31s.
+2017:47:06/30/17:05:47:47
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45244
+Done in 0.26s.
+2017:48:06/30/17:05:48:21
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45244
+Done in 0.30s.
+2017:49:06/30/17:05:49:47
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45243
+Done in 0.27s.
+2017:50:06/30/17:05:50:12
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45243
+Done in 0.27s.
+2017:56:06/30/17:05:56:16
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45243
+Done in 0.30s.
+2017:57:06/30/17:05:57:34
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45270
+Done in 0.28s.
+2017:58:06/30/17:05:58:20
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45240
+Done in 0.27s.
+2017:59:06/30/17:05:59:28
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45268
+Done in 0.27s.
+2017:00:06/30/17:06:00:01
+---
+yarn run v0.24.6
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45203
+Done in 0.28s.
+2017:10:06/30/17:06:10:43
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45203
+Done in 0.34s.
+2017:12:06/30/17:06:12:25
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+11031
+Done in 0.25s.
+2017:12:06/30/17:06:12:51
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+11031
+Done in 0.26s.
+2017:19:06/30/17:06:19:00
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+10595
+Done in 0.23s.
+2017:19:06/30/17:06:19:20
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+14582
+Done in 0.30s.
+2017:21:06/30/17:06:21:00
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+14582
+Done in 0.27s.
+2017:24:06/30/17:06:24:55
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+14566
+Done in 0.27s.
+2017:38:06/30/17:06:38:52
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+14577
+Done in 0.27s.
+2017:42:06/30/17:06:42:16
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+14577
+Done in 0.28s.
+2017:48:06/30/17:06:48:49
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+14577
+Done in 0.25s.
+2017:49:06/30/17:06:49:50
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+14577
+Done in 0.62s.
+2017:50:06/30/17:06:50:12
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+14577
+Done in 0.30s.
+2017:50:06/30/17:06:50:31
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+14577
+Done in 0.27s.
+2017:52:06/30/17:06:52:39
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+14577
+Done in 0.28s.
+2017:53:06/30/17:06:53:10
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+14577
+Done in 0.27s.
+2017:55:06/30/17:06:55:14
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+14577
+Done in 0.51s.
+2017:58:06/30/17:06:58:57
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+14577
+Done in 0.26s.
+2017:59:06/30/17:06:59:12
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+14577
+Done in 0.25s.
+2017:03:06/30/17:07:03:37
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+14577
+Done in 0.24s.
+2017:04:06/30/17:07:04:19
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+14577
+Done in 0.27s.
+2017:09:06/30/17:07:09:08
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+14577
+Done in 0.32s.
+2017:12:06/30/17:07:12:07
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+14577
+Done in 0.27s.
+2017:14:06/30/17:07:14:09
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+14577
+Done in 0.25s.
+2017:14:06/30/17:07:14:43
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+14577
+Done in 0.49s.
+2017:17:06/30/17:07:17:35
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+14577
+Done in 0.24s.
+2017:18:06/30/17:07:18:10
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+14721
+Done in 0.51s.
+2017:19:06/30/17:07:19:20
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+14721
+Done in 0.39s.
+2017:20:06/30/17:07:20:15
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+14721
+Done in 0.49s.
+2017:21:06/30/17:07:21:52
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+14721
+Done in 0.25s.
+2017:26:06/30/17:07:26:17
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45239
+Done in 0.36s.
+2017:27:06/30/17:07:27:31
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45250
+Done in 0.64s.
+2017:28:06/30/17:07:28:43
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45141
+Done in 0.37s.
+2017:29:06/30/17:07:29:52
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45229
+Done in 0.31s.
+2017:32:06/30/17:07:32:52
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45141
+Done in 0.31s.
+2017:33:06/30/17:07:33:46
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45187
+Done in 0.29s.
+2017:34:06/30/17:07:34:20
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45141
+Done in 0.27s.
+2017:34:06/30/17:07:34:45
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45136
+Done in 0.28s.
+2017:36:06/30/17:07:36:20
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+43469
+Done in 0.27s.
+2017:38:06/30/17:07:38:02
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45133
+Done in 0.26s.
+2017:38:06/30/17:07:38:43
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45133
+Done in 0.26s.
+2017:39:06/30/17:07:39:42
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45133
+Done in 0.31s.
+2017:40:06/30/17:07:40:19
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45111
+Done in 0.28s.
+2017:40:06/30/17:07:40:52
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45137
+Done in 0.28s.
+2017:41:06/30/17:07:41:33
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45137
+Done in 0.32s.
+2017:42:06/30/17:07:42:34
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45137
+Done in 0.26s.
+2017:43:06/30/17:07:43:24
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45209
+Done in 0.26s.
+2017:44:06/30/17:07:44:06
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45225
+Done in 0.27s.
+2017:44:06/30/17:07:44:16
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45191
+Done in 0.26s.
+2017:44:06/30/17:07:44:29
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45191
+Done in 0.25s.
+2017:45:06/30/17:07:45:35
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45191
+Done in 0.33s.
+2017:55:06/30/17:07:55:48
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45191
+Done in 0.29s.
+2017:56:06/30/17:07:56:32
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45191
+Done in 0.26s.
+2017:57:06/30/17:07:57:27
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+45191
+Done in 0.30s.
+2017:57:06/30/17:07:57:41
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+29
+Done in 0.26s.
+2017:02:06/30/17:08:02:32
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+10015
+Done in 0.25s.
+2017:36:06/30/17:08:36:44
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+10015
+Done in 0.28s.
+2017:37:06/30/17:08:37:16
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8712 <- with Object.create as a var <- likely the new line
+Done in 0.23s.
+2017:37:06/30/17:08:37:31
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8699 <- FINALLY MADE SIMPLE AST REPLACER WITH falafel !!! because rollup replace with magic string was FAILING
+Done in 0.25s.
+2017:38:06/30/17:08:38:31
+---

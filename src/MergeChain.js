@@ -133,7 +133,7 @@ class MergeChain extends ChainedMapBase {
 
     // @@debugger
 
-    /* istanbul ignore next: ENV_DEBUG_OR_DEV */
+    /* istanbul ignore next: devs */
     if (ENV_DEVELOPMENT) {
       if (!obj) {
         console.log({onExisting, opts, obj, merger, shorthands, keys, parent})
@@ -212,7 +212,7 @@ class MergeChain extends ChainedMapBase {
          * else default to dopemerge
          */
         if (isUndefined(onExisting)) {
-          /* istanbul ignore next: ENV_DEBUG_OR_DEV */
+          /* istanbul ignore next: devs */
           if (ENV_DEBUG) {
             console.log(
               'parent has: no onExisting',
@@ -222,7 +222,7 @@ class MergeChain extends ChainedMapBase {
           setChosen(key, merger(existing, value, opts))
         }
         else {
-          /* istanbul ignore next: ENV_DEBUG_OR_DEV */
+          /* istanbul ignore next: devs */
           if (ENV_DEBUG) {
             console.log(
               'parent has: has onExisting',
@@ -241,7 +241,7 @@ class MergeChain extends ChainedMapBase {
         }
       }
       else {
-        /* istanbul ignore next: ENV_DEBUG_OR_DEV */
+        /* istanbul ignore next: devs */
         if (ENV_DEBUG) {
           console.log('parent does not have', {[key]: value})
         }
@@ -258,7 +258,7 @@ class MergeChain extends ChainedMapBase {
 
       // @NOTE: when shorthands is an object, key is the method it should call
       if (!isUndefined(shorthands[key]) && shorthands[key] !== key) {
-        /* istanbul ignore next: ENV_DEBUG_OR_DEV */
+        /* istanbul ignore next: devs */
         if (ENV_DEBUG) {
           console.log(
             'had a shorthand with a diff key than the object (likely @alias)',
@@ -274,7 +274,7 @@ class MergeChain extends ChainedMapBase {
       /* istanbul ignore next: sourcemaps trigger istanbul here incorrectly */
       // use onValue when set
       if (!onValue(value, key, this)) {
-        /* istanbul ignore next: ENV_DEBUG_OR_DEV */
+        /* istanbul ignore next: devs */
         if (ENV_DEBUG) {
           console.log('had onValue, was false, ignored', {onValue, key, value})
         }
@@ -282,7 +282,7 @@ class MergeChain extends ChainedMapBase {
       }
       // when property itself is a Chainable
       else if (isMapish(method)) {
-        /* istanbul ignore next: ENV_DEBUG_OR_DEV */
+        /* istanbul ignore next: devs */
         if (ENV_DEBUG) {
           console.log('has method or shorthand')
         }
@@ -290,7 +290,7 @@ class MergeChain extends ChainedMapBase {
       }
       // we have a method or shorthand
       else if (method) {
-        /* istanbul ignore next: ENV_DEBUG_OR_DEV */
+        /* istanbul ignore next: devs */
         if (ENV_DEBUG) {
           console.log('has method or shorthand', {method, key, value})
         }
@@ -298,7 +298,7 @@ class MergeChain extends ChainedMapBase {
       }
       // default to .set on the store
       else {
-        /* istanbul ignore next: ENV_DEBUG_OR_DEV */
+        /* istanbul ignore next: devs */
         if (ENV_DEBUG) {
           console.log('went to default', {method, key, value})
         }

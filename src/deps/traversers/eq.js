@@ -119,13 +119,13 @@ module.exports = function(a, b, loose) {
 
     // @@debugger
 
-    /* istanbul ignore next: ENV_DEBUG_OR_DEV */
+    /* istanbul ignore next: dev */
     if (ENV_DEBUG) {
       console.log('types: ', {x: toS(x), y: toS(y)})
     }
 
     if (this.circular) {
-      /* istanbul ignore next: ENV_DEBUG_OR_DEV */
+      /* istanbul ignore next: dev */
       if (ENV_DEBUG) {
         console.log('circular', this)
       }
@@ -139,7 +139,7 @@ module.exports = function(a, b, loose) {
       }
     }
     else if (typeof x !== typeof y) {
-      /* istanbul ignore next: ENV_DEBUG_OR_DEV */
+      /* istanbul ignore next: dev */
       if (ENV_DEBUG) {
         console.log('diff types', typeof x, typeof y)
       }
@@ -205,14 +205,14 @@ module.exports = function(a, b, loose) {
     }
     // isString(x) || isBoolean(x) || isNumber(x) || isIterator(x)
     else if (toS(x) === toS(y) && x !== y) {
-      /* istanbul ignore next: ENV_DEBUG_OR_DEV */
+      /* istanbul ignore next: dev */
       if (ENV_DEBUG) {
         console.log('same str types - diff values', {s: toS(x), x, y})
       }
       notEqual()
     }
     else if (toS(x) !== toS(y)) {
-      /* istanbul ignore next: ENV_DEBUG_OR_DEV */
+      /* istanbul ignore next: dev */
       if (ENV_DEBUG) {
         console.log('diff str types', {x: toS(x), y: toS(y)})
       }

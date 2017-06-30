@@ -13,9 +13,17 @@ module.exports = () =>
         html5_comments: false,
         shebang: false,
       },
+      // https://github.com/mishoo/UglifyJS2#conditional-compilation-api
       compress: {
         // compress options
         dead_code: true,
+        global_defs: {
+          ENV_DEBUG: false,
+          ENV_DEVELOPMENT: false,
+          dev: false,
+          debug: false,
+        },
+
         drop_debugger: true,
         booleans: true,
         unused: true,
@@ -27,16 +35,27 @@ module.exports = () =>
         cascade: true,
         collapse_vars: true,
 
+        // drop_console: true,
+
+        // debug: '',
         // only 1 getters - length
         pure_getters: true,
+
+        // helpful - except when you WANT the constants
+        evaluate: true,
+        sequences: true,
 
         // @TODO:
         // pure_funcs: true, side_effects: false,
         keep_fargs: false,
         keep_fnames: false, // for now
-        passes: 3,
+
+        // keep_fargs: false,
+        // keep_fnames: false, // for now
+        passes: 10,
       },
 
+      // mangle: false,
       mangle: {
         properties: false,
         //  {
@@ -48,8 +67,12 @@ module.exports = () =>
 
         // ties to compression opt
         keep_fnames: false,
+        reserved: ['unwrapExports'],
       },
 
+      // output: {
+      //   beautify: true,
+      // },
       sourceMap: true,
       toplevel: true,
       ie8: false,

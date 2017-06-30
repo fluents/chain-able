@@ -9,6 +9,8 @@ module.exports = {
     'jsdoc/require-param': 'error',
     'jsdoc/require-param-description': 'error',
     'jsdoc/require-returns-type': 'error',
+    'inferno/display-name': 'OFF',
+    'inferno/display-no-depreciated': 'OFF',
   },
   plugins: ['jest', 'jsdoc'],
   globals: {

@@ -157,7 +157,7 @@ class FactoryChain extends ChainedMap {
     // @TODO need to spread as needed
     this[name] = args => {
       // @@debugger
-      /* istanbul ignore next: ENV_DEBUG_OR_DEV */
+      /* istanbul ignore next: devs */
       if (ENV_DEBUG) {
         console.log(
           `called ${name} with:`,

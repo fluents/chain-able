@@ -17,6 +17,7 @@
 const ChainedMap = require('./ChainedMapBase')
 const SHORTHANDS_KEY = require('./deps/meta/shorthands')
 const ENV_DEVELOPMENT = require('./deps/env/dev')
+const ENV_DEBUG = require('./deps/env/debug')
 // plugins
 const schemaMethod = require('./plugins/schema')
 const typesPlugin = require('./plugins/types')
@@ -490,7 +491,7 @@ class MethodChain extends ChainedMap {
     }
 
     /* istanbul ignore next: dev */
-    if (process.env.DEBUG === true) {
+    if (ENV_DEBUG) {
       console.log({
         name,
         defaultValue,
@@ -613,7 +614,7 @@ class MethodChain extends ChainedMap {
    *
    */
   decorate(parentToDecorate) {
-    /* istanbul ignore next: ENV_DEBUG_OR_DEV */
+    /* istanbul ignore next: devs */
     if (ENV_DEVELOPMENT) {
       if (!(parentToDecorate || this.parent.parent)) {
         throw new Error('must provide parent argument')
