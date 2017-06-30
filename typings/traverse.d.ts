@@ -1,5 +1,4 @@
 import {ArrOrObj, Primitive, Traversable, Matchable, Obj, Fn} from './generic'
-import {ChainedMapI} from './ChainedMap'
 
 export type TraverseValue = any
 
@@ -40,11 +39,6 @@ export interface Traverse {
   get(path: Primitive): any
   clone(): Obj
 }
-export interface TraverseChain extends ChainedMapI {
-  obj(obj: Traversable): TraverseChain
-  traverse(shouldReturn: boolean): TraverseChain
-  onNonMatch(fn: Fn): TraverseChain
-  onMatch(fn?: Fn): TraverseChain
-  vals(vals: Matchable): TraverseChain
-  keys(vals: Matchable): TraverseChain
-}
+
+// loose = false
+export declare function eq(one: any, two: any, loose?: boolean): boolean
