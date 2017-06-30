@@ -27,6 +27,9 @@
 #### Arguments
 1. `obj` *(Schema)*:
 
+#### Returns
+*(MethodFactory)*: @chainable
+
 ---
 
 <!-- /div -->

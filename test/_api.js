@@ -20,15 +20,20 @@ const exportedNames = [
   'eq',
   'reduce',
   'meta',
-  'validators',
+
+  // @NOTE: new for 4.0.0
+  'addMethodFactories',
+  'addTypes',
+  'types',
 ]
 
 // @TODO: use `is` to validate these
 // @TODO: use schema & decorators
 function testExportedNames(dist, exported = exportedNames) {
-  return exported.map(
-    exp => dist.is.isFunction(dist[exp]) || dist.is.isObj(dist[exp])
-  )
+  return exported.map(exp => {
+    return dist.is.isFunction(dist[exp]) || dist.is.isObj(dist[exp])
+    // return {[exp]: dist.is.isFunction(dist[exp]) || dist.is.isObj(dist[exp])}
+  })
 }
 
 function testDistedAPI(dist) {

@@ -30,12 +30,52 @@ const enummy = enums => x => enums === x || enums.includes(x)
 // @TODO: can use these to return noops with error logging on development
 const get = key =>
   validators.get(key) || validators.get(escapedKey(key)) || enummy(key)
-const merge = x => validators.from(dopemerge(validators.entries(), x))
 const has = key => validators.has(key) || validators.get(escapedKey(key))
 const set = (key, value) => validators.set(key, value)
 const doesNotHave = not(has)
 
-merge(is)
+/**
+ * @desc add custom types for validation
+ * @category types
+ * @category schema
+ * @types schema
+ *
+ * @since 4.0.0 <- used with schema, used in method chain
+ * @since 3.0.0 <- took out
+ * @since 1.0.0
+ *
+ * @param  {Object} types custom Types
+ *
+ * @see deps/validators/validatorFactory
+ *
+ * @example
+ *
+ *   addTypes({yaya: x => typeof x === 'string'})
+ *
+ *   const chain = new Chain().methods('eh').type('yaya').build()
+ *
+ *   chain.eh('good')
+ *   //=> chain
+ *
+ *   chain.eh(!!'throws')
+ *   //=> TypeError(false != {yaya: x => typeof x === 'string'})
+ *
+ * @example
+ *
+ *   const custom = {}
+ *   custom.enums = enums => x => enums.includes(x)
+ *   custom['*'] = x => true
+ *   addTypes(custom)
+ *   //-> void
+ *
+ *   new Chain().methods('eh').type('*').build().eh
+ *   //=> validateType(custom['*'])
+ *
+ */
+const addTypes = types =>
+  validators.from(dopemerge(validators.entries(), types))
+
+addTypes(is)
 
 // ----
 // @NOTE: putting these as functions increased size 20 bytes: worth it
@@ -48,6 +88,25 @@ const isNotRealOrIsEmptyString = and(not(isReal), x => x === '')
 const isArrayOf = predicate => and(isArray, all(predicate))
 const includesAndOr = x => x.includes('|') || x.includes('&')
 
+/**
+ * @memberOf schema
+ * @category types
+ *
+ * @param  {string} fullKey a key with `|` and/or '&'
+ * @return {Function} validator
+ *
+ * @example
+ *
+ *    const isStringOrNumber = typeListFactory('string|number')
+ *
+ *    isStringOrNumber(1)
+ *    //=> true
+ *    isStringOrNumber('one')
+ *    //=> true
+ *    isStringOrNumber(Object)
+ *    //=> false
+ *
+ */
 function typeListFactory(fullKey) {
   // already have it
   if (has(fullKey)) {
@@ -79,6 +138,47 @@ function typeListFactory(fullKey) {
 // @TODO how to iterate properly with the bitwise fn + AND
 //       add another param? ignore overly complex |& things? just allow 1?
 //       just show how to use these shorthand fn builders
+
+/**
+ * @desc transform arithmetic strings into types
+ * @since 4.0.0-alpha.1
+ * @category types
+ *
+ * @param  {Matchable} fullKey arithmetic type key
+ * @return {Matchable} function to match with, with .inspect for easy debugging
+ *
+ * @types schema
+ * @test typed
+ * @test schema
+ * @see is
+ * @todo coercing values to certain types: arithmeticTypeFactory('<value>')
+ *
+ * @example
+ *
+ *   arithmeticTypeFactory('?string')
+ *   //=> x => !isReal(x) || isString(x)
+ *
+ * @example
+ *
+ *   arithmeticTypeFactory('?string|string[]')
+ *   //=> x => isString(x) || isArrayOf(isString)(x)
+ *
+ * @example
+ *
+ *   arithmeticTypeFactory('!string')
+ *   //=> x => not(isString)(x)
+ *
+ * @example
+ *
+ *   types.addTypes({star: x => true})
+ *   arithmeticTypeFactory('object|function|star')
+ *   //=> x => isObj(x) || isFunction(x) || isStar(x)
+ *
+ * @example
+ *
+ *   arithmeticTypeFactory('===')
+ *   //=> x => (['===']).includes(x)
+ */
 function arithmeticTypeFactory(fullKey) {
   const key = stripArithmeticSymbols(fullKey)
   let fn = get(key)
@@ -108,17 +208,43 @@ function arithmeticTypeFactory(fullKey) {
 // v- annoying on comments with ifs
 /* prettier-ignore */
 /**
- * @since 4.0.0
  * @desc @pattern @builder -> builds using multiple factories depending on conditons
  *       or abstractFactory whatever
+ *       opinionated: if it's a function, it's a validator...
+ *
+ * @category types
+ * @since 4.0.0
+ * @param  {string | Function | Primitive} fullKey arithmetic key to the validator
+ * @return {Function} validator
+ *
  * @see https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Default_parameters
- * @param  {string | Function | Primitive} fullKey
- * @return {Function}
+ * @NOTE if/else is for uglifying ternaries, even though else if is not needed
+ * @NOTE if key is number, iterating the array
+ *
+ * @example
+ *
+ *    // functionType
+ *    const isString = x => typeof x === 'string'
+ *    builder(isString)
+ *    // => isString
+ *
+ * @example
+ *
+ *    // stringType (built in, or custom-keyed validator, or eqeqeq)
+ *    builder('string')
+ *    // => isString
+ *
+ *    const enummy = builder('enum')
+ *    // => x => ['enum'].includes(x)
+ *
+ * @example
+ *
+ *    // arithmeticType
+ *    builder('string|string[]')
+ *    // => isString || isArrayOf(isString)
+ *
  */
 function builder(fullKey) {
-  // @NOTE: else is for uglifying ternaries, even though else if is not needed
-  // @NOTE if key is number, iterating the array
-  // opinionated: if it's a function, it's a validator...
   if (isFunction(fullKey)) {
     /* istanbul ignore next: dev */
     if (ENV_DEBUG) {
@@ -145,6 +271,6 @@ function builder(fullKey) {
 builder.has = has
 builder.get = get
 builder.set = set
-builder.merge = merge
+builder.addTypes = addTypes // was merge
 builder.map = validators
 module.exports = builder

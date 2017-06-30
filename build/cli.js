@@ -21,6 +21,7 @@ const Script = require('script-chain')
 const log = require('fliplog')
 const {read, write} = require('flipfile')
 const {del} = require('./util')
+const docdown = require('../_modules/_docdown')
 
 const res = rel => resolve(__dirname, rel)
 
@@ -31,7 +32,7 @@ log.registerCatch()
 // setup args
 // src: [rollup, typescript, buble, babel, browserify, copy/strip]
 const argvOpts = {
-  boolean: ['cov', 'src', 'copy', 'production', 'docs', 'optimize'],
+  boolean: ['cov', 'src', 'copy', 'production', 'docs', 'optimize', 'diff'],
   string: ['format'],
   default: {
     optimize: true,
@@ -40,17 +41,19 @@ const argvOpts = {
     tests: false,
     cov: false,
     quick: false,
+    diff: false,
     production: true,
     format: ['amd', 'iife', 'dev', 'es', 'cjs', 'umd'],
   },
 }
 const argvs = fwf(process.argv.slice(2), argvOpts)
-const {production, quick, tests, cov, clean, docs} = argvs
+const {production, quick, tests, cov, clean, docs, diff} = argvs
 
 const OPTIMIZE_JS_FILE = '../dists/umd/index.js'
 const TSC_SOURCE = '../dists/dev/index.js'
 const TSC_OUT = '../dists/tsc/bundle.js'
 const ROLLUP_CONFIG_CLI = './rollup.config.cli.js'
+const {stripRollup} = require('./plugins/ast')
 
 if (clean) {
   const toClean = {
@@ -151,16 +154,37 @@ class CLI {
     console.log(JSON.stringify(result))
     process.exit()
   }
+  stripRollup(url = OPTIMIZE_JS_FILE) {
+    const file = require.resolve(url)
+    let code = read(file)
+
+    log.diff(code)
+    let optimized = stripRollup(code).toString()
+
+    // no need, but fun
+    // const escaped = require('../src/deps/matcher/to-regexp')('Object.create')
+    // optimized = optimized.replace(escaped, 'occc')
+    // while (optimized.includes('Object.create'))
+    //   optimized = optimized.replace('Object.create', 'occc')
+    // optimized = 'var occc = Object.create;\n' + optimized
+
+    log.diff(optimized)
+    log.echo()
+    // log.quick({optimized, code})
+    write(file, optimized)
+
+    return Promise.resolve()
+  }
   optimizejs(url = OPTIMIZE_JS_FILE) {
     const optimizeJs = require('optimize-js')
     const file = require.resolve(url)
     const code = read(file)
-    log.diff(code)
+    if (diff) log.diff(code)
     const optimized = optimizeJs(code)
-    log.diff(optimized)
+    if (diff) log.diff(optimized)
     write(file, optimized)
-    log.echo()
-    return Promise.resolve()
+    if (diff) log.echo()
+    return this.stripRollup()
   }
   rollup(flags = '') {
     if (Array.isArray(flags)) return flags.map(flag => this.rollup(flag))
@@ -171,7 +195,6 @@ class CLI {
     return require('./build')(overrides)
   }
   docs() {
-    var docdown = require('docdown')
     var find = require('chain-able-find')
     const entry = res('../src')
     const found = find
@@ -319,9 +342,11 @@ const devWith = opts =>
 const prodWith = opts =>
   Object.assign(
     {
+      falafel: true,
       env: 'production',
       development: false,
       production: true,
+      debug: false,
       uglify: true,
       replace: true,
     },
@@ -335,7 +360,7 @@ async function publishing() {
   const rollupProdWith = opts => cli.rollupNode(prodWith(opts))
 
   // await cli.rollup('--environment format:amd')
-  await rollupProdWith({format: 'amd'})
+  await rollupProdWith({format: 'amd', falafel: false})
   timer.stop('amd')
 
   timer.start('es')
@@ -348,15 +373,21 @@ async function publishing() {
   await rollupProdWith({format: 'cjs'})
   timer.stop('cjs')
 
+  // @HACK @FIXME just needs sourceType script
   // ignoring this one for now, already so many, don't want to build them all
   // await cli.rollup('--environment format:iife')
-  await rollupProdWith({format: 'iife'})
+  await rollupProdWith({format: 'iife', falafel: false})
 
   timer.start('umd')
-  // await cli.rollup('--environment format:umd --verbose --debug')
-  await rollupProdWith({format: 'umd', verbose: true})
 
   // debugger
+  await cli.rollupNode(
+    devWith({
+      exportName: 'window',
+      entry: res('../src/index.web.js'),
+    })
+  )
+
   await cli.rollupNode(
     devWith({
       exportName: 'debugger',
@@ -377,6 +408,10 @@ async function publishing() {
       exportName: 'node',
     })
   )
+
+  // await cli.rollup('--environment format:umd --verbose --debug')
+  await rollupProdWith({format: 'umd', verbose: true, debug: false})
+
   timer.stop('umd')
 
   try {

@@ -1,14 +1,20 @@
 const ObjectAssign = require('./util/assign')
 
 /**
- * @since 4.0.0
- * @tutorial https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
- * @example var desc = Object.getOwnPropertyDescriptor(obj, 'eh')
  * @desc default to configurable and enumerable, unless configured otherwise
- * @param  {Object} obj
- * @param  {Primitive} name
- * @param  {Object} descriptor
+ * @since 4.0.0
+ *
+ * @param  {Object} obj object to define on
+ * @param  {Primitive} name property name to define
+ * @param  {Object} descriptor object descriptor
  * @return {void}
+ *
+ * @tutorial https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
+ *
+ * @example
+ *
+ *    var desc = Object.getOwnPropertyDescriptor(obj, 'eh', {get: () => console.log('eh')})
+ *
  */
 module.exports = function(obj, name, descriptor) {
   Object.defineProperty(

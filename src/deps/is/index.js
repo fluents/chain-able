@@ -1,5 +1,5 @@
 const toS = require('./toS')
-const isPureObj = require('./pureObj')
+const isObjStrict = require('./objStrict')
 const isRegExp = require('./regexp')
 const isError = require('./error')
 const isBoolean = require('./boolean')
@@ -26,13 +26,21 @@ const isMatcher = require('./matcher')
 // const isMapish = require('./mapish')
 // isTrue
 
+/**
+ * @member is
+ * @types is
+ * @tests is/*
+ *
+ * @see https://github.com/lodash/lodash/issues/3237
+ * @type {Object}
+ */
 module.exports = {
   isObjWithKeys,
   isObj,
   isObject: isObj,
+  isObjStrict,
   isFunction,
   isReal,
-  isPureObj,
   toS,
   isDate,
   isRegExp,

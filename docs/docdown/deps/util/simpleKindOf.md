@@ -27,6 +27,9 @@
 #### Arguments
 1. `x` *(any)*:
 
+#### Returns
+*(string)*: type
+
 ---
 
 <!-- /div -->

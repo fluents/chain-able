@@ -11,8 +11,46 @@ const thrower = error => () => {
   throw error
 }
 
-// @TODO: js stringify if development
-// , validator, thisArg
+/**
+ * @desc enhance an Error, enable rethrowing & better inspection
+ * @memberOf encase
+ * @category types
+ * @category encase
+ *
+ * @since 4.0.0-alpha.1
+ * @param  {Primitive} method method being decorated
+ * @param  {Type} type type to validate with
+ * @return {Function} function that returns a decorated TypeError with .inspect & metadata (arg, thrown, meta)
+ *
+ * @TODO js stringify if development
+ *
+ * @see MethodChain
+ * @see validators/schemaBuilder
+ * @see validators/validatorBuilder
+ * @see plugins/encase
+ *
+ * @example
+ *   const badValidator = x => {
+ *     if (x === 'bad') {
+ *       throw new Error('bad!')
+ *     }
+ *   }
+ *   const enhancer = enhanceError('eh', badValidator)
+ *
+ *   // called by plugins/encase when throws or invalid
+ *   let error
+ *   let arg = 'bad'
+ *   try {
+ *     error = badValidator(arg)
+ *   }
+ *   catch (e) {
+ *     error = enhancer(arg, e, {metadata: true})
+ *   }
+ *
+ *   console.log(error)
+ *   //=> {[eh]: { type: badValidator, arg: 'bad', json, str, rethrow }}
+ *   //=> console.log on DEVELOPMENT
+ */
 module.exports = (method, type) => (arg, thrown, meta) => {
   const argToString = toS(arg)
   const data = {

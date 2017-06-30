@@ -38,6 +38,7 @@ const createBundle = options => {
     format,
     // globals: Object.assign(moduleGlobals, rollupConfig.moduleGlobals),
     moduleName,
+    // sourceMap: false,
     sourceMap: true,
   }
   if (format === 'amd') {

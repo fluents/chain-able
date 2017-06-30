@@ -7,19 +7,68 @@ const ObjectKeys = require('./deps/util/keys')
 const getMeta = require('./deps/meta')
 const SHORTHANDS_KEY = require('./deps/meta/shorthands')
 
-// CMC = ComposeMap
+/**
+ * @desc ChainedMapBase composer
+ * @alias ComposeMap
+ * @type {Composer}
+ * @method compose
+ * @memberOf ChainedMapBase
+ *
+ * @param {Class | Object | Composable} [SuperClass=Chainable] class to extend
+ * @return {Class} ChainedMapBase
+ *
+ * @example
+ *
+ *    const heh = class {}
+ *    const composed = ChainedMapBase.compose(heh)
+ *    const hehchain = new Composed()
+ *    hehchain instanceof heh
+ *    //=> true
+ *
+ */
 const CMC = SuperClass => {
   /**
-   * @tutorial https://ponyfoo.com/articles/es6-maps-in-depth
-   * @tutorial https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map
+   * @classdesc this is to avoid circular requires
+   *       because MergeChain & MethodChain extend this
+   *       yet .method & .merge use those chains
+   *
+   * @since 4.0.0-alpha.1
    * @inheritdoc
+   * @class ChainedMapBase
+   * @member ChainedMapBase
+   * @category Chainable
+   * @extends {Chainable}
    * @type {Chainable}
-   * @prop {Array} shorthands
+   *
+   * @types ChainedMapBase
+   * @tests ChainedMap
+   *
+   * @prop {Meta} meta
    * @prop {Map} store
+   *
+   * {@link https://ponyfoo.com/articles/es6-maps-in-depth pony-map}
+   * {@link https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map mozilla-map}
+   * @see {@link pony-map}
+   * @see {@link mozilla-map}
+   *
+   * @see ChainedMap
+   * @see Chainable
+   * @see MergeChain
+   * @see MethodChain
+   * @see ChainedMap
+   *
    */
   return class ChainedMapBase extends SuperClass {
     /**
-     * @param {ChainedMapBase | Chainable | any} parent
+     * @param {ChainedMapBase | Chainable | ParentType | any} parent ParentType
+     * @constructor
+     *
+     * @example
+     *
+     *    class Eh extends ChainedMapBase {}
+     *    Object.keys(eh)
+     *    //=> ['store', 'meta']
+     *
      */
     constructor(parent) {
       super(parent)
@@ -29,42 +78,68 @@ const CMC = SuperClass => {
     }
 
     /**
-     * @since 0.7.0
-     * @see this.set, this.get
      * @desc   tap a value with a function
      *         @modifies this.store.get(name)
-     *
-     * @example
-     *  chain
-     *    .set('moose', {eh: true})
-     *    .tap('moose', moose => {moose.eh = false; return moose})
-     *    .get('moose') === {eh: false}
+     * @memberOf ChainedMapBase
+     * @since 0.7.0
+     * @since 4.0.0-alpha.1 <- moved from transform & shorthands
      *
      * @param  {string | any} name key to `.get`
      * @param  {Function} fn function to tap with
      * @return {Chain} @chainable
+     *
+     * {@link https://github.com/sindresorhus/awesome-tap awesome-tap}
+     * {@link https://github.com/midknight41/map-factory map-factory}
+     * {@link https://github.com/webpack/tapable tapable}
+     * @see {@link tapable}
+     *
+     * @see ChainedMapBase.set
+     * @see ChainedMapBase.get
+     *
+     * @example
+     *
+     *    chain
+     *      .set('moose', {eh: true})
+     *      .tap('moose', moose => {moose.eh = false; return moose})
+     *      .get('moose')
+     *
+     *    // => {eh: false}
+     *
+     * @example
+     *
+     *   const entries = new Chain()
+     *     .set('str', 'emptyish')
+     *     .tap('str', str => str + '+')
+     *     .set('arr', [1])
+     *     .tap('arr', arr => arr.concat([2]))
+     *     .entries()
+     *
+     *   //=> {str: 'emptyish+', arr: [1, 2]}
+     *
      */
     tap(name, fn) {
-      // @NOTE: longhand, sadness for shorter :-(
-      // ---
-      // const existing = this.get(name)
-      // const updated = fn(existing, dopemerge)
-      // return this.set(name, updated)
-      // ---
       return this.set(name, fn(this.get(name), dopemerge))
     }
 
     /**
-     * @since 0.5.0
-     * @TODO could alao add parsing stringified
-     *
      * @desc checks each property of the object
      *       calls the chains accordingly
      *
-     * @example chain.from({eh: true}) === chain.eh(true)
+     * @memberOf ChainedMapBase
+     * @since 0.5.0
      *
-     * @param {Object} obj
+     * @param {Object} obj object with functions to hydrate from
      * @return {Chainable} @chainable
+     *
+     * @TODO could also add parsing stringified
+     *
+     * @example
+     *
+     *     const from = new Chain().from({eh: true})
+     *     const eh = new Chain().set('eh', true)
+     *     eq(from, eh)
+     *     // => true
+     *
      */
     from(obj) {
       const keys = ObjectKeys(obj)
@@ -89,11 +164,24 @@ const CMC = SuperClass => {
     }
 
     /**
-     * @since 0.4.0
      * @desc shorthand methods, from strings to functions that call .set
-     * @example this.extend(['eh']) === this.eh = val => this.set('eh', val)
-     * @param  {Array<string>} methods
-     * @return {ChainedMapBase}
+     * @since 0.4.0
+     * @memberOf ChainedMapBase
+     *
+     * @param  {Array<string>} methods decorates/extends an object with new shorthand functions to get/set
+     * @return {ChainedMapBase} @chainable
+     *
+     * @example
+     *
+     *    const chain1 = new Chain()
+     *    chain1.extend(['eh'])
+     *
+     *    const chain2 = new Chain()
+     *    chain2.eh = val => this.set('eh', val)
+     *
+     *    eq(chain2.eh, chain1.eh)
+     *    //=> true
+     *
      */
     extend(methods) {
       methods.forEach(method => {
@@ -104,17 +192,23 @@ const CMC = SuperClass => {
     }
 
     /**
-     * @since 4.0.0 <- improved reducing
-     * @since 0.4.0
      * @desc spreads the entries from ChainedMapBase.store (Map)
      *       return store.entries, plus all chain properties if they exist
+     * @memberOf ChainedMapBase
+     *
+     * @since 4.0.0 <- improved reducing
+     * @since 0.4.0
+     *
      * @param  {boolean} [chains=false] if true, returns all properties that are chains
      * @return {Object}
      *
+     * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/entries mozilla-map-entries}
+     * @see {@link mozilla-map-entries}
+     *
      * @example
      *
-     *  map.set('a', 'alpha').set('b', 'beta').entries()
-     *   => {a: 'alpha', b: 'beta'}
+     *    map.set('a', 'alpha').set('b', 'beta').entries()
+     *    //=> {a: 'alpha', b: 'beta'}
      *
      */
     entries(chains = false) {
@@ -128,11 +222,30 @@ const CMC = SuperClass => {
     }
 
     /**
+     * @desc get value for key path in the Map store
+     *       ❗ `debug` is a special key and is *not* included into .store
+     *          it goes onto .meta
+     *
+     * @memberOf ChainedMapBase
      * @since 4.0.0 <- moved debug here
      * @since 0.4.0
-     * @example chain.set('eh', true).get('eh') === true
-     * @param  {Primitive} key
-     * @return {any}
+     *
+     * @param  {Primitive} key Primitive data key used as map property to reference the value
+     * @return {any} value in .store at key
+     *
+     * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/get mozilla-map-get}
+     * @see {@link mozilla-map-get}
+     *
+     * @example
+     *
+     *    const chain = new Chain()
+     *    chain.set('eh', true)
+     *    chain.get('eh')
+     *    //=> true
+     *
+     *    chain.get('nope')
+     *    //=> undefined
+     *
      */
     get(key) {
       if (key === 'debug') return this.meta.debug
@@ -140,13 +253,27 @@ const CMC = SuperClass => {
     }
 
     /**
-     * @see ChainedMapBase.store
-     * @since 0.4.0
      * @desc sets the value using the key on store
-     * @example chain.set('eh', true).get('eh') === true
-     * @param {any} key
-     * @param {any} value
-     * @return {ChainedMapBase}
+     *       adds or updates an element with a specified key and value
+     *
+     * @memberOf ChainedMapBase
+     * @since 0.4.0
+     *
+     * @param {Primitive} key Primitive to reference the value
+     * @param {any} value any data to store
+     * @return {ChainedMapBase} @chainable
+     *
+     * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/set mozilla-map-set}
+     * @see {@link mozilla-map-set}
+     * @see ChainedMapBase.store
+     *
+     * @example
+     *
+     *    const chain = new Chain()
+     *    chain.set('eh', true)
+     *    chain.get('eh')
+     *    //=> true
+     *
      */
     set(key, value) {
       this.store.set(key, value)

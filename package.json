@@ -1,18 +1,20 @@
 {
   "name": "chain-able",
-  "version": "4.0.0-beta.2",
+  "version": "4.0.0-beta.3",
   "description": "interfaces that describe their intentions.",
   "main:es6": "src/index.js",
   "main:dev": "dists/dev/index.js",
+  "main:debugger": "dists/debugger/index.js",
   "main:tsc": "dists/tsc/index.js",
   "main:iife": "dists/iife/index.js",
   "main:umd": "dists/umd/index.js",
   "main:cjs": "dists/cjs/index.js",
   "main:es": "dists/es/index.js",
+  "main:window": "dists/window/index.js",
   "js:next": "dists/es/index.js",
   "main": "dists/umd/index.js",
   "module": "dists/umd/index.js",
-  "web": "dists/cjs/index.js",
+  "web": "dists/umd/index.js",
   "browser": "dists/cjs/index.js",
   "alias": "dists/cjs/index.js",
   "amd": "dists/amd/index.js",
@@ -22,14 +24,13 @@
     "moduleName": "ChainAble",
     "entry": "src/index.js",
     "distEntry": "dist/index.js",
-    "_tscEntry": "dists/tsc/index.js",
     "tscEntry": "dists/dev/index.js",
     "rollupConfig": {
       "moduleName": "ChainAble",
       "entry": "src/index.js",
       "distEntry": "dist/index.js",
-      "_tscEntry": "dists/tsc/index.js",
-      "tscEntry": "dists/dev/index.js"
+      "tscEntry": "dists/dev/index.js",
+      "webEntry": "src/index.web.js"
     }
   },
   "scripts": {
@@ -49,8 +50,7 @@
     "lint": "eslint",
     "build": "make build",
     "prepublish": "make prepublish",
-    "postpublish": "make clean",
-    "pretest": "make pretest"
+    "postpublish": "make clean"
   },
   "nyc": {
     "all": false,
@@ -112,7 +112,8 @@
       "/src/deps/reduce/objects.js",
       "/src/deps/symbols/index|species|spreadable.js",
       "/src/deps/prefix|index|uniq|eqCurry|typeof|insert-at-index|nonEnumerableTypes.js",
-      "/src/plugins/index.js"
+      "/src/plugins/index.js",
+      "/_modules"
     ],
     "useStderr": true,
     "verbose": true,
@@ -128,22 +129,30 @@
     ],
     "coveragePathIgnorePatterns": [
       "\\\\node_modules\\\\",
+      "_modules",
       "src/deps/_r|meta|external|env|primitives",
       "src/deps/external/lodash",
       "src/deps/external",
       "src/deps/cache/scoped.js",
-      "src/deps/class-names.js",
+      "src/deps/string/prefix|class-names.js",
+      "src/deps/is/class.js",
+      "src/deps/is/objPure.js",
       "src/deps/dopemerge/map.js",
       "src/deps/util/flatten|charCodeAtZero.js",
       "src/deps/is/class|node|stringOrNumber.js",
       "src/deps/reduce/objects.js",
       "src/deps/symbols/index|species|spreadable.js",
-      "src/deps/prefix|index|uniq|eqCurry|typeof|insert-at-index|nonEnumerableTypes.js",
+      "src/deps/index|uniq|eqCurry|typeof|insert-at-index|nonEnumerableTypes.js",
       "src/compose/decorators.js",
       "src/deps/conditional/bitwise",
       "src/deps/conditional/bitwise/bitwise.js",
       "src/deps/conditional/bitwise/ez.js",
-      "src/plugins/index.js"
+      "src/plugins/index|plugins.js",
+      "COMMENT/ignore-below-pass-along-indexes.COMMENT",
+      "src/is|dopemerge|matcher|validators|encase|dot|includes|cache|compose|reduce/index.js",
+      "src/deps/is|dopemerge|matcher|validators|encase|dot|includes|cache|compose|reduce/index.js",
+      "src/index.web.js",
+      "src/index.js"
     ],
     "coverageReporters": [
       "json",
@@ -157,13 +166,13 @@
     "rootDir": ".",
     "testRegex": "(test/)(.*).js$",
     "testPathIgnorePatterns": [
+      "_modules",
       "node_modules",
       "test/__testsetup.js",
       "test/built.js",
       "test/_stress.js",
       "test/_api.js",
       "test/is/index.js",
-      "test/MergeChain.js",
       "test/chainsaw",
       "test/traverse/index.js"
     ]
@@ -192,6 +201,9 @@
   },
   "devDependencies": {
     "@types/node": "^7.0.31",
+    "acorn": "^5.0.3",
+    "acorn-dynamic-import": "^2.0.2",
+    "acorn-es7": "^0.1.0",
     "ava": "*",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
@@ -200,6 +212,7 @@
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-preset-env": "^1.4.0",
     "babel-preset-es2015": "^6.24.1",
+    "babylon": "^6.17.4",
     "buble": "0.15.2",
     "chain-able-find": "^1.0.0",
     "chainsaw": "^0.1.0",
@@ -211,7 +224,9 @@
     "eslint": "^4.0.0",
     "eslint-config-chain-able": "^1.0.0",
     "eslint-plugin-jest": "^20.0.3",
+    "eslint-plugin-jsdoc": "^3.1.1",
     "eslint-plugin-typescript": "^0.1.0",
+    "falafel": "^2.1.0",
     "flipfile": "^0.0.13",
     "fliplog": "^1.0.0",
     "flow-remove-types": "^1.2.1",

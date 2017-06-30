@@ -30,6 +30,9 @@
 #### Arguments
 1. `call` *(Function)*:
 
+#### Returns
+*(&#42;)*: validation/encased function call result
+
 ---
 
 <!-- /div -->

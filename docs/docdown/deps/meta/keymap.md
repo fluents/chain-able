@@ -29,6 +29,9 @@
 2. `[obj=undefined]` *(|Array|Object)*:
 3. `[val=undefined]` *(|any)*:
 
+#### Returns
+*(&#42;)*:
+
 ---
 
 <!-- /div -->

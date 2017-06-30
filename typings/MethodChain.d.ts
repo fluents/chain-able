@@ -4,7 +4,7 @@ import {ParentType, SchemaType} from './_mediator'
 
 // this = ChainInstance
 export interface onInvalid {
-  (error: TypeError, key: Primivie, arg: any, instance: Chain)
+  (error: TypeError, key: Primitive, arg: any, instance: Chain)
   call?: onInvalid
 }
 export interface onValid {

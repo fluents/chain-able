@@ -1,5 +1,5 @@
 const ChainedMap = require('../src/ChainedMap')
-const clean = require('../src/deps/clean')
+const clean = require('../src/deps/reduce/clean')
 
 test('is Chainable', () => {
   const parent = {parent: true}

@@ -27,6 +27,9 @@
 #### Arguments
 1. `_c` *(Object)*:
 
+#### Returns
+*(string)*:
+
 #### Example
 ```js
 get className() {return classNames(this)}

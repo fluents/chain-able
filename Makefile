@@ -37,7 +37,7 @@ clean:
 lint:
 	yarn run lint -- src/**.js src/**/*.js
 
-docs:
+docgen:
 	node build/cli --docs
 
 dox:
@@ -76,8 +76,11 @@ rollupcli:
 cov:
 	yarn run jest -- --coverage
 
-jestserial:
+jestserialcov:
 	yarn run jest --coverage --runInBand
+
+jestserial:
+	yarn run jest --runInBand
 
 coveralls:
 	yarn run coveralls -- < coverage/lcov.info
@@ -104,6 +107,9 @@ distcombo:
 	$(MAKE) copysrc && $(MAKE) buble
 
 buildcombo:
+	$(MAKE) distcombo && $(MAKE) cli
+
+buildcombofuse:
 	$(MAKE) distcombo && $(MAKE) cli && $(MAKE) fuse && $(MAKE) webpack && $(MAKE) gzip
 
 travis:

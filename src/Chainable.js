@@ -6,6 +6,7 @@ const isMap = require('./deps/is/map')
 const isSet = require('./deps/is/set')
 const isUndefined = require('./deps/is/undefined')
 const isString = require('./deps/is/string')
+const isFalse = require('./deps/is/false')
 const ObjectKeys = require('./deps/util/keys')
 const ObjectDefine = require('./deps/define')
 const ignored = require('./deps/ignored')
@@ -25,14 +26,37 @@ const C = SuperClass => {
   }
 
   /**
+   * @desc Trait class that can inherit any class passed into compose, extended by ChainedMap & ChainedSet
+   *
+   * @member Chainable
+   * @class Chainable
+   * @category Chainable
    * @type {Chainable}
+   *
    * @prop {Chainable | any} parent
    * @prop {string} className
-   * @prop {Array<Class|Object> | null} mixed
+   *
+   * {@link https://github.com/iluwatar/java-design-patterns/tree/master/chain chain-pattern}
+   * @see {@link chain-pattern}
+   *
+   * @see ChainedMap
+   * @see ChainedSet
+   *
+   * @tests Chainable
+   * @types Chainable
    */
   class Chainable extends SuperClass {
     /**
-     * @param {Chainable | any} parent
+     * @since 0.0.1
+     * @param {Chainable | any | ParentType} parent ParentType
+     * @constructor
+     *
+     * @example
+     *
+     *    class ChainedMap extends Chainable {}
+     *    const map = new ChainedMap()
+     *    map.className
+     *    //=> ChainedMap
      */
     constructor(parent) {
       super()
@@ -41,16 +65,48 @@ const C = SuperClass => {
     }
 
     /**
-     * @NOTE assigned to a variable so buble ignores it
+     * @desc Iterator for looping values in the store
+     *
      * @since 0.5.0
-     * @example for (var [key, val] of chainable) {}
-     * @example
-     *  * [Symbol.iterator](): void { for (const item of this.store) yield item }
-     * @see https://github.com/sindresorhus/quick-lru/blob/master/index.js
-     * @see https://stackoverflow.com/questions/36976832/what-is-the-meaning-of-symbol-iterator-in-this-context
      * @see this.store
      * @type {generator}
      * @return {Object} {value: undefined | any, done: true | false}
+     *
+     * @NOTE assigned to a variable so buble ignores it
+     * @see https://github.com/sindresorhus/quick-lru/blob/master/index.js
+     * @see https://stackoverflow.com/questions/36976832/what-is-the-meaning-of-symbol-iterator-in-this-context
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator
+     * @tests iteration
+     *
+     * @example
+     *
+     *    const chain = new Chain().set('eh', 1)
+     *    for (var [key, val] of chain) console.log({[key]: val})
+     *    //=> {eh: 1}
+     *
+     * @example
+     *
+     *    *[Symbol.iterator](): void { for (const item of this.store) yield item }
+     *
+     * @example
+     *
+     *    const {ChainedSet} = require('chain-able')
+     *    const set = new ChainedSet()
+     *    set.add('eh')
+     *
+     *    for (const arr of set) {
+     *      const [key, val] = arr
+     *
+     *      key
+     *      //=> 0
+     *
+     *      val
+     *      //=> 'eh'
+     *
+     *      arr.length
+     *      //=> 2
+     *    }
+     *
      */
     [Iterator]() {
       const values = this.values()
@@ -80,31 +136,44 @@ const C = SuperClass => {
     }
 
     /**
+     * @desc for ending nested chains
      * @since 0.4.0
-     * @see Chainable.parent
      * @return {Chainable | any}
+     * @see Chainable.parent
+     * @see FactoryChain
+     *
+     * @example
+     *
+     *    const parent = 'eh'
+     *    const child = newChain(parent)
+     *    child.end()
+     *    //=> 'eh'
+     *
      */
     end() {
       return this.parent
     }
 
     /**
+     * @desc when the condition is true,
+     *       trueBrancher is called,
+     *       else, falseBrancher is called
+     *
      * @since 4.0.0 <- added string-as-has(condition)
      * @since 2.0.0
-     *
-     * @desc
-     *  when the condition is true,
-     *  trueBrancher is called,
-     *  else, falseBrancher is called
-     *
-     * @example
-     *  const prod = process.env.NODE_ENV === 'production'
-     *  chains.when(prod, c => c.set('prod', true), c => c.set('prod', false))
      *
      * @param  {boolean | string} condition when string, checks this.get
      * @param  {Function} [trueBrancher=Function] called when true
      * @param  {Function} [falseBrancher=Function] called when false
-     * @return {ChainedMap}
+     * @return {Chainable} @chainable
+     *
+     * @example
+     *
+     *
+     *  const prod = process.env.NODE_ENV === 'production'
+     *  chains.when(prod, c => c.set('prod', true), c => c.set('prod', false))
+     *
+     *
      */
     when(condition, trueBrancher, falseBrancher) {
       if (condition) {
@@ -127,22 +196,36 @@ const C = SuperClass => {
     }
 
     /**
-     * @since 4.0.0 (moved only to Chainable, added option to clear this keys)
-     * @since 0.4.0 (in ChainedMap)
-     * @since 0.3.0 (in Chainable)
-     *
      * @desc clears the map,
      *       goes through this properties,
      *       calls .clear if they are instanceof Chainable or Map
      *
-     * @see https://github.com/fliphub/flipchain/issues/2
-     * @param {boolean | undefined} [clearPropertiesThatAreChainLike=true]
+     * @since 4.0.0 (moved only to Chainable, added option to clear this keys)
+     * @since 0.4.0 (in ChainedMap)
+     * @since 0.3.0 (in Chainable)
+     *
+     * @param {boolean | undefined} [clearPropertiesThatAreChainLike=true] checks properties on the object, if they are `chain-like`, clears them as well
      * @return {Chainable} @chainable
+     *
+     * @see https://github.com/fliphub/flipchain/issues/2
+     * @see ChainedSet
+     * @see ChainedMap
+     *
+     * @example
+     *
+     *    const chain = new Chain()
+     *    chain.set('eh', 1)
+     *    chain.entries()
+     *    //=> {eh: 1}
+     *    chain.clear()
+     *    chain.entries()
+     *    //=> {}
+     *
      */
     clear(clearPropertiesThatAreChainLike) {
       this.store.clear()
 
-      if (clearPropertiesThatAreChainLike === false) return this
+      if (isFalse(clearPropertiesThatAreChainLike)) return this
 
       const keys = ObjectKeys(this)
       for (let k = 0; k < keys.length; k++) {
@@ -155,10 +238,27 @@ const C = SuperClass => {
     }
 
     /**
+     * @desc calls .delete on this.store.map
      * @since 0.3.0
-     * @description calls .delete on this.store.map
-     * @param {string | any} key
+     *
+     * @param {Primitive} key on a Map: key referencing the value. on a Set: the index
      * @return {Chainable}
+     *
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/has
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has
+     * @see ChainedSet
+     * @see ChainedMap
+     *
+     * @example
+     *
+     *    const chain = new Chain()
+     *    chain.set('eh', 1)
+     *    chain.get('eh')
+     *    // => 1
+     *    chain.delete('eh', 1)
+     *    chain.get('eh')
+     *    // => undefined
+     *
      */
     delete(key) {
       this.store.delete(key)
@@ -167,23 +267,50 @@ const C = SuperClass => {
 
     /**
      * @since 0.3.0
-     * @example if (chain.has('eh') === false) chain.set('eh', true)
-     * @param {any} value
+     * @param {any} keyOrValue key when Map, value when Set
      * @return {boolean}
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/has
+     *
+     * @example
+     *
+     *   const chain = new Chain()
+     *   chain.set('eh', 1).has('eh')
+     *   //=> true
+     *   chain.has('canada')
+     *   //=> false
+     *
      */
-    has(value) {
-      return this.store.has(value)
+    has(keyOrValue) {
+      return this.store.has(keyOrValue)
     }
 
     /**
-     * @since 0.4.0
-     * @NOTE: look at Chainable to ensure not to use `new Array...`
-     * @NOTE: moved from ChainedMap and ChainedSet to Chainable @2.0.2
-     * @NOTE: this was [...] & Array.from(this.store.values())
-     * @see https://kangax.github.io/compat-table/es6/#test-Array_static_methods
-     * @see https://stackoverflow.com/questions/20069828/how-to-convert-set-to-array
      * @desc spreads the entries from ChainedMap.store.values
-     * @return {Array<any>}
+     * @since 0.4.0
+     *
+     * @return {Array<any>} toArr(this.store.values())
+     *
+     * @NOTE look at Chainable.constructor to ensure not to use `new Array...`
+     * @NOTE moved from ChainedMap and ChainedSet to Chainable @2.0.2
+     * @NOTE this was [...] & Array.from(this.store.values())
+     *
+     * {@link https://kangax.github.io/compat-table/es6/#test-Array_static_methods compat-array-static-methods}
+     * {@link https://stackoverflow.com/questions/20069828/how-to-convert-set-to-array set-to-array}
+     * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/values mozilla-map-values}
+     * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/values mozilla-set-values}
+     *
+     * @see {@link mozilla-map-values}
+     * @see {@link mozilla-set-values}
+     * @see {@link compat-array-static-methods}
+     * @see {@link set-to-array}
+     *
+     * @example
+     *
+     *  const chain = new Chain()
+     *  chain.set('eh', 1)
+     *  chain.values()
+     *  //=> [1]
+     *
      */
     values() {
       const vals = []
@@ -194,9 +321,26 @@ const C = SuperClass => {
     /**
      * @see http://2ality.com/2015/09/well-known-symbols-es6.html#default-tostring-tags
      * @since 1.0.2
-     * @example chain + 1 (calls this)
+     *
      * @param {string} hint enum[default, string, number]
      * @return {Primitive}
+     *
+     * @example
+     *
+     *  const chain = new Chain()
+     *  chain.toNumber = () => 1
+     *  +chain;
+     *  //=> 1
+     *  chain + 1
+     *  //=>
+     *
+     * @example
+     *
+     *  const chain = new Chain()
+     *  chain.toString = () => 'eh'
+     *  chain + ''
+     *  //=> 'eh'
+     *
      */
     [Primitive](hint) {
       /* prettier-ignore */
@@ -223,6 +367,7 @@ const C = SuperClass => {
   const ChainPrototype = Chainable.prototype
 
   /**
+   * @private
    * @since 0.5.0
    * @example for (var i = 0; i < chain.length; i++)
    * @see ChainedMap.store
@@ -244,6 +389,19 @@ const C = SuperClass => {
 }
 
 const c = C(class {})
+
+/**
+ * @since 3.0.0
+ * @func
+ * @example
+ *
+ *  class Target {}
+ *  const TargetChain = Chainable.compose(Target)
+ *  const chain = new TargetChain()
+ *  chain instanceof Target
+ *  //=> true
+ *
+ */
 c.compose = C
 
 module.exports = c

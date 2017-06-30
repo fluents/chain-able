@@ -1,4 +1,5 @@
 const isUndefined = require('../is/undefined')
+const isString = require('../is/string')
 
 const keys = [
   /* --- chain --- */
@@ -18,6 +19,7 @@ const keys = [
   /*  11 */ 'number',
   /*  12 */ 'function',
   /*  13 */ 'array',
+  /*  14 */ 'boolean',
   /* --- next --- */
   '_', // ?
 ]
@@ -30,6 +32,7 @@ const keys = [
  * @return {string | number | any}
  */
 function access(index = -Infinity, obj = undefined, val = undefined) {
+  if (isString(index)) index = keys.indexOf(index)
   // now map this to the arrays...
   let key = keys[index]
   // just name

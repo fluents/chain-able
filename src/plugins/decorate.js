@@ -2,9 +2,32 @@ const isObj = require('../deps/is/obj')
 const DECORATED_KEY = require('../deps/meta/decorated')
 const meta = require('../deps/meta')
 
-// @TODO: this is more like a preset since it *adds* plugins?
+/**
+ * decorates a parent when the argument is provided
+ * BUT THE FUNCTIONS WILL STILL BE SCOPED TO CURRENT PARENT
+ * for easy factory chaining
+ *
+ * @since 4.0.0-alpha.1
+ * @memberOf MethodChain
+ * @param  {Object} parentToDecorate object to put the method on instead
+ * @return {MethodChain} @chainable
+ *
+ * @see MethodChain
+ *
+ * @TODO this is more like a preset since it *adds* plugins?
+ *       more of methodFactory now
+ *
+ * @example
+ *
+ *   const chain = new Chain()
+ *   const obj = {}
+ *   chain.method('ehOh').decorate(obj).build()
+ *   typeof obj.ehOh
+ *   //=> 'function'
+ *
+ */
 module.exports = function(parentToDecorate) {
-  // @TODO is pureObj?
+  // @TODO is objStrict?
   // if (parentToDecorate) {
   this.target(parentToDecorate)
 
@@ -20,9 +43,9 @@ module.exports = function(parentToDecorate) {
     // @NOTE: so we can return...
     /* prettier-ignore */
     return this
-      .returns(parentToDecorate)
-      .callReturns(function returnsFunction(result) {
+      .returns(function returnsFunction(result) {
         return result || parentToDecorate
       })
+      .callReturns(true)
   })
 }

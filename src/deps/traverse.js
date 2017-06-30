@@ -2,7 +2,7 @@
 /* eslint eqeqeq: "off" */
 /* eslint func-style: "off" */
 /* eslint complexity: "off" */
-const isPureObj = require('./is/pureObj')
+const isObjStrict = require('./is/objStrict')
 const isRegExp = require('./is/regexp')
 const isError = require('./is/error')
 const isBoolean = require('./is/boolean')
@@ -13,7 +13,6 @@ const isUndefined = require('./is/undefined')
 const isArray = require('./is/array')
 const isMap = require('./is/map')
 const isSet = require('./is/set')
-const isEqEq = require('./is/eqeq')
 const argumentor = require('./argumentor')
 const ObjectKeys = require('./util/keys')
 const hasOwnProperty = require('./util/hasOwnProperty')
@@ -28,8 +27,9 @@ const toarr = require('./to-arr')
  * if you are relying on internal functionality
  * (such as .path, .get, .value...) with map & set
  *
- * @desc if there is .forEach on the obj already, use it
+ * @NOTE if there is .forEach on the obj already, use it
  * otherwise, call function for each
+ *
  */
 var forEach = function(xs, fn) {
   if (xs.forEach) xs.forEach(fn)
@@ -37,8 +37,17 @@ var forEach = function(xs, fn) {
 }
 
 /**
- * @param {Traversable} obj
+ * {@link https://sourcemaking.com/design_patterns/chain_of_responsibility chainofresponsibility}
+ *
+ * @param {Traversable} obj object to traverse
+ *
  * @constructor
+ *
+ * @example
+ *
+ *    traverse({})
+ *    //=> new Traverse(obj)
+ *
  */
 var traverse = function(obj) {
   return new Traverse(obj)
@@ -46,21 +55,42 @@ var traverse = function(obj) {
 module.exports = traverse
 
 /**
+ * @func
+ * @class TraverseJS
+ * @classdesc Traverse and transform objects by visiting every node on a recursive walk.
+ * @prop {any} value
+ *
+ * @category traverse
+ * @memberOf Traverse
+ * @see deps/traverse
+ * @category traverse
+ * @types traverse
+ * @tests traverse/*
+ *
  * @TODO: symbol, map, set
  * @tutorial https://github.com/substack/js-traverse
- * @classdesc Traverse.js
- * @param {Traversable} obj
- * @prop {any} value
+ *
+ * @param {Traversable} obj any traversable value
+ *
+ * @example
+ *
+ *   traverse({})
+ *   //=> Traverser
+ *
  */
 function Traverse(obj) {
   this.value = obj
 }
 
 /**
- * @see this.forEach
- * @todo hasOwnProperty
+ * @desc Get the element at the array path.
+ *
  * @param  {Array<string>} ps paths
  * @return {any} value at dot-prop
+ *
+ * @memberOf Traverse
+ * @see this.forEach
+ * @todo hasOwnProperty
  */
 Traverse.prototype.get = function(ps) {
   let node = this.value
@@ -76,14 +106,35 @@ Traverse.prototype.get = function(ps) {
 }
 
 /**
+ * @desc Return whether the element at the array path exists.
+ *
+ * @param  {Array<string>} pathsArray paths
+ * @return {boolean} has element at path
+ *
+ * @memberOf Traverse
  * @see hasOwnProperty
- * @param  {Array<string>} ps paths
- * @return {boolean}
+ *
+ * @example
+ *
+ *    traverse({eh: true}).has(['eh'])
+ *    //=> true
+ *
+ * @example
+ *
+ *    traverse({eh: true}).has(['canada'])
+ *    //=> false
+ *
+ *
+ * @example
+ *
+ *    traverse([0]).has([2])
+ *    //=> false
+ *
  */
-Traverse.prototype.has = function(ps) {
+Traverse.prototype.has = function(pathsArray) {
   let node = this.value
-  for (let i = 0; i < ps.length; i++) {
-    const key = ps[i]
+  for (let i = 0; i < pathsArray.length; i++) {
+    const key = pathsArray[i]
     if (!node || !hasOwnProperty(node, key)) {
       return false
     }
@@ -93,47 +144,112 @@ Traverse.prototype.has = function(ps) {
 }
 
 /**
- * @see    dot-prop
- * @param  {Array<string>} ps paths
- * @param  {any} value
+ * @desc Set the element at the array path to value.
+ *
+ * @param  {Array<string>} arrayPath paths
+ * @param  {any} value any value to assign to the element @ the path
  * @return {any} value passed in
+ *
+ * @memberOf Traverse
+ * @see deps/dot
  */
-Traverse.prototype.set = function(ps, value) {
+Traverse.prototype.set = function(arrayPath, value) {
   let node = this.value
   let i = 0
-  for (; i < ps.length - 1; i++) {
-    const key = ps[i]
+  for (; i < arrayPath.length - 1; i++) {
+    const key = arrayPath[i]
     if (!hasOwnProperty(node, key)) node[key] = {}
     node = node[key]
   }
-  node[ps[i]] = value
+  node[arrayPath[i]] = value
   return value
 }
 
 /**
+ * @desc Execute fn for each node in the object and return a new object with the results of the walk. To update nodes in the result use this.update(value).
+ *
+ * @method
+ * @memberOf Traverse
  * @see walk
- * @param  {Function} cb
+ * @param  {Function} cb fn for each node in the object
  * @return {any}
+ *
+ * @example
+ *    var {traverse} = require('chain-able')
+ *
+ *    var obj = {a: 1, b: 2, c: [3, 4]}
+ *    obj.c.push(obj)
+ *
+ *    var scrubbed = traverse(obj).map(function(x) {
+ *      if (this.circular) this.remove()
+ *    })
+ *    console.dir(scrubbed)
+ *    //=> { a: 1, b: 2, c: [ 3, 4 ] }
  */
 Traverse.prototype.map = function(cb) {
   return walk(this.value, cb, true)
 }
 
 /**
- * @param  {Function} cb
+ * @desc Execute fn for each node in the object but unlike .map(), when this.update() is called it updates the object in-place.
+ *       executes a provided function once for each traversed element.
+ *
+ * @param  {Function} callback provided callback function
  * @return {any} this.value
+ *
+ * @memberOf Traverse
+ * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
+ *
+ *  @example
+ *
+ *     var {traverse} = require('chain-able')
+ *
+ *     var obj = [5, 6, -3, [7, 8, -2, 1], {f: 10, g: -13}]
+ *     traverse(obj).forEach(function(x) {
+ *       if (x < 0) this.update(x + 128)
+ *     })
+ *
+ *     console.dir(obj)
+ *     //=> [ 5, 6, 125, [ 7, 8, 126, 1 ], { f: 10, g: 115 } ]
+ *
  */
-Traverse.prototype.forEach = function(cb) {
-  this.value = walk(this.value, cb, false)
+Traverse.prototype.forEach = function(callback) {
+  this.value = walk(this.value, callback, false)
   return this.value
 }
 
 /**
- * @desc   calls cb for each loop that is not root
- *         defaults initial value to `this.value`
- * @param  {Function} cb
- * @param  {Object | Array | any} init
+ * @desc applies a function against an accumulator and each element in the array (from left to right) to reduce it to a single value.
+ *       calls cb for each loop that is .notRoot
+ *       defaults initial value to `this.value`
+ *
+ * @param  {Function} cb callback forEach
+ * @param  {Object | Array | any} init initial value
  * @return {Object | Array | any}
+ *
+ * @see https://en.wikipedia.org/wiki/Fold_(higher-order_function)
+ * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+ * @memberOf Traverse
+ *
+ * @example
+ *
+ *    var {traverse} = require('chain-able')
+ *
+ *    var obj = {
+ *      a: [1, 2, 3],
+ *      b: 4,
+ *      c: [5, 6],
+ *      d: {e: [7, 8], f: 9},
+ *    }
+ *
+ *    var leaves = traverse(obj).reduce(function(acc, x) {
+ *      if (this.isLeaf) acc.push(x)
+ *      return acc
+ *    }, [])
+ *
+ *    console.dir(leaves)
+ *    //=> [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+ *
  */
 Traverse.prototype.reduce = function(cb, init) {
   const skip = arguments.length === 1
@@ -147,7 +263,10 @@ Traverse.prototype.reduce = function(cb, init) {
 }
 
 /**
+ * @desc Return an Array of every possible non-cyclic path in the object. Paths are Arrays of string keys.
  * @return {Array<string>}
+ * @memberOf Traverse
+ * @tests traverse/keys
  */
 Traverse.prototype.paths = function() {
   const acc = []
@@ -158,6 +277,8 @@ Traverse.prototype.paths = function() {
 }
 
 /**
+ * @desc Return an Array of every node in the object.
+ * @memberOf Traverse
  * @return {Array<any>}
  */
 Traverse.prototype.nodes = function() {
@@ -169,7 +290,21 @@ Traverse.prototype.nodes = function() {
 }
 
 /**
+ * @desc Create a deep clone of the object.
+ *
  * @return {any}
+ *
+ * @memberOf Traverse
+ *
+ * @example
+ *    const {traverse, eq} = require('chain-able')
+ *
+ *    const obj = {eh: true, canada: [1]}
+ *    const cloned = traverse(obj).clone()
+ *    cloned.eh = false
+ *    eq(cloned, obj)
+ *    //=> false
+ *
  */
 Traverse.prototype.clone = function() {
   let parents = []
@@ -182,7 +317,7 @@ Traverse.prototype.clone = function() {
       }
     }
 
-    if (isPureObj(src)) {
+    if (isObjStrict(src)) {
       let dst = copy(src)
 
       parents.push(src)
@@ -203,10 +338,14 @@ Traverse.prototype.clone = function() {
 }
 
 /**
- * @param  {any}   root
- * @param  {Function} cb
- * @param  {boolean}   immutable
+ * @func
+ *
+ * @param  {any} root root node
+ * @param  {Function} cb callback for each
+ * @param  {boolean} immutable should mutate or not
  * @return {any}
+ *
+ * @see traverse.forEach
  */
 function walk(root, cb, immutable) {
   let path = []
@@ -228,17 +367,58 @@ function walk(root, cb, immutable) {
     const modifiers = {}
     let keepGoing = true
 
+    /**
+     * Each method that takes a callback has a context (its this object) with these attributes:
+     * @prop {boolean} isRoot @alias isNotRoot Whether or not the present node is a leaf node (has no children)
+     * @type {Object}
+     */
     const state = {
+      /**
+       * The present node on the recursive walk
+       * @type {Array}
+       */
       node,
+      /**
+       * @see traverse.context.node
+       * @protected
+       * @type {Array}
+       */
       node_,
+      /**
+       * An array of string keys from the root to the present node
+       * @type {Array}
+       */
       path: [].concat(path),
+      /**
+       * The context of the node's parent. This is undefined for the root node.
+       * @type {undefined | Primitive}
+       */
       parent: parents[parents.length - 1],
       parents,
+      /**
+       * The name of the key of the present node in its parent. This is undefined for the root node.
+       * @type {undefined | Primitive}
+       */
       key: path.slice(-1)[0],
+      /**
+       * Whether the present node is the root node
+       * @type {Boolean}
+       */
       isRoot: path.length === 0,
+      /**
+       * Depth of the node within the traversal
+       * @type {number}
+       */
       level: path.length,
+      /**
+       * If the node equals one of its parents, the circular attribute is set to the context of that parent and the traversal progresses no deeper.
+       * @type {null | boolean}
+       */
       circular: null,
       /**
+       * Set a new value for the present node.
+       * All the elements in value will be recursively traversed unless stopHere is true.
+       *
        * @param  {Function} x
        * @param  {boolean} stopHere
        * @return {void}
@@ -251,6 +431,7 @@ function walk(root, cb, immutable) {
         if (stopHere) keepGoing = false
       },
       /**
+       * Delete the current element from its parent in the output. Calls delete even on Arrays.
        * @param  {boolean} stopHere
        * @return {void}
        */
@@ -259,6 +440,7 @@ function walk(root, cb, immutable) {
         if (stopHere) keepGoing = false
       },
       /**
+       * Remove the current element from the output. If the node is in an Array it will be spliced off. Otherwise it will be deleted from its parent.
        * @param  {boolean} stopHere
        * @return {void}
        */
@@ -276,21 +458,52 @@ function walk(root, cb, immutable) {
         if (stopHere) keepGoing = false
       },
       keys: null,
+      /**
+       * Call this function before any of the children are traversed.
+       * You can assign into this.keys here to traverse in a custom order.
+       * @param  {Function} fn
+       * @return {any}
+       */
       before(fn) {
         modifiers.before = fn
       },
+      /**
+       * Call this function after any of the children are traversed.
+       * @param  {Function} fn
+       * @return {any}
+       */
       after(fn) {
         modifiers.after = fn
       },
+      /**
+       * Call this function before each of the children are traversed.
+       * @param  {Function} fn
+       * @return {any}
+       */
       pre(fn) {
         modifiers.pre = fn
       },
+      /**
+       * Call this function after each of the children are traversed.
+       * @param  {Function} fn
+       * @return {any}
+       */
       post(fn) {
         modifiers.post = fn
       },
+      /**
+       * @modifies alive
+       * @protected
+       * @return {void}
+       */
       stop() {
         alive = false
       },
+      /**
+       * @modifies keepGoing
+       * @protected
+       * @return {void}
+       */
       block() {
         keepGoing = false
       },
@@ -308,7 +521,7 @@ function walk(root, cb, immutable) {
      * @return {void}
      */
     function updateState() {
-      if (isPureObj(state.node)) {
+      if (isObjStrict(state.node)) {
         if (!state.keys || state.node_ !== state.node) {
           state.keys = ObjectKeys(state.node)
         }
@@ -346,7 +559,7 @@ function walk(root, cb, immutable) {
     if (!keepGoing) return state
 
     // when it's some sort of itertable object, loop it further
-    if (isPureObj(state.node) && !state.circular) {
+    if (isObjStrict(state.node) && !state.circular) {
       parents.push(state)
 
       updateState()
@@ -379,6 +592,7 @@ function walk(root, cb, immutable) {
 }
 
 /**
+ * @func
  * @TODO   does not respect ObjectDescriptors
  * @NOTE   wicked ternary
  * @param  {any} src
@@ -386,7 +600,7 @@ function walk(root, cb, immutable) {
  */
 function copy(src) {
   // require('fliplog').data(src).bold('copying').echo()
-  if (isPureObj(src)) {
+  if (isObjStrict(src)) {
     let dst
 
     // require('fliplog').underline('is obj').echo()

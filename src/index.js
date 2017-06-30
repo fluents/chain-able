@@ -14,23 +14,27 @@ const compose = require('./compose')
 
 // export
 const exp = compose()
-exp.init = parent => new exp(parent)
+exp.chainable = parent => new exp(parent)
 exp.builder = obj => new MethodChain(obj)
 exp.Chain = exp
 exp.compose = compose
 
 // deps
 exp.traverse = traverse
+exp.addMethodFactories = MethodChain.add
+
 exp.toArr = require('./deps/to-arr') // exp.toarr =
 exp.camelCase = require('./deps/camel-case')
 exp.dot = require('./deps/dot')
 exp.matcher = require('./deps/matcher')
 exp.is = require('./deps/is')
-exp.validators = require('./deps/validators')
 exp.reduce = require('./deps/reduce')
-exp.clean = require('./deps/clean')
+exp.clean = require('./deps/reduce/clean')
 exp.meta = require('./deps/meta')
 exp.eq = require('./deps/traversers/eq')
+exp.types = require('./deps/validators')
+
+exp.addTypes = exp.types.addTypes
 
 // core
 exp.Chainable = Chainable
