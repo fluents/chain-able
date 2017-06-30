@@ -34,7 +34,7 @@
 <!-- div -->
 
 <h3 id="add"><a href="#add">#</a>&nbsp;<code>add(value)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedSet.js#L51 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedSet.js#L54 "View in source") [&#x24C9;][1]
 
 
 
@@ -70,7 +70,7 @@ const people = new ChainedSet()
 <!-- div -->
 
 <h3 id="merge"><a href="#merge">#</a>&nbsp;<code>merge(arr)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedSet.js#L96 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedSet.js#L99 "View in source") [&#x24C9;][1]
 
 
 
@@ -108,7 +108,7 @@ const people = new ChainedSet()
 <!-- div -->
 
 <h3 id="prepend"><a href="#prepend">#</a>&nbsp;<code>prepend(value)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedSet.js#L72 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedSet.js#L75 "View in source") [&#x24C9;][1]
 
 
 

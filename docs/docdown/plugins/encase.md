@@ -11,8 +11,8 @@
 
 <!-- div -->
 
-## `return function`
-* <a href="#return function">`return function`</a>
+## `return function scopedEncase`
+* <a href="#return function scopedEncase">`return function scopedEncase`</a>
 
 <!-- /div -->
 
@@ -27,7 +27,7 @@
 <!-- div -->
 
 <h3 id="methodEncasingFactory"><a href="#methodEncasingFactory">#</a>&nbsp;<code>methodEncasingFactory(name, parent, built)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/plugins/encase.js#L25 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/plugins/encase.js#L29 "View in source") [&#x24C9;][1]
 
 
 
@@ -55,23 +55,36 @@ methodEncasingFactory('eh', {}, {onSet: console.log})
 
 <!-- div -->
 
-## `return function`
+## `return function scopedEncase`
 
 <!-- div -->
 
-<h3 id="return function"><a href="#return function">#</a>&nbsp;<code>return function(fnToEncase(fnToEncase, [type=undefined], [specification=undefined])</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/plugins/encase.js#L32 "View in source") [&#x24C9;][1]
+<h3 id="return function scopedEncase"><a href="#return function scopedEncase">#</a>&nbsp;<code>return function scopedEncase(fnToEncase(fnToEncase, [type=undefined], [specification=undefined])</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/plugins/encase.js#L49 "View in source") [&#x24C9;][1]
 
 
+
+#### Since
+4.0.0-beta.1
 
 #### Arguments
-1. `fnToEncase` *(Function)*:
-2. `[type=undefined]` *(|Function|string)*:
-3. `[specification=undefined]` *(|Function)*:
+1. `fnToEncase` *(Function)*: depending on the result of this, call
+2. `[type=undefined]` *(|Function|string)*: Type
+3. `[specification=undefined]` *(|Function)*: Specification
 
 #### Returns
 *(Function)*: the method...
 
+#### Example
+```js
+const fnToEncase = arg => arg === true
+   const onInvalid = (error, key, arg, instance) => console.log(arguments)
+   const onValid = (key, arg, instance) => console.log(arguments)
+   const encased = scopedEncase(fnToEncase)
+     .onValid(onValid)
+     .onInvalid(onInvalid)
+   //=> typedOnCall
+```
 ---
 
 <!-- /div -->

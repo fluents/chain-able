@@ -4,8 +4,15 @@
 
 <!-- div -->
 
-## `// encase`
-* <a href="#// encase">`// encase`</a>
+## `ShorthandChain.prototype`
+* <a href="#ShorthandChain-prototype-setIfEmpty">`ShorthandChain.prototype.setIfEmpty`</a>
+
+<!-- /div -->
+
+<!-- div -->
+
+## `Shorthands.prototype`
+* <a href="#Shorthands-prototype-exports">`Shorthands.prototype.exports`</a>
 
 <!-- /div -->
 
@@ -32,13 +39,6 @@
 
 <!-- div -->
 
-## `setIfEmpty`
-* <a href="#setIfEmpty">`setIfEmpty`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
 ## `wrap`
 * <a href="#wrap">`wrap`</a>
 
@@ -50,25 +50,67 @@
 
 <!-- div -->
 
-## `// encase`
+## `ShorthandChain.prototype`
 
 <!-- div -->
 
-<h3 id="// encase"><a href="#// encase">#</a>&nbsp;<code>// encase(method(method, [rethrow=false])</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Shorthands.js#L41 "View in source") [&#x24C9;][1]
+<h3 id="ShorthandChain-prototype-setIfEmpty"><a href="#ShorthandChain-prototype-setIfEmpty">#</a>&nbsp;<code>ShorthandChain.prototype.setIfEmpty(name, value)</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Shorthands.js#L129 "View in source") [&#x24C9;][1]
 
 
 
 #### Since
-4.0.0 <- moved into .methods
+1.0.2
 
 #### Arguments
-1. `method` *(string)*:
-2. `[rethrow=false]` *(boolean)*: or `1` to rechain?
+1. `name` *(Primitive)*: key to set if it has not been done so already
+2. `value` *(any)*: value to set when key has not been already set
 
 #### Returns
-*(Shorthands)*: @chainable
+*(ShorthandChain)*: @chainable
 
+#### Example
+```js
+const chain = new Chain()
+
+   chain.set('eh', true)
+
+   // eh is already set ^, ignored
+   chain.setIfEmpty('eh', false)
+
+   chain.get('eh')
+   //=> true
+```
+---
+
+<!-- /div -->
+
+<!-- /div -->
+
+<!-- div -->
+
+## `Shorthands.prototype`
+
+<!-- div -->
+
+<h3 id="Shorthands-prototype-exports"><a href="#Shorthands-prototype-exports">#</a>&nbsp;<code>Shorthands.prototype.exports(SuperClass)</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Shorthands.js#L44 "View in source") [&#x24C9;][1]
+
+
+
+#### Arguments
+1. `SuperClass` *(Class|Composable)*: composable class
+
+#### Returns
+*(Shorthands)*: class
+
+#### Example
+```js
+const {compose} = require('chain-able')
+   const {DotProp} = compose
+   new DotProp()
+   //=> DotProp
+```
 ---
 
 <!-- /div -->
@@ -82,7 +124,7 @@
 <!-- div -->
 
 <h3 id="debug"><a href="#debug">#</a>&nbsp;<code>debug([should=true])</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Shorthands.js#L28 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Shorthands.js#L83 "View in source") [&#x24C9;][1]
 
 
 
@@ -90,11 +132,24 @@
 4.0.0 <- moved from Extend to Shorthands
 
 #### Arguments
-1. `[should=true]` *(boolean)*:
+1. `[should=true]` *(boolean)*: shouldDebug
 
 #### Returns
 *(Chainable)*: @chainable
 
+#### Example
+```js
+const Chain = require('chain-able')
+   const chain = new Chain()
+   chain.debug()
+
+   chain.get('debug')
+   //=> true
+
+   // not in entries
+   chain.entries()
+   //=> {}
+```
 ---
 
 <!-- /div -->
@@ -128,7 +183,7 @@
 <!-- div -->
 
 <h3 id="return"><a href="#return">#</a>&nbsp;<code>return(value)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Shorthands.js#L69 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Shorthands.js#L156 "View in source") [&#x24C9;][1]
 
 
 
@@ -139,35 +194,19 @@
 1. `value` *(any)*: value to return at the end of a chain
 
 #### Returns
-*(any)*:
+*(any)*: value
 
----
+#### Example
+```js
+const chain = new Chain()
 
-<!-- /div -->
+   const saveAndDebug = env => chain
+     .from({env: env.NODE_ENV})
+     .return(JSON.stringify(env))
 
-<!-- /div -->
-
-<!-- div -->
-
-## `setIfEmpty`
-
-<!-- div -->
-
-<h3 id="setIfEmpty"><a href="#setIfEmpty">#</a>&nbsp;<code>setIfEmpty(name, value)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Shorthands.js#L56 "View in source") [&#x24C9;][1]
-
-
-
-#### Since
-1.0.2
-
-#### Arguments
-1. `name` *(string)*:
-2. `value` *(any)*:
-
-#### Returns
-*(This)*: @chainable
-
+   console.log(saveAndDebug(process.env))
+   //=> value of process.env
+```
 ---
 
 <!-- /div -->
@@ -181,7 +220,7 @@
 <!-- div -->
 
 <h3 id="wrap"><a href="#wrap">#</a>&nbsp;<code>wrap(fn)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Shorthands.js#L79 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Shorthands.js#L168 "View in source") [&#x24C9;][1]
 
 
 
@@ -202,4 +241,4 @@
 
 <!-- /div -->
 
- [1]: #// encase "Jump back to the TOC."
+ [1]: #shorthandchain.prototype "Jump back to the TOC."

@@ -132,18 +132,25 @@
       "src/deps/external/lodash",
       "src/deps/external",
       "src/deps/cache/scoped.js",
-      "src/deps/class-names.js",
+      "src/deps/string/prefix|class-names.js",
+      "src/deps/is/class.js",
+      "src/deps/is/objPure.js",
       "src/deps/dopemerge/map.js",
       "src/deps/util/flatten|charCodeAtZero.js",
       "src/deps/is/class|node|stringOrNumber.js",
       "src/deps/reduce/objects.js",
       "src/deps/symbols/index|species|spreadable.js",
-      "src/deps/prefix|index|uniq|eqCurry|typeof|insert-at-index|nonEnumerableTypes.js",
+      "src/deps/index|uniq|eqCurry|typeof|insert-at-index|nonEnumerableTypes.js",
       "src/compose/decorators.js",
       "src/deps/conditional/bitwise",
       "src/deps/conditional/bitwise/bitwise.js",
       "src/deps/conditional/bitwise/ez.js",
-      "src/plugins/index.js"
+      "src/plugins/index|plugins.js",
+      "COMMENT/ignore-below-pass-along-indexes.COMMENT",
+      "src/is|dopemerge|matcher|validators|encase|dot|includes|cache|compose|reduce/index.js",
+      "src/deps/is|dopemerge|matcher|validators|encase|dot|includes|cache|compose|reduce/index.js",
+      "src/index.web.js",
+      "src/index.js"
     ],
     "coverageReporters": [
       "json",
@@ -164,7 +171,6 @@
       "test/_stress.js",
       "test/_api.js",
       "test/is/index.js",
-      "test/MergeChain.js",
       "test/chainsaw",
       "test/traverse/index.js"
     ]

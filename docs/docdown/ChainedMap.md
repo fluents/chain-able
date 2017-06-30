@@ -48,9 +48,12 @@
 <!-- div -->
 
 <h3 id="CM"><a href="#CM">#</a>&nbsp;<code>CM([SuperClass=ChainedMapBase])</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMap.js#L20 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMap.js#L31 "View in source") [&#x24C9;][1]
 
 
+
+#### Since
+0.0.1
 
 #### Aliases
 *ComposeMap*
@@ -88,7 +91,7 @@ const heh = class {}
 <!-- div -->
 
 <h3 id="merge"><a href="#merge">#</a>&nbsp;<code>merge(obj, [handleMergeFn=undefined])</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMap.js#L71 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMap.js#L98 "View in source") [&#x24C9;][1]
 
 
 
@@ -104,7 +107,8 @@ const heh = class {}
 
 #### Example
 ```js
-chain.set('eh', [1])
+const chain = new Chain()
+   chain.set('eh', [1])
    chain.merge({eh: [2]})
    chain.get('eh')
    // => [1, 2]
@@ -122,7 +126,7 @@ chain.set('eh', [1])
 <!-- div -->
 
 <h3 id="method"><a href="#method">#</a>&nbsp;<code>method(names)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMap.js#L46 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMap.js#L62 "View in source") [&#x24C9;][1]
 
 
 

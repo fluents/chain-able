@@ -76,7 +76,7 @@
 <!-- div -->
 
 <h3 id="[Iterator]"><a href="#[Iterator]">#</a>&nbsp;<code>[Iterator]()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L66 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L111 "View in source") [&#x24C9;][1]
 
 
 
@@ -105,7 +105,7 @@ const chain = new Chain().set('eh', 1)
 <!-- div -->
 
 <h3 id="[Primitive]"><a href="#[Primitive]">#</a>&nbsp;<code>[Primitive](hint)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L283 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L345 "View in source") [&#x24C9;][1]
 
 
 
@@ -140,7 +140,7 @@ const chain = new Chain()
 <!-- div -->
 
 <h3 id="clear"><a href="#clear">#</a>&nbsp;<code>clear([clearPropertiesThatAreChainLike=true])</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L177 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L225 "View in source") [&#x24C9;][1]
 
 
 
@@ -156,12 +156,12 @@ const chain = new Chain()
 #### Example
 ```js
 const chain = new Chain()
- chain.set('eh', 1)
- chain.entries()
- //=> {eh: 1}
- chain.clear()
- chain.entries()
- //=> {}
+   chain.set('eh', 1)
+   chain.entries()
+   //=> {eh: 1}
+   chain.clear()
+   chain.entries()
+   //=> {}
 ```
 ---
 
@@ -176,7 +176,7 @@ const chain = new Chain()
 <!-- div -->
 
 <h3 id="compose"><a href="#compose">#</a>&nbsp;<code>compose</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L343 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L405 "View in source") [&#x24C9;][1]
 
 
 
@@ -204,7 +204,7 @@ class Target {}
 <!-- div -->
 
 <h3 id="delete"><a href="#delete">#</a>&nbsp;<code>delete(key)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L212 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L263 "View in source") [&#x24C9;][1]
 
 
 
@@ -240,7 +240,7 @@ const chain = new Chain()
 <!-- div -->
 
 <h3 id="end"><a href="#end">#</a>&nbsp;<code>end()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L106 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L153 "View in source") [&#x24C9;][1]
 
 
 
@@ -270,7 +270,7 @@ const parent = 'eh'
 <!-- div -->
 
 <h3 id="has"><a href="#has">#</a>&nbsp;<code>has(keyOrValue)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L232 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L283 "View in source") [&#x24C9;][1]
 
 
 
@@ -304,7 +304,7 @@ const chain = new Chain()
 <!-- div -->
 
 <h3 id="values"><a href="#values">#</a>&nbsp;<code>values()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L254 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L315 "View in source") [&#x24C9;][1]
 
 
 
@@ -312,7 +312,7 @@ const chain = new Chain()
 0.4.0
 
 #### Returns
-*(&#42;)*:
+*(&#42;): toArr(this.store.values())*
 
 #### Example
 ```js
@@ -334,7 +334,7 @@ const chain = new Chain()
 <!-- div -->
 
 <h3 id="when"><a href="#when">#</a>&nbsp;<code>when(condition, [trueBrancher=Function], [falseBrancher=Function])</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L132 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L178 "View in source") [&#x24C9;][1]
 
 
 
@@ -347,7 +347,7 @@ const chain = new Chain()
 3. `[falseBrancher=Function]` *(Function)*: called when false
 
 #### Returns
-*(ChainedMap)*:
+*(Chainable)*: @chainable
 
 #### Example
 ```js

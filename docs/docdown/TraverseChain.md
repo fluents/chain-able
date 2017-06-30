@@ -4,22 +4,16 @@
 
 <!-- div -->
 
-## `call`
-* <a href="#traverse" class="alias">`call` -> `traverse`</a>
+## `Traverse.prototype`
+* <a href="#Traverse-prototype-exports">`Traverse.prototype.exports`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
-## `exports`
-* <a href="#exports">`exports`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `traverse`
-* <a href="#traverse">`traverse`</a>
+## `TraverseChain.prototype`
+* <a href="#TraverseChain-prototype-traverse" class="alias">`TraverseChain.prototype.call` -> `traverse`</a>
+* <a href="#TraverseChain-prototype-traverse">`TraverseChain.prototype.traverse`</a>
 
 <!-- /div -->
 
@@ -36,18 +30,12 @@
 
 <!-- div -->
 
-## `call`
-
-<!-- /div -->
+## `Traverse.prototype`
 
 <!-- div -->
 
-## `exports`
-
-<!-- div -->
-
-<h3 id="exports"><a href="#exports">#</a>&nbsp;<code>exports</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/TraverseChain.js#L31 "View in source") [&#x24C9;][1]
+<h3 id="Traverse-prototype-exports"><a href="#Traverse-prototype-exports">#</a>&nbsp;<code>Traverse.prototype.exports</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/TraverseChain.js#L29 "View in source") [&#x24C9;][1]
 
 
 
@@ -62,12 +50,12 @@
 
 <!-- div -->
 
-## `traverse`
+## `TraverseChain.prototype`
 
 <!-- div -->
 
-<h3 id="traverse"><a href="#traverse">#</a>&nbsp;<code>traverse([shouldReturn=false])</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/TraverseChain.js#L85 "View in source") [&#x24C9;][1]
+<h3 id="TraverseChain-prototype-traverse"><a href="#TraverseChain-prototype-traverse">#</a>&nbsp;<code>TraverseChain.prototype.traverse([shouldReturn=false])</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/TraverseChain.js#L90 "View in source") [&#x24C9;][1]
 
 
 
@@ -75,7 +63,7 @@
 1.0.0
 
 #### Aliases
-*call*
+*TraverseChain.prototype.call*
 
 #### Arguments
 1. `[shouldReturn=false]` *(boolean)*: returns traversed object
@@ -124,7 +112,7 @@ const traversed = new Chain()
 <!-- div -->
 
 <h3 id="traversed"><a href="#traversed">#</a>&nbsp;<code>traversed()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/TraverseChain.js#L166 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/TraverseChain.js#L171 "View in source") [&#x24C9;][1]
 
 
 
@@ -152,4 +140,4 @@ const traverser = new Traverser()
 
 <!-- /div -->
 
- [1]: #call "Jump back to the TOC."
+ [1]: #traverse.prototype "Jump back to the TOC."

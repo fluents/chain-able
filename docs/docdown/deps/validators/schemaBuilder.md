@@ -4,21 +4,57 @@
 
 <!-- div -->
 
-## `schemaFactory`
-* <a href="#schemaFactory">`schemaFactory`</a>
+## `schema.prototype`
+* <a href="#schema-prototype-typeValidator">`schema.prototype.typeValidator`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
-## `typeValidator`
-* <a href="#typeValidator">`typeValidator`</a>
+## `schemaFactory`
+* <a href="#schemaFactory">`schemaFactory`</a>
 
 <!-- /div -->
 
 <!-- /div -->
 
 <!-- div class="doc-container" -->
+
+<!-- div -->
+
+## `schema.prototype`
+
+<!-- div -->
+
+<h3 id="schema-prototype-typeValidator"><a href="#schema-prototype-typeValidator">#</a>&nbsp;<code>schema.prototype.typeValidator(input)</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/validators/schemaBuilder.js#L98 "View in source") [&#x24C9;][1]
+
+
+
+#### Since
+4.0.0-beta.1
+
+#### Arguments
+1. `input` *(any)*: the input to validate
+
+#### Returns
+*(boolean)*: valid
+
+#### Example
+```js
+const typeValidator = schemaFactory('eh', x => typeof x === 'string')
+
+  var isValid = typeValidator('stringy')
+  //=> true
+
+  var isValid = typeValidator(Number)
+  //=> false
+```
+---
+
+<!-- /div -->
+
+<!-- /div -->
 
 <!-- div -->
 
@@ -73,42 +109,6 @@ input = {
 
 <!-- /div -->
 
-<!-- div -->
-
-## `typeValidator`
-
-<!-- div -->
-
-<h3 id="typeValidator"><a href="#typeValidator">#</a>&nbsp;<code>typeValidator(input)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/validators/schemaBuilder.js#L96 "View in source") [&#x24C9;][1]
-
-
-
-#### Since
-4.0.0-beta.1
-
-#### Arguments
-1. `input` *(any)*: the input to validate
-
-#### Returns
-*(boolean)*: valid
-
-#### Example
-```js
-const typeValidator = schemaFactory('eh', x => typeof x === 'string')
-
-  var isValid = typeValidator('stringy')
-  //=> true
-
-  var isValid = typeValidator(Number)
-  //=> false
-```
----
-
 <!-- /div -->
 
-<!-- /div -->
-
-<!-- /div -->
-
- [1]: #schemafactory "Jump back to the TOC."
+ [1]: #schema.prototype "Jump back to the TOC."
