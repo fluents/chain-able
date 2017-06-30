@@ -25,6 +25,15 @@ test('.decorate(null)', () => {
   }).toThrow()
 })
 
+test('.decorate(obj)', () => {
+  const chain = new Chain()
+  const obj = {}
+  chain.method('ehOh').decorate(obj).build()
+  expect(typeof obj.ehOh).toBe('function')
+  obj.ehOh(1)
+  expect(chain.get('ehOh')).toBe(1)
+})
+
 test('.method(object) .call() & .get().set()', () => {
   const chain = new Chain(parent)
 
