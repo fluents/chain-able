@@ -1,5 +1,5 @@
 const log = require('fliplog')
-const {Chain, MethodChain} = require('../src')
+const {Chain, addTypes} = require('../src')
 
 const {is, reduce} = Chain
 const {isDate} = is
@@ -15,7 +15,7 @@ test('.addTypes(validator)', () => {
   const custom = {}
   custom.enums = enums => x => enums.includes(x)
   custom['*'] = x => true
-  MethodChain.addTypes(custom)
+  addTypes(custom)
 
   const chain = new Chain().methods().schema({
     enumd: custom.enums(['me!']),

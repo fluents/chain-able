@@ -1,7 +1,7 @@
 const log = require('fliplog')
 const {Chain, MethodChain} = require('../src')
 
-const {isUndefined} = Chain.is
+const {isUndefined, isObj, isFunction} = Chain.is
 
 test('.returns().callReturns()', () => {
   const chain = new Chain()
@@ -58,7 +58,7 @@ test('.method(object) .call() & .get().set()', () => {
   expect(chain.get('canada')).toBe('canada!!!')
 })
 
-test('plugins', () => {
+test('.plugin', () => {
   function autoGetSet(name, parent) {
     const auto = arg =>
       (isUndefined(arg) ? parent.get(name) : parent.set(name, arg))
@@ -74,11 +74,112 @@ test('plugins', () => {
   expect(chain.eh()).toBe(1)
 })
 
+test('addFactoryMethods', () => {
+  const {addMethodFactories} = require('../src')
+
+  expect.assertions(5)
+
+  // we do not have the method before
+  expect(new Chain().methods().eh).toBe(undefined)
+
+  // arg => build the method
+  addMethodFactories({
+    eh: function eh(arg) {
+      return this.camelCase().autoGetSet().build()
+    },
+    short(arg) {
+      return this.camelCase().autoGetSet().build()
+    },
+    callable: {
+      call(methodChainInstance, arg) {
+        return methodChainInstance
+      },
+    },
+  })
+
+  // we've added it
+  expect(isFunction(new Chain().methods().eh)).toBe(true)
+
+  // now we use it
+  const chain = new Chain().methods('no-way').eh()
+  expect(chain.noWay(1)).toBe(chain)
+  expect(chain.noWay()).toBe(1)
+
+  // ensure it works with .call
+  const methodChainInstance = new Chain().methods('assert-callable').callable()
+  expect(isObj(methodChainInstance)).toBe(true)
+})
+
 test('addTypes', () => {
-  MethodChain.addTypes({magik: x => typeof x === 'string'})
+  const {addTypes} = require('../src')
+  addTypes({magik: x => typeof x === 'string'})
 
   const chain = new Chain()
   chain.methods('magic').type('magik').build()
 
   expect(typeof chain.magic).toBe('function')
 })
+
+const todo = console.log
+todo('define().set().call() (callable getter)')
+// test.skip('.init', t => {
+//   t.plan(1)
+//   const map = new Chain()
+//   const init = Chain.init()
+//
+//   t.deepEqual(init, map)
+// })
+
+test('.autoIncrement()', () => {
+  const chain = new Chain()
+  // extendIncrement
+  chain.methods(['index']).autoIncrement().build().index().index(+1).index()
+  const index = chain.get('index')
+  expect(index === 3).toBe(true)
+})
+
+test('.alias()', () => {
+  const chain = new Chain()
+  chain.methods(['canada']).alias(['eh']).build()
+  chain.eh('actually...canada o.o')
+  expect(chain.get('canada') === 'actually...canada o.o').toBe(true)
+
+  // can't deep equal, they are bound
+  // log.quick(chain.eh.toString(), chain.canada.toString())
+  // t.deepEqual(chain.eh, chain.canada)
+})
+
+test('.default(true)', () => {
+  const chain = new Chain()
+  chain.methods(['truth']).default(true).build().truth()
+  expect(chain.get('truth') === true).toBe(true)
+})
+
+test('.default(true)', () => {
+  const chain = new Chain()
+  chain.methods(['lies']).default(false).build().lies()
+  expect(chain.get('lies')).toBe(false)
+})
+
+test('extendWith -> .default - arr', () => {
+  const chain = new Chain()
+  chain.method(['thing1', 'thing2']).default('dr').build()
+  const {thing1, thing2} = chain.thing1().thing2().entries()
+  expect(thing1 === 'dr').toBe(true)
+  expect(thing1 === thing2).toBe(true)
+})
+
+// old
+// test.skip('extendWith - object', t => {
+//   const chain = new Chain()
+//   chain.extendWith({thing1: 'dr', thing2: 'dr'})
+//   const {thing1, thing2} = chain.thing1().thing2().entries()
+//   t.true(thing1 === 'dr' && thing1 === thing2)
+//   t.true(thing1 === 'dr')
+//   t.true(thing2 === 'dr')
+// })
+// test('extendWith', t => {
+//   const chain = new Chain()
+//   chain.extendWith(['eh'], false, 'no')
+//   log.quick(chain)
+// })
