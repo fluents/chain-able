@@ -20,14 +20,21 @@ module.exports = cb => {
     // ignore
   }
 
+  /* istanbul ignore next: stress test */
+  function* generatorFunction() {
+    var index = 0
+    while (index < 3) yield index++
+  }
+
   // https://github.com/gotwarlost/istanbul/blob/master/ignoring-code-for-coverage.md
   /* istanbul ignore next: tests run in node */
-  const g = typeof global ? global : window
+  const g = typeof global === 'undefined' ? window : global
 
   /* istanbul ignore next: tests run in node */
   const xml = g.XMLHttpRequest ? new g.XMLHttpRequest() : require('http')
 
   const datas = [
+    generatorFunction,
     class {},
     [],
     [1],
