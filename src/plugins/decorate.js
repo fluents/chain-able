@@ -4,7 +4,7 @@ const meta = require('../deps/meta')
 
 // @TODO: this is more like a preset since it *adds* plugins?
 module.exports = function(parentToDecorate) {
-  // @TODO is pureObj?
+  // @TODO is objStrict?
   // if (parentToDecorate) {
   this.target(parentToDecorate)
 

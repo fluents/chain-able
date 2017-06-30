@@ -1,5 +1,6 @@
 const isFunction = require('../deps/is/function')
 
+// @TODO optimize size here ez
 module.exports = function(methods, name) {
   const obj = methods[name]
 
