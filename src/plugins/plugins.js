@@ -3,4 +3,5 @@ module.exports = {
   obj: require('./obj'),
   schema: require('./schema'),
   types: require('./types'),
+  auto: require('./autoGetSet'),
 }
