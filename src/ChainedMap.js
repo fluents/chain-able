@@ -5,17 +5,28 @@ const ChainedMapCore = require('./ChainedMapBase')
 
 /**
  * @desc ChainedMap composer
+ * @category Chainable
+ * @category Map
+ * @class ChainedMap
+ * @since 0.0.1
  * @alias ComposeMap
+ * @extends {ChainedMapBase}
+ *
  * @param {Class | Object | Composable} [SuperClass=ChainedMapBase] class to extend
  * @return {Class} ChainedMap
+ *
  * @see ChainedMapBase
+ * @tests ChainedMap
+ * @types ChainedMap
  *
  * @example
+ *
  *    const heh = class {}
  *    const composed = ChainedMap.compose(heh)
  *    const hehchain = new Composed()
  *    hehchain instanceof heh
  *    //=> true
+ *
  */
 const CM = SuperClass => {
   const Composed = SuperClass === ChainedMapCore
@@ -28,12 +39,16 @@ const CM = SuperClass => {
     methods(names) { return this.method(names) }
 
     /**
+     * @desc the way to easily start building methods when using chainable instances
+     *
      * @since 4.0.0
      * @category methods
      * @alias methods
-     * @see MethodChain
+     *
      * @param  {string | Array<string> | Primitive} names method names to add to the object
      * @return {MethodChain} @chainable
+     *
+     * @see MethodChain
      *
      * @example
      *
@@ -42,6 +57,7 @@ const CM = SuperClass => {
      *   chain.eh(true)
      *   chain.get('eh')
      *   // => true
+     *
      */
     method(names) {
       return new MethodChain(this).name(names)
@@ -57,15 +73,26 @@ const CM = SuperClass => {
      * @return {ChainedMap} @chainable
      *
      * @TODO needs to pass in additional opts somehow...
-     * @see dopemerge
+     * @see deps/dopemerge
      * @see MergeChain
      *
      * @example
      *
+     *    const chain = new Chain()
      *    chain.set('eh', [1])
      *    chain.merge({eh: [2]})
      *    chain.get('eh')
      *    // => [1, 2]
+     *
+     * @example
+     *
+     *   const chain = new Chain()
+     *   chain.set('emptyArr', [])
+     *   chain.merge({emptyArr: []}, mergeChain =>
+     *     mergeChain.onExisting((a, b) => []).merger((a, b) => []).merge()
+     *   )
+     *   chain.get('emptyArr').length)
+     *   //=> 0
      *
      */
     merge(obj, handleMergeFn) {

@@ -3,6 +3,8 @@ const toarr = require('./deps/to-arr')
 
 /**
  * @class
+ * @category Chainable
+ * @category Set
  *
  * @TODO could add .first .last ?
  * @NOTE had Symbol.isConcatSpreadable but it was not useful
@@ -11,10 +13,11 @@ const toarr = require('./deps/to-arr')
  * @see http://2ality.com/2015/09/well-known-symbols-es6.html
  * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/isConcatSpreadable
  * @see Chainable
+ * @tests ChainedSet
  *
+ * @extends {Chainable}
  * @prop {Set} store
  * @type {Set}
- *
  */
 class ChainedSet extends Chainable {
   /**
