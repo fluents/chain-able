@@ -1,4 +1,31 @@
 const toS = require('./toS')
+const isStringPrimitive = require('./stringPrimitive')
 
-module.exports = obj =>
-  typeof obj === 'string' || toS(obj) === '[object String]'
+/**
+ * Checks if `value` is classified as a `String` primitive or object.
+ *
+ * @since 3.0.0
+ * @category Lang
+ *
+ * @memberOf is
+ * @extends isStringPrimitive
+ * @variation also allows String objects
+ *
+ * @param {*} x The value to check.
+ * @return {boolean} Returns `true` if `value` is a string, else `false`.
+ *
+ * @see https://github.com/lodash/lodash/blob/master/isString.js
+ * @see isStringPrimitive
+ *
+ * @example
+ *
+ * isString('abc')
+ * // => true
+ *
+ * isString(new String('abc'))
+ * // => true
+ *
+ * isString(1)
+ * // => false
+ */
+module.exports = x => isStringPrimitive(x) || toS(x) === '[object String]'

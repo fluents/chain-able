@@ -1,4 +1,4 @@
-const ENV_DEBUG = require('../env/debug')
+const ENV_DEVELOPMENT = require('../env/dev')
 const dotPropPaths = require('../dot/paths')
 const dotGet = require('../dot/get')
 const isStringOrNumber = require('../is/stringOrNumber')
@@ -58,6 +58,8 @@ const schemaFactory = (property, nestedSchema) => {
    * @desc build a recursive schema for all around runtime type safety
    * @category types
    * @category schema
+   * @memberOf schema
+   * @symb 🛂
    * @since 4.0.0-beta.1
    *
    * @param  {any} input the input to validate
@@ -119,7 +121,8 @@ const schemaFactory = (property, nestedSchema) => {
     return true
   }
 
-  if (process.env.NODE_ENV !== 'production') {
+  /* istanbul ignore next: ENV_DEBUG_OR_DEV */
+  if (ENV_DEVELOPMENT) {
     typeValidator.inspect = () => ({property, nestedSchema})
     typeValidator.toString = () =>
       JSON.stringify(typeValidator.inspect(), null, 2)
