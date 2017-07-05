@@ -197,18 +197,56 @@
 
 <!-- div -->
 
-<h3 id="Traverse-Traverse"><a href="#Traverse-Traverse">#</a>&nbsp;<code>Traverse.Traverse(obj)</code></h3>
+* <a href="https://github.com/fluents/chain-able/blob/master/typings/TraverseChain.d.ts">🌊  Types: TraverseChain.d</a>&nbsp;
+* <a href="https://github.com/fluents/chain-able/blob/master/typings/traverse.d.ts">🌊  Types: traverse.d</a>&nbsp;
+
+* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/circular.js">🔬  Tests: circular</a>&nbsp;
+* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/date.js">🔬  Tests: date</a>&nbsp;
+* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/equal.js">🔬  Tests: equal</a>&nbsp;
+* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/error.js">🔬  Tests: error</a>&nbsp;
+* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/has.js">🔬  Tests: has</a>&nbsp;
+* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/index.js">🔬  Tests: index</a>&nbsp;
+* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/instance.js">🔬  Tests: instance</a>&nbsp;
+* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/interface.js">🔬  Tests: interface</a>&nbsp;
+* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/json.js">🔬  Tests: json</a>&nbsp;
+* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/keys.js">🔬  Tests: keys</a>&nbsp;
+* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/leaves.js">🔬  Tests: leaves</a>&nbsp;
+* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/negative.js">🔬  Tests: negative</a>&nbsp;
+* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/obj.js">🔬  Tests: obj</a>&nbsp;
+* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/set-map.js">🔬  Tests: set-map</a>&nbsp;
+* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/siblings.js">🔬  Tests: siblings</a>&nbsp;
+* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/stop.js">🔬  Tests: stop</a>&nbsp;
+* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/stringify.js">🔬  Tests: stringify</a>&nbsp;
+* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/subexpr.js">🔬  Tests: subexpr</a>&nbsp;
+* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/superDeep.js">🔬  Tests: superDeep</a>&nbsp;
+
+<h3 id="Traverse-Traverse"><a href="#Traverse-Traverse">#</a>&nbsp;<code>Traverse.Traverse(obj=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L81 "View in source") [&#x24C9;][1]
 
 
 
+
+### @todos 
+
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
 #### Arguments
-1. `obj` *(Traversable)*: any traversable value
+1. `obj=undefined` *(Traversable)*: any traversable value
 
 #### Example
 ```js
 traverse({})
-  //=> Traverser
+//=> Traverser
+
 ```
 ---
 
@@ -216,23 +254,35 @@ traverse({})
 
 <!-- div -->
 
-<h3 id="Traverse-clone"><a href="#Traverse-clone">#</a>&nbsp;<code>Traverse.clone()</code></h3>
+<h3 id="Traverse-clone"><a href="#Traverse-clone">#</a>&nbsp;<code>Traverse.clone</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L309 "View in source") [&#x24C9;][1]
 
+Create a deep clone of the object.
 
 
-#### Returns
-*(any)*:
+### @todos 
 
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
 #### Example
 ```js
-const {traverse, eq} = require('chain-able')
+const { traverse, eq } = require('chain-able')
 
-   const obj = {eh: true, canada: [1]}
-   const cloned = traverse(obj).clone()
-   cloned.eh = false
-   eq(cloned, obj)
-   //=> false
+const obj = { eh: true, canada: [1] }
+const cloned = traverse(obj).clone()
+cloned.eh = false
+eq(cloned, obj)
+//=> false
+
 ```
 ---
 
@@ -240,28 +290,40 @@ const {traverse, eq} = require('chain-able')
 
 <!-- div -->
 
-<h3 id="Traverse-forEach"><a href="#Traverse-forEach">#</a>&nbsp;<code>Traverse.forEach(callback)</code></h3>
+<h3 id="Traverse-forEach"><a href="#Traverse-forEach">#</a>&nbsp;<code>Traverse.forEach(callback=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L216 "View in source") [&#x24C9;][1]
 
+Execute fn for each node in the object but unlike .map(), when this.update() is called it updates the object in-place. executes a provided function once for each traversed element.
 
 
+### @todos 
+
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
 #### Arguments
-1. `callback` *(Function)*: provided callback function
-
-#### Returns
-*(any)*: this.value
+1. `callback=undefined` *(Function)*: provided callback function
 
 #### Example
 ```js
-var {traverse} = require('chain-able')
+var { traverse } = require('chain-able')
 
-    var obj = [5, 6, -3, [7, 8, -2, 1], {f: 10, g: -13}]
-    traverse(obj).forEach(function(x) {
-      if (x < 0) this.update(x + 128)
-    })
+var obj = [5, 6, -3, [7, 8, -2, 1], { f: 10, g: -13 }]
+traverse(obj).forEach(function(x) {
+  if (x < 0) this.update(x + 128)
+})
 
-    console.dir(obj)
-    //=> [ 5, 6, 125, [ 7, 8, 126, 1 ], { f: 10, g: 115 } ]
+console.dir(obj)
+//=> [ 5, 6, 125, [ 7, 8, 126, 1 ], { f: 10, g: 115 } ]
+
 ```
 ---
 
@@ -269,16 +331,27 @@ var {traverse} = require('chain-able')
 
 <!-- div -->
 
-<h3 id="Traverse-get"><a href="#Traverse-get">#</a>&nbsp;<code>Traverse.get(ps)</code></h3>
+<h3 id="Traverse-get"><a href="#Traverse-get">#</a>&nbsp;<code>Traverse.get(ps=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L95 "View in source") [&#x24C9;][1]
 
+Get the element at the array path.
 
 
+### @todos 
+
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
 #### Arguments
-1. `ps` *(string&#91;&#93;)*: paths
-
-#### Returns
-*(any)*: value at dot-prop
+1. `ps=undefined` *(string&#91;&#93;)*: paths
 
 ---
 
@@ -286,21 +359,45 @@ var {traverse} = require('chain-able')
 
 <!-- div -->
 
-<h3 id="Traverse-has"><a href="#Traverse-has">#</a>&nbsp;<code>Traverse.has(pathsArray)</code></h3>
+<h3 id="Traverse-has"><a href="#Traverse-has">#</a>&nbsp;<code>Traverse.has(pathsArray=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L134 "View in source") [&#x24C9;][1]
 
+Return whether the element at the array path exists.
 
 
+### @todos 
+
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
 #### Arguments
-1. `pathsArray` *(string&#91;&#93;)*: paths
-
-#### Returns
-*(boolean)*: has element at path
+1. `pathsArray=undefined` *(string&#91;&#93;)*: paths
 
 #### Example
 ```js
-traverse({eh: true}).has(['eh'])
-   //=> true
+traverse({ eh: true }).has(['eh'])
+//=> true
+
+```
+#### Example
+```js
+traverse({ eh: true }).has(['canada'])
+//=> false
+
+```
+#### Example
+```js
+traverse([0]).has([2])
+//=> false
+
 ```
 ---
 
@@ -308,29 +405,41 @@ traverse({eh: true}).has(['eh'])
 
 <!-- div -->
 
-<h3 id="Traverse-map"><a href="#Traverse-map">#</a>&nbsp;<code>Traverse.map(cb)</code></h3>
+<h3 id="Traverse-map"><a href="#Traverse-map">#</a>&nbsp;<code>Traverse.map(cb=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L189 "View in source") [&#x24C9;][1]
 
+Execute fn for each node in the object and return a new object with the results of the walk. To update nodes in the result use this.update(value).
 
 
+### @todos 
+
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
 #### Arguments
-1. `cb` *(Function)*: fn for each node in the object
-
-#### Returns
-*(any)*:
+1. `cb=undefined` *(Function)*: fn for each node in the object
 
 #### Example
 ```js
-var {traverse} = require('chain-able')
+var { traverse } = require('chain-able')
 
-   var obj = {a: 1, b: 2, c: [3, 4]}
-   obj.c.push(obj)
+var obj = { a: 1, b: 2, c: [3, 4] }
+obj.c.push(obj)
 
-   var scrubbed = traverse(obj).map(function(x) {
-     if (this.circular) this.remove()
-   })
-   console.dir(scrubbed)
-   //=> { a: 1, b: 2, c: [ 3, 4 ] }
+var scrubbed = traverse(obj).map(function(x) {
+  if (this.circular) this.remove()
+})
+console.dir(scrubbed)
+//=> { a: 1, b: 2, c: [ 3, 4 ] }
+
 ```
 ---
 
@@ -338,64 +447,100 @@ var {traverse} = require('chain-able')
 
 <!-- div -->
 
-<h3 id="Traverse-nodes"><a href="#Traverse-nodes">#</a>&nbsp;<code>Traverse.nodes()</code></h3>
+<h3 id="Traverse-nodes"><a href="#Traverse-nodes">#</a>&nbsp;<code>Traverse.nodes</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L284 "View in source") [&#x24C9;][1]
 
+Return an Array of every node in the object.
 
 
-#### Returns
-*(&#42;)*:
+### @todos 
 
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
 ---
 
 <!-- /div -->
 
 <!-- div -->
 
-<h3 id="Traverse-paths"><a href="#Traverse-paths">#</a>&nbsp;<code>Traverse.paths()</code></h3>
+<a href="https://github.com/fluents/chain-able/blob/master/test/traverse/keys.js">🔬  Tests: keys</a>&nbsp;
+
+<h3 id="Traverse-paths"><a href="#Traverse-paths">#</a>&nbsp;<code>Traverse.paths</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L271 "View in source") [&#x24C9;][1]
 
+Return an Array of every possible non-cyclic path in the object. Paths are Arrays of string keys.
 
 
-#### Returns
-*(&#42;)*:
+### @todos 
 
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
 ---
 
 <!-- /div -->
 
 <!-- div -->
 
-<h3 id="Traverse-reduce"><a href="#Traverse-reduce">#</a>&nbsp;<code>Traverse.reduce(cb, init)</code></h3>
+<h3 id="Traverse-reduce"><a href="#Traverse-reduce">#</a>&nbsp;<code>Traverse.reduce(cb=undefined, init=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L254 "View in source") [&#x24C9;][1]
 
+applies a function against an accumulator and each element in the array *(from left to right)* to reduce it to a single value. calls cb for each loop that is .notRoot defaults initial value to `this.value`
 
 
+### @todos 
+
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
 #### Arguments
-1. `cb` *(Function)*: callback forEach
-2. `init` *(Array|Object|any)*: initial value
-
-#### Returns
-*(&#42;)*:
+1. `cb=undefined` *(Function)*: callback forEach
+2. `init=undefined` *(Array|Object|any)*: initial value
 
 #### Example
 ```js
-var {traverse} = require('chain-able')
+var { traverse } = require('chain-able')
 
-   var obj = {
-     a: [1, 2, 3],
-     b: 4,
-     c: [5, 6],
-     d: {e: [7, 8], f: 9},
-   }
+var obj = {
+  a: [1, 2, 3],
+  b: 4,
+  c: [5, 6],
+  d: { e: [7, 8], f: 9 },
+}
 
-   var leaves = traverse(obj).reduce(function(acc, x) {
-     if (this.isLeaf) acc.push(x)
-     return acc
-   }, [])
+var leaves = traverse(obj).reduce(function(acc, x) {
+  if (this.isLeaf) acc.push(x)
+  return acc
+}, [])
 
-   console.dir(leaves)
-   //=> [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+console.dir(leaves)
+//=> [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+
 ```
 ---
 
@@ -403,17 +548,28 @@ var {traverse} = require('chain-able')
 
 <!-- div -->
 
-<h3 id="Traverse-set"><a href="#Traverse-set">#</a>&nbsp;<code>Traverse.set(arrayPath, value)</code></h3>
+<h3 id="Traverse-set"><a href="#Traverse-set">#</a>&nbsp;<code>Traverse.set(arrayPath=undefined, value=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L156 "View in source") [&#x24C9;][1]
 
+Set the element at the array path to value.
 
 
+### @todos 
+
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
 #### Arguments
-1. `arrayPath` *(string&#91;&#93;)*: paths
-2. `value` *(any)*: any value to assign to the element @ the path
-
-#### Returns
-*(any)*: value passed in
+1. `arrayPath=undefined` *(string&#91;&#93;)*: paths
+2. `value=undefined` *(any)*: any value to assign to the element @ the path
 
 ---
 
@@ -427,16 +583,27 @@ var {traverse} = require('chain-able')
 
 <!-- div -->
 
-<h3 id="after"><a href="#after">#</a>&nbsp;<code>after(fn)</code></h3>
+<h3 id="after"><a href="#after">#</a>&nbsp;<code>after(fn=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L475 "View in source") [&#x24C9;][1]
 
 Call this function after any of the children are traversed.
 
-#### Arguments
-1. `fn` *(Function)*:
 
-#### Returns
-*(any)*:
+### @todos 
+
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
+#### Arguments
+1. `fn=undefined` *(Function)*:
 
 ---
 
@@ -450,17 +617,28 @@ Call this function after any of the children are traversed.
 
 <!-- div -->
 
-<h3 id="before"><a href="#before">#</a>&nbsp;<code>before(fn)</code></h3>
+<h3 id="before"><a href="#before">#</a>&nbsp;<code>before(fn=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L467 "View in source") [&#x24C9;][1]
 
 Call this function before any of the children are traversed.
 You can assign into this.keys here to traverse in a custom order.
 
-#### Arguments
-1. `fn` *(Function)*:
 
-#### Returns
-*(any)*:
+### @todos 
+
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
+#### Arguments
+1. `fn=undefined` *(Function)*:
 
 ---
 
@@ -479,9 +657,20 @@ You can assign into this.keys here to traverse in a custom order.
 
 
 
-#### Returns
-*(void)*:
 
+### @todos 
+
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
 ---
 
 <!-- /div -->
@@ -499,6 +688,20 @@ You can assign into this.keys here to traverse in a custom order.
 
 If the node equals one of its parents, the circular attribute is set to the context of that parent and the traversal progresses no deeper.
 
+
+### @todos 
+
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
 ---
 
 <!-- /div -->
@@ -511,16 +714,27 @@ If the node equals one of its parents, the circular attribute is set to the cont
 
 <!-- div -->
 
-<h3 id="copy"><a href="#copy">#</a>&nbsp;<code>copy(src)</code></h3>
+<h3 id="copy"><a href="#copy">#</a>&nbsp;<code>copy(src=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L601 "View in source") [&#x24C9;][1]
 
 
 
-#### Arguments
-1. `src` *(any)*:
 
-#### Returns
-*(any)*:
+### @todos 
+
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
+#### Arguments
+1. `src=undefined` *(any)*:
 
 ---
 
@@ -534,16 +748,27 @@ If the node equals one of its parents, the circular attribute is set to the cont
 
 <!-- div -->
 
-<h3 id="delete"><a href="#delete">#</a>&nbsp;<code>delete(stopHere)</code></h3>
+<h3 id="delete"><a href="#delete">#</a>&nbsp;<code>delete(stopHere=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L438 "View in source") [&#x24C9;][1]
 
 Delete the current element from its parent in the output. Calls delete even on Arrays.
 
-#### Arguments
-1. `stopHere` *(boolean)*:
 
-#### Returns
-*(void)*:
+### @todos 
+
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
+#### Arguments
+1. `stopHere=undefined` *(boolean)*:
 
 ---
 
@@ -557,14 +782,14 @@ Delete the current element from its parent in the output. Calls delete even on A
 
 <!-- div -->
 
-<h3 id="forEach"><a href="#forEach">#</a>&nbsp;<code>forEach(xs, fn)</code></h3>
+<h3 id="forEach"><a href="#forEach">#</a>&nbsp;<code>forEach(xs=undefined, fn=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L34 "View in source") [&#x24C9;][1]
 
 
 
 #### Arguments
-1. `xs` *(Array|Object|any)*:
-2. `fn` *(Function)*:
+1. `xs=undefined` *(Array|Object|any)*:
+2. `fn=undefined` *(Function)*:
 
 ---
 
@@ -575,8 +800,22 @@ Delete the current element from its parent in the output. Calls delete even on A
 <h3 id="forEach"><a href="#forEach">#</a>&nbsp;<code>forEach()</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L664 "View in source") [&#x24C9;][1]
 
+adds methods to Traverser
 
 
+### @todos 
+
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
 ---
 
 <!-- /div -->
@@ -594,6 +833,20 @@ Delete the current element from its parent in the output. Calls delete even on A
 
 (Boolean): Whether the present node is the root node
 
+
+### @todos 
+
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
 ---
 
 <!-- /div -->
@@ -611,6 +864,20 @@ Delete the current element from its parent in the output. Calls delete even on A
 
 The name of the key of the present node in its parent. This is undefined for the root node.
 
+
+### @todos 
+
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
 ---
 
 <!-- /div -->
@@ -628,6 +895,20 @@ The name of the key of the present node in its parent. This is undefined for the
 
 (number): Depth of the node within the traversal
 
+
+### @todos 
+
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
 ---
 
 <!-- /div -->
@@ -645,6 +926,20 @@ The name of the key of the present node in its parent. This is undefined for the
 
 (Array): The present node on the recursive walk
 
+
+### @todos 
+
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
 ---
 
 <!-- /div -->
@@ -662,6 +957,20 @@ The name of the key of the present node in its parent. This is undefined for the
 
 
 
+
+### @todos 
+
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
 ---
 
 <!-- /div -->
@@ -679,6 +988,20 @@ The name of the key of the present node in its parent. This is undefined for the
 
 The context of the node's parent. This is undefined for the root node.
 
+
+### @todos 
+
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
 ---
 
 <!-- /div -->
@@ -696,6 +1019,20 @@ The context of the node's parent. This is undefined for the root node.
 
 (Array): An array of string keys from the root to the present node
 
+
+### @todos 
+
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
 ---
 
 <!-- /div -->
@@ -708,16 +1045,27 @@ The context of the node's parent. This is undefined for the root node.
 
 <!-- div -->
 
-<h3 id="post"><a href="#post">#</a>&nbsp;<code>post(fn)</code></h3>
+<h3 id="post"><a href="#post">#</a>&nbsp;<code>post(fn=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L491 "View in source") [&#x24C9;][1]
 
 Call this function after each of the children are traversed.
 
-#### Arguments
-1. `fn` *(Function)*:
 
-#### Returns
-*(any)*:
+### @todos 
+
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
+#### Arguments
+1. `fn=undefined` *(Function)*:
 
 ---
 
@@ -731,16 +1079,27 @@ Call this function after each of the children are traversed.
 
 <!-- div -->
 
-<h3 id="pre"><a href="#pre">#</a>&nbsp;<code>pre(fn)</code></h3>
+<h3 id="pre"><a href="#pre">#</a>&nbsp;<code>pre(fn=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L483 "View in source") [&#x24C9;][1]
 
 Call this function before each of the children are traversed.
 
-#### Arguments
-1. `fn` *(Function)*:
 
-#### Returns
-*(any)*:
+### @todos 
+
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
+#### Arguments
+1. `fn=undefined` *(Function)*:
 
 ---
 
@@ -754,16 +1113,27 @@ Call this function before each of the children are traversed.
 
 <!-- div -->
 
-<h3 id="remove"><a href="#remove">#</a>&nbsp;<code>remove(stopHere)</code></h3>
+<h3 id="remove"><a href="#remove">#</a>&nbsp;<code>remove(stopHere=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L447 "View in source") [&#x24C9;][1]
 
 Remove the current element from the output. If the node is in an Array it will be spliced off. Otherwise it will be deleted from its parent.
 
-#### Arguments
-1. `stopHere` *(boolean)*:
 
-#### Returns
-*(void)*:
+### @todos 
+
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
+#### Arguments
+1. `stopHere=undefined` *(boolean)*:
 
 ---
 
@@ -777,16 +1147,27 @@ Remove the current element from the output. If the node is in an Array it will b
 
 <!-- div -->
 
-<h3 id="return"><a href="#return">#</a>&nbsp;<code>return(node_)</code></h3>
+<h3 id="return"><a href="#return">#</a>&nbsp;<code>return(node_=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L364 "View in source") [&#x24C9;][1]
 
 
 
-#### Arguments
-1. `node_` *(any)*:
 
-#### Returns
-*(State)*: see types
+### @todos 
+
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
+#### Arguments
+1. `node_=undefined` *(any)*:
 
 ---
 
@@ -805,6 +1186,20 @@ Remove the current element from the output. If the node is in an Array it will b
 
 (Object): Each method that takes a callback has a context *(its this object)* with these attributes:
 
+
+### @todos 
+
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
 ---
 
 <!-- /div -->
@@ -822,9 +1217,20 @@ Remove the current element from the output. If the node is in an Array it will b
 
 
 
-#### Returns
-*(void)*:
 
+### @todos 
+
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
 ---
 
 <!-- /div -->
@@ -837,18 +1243,22 @@ Remove the current element from the output. If the node is in an Array it will b
 
 <!-- div -->
 
-<h3 id="traverse"><a href="#traverse">#</a>&nbsp;<code>traverse(obj)</code></h3>
+<h3 id="traverse"><a href="#traverse">#</a>&nbsp;<code>traverse(obj=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L52 "View in source") [&#x24C9;][1]
 
 {@link https://sourcemaking.com/design_patterns/chain_of_responsibility chainofresponsibility}
 
+
+[chainofresponsibility]: https://sourcemaking.com/design_patterns/chain_of_responsibility <!-- NAMED_LINK -->
+
 #### Arguments
-1. `obj` *(Traversable)*: object to traverse
+1. `obj=undefined` *(Traversable)*: object to traverse
 
 #### Example
 ```js
 traverse({})
-   //=> new Traverse(obj)
+//=> new Traverse(obj)
+
 ```
 ---
 
@@ -862,18 +1272,29 @@ traverse({})
 
 <!-- div -->
 
-<h3 id="update"><a href="#update">#</a>&nbsp;<code>update(x, stopHere)</code></h3>
+<h3 id="update"><a href="#update">#</a>&nbsp;<code>update(x=undefined, stopHere=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L426 "View in source") [&#x24C9;][1]
 
 Set a new value for the present node.
 All the elements in value will be recursively traversed unless stopHere is true.
 
-#### Arguments
-1. `x` *(Function)*:
-2. `stopHere` *(boolean)*:
 
-#### Returns
-*(void)*:
+### @todos 
+
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
+#### Arguments
+1. `x=undefined` *(Function)*:
+2. `stopHere=undefined` *(boolean)*:
 
 ---
 
@@ -890,11 +1311,22 @@ All the elements in value will be recursively traversed unless stopHere is true.
 <h3 id="updateState"><a href="#updateState">#</a>&nbsp;<code>updateState()</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L523 "View in source") [&#x24C9;][1]
 
+updates if needed:
 
 
-#### Returns
-*(void)*:
+### @todos 
 
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
 ---
 
 <!-- /div -->
@@ -907,18 +1339,29 @@ All the elements in value will be recursively traversed unless stopHere is true.
 
 <!-- div -->
 
-<h3 id="walk"><a href="#walk">#</a>&nbsp;<code>walk(root, cb, immutable)</code></h3>
+<h3 id="walk"><a href="#walk">#</a>&nbsp;<code>walk(root=undefined, cb=undefined, immutable=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L350 "View in source") [&#x24C9;][1]
 
 
 
-#### Arguments
-1. `root` *(any)*: root node
-2. `cb` *(Function)*: callback for each
-3. `immutable` *(boolean)*: should mutate or not
 
-#### Returns
-*(any)*:
+### @todos 
+
+- [ ] : symbol, map, set
+ 
+
+### @classDesc 
+
+Traverse and transform objects by visiting every node on a recursive walk. 
+
+### @classProps 
+
+* {value} the data passed in as an argument to traverse on 
+ 
+#### Arguments
+1. `root=undefined` *(any)*: root node
+2. `cb=undefined` *(Function)*: callback for each
+3. `immutable=undefined` *(boolean)*: should mutate or not
 
 ---
 

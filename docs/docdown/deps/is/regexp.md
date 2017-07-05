@@ -19,16 +19,20 @@
 
 <!-- div -->
 
-<h3 id="exports"><a href="#exports">#</a>&nbsp;<code>exports(value)</code></h3>
+<h3 id="exports"><a href="#exports">#</a>&nbsp;<code>exports(value=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/regexp.js#L21 "View in source") [&#x24C9;][1]
 
 Checks if `value` is classified as a `RegExp` object.
 
+
+### @see 
+
+* <a href="https://github.com/KyleAMathews/deepmerge">kyle a mathews/deepmerge</a>
 #### Since
 0.1.0
 
 #### Arguments
-1. `value` *(&#42;)*: The value to check.
+1. `value=undefined` *(&#42;)*: The value to check.
 
 #### Returns
 *(boolean)*: Returns `true` if `value` is a regexp, else `false`.
@@ -40,6 +44,7 @@ isRegExp(/abc/)
 
 isRegExp('/abc/')
 // => false
+
 ```
 ---
 

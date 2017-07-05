@@ -19,17 +19,22 @@
 
 <!-- div -->
 
-<h3 id="encase-prototype-exports"><a href="#encase-prototype-exports">#</a>&nbsp;<code>encase.prototype.exports(method, type)</code></h3>
+<h3 id="encase-prototype-exports"><a href="#encase-prototype-exports">#</a>&nbsp;<code>encase.prototype.exports(method=undefined, type=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/validators/error.js#L54 "View in source") [&#x24C9;][1]
 
+enhance an Error, enable rethrowing & better inspection
 
 
+### @todos 
+
+- [ ] js stringify if development
+ 
 #### Since
 4.0.0-alpha.1
 
 #### Arguments
-1. `method` *(Primitive)*: method being decorated
-2. `type` *(Type)*: type to validate with
+1. `method=undefined` *(Primitive)*: method being decorated
+2. `type=undefined` *(Type)*: type to validate with
 
 #### Returns
 *(Function): function that returns a decorated TypeError with .inspect & metadata (arg, thrown, meta)*
@@ -37,25 +42,25 @@
 #### Example
 ```js
 const badValidator = x => {
-    if (x === 'bad') {
-      throw new Error('bad!')
-    }
+  if (x === 'bad') {
+    throw new Error('bad!')
   }
-  const enhancer = enhanceError('eh', badValidator)
+}
+const enhancer = enhanceError('eh', badValidator)
 
-  // called by plugins/encase when throws or invalid
-  let error
-  let arg = 'bad'
-  try {
-    error = badValidator(arg)
-  }
-  catch (e) {
-    error = enhancer(arg, e, {metadata: true})
-  }
+// called by plugins/encase when throws or invalid
+let error
+let arg = 'bad'
+try {
+  error = badValidator(arg)
+} catch (e) {
+  error = enhancer(arg, e, { metadata: true })
+}
 
-  console.log(error)
-  //=> {[eh]: { type: badValidator, arg: 'bad', json, str, rethrow }}
-  //=> console.log on DEVELOPMENT
+console.log(error)
+//=> {[eh]: { type: badValidator, arg: 'bad', json, str, rethrow }}
+//=> console.log on DEVELOPMENT
+
 ```
 ---
 

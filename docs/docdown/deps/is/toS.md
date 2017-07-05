@@ -19,13 +19,22 @@
 
 <!-- div -->
 
-<h3 id="is-prototype-exports"><a href="#is-prototype-exports">#</a>&nbsp;<code>is.prototype.exports(value)</code></h3>
+<h3 id="is-prototype-exports"><a href="#is-prototype-exports">#</a>&nbsp;<code>is.prototype.exports(value=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/toS.js#L12 "View in source") [&#x24C9;][1]
 
 The base implementation of `getTag` without fallbacks for buggy environments.
 
+
+### @see 
+
+* <a href="https://github.com/KyleAMathews/deepmerge">kyle a mathews/deepmerge</a>
+
+### @todos 
+
+- [ ] obj[Symbol.toStringTag]
+ 
 #### Arguments
-1. `value` *(&#42;)*: The value to query.
+1. `value=undefined` *(&#42;)*: The value to query.
 
 #### Returns
 *(string)*: Returns the `toStringTag`.

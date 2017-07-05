@@ -19,13 +19,13 @@
 
 <!-- div -->
 
-<h3 id="exports"><a href="#exports">#</a>&nbsp;<code>exports(x)</code></h3>
+<h3 id="exports"><a href="#exports">#</a>&nbsp;<code>exports(x=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/util/simpleKindOf.js#L12 "View in source") [&#x24C9;][1]
 
-
+when Array -> 'array' when null -> 'null' else `typeof x`
 
 #### Arguments
-1. `x` *(any)*:
+1. `x=undefined` *(any)*:
 
 #### Returns
 *(string)*: type

@@ -19,7 +19,7 @@
 
 <!-- div -->
 
-<h3 id="exports"><a href="#exports">#</a>&nbsp;<code>exports(x)</code></h3>
+<h3 id="exports"><a href="#exports">#</a>&nbsp;<code>exports(x=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/set.js#L20 "View in source") [&#x24C9;][1]
 
 Checks if `value` is classified as a `Set` object.
@@ -28,18 +28,19 @@ Checks if `value` is classified as a `Set` object.
 4.3.0
 
 #### Arguments
-1. `x` *(&#42;)*: The value to check.
+1. `x=undefined` *(&#42;)*: The value to check.
 
 #### Returns
 *(boolean)*: Returns `true` if `value` is a set, else `false`.
 
 #### Example
 ```js
-isSet(new Set)
+isSet(new Set())
 // => true
 
-isSet(new WeakSet)
+isSet(new WeakSet())
 // => false
+
 ```
 ---
 

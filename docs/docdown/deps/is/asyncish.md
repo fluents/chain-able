@@ -19,16 +19,23 @@
 
 <!-- div -->
 
-<h3 id="is-prototype-exports"><a href="#is-prototype-exports">#</a>&nbsp;<code>is.prototype.exports(x)</code></h3>
+<h3 id="is-prototype-exports"><a href="#is-prototype-exports">#</a>&nbsp;<code>is.prototype.exports(x=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/asyncish.js#L29 "View in source") [&#x24C9;][1]
 
+async function or promise
+
+
+### @extends 
+
+* undefined
+* undefined
 
 
 #### Since
 4.0.0-beta.2
 
 #### Arguments
-1. `x` *(&#42;)*: value
+1. `x=undefined` *(&#42;)*: value
 
 #### Returns
 *(boolean)*: x isAsyncish
@@ -36,13 +43,14 @@
 #### Example
 ```js
 isAsyncish(async function() {})
- //=> true
- isAsyncish(new Promise(r => r()))
- //=> true
+//=> true
+isAsyncish(new Promise(r => r()))
+//=> true
 
- isAsyncish({})
- //=> false
- isAsyncish(function() {})
+isAsyncish({})
+//=> false
+isAsyncish(function() {})
+
 ```
 ---
 

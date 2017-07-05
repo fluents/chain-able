@@ -19,16 +19,25 @@
 
 <!-- div -->
 
-<h3 id="is-prototype-exports"><a href="#is-prototype-exports">#</a>&nbsp;<code>is.prototype.exports(x)</code></h3>
+<h3 id="is-prototype-exports"><a href="#is-prototype-exports">#</a>&nbsp;<code>is.prototype.exports(x=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/undefined.js#L38 "View in source") [&#x24C9;][1]
 
+Checks if `value` is `undefined`.
 
 
+### @see 
+
+* <a href="https://github.com/KyleAMathews/deepmerge">kyle a mathews/deepmerge</a>
+
+### @notes 
+
+* || typeof x === 'undefined'
+ 
 #### Since
 4.0.0-alpha.1
 
 #### Arguments
-1. `x` *(&#42;)*: value
+1. `x=undefined` *(&#42;)*: value
 
 #### Returns
 *(boolean)*: isUndefined
@@ -36,22 +45,23 @@
 #### Example
 ```js
 isUndefined(undefined)
- //=> true
- isUndefined(void 0)
- //=> true
+//=> true
+isUndefined(void 0)
+//=> true
 
- isUndefined(null)
- //=> false
- isUndefined(NaN)
- //=> false
- isUndefined({})
- //=> false
- isUndefined('')
- //=> false
- isUndefined(1)
- //=> false
- isUndefined(false)
- //=> false
+isUndefined(null)
+//=> false
+isUndefined(NaN)
+//=> false
+isUndefined({})
+//=> false
+isUndefined('')
+//=> false
+isUndefined(1)
+//=> false
+isUndefined(false)
+//=> false
+
 ```
 ---
 

@@ -1,4 +1,4 @@
-# function.js API documentation
+# native.js API documentation
 
 <!-- div class="toc-container" -->
 
@@ -20,38 +20,25 @@
 <!-- div -->
 
 <h3 id="is-prototype-exports"><a href="#is-prototype-exports">#</a>&nbsp;<code>is.prototype.exports(x=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/function.js#L37 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/native.js#L19 "View in source") [&#x24C9;][1]
 
-Checks if `value` is classified as a `Function` object.
+based on isNative from react-fibers, based on isNative() from Lodash
 
-
-### @notes 
-
-* || x instanceof Function
- 
 #### Since
-3.0.0
+4.0.6
 
 #### Arguments
-1. `x=undefined` *(&#42;)*: The value to check.
+1. `x=undefined` *(&#42;)*: value to check
 
 #### Returns
-*(boolean)*: x isFunction
+*(boolean)*:
 
 #### Example
 ```js
-isFunction(function() {})
-//=> true
-isFunction(() => {})
-//=> true
-isFunction(new Function())
-//=> true
+isNative(Array.prototype.push)
+// => true
 
-isFunction(1)
-//=> false
-isFunction('')
-//=> false
-isFunction(/abc/)
+isNative(function normalFunction() {})
 // => false
 
 ```

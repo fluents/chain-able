@@ -19,16 +19,32 @@
 
 <!-- div -->
 
-<h3 id="is-prototype-exports"><a href="#is-prototype-exports">#</a>&nbsp;<code>is.prototype.exports(x)</code></h3>
+<h3 id="is-prototype-exports"><a href="#is-prototype-exports">#</a>&nbsp;<code>is.prototype.exports(x=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/boolean.js#L33 "View in source") [&#x24C9;][1]
 
+Checks if `value` is classified as a boolean primitive or object.
+
+
+### @see 
+
+* <a href="https://github.com/KyleAMathews/deepmerge">kyle a mathews/deepmerge</a>
+
+### @notes 
+
+* could also have typeof x === 'boolean' || (/true|false/).test(x)
+ 
+
+### @extends 
+
+* undefined
+* undefined
 
 
 #### Since
 3.0.0
 
 #### Arguments
-1. `x` *(&#42;)*: value
+1. `x=undefined` *(&#42;)*: value
 
 #### Returns
 *(boolean)*: isBoolean
@@ -36,13 +52,14 @@
 #### Example
 ```js
 isBoolean(false)
- //=> true
- isBoolean(new Boolean(1))
- //=> true
- isBoolean(1)
- //=> false
- isBoolean('')
- //=> false
+//=> true
+isBoolean(new Boolean(1))
+//=> true
+isBoolean(1)
+//=> false
+isBoolean('')
+//=> false
+
 ```
 ---
 

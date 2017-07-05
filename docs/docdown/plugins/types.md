@@ -19,15 +19,15 @@
 
 <!-- div -->
 
-<h3 id="exports"><a href="#exports">#</a>&nbsp;<code>exports(name, parent, built)</code></h3>
+<h3 id="exports"><a href="#exports">#</a>&nbsp;<code>exports(name=undefined, parent=undefined, built=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/plugins/types.js#L18 "View in source") [&#x24C9;][1]
 
 
 
 #### Arguments
-1. `name` *(string)*:
-2. `parent` *(Object)*:
-3. `built` *(Object)*:
+1. `name=undefined` *(string)*:
+2. `parent=undefined` *(Object)*:
+3. `built=undefined` *(Object)*:
 
 #### Returns
 *(void)*:

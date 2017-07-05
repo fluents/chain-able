@@ -19,7 +19,7 @@
 
 <!-- div -->
 
-<h3 id="is-prototype-exports"><a href="#is-prototype-exports">#</a>&nbsp;<code>is.prototype.exports(x)</code></h3>
+<h3 id="is-prototype-exports"><a href="#is-prototype-exports">#</a>&nbsp;<code>is.prototype.exports(x=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/matcher.js#L25 "View in source") [&#x24C9;][1]
 
 
@@ -28,7 +28,7 @@
 3.0.0
 
 #### Arguments
-1. `x` *(&#42;)*: value to check
+1. `x=undefined` *(&#42;)*: value to check
 
 #### Returns
 *(boolean)*: isFunction || isRegExp
@@ -36,15 +36,16 @@
 #### Example
 ```js
 isMatcher(/(.*)/)
-   //=> true
+//=> true
 
-   isMatcher(x => true)
-   //=> true
+isMatcher(x => true)
+//=> true
 
-   isMatcher(1)
-   //=> false
-   isMatcher('.*')
-   //=> false
+isMatcher(1)
+//=> false
+isMatcher('.*')
+//=> false
+
 ```
 ---
 

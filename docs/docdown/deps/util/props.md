@@ -19,13 +19,13 @@
 
 <!-- div -->
 
-<h3 id="allProperties"><a href="#allProperties">#</a>&nbsp;<code>allProperties(obj)</code></h3>
+<h3 id="allProperties"><a href="#allProperties">#</a>&nbsp;<code>allProperties(obj=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/util/props.js#L14 "View in source") [&#x24C9;][1]
 
-
+properties, property symbols, object keys ^ all again for prototype
 
 #### Arguments
-1. `obj` *(Object)*:
+1. `obj=undefined` *(Object)*:
 
 #### Returns
 *(&#42;)*:

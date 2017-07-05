@@ -24,6 +24,10 @@
 
 
 
+
+### @see 
+
+* <a href="https://github.com/KyleAMathews/deepmerge">kyle a mathews/deepmerge</a>
 #### Since
 3.0.0
 

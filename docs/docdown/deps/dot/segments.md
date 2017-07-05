@@ -27,8 +27,20 @@
 #### Example
 ```js
 1
-         '\.eh' -1 === '\\'      (true)
-               +1 !== undefined (true, eh)
+'.eh' - 1 === '\\'(true) + 1 !== undefined(true, eh)
+
+```
+#### Example
+```js
+2
+'.eh' - 1 === '\\'(false, undefined) + 1 !== undefined(true, eh)
+
+```
+#### Example
+```js
+3
+'.' - 1 === '\\'(true) + 1 !== undefined(false, eh)
+
 ```
 ---
 

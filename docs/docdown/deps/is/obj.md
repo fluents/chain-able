@@ -19,16 +19,25 @@
 
 <!-- div -->
 
-<h3 id="is-prototype-exports"><a href="#is-prototype-exports">#</a>&nbsp;<code>is.prototype.exports(value)</code></h3>
+<h3 id="is-prototype-exports"><a href="#is-prototype-exports">#</a>&nbsp;<code>is.prototype.exports(value=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/obj.js#L34 "View in source") [&#x24C9;][1]
 
 
 
+
+### @see 
+
+* <a href="https://github.com/KyleAMathews/deepmerge">kyle a mathews/deepmerge</a>
+
+### @notes 
+
+* Object.prototype.toString.call(val) === '[object Object]'
+ 
 #### Since
 3.0.0
 
 #### Arguments
-1. `value` *(&#42;)*: The value to check.
+1. `value=undefined` *(&#42;)*: The value to check.
 
 #### Returns
 *(boolean)*: Returns `true` if `value` is an object, else `false`.
@@ -46,6 +55,7 @@ isObject(Function)
 
 isObject(null)
 // => false
+
 ```
 ---
 

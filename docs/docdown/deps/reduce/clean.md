@@ -19,16 +19,17 @@
 
 <!-- div -->
 
-<h3 id="reduce-prototype-exports"><a href="#reduce-prototype-exports">#</a>&nbsp;<code>reduce.prototype.exports(obj)</code></h3>
+<h3 id="reduce-prototype-exports"><a href="#reduce-prototype-exports">#</a>&nbsp;<code>reduce.prototype.exports(obj=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/reduce/clean.js#L39 "View in source") [&#x24C9;][1]
 
+goes through the maps, and the map values, reduces them to array then to an object using the reduced values
 
 
-#### Since
-4.0.0 <- moved as a dep function
+### @see 
 
+* <a href="https://github.com/sindresorhus/escape-string-regexp">sindresorhus/escape string regexp</a>
 #### Arguments
-1. `obj` *(Object): object to clean, usually .entries()*
+1. `obj=undefined` *(Object): object to clean, usually .entries()*
 
 #### Returns
 *(Object)*: reduced object, without `notReal` values
@@ -37,15 +38,16 @@
 ```js
 const map = new ChainedMap()
 
-  map
-   .set('emptyArr', [])
-   .set('arr', [1])
-   .set('nill', null)
-   .set('emptyObj', {})
-   .set('obj', {keys: true})
+map
+  .set('emptyArr', [])
+  .set('arr', [1])
+  .set('nill', null)
+  .set('emptyObj', {})
+  .set('obj', { keys: true })
 
-  clean(map.entries())
-  //=> {arr: [1], obj: {keys: true}}
+clean(map.entries())
+//=> {arr: [1], obj: {keys: true}}
+
 ```
 ---
 

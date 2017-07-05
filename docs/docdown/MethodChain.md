@@ -4,14 +4,22 @@
 
 <!-- div -->
 
-## `/* eslint complexity`
-* <a href="#/* eslint complexity">`/&#42; eslint complexity`</a>
+## `/* istanbul ignore next`
+* <a href="#/* istanbul ignore next">`/&#42; istanbul ignore next`</a>
+
+<!-- /div -->
+
+<!-- div -->
+
+## `MethodChain`
+* <a href="#">``</a>
 
 <!-- /div -->
 
 <!-- div -->
 
 ## `MethodChain.prototype`
+* <a href="#MethodChain-prototype-">`MethodChain.prototype.`</a>
 * <a href="#MethodChain-prototype-_build">`MethodChain.prototype._build`</a>
 * <a href="#MethodChain-prototype-_defaults">`MethodChain.prototype._defaults`</a>
 * <a href="#MethodChain-prototype-autoIncrement">`MethodChain.prototype.autoIncrement`</a>
@@ -44,20 +52,82 @@
 
 <!-- /div -->
 
+<!-- div -->
+
+## `this.extend`
+* <a href="#this-extend">`this.extend`</a>
+
+<!-- /div -->
+
 <!-- /div -->
 
 <!-- div class="doc-container" -->
 
 <!-- div -->
 
-## `/* eslint complexity`
+## `/* istanbul ignore next`
 
 <!-- div -->
 
-<h3 id="/* eslint complexity"><a href="#/* eslint complexity">#</a>&nbsp;<code>/* eslint complexity</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MethodChain.js#L13 "View in source") [&#x24C9;][1]
+<h3 id="/* istanbul ignore next"><a href="#/* istanbul ignore next">#</a>&nbsp;<code>/* istanbul ignore next()</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MethodChain.js#L563 "View in source") [&#x24C9;][1]
+
+!!!!! @TODO: put in `plugins.post.call`
+!!!!! @TODO: ensure unique name
+<br>
+<br>
+can add .meta on them though for re-decorating
+-> but this has issue with .getset so needs to be on .meta[name]
+
+#### Returns
+*(void)*:
+
+---
+
+<!-- /div -->
+
+<!-- /div -->
+
+<!-- div -->
+
+## `MethodChain`
+
+<!-- div -->
+
+<h3 id=""><a href="#">#</a>&nbsp;<code>()</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MethodChain.js#L17 "View in source") [&#x24C9;][1]
 
 
+
+
+[property-pattern]: https://github.com/iluwatar/java-design-patterns/tree/master/property <!-- NAMED_LINK -->
+
+
+[prototype-pattern]: https://github.com/iluwatar/java-design-patterns/tree/master/prototype <!-- NAMED_LINK -->
+
+
+[step-builder-pattern]: https://github.com/iluwatar/java-design-patterns/tree/master/step-builder <!-- NAMED_LINK -->
+
+
+[builder-pattern]: https://github.com/iluwatar/java-design-patterns/tree/master/builder <!-- NAMED_LINK -->
+
+
+[mixin-png]: https://github.com/addyosmani/essential-js-design-patterns/blob/master/diagrams/mixins.png <!-- NAMED_LINK -->
+
+
+[creational-patterns]: https://sourcemaking.com/design_patterns/creational_patterns <!-- NAMED_LINK -->
+
+
+[factory-method]: https://sourcemaking.com/design_patterns/factory_method <!-- NAMED_LINK -->
+
+
+[constructors]: https://medium.com/javascript-scene/javascript-factory-functions-vs-constructor-functions-vs-classes-2f22ceddf33e <!-- NAMED_LINK -->
+
+
+[js-factory-functions]: https://www.sitepoint.com/factory-functions-javascript/ <!-- NAMED_LINK -->
+
+#### Returns
+*(void)*:
 
 ---
 
@@ -71,17 +141,17 @@
 
 <!-- div -->
 
-<h3 id="MethodChain-prototype-_build"><a href="#MethodChain-prototype-_build">#</a>&nbsp;<code>MethodChain.prototype._build(name, parent)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MethodChain.js#L344 "View in source") [&#x24C9;][1]
+<a href="https://github.com/fluents/chain-able/blob/master/typings/MethodChain.d.ts">🌊  Types: MethodChain.d</a>&nbsp;
 
+<a href="https://github.com/fluents/chain-able/blob/master/test/MethodChain.js">🔬  Tests: MethodChain</a>&nbsp;
 
+<h3 id="MethodChain-prototype-"><a href="#MethodChain-prototype-">#</a>&nbsp;<code>MethodChain.prototype.()</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MethodChain.js#L112 "View in source") [&#x24C9;][1]
+
+(Map): ❗ using `+` will call `.build()` in a shorthand fashion
 
 #### Since
-4.0.0-alpha.1
-
-#### Arguments
-1. `name` *(Primitive)*:
-2. `parent` *(Object)*:
+4.0.0
 
 #### Returns
 *(void)*:
@@ -92,8 +162,29 @@
 
 <!-- div -->
 
-<h3 id="MethodChain-prototype-_defaults"><a href="#MethodChain-prototype-_defaults">#</a>&nbsp;<code>MethodChain.prototype._defaults(name, parent, built)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MethodChain.js#L306 "View in source") [&#x24C9;][1]
+<h3 id="MethodChain-prototype-_build"><a href="#MethodChain-prototype-_build">#</a>&nbsp;<code>MethodChain.prototype._build(name=undefined, parent=undefined)</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MethodChain.js#L440 "View in source") [&#x24C9;][1]
+
+
+
+#### Since
+4.0.0-alpha.1
+
+#### Arguments
+1. `name=undefined` *(Primitive)*:
+2. `parent=undefined` *(Object)*:
+
+#### Returns
+*(void)*:
+
+---
+
+<!-- /div -->
+
+<!-- div -->
+
+<h3 id="MethodChain-prototype-_defaults"><a href="#MethodChain-prototype-_defaults">#</a>&nbsp;<code>MethodChain.prototype._defaults(name=undefined, parent=undefined, built=undefined)</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MethodChain.js#L402 "View in source") [&#x24C9;][1]
 
 
 
@@ -101,9 +192,9 @@
 4.0.0
 
 #### Arguments
-1. `name` *(Primitive)*: method name
-2. `parent` *(Object)*: being decorated
-3. `built` *(Object)*: method being built
+1. `name=undefined` *(Primitive)*: method name
+2. `parent=undefined` *(Object)*: being decorated
+3. `built=undefined` *(Object)*: method being built
 
 #### Returns
 *(void)*:
@@ -112,6 +203,34 @@
 ```js
 ._defaults('', {}, {})
 ```
+#### Example
+```js
+let methodFactories
+
+  ### `onSet`
+
+  > defaults to `this.set(key, value)`
+
+  ```ts
+  public onSet(fn: Fn): MethodChain
+  ```
+
+  ### `onCall`
+
+  > defaults to .onSet ^
+
+  ```ts
+  public onCall(fn: Fn): MethodChain
+  ```
+
+  ### `onGet`
+
+  > defaults to `this.get(key)`
+
+  ```ts
+  public onGet(fn: Fn): MethodChain
+  ```
+```
 ---
 
 <!-- /div -->
@@ -119,21 +238,22 @@
 <!-- div -->
 
 <h3 id="MethodChain-prototype-autoIncrement"><a href="#MethodChain-prototype-autoIncrement">#</a>&nbsp;<code>MethodChain.prototype.autoIncrement()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MethodChain.js#L646 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MethodChain.js#L742 "View in source") [&#x24C9;][1]
 
-
+adds a plugin to increment the value on every call
 
 #### Since
-4.0.0-beta.1 <- moved to plugin
+0.4.0
 
 #### Returns
-*(MethodChain)*: @chainable
+*(void)*:
 
 #### Example
 ```js
 chain.methods(['index']).autoIncrement().build().index().index(+1).index()
-    chain.get('index')
-    //=> 3
+chain.get('index')
+//=> 3
+
 ```
 ---
 
@@ -142,9 +262,9 @@ chain.methods(['index']).autoIncrement().build().index().index(+1).index()
 <!-- div -->
 
 <h3 id="MethodChain-prototype-build"><a href="#MethodChain-prototype-build">#</a>&nbsp;<code>MethodChain.prototype.build([returnValue=undefined])</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MethodChain.js#L265 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MethodChain.js#L330 "View in source") [&#x24C9;][1]
 
-
+set the actual method, also need .context - use .parent
 
 #### Since
 4.0.0
@@ -153,16 +273,17 @@ chain.methods(['index']).autoIncrement().build().index().index(+1).index()
 1. `[returnValue=undefined]` *(any)*: returned at the end of the function for ease of use
 
 #### Returns
-*(MethodChain)*: @chainable
+*(void)*:
 
 #### Example
 ```js
 var obj = {}
-   const one = new MethodChain(obj).methods('eh').getSet().build(1)
-   //=> 1
+const one = new MethodChain(obj).methods('eh').getSet().build(1)
+//=> 1
 
-   typeof obj.getEh
-   //=> 'function'
+typeof obj.getEh
+//=> 'function'
+
 ```
 ---
 
@@ -171,12 +292,9 @@ var obj = {}
 <!-- div -->
 
 <h3 id="MethodChain-prototype-decorate"><a href="#MethodChain-prototype-decorate">#</a>&nbsp;<code>MethodChain.prototype.decorate([parentToDecorate=undefined])</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MethodChain.js#L615 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MethodChain.js#L711 "View in source") [&#x24C9;][1]
 
-
-
-#### Since
-4.0.0-beta.1 <- moved to plugin
+add methods to the parent for easier chaining
 
 #### Aliases
 *MethodChain.prototype.extendParent*
@@ -185,14 +303,57 @@ var obj = {}
 1. `[parentToDecorate=undefined]` *(Object)*: decorate a specific parent shorthand
 
 #### Returns
-*(ChainedMap)*: @chainable
+*(void)*:
 
 #### Example
 ```js
 var obj = {}
- new MethodChain({}).name('eh').decorate(obj).build()
- typeof obj.eh
- //=> 'function'
+new MethodChain({}).name('eh').decorate(obj).build()
+typeof obj.eh
+//=> 'function'
+
+```
+#### Example
+```js
+class Decorator extends Chain {
+  constructor(parent) {
+    super(parent)
+    this.methods(['easy']).decorate(parent).build()
+    this.methods('advanced')
+      .onCall(this.advanced.bind(this))
+      .decorate(parent)
+      .build()
+  }
+  advanced(arg) {
+    this.set('advanced', arg)
+    return this.parent
+  }
+  easy(arg) {
+    this.parent.set('easy-peasy', arg)
+  }
+}
+
+class Master extends Chain {
+  constructor(parent) {
+    super(parent)
+    this.eh = new Decorator(this)
+  }
+}
+
+const master = new Master()
+
+master.get('easy-peasy')
+//=> true
+
+master.eh.get('advanced')
+//=> 'a+'
+
+```
+#### Example
+```js
+;+chain.method('ehOh').decorate(null)
+//=> @throws Error('must provide parent argument')
+
 ```
 ---
 
@@ -200,26 +361,24 @@ var obj = {}
 
 <!-- div -->
 
-<h3 id="MethodChain-prototype-name"><a href="#MethodChain-prototype-name">#</a>&nbsp;<code>MethodChain.prototype.name(methods)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MethodChain.js#L204 "View in source") [&#x24C9;][1]
+<h3 id="MethodChain-prototype-name"><a href="#MethodChain-prototype-name">#</a>&nbsp;<code>MethodChain.prototype.name(methods=undefined)</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MethodChain.js#L225 "View in source") [&#x24C9;][1]
 
-
-
-#### Since
-4.0.0-beta.1 <- moved to plugin
+setup methods to build
 
 #### Arguments
-1. `methods` *(Object|string|string&#91;&#93;)*: method names to build
+1. `methods=undefined` *(Object|string|string&#91;&#93;)*: method names to build
 
 #### Returns
-*(MethodChain)*: @chainable
+*(void)*:
 
 #### Example
 ```js
 var obj = {}
-   new MethodChain(obj).name('eh').build()
-   typeof obj.eh
-   //=> 'function'
+new MethodChain(obj).name('eh').build()
+typeof obj.eh
+//=> 'function'
+
 ```
 ---
 
@@ -227,20 +386,58 @@ var obj = {}
 
 <!-- div -->
 
-<h3 id="MethodChain-prototype-schema"><a href="#MethodChain-prototype-schema">#</a>&nbsp;<code>MethodChain.prototype.schema(obj)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MethodChain.js#L242 "View in source") [&#x24C9;][1]
+<h3 id="MethodChain-prototype-schema"><a href="#MethodChain-prototype-schema">#</a>&nbsp;<code>MethodChain.prototype.schema(obj=undefined)</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MethodChain.js#L305 "View in source") [&#x24C9;][1]
 
-
+an object that contains nestable `.type`s
+they are recursively *(using an optimized traversal cache)* mapped to validators
+❗ this method auto-calls .build, all other method config calls should be done before it
+📝 TODO: link to `deps/is` docs
 
 #### Since
-4.0.0-beta.1 <- moved to plugin
+4.0.0
 
 #### Arguments
-1. `obj` *(Object)*: schema
+1. `obj=undefined` *(Object)*: schema
 
 #### Returns
-*(MethodChain)*: @chainable
+*(void)*:
 
+#### Example
+```js
+chain
+  .methods()
+  .define()
+  .getSet()
+  .onInvalid((error, arg, instance) => console.log(error))
+  .schema({
+    id: '?number',
+    users: '?object|array',
+    topic: '?string[]',
+    roles: '?array',
+    creator: {
+      name: 'string',
+      email: 'email',
+      id: 'uuid',
+    },
+    created_at: 'date',
+    updated_at: 'date|date[]',
+    summary: 'string',
+  })
+
+//--- valid
+chain.created_at = new Date()
+chain.setCreatedAt(new Date())
+
+isDate(chain.created_at) === true
+
+//--- nestable validation 👍
+chain.merge({ creator: { name: 'string' } })
+
+//--- invalid
+chain.updated_at = false
+
+```
 ---
 
 <!-- /div -->
@@ -253,16 +450,16 @@ var obj = {}
 
 <!-- div -->
 
-<h3 id="add"><a href="#add">#</a>&nbsp;<code>add(methodFactory)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MethodChain.js#L681 "View in source") [&#x24C9;][1]
+<h3 id="add"><a href="#add">#</a>&nbsp;<code>add(methodFactory=undefined)</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MethodChain.js#L777 "View in source") [&#x24C9;][1]
 
-
+add methodFactories easily
 
 #### Since
 4.0.0-beta.2
 
 #### Arguments
-1. `methodFactory` *(Object)*: factories to add
+1. `methodFactory=undefined` *(Object)*: factories to add
 
 #### Returns
 *(void)*:
@@ -270,23 +467,23 @@ var obj = {}
 #### Example
 ```js
 function autoGetSet(name, parent) {
-    const auto = arg =>
-      (isUndefined(arg) ? parent.get(name) : parent.set(name, arg))
+  const auto = arg =>
+    isUndefined(arg) ? parent.get(name) : parent.set(name, arg)
 
-    //so we know if we defaulted them
-    auto.autoGetSet = true
-    return this.onSet(auto).onGet(auto).onCall(auto)
-  }
-  MethodChain.addPlugin({autoGetSet})
+  //so we know if we defaulted them
+  auto.autoGetSet = true
+  return this.onSet(auto).onGet(auto).onCall(auto)
+}
+MethodChain.addPlugin({ autoGetSet })
 
+const chain = new Chain()
+chain.methods('eh').autoGetSet().build()
 
-  const chain = new Chain()
-  chain.methods('eh').autoGetSet().build()
+chain.eh(1)
+//=> chain
+chain.eh()
+//=> 1 *
 
-  chain.eh(1)
-  //=> chain
-  chain.eh()
-  //=> 1 *
 ```
 ---
 
@@ -300,27 +497,28 @@ function autoGetSet(name, parent) {
 
 <!-- div -->
 
-<h3 id="alias"><a href="#alias">#</a>&nbsp;<code>alias(aliases)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MethodChain.js#L157 "View in source") [&#x24C9;][1]
+<h3 id="alias"><a href="#alias">#</a>&nbsp;<code>alias(aliases=undefined)</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MethodChain.js#L177 "View in source") [&#x24C9;][1]
 
-
+alias methods
 
 #### Since
 2.0.0
 
 #### Arguments
-1. `aliases` *(string|string&#91;&#93;)*: aliases to remap to the current method being built
+1. `aliases=undefined` *(string|string&#91;&#93;)*: aliases to remap to the current method being built
 
 #### Returns
-*(MethodChain)*: @chainable
+*(void)*:
 
 #### Example
 ```js
 const chain = new Chain()
-    chain.methods(['canada']).alias(['eh']).build()
-    chain.eh('actually...canada o.o')
-    chain.get('canada')
-    //=> 'actually...canada o.o')
+chain.methods(['canada']).alias(['eh']).build()
+chain.eh('actually...canada o.o')
+chain.get('canada')
+//=> 'actually...canada o.o')
+
 ```
 ---
 
@@ -335,10 +533,44 @@ const chain = new Chain()
 <!-- div -->
 
 <h3 id="if"><a href="#if">#</a>&nbsp;<code>if()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MethodChain.js#L212 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MethodChain.js#L233 "View in source") [&#x24C9;][1]
+
+this is a plugin for building methods schema defaults value to `.type` this defaults values to `.onCall`
+
+#### Returns
+*(void)*:
+
+---
+
+<!-- /div -->
+
+<!-- /div -->
+
+<!-- div -->
+
+## `this.extend`
+
+<!-- div -->
+
+<h3 id="this-extend"><a href="#this-extend">#</a>&nbsp;<code>this.extend()</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MethodChain.js#L136 "View in source") [&#x24C9;][1]
 
 
 
+#### Returns
+*(void)*:
+
+#### Example
+```js
+chain
+  .method('eh')
+  .type(`?string`)
+  .type(`string[]`)
+  .type(`string|boolean`)
+  .type(`boolean[]|string[]`)
+  .type(`!date`)
+
+```
 ---
 
 <!-- /div -->
@@ -347,4 +579,4 @@ const chain = new Chain()
 
 <!-- /div -->
 
- [1]: #/* eslint complexity "Jump back to the TOC."
+ [1]: #/* istanbul ignore next "Jump back to the TOC."

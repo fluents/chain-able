@@ -19,17 +19,27 @@
 
 <!-- div -->
 
-<h3 id="markForGarbageCollection"><a href="#markForGarbageCollection">#</a>&nbsp;<code>markForGarbageCollection(obj, ignore)</code></h3>
+<h3 id="markForGarbageCollection"><a href="#markForGarbageCollection">#</a>&nbsp;<code>markForGarbageCollection(obj=undefined, ignore=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/gc.js#L29 "View in source") [&#x24C9;][1]
 
+remove all methods, mark for garbage collection
 
 
+### @see 
+
+* <a href="https://github.com/KyleAMathews/deepmerge">kyle a mathews/deepmerge</a>
+
+### @todos 
+
+- [ ] : , blacklist = []
+- [ ] : put all GC events into a cached map and debounce the operation
+ 
 #### Since
 4.0.0
 
 #### Arguments
-1. `obj` *(Object)*:
-2. `ignore` *(string&#91;&#93;)*:
+1. `obj=undefined` *(Object)*:
+2. `ignore=undefined` *(string&#91;&#93;)*:
 
 #### Returns
 *(void)*:
