@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `matcher.prototype`
-* <a href="#matcher-prototype-exports">`matcher.prototype.exports`</a>
+* <a href="#matcher-prototype-toRegExp">`matcher.prototype.toRegExp`</a>
 
 <!-- /div -->
 
@@ -19,10 +19,10 @@
 
 <!-- div -->
 
-<h3 id="matcher-prototype-exports"><a href="#matcher-prototype-exports">#</a>&nbsp;<code>matcher.prototype.exports(str=undefined)</code></h3>
+<h3 id="matcher-prototype-toRegExp"><a href="#matcher-prototype-toRegExp">#</a>&nbsp;<code>matcher.prototype.exports(str=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/matcher/to-regexp.js#L21 "View in source") [&#x24C9;][1]
 
-
+Function
 
 
 ### @extends

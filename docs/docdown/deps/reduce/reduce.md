@@ -22,12 +22,8 @@
 <h3 id="exports"><a href="#exports">#</a>&nbsp;<code>exports(map=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/reduce/reduce.js#L26 "View in source") [&#x24C9;][1]
 
-Map -> Object
+(Function): Map -> Object
 
-
-### @see 
-
-* <a href="https://github.com/sindresorhus/escape-string-regexp">sindresorhus/escape string regexp</a>
 #### Since
 4.0.0
 

@@ -33,18 +33,13 @@
 
 <!-- div -->
 
-<h3 id="arrayHasAny"><a href="#arrayHasAny">#</a>&nbsp;<code>arrayHasAny(needles=undefined, haystack=undefined)</code></h3>
+<h3 id="arrayHasAny"><a href="#arrayHasAny">#</a>&nbsp;<code>arrayHasAny(needle=undefined, haystack=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/any.js#L27 "View in source") [&#x24C9;][1]
 
+Function
 
-
-
-### @see 
-
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js">fluents/chain able/blob/master/src/deps/traverse.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/TraverseChain.js">fluents/chain able/blob/master/src/traverse chain.js</a>
 #### Arguments
-1. `needles=undefined` *(string&#91;&#93;)*:
+1. `needle=undefined` *(string)*:
 2. `haystack=undefined` *(string&#91;&#93;)*:
 
 #### Returns
@@ -65,15 +60,10 @@
 <h3 id="includesAny"><a href="#includesAny">#</a>&nbsp;<code>includesAny(needle=undefined, haystack=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/any.js#L47 "View in source") [&#x24C9;][1]
 
+Function
 
-
-
-### @see 
-
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js">fluents/chain able/blob/master/src/deps/traverse.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/TraverseChain.js">fluents/chain able/blob/master/src/traverse chain.js</a>
 #### Arguments
-1. `needle=undefined` *(string|string&#91;&#93;)*:
+1. `needle=undefined` *(string)*:
 2. `haystack=undefined` *(string&#91;&#93;)*:
 
 #### Returns
@@ -94,7 +84,7 @@
 <h3 id="strHasAny"><a href="#strHasAny">#</a>&nbsp;<code>strHasAny(needle=undefined, haystack=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/any.js#L9 "View in source") [&#x24C9;][1]
 
-
+Function
 
 #### Arguments
 1. `needle=undefined` *(string)*:

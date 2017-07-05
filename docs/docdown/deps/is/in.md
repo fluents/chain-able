@@ -22,7 +22,7 @@
 <h3 id=""><a href="#">#</a>&nbsp;<code></code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/in.js#L7 "View in source") [&#x24C9;][1]
 
-
+Function
 
 ---
 

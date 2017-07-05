@@ -22,12 +22,12 @@
 <h3 id="reduce-prototype-exports"><a href="#reduce-prototype-exports">#</a>&nbsp;<code>reduce.prototype.exports(obj=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/reduce/clean.js#L39 "View in source") [&#x24C9;][1]
 
-goes through the maps, and the map values, reduces them to array then to an object using the reduced values
+(Function): goes through the maps, and the map values, reduces them to array then to an object using the reduced values
 
 
 ### @see 
 
-* <a href="https://github.com/sindresorhus/escape-string-regexp">sindresorhus/escape string regexp</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/reduce/clean.js">fluents/chain able/blob/master/src/deps/reduce/clean.js</a>
 #### Arguments
 1. `obj=undefined` *(Object): object to clean, usually .entries()*
 

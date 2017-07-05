@@ -44,17 +44,30 @@
 
 <a href="https://github.com/fluents/chain-able/blob/master/test/ChainedSet.js">🔬  Tests: ChainedSet</a>&nbsp;
 
-<h3 id=""><a href="#">#</a>&nbsp;<code>()</code></h3>
+<h3 id=""><a href="#">#</a>&nbsp;<code></code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedSet.js#L23 "View in source") [&#x24C9;][1]
 
+Set
 
 
+### @notes 
 
-### @see 
+* had Symbol.isConcatSpreadable but it was not useful
+ 
 
-* <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/set">Developer.mozilla.org/en us/docs/web/java script/reference/global objects/map/set</a>
-#### Returns
-*(ChainedSet)*: @chainable
+### @todos 
+
+- [ ] could add .first .last ?
+ 
+
+### @classProps 
+
+* {store}  
+ 
+
+### @extends
+Chainable
+
 
 ---
 
@@ -68,33 +81,35 @@
 
 <!-- div -->
 
-<h3 id="add"><a href="#add">#</a>&nbsp;<code>add(value=undefined)</code></h3>
+<a href="https://github.com/fluents/chain-able/blob/master/typings/ChainedSet.d.ts">🌊  Types: ChainedSet.d</a>&nbsp;
+
+<a href="https://github.com/fluents/chain-able/blob/master/test/ChainedSet.js">🔬  Tests: ChainedSet</a>&nbsp;
+
+<h3 id="add"><a href="#add">#</a>&nbsp;<code>add()</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedSet.js#L55 "View in source") [&#x24C9;][1]
 
-appends a new element with a specified value to the end of the .store
+Set
 
 
-### @see 
+### @notes 
 
-* <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/set">Developer.mozilla.org/en us/docs/web/java script/reference/global objects/map/set</a>
-#### Since
-0.4.0
+* had Symbol.isConcatSpreadable but it was not useful
+ 
 
-#### Arguments
-1. `value=undefined` *(any)*: any value to add to &#42;&#42;end&#42;&#42; of the store
+### @todos 
 
-#### Returns
-*(ChainedSet)*: @chainable
+- [ ] could add .first .last ?
+ 
 
-#### Example
-```js
-const people = new ChainedSet()
-people.add('sam').add('sue')
+### @classProps 
 
-for (let name of people) console.log(name)
-//=> sam, sue
+* {store}  
+ 
 
-```
+### @extends
+Chainable
+
+
 ---
 
 <!-- /div -->
@@ -107,29 +122,35 @@ for (let name of people) console.log(name)
 
 <!-- div -->
 
-<h3 id="merge"><a href="#merge">#</a>&nbsp;<code>merge(arr=undefined)</code></h3>
+<a href="https://github.com/fluents/chain-able/blob/master/typings/ChainedSet.d.ts">🌊  Types: ChainedSet.d</a>&nbsp;
+
+<a href="https://github.com/fluents/chain-able/blob/master/test/ChainedSet.js">🔬  Tests: ChainedSet</a>&nbsp;
+
+<h3 id="merge"><a href="#merge">#</a>&nbsp;<code>merge()</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedSet.js#L100 "View in source") [&#x24C9;][1]
 
-merge any Array/Set/Iteratable/Concatables into the array, at the end
+Set
 
-#### Since
-0.4.0
 
-#### Arguments
-1. `arr=undefined` *(Array|Concatable|Set)*: values to merge in and append
+### @notes 
 
-#### Returns
-*(ChainedSet)*: @chainable
+* had Symbol.isConcatSpreadable but it was not useful
+ 
 
-#### Example
-```js
-const people = new ChainedSet()
-people.add('sam').add('sue').prepend('first').merge(['merged'])
+### @todos 
 
-for (let name of people) console.log(name)
-//=> first, sam, sue, merged
+- [ ] could add .first .last ?
+ 
 
-```
+### @classProps 
+
+* {store}  
+ 
+
+### @extends
+Chainable
+
+
 ---
 
 <!-- /div -->
@@ -142,29 +163,35 @@ for (let name of people) console.log(name)
 
 <!-- div -->
 
-<h3 id="prepend"><a href="#prepend">#</a>&nbsp;<code>prepend(value=undefined)</code></h3>
+<a href="https://github.com/fluents/chain-able/blob/master/typings/ChainedSet.d.ts">🌊  Types: ChainedSet.d</a>&nbsp;
+
+<a href="https://github.com/fluents/chain-able/blob/master/test/ChainedSet.js">🔬  Tests: ChainedSet</a>&nbsp;
+
+<h3 id="prepend"><a href="#prepend">#</a>&nbsp;<code>prepend()</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedSet.js#L76 "View in source") [&#x24C9;][1]
 
-inserts the value at the **beginning** of the Set
+Set
 
-#### Since
-0.4.0
 
-#### Arguments
-1. `value=undefined` *(any)*: any value to add to &#42;&#42;beginning&#42;&#42; the store
+### @notes 
 
-#### Returns
-*(ChainedSet)*: @chainable
+* had Symbol.isConcatSpreadable but it was not useful
+ 
 
-#### Example
-```js
-const people = new ChainedSet()
-people.add('sue').prepend('first')
+### @todos 
 
-for (let name of people) console.log(name)
-//=> first, sue
+- [ ] could add .first .last ?
+ 
 
-```
+### @classProps 
+
+* {store}  
+ 
+
+### @extends
+Chainable
+
+
 ---
 
 <!-- /div -->

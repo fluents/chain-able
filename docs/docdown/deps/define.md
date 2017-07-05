@@ -22,7 +22,7 @@
 <h3 id="exports"><a href="#exports">#</a>&nbsp;<code>exports(obj=undefined, name=undefined, descriptor=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/define.js#L19 "View in source") [&#x24C9;][1]
 
-default to configurable and enumerable, unless configured otherwise
+(Function): default to configurable and enumerable, unless configured otherwise
 
 #### Since
 4.0.0

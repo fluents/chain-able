@@ -22,12 +22,8 @@
 <h3 id="exports"><a href="#exports">#</a>&nbsp;<code>exports(call=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/encase/tryCatch.js#L9 "View in source") [&#x24C9;][1]
 
+Function
 
-
-
-### @see 
-
-* <a href="https://github.com/KyleAMathews/deepmerge">kyle a mathews/deepmerge</a>
 #### Arguments
 1. `call=undefined` *(Function)*:
 

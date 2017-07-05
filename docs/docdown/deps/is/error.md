@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is.prototype`
-* <a href="#is-prototype-exports">`is.prototype.exports`</a>
+* <a href="#is-prototype-isError">`is.prototype.isError`</a>
 
 <!-- /div -->
 
@@ -19,10 +19,10 @@
 
 <!-- div -->
 
-<h3 id="is-prototype-exports"><a href="#is-prototype-exports">#</a>&nbsp;<code>is.prototype.exports(x=undefined)</code></h3>
+<h3 id="is-prototype-isError"><a href="#is-prototype-isError">#</a>&nbsp;<code>is.prototype.exports(x=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/error.js#L35 "View in source") [&#x24C9;][1]
 
-
+Function
 
 #### Arguments
 1. `x=undefined` *(&#42;)*: value

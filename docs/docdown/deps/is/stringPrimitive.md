@@ -22,12 +22,12 @@
 <h3 id="is-prototype-exports"><a href="#is-prototype-exports">#</a>&nbsp;<code>is.prototype.exports(x=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/stringPrimitive.js#L27 "View in source") [&#x24C9;][1]
 
-Checks if `value` is classified as a `String` **primitive**.
+(Function): Checks if `value` is classified as a `String` **primitive**.
 
 
 ### @see 
 
-* <a href="https://github.com/KyleAMathews/deepmerge">kyle a mathews/deepmerge</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/string.js">fluents/chain able/blob/master/src/deps/is/string.js</a>
 #### Since
 3.0.0
 

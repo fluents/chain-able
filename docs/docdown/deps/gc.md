@@ -22,12 +22,8 @@
 <h3 id="markForGarbageCollection"><a href="#markForGarbageCollection">#</a>&nbsp;<code>markForGarbageCollection(obj=undefined, ignore=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/gc.js#L29 "View in source") [&#x24C9;][1]
 
-remove all methods, mark for garbage collection
+(Function): remove all methods, mark for garbage collection
 
-
-### @see 
-
-* <a href="https://github.com/KyleAMathews/deepmerge">kyle a mathews/deepmerge</a>
 
 ### @todos 
 

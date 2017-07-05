@@ -22,12 +22,8 @@
 <h3 id="is-prototype-exports"><a href="#is-prototype-exports">#</a>&nbsp;<code>is.prototype.exports(value=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/toS.js#L12 "View in source") [&#x24C9;][1]
 
-The base implementation of `getTag` without fallbacks for buggy environments.
+(Function): The base implementation of `getTag` without fallbacks for buggy environments.
 
-
-### @see 
-
-* <a href="https://github.com/KyleAMathews/deepmerge">kyle a mathews/deepmerge</a>
 
 ### @todos 
 

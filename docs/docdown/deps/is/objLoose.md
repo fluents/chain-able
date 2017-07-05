@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is.prototype`
-* <a href="#is-prototype-exports">`is.prototype.exports`</a>
+* <a href="#is-prototype-isObjLoose">`is.prototype.isObjLoose`</a>
 
 <!-- /div -->
 
@@ -19,15 +19,18 @@
 
 <!-- div -->
 
-<h3 id="is-prototype-exports"><a href="#is-prototype-exports">#</a>&nbsp;<code>is.prototype.exports(x=undefined)</code></h3>
+<h3 id="is-prototype-isObjLoose"><a href="#is-prototype-isObjLoose">#</a>&nbsp;<code>is.prototype.exports(x=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/objLoose.js#L34 "View in source") [&#x24C9;][1]
 
-
+Function
 
 
 ### @see 
 
-* <a href="https://github.com/KyleAMathews/deepmerge">kyle a mathews/deepmerge</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/obj.js">fluents/chain able/blob/master/src/deps/is/obj.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/objWithKeys.js">fluents/chain able/blob/master/src/deps/is/obj with keys.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/objStrict.js">fluents/chain able/blob/master/src/deps/is/obj strict.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/null.js">fluents/chain able/blob/master/src/deps/is/null.js</a>
 #### Since
 3.0.0
 

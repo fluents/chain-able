@@ -22,7 +22,7 @@
 <h3 id="while"><a href="#while">#</a>&nbsp;<code>while()</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/dot/segments.js#L30 "View in source") [&#x24C9;][1]
 
-
+Function
 
 #### Example
 ```js

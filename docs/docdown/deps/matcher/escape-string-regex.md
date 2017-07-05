@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `matcher.prototype`
-* <a href="#matcher-prototype-exports">`matcher.prototype.exports`</a>
+* <a href="#matcher-prototype-escapeStringRegExp">`matcher.prototype.escapeStringRegExp`</a>
 
 <!-- /div -->
 
@@ -19,17 +19,13 @@
 
 <!-- div -->
 
-<h3 id="matcher-prototype-exports"><a href="#matcher-prototype-exports">#</a>&nbsp;<code>matcher.prototype.exports(str=undefined)</code></h3>
+<h3 id="matcher-prototype-escapeStringRegExp"><a href="#matcher-prototype-escapeStringRegExp">#</a>&nbsp;<code>matcher.prototype.exports(str=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/matcher/escape-string-regex.js#L22 "View in source") [&#x24C9;][1]
 
+Function
 
 
-
-### @see 
-
-* <a href="https://github.com/sindresorhus/escape-string-regexp">sindresorhus/escape string regexp</a>
-
-[escape-string-regexp]: https://github.com/sindresorhus/escape-string-regexp <!-- NAMED_LINK -->
+[escape-string-regexp}]: https://github.com/sindresorhus/escape-string-regexp <!-- NAMED_LINK -->
 
 
 ### @notes 

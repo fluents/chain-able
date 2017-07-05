@@ -25,8 +25,12 @@
 <h3 id="traverse-prototype-exports"><a href="#traverse-prototype-exports">#</a>&nbsp;<code>traverse.prototype.exports(a=undefined, b=undefined, [loose=false])</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traversers/eq.js#L94 "View in source") [&#x24C9;][1]
 
-deep traversal of nodes to compare any data types does not check reference, only value equality
+(Function): deep traversal of nodes to compare any data types does not check reference, only value equality
 
+
+### @see 
+
+* <a href="https://github.com/fluents/chain-able/blob/master/src/TraverseChain.js">fluents/chain able/blob/master/src/traverse chain.js</a>
 
 ### @symb 
 

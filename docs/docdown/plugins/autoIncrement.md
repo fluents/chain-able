@@ -22,7 +22,7 @@
 <h3 id="exports"><a href="#exports">#</a>&nbsp;<code>exports(name=undefined, parent=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/plugins/autoIncrement.js#L7 "View in source") [&#x24C9;][1]
 
-
+Function
 
 #### Arguments
 1. `name=undefined` *(Primitive)*: method name

@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is.prototype`
-* <a href="#is-prototype-exports">`is.prototype.exports`</a>
+* <a href="#is-prototype-isBoolean">`is.prototype.isBoolean`</a>
 
 <!-- /div -->
 
@@ -19,15 +19,15 @@
 
 <!-- div -->
 
-<h3 id="is-prototype-exports"><a href="#is-prototype-exports">#</a>&nbsp;<code>is.prototype.exports(x=undefined)</code></h3>
+<h3 id="is-prototype-isBoolean"><a href="#is-prototype-isBoolean">#</a>&nbsp;<code>is.prototype.exports(x=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/boolean.js#L33 "View in source") [&#x24C9;][1]
 
-Checks if `value` is classified as a boolean primitive or object.
+(Function): Checks if `value` is classified as a boolean primitive or object.
 
 
 ### @see 
 
-* <a href="https://github.com/KyleAMathews/deepmerge">kyle a mathews/deepmerge</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/toS.js">fluents/chain able/blob/master/src/deps/is/to s.js</a>
 
 ### @notes 
 

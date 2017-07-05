@@ -22,12 +22,8 @@
 <h3 id="exports"><a href="#exports">#</a>&nbsp;<code>exports(x=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/generator.js#L16 "View in source") [&#x24C9;][1]
 
-is generator function
+(Function): is generator function
 
-
-### @see 
-
-* <a href="https://github.com/KyleAMathews/deepmerge">kyle a mathews/deepmerge</a>
 #### Since
 4.0.0-beta.2
 

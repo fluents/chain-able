@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is.prototype`
-* <a href="#is-prototype-exports">`is.prototype.exports`</a>
+* <a href="#is-prototype-isPromise">`is.prototype.isPromise`</a>
 
 <!-- /div -->
 
@@ -19,15 +19,11 @@
 
 <!-- div -->
 
-<h3 id="is-prototype-exports"><a href="#is-prototype-exports">#</a>&nbsp;<code>is.prototype.exports(x=undefined)</code></h3>
+<h3 id="is-prototype-isPromise"><a href="#is-prototype-isPromise">#</a>&nbsp;<code>is.prototype.exports(x=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/promise.js#L38 "View in source") [&#x24C9;][1]
 
-is a Promise
+(Function): is a Promise
 
-
-### @see 
-
-* <a href="https://github.com/KyleAMathews/deepmerge">kyle a mathews/deepmerge</a>
 #### Since
 4.0.0-beta.2
 

@@ -22,7 +22,7 @@
 <h3 id="exports"><a href="#exports">#</a>&nbsp;<code>exports(x=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/set.js#L20 "View in source") [&#x24C9;][1]
 
-Checks if `value` is classified as a `Set` object.
+(Function): Checks if `value` is classified as a `Set` object.
 
 #### Since
 4.3.0

@@ -22,7 +22,7 @@
 <h3 id="exports"><a href="#exports">#</a>&nbsp;<code>exports</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/util/from.js#L6 "View in source") [&#x24C9;][1]
 
-
+unknown
 
 ---
 

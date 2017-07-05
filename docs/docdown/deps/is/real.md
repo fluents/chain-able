@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is.prototype`
-* <a href="#is-prototype-exports">`is.prototype.exports`</a>
+* <a href="#is-prototype-isReal">`is.prototype.isReal`</a>
 
 <!-- /div -->
 
@@ -19,15 +19,16 @@
 
 <!-- div -->
 
-<h3 id="is-prototype-exports"><a href="#is-prototype-exports">#</a>&nbsp;<code>is.prototype.exports(x=undefined)</code></h3>
+<h3 id="is-prototype-isReal"><a href="#is-prototype-isReal">#</a>&nbsp;<code>is.prototype.exports(x=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/real.js#L51 "View in source") [&#x24C9;][1]
 
-
+Function
 
 
 ### @see 
 
-* <a href="https://github.com/KyleAMathews/deepmerge">kyle a mathews/deepmerge</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/null.js">fluents/chain able/blob/master/src/deps/is/null.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/undefined.js">fluents/chain able/blob/master/src/deps/is/undefined.js</a>
 
 ### @notes 
 

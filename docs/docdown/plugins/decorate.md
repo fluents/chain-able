@@ -22,10 +22,14 @@
 <h3 id="MethodChain-prototype-exports"><a href="#MethodChain-prototype-exports">#</a>&nbsp;<code>MethodChain.prototype.exports(parentToDecorate=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/plugins/decorate.js#L29 "View in source") [&#x24C9;][1]
 
-decorates a parent when the argument is provided
+(Function): decorates a parent when the argument is provided
 BUT THE FUNCTIONS WILL STILL BE SCOPED TO CURRENT PARENT
 for easy factory chaining
 
+
+### @see 
+
+* <a href="https://github.com/fluents/chain-able/blob/master/src/MethodChain.js">fluents/chain able/blob/master/src/method chain.js</a>
 
 ### @todos 
 

@@ -22,7 +22,7 @@
 <h3 id="conditional-prototype-some"><a href="#conditional-prototype-some">#</a>&nbsp;<code>conditional.prototype.some(predicate=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/some.js#L23 "View in source") [&#x24C9;][1]
 
-map all values in an array to see if **some** match
+(Function): map all values in an array to see if **some** match
 
 #### Since
 4.0.1

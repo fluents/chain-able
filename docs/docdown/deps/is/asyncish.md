@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is.prototype`
-* <a href="#is-prototype-exports">`is.prototype.exports`</a>
+* <a href="#is-prototype-isAsyncish">`is.prototype.isAsyncish`</a>
 
 <!-- /div -->
 
@@ -19,10 +19,10 @@
 
 <!-- div -->
 
-<h3 id="is-prototype-exports"><a href="#is-prototype-exports">#</a>&nbsp;<code>is.prototype.exports(x=undefined)</code></h3>
+<h3 id="is-prototype-isAsyncish"><a href="#is-prototype-isAsyncish">#</a>&nbsp;<code>is.prototype.exports(x=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/asyncish.js#L29 "View in source") [&#x24C9;][1]
 
-async function or promise
+(Function): async function or promise
 
 
 ### @extends 

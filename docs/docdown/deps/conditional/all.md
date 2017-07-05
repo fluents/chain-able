@@ -22,7 +22,7 @@
 <h3 id="conditional-prototype-all"><a href="#conditional-prototype-all">#</a>&nbsp;<code>conditional.prototype.all(predicate=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/all.js#L19 "View in source") [&#x24C9;][1]
 
-map all values in an array to see if all match
+(Function): map all values in an array to see if all match
 
 #### Since
 4.0.1

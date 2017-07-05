@@ -22,7 +22,7 @@
 <h3 id="access"><a href="#access">#</a>&nbsp;<code>access([index=Number], [obj=undefined], [val=undefined])</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/meta/keymap.js#L34 "View in source") [&#x24C9;][1]
 
-
+Function
 
 #### Arguments
 1. `[index=Number]` *(number)*:

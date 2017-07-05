@@ -48,20 +48,19 @@
 
 <!-- div -->
 
-<h3 id="get"><a href="#get">#</a>&nbsp;<code>get(key=undefined, [prop=undefined])</code></h3>
+<h3 id="get"><a href="#get">#</a>&nbsp;<code>get(_this=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/meta/meta.js#L73 "View in source") [&#x24C9;][1]
 
-
+Function
 
 #### Since
 4.0.0
 
 #### Arguments
-1. `key=undefined` *(Primitive)*:
-2. `[prop=undefined]` *(|Primitive)*:
+1. `_this=undefined` *(Chain)*:
 
 #### Returns
-*(&#42;)*: depending on args
+*(Chain)*:
 
 ---
 
@@ -78,7 +77,7 @@
 <h3 id="getMeta"><a href="#getMeta">#</a>&nbsp;<code>getMeta(_this=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/meta/meta.js#L26 "View in source") [&#x24C9;][1]
 
-
+Function
 
 #### Since
 4.0.0
@@ -87,7 +86,7 @@
 1. `_this=undefined` *(Chain)*:
 
 #### Returns
-*(&#42;)*: depending on args
+*(Chain)*:
 
 ---
 
@@ -101,20 +100,19 @@
 
 <!-- div -->
 
-<h3 id="has"><a href="#has">#</a>&nbsp;<code>has(key=undefined, [prop=undefined])</code></h3>
+<h3 id="has"><a href="#has">#</a>&nbsp;<code>has(_this=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/meta/meta.js#L63 "View in source") [&#x24C9;][1]
 
-
+Function
 
 #### Since
 4.0.0
 
 #### Arguments
-1. `key=undefined` *(Primitive)*:
-2. `[prop=undefined]` *(|Primitive)*:
+1. `_this=undefined` *(Chain)*:
 
 #### Returns
-*(&#42;)*: depending on args
+*(Chain)*:
 
 ---
 
@@ -128,13 +126,19 @@
 
 <!-- div -->
 
-<h3 id=""><a href="#">#</a>&nbsp;<code>()</code></h3>
+<h3 id=""><a href="#">#</a>&nbsp;<code>(_this=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/meta/meta.js#L37 "View in source") [&#x24C9;][1]
 
-initialize the store maps when we need them *
+Function
+
+#### Since
+4.0.0
+
+#### Arguments
+1. `_this=undefined` *(Chain)*:
 
 #### Returns
-*(&#42;)*: depending on args
+*(Chain)*:
 
 ---
 
@@ -142,21 +146,19 @@ initialize the store maps when we need them *
 
 <!-- div -->
 
-<h3 id="meta"><a href="#meta">#</a>&nbsp;<code>meta(key=undefined, [prop=undefined], [value=undefined])</code></h3>
+<h3 id="meta"><a href="#meta">#</a>&nbsp;<code>meta(_this=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/meta/meta.js#L110 "View in source") [&#x24C9;][1]
 
-a single easily minifiable function, dynamically setting & getting depending on arguments to avoid nested property accessing only instantiating when values are **addded**
+Function
 
 #### Since
 4.0.0
 
 #### Arguments
-1. `key=undefined` *(Primitive)*:
-2. `[prop=undefined]` *(|Primitive)*:
-3. `[value=undefined]` *(|any): &#42;(when no value, it's a getter)*&#42;
+1. `_this=undefined` *(Chain)*:
 
 #### Returns
-*(&#42;)*: depending on args
+*(Chain)*:
 
 ---
 
@@ -170,21 +172,19 @@ a single easily minifiable function, dynamically setting & getting depending on 
 
 <!-- div -->
 
-<h3 id="set"><a href="#set">#</a>&nbsp;<code>set(key=undefined, [prop=undefined], [value=undefined])</code></h3>
+<h3 id="set"><a href="#set">#</a>&nbsp;<code>set(_this=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/meta/meta.js#L82 "View in source") [&#x24C9;][1]
 
-
+Function
 
 #### Since
 4.0.0
 
 #### Arguments
-1. `key=undefined` *(Primitive)*:
-2. `[prop=undefined]` *(|Primitive)*:
-3. `[value=undefined]` *(|Primitive)*:
+1. `_this=undefined` *(Chain)*:
 
 #### Returns
-*(&#42;)*: depending on args
+*(Chain)*:
 
 ---
 

@@ -22,8 +22,15 @@
 <h3 id="encase-prototype-exports"><a href="#encase-prototype-exports">#</a>&nbsp;<code>encase.prototype.exports(method=undefined, type=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/validators/error.js#L54 "View in source") [&#x24C9;][1]
 
-enhance an Error, enable rethrowing & better inspection
+(Function): enhance an Error, enable rethrowing & better inspection
 
+
+### @see 
+
+* <a href="https://github.com/fluents/chain-able/blob/master/src/MethodChain.js">fluents/chain able/blob/master/src/method chain.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/validators/schemaBuilder.js">fluents/chain able/blob/master/src/deps/validators/schema builder.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/validators/validatorBuilder.js">fluents/chain able/blob/master/src/deps/validators/validator builder.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/plugins/encase.js">fluents/chain able/blob/master/src/plugins/encase.js</a>
 
 ### @todos 
 

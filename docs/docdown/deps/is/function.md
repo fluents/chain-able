@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is.prototype`
-* <a href="#is-prototype-exports">`is.prototype.exports`</a>
+* <a href="#is-prototype-isFunction">`is.prototype.isFunction`</a>
 
 <!-- /div -->
 
@@ -19,10 +19,10 @@
 
 <!-- div -->
 
-<h3 id="is-prototype-exports"><a href="#is-prototype-exports">#</a>&nbsp;<code>is.prototype.exports(x=undefined)</code></h3>
+<h3 id="is-prototype-isFunction"><a href="#is-prototype-isFunction">#</a>&nbsp;<code>is.prototype.exports(x=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/function.js#L37 "View in source") [&#x24C9;][1]
 
-Checks if `value` is classified as a `Function` object.
+(Function): Checks if `value` is classified as a `Function` object.
 
 
 ### @notes 

@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is.prototype`
-* <a href="#is-prototype-">`is.prototype.`</a>
+* <a href="#is-prototype-isIterator">`is.prototype.isIterator`</a>
 
 <!-- /div -->
 
@@ -19,15 +19,11 @@
 
 <!-- div -->
 
-<h3 id="is-prototype-"><a href="#is-prototype-">#</a>&nbsp;<code>is.prototype.(x=undefined)</code></h3>
+<h3 id="is-prototype-isIterator"><a href="#is-prototype-isIterator">#</a>&nbsp;<code>is.prototype.(x=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/iterator.js#L42 "View in source") [&#x24C9;][1]
 
+Function
 
-
-
-### @see 
-
-* <a href="https://github.com/KyleAMathews/deepmerge">kyle a mathews/deepmerge</a>
 #### Since
 3.0.0
 

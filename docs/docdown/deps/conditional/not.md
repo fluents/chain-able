@@ -22,7 +22,7 @@
 <h3 id="conditional-prototype-exports"><a href="#conditional-prototype-exports">#</a>&nbsp;<code>conditional.prototype.exports(fn=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/not.js#L20 "View in source") [&#x24C9;][1]
 
-return a negated function
+(Function): return a negated function
 
 #### Since
 4.0.1

@@ -22,7 +22,7 @@
 <h3 id="is-prototype-exports"><a href="#is-prototype-exports">#</a>&nbsp;<code>is.prototype.exports(value=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/symbol.js#L22 "View in source") [&#x24C9;][1]
 
-Checks if `value` is classified as a `Symbol` primitive or object.
+(Function): Checks if `value` is classified as a `Symbol` primitive or object.
 
 #### Since
 4.0.0

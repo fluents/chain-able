@@ -1,0 +1,183 @@
+- `├` `─` [Chainable](https://githubcom/fluents/chain-able/blob/master/docs/docdown/Chainablejs): 
+- `├` `─` [ChainedMap](https://githubcom/fluents/chain-able/blob/master/docs/docdown/ChainedMapjs): 
+- `├` `─` [ChainedMapBase](https://githubcom/fluents/chain-able/blob/master/docs/docdown/ChainedMapBasejs): 
+- `├` `─` [ChainedSet](https://githubcom/fluents/chain-able/blob/master/docs/docdown/ChainedSetjs): 
+- `├` `─` [FactoryChain](https://githubcom/fluents/chain-able/blob/master/docs/docdown/FactoryChainjs): 
+- `├` `─` [MergeChain](https://githubcom/fluents/chain-able/blob/master/docs/docdown/MergeChainjs): 
+- `├` `─` [MethodChain](https://githubcom/fluents/chain-able/blob/master/docs/docdown/MethodChainjs): 
+- `├` `─` [TraverseChain](https://githubcom/fluents/chain-able/blob/master/docs/docdown/TraverseChainjs): 
+- `├` `─` [_Playground](https://githubcom/fluents/chain-able/blob/master/docs/docdown/_Playgroundjs): 
+- `├` `─` compose
+- `│`  `├` `─` [DotProp](https://githubcom/fluents/chain-able/blob/master/docs/docdown/compose/DotPropjs): 
+- `│`  `├` `─` [Observe](https://githubcom/fluents/chain-able/blob/master/docs/docdown/compose/Observejs): 
+- `│`  `├` `─` [Shorthands](https://githubcom/fluents/chain-able/blob/master/docs/docdown/compose/Shorthandsjs): 
+- `│`  `├` `─` [Transform](https://githubcom/fluents/chain-able/blob/master/docs/docdown/compose/Transformjs): 
+- `│`  `├` `─` [compose](https://githubcom/fluents/chain-able/blob/master/docs/docdown/compose/composejs): 
+- `│`  `├` `─` [decorators](https://githubcom/fluents/chain-able/blob/master/docs/docdown/compose/decoratorsjs): 
+- `│`  `└` `─` [index](https://githubcom/fluents/chain-able/blob/master/docs/docdown/compose/indexjs): 
+- `├` `─` deps
+- `│`  `├` `─` [argumentor](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/argumentorjs): 
+- `│`  `├` `─` array
+- `│`  `│`  `├` `─` [insert-at-index](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/array/insert-at-indexjs): 
+- `│`  `│`  `└` `─` [uniq](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/array/uniqjs): 
+- `│`  `├` `─` cache
+- `│`  `│`  `├` `─` [index](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/cache/indexjs): 
+- `│`  `│`  `└` `─` [scoped](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/cache/scopedjs): 
+- `│`  `├` `─` [camel-case](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/camel-casejs): 
+- `│`  `├` `─` [concat](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/concatjs): 
+- `│`  `├` `─` conditional
+- `│`  `│`  `├` `─` [all](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/conditional/alljs): 
+- `│`  `│`  `├` `─` [and](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/conditional/andjs): 
+- `│`  `│`  `├` `─` [eq](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/conditional/eqjs): 
+- `│`  `│`  `├` `─` includes
+- `│`  `│`  `│`  `├` `─` [all](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/conditional/includes/alljs): 
+- `│`  `│`  `│`  `├` `─` [any](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/conditional/includes/anyjs): 
+- `│`  `│`  `│`  `├` `─` [includes](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/conditional/includes/includesjs): 
+- `│`  `│`  `│`  `└` `─` [index](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/conditional/includes/indexjs): 
+- `│`  `│`  `├` `─` [not](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/conditional/notjs): 
+- `│`  `│`  `├` `─` [or](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/conditional/orjs): 
+- `│`  `│`  `└` `─` [some](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/conditional/somejs): 
+- `│`  `├` `─` [define](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/definejs): 
+- `│`  `├` `─` dopemerge
+- `│`  `│`  `├` `─` [dopemerge](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/dopemerge/dopemergejs): 
+- `│`  `│`  `├` `─` [index](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/dopemerge/indexjs): 
+- `│`  `│`  `└` `─` [map](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/dopemerge/mapjs): 
+- `│`  `├` `─` dot
+- `│`  `│`  `├` `─` [delete](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/dot/deletejs): 
+- `│`  `│`  `├` `─` [dot-prop](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/dot/dot-propjs): 
+- `│`  `│`  `├` `─` [dottable](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/dot/dottablejs): 
+- `│`  `│`  `├` `─` [escape](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/dot/escapejs): 
+- `│`  `│`  `├` `─` [get](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/dot/getjs): 
+- `│`  `│`  `├` `─` [has](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/dot/hasjs): 
+- `│`  `│`  `├` `─` [index](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/dot/indexjs): 
+- `│`  `│`  `├` `─` [paths](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/dot/pathsjs): 
+- `│`  `│`  `├` `─` segmen
+- `│`  `│`  `│`  `└` `─` [segmenjs](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/dot/segmentsjs): 
+- `│`  `│`  `└` `─` [set](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/dot/setjs): 
+- `│`  `├` `─` encase
+- `│`  `│`  `├` `─` [encase](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/encase/encasejs): 
+- `│`  `│`  `├` `─` [index](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/encase/indexjs): 
+- `│`  `│`  `├` `─` [tryCatch](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/encase/tryCatchjs): 
+- `│`  `│`  `└` `─` [withSpecification](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/encase/withSpecificationjs): 
+- `│`  `├` `─` env
+- `│`  `│`  `├` `─` [debug](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/env/debugjs): 
+- `│`  `│`  `└` `─` [dev](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/env/devjs): 
+- `│`  `├` `─` [gc](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/gcjs): 
+- `│`  `├` `─` [ignored](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/ignoredjs): 
+- `│`  `├` `─` [index](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/indexjs): 
+- `│`  `├` `─` is
+- `│`  `│`  `├` `─` [array](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/arrayjs): 
+- `│`  `│`  `├` `─` [async](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/asyncjs): 
+- `│`  `│`  `├` `─` [asyncish](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/asyncishjs): 
+- `│`  `│`  `├` `─` [boolean](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/booleanjs): 
+- `│`  `│`  `├` `─` [class](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/classjs): 
+- `│`  `│`  `├` `─` [date](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/datejs): 
+- `│`  `│`  `├` `─` [dot](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/dotjs): 
+- `│`  `│`  `├` `─` [enumerable](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/enumerablejs): 
+- `│`  `│`  `├` `─` [eqeq](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/eqeqjs): 
+- `│`  `│`  `├` `─` [error](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/errorjs): 
+- `│`  `│`  `├` `─` [false](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/falsejs): 
+- `│`  `│`  `├` `─` [function](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/functionjs): 
+- `│`  `│`  `├` `─` [generator](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/generatorjs): 
+- `│`  `│`  `├` `─` [hasIn](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/hasInjs): 
+- `│`  `│`  `├` `─` [in](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/injs): 
+- `│`  `│`  `├` `─` [index](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/indexjs): 
+- `│`  `│`  `├` `─` [iterator](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/iteratorjs): 
+- `│`  `│`  `├` `─` [map](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/mapjs): 
+- `│`  `│`  `├` `─` [mapish](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/mapishjs): 
+- `│`  `│`  `├` `─` [matcher](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/matcherjs): 
+- `│`  `│`  `├` `─` [native](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/nativejs): 
+- `│`  `│`  `├` `─` [nodejs](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/nodejsjs): 
+- `│`  `│`  `├` `─` [notEmptyArray](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/notEmptyArrayjs): 
+- `│`  `│`  `├` `─` [null](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/nulljs): 
+- `│`  `│`  `├` `─` [nullOrUndefined](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/nullOrUndefinedjs): 
+- `│`  `│`  `├` `─` [number](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/numberjs): 
+- `│`  `│`  `├` `─` [obj](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/objjs): 
+- `│`  `│`  `├` `─` [objLoose](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/objLoosejs): 
+- `│`  `│`  `├` `─` [objPure](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/objPurejs): 
+- `│`  `│`  `├` `─` [objStrict](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/objStrictjs): 
+- `│`  `│`  `├` `─` [objWithKeys](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/objWithKeysjs): 
+- `│`  `│`  `├` `─` [promise](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/promisejs): 
+- `│`  `│`  `├` `─` [prototypeOf](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/prototypeOfjs): 
+- `│`  `│`  `├` `─` [real](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/realjs): 
+- `│`  `│`  `├` `─` [regexp](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/regexpjs): 
+- `│`  `│`  `├` `─` [set](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/setjs): 
+- `│`  `│`  `├` `─` [string](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/stringjs): 
+- `│`  `│`  `├` `─` [stringOrNumber](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/stringOrNumberjs): 
+- `│`  `│`  `├` `─` [stringPrimitive](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/stringPrimitivejs): 
+- `│`  `│`  `├` `─` [symbol](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/symboljs): 
+- `│`  `│`  `├` `─` [toS](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/toSjs): 
+- `│`  `│`  `├` `─` [true](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/truejs): 
+- `│`  `│`  `└` `─` [undefined](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/is/undefinedjs): 
+- `│`  `├` `─` matcher
+- `│`  `│`  `├` `─` [any-key-val](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/matcher/any-key-valjs): 
+- `│`  `│`  `├` `─` [escape-string-regex](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/matcher/escape-string-regexjs): 
+- `│`  `│`  `├` `─` [index](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/matcher/indexjs): 
+- `│`  `│`  `├` `─` [matcher](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/matcher/matcherjs): 
+- `│`  `│`  `├` `─` [to-regexp](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/matcher/to-regexpjs): 
+- `│`  `│`  `└` `─` [to-test](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/matcher/to-testjs): 
+- `│`  `├` `─` meta
+- `│`  `│`  `├` `─` [decorated](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/meta/decoratedjs): 
+- `│`  `│`  `├` `─` [enums](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/meta/enumsjs): 
+- `│`  `│`  `├` `─` [index](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/meta/indexjs): 
+- `│`  `│`  `├` `─` [keymap](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/meta/keymapjs): 
+- `│`  `│`  `├` `─` [meta](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/meta/metajs): 
+- `│`  `│`  `├` `─` [observers](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/meta/observersjs): 
+- `│`  `│`  `├` `─` [shorthands](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/meta/shorthandsjs): 
+- `│`  `│`  `└` `─` [transformers](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/meta/transformersjs): 
+- `│`  `├` `─` reduce
+- `│`  `│`  `├` `─` [clean](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/reduce/cleanjs): 
+- `│`  `│`  `├` `─` [entries](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/reduce/entriesjs): 
+- `│`  `│`  `├` `─` [index](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/reduce/indexjs): 
+- `│`  `│`  `├` `─` objec
+- `│`  `│`  `│`  `└` `─` [objecjs](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/reduce/objectsjs): 
+- `│`  `│`  `└` `─` [reduce](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/reduce/reducejs): 
+- `│`  `├` `─` string
+- `│`  `│`  `├` `─` [class-names](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/string/class-namesjs): 
+- `│`  `│`  `└` `─` [prefix](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/string/prefixjs): 
+- `│`  `├` `─` symbols
+- `│`  `│`  `├` `─` [index](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/symbols/indexjs): 
+- `│`  `│`  `├` `─` [instance](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/symbols/instancejs): 
+- `│`  `│`  `├` `─` [iterator](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/symbols/iteratorjs): 
+- `│`  `│`  `├` `─` [primitive](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/symbols/primitivejs): 
+- `│`  `│`  `├` `─` [species](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/symbols/speciesjs): 
+- `│`  `│`  `└` `─` [spreadable](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/symbols/spreadablejs): 
+- `│`  `├` `─` [to-arr](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/to-arrjs): 
+- `│`  `├` `─` [traverse](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/traversejs): 
+- `│`  `├` `─` traversers
+- `│`  `│`  `└` `─` [eq](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/traversers/eqjs): 
+- `│`  `├` `─` util
+- `│`  `│`  `├` `─` [assign](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/util/assignjs): 
+- `│`  `│`  `├` `─` [charCodeAtZero](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/util/charCodeAtZerojs): 
+- `│`  `│`  `├` `─` [flatten](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/util/flattenjs): 
+- `│`  `│`  `├` `─` [from](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/util/fromjs): 
+- `│`  `│`  `├` `─` [getDescriptor](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/util/getDescriptorjs): 
+- `│`  `│`  `├` `─` [getPrototypeOf](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/util/getPrototypeOfjs): 
+- `│`  `│`  `├` `─` [hasOwnProperty](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/util/hasOwnPropertyjs): 
+- `│`  `│`  `├` `─` [keys](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/util/keysjs): 
+- `│`  `│`  `├` `─` [length](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/util/lengthjs): 
+- `│`  `│`  `├` `─` [lengthMinusOne](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/util/lengthMinusOnejs): 
+- `│`  `│`  `├` `─` [nonEnumerableTypes](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/util/nonEnumerableTypesjs): 
+- `│`  `│`  `├` `─` [props](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/util/propsjs): 
+- `│`  `│`  `├` `─` [simpleKindOf](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/util/simpleKindOfjs): 
+- `│`  `│`  `└` `─` [typeof](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/util/typeofjs): 
+- `│`  `└` `─` validators
+- `│`     `├` `─` [error](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/validators/errorjs): 
+- `│`     `├` `─` [index](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/validators/indexjs): 
+- `│`     `├` `─` [schemaBuilder](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/validators/schemaBuilderjs): 
+- `│`     `└` `─` [validatorBuilder](https://githubcom/fluents/chain-able/blob/master/docs/docdown/deps/validators/validatorBuilderjs): 
+- `├` `─` [index](https://githubcom/fluents/chain-able/blob/master/docs/docdown/indexjs): 
+- `├` `─` index
+- `│`  `└` `─` [indexweb](https://githubcom/fluents/chain-able/blob/master/docs/docdown/indexwebjs): 
+- `└` `─` plugins
+-    `├` `─` [autoGetSet](https://githubcom/fluents/chain-able/blob/master/docs/docdown/plugins/autoGetSetjs): 
+-    `├` `─` [autoIncrement](https://githubcom/fluents/chain-able/blob/master/docs/docdown/plugins/autoIncrementjs): 
+-    `├` `─` [decorate](https://githubcom/fluents/chain-able/blob/master/docs/docdown/plugins/decoratejs): 
+-    `├` `─` [encase](https://githubcom/fluents/chain-able/blob/master/docs/docdown/plugins/encasejs): 
+-    `├` `─` [index](https://githubcom/fluents/chain-able/blob/master/docs/docdown/plugins/indexjs): 
+-    `├` `─` [merge](https://githubcom/fluents/chain-able/blob/master/docs/docdown/plugins/mergejs): 
+-    `├` `─` [obj](https://githubcom/fluents/chain-able/blob/master/docs/docdown/plugins/objjs): 
+-    `├` `─` [plugins](https://githubcom/fluents/chain-able/blob/master/docs/docdown/plugins/pluginsjs): 
+-    `├` `─` [schema](https://githubcom/fluents/chain-able/blob/master/docs/docdown/plugins/schemajs): 
+-    `└` `─` [types](https://githubcom/fluents/chain-able/blob/master/docs/docdown/plugins/typesjs): 
+- 
