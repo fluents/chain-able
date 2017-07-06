@@ -15,15 +15,21 @@
 // 6. ops:
 //   - run test
 // - run cov
-const {resolve} = require('path')
+const {resolve, basename} = require('path')
 const fwf = require('funwithflags')
 const Script = require('script-chain')
 const log = require('fliplog')
 const {read, write} = require('flipfile')
 const {del} = require('./util')
 const docdown = require('../_modules/_docdown')
+// const docdown = require('docdown')
 
 const res = rel => resolve(__dirname, rel)
+const resRoot = rel => resolve(res('../'), rel)
+
+// https://github.com/chalk/ansi-regex/blob/master/index.js
+const ansiRegex = /[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-PRZcf-nqry=><]/g
+const stripAnsi = str => str.replace(ansiRegex, '')
 
 const timer = log.fliptime()
 timer.start('cli')
@@ -32,7 +38,16 @@ log.registerCatch()
 // setup args
 // src: [rollup, typescript, buble, babel, browserify, copy/strip]
 const argvOpts = {
-  boolean: ['cov', 'src', 'copy', 'production', 'docs', 'optimize', 'diff'],
+  boolean: [
+    'cov',
+    'src',
+    'copy',
+    'production',
+    'docs',
+    'optimize',
+    'diff',
+    'doctrine',
+  ],
   string: ['format'],
   default: {
     optimize: true,
@@ -43,11 +58,12 @@ const argvOpts = {
     quick: false,
     diff: false,
     production: true,
+    doctrine: false,
     format: ['amd', 'iife', 'dev', 'es', 'cjs', 'umd'],
   },
 }
 const argvs = fwf(process.argv.slice(2), argvOpts)
-const {production, quick, tests, cov, clean, docs, diff} = argvs
+const {production, quick, tests, cov, clean, docs, diff, doctrine} = argvs
 
 const OPTIMIZE_JS_FILE = '../dists/umd/index.js'
 const TSC_SOURCE = '../dists/dev/index.js'
@@ -102,6 +118,65 @@ const script = (bin = 'rollup', flags = '') => {
 
   return scripty.run()
 }
+
+const find = require('chain-able-find')
+
+const root = res('../')
+const entry = res('../src')
+
+const srcFiles = find
+  .init()
+  .recursive(true)
+  .ignoreDirs(['ignant'])
+  .matchFiles(['**/*.js'])
+  .abs(true)
+  .sync(true)
+  .find(entry)
+  .results()
+
+const typings = find
+  .init()
+  .recursive(true)
+  .matchFiles(['**/*.d.ts'])
+  .abs(true)
+  .sync(true)
+  .find(res('../typings'))
+  .results()
+
+const testFiles = find
+  .init()
+  .recursive(true)
+  .matchFiles(['**/*.js'])
+  .abs(true)
+  .sync(true)
+  .find(res('../test'))
+  .results()
+
+const toRel = filepath => filepath.replace(root, '').replace(entry, '')
+const matcher = require('../src/deps/matcher')
+const dot = require('../src/deps/dot')
+const traverse = require('../src/deps/traverse')
+const uniq = require('../src/deps/array/uniq')
+
+const filter = list => regexp => {
+  const matched = matcher(list, regexp)
+  if (matched.length >= 1) return matched
+  return list.filter(item => item.includes(regexp))
+}
+
+const repoPath = 'https://github.com/fluents/chain-able/blob/master'
+const repoDocPath =
+  'https://github.com/fluents/chain-able/blob/master/docs/docdown'
+const toDocPath = filepathBasename =>
+  (res('../docs/docdown/') + '/' + filepathBasename).replace('.js', '.md')
+const toRepoPath = filepathBasename => repoPath + filepathBasename
+const toRepoDocPath = filepathBasename => repoDocPath + filepathBasename
+const toBasename = filePath => basename(filePath)
+const stripDot = filePath => filePath.replace(/[.]/gim, '')
+const escapeDot = filePath => filePath.replace(/[.]/gim, '\\.')
+const slashToDot = filePath => filePath.replace(/\//gim, '.')
+const toAnchor = (label, href) => `[${basename(label)}](${href || label})`
+const stripExt = filePath => filePath.replace(/\.[a-zA-Z0-9]{0,3}/, '')
 
 // cli class
 class CLI {
@@ -194,57 +269,228 @@ class CLI {
   rollupNode(overrides = {}) {
     return require('./build')(overrides)
   }
+  doctrine() {
+    var doctrineAPI = require('doctrine')
+    var ast = doctrineAPI.parse(
+      [
+        `
+          /**
+           * {@link https://ponyfoo.com/articles/es6-maps-in-depth pony-map}
+           * {@link https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map mozilla-map}
+           * @see {@link pony-map}
+           * @see {@link mozilla-map}
+           *
+           * @see ChainedMap
+           * @see Chainable
+           * @see MergeChain
+           * @see MethodChain
+           * @see ChainedMap
+           *
+           */
+        `,
+        // `
+        //   /**
+        //    * @param  {*} x value
+        //    * @param  {any} [y] not real, for ast
+        //    * @return {boolean} isDate
+        //    *
+        //    * @since 3.0.0
+        //    * @memberOf is
+        //    * @func isDate
+        //    *
+        //    * @example
+        //    *
+        //    *  isDate(new Date())
+        //    *  //=> true
+        //    *  isDate(Date.now())
+        //    *  //=> false
+        //    *  isDate(1)
+        //    *  //=> false
+        //    *  isDate('')
+        //    *  //=> false
+        //    *
+        //    * @example
+        //    *
+        //    *  const e = {}
+        //    *  eh[Symbol.toStringTag] = '[Object Date]'
+        //    *  isDate(eh)
+        //    *  //=> true
+        //    *
+        //    * @example
+        //    *
+        //    *  class Eh extends Date()
+        //    *  isDate(new Eh())
+        //    *  //=> true
+        //    */
+        // `,
+        // '/**',
+        // ' * This function comment is parsed by doctrine',
+        // ' * @param {{ok:String}} userName',
+        // '*/',
+      ].join('\n'),
+      {unwrap: true, sloppy: true}
+    )
+    log.quick(ast)
+  }
   docs() {
-    var find = require('chain-able-find')
-    const entry = res('../src')
-    const found = find
-      .init()
-      .recursive(true)
-      .ignoreDirs(['ignant'])
-      .matchFiles(['**/*.js'])
-      .abs(true)
-      .sync(true)
-      .find(entry)
-      .results()
-    var markdowns = {}
-    var outputs = {}
-    // log.quick(found)
-    found.map(filepath => {
-      // log.quick({
-      //   path: filepath,
-      //   url:
-      //     'https://github.com/fluents/chain-able/blob/master' +
-      //       filepath.replace(res('../'), ''),
-      // })
+    // all the docs in 1 place
+    const allInOne = res('../dists/dev/index.js')
+    srcFiles.push(allInOne)
+
+    const vfs = {
+      toDocPath,
+      toRepoPath,
+      toRepoDocPath,
+      toRel,
+      toBasename,
+      find: filter,
+      typings: {
+        abs: typings,
+        rel: typings.map(toRel),
+      },
+      tests: {
+        abs: testFiles,
+        rel: testFiles.map(toRel),
+      },
+      src: {
+        abs: srcFiles,
+        rel: srcFiles.map(toRel),
+      },
+    }
+
+    // ----------- docs -----------
+
+    timer.start('docs')
+
+    srcFiles.map(filepath => {
+      // if (!filepath.includes('dists/dev/index.js')) return
+      // if (!filepath.includes('_Playground')) return
+
       const relatived = filepath.replace(res('../'), '')
-      var markdown = docdown({
+      // eslint-disable-next-line
+      // debugger
+
+      const markdown = docdown({
         path: filepath,
-        url: 'https://github.com/fluents/chain-able/blob/master' + relatived,
+        url: repoPath + relatived,
+        files: vfs,
       })
 
-      const filepathBasename = relatived.replace('/src/', '')
-      const docpath = (res('../docs/docdown/') +
-        '/' +
-        filepathBasename).replace('.js', '.md')
-      markdowns[filepathBasename] = markdown
-      outputs[docpath] = markdown
+      let filepathBasename = relatived.replace('/src/', '')
+      let docpath = toDocPath(filepathBasename)
+
+      if (docpath.includes('dists/')) {
+        filepathBasename = relatived.replace('dists/dev/index', 'aio')
+        docpath = toDocPath(filepathBasename)
+      }
+
       write(docpath, markdown)
+
+      // return {[filepath]: markdown}
     })
 
-    // log.quick(outputs)
-    // log.quick(Object.keys(outputs))
-    // log.quick(Object.keys(markdowns))
-
-    // var walk = require('./util/walk')
-    // var dirs = walk(res('../src'))
-
-    // dirs.forEach(filePath => {
-    // var markdown = docdown({
-    //   path: filepath,
-    //   url: 'https://github.com/fluents/d/blob/master/my.js',
-    // })
-    // })
+    timer.stop('docs').log('docs')
+    // process.exit()
+    this.makeTree({vfs})
+    // === create
   }
+  makeTree(args) {
+    const {vfs} = args
+    // ----------- tree -----------
+
+    // === setup
+    const allDirs = find
+      .init()
+      .recursive(true)
+      .ignoreDirs(['node_modules'])
+      // , 'test/**', 'typings/**', 'docs/**'
+      .matchFiles(['src/**'].map(resRoot))
+      .abs(true)
+      .sync(true)
+      .find(resRoot('.'))
+      .results()
+
+    let dirs = allDirs
+      .map(dir => (dir.includes('.') ? dir.replace(basename(dir), '') : dir))
+      .filter(uniq)
+
+    const docFiles = vfs.src.rel
+      .map(vfs.toRepoDocPath)
+      .map(rel => rel.replace('/src/', '/'))
+
+    const findDir = filter(dirs)
+
+    const docsTree = {}
+    docFiles.forEach(doc => {
+      let docName = doc.replace(repoDocPath, '')
+
+      // file
+      if (doc.includes('.')) {
+        docName = stripExt(docName)
+      }
+
+      let dotPath = slashToDot(docName)
+      if (dotPath.startsWith('.')) dotPath = dotPath.slice(1)
+      // let link = `[${basename(docName)}](${doc})`
+
+      dotPath = dotPath.split('.')
+      dotPath[dotPath.length - 1] = escapeDot(toAnchor(docName, doc))
+      dotPath = dotPath.join('.')
+      dot.set(docsTree, dotPath, '')
+    })
+
+    // traverse(docsTree)
+    // log.quick(docsTree)
+    // const tree = log.tree(docsTree).returnVals().datas
+    // const treeString = tree
+    //   .replace(/(\[39|2m,)/gim, '')
+    //   .replace(/\'/gim, '')
+    //   .replace(/\,/gim, '')
+    const toCode = x => x.replace(/[├─│─┐└─]/gim, '`$&`')
+    const treeify = log.requirePkg('treeify')
+    try {
+      const tree = treeify.asTree(docsTree, true, true)
+
+      const treeString = tree
+        .split('\n')
+        .map(line => '- ' + toCode(line).replace('``', '` `'))
+        .map(line => {
+          if (line.includes(':')) {
+            return line
+          }
+          else {
+            return line.replace(/[a-z0-9]+/gim, x => {
+              const resolved =
+                findDir(x)
+                  .map(dir => (dir.includes('http') ? dir : toRel(dir)))
+                  .filter(dir => dir.endsWith(x + '/'))
+                  .map(dir => (dir.includes('http') ? dir : toRepoDocPath(dir)))
+                  .shift() || x
+
+              // console.log({x, resolved})
+
+              return toAnchor(resolved)
+            })
+          }
+        })
+        // ends with `:`
+        .map(
+          line =>
+            ((/\:$/).test(line.trim()) ? line.substring(0, line.length - 2) : line)
+        )
+        .join('\n')
+
+      // console.log(treeString)
+      write(toDocPath('README.md'), treeString)
+    }
+    catch (e) {
+      // console.log(e)
+      // console.log(
+      //   '@TODO: fork and fix obj.hasOwnProp -> Object.prototype.hasOwnProperty.call(obj, prop)'
+      // )
+    }
+  }
+
   buble() {
     const sourcemaps = true
     const scripts = new Script()
@@ -256,24 +502,15 @@ class CLI {
     if (sourcemaps) scripts.raw('-m inline')
     return scripts.run()
   }
-  browserify() {}
-  babel() {
-    // return new Script().add().bin('babel').raw('src/ --out-dir dist').run()
+  browserify() {
+    // `browserify src -o dists/browserified/index.js`
   }
-  coveralls() {
-    // 'coveralls < coverage/lcov.info'
+  babel() {
+    return new Script().add().bin('babel').raw('src/ --out-dir dist').run()
   }
   test(built = false) {
     return script('ava', !built ? '--verbose' : 'test-dist/built.js')
     // return script('test')
-  }
-  cov() {
-    // "cov:report": "nyc report"
-    // "cov:text": "nyc --reporter=html --reporter=text ava",
-    return script('nyc', 'ava')
-  }
-  lint() {
-    return script('eslint', '"src/**"')
   }
 }
 
@@ -283,30 +520,18 @@ timer.start('go')
 const cli = new CLI()
 
 async function src() {
-  timer.start('src')
   // copy
-  timer.start('copy')
   await cli.copy()
-  timer.stop('copy')
+}
 
-  // rollup
-  // timer.start('dev')
-  // await cli.rollup('--environment format:dev')
-  // timer.stop('dev')
+// @NOTE: not using ts now, got worse as manual optimizations got better
+async function rollupTypeScriptRollup() {
+  await cli.tsc()
 
-  // @NOTE: not using ts now, got worse as manual optimizations got better
-  // typescript the rollup
-  // timer.start('tsc')
-  // await cli.tsc()
-  // timer.stop('tsc')
-  //
-  // // rollup the typescripted rollup... o.o
-  // timer.start('tsc2')
-  // await cli.rollup('--environment format:tsc')
-  // timer.stop('tsc2')
-  //
-  // timer.stop('src')
-  // log.log('src')
+  // rollup the typescripted rollup... o.o
+  await cli.rollup('--environment format:tsc')
+
+  log.log('src')
 }
 
 async function compileTests() {
@@ -324,7 +549,6 @@ async function test() {
     await cli.cov()
     timer.stop('cov')
   }
-  // cov
 }
 
 const devWith = opts =>
@@ -353,99 +577,78 @@ const prodWith = opts =>
     opts
   )
 
+// @NOTE this is how rollup can be done with cli flags instead of node api
+// await cli.rollup('--environment format:umd --verbose --debug')
+
 async function publishing() {
-  timer.start('publishing')
-  timer.start('amd')
-
   const rollupProdWith = opts => cli.rollupNode(prodWith(opts))
+  const rollupDevWith = opts => cli.rollupNode(devWith(opts))
 
-  // await cli.rollup('--environment format:amd')
-  await rollupProdWith({format: 'amd', falafel: false})
-  timer.stop('amd')
+  const prodBuilds = [
+    {format: 'amd', falafel: false},
+    {format: 'iife', falafel: false},
+    {format: 'es'},
+    {format: 'cjs'},
+    // @HACK @FIXME just needs sourceType script
+    {format: 'umd', verbose: true, debug: false},
+  ]
 
-  timer.start('es')
-  // await cli.rollup('--environment format:es')
-  await rollupProdWith({format: 'es'})
-  timer.stop('es')
-
-  timer.start('cjs')
-  // await cli.rollup('--environment format:cjs')
-  await rollupProdWith({format: 'cjs'})
-  timer.stop('cjs')
-
-  // @HACK @FIXME just needs sourceType script
-  // ignoring this one for now, already so many, don't want to build them all
-  // await cli.rollup('--environment format:iife')
-  await rollupProdWith({format: 'iife', falafel: false})
-
-  timer.start('umd')
-
-  // debugger
-  await cli.rollupNode(
-    devWith({
-      exportName: 'window',
-      entry: res('../src/index.web.js'),
-    })
-  )
-
-  await cli.rollupNode(
-    devWith({
+  const devBuilds = [
+    {
       exportName: 'debugger',
       debugger: true,
       debug: true,
       replace: {debugger: true},
-    })
-  )
-  // dev
-  await cli.rollupNode(
-    devWith({
+    },
+    {
+      exportName: 'window',
+      entry: res('../src/index.web.js'),
+    },
+    {
       exportName: 'dev',
-    })
-  )
-  // node
-  await cli.rollupNode(
-    devWith({
+    },
+    {
       exportName: 'node',
-    })
-  )
+    },
+  ]
 
-  // await cli.rollup('--environment format:umd --verbose --debug')
-  await rollupProdWith({format: 'umd', verbose: true, debug: false})
+  let devOps = devBuilds.map(dev => rollupDevWith(dev))
+  let prodOps = prodBuilds.map(prod => rollupProdWith(prod))
+  let builds = [].concat(devOps).concat(prodOps)
 
-  timer.stop('umd')
-
-  try {
-    timer
-      .stop('publishing')
-      .log('publishing')
-      .log('copy')
-      .log('dev')
-      .log('tsc')
-      .log('tsc2')
-      .log('tsctests')
-      .log('amd')
-      .log('es')
-  }
-  catch (e) {
-    // some typo on one timer not running prob tests
-  }
+  const built = await Promise.all(builds)
+  return Promise.resolve(built)
 }
 
 async function all() {
+  timer.start('cli')
+
   if (docs) {
     await cli.docs()
     process.exit()
   }
-  if (!quick) await src()
+  if (doctrine) {
+    await cli.doctrine()
+    process.exit()
+  }
+
+  if (!quick) {
+    await src()
+  }
+
+  // is not really needed now with jest, but should add back tsc
   // if (tests) {
   //   await compileTests()
   //   await test()
   // }
+
   if (production) await publishing()
+
   await cli.optimizejs()
 
   // if (cov) await runCov()
-  // // all ops are done
-  // timer.stop('go').log('go')
+
+  // all ops are done
+  timer.stop('cli').log('cli')
 }
 all()
