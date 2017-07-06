@@ -3080,6 +3080,12 @@ fs-extra@^3.0.1:
     jsonfile "^3.0.0"
     universalify "^0.1.0"
 
+fs-jetpack@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/fs-jetpack/-/fs-jetpack-1.1.0.tgz#6592d65b3029f99691994512e088eb6a693a26ec"
+  dependencies:
+    minimatch "^3.0.2"
+
 fs-readdir-recursive@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs-readdir-recursive/-/fs-readdir-recursive-1.0.0.tgz#8cd1745c8b4f8a29c8caec392476921ba195f560"
