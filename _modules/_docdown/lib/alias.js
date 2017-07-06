@@ -1,5 +1,3 @@
-'use strict'
-
 var _ = require('lodash')
 
 /*----------------------------------------------------------------------------*/
@@ -9,10 +7,10 @@ var _ = require('lodash')
  *
  * @constructor
  * @param {string} name The alias name.
- * @param {Object} owner The alias owner.
+ * @param {Object} parent The alias parent (prev owner).
  */
-function Alias(name, owner) {
-  this._owner = owner
+function Alias(name, parent) {
+  this.parent = parent
   this._name = name
 }
 
@@ -34,7 +32,7 @@ function getAliases(index) {
  * @returns {string} Returns the function call.
  */
 function getCall() {
-  return this._owner.getCall()
+  return this.parent.getCall()
 }
 
 /**
@@ -44,7 +42,7 @@ function getCall() {
  * @returns {string} Returns the owner entry's `category` data.
  */
 function getCategory() {
-  return this._owner.getCategory()
+  return this.parent.getCategory()
 }
 
 /**
@@ -54,7 +52,7 @@ function getCategory() {
  * @returns {string} Returns the owner entry's description.
  */
 function getDesc() {
-  return this._owner.getDesc()
+  return this.parent.getDesc()
 }
 
 /**
@@ -64,7 +62,7 @@ function getDesc() {
  * @returns {string} Returns the owner entry's `example` data.
  */
 function getExample() {
-  return this._owner.getExample()
+  return this.parent.getExample()
 }
 
 /**
@@ -75,7 +73,7 @@ function getExample() {
  * @returns {string} Returns the entry's hash value (without a hash itself).
  */
 function getHash(style) {
-  return this._owner.getHash(style)
+  return this.parent.getHash(style)
 }
 
 /**
@@ -85,7 +83,7 @@ function getHash(style) {
  * @returns {number} Returns the owner entry's line number.
  */
 function getLineNumber() {
-  return this._owner.getLineNumber()
+  return this.parent.getLineNumber()
 }
 
 /**
@@ -96,7 +94,7 @@ function getLineNumber() {
  * @returns {Array|string} Returns the owner entry's `member` data.
  */
 function getMembers(index) {
-  return this._owner.getMembers(index)
+  return this.parent.getMembers(index)
 }
 
 /**
@@ -116,7 +114,7 @@ function getName() {
  * @returns {Object} Returns the owner entry.
  */
 function getOwner() {
-  return this._owner
+  return this.parent
 }
 
 /**
@@ -127,7 +125,7 @@ function getOwner() {
  * @returns {Array} Returns the owner entry's `param` data.
  */
 function getParams(index) {
-  return this._owner.getParams(index)
+  return this.parent.getParams(index)
 }
 
 /**
@@ -137,7 +135,7 @@ function getParams(index) {
  * @returns {string} Returns the owner entry's `returns` data.
  */
 function getReturns() {
-  return this._owner.getReturns()
+  return this.parent.getReturns()
 }
 
 /**
@@ -147,7 +145,7 @@ function getReturns() {
  * @returns {string} Returns the owner entry's `since` data.
  */
 function getSince() {
-  return this._owner.getSince()
+  return this.parent.getSince()
 }
 
 /**
@@ -157,7 +155,7 @@ function getSince() {
  * @returns {string} Returns the owner entry's `type` data.
  */
 function getType() {
-  return this._owner.getType()
+  return this.parent.getType()
 }
 
 /**
@@ -177,7 +175,7 @@ function isAlias() {
  * @returns {boolean} Returns `true` if a constructor, else `false`.
  */
 function isCtor() {
-  return this._owner.isCtor()
+  return this.parent.isCtor()
 }
 
 /**
@@ -187,7 +185,7 @@ function isCtor() {
  * @returns {boolean} Returns `true` if the entry is a function reference, else `false`.
  */
 function isFunction() {
-  return this._owner.isFunction()
+  return this.parent.isFunction()
 }
 
 /**
@@ -197,7 +195,7 @@ function isFunction() {
  * @returns {boolean} Returns `true` if a license, else `false`.
  */
 function isLicense() {
-  return this._owner.isLicense()
+  return this.parent.isLicense()
 }
 
 /**
@@ -207,7 +205,7 @@ function isLicense() {
  * @returns {boolean} Returns `true` if assigned to a prototype, else `false`.
  */
 function isPlugin() {
-  return this._owner.isPlugin()
+  return this.parent.isPlugin()
 }
 
 /**
@@ -217,7 +215,7 @@ function isPlugin() {
  * @returns {boolean} Returns `true` if private, else `false`.
  */
 function isPrivate() {
-  return this._owner.isPrivate()
+  return this.parent.isPrivate()
 }
 
 /**
@@ -227,7 +225,7 @@ function isPrivate() {
  * @returns {boolean} Returns `true` if not assigned to a prototype, else `false`.
  */
 function isStatic() {
-  return this._owner.isStatic()
+  return this.parent.isStatic()
 }
 
 /*----------------------------------------------------------------------------*/
