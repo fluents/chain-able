@@ -39,7 +39,7 @@ module.exports = (version, options) => {
     })
   )
 
-  if (options.uglify) add(uglify())
+  if (options.uglify) add(uglify(options))
   add(filesize())
 
   return plugins
