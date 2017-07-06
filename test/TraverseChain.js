@@ -1,5 +1,6 @@
 const log = require('fliplog')
-const Chain = require('../src')
+const {Chain, matcher} = require('../src')
+const TraverseChain = require('../src/TraverseChain')
 
 test('traversal with function callback for vals and keys', () => {
   const result = new Chain()
@@ -32,6 +33,23 @@ test('traversal with .onMatch', () => {
     })
     .call(true)
 })
+
+// test('traverse().traversed()', () => {
+//   // const traverser = new TraverseChain()
+//   // traverser.obj(['duck', 'duck', 'goose'])
+//   // traverser.vals(/(d.*ck)/)
+//   // traverser.traverse()
+//   //
+//   // expect(traverser.traversed()).toBe(['goose'])
+//   // traverse(['duck', 'duck', 'goose']).forEach(function(x) {
+//   //   /(d.*ck)/
+//   // })
+//   // const traverser2 = new TraverseChain()
+//   // traverser2.obj(['goose', 'duck', 'duck'])
+//   // traverser2.vals([/(d.*ck)/])
+//   // traverser2.traverse()
+//   // expect(traverser2.traversed().pop()).toBe(['goose'])
+// })
 
 test('.traverse(false)', () => {
   const eh = {
@@ -98,13 +116,12 @@ test('.traverse(true)', () => {
   const cleaned = chain
     .merge(eh)
     .traverse(true)
-    .keys([/super/, /parser/, /store/, /meta/])
+    .keys([/super/, /parser/, /store/, /meta/, /className/])
     .vals([/minime/])
     .call(true)
 
-  // log.quick(cleaned)
   expect(cleaned).toEqual({
-    className: 'DotProp',
+    // className: 'DotProp',
     me: true,
     nested: {
       really: {
