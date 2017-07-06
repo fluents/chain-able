@@ -1,6 +1,6 @@
 {
   "name": "chain-able",
-  "version": "4.0.0-beta.3",
+  "version": "4.0.6",
   "description": "interfaces that describe their intentions.",
   "main:es6": "src/index.js",
   "main:dev": "dists/dev/index.js",
@@ -8,18 +8,22 @@
   "main:tsc": "dists/tsc/index.js",
   "main:iife": "dists/iife/index.js",
   "main:umd": "dists/umd/index.js",
+  "main:min": "dists/umd/index.min.js",
   "main:cjs": "dists/cjs/index.js",
   "main:es": "dists/es/index.js",
   "main:window": "dists/window/index.js",
   "js:next": "dists/es/index.js",
-  "main": "dists/umd/index.js",
-  "module": "dists/umd/index.js",
+  "main": "main.js",
+  "module": "index.js",
   "web": "dists/umd/index.js",
   "browser": "dists/cjs/index.js",
   "alias": "dists/cjs/index.js",
   "amd": "dists/amd/index.js",
   "types": "typings/index.d.ts",
   "typings": "typings/index.d.ts",
+  "deps": "deps/index.js",
+  "compose": "compose/index.js",
+  "plugins": "plugins/index.js",
   "rollup": {
     "moduleName": "ChainAble",
     "entry": "src/index.js",
@@ -50,8 +54,40 @@
     "lint": "eslint",
     "build": "make build",
     "prepublish": "make prepublish",
-    "postpublish": "make clean"
+    "_postpublish": "make clean"
   },
+  "directories": {
+    "typings": "typings",
+    "lib": "src",
+    "deps": "deps",
+    "compose": "compose",
+    "plugins": "plugins",
+    "dist": "dist",
+    "dists": "dists"
+  },
+  "files": [
+    "dist",
+    "src",
+    "dists",
+    "deps",
+    "compose",
+    "plugins",
+    "typings",
+    "index.js",
+    "Chainable.js",
+    "ChainedMap.js",
+    "ChainedMapBase.js",
+    "ChainedSet.js",
+    "FactoryChain.js",
+    "MergeChain.js",
+    "MethodChain.js",
+    "TraverseChain.js",
+    "compose/index.js",
+    "deps/index.js",
+    "./compose/index.js",
+    "./deps/index.js",
+    "./plugins/index.js"
+  ],
   "nyc": {
     "all": false,
     "check-coverage": true,
@@ -92,10 +128,6 @@
       "text"
     ]
   },
-  "_____": [
-    "/test/",
-    "/src/"
-  ],
   "jest": {
     "transformIgnorePatterns": [
       "/node_modules/",
@@ -219,7 +251,9 @@
     "coveralls": "^2.13.1",
     "dargs": "^5.1.0",
     "deepmerge": "^1.3.2",
+    "dive": "^0.5.0",
     "docdown": "^0.7.2",
+    "doctrine": "^2.0.0",
     "doxdox": "^2.0.3",
     "eslint": "^4.0.0",
     "eslint-config-chain-able": "^1.0.0",
@@ -236,7 +270,10 @@
     "immutable": "^3.8.1",
     "inspector-gadget": "^1.0.0",
     "jest": "^20.0.4",
+    "jest-benchmark": "^0.0.0",
     "lodash": "^4.17.4",
+    "marked": "^0.3.6",
+    "memwatch-next": "^0.3.0",
     "mobx": "^3.1.14",
     "module-alias": "^2.0.0",
     "nyc": "^10.3.2",
@@ -256,6 +293,7 @@
     "rollup-plugin-uglify": "^2.0.1",
     "script-chain": "^0.0.9",
     "traverse": "^0.6.6",
+    "treeify": "^1.0.1",
     "tslint": "^5.4.3",
     "typescript": "next",
     "typescript-eslint-parser": "^3.0.0",
@@ -268,6 +306,7 @@
     "chains",
     "chaining",
     "chain-able",
+    "chainable",
     "conditional",
     "expressive",
     "fluent",
@@ -276,7 +315,7 @@
     "fliphub-chain",
     "fusebox-chain",
     "webpack",
-    "fusebox"
+    "fuse-box"
   ],
   "license": "MIT",
   "author": "James <aretecode@gmail.com>",
@@ -287,32 +326,5 @@
   },
   "bugs": {
     "url": "https://github.com/fluents/chain-able/issues"
-  },
-  "directories": {
-    "typings": "typings",
-    "lib": "src",
-    "deps": "deps",
-    "compose": "compose",
-    "plugins": "plugins",
-    "dist": "dist",
-    "dists": "dists"
-  },
-  "files": [
-    "dist",
-    "src",
-    "dists",
-    "deps",
-    "compose",
-    "plugins",
-    "typings",
-    "index.js",
-    "Chainable.js",
-    "ChainedMap.js",
-    "ChainedMapBase.js",
-    "ChainedSet.js",
-    "FactoryChain.js",
-    "MergeChain.js",
-    "MethodChain.js",
-    "TraverseChain.js"
-  ]
+  }
 }

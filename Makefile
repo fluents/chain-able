@@ -1,5 +1,6 @@
 # 📜📒 Makefile
 # learn more here: https://gist.github.com/isaacs/62a2d1825d04437c6f08
+# TODO: https://github.com/eslint/doctrine/blob/master/Makefile.js
 cwd := $(shell pwd)
 
 # --- unused ---
@@ -107,7 +108,7 @@ distcombo:
 	$(MAKE) copysrc && $(MAKE) buble
 
 buildcombo:
-	$(MAKE) distcombo && $(MAKE) cli
+	$(MAKE) distcombo && $(MAKE) cli && $(MAKE) gzip
 
 buildcombofuse:
 	$(MAKE) distcombo && $(MAKE) cli && $(MAKE) fuse && $(MAKE) webpack && $(MAKE) gzip
@@ -119,6 +120,6 @@ travis:
 	&& $(MAKE) jestserial
 
 prepublish:
-	$(MAKE) buildcombo && $(MAKE) cov && $(MAKE) testdist
+	$(MAKE) copyroot && $(MAKE) buildcombo && $(MAKE) cov && $(MAKE) testdist
 
 .PHONY: clean, quick
