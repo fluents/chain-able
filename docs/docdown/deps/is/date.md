@@ -20,9 +20,14 @@
 <!-- div -->
 
 <h3 id="is-prototype-isDate"><a href="#is-prototype-isDate">#</a>&nbsp;<code>is.prototype.exports(x=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/date.js#L35 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/date.js#L36 "View in source") [&#x24C9;][1]
 
 Function
+
+
+### @extends
+
+
 
 #### Since
 3.0.0

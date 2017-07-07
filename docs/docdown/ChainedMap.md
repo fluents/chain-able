@@ -11,15 +11,6 @@
 
 <!-- div -->
 
-## `ComposeMap`
-* <a href="#CM" class="alias">`ComposeMap` -> `CM`</a>
-* <a href="#method" class="alias">`ComposeMap` -> `method`</a>
-* <a href="#merge" class="alias">`ComposeMap` -> `merge`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
 ## `merge`
 * <a href="#merge">`merge`</a>
 
@@ -65,9 +56,6 @@ ChainedMapBase
 #### Since
 0.0.1
 
-#### Aliases
-*ComposeMap*
-
 #### Arguments
 1. `[SuperClass=ChainedMapBase]` *(Class|Composable|Object)*: class to extend
 
@@ -91,25 +79,14 @@ hehchain instanceof heh
 
 <!-- div -->
 
-## `ComposeMap`
-
-<!-- /div -->
-
-<!-- div -->
-
 ## `merge`
 
 <!-- div -->
 
-* <a href="https://github.com/fluents/chain-able/blob/master/typings/ChainedMap.d.ts">🌊  Types: ChainedMap.d</a>&nbsp;
-* <a href="https://github.com/fluents/chain-able/blob/master/typings/ChainedMapBase.d.ts">🌊  Types: ChainedMapBase.d</a>&nbsp;
+<h3 id="merge"><a href="#merge">#</a>&nbsp;<code>merge(obj=undefined, [handleMergeFn=undefined])</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMap.js#L99 "View in source") [&#x24C9;][1]
 
-<a href="https://github.com/fluents/chain-able/blob/master/test/ChainedMap.js">🔬  Tests: ChainedMap</a>&nbsp;
-
-<h3 id="merge"><a href="#merge">#</a>&nbsp;<code>merge([SuperClass=ChainedMapBase])</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMap.js#L98 "View in source") [&#x24C9;][1]
-
-(Function): ChainedMap composer
+(Function): merges an object with the current store
 
 
 ### @see 
@@ -117,30 +94,38 @@ hehchain instanceof heh
 * <a href="https://github.com/fluents/chain-able/blob/master/src/deps/dopemerge/dopemerge.js">fluents/chain able/blob/master/src/deps/dopemerge/dopemerge.js</a>
 * <a href="https://github.com/fluents/chain-able/blob/master/src/MergeChain.js">fluents/chain able/blob/master/src/merge chain.js</a>
 
-### @extends
-ChainedMapBase
+### @todos 
 
-
+- [ ] needs to pass in additional opts somehow...
+ 
 #### Since
-0.0.1
-
-#### Aliases
-*ComposeMap*
+0.4.0
 
 #### Arguments
-1. `[SuperClass=ChainedMapBase]` *(Class|Composable|Object)*: class to extend
+1. `obj=undefined` *(Object)*: object to merge
+2. `[handleMergeFn=undefined]` *(|Function)*: return the merger to the callback
 
 #### Returns
-*(Class)*: ChainedMap
+*(ChainedMap)*: @chainable
 
 #### Example
 ```js
-const heh = class {}
-const composed = ChainedMap.compose(heh)
-const hehchain = new Composed()
-hehchain instanceof heh
-//=> true
+const chain = new Chain()
+chain.set('eh', [1])
+chain.merge({ eh: [2] })
+chain.get('eh')
+// => [1, 2]
 
+```
+#### Example
+```js
+const chain = new Chain()
+  chain.set('emptyArr', [])
+  chain.merge({emptyArr: []}, mergeChain =>
+    mergeChain.onExisting((a, b) => []).merger((a, b) => []).merge()
+  )
+  chain.get('emptyArr').length)
+  //=> 0
 ```
 ---
 
@@ -154,45 +139,32 @@ hehchain instanceof heh
 
 <!-- div -->
 
-* <a href="https://github.com/fluents/chain-able/blob/master/typings/ChainedMap.d.ts">🌊  Types: ChainedMap.d</a>&nbsp;
-* <a href="https://github.com/fluents/chain-able/blob/master/typings/ChainedMapBase.d.ts">🌊  Types: ChainedMapBase.d</a>&nbsp;
+<h3 id="method"><a href="#method">#</a>&nbsp;<code>method(names=undefined)</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMap.js#L63 "View in source") [&#x24C9;][1]
 
-<a href="https://github.com/fluents/chain-able/blob/master/test/ChainedMap.js">🔬  Tests: ChainedMap</a>&nbsp;
-
-<h3 id="method"><a href="#method">#</a>&nbsp;<code>method([SuperClass=ChainedMapBase])</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMap.js#L62 "View in source") [&#x24C9;][1]
-
-(Function): ChainedMap composer
+(Function): the way to easily start building methods when using chainable instances
 
 
 ### @see 
 
 * <a href="https://github.com/fluents/chain-able/blob/master/src/deps/dopemerge/dopemerge.js">fluents/chain able/blob/master/src/deps/dopemerge/dopemerge.js</a>
 * <a href="https://github.com/fluents/chain-able/blob/master/src/MergeChain.js">fluents/chain able/blob/master/src/merge chain.js</a>
-
-### @extends
-ChainedMapBase
-
-
 #### Since
-0.0.1
-
-#### Aliases
-*ComposeMap*
+4.0.0
 
 #### Arguments
-1. `[SuperClass=ChainedMapBase]` *(Class|Composable|Object)*: class to extend
+1. `names=undefined` *(Primitive|string|string&#91;&#93;)*: method names to add to the object
 
 #### Returns
-*(Class)*: ChainedMap
+*(MethodChain)*: @chainable
 
 #### Example
 ```js
-const heh = class {}
-const composed = ChainedMap.compose(heh)
-const hehchain = new Composed()
-hehchain instanceof heh
-//=> true
+const chain = new Chain()
+chain.method('eh').build()
+chain.eh(true)
+chain.get('eh')
+// => true
 
 ```
 ---

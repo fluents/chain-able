@@ -33,13 +33,13 @@
 
 <!-- div -->
 
-<h3 id="arrayHasAll"><a href="#arrayHasAll">#</a>&nbsp;<code>arrayHasAll(needle=undefined, haystack=undefined)</code></h3>
+<h3 id="arrayHasAll"><a href="#arrayHasAll">#</a>&nbsp;<code>arrayHasAll(needles=undefined, haystack=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/all.js#L24 "View in source") [&#x24C9;][1]
 
 Function
 
 #### Arguments
-1. `needle=undefined` *(string)*:
+1. `needles=undefined` *(string&#91;&#93;)*:
 2. `haystack=undefined` *(string&#91;&#93;)*:
 
 #### Returns
@@ -63,7 +63,7 @@ Function
 Function
 
 #### Arguments
-1. `needle=undefined` *(string)*:
+1. `needle=undefined` *(string|string&#91;&#93;)*:
 2. `haystack=undefined` *(string&#91;&#93;)*:
 
 #### Returns

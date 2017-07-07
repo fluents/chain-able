@@ -19,27 +19,39 @@
 
 <!-- div -->
 
-<h3 id="markForGarbageCollection"><a href="#markForGarbageCollection">#</a>&nbsp;<code>markForGarbageCollection(obj=undefined, ignore=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/gc.js#L29 "View in source") [&#x24C9;][1]
+<h3 id="markForGarbageCollection"><a href="#markForGarbageCollection">#</a>&nbsp;<code>markForGarbageCollection(obj=undefined)</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/gc.js#L41 "View in source") [&#x24C9;][1]
 
 (Function): remove all methods, mark for garbage collection
 
 
 ### @todos 
 
-- [ ] : , blacklist = []
-- [ ] : put all GC events into a cached map and debounce the operation
+- [ ] blacklist = [] param
+- [ ] put all GC events into a cached map and debounce the operation
  
 #### Since
 4.0.0
 
 #### Arguments
-1. `obj=undefined` *(Object)*:
-2. `ignore=undefined` *(string&#91;&#93;)*:
+1. `obj=undefined` *(Object)*: object to traverse and clear
 
 #### Returns
 *(void)*:
 
+#### Example
+```js
+var scoped = {}
+var ref = () => scoped
+var obj = { scoped, ref, eh: true }
+
+markForGarbageCollection(obj)
+//=> void
+
+obj
+//=> undefined|{}
+
+```
 ---
 
 <!-- /div -->

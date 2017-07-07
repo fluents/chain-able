@@ -5,7 +5,6 @@
 <!-- div -->
 
 ## `is.prototype`
-* <a href="#is-prototype-isNullOrUndefined" class="alias">`is.prototype.isNil` -> `isNullOrUndefined`</a>
 * <a href="#is-prototype-isNullOrUndefined">`is.prototype.isNullOrUndefined`</a>
 
 <!-- /div -->
@@ -32,9 +31,6 @@
 * <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/undefined.js">fluents/chain able/blob/master/src/deps/is/undefined.js</a>
 #### Since
 4.0.0-alpha.1
-
-#### Aliases
-*is.prototype.isNil*
 
 #### Arguments
 1. `x=undefined` *(&#42;)*: value

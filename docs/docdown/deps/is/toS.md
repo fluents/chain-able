@@ -19,8 +19,8 @@
 
 <!-- div -->
 
-<h3 id="is-prototype-exports"><a href="#is-prototype-exports">#</a>&nbsp;<code>is.prototype.exports(value=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/toS.js#L12 "View in source") [&#x24C9;][1]
+<h3 id="is-prototype-exports"><a href="#is-prototype-exports">#</a>&nbsp;<code>is.prototype.exports(obj=undefined)</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/toS.js#L25 "View in source") [&#x24C9;][1]
 
 (Function): The base implementation of `getTag` without fallbacks for buggy environments.
 
@@ -29,12 +29,24 @@
 
 - [ ] obj[Symbol.toStringTag]
  
+#### Since
+3.0.0
+
 #### Arguments
-1. `value=undefined` *(&#42;)*: The value to query.
+1. `obj=undefined` *(&#42;)*: The value to `Object.prototype.toString.call(obj)`.
 
 #### Returns
 *(string)*: Returns the `toStringTag`.
 
+#### Example
+```js
+toS({})
+//=> '[Object object]'
+
+toS(function() {})
+//=> '[Object function]'
+
+```
 ---
 
 <!-- /div -->

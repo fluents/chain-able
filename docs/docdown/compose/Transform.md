@@ -4,8 +4,11 @@
 
 <!-- div -->
 
-## `Transform`
-* <a href="#">``</a>
+## `TransformChain.prototype`
+* <a href="#TransformChain-prototype-">`TransformChain.prototype.`</a>
+* <a href="#TransformChain-prototype-remap">`TransformChain.prototype.remap`</a>
+* <a href="#TransformChain-prototype-set">`TransformChain.prototype.set`</a>
+* <a href="#TransformChain-prototype-transform">`TransformChain.prototype.transform`</a>
 
 <!-- /div -->
 
@@ -13,27 +16,6 @@
 
 ## `exports`
 * <a href="#exports">`exports`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `remap`
-* <a href="#remap">`remap`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `set`
-* <a href="#set">`set`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `transform`
-* <a href="#transform">`transform`</a>
 
 <!-- /div -->
 
@@ -50,25 +32,142 @@
 
 <!-- div -->
 
-## `Transform`
+## `TransformChain.prototype`
 
 <!-- div -->
 
-<h3 id=""><a href="#">#</a>&nbsp;<code>(SuperClass=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Transform.js#L38 "View in source") [&#x24C9;][1]
+<a href="https://github.com/fluents/chain-able/blob/master/test/TransformChain.js">🔬  Tests: TransformChain</a>&nbsp;
 
-Function
+<h3 id="TransformChain-prototype-"><a href="#TransformChain-prototype-">#</a>&nbsp;<code>TransformChain.prototype.</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Transform.js#L40 "View in source") [&#x24C9;][1]
+
+Map
+
+
+### @symb 
+
+🤖 
+
+### @extends
+ChainedMap
+
+
+---
+
+<!-- /div -->
+
+<!-- div -->
+
+<h3 id="TransformChain-prototype-remap"><a href="#TransformChain-prototype-remap">#</a>&nbsp;<code>TransformChain.prototype.remap(from=undefined, [to=undefined])</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Transform.js#L183 "View in source") [&#x24C9;][1]
+
+(Function): remap properties from `1` to another, for example, apis with inconsistent naming
+
+
+### @symb 
+
+🗺 
+#### Since
+1.0.0
 
 #### Arguments
-1. `SuperClass=undefined` *(Class|Composable)*: composable class
+1. `from=undefined` *(Object|string)*: property name string, or {&#91;from&#93;: to}
+2. `[to=undefined]` *(string)*: property name to change key to
 
 #### Returns
-*(TransformChain)*: class
+*(Chain)*: @chainable
 
 #### Example
 ```js
-compose(class {})
-//=> TransformChain
+chain.remap('dis', 'dat').from({ dis: true })
+
+chain.entries()
+//=> {dat: true}
+
+```
+#### Example
+```js
+chain
+   .remap({dis: 'dat'})
+   .from({dis: 1, other: true}}
+
+ chain.entries()
+ //=> {dist: 1, other: true}
+```
+---
+
+<!-- /div -->
+
+<!-- div -->
+
+<h3 id="TransformChain-prototype-set"><a href="#TransformChain-prototype-set">#</a>&nbsp;<code>TransformChain.prototype.set(key=undefined, val=undefined, dotPropKey=undefined)</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Transform.js#L124 "View in source") [&#x24C9;][1]
+
+Function
+
+#### Since
+1.0.0
+
+#### Arguments
+1. `key=undefined` *(Primitive)*: key to set with
+2. `val=undefined` *(any)*: value to set for key
+3. `dotPropKey=undefined` *(|string|string&#91;&#93;)*: special key used for initializing dot prop values in an optimized way to keep reference
+
+#### Returns
+*(Chainable)*: @chainable
+
+---
+
+<!-- /div -->
+
+<!-- div -->
+
+<h3 id="TransformChain-prototype-transform"><a href="#TransformChain-prototype-transform">#</a>&nbsp;<code>TransformChain.prototype.transform(key=undefined, value=undefined)</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Transform.js#L106 "View in source") [&#x24C9;][1]
+
+Function
+
+
+### @todos 
+
+- [ ] dot-prop here
+ 
+#### Since
+1.0.2
+
+#### Arguments
+1. `key=undefined` *(Function|string)*: currently just string
+2. `value=undefined` *(Function)*: callback accepting the value as only arg to transform with
+
+#### Returns
+*(TransformChain)*: @chainable
+
+#### Example
+```js
+// coerce values with .id into the value they hold
+chain.transform('dis', val => (typeof val === 'string' ? val : val.id))
+
+chain.set('dis', 'eh')
+chain.get('dis')
+//=> 'eh'
+
+chain.set('dis', { id: 'eh' })
+chain.get('dis')
+//=> 'eh'
+
+```
+#### Example
+```js
+import { format } from 'date-fns/esm'
+import { Chain } from 'chain-able'
+
+const chain = new Chain()
+chain.transform('created_at', date => format(date, 'MM/DD/YYYY'))
+chain.set('created_at', new Date())
+
+// is formatted human-readable pretty!
+const { created_at } = chain.entries()
+//=> '02/11/2014'
 
 ```
 ---
@@ -108,113 +207,27 @@ compose(class {})
 
 <!-- div -->
 
-## `remap`
-
-<!-- div -->
-
-<h3 id="remap"><a href="#remap">#</a>&nbsp;<code>remap(SuperClass=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Transform.js#L180 "View in source") [&#x24C9;][1]
-
-Function
-
-#### Arguments
-1. `SuperClass=undefined` *(Class|Composable)*: composable class
-
-#### Returns
-*(TransformChain)*: class
-
-#### Example
-```js
-compose(class {})
-//=> TransformChain
-
-```
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `set`
-
-<!-- div -->
-
-<h3 id="set"><a href="#set">#</a>&nbsp;<code>set(SuperClass=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Transform.js#L122 "View in source") [&#x24C9;][1]
-
-Function
-
-#### Arguments
-1. `SuperClass=undefined` *(Class|Composable)*: composable class
-
-#### Returns
-*(TransformChain)*: class
-
-#### Example
-```js
-compose(class {})
-//=> TransformChain
-
-```
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `transform`
-
-<!-- div -->
-
-<h3 id="transform"><a href="#transform">#</a>&nbsp;<code>transform(SuperClass=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Transform.js#L104 "View in source") [&#x24C9;][1]
-
-Function
-
-#### Arguments
-1. `SuperClass=undefined` *(Class|Composable)*: composable class
-
-#### Returns
-*(TransformChain)*: class
-
-#### Example
-```js
-compose(class {})
-//=> TransformChain
-
-```
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
 ## `traverse`
 
 <!-- div -->
 
-<h3 id="traverse"><a href="#traverse">#</a>&nbsp;<code>traverse(SuperClass=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Transform.js#L54 "View in source") [&#x24C9;][1]
+<h3 id="traverse"><a href="#traverse">#</a>&nbsp;<code>traverse([useThis=false])</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Transform.js#L56 "View in source") [&#x24C9;][1]
 
-Function
+(Function): traverse `this`, or `this.entries`
+
+#### Since
+1.0.2
 
 #### Arguments
-1. `SuperClass=undefined` *(Class|Composable)*: composable class
+1. `[useThis=false]` *(boolean|traversable)*: use the instance properties that are `mapish` as well
 
 #### Returns
-*(TransformChain)*: class
+*(TraverseChain)*: @chainable
 
 #### Example
 ```js
-compose(class {})
-//=> TransformChain
-
+TAKE FROM TRAVERSECHAIN
 ```
 ---
 
@@ -224,4 +237,4 @@ compose(class {})
 
 <!-- /div -->
 
- [1]: #transform "Jump back to the TOC."
+ [1]: #transformchain.prototype "Jump back to the TOC."

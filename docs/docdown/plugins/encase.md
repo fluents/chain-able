@@ -6,8 +6,20 @@
 
 ## `methodEncasingFactory`
 * <a href="#methodEncasingFactory">`methodEncasingFactory`</a>
-* <a href="#methodEncasingFactory">`methodEncasingFactory`</a>
-* <a href="#methodEncasingFactory">`methodEncasingFactory`</a>
+
+<!-- /div -->
+
+<!-- div -->
+
+## `scopedEncase`
+* <a href="#scopedEncase">`scopedEncase`</a>
+
+<!-- /div -->
+
+<!-- div -->
+
+## `typedOnCall`
+* <a href="#typedOnCall">`typedOnCall`</a>
 
 <!-- /div -->
 
@@ -54,71 +66,71 @@ methodEncasingFactory('eh', {}, { onSet: console.log })
 
 <!-- /div -->
 
+<!-- /div -->
+
 <!-- div -->
 
-<h3 id="methodEncasingFactory"><a href="#methodEncasingFactory">#</a>&nbsp;<code>methodEncasingFactory(name=undefined, parent=undefined, built=undefined)</code></h3>
+## `scopedEncase`
+
+<!-- div -->
+
+<h3 id="scopedEncase"><a href="#scopedEncase">#</a>&nbsp;<code>scopedEncase(fnToEncase=undefined, [type=undefined], [specification=undefined])</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/plugins/encase.js#L53 "View in source") [&#x24C9;][1]
 
-(Function): 3 steps
-0. enhance error
-1. encase function with a specification
-2. build a function to call onInvalid or onInvalid depending
+Function
 
-
-### @symb 
-
-⛑🏭 
 #### Since
-4.0.0
+4.0.0-beta.1
 
 #### Arguments
-1. `name=undefined` *(string)*: name of the method
-2. `parent=undefined` *(Function|Object)*: object being decorated by MethodChain
-3. `built=undefined` *(Object)*: the current state of the decoration
+1. `fnToEncase=undefined` *(Function)*: depending on the result of this, call
+2. `[type=undefined]` *(|Function|string)*: Type
+3. `[specification=undefined]` *(|Function)*: Specification
 
 #### Returns
-*(Function)*: curried finisher, for specification
+*(Function)*: the method...
 
 #### Example
 ```js
-methodEncasingFactory('eh', {}, { onSet: console.log })
-//=> Function
+const fnToEncase = arg => arg === true
+const onInvalid = (error, key, arg, instance) => console.log(arguments)
+const onValid = (key, arg, instance) => console.log(arguments)
+const encased = scopedEncase(fnToEncase).onValid(onValid).onInvalid(onInvalid)
+//=> typedOnCall
 
 ```
 ---
 
 <!-- /div -->
 
+<!-- /div -->
+
 <!-- div -->
 
-<h3 id="methodEncasingFactory"><a href="#methodEncasingFactory">#</a>&nbsp;<code>methodEncasingFactory(name=undefined, parent=undefined, built=undefined)</code></h3>
+## `typedOnCall`
+
+<!-- div -->
+
+<h3 id="typedOnCall"><a href="#typedOnCall">#</a>&nbsp;<code>typedOnCall(arg=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/plugins/encase.js#L87 "View in source") [&#x24C9;][1]
 
-(Function): 3 steps
-0. enhance error
-1. encase function with a specification
-2. build a function to call onInvalid or onInvalid depending
+(Function): this is the actual built function
 
-
-### @symb 
-
-⛑🏭 
 #### Since
-4.0.0
+4.0.0-beta.1
 
 #### Arguments
-1. `name=undefined` *(string)*: name of the method
-2. `parent=undefined` *(Function|Object)*: object being decorated by MethodChain
-3. `built=undefined` *(Object)*: the current state of the decoration
+1. `arg=undefined` *(any)*: arg to validate
 
 #### Returns
-*(Function)*: curried finisher, for specification
+*(Function): typedOnCall(argToValidate: any)*
 
 #### Example
 ```js
-methodEncasingFactory('eh', {}, { onSet: console.log })
-//=> Function
-
+const encased = encase(fnToEncase)
+     .onValid()
+     .onInvalid(function)
+     .call()
 ```
 ---
 

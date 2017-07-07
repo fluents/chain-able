@@ -4,8 +4,8 @@
 
 <!-- div -->
 
-## `compose`
-* <a href="#compose-compose">`compose.compose`</a>
+## `compose.prototype`
+* <a href="#compose-prototype-compose">`compose.prototype.compose`</a>
 
 <!-- /div -->
 
@@ -15,7 +15,7 @@
 
 <!-- div -->
 
-## `compose`
+## `compose.prototype`
 
 <!-- div -->
 
@@ -23,8 +23,8 @@
 
 <a href="https://github.com/fluents/chain-able/blob/master/test/compose.js">🔬  Tests: compose</a>&nbsp;
 
-<h3 id="compose-compose"><a href="#compose-compose">#</a>&nbsp;<code>compose.compose([target=ChainedMap], [extensions=[Observe,Shorthands,Transform,DotProp]])</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/compose.js#L69 "View in source") [&#x24C9;][1]
+<h3 id="compose-prototype-compose"><a href="#compose-prototype-compose">#</a>&nbsp;<code>compose.prototype.compose([target=ChainedMap], [extensions=[Observe,Shorthands,Transform,DotProp]])</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/compose.js#L70 "View in source") [&#x24C9;][1]
 
 (Function): compose chains all the way up from Chainable
 
@@ -37,7 +37,7 @@
 
 #### Arguments
 1. `[target=ChainedMap]` *(|Class|Function)*: class or function to extend
-2. `[extensions=[Observe,Shorthands,Transform,DotProp]]` *(|Array)*: Array of extensions to compose together left ro right
+2. `[extensions=[Observe,Shorthands,Transform,DotProp]]` *(|Array)*: Array of extensions to compose together left to right
 
 #### Returns
 *(&#42;)*: composed
@@ -87,4 +87,4 @@ yes instanceof Winning && yes.winning
 
 <!-- /div -->
 
- [1]: #compose "Jump back to the TOC."
+ [1]: #compose.prototype "Jump back to the TOC."
