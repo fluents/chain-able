@@ -1,35 +1,36 @@
 /* eslint jsdoc/require-example: "OFF" */
 /* eslint valid-jsdoc: "OFF" */
 
-var _ = require('lodash')
-var Entry = require('./entry.js')
-var util = require('./util.js')
+const _ = require('lodash')
+const Entry = require('./entry.js')
+const util = require('./util.js')
+const {maker, makeAnchor} = require('./md')
 
-var getEntries = Entry.getEntries
+const getEntries = Entry.getEntries
 
-var push = Array.prototype.push
-var specialCategories = ['Methods', 'Properties']
-var token = '@@token@@'
+const push = Array.prototype.push
+const specialCategories = ['Methods', 'Properties']
+const token = '@@token@@'
 
-var reCode = /`.*?`/g
-var reToken = /@@token@@/g
-var reSpecialCategory = RegExp('^(?:' + specialCategories.join('|') + ')$')
+const reCode = /`.*?`/g
+const reToken = /@@token@@/g
+const reSpecialCategory = RegExp('^(?:' + specialCategories.join('|') + ')$')
 
-var htmlEscapes = {
+const htmlEscapes = {
   '*': '&#42;',
   '[': '&#91;',
   ']': '&#93;',
 }
 
-var {log} = util
+const {log, interpolate} = util
 
 const isIgnored = group =>
-  group.includes('eslint') || group.includes('prettier')
+  group.includes('eslint') ||
+  group.includes('prettier') ||
+  group.includes('istanbul')
 
 const nullOrEmptyMemberEntry = x =>
   (/[=:]\s*(?:null|undefined)\s*[,;]?$/gi).test(x)
-
-var {maker, makeAnchor} = require('./md')
 
 /*----------------------------------------------------------------------------*/
 /*                THIS FILE FOR MAKING THE TOC AND MD                         */
@@ -43,27 +44,23 @@ var {maker, makeAnchor} = require('./md')
  * @returns {string} Returns the escaped string.
  */
 function escape(string) {
-  var snippets = []
+  const snippets = []
 
   // Replace all code snippets with a token.
-  string = string.replace(reCode, function(match) {
+  let escaped = string.replace(reCode, function(match) {
     snippets.push(match)
     return token
   })
 
   _.forOwn(htmlEscapes, function(replacement, chr) {
-    string = string.replace(RegExp('(\\\\?)\\' + chr, 'g'), function(
-      match,
-      backslash
-    ) {
+    const regexp = RegExp('(\\\\?)\\' + chr, 'g')
+    escaped = escaped.replace(regexp, (match, backslash) => {
       return backslash ? match : replacement
     })
   })
 
   // Replace all tokens with code snippets.
-  return string.replace(reToken, function(match) {
-    return snippets.shift()
-  })
+  return escaped.replace(reToken, match => snippets.shift())
 }
 
 /**
@@ -77,18 +74,9 @@ function getSeparator(entry) {
   return entry.isPlugin() ? '.prototype.' : '.'
 }
 
-/**
- * Modify a string by replacing named tokens with matching associated object values.
- *
- * @private
- * @param {string} string The string to modify.
- * @param {Object} data The template data object.
- * @returns {string} Returns the modified string.
- */
-function interpolate(string, data) {
-  return util.format(_.template(string)(data))
-}
-
+/*----------------------------------------------------------------------------*/
+/*                ABOVE HERE SHOULD BE IN UTILS?                              */
+/*                BELOW SHOULD BE SPLIT UP                                    */
 /*----------------------------------------------------------------------------*/
 
 /* prettier-ignore */
@@ -104,18 +92,16 @@ function generateDoc(source, options) {
   const byCategories = options.toc === 'categories'
   const entries = getEntries(source)
   const organized = {}
-  const sortEntries = options.sort
-  const style = options.style
-  const url = options.url
-  const files = options.files
 
-  // log.quick(entries)
+  const sortEntries = options.sort
+  const {style, url, files} = options
 
   // Add entries and aliases to the API list.
   _.each(entries, entry => {
     entry = new Entry(entry, source, options)
-    api.push(entry)
+    entry.api(api)
 
+    api.push(entry)
     const aliases = entry.getAliases()
     if (!_.isEmpty(aliases)) {
       push.apply(api, aliases)
@@ -124,20 +110,21 @@ function generateDoc(source, options) {
 
   // Build the list of categories for the TOC and generate content for each entry.
   _.each(api, entry => {
-    // log.quick(entry)
     // Exit early if the entry is private or has no name.
     let name = entry.getName()
+    const path = entry.get('path')
     if (entry.isPrivate()) {
-      log.yellow('is private: ').data(entry.path).echo()
+      log.yellow('is private: ').data(path).echo()
+      if (!options.private) return
     }
     if (!name) {
       log
         .red('had no name name: defaulting to basename of path ')
-        .data(entry.path)
+        .data(path)
         .echo()
 
       name = files
-        .toBasename(entry.path)
+        .toBasename(path)
         .replace(/\.(j|t)s/, '')
     }
 
@@ -155,12 +142,12 @@ function generateDoc(source, options) {
     }
     else {
       let memberGroup
-      if (
+      const isGroup =
         !member ||
         entry.isCtor() ||
-        (entry.getType() === 'Object' &&
-          !nullOrEmptyMemberEntry(entry.entry))
-      ) {
+        (entry.getType() === 'Object' && !nullOrEmptyMemberEntry(entry.get('block')))
+
+      if (isGroup) {
         memberGroup = (member ? member + getSeparator(entry) : '') + name
       }
       else if (entry.isStatic()) {
@@ -173,12 +160,14 @@ function generateDoc(source, options) {
       tocGroup = organized[memberGroup] || (organized[memberGroup] = [])
     }
 
-    try {
-      tocGroup.push(entry)
-    }
-    catch (e) {
-      console.log('bug with tocGroup')
-    }
+    if (tocGroup && tocGroup.push) tocGroup.push(entry)
+    // potential hardcore deopt here?
+    // try {
+    //   tocGroup.push(entry)
+    // }
+    // catch (e) {
+    //   console.log('bug with tocGroup')
+    // }
 
     // ------- markdown ------- @TODO
 
@@ -245,19 +234,18 @@ function generateDoc(source, options) {
       interpolate(
         // eslint-disable-next-line no-template-curly-in-string
         '<h3 id="${hash}">${entryLink}<code>${member}${separator}${call}</code></h3>\n' +
-          interpolate(
-            // eslint-disable-next-line no-template-curly-in-string
-            _(['${sourceLink}', _.get(options, 'sublinks', []), '${tocLink}'])
-              .flatten()
-              .compact()
-              .join(' '),
-            entryData
-          ).replace(/ {2,}/g, ' '),
+        interpolate(
+          // eslint-disable-next-line no-template-curly-in-string
+          _(['${sourceLink}', _.get(options, 'sublinks', []), '${tocLink}'])
+            .flatten()
+            .compact()
+            .join(' '),
+          entryData
+        ).replace(/ {2,}/g, ' '),
         entryData
       )
     )
 
-    // log.quick(entry.getDesc())
     // Add the description.
     entryMarkdown.push('\n' + entry.getDesc() + '\n')
 
@@ -288,47 +276,48 @@ function generateDoc(source, options) {
       variation,
     }
 
-    log.white('new').data(news).echo(false)
+    // log.white('new').data(news).echo(false)
 
     const newsKeys = Object.keys(news)
     newsKeys.forEach(key => {
-      if (util.isNotReal(news[key])) {
-        delete news[key]
-      }
-      else if (news[key].replace && news[key].replace(/[\s\t\n]+/gmi, '') === '') {
-        delete news[key]
-      }
-      else if (Array.isArray(news[key]) && news[key].length === 0) {
-        delete news[key]
-      }
-    })
+      const value = news[key]
 
-    // log.data(news).echo()
-    Object.keys(news).forEach(key => {
-      if (util.isNotReal(news[key])) {
+      // ignore these
+      if (util.isNotReal(value)) {
         return
       }
-      if (key === 'links') {
-        log.yellow('is links').data(linksToString(news[key])).echo(false)
+      else if (value.replace && value.replace(/[\s\t\n]+/gmi, '') === '') {
+        return
+      }
+      else if (Array.isArray(value) && value.length === 0) {
+        return
+      }
 
-        if (news[key].length !== 0) {
-          entryMarkdown.push(linksToString(news[key]))
+      // do formatting
+
+      if (key === 'links') {
+        const linksString = linksToString(value)
+        log.yellow('is links').data(linksString).echo(false)
+
+        if (value.length !== 0) {
+          entryMarkdown.push(linksString)
         }
       }
       else if (key === 'see') {
-        log.yellow('is @see').data(seeToString(news[key])).echo(false)
+        const seeString = seeToString(value)
+        log.yellow('is @see').data(seeString).echo(false)
 
-        if (news[key].length !== 0) {
+        if (value.length !== 0) {
           entryMarkdown.push('\n### @' + key + ' \n')
-          entryMarkdown.push(seeToString(news[key]))
+          entryMarkdown.push(seeString)
         }
       }
       else if (key === 'tests') {
-        entryMarkdown.push(news[key] + ' ')
+        entryMarkdown.push(value + ' ')
       }
       else if (key === 'extends') {
-        var md = '\n### @' + key
-        var augments = news[key]
+        const md = '\n### @' + key
+        const augments = value
         if (augments.length === 1) {
           entryMarkdown.push(md)
           entryMarkdown.push(augments[0])
@@ -340,11 +329,11 @@ function generateDoc(source, options) {
         entryMarkdown.push('\n')
       }
       else {
-        var str = news[key] + ' '
-        log.cyan('\n### @' + key + ' \n').data({data: news[key], str}).echo(false)
+        // toString
+        const str = value + ' '
+        // log.cyan('\n### @' + key + ' \n').data({data: value, str}).echo(false)
         if (str === ' ') return
 
-        // console.log(news[key])
         entryMarkdown.push('\n### @' + key + ' \n')
         entryMarkdown.push(str)
       }
@@ -352,9 +341,8 @@ function generateDoc(source, options) {
     })
 
     // ----- ;new -----
-    // log.quick(entry)
     // Add optional since version.
-    var since = entry.getSince()
+    const since = entry.getSince()
     if (!_.isEmpty(since)) {
       entryMarkdown.push('#### Since', since, '')
     }
@@ -370,15 +358,15 @@ function generateDoc(source, options) {
       entryMarkdown.push(
         '#### Aliases',
         '*' +
-          _.map(aliases, function(alias) {
-            // eslint-disable-next-line no-template-curly-in-string
-            return interpolate('${member}${separator}${name}', {
-              member,
-              name: alias.getName(),
-              separator,
-            })
-          }).join(', ') +
-          '*',
+        _.map(aliases, function(alias) {
+          // eslint-disable-next-line no-template-curly-in-string
+          return interpolate('${member}${separator}${name}', {
+            member,
+            name: alias.getName(),
+            separator,
+          })
+        }).join(', ') +
+        '*',
         ''
       )
     }
@@ -386,13 +374,13 @@ function generateDoc(source, options) {
     // ------- params ------- @TODO
 
     // Add optional function parameters.
-    var params = entry.getParams()
+    const params = entry.getParams()
 
     if (!_.isEmpty(params)) {
       entryMarkdown.push('#### Arguments')
 
       _.each(params, function(param, index) {
-        var paramType = param[0]
+        let paramType = param[0]
         if (_.startsWith(paramType, '(')) {
           paramType = _.trim(paramType, '()')
         }
@@ -416,9 +404,8 @@ function generateDoc(source, options) {
     // entry.getTests(files)
 
     // Add optional functions returns.
-    var returns = entry.getReturns()
+    const returns = entry.getReturns()
     // console.log({returns})
-
     if (!_.isEmpty(returns)) {
       let returnType = returns[0]
       if (_.startsWith(returnType, '(')) {
@@ -437,11 +424,12 @@ function generateDoc(source, options) {
     }
 
     // Add optional function example.
-    var examples = entry.getExample()
-
+    const examples = entry.getExample()
     if (examples.length) {
       examples.map(example => entryMarkdown.push('#### Example', example))
     }
+
+    // ----
 
     // End markdown for the entry.
     entryMarkdown.push('---\n\n<!-- /div -->')
@@ -452,10 +440,10 @@ function generateDoc(source, options) {
   // ------- toc-headers/categories ------- @TODO
 
   // Add TOC headers.
-  var tocGroups = _.keys(organized)
+  const tocGroups = _.keys(organized)
   if (byCategories) {
     // Remove special categories before sorting.
-    var catogoriesUsed = _.intersection(tocGroups, specialCategories)
+    const catogoriesUsed = _.intersection(tocGroups, specialCategories)
     _.pullAll(tocGroups, catogoriesUsed)
 
     // Sort categories and add special categories back.
@@ -469,7 +457,7 @@ function generateDoc(source, options) {
   }
 
   // Start markdown for TOC categories.
-  var tocMarkdown = ['<!-- div class="toc-container" -->\n']
+  const tocMarkdown = ['<!-- div class="toc-container" -->\n']
 
   _.each(tocGroups, function(group) {
     if (isIgnored(group)) {
@@ -493,26 +481,26 @@ function generateDoc(source, options) {
 
     // Add TOC entries for each category.
     _.each(organized[group], function(entry) {
-      var member = entry.getMembers(0) || ''
-      var name = entry.getName()
-      var sep = getSeparator(entry)
-      var title = escape((member ? member + sep : '') + name)
+      const member = entry.getMembers(0) || ''
+      const name = entry.getName()
+      const sep = getSeparator(entry)
+      const title = escape((member ? member + sep : '') + name)
       if (isIgnored(title)) {
         return
       }
 
       if (entry.isAlias()) {
         // An alias has a more complex html structure.
-        var owner = entry.getOwner()
+        const owner = entry.getOwner()
         tocMarkdown.push(
           '* <a href="#' +
-            owner.getHash(style) +
-            '" class="alias">`' +
-            title +
-            '` -> `' +
-            owner.getName() +
-            '`' +
-            '</a>'
+          owner.getHash(style) +
+          '" class="alias">`' +
+          title +
+          '` -> `' +
+          owner.getName() +
+          '`' +
+          '</a>'
         )
       }
       else {
@@ -526,10 +514,12 @@ function generateDoc(source, options) {
     tocMarkdown.push('\n<!-- /div -->\n')
   })
 
+  // ---------------------------------------------------------------
+
   // End markdown for the TOC.
   tocMarkdown.push('<!-- /div -->\n')
 
-  var docMarkdown = ['# ' + options.title + '\n']
+  const docMarkdown = ['# ' + options.title + '\n']
   push.apply(docMarkdown, tocMarkdown)
 
   docMarkdown.push('<!-- div class="doc-container" -->\n')
@@ -537,7 +527,7 @@ function generateDoc(source, options) {
   _.each(tocGroups, group => {
     docMarkdown.push('<!-- div -->\n')
 
-    var groupName = group
+    let groupName = group
     if (byCategories && !reSpecialCategory.test(group)) {
       groupName = '“' + group + '” Methods'
     }
