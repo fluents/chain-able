@@ -2,6 +2,7 @@
 /* eslint eqeqeq: "off" */
 /* eslint func-style: "off" */
 /* eslint complexity: "off" */
+
 const isObjStrict = require('./is/objStrict')
 const isRegExp = require('./is/regexp')
 const isError = require('./is/error')
@@ -21,14 +22,23 @@ const reduce = require('./reduce')
 const toarr = require('./to-arr')
 
 /**
- * @param {Array | Object | any} xs
- * @param {Function} fn
- * @TODO: unexpectedly breaks things iterating
+ * @since 3.0.0
+ *
+ * @param {Array | Object | any} xs iteratee
+ * @param {Function} fn callback for each iteration
+ * @TODO unexpectedly breaks things iterating
  * if you are relying on internal functionality
  * (such as .path, .get, .value...) with map & set
  *
  * @NOTE if there is .forEach on the obj already, use it
  * otherwise, call function for each
+ *
+ * @private
+ *
+ * @example
+ *
+ *   forEach([1], console.log)
+ *   //=> 1
  *
  */
 var forEach = function(xs, fn) {
@@ -58,7 +68,7 @@ module.exports = traverse
  * @func
  * @class TraverseJS
  * @classdesc Traverse and transform objects by visiting every node on a recursive walk.
- * @prop {any} value
+ * @prop {any} value the data passed in as an argument to traverse on
  *
  * @category traverse
  * @memberOf Traverse
@@ -546,7 +556,6 @@ function walk(root, cb, immutable) {
     }
 
     updateState()
-
     // @NOTE added last `,state` arg to not have it have to use `this`,
     // but broke some things so moved to another fn
     //
@@ -605,7 +614,7 @@ function copy(src) {
 
     // require('fliplog').underline('is obj').echo()
     if (isMap(src)) {
-      dst = reduce(src.entries())
+      dst = reduce(src)
     }
     else if (isSet(src)) {
       dst = toarr(src)
