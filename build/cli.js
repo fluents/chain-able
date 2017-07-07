@@ -22,7 +22,10 @@ const log = require('fliplog')
 const {read, write} = require('flipfile')
 const {del} = require('./util')
 const docdown = require('../_modules/_docdown')
+const {filesMatcher} = require('../_modules/_docdown/lib/chain-able')
 // const docdown = require('docdown')
+const {stripRollup} = require('./plugins/ast')
+const find = require('chain-able-find')
 
 const res = rel => resolve(__dirname, rel)
 const resRoot = rel => resolve(res('../'), rel)
@@ -69,7 +72,6 @@ const OPTIMIZE_JS_FILE = '../dists/umd/index.js'
 const TSC_SOURCE = '../dists/dev/index.js'
 const TSC_OUT = '../dists/tsc/bundle.js'
 const ROLLUP_CONFIG_CLI = './rollup.config.cli.js'
-const {stripRollup} = require('./plugins/ast')
 
 if (clean) {
   const toClean = {
@@ -119,8 +121,6 @@ const script = (bin = 'rollup', flags = '') => {
   return scripty.run()
 }
 
-const find = require('chain-able-find')
-
 const root = res('../')
 const entry = res('../src')
 
@@ -153,16 +153,9 @@ const testFiles = find
   .results()
 
 const toRel = filepath => filepath.replace(root, '').replace(entry, '')
-const matcher = require('../src/deps/matcher')
 const dot = require('../src/deps/dot')
 const traverse = require('../src/deps/traverse')
 const uniq = require('../src/deps/array/uniq')
-
-const filter = list => regexp => {
-  const matched = matcher(list, regexp)
-  if (matched.length >= 1) return matched
-  return list.filter(item => item.includes(regexp))
-}
 
 const repoPath = 'https://github.com/fluents/chain-able/blob/master'
 const repoDocPath =
@@ -180,8 +173,8 @@ const stripExt = filePath => filePath.replace(/\.[a-zA-Z0-9]{0,3}/, '')
 
 // cli class
 class CLI {
-  copy(root = false) {
-    // @TODO: dist & root (does it ever need to be in dist except for buble?)
+  copy(toRoot = false) {
+    // @TODO: dist & toRoot (does it ever need to be in dist except for buble?)
     const scripts = new Script()
       .add()
       .bin('flow-remove-types')
@@ -191,7 +184,7 @@ class CLI {
       .flag('all')
       .flag('out-dir')
       .arg('./dist')
-    if (root) {
+    if (toRoot) {
       scripts
         .add()
         .bin('flow-remove-types')
@@ -343,7 +336,6 @@ class CLI {
       toRepoDocPath,
       toRel,
       toBasename,
-      find: filter,
       typings: {
         abs: typings,
         rel: typings.map(toRel),
@@ -366,7 +358,7 @@ class CLI {
       // if (!filepath.includes('dists/dev/index.js')) return
       // if (!filepath.includes('_Playground')) return
 
-      const relatived = filepath.replace(res('../'), '')
+      const relatived = filepath.replace(root, '')
       // eslint-disable-next-line
       // debugger
 
@@ -418,7 +410,7 @@ class CLI {
       .map(vfs.toRepoDocPath)
       .map(rel => rel.replace('/src/', '/'))
 
-    const findDir = filter(dirs)
+    const findDir = filesMatcher(dirs)
 
     const docsTree = {}
     docFiles.forEach(doc => {
