@@ -8,8 +8,24 @@ const getOwnPropertySymbols = Object.getOwnPropertySymbols
  * @desc properties, property symbols, object keys
  *       ^ all again for prototype
  *
- * @param  {Object} obj
- * @return {[type]}
+ * @param  {Object} obj object to get properties & symbols from
+ * @return {Array<string>} properties
+ *
+ * @example
+ *    var obj = {key: true}
+ *    allProperties(obj)
+ *    //=> ['key']
+ *
+ * @example
+ *    class One {
+ *      method() {}
+ *    }
+ *    class Two extends One {
+ *      eh() {}
+ *    }
+ *    allProperties(new Two())
+ *    //=> ['eh', 'method']
+ *
  */
 function allProperties(obj) {
   const proto = getPrototypeOf(obj)

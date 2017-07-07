@@ -40,4 +40,6 @@ const toS = require('./toS')
  *  //=> true
  *
  */
-module.exports = x => x instanceof Map || toS(x) === '[object Map]'
+module.exports = function isMap(x) {
+  return x instanceof Map || toS(x) === '[object Map]'
+}

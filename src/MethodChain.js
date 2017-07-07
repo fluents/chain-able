@@ -1,3 +1,6 @@
+/* eslint complexity: "OFF" */
+/* eslint import/max-dependencies: "OFF" */
+
 /**
  * @TODO clarify .set vs .call
  * {@link https://github.com/iluwatar/java-design-patterns/tree/master/property property-pattern}
@@ -10,8 +13,6 @@
  * {@link https://medium.com/javascript-scene/javascript-factory-functions-vs-constructor-functions-vs-classes-2f22ceddf33e constructors}
  * {@link https://www.sitepoint.com/factory-functions-javascript/ js-factory-functions}
  */
-/* eslint complexity: "OFF" */
-/* eslint import/max-dependencies: "OFF" */
 
 // core
 const ChainedMap = require('./ChainedMapBase')
@@ -75,7 +76,7 @@ function aliasFactory(name, parent, aliases) {
   }
 }
 
-// @TODO: to use as a function
+// @TODO to use as a function
 // function _methods() {}
 // _methods.use(obj) {
 //   this.obj = obj
@@ -86,9 +87,11 @@ function aliasFactory(name, parent, aliases) {
 //   return new MethodChain(this.obj)
 // }
 
-let methodFactories
+let methodFactories = {}
 
 /**
+ * ❗ using `+` will call `.build()` in a shorthand fashion
+ *
  * @member MethodChain
  * @inheritdoc
  * @class
@@ -96,6 +99,9 @@ let methodFactories
  * @type {Map}
  *
  * @since 4.0.0
+ *
+ * @types MethodChain
+ * @tests MethodChain
  *
  * @TODO maybe abstract the most re-usable core as a protected class
  *        so the shorthands could be used, and more functionality made external
@@ -114,6 +120,19 @@ class MethodChain extends ChainedMap {
 
     this.newThis = () => new MethodChain(parent)
     this.toNumber = () => this.build(0)
+
+    /**
+     * @example
+     *
+     *  chain
+     *     .method('eh')
+     *     .type(`?string`)
+     *     .type(`string[]`)
+     *     .type(`string|boolean`)
+     *     .type(`boolean[]|string[]`)
+     *     .type(`!date`)
+     *
+     */
     this.extend(METHOD_KEYS)
 
     // shorthand
@@ -166,7 +185,8 @@ class MethodChain extends ChainedMap {
     const defaultToTrue = x => (isUndefined(x) ? true : x)
     this.define = x => set('define', defaultToTrue(x))
     this.getSet = x => set('getSet', defaultToTrue(x))
-    // @TODO: unless these use scoped vars, they should be on proto
+
+    // @TODO unless these use scoped vars, they should be on proto
     // @NOTE shorthands.bindMethods
     this.bind = target => set('bind', isUndefined(target) ? parent : target)
     this.autoGetSet = () => this.plugin(autoGetSetPlugin)
@@ -220,7 +240,13 @@ class MethodChain extends ChainedMap {
   }
 
   /**
-   * @since 4.0.0-beta.1 <- moved to plugin
+   * an object that contains nestable `.type`s
+   * they are recursively (using an optimized traversal cache) mapped to validators
+   * ❗ this method auto-calls .build, all other method config calls should be done before it
+   *
+   * @TODO link to `deps/is` docs
+   *
+   * @version 4.0.0-beta.1 <- moved to plugin
    * @since 4.0.0
    *
    * @category types
@@ -239,6 +265,43 @@ class MethodChain extends ChainedMap {
    *       that we setup schema validation at the highest root for validation
    *       and then have some demo for how to validate on set using say mobx
    *       observables for all the way down...
+   *
+   * @typedef `schema(schema: Obj): ChainAble`
+   *
+   * @example
+   *
+   *    chain
+   *      .methods()
+   *      .define()
+   *      .getSet()
+   *      .onInvalid((error, arg, instance) => console.log(error))
+   *      .schema({
+   *        id: '?number',
+   *        users: '?object|array',
+   *        topic: '?string[]',
+   *        roles: '?array',
+   *        creator: {
+   *          name: 'string',
+   *          email: 'email',
+   *          id: 'uuid',
+   *        },
+   *        created_at: 'date',
+   *        updated_at: 'date|date[]',
+   *        summary: 'string',
+   *      })
+   *
+   *    //--- valid
+   *    chain.created_at = new Date()
+   *    chain.setCreatedAt(new Date())
+   *
+   *    isDate(chain.created_at) === true
+   *
+   *    //--- nestable validation 👍
+   *    chain.merge({creator: {name: 'string'}})
+   *
+   *    //--- invalid
+   *    chain.updated_at = false
+   *
    */
   schema(obj) {
     return schemaMethod.call(this, obj)
@@ -256,12 +319,14 @@ class MethodChain extends ChainedMap {
    * @see https://github.com/iluwatar/java-design-patterns/tree/master/step-builder
    *
    * @example
+   *
    *    var obj = {}
    *    const one = new MethodChain(obj).methods('eh').getSet().build(1)
    *    //=> 1
    *
    *    typeof obj.getEh
    *    //=> 'function'
+   *
    */
   build(returnValue) {
     const parent = this.parent
@@ -296,13 +361,44 @@ class MethodChain extends ChainedMap {
    * @param {Object} built method being built
    * @return {void}
    *
-   * @TODO optimize the size of this
+   * @TODO  optimize the size of this
    *        with some bitwise operators
    *        hashing the things that have been defaulted
    *        also could be plugin
    *
    * @example
+   *
    *  ._defaults('', {}, {})
+   *
+   *
+   * @example
+   *
+   *   let methodFactories
+   *
+   *   ### `onSet`
+   *
+   *   > defaults to `this.set(key, value)`
+   *
+   *   ```ts
+   *   public onSet(fn: Fn): MethodChain
+   *   ```
+   *
+   *   ### `onCall`
+   *
+   *   > defaults to .onSet ^
+   *
+   *   ```ts
+   *   public onCall(fn: Fn): MethodChain
+   *   ```
+   *
+   *   ### `onGet`
+   *
+   *   > defaults to `this.get(key)`
+   *
+   *   ```ts
+   *   public onGet(fn: Fn): MethodChain
+   *   ```
+   *
    */
   _defaults(name, parent, built) {
     // defaults
@@ -458,8 +554,8 @@ class MethodChain extends ChainedMap {
     // --------------- stripped -----------
 
     /**
-     * !!!!! @TODO: put in `plugins.post.call`
-     * !!!!! @TODO: ensure unique name
+     * !!!!! @TODO put in `plugins.post.call`
+     * !!!!! @TODO ensure unique name
      *
      * can add .meta on them though for re-decorating
      * -> but this has issue with .getset so needs to be on .meta[name]
@@ -505,7 +601,7 @@ class MethodChain extends ChainedMap {
 
     // ----------------- ;stripped ------------
 
-    // @TODO: WOULD ALL BE METHOD.POST
+    // @TODO WOULD ALL BE METHOD.POST
     // --- could be a method too ---
     const getterSetter = {get: onGet, set: onSet}
     let descriptor = shouldDefineGetSet ? getterSetter : {value: method}
@@ -629,8 +725,8 @@ class MethodChain extends ChainedMap {
    *        @modifies this.onCall
    *
    * @memberOf MethodChain
-   * @since 4.0.0-beta.1 <- moved to plugin
-   * @since 4.0.0 <- renamed from .extendIncrement
+   * @version 4.0.0-beta.1 <- moved to plugin
+   * @version 4.0.0 <- renamed from .extendIncrement
    * @since 0.4.0
    *
    * @return {MethodChain} @chainable
@@ -683,10 +779,5 @@ MethodChain.add = function addMethodFactories(methodFactory) {
   ObjectAssign(methodFactories, methodFactory)
 }
 methodFactories = MethodChain.add
-
-// MethodChain.addTypes = types => {
-//   validatorBuilder.merge(types)
-//   return MethodChain
-// }
 
 module.exports = MethodChain

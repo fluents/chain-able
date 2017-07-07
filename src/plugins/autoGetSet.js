@@ -19,6 +19,7 @@ const isUndefined = require('../deps/is/undefined')
  *    //=> Chain
  *    chain.eh()
  *    //=> 1
+ *
  */
 function autoGetSet(name, parent) {
   const auto = arg =>

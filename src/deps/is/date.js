@@ -7,6 +7,7 @@ const toS = require('./toS')
  * @since 3.0.0
  * @memberOf is
  * @func isDate
+ * @extends toS
  *
  * @example
  *
@@ -32,4 +33,6 @@ const toS = require('./toS')
  *  isDate(new Eh())
  *  //=> true
  */
-module.exports = x => x instanceof Date || toS(x) === '[object Date]'
+module.exports = function isDate(x) {
+  return x instanceof Date || toS(x) === '[object Date]'
+}

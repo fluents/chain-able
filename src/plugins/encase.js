@@ -4,10 +4,10 @@ const encase = require('../deps/encase')
 const ERROR_META = {m: 1}
 
 /**
- * @desc 3 steps
- *       0. enhance error
- *       1. encase function with a specification
- *       2. build a function to call onInvalid or onInvalid depending
+ * 3 steps
+ * 0. enhance error
+ * 1. encase function with a specification
+ * 2. build a function to call onInvalid or onInvalid depending
  *
  * @since 4.0.0
  *
@@ -16,18 +16,20 @@ const ERROR_META = {m: 1}
  * @param  {Object} built the current state of the decoration
  * @return {Function} curried finisher, for specification
  *
+ * @name methodEncasingFactory
  * @func methodEncasingFactory
- * @symb
+ * @symb ⛑🏭
  * @types encase
  *
  * @example
  *
  *  methodEncasingFactory('eh', {}, {onSet: console.log})
- *  // => Function
+ *  //=> Function
  *
  */
 function methodEncasingFactory(name, parent, built) {
   /**
+   * @name scopedEncase
    * @func scopedEncase
    * @category type
    * @since 4.0.0-beta.1
@@ -38,6 +40,7 @@ function methodEncasingFactory(name, parent, built) {
    * @return {Function} the method...
    *
    * @example
+   *
    *    const fnToEncase = arg => arg === true
    *    const onInvalid = (error, key, arg, instance) => console.log(arguments)
    *    const onValid = (key, arg, instance) => console.log(arguments)
@@ -45,6 +48,7 @@ function methodEncasingFactory(name, parent, built) {
    *      .onValid(onValid)
    *      .onInvalid(onInvalid)
    *    //=> typedOnCall
+   *
    */
   return function scopedEncase(fnToEncase, type, specification) {
     // @@debugger
@@ -64,6 +68,7 @@ function methodEncasingFactory(name, parent, built) {
 
     /**
      * @desc this is the actual built function
+     * @name typedOnCall
      * @func typedOnCall
      * @category type
      * @since 4.0.0-beta.1
@@ -72,10 +77,12 @@ function methodEncasingFactory(name, parent, built) {
      * @return {Function} typedOnCall(argToValidate: any)
      *
      * @example
+     *
      *    const encased = encase(fnToEncase)
      *      .onValid()
      *      .onInvalid(function)
      *      .call()
+     *
      */
     return function typedOnCall(arg) {
       // nodejs way - error first, data second, instance last

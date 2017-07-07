@@ -1,7 +1,10 @@
 /**
+ * @name matcher
  * @member matcher
  * @see https://github.com/sindresorhus/matcher/blob/master/index.js
  * @symb 🎯
+ * @types matcher
+ * @tests deps/matcher
  */
 const ObjectAssign = require('../util/assign')
 const isMatcher = require('../is/matcher')
@@ -65,6 +68,10 @@ m.make = (pattern, shouldNegate, alphaOmega) => {
   if (isMatcher(matchable) && !matchable.test) matchable.test = matchable
   if (isMatcher(matchable)) return matchable
 
+  // if (!matchable) {
+  //   console.log({pattern, shouldNegate, alphaOmega})
+  //   throw new Error('eh')
+  // }
   let negated = matchable[0] === '!'
   if (negated) matchable = matchable.slice(1)
   matchable = toRegExp(matchable)
@@ -153,7 +160,9 @@ m.matcher = (inputs, patterns, shouldNegate, alphaOmega) => {
   return matchesToReturn
 }
 
-/** @TODO: replace to-test **/
+/**
+ * @TODO replace to-test
+ */
 // m.test = (inputs, patterns) => m.matcher(inputs, patterns).length !== 0
 
 module.exports = ObjectAssign(m.matcher, m)

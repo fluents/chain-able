@@ -17,14 +17,26 @@ const isArray = require('./is/array')
  * @see https://stackoverflow.com/questions/27597335/ensuring-object-can-be-garbage-collected
  * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management
  *
- * @TODO: , blacklist = []
- * @TODO: put all GC events into a cached map and debounce the operation
+ * @TODO blacklist = [] param
+ * @TODO put all GC events into a cached map and debounce the operation
  *
  * @since 4.0.0
  * @desc remove all methods, mark for garbage collection
- * @param {Object} obj
- * @param {Array<string>} ignore
+ * @param {Object} obj object to traverse and clear
  * @return {void}
+ *
+ * @example
+ *
+ *  var scoped = {}
+ *  var ref = () => scoped
+ *  var obj = {scoped, ref, eh: true}
+ *
+ *  markForGarbageCollection(obj)
+ *  //=> void
+ *
+ *  obj
+ *  //=> undefined|{}
+ *
  */
 function markForGarbageCollection(obj) {
   let props = ObjectProperties(obj)

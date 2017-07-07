@@ -30,4 +30,6 @@ const isFalse = require('./false')
  *  //=> false
  *
  */
-module.exports = x => isTrue(x) || isFalse(x) || toS(x) === '[object Boolean]'
+module.exports = function isBoolean(x) {
+  return isTrue(x) || isFalse(x) || toS(x) === '[object Boolean]'
+}

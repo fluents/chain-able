@@ -1,3 +1,4 @@
+/* eslint complexity: "OFF" */
 const isObjStrict = require('../is/objStrict')
 const isArray = require('../is/array')
 const isTrue = require('../is/true')
@@ -11,14 +12,81 @@ const isString = require('../is/string')
 const simpleKindOf = require('../util/simpleKindOf')
 const includes = require('../conditional/includes')
 
-// 1: not null object
-// 2: object toString is not a date or regex
-function isMergeableObj(val) {
-  return isObjStrict(val) && !isRegExp(val) && !isDate(val)
+/**
+ * @desc 1: not null object
+ *       2: object toString is not a date or regex
+ *
+ * @category merge
+ * @memberOf dopemerge
+ *
+ * @since 2.0.0
+ * @param {*} x value to check
+ * @return {boolean}
+ *
+ * @example
+ *
+ *    isMergeableObj({})
+ *    //=> true
+ *
+ *    isMergeableObj(Object.create(null))
+ *    // => true
+ *
+ *    isMergeableObj(new Date())
+ *    //=> false
+ *
+ *    isMergeableObj(/eh/)
+ *    //=> false
+ *
+ */
+function isMergeableObj(x) {
+  return isObjStrict(x) && !isRegExp(x) && !isDate(x)
 }
+
+/**
+ * @desc make a new empty Array or Object for cloning
+ * @memberOf dopemerge
+ * @since 2.0.0
+ *
+ * @param {*} val array or object to return an empty one of
+ * @return {Object | Array} depending on the data type of val
+ *
+ * @example
+ *
+ *    emptyTarget({eh: true})
+ *    //=> {}
+ *
+ *    emptyTarget([1])
+ *    //=> []
+ */
 function emptyTarget(val) {
   return isArray(val) ? [] : {}
 }
+
+/**
+ * Defaults to `false`.
+ * If `clone` is `true` then both `x` and `y` are recursively cloned as part of the merge.
+ *
+ * @memberOf dopemerge
+ * @since 2.0.0
+ *
+ * @param {*} value value to clone if needed
+ * @param {DopeMergeOptions} optsArg dopemerge options, could contain .clone
+ * @return {Object | Array | any} cloned or original value
+ *
+ * @see emptyTarget
+ * @see isMergeableObj
+ *
+ * @example
+ *
+ * var obj = {eh: true}
+ *
+ * cloneIfNeeded(obj, {clone: true}) === obj
+ * //=> false
+ *
+ * cloneIfNeeded(obj, {clone: false}) === obj
+ * //=> true
+ *
+ */
 function cloneIfNeeded(value, optsArg) {
   return isTrue(optsArg.clone) && isMergeableObj(value)
     ? deepmerge(emptyTarget(value), value, optsArg)
@@ -26,6 +94,38 @@ function cloneIfNeeded(value, optsArg) {
 }
 
 /* prettier-ignore */
+/**
+ * The merge will also merge arrays and array values by default.
+ * However, there are nigh-infinite valid ways to merge arrays,
+ * and you may want to supply your own.
+ * You can do this by passing an `arrayMerge` function as an option.
+ *
+ * @memberOf dopemerge
+ * @since 2.0.0
+ *
+ * @param {*} target array merged onto, could be emptyTarget if cloning
+ * @param {*} source original source array
+ * @param {*} optsArg dopemerge options
+ * @return {Array | *} merged array
+ *
+ * @example
+ *
+ *    function concatMerge(destinationArray, sourceArray, options) {
+ *      destinationArray
+ *      //=> [1, 2, 3]
+ *
+ *      sourceArray
+ *      //=> [3, 2, 1]
+ *
+ *      options
+ *      //=> { arrayMerge: concatMerge }
+ *
+ *      return destinationArray.concat(sourceArray)
+ *    }
+ *    merge([1, 2, 3], [3, 2, 1], { arrayMerge: concatMerge })
+ *    //=> [1, 2, 3, 3, 2, 1]
+ *
+ */
 function defaultArrayMerge(target, source, optsArg) {
   var destination = target.slice()
 
@@ -82,7 +182,76 @@ function deepmerge(target, source, optsArg) {
 }
 
 /* prettier-ignore */
-// eslint-disable-next-line complexity
+/**
+ *  Merge the enumerable attributes of two objects deeply.
+ *  Merge two objects `x` and `y` deeply, returning a new merged object with the
+ *  elements from both `x` and `y`.
+ *  If an element at the same key is present for both `x` and `y`, the value from
+ * `y` will appear in the result.
+ *  Merging creates a new object, so that neither `x` or `y` are be modified.
+ *  However, child objects on `x` or `y` are copied over -
+ *  if you want to copy all values, you must pass `true` to the clone option.
+ *
+ *
+ * @member dopemerge
+ * @category merge
+ *
+ * @param {*} obj1 left
+ * @param {*} obj2 right
+ * @param {*} opts dopemerge options
+ * @return {Object | Array | any} merged
+ *
+ * {@link https://github.com/KyleAMathews/deepmerge deepmerge}
+ * @see {@link deepmerge}
+ *
+ * @types dopemerge
+ * @tests deepmerge
+ *
+ * @example
+ *
+ *    var x = {
+ *      foo: {bar: 3},
+ *      array: [{
+ *        does: 'work',
+ *        too: [1, 2, 3],
+ *      }],
+ *    }
+ *
+ *    var y = {
+ *      foo: {baz: 4},
+ *      quux: 5,
+ *      array: [
+ *        {
+ *          does: 'work',
+ *          too: [4, 5, 6],
+ *        },
+ *        {
+ *          really: 'yes',
+ *        },
+ *      ],
+ *    }
+ *
+ *    var expected = {
+ *      foo: {
+ *        bar: 3,
+ *        baz: 4,
+ *      },
+ *      array: [
+ *        {
+ *          does: 'work',
+ *          too: [1, 2, 3, 4, 5, 6],
+ *        },
+ *        {
+ *          really: 'yes',
+ *        },
+ *      ],
+ *      quux: 5,
+ *    }
+ *
+ *    merge(x, y)
+ *    //=> expected
+ *
+ */
 function dopemerge(obj1, obj2, opts) {
   // if they are identical, fastest === check
   if (obj1 === obj2) {
@@ -115,9 +284,8 @@ function dopemerge(obj1, obj2, opts) {
   else if (isTrue(includes(ignoreTypes, simpleKindOf(obj2)))) {
     return obj1
   }
-
-  // @NOTE uglifier optimizes into a wicked ternary
   else if (isBoolean(obj1) && isBoolean(obj2)) {
+    // @NOTE uglifier optimizes into a wicked ternary
     return boolToArray ? [obj1, obj2] : obj2
   }
   else if (isString(obj1) && isString(obj2)) {

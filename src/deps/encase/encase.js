@@ -1,12 +1,34 @@
-'use strict'
-
 const tryCatch = require('./tryCatch')
 
 /**
- * @since 4.0.0
- * @param  {Function} call
- * @param  {Function | undefined} [encaser=tryCatch]
- * @return {Function} -> FunctionObject{onInvalid, onValid, rethrow, call}
+ * @version 4.0.1 added custom encaser
+ * @since   4.0.0
+ * @param   {Function} call function to _encase_
+ * @param   {Function | undefined} [encaser=tryCatch] function to encase _with_
+ * @return  {Function} -> FunctionObject{onInvalid, onValid, rethrow, call}
+ *
+ * @example
+ *
+ *  const throws = x => {
+ *    if (x === false) {
+ *       throw new Error('invalid - cannot be false')
+ *    }
+ *    return true
+ *  }
+ *  const api = encase(throws)
+ *
+ *
+ *  api.onValid(console.log)
+ *  api.onInvalid(console.error)
+ *
+ *  //--- invalid
+ *  api.call(false)
+ *  //=> 'invalid - cannot be false'
+ *
+ *  //--- valid
+ *  api.call(true)
+ *  //=> 'true'
+ *
  */
 module.exports = (call, encaser) => {
   const encased = encaser ? encaser(call) : tryCatch(call)

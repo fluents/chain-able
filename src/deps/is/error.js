@@ -32,4 +32,6 @@ const toS = require('./toS')
  *  //=> true
  *
  */
-module.exports = x => x instanceof Error || toS(x) === '[object Error]'
+module.exports = function isError(x) {
+  return x instanceof Error || toS(x) === '[object Error]'
+}

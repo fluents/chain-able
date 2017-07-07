@@ -3,61 +3,45 @@ const dopemerge = require('./deps/dopemerge')
 const reduce = require('./deps/reduce')
 const reduceEntries = require('./deps/reduce/entries')
 const isFunction = require('./deps/is/function')
+const isUndefined = require('./deps/is/undefined')
 const ObjectKeys = require('./deps/util/keys')
 const getMeta = require('./deps/meta')
 const SHORTHANDS_KEY = require('./deps/meta/shorthands')
 
 /**
- * @desc ChainedMapBase composer
- * @alias ComposeMap
- * @type {Composer}
- * @method compose
- * @memberOf ChainedMapBase
+ * this is to avoid circular requires
+ * because MergeChain & MethodChain extend this
+ * yet .method & .merge use those chains
  *
- * @param {Class | Object | Composable} [SuperClass=Chainable] class to extend
- * @return {Class} ChainedMapBase
+ * @file
+ * @since 4.0.0-alpha.1
+ * @inheritdoc
+ * @class ChainedMapBase
+ * @member ChainedMapBase
+ * @category Chainable
+ * @extends {Chainable}
+ * @type {Chainable}
  *
- * @example
+ * @types ChainedMapBase
+ * @tests ChainedMap
  *
- *    const heh = class {}
- *    const composed = ChainedMapBase.compose(heh)
- *    const hehchain = new Composed()
- *    hehchain instanceof heh
- *    //=> true
+ * @prop {Meta} meta meta fn
+ * @prop {Map} store main store
+ *
+ * {@link https://ponyfoo.com/articles/es6-maps-in-depth pony-map}
+ * {@link https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map mozilla-map}
+ * @see {@link pony-map}
+ * @see {@link mozilla-map}
+ *
+ * @see ChainedMap
+ * @see Chainable
+ * @see MergeChain
+ * @see MethodChain
+ * @see ChainedMap
  *
  */
+
 const CMC = SuperClass => {
-  /**
-   * @classdesc this is to avoid circular requires
-   *       because MergeChain & MethodChain extend this
-   *       yet .method & .merge use those chains
-   *
-   * @since 4.0.0-alpha.1
-   * @inheritdoc
-   * @class ChainedMapBase
-   * @member ChainedMapBase
-   * @category Chainable
-   * @extends {Chainable}
-   * @type {Chainable}
-   *
-   * @types ChainedMapBase
-   * @tests ChainedMap
-   *
-   * @prop {Meta} meta
-   * @prop {Map} store
-   *
-   * {@link https://ponyfoo.com/articles/es6-maps-in-depth pony-map}
-   * {@link https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map mozilla-map}
-   * @see {@link pony-map}
-   * @see {@link mozilla-map}
-   *
-   * @see ChainedMap
-   * @see Chainable
-   * @see MergeChain
-   * @see MethodChain
-   * @see ChainedMap
-   *
-   */
   return class ChainedMapBase extends SuperClass {
     /**
      * @param {ChainedMapBase | Chainable | ParentType | any} parent ParentType
@@ -81,7 +65,7 @@ const CMC = SuperClass => {
      * @desc   tap a value with a function
      *         @modifies this.store.get(name)
      * @memberOf ChainedMapBase
-     * @since 0.7.0
+     * @version 0.7.0
      * @since 4.0.0-alpha.1 <- moved from transform & shorthands
      *
      * @param  {string | any} name key to `.get`
@@ -194,13 +178,15 @@ const CMC = SuperClass => {
     /**
      * @desc spreads the entries from ChainedMapBase.store (Map)
      *       return store.entries, plus all chain properties if they exist
-     * @memberOf ChainedMapBase
      *
-     * @since 4.0.0 <- improved reducing
+     * @memberOf ChainedMapBase
+     * @version 4.0.0 <- improved reducing
      * @since 0.4.0
      *
      * @param  {boolean} [chains=false] if true, returns all properties that are chains
-     * @return {Object}
+     * @return {Object} reduced object containing all properties from the store, and when `chains` is true, all instance properties, and recursive chains
+     *
+     * //
      *
      * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/entries mozilla-map-entries}
      * @see {@link mozilla-map-entries}
@@ -211,9 +197,9 @@ const CMC = SuperClass => {
      *    //=> {a: 'alpha', b: 'beta'}
      *
      */
-    entries(chains = false) {
+    entries(chains) {
       const reduced = reduce(this.store)
-      if (chains === false) return reduced
+      if (isUndefined(chains)) return reduced
 
       const reducer = reduceEntries(reduced)
       reducer(this)
@@ -227,7 +213,7 @@ const CMC = SuperClass => {
      *          it goes onto .meta
      *
      * @memberOf ChainedMapBase
-     * @since 4.0.0 <- moved debug here
+     * @version 4.0.0 <- moved debug here
      * @since 0.4.0
      *
      * @param  {Primitive} key Primitive data key used as map property to reference the value
@@ -264,6 +250,7 @@ const CMC = SuperClass => {
      * @return {ChainedMapBase} @chainable
      *
      * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/set mozilla-map-set}
+     *
      * @see {@link mozilla-map-set}
      * @see ChainedMapBase.store
      *
@@ -282,6 +269,25 @@ const CMC = SuperClass => {
   }
 }
 
+/**
+ * @desc ChainedMapBase composer
+ * @alias ComposeMap
+ * @type {Composer}
+ * @method compose
+ * @memberOf ChainedMapBase
+ *
+ * @param {Class | Object | Composable} [SuperClass=Chainable] class to extend
+ * @return {Class} ChainedMapBase
+ *
+ * @example
+ *
+ *    const heh = class {}
+ *    const composed = ChainedMapBase.compose(heh)
+ *    const hehchain = new Composed()
+ *    hehchain instanceof heh
+ *    //=> true
+ *
+ */
 const cmc = CMC(Chainable)
 cmc.compose = CMC
 

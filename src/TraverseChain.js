@@ -109,6 +109,7 @@ module.exports = class Traverser extends ChainedMapBase {
   }
 
   /**
+   * value traversed in traverse
    * @since 1.0.0
    * @see TraverseChain.traverse
    * @return {Object | Array | any} traversed
@@ -121,7 +122,7 @@ module.exports = class Traverser extends ChainedMapBase {
    *   traverser.traverse()
    *
    *   traverser.traversed()
-   *   // => ['goose']
+   *   //=> ['goose']
    *
    * @example
    *
@@ -152,7 +153,7 @@ module.exports = class Traverser extends ChainedMapBase {
    *      .call(false)
    *
    *    traverser.traversed()
-   *    // => {
+   *    //=> {
    *      className: 'DotProp',
    *      me: true,
    *      nested: {
