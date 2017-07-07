@@ -10,41 +10,6 @@
 
 <!-- /div -->
 
-<!-- div -->
-
-## `fn.call`
-* <a href="#fn-call">`fn.call`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `if`
-* <a href="#if">`if`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `m`
-* <a href="#m">`m`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `objs`
-* <a href="#objs">`objs`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `objs.set`
-* <a href="#objs-set">`objs.set`</a>
-
-<!-- /div -->
-
 <!-- /div -->
 
 <!-- div class="doc-container" -->
@@ -56,7 +21,7 @@
 <!-- div -->
 
 <h3 id="Observe-prototype-"><a href="#Observe-prototype-">#</a>&nbsp;<code>Observe.prototype.observe(properties=undefined, fn=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Observe.js#L117 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Observe.js#L46 "View in source") [&#x24C9;][1]
 
 (Function): observe properties when they change
 
@@ -111,7 +76,7 @@ chain
 <a href="https://github.com/fluents/chain-able/blob/master/test/observe.js">🔬  Tests: observe</a>&nbsp;
 
 <h3 id="Observe-prototype-exports"><a href="#Observe-prototype-exports">#</a>&nbsp;<code>Observe.prototype.exports(Chain=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Observe.js#L61 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Observe.js#L38 "View in source") [&#x24C9;][1]
 
 (Function): > subscribe to changes ❗ called only on **change** observers are only called when data they subscribe to changes
 
@@ -139,92 +104,6 @@ new DotProp()
 //=> DotProp
 
 ```
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `fn.call`
-
-<!-- div -->
-
-<h3 id="fn-call"><a href="#fn-call">#</a>&nbsp;<code>fn.call()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Observe.js#L158 "View in source") [&#x24C9;][1]
-
-(Function): call the observer - it matched & data changed
-
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `if`
-
-<!-- div -->
-
-<h3 id="if"><a href="#if">#</a>&nbsp;<code>if()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Observe.js#L143 "View in source") [&#x24C9;][1]
-
-(Function): if we have called it at least once... and it has not changed, leave it
-else clone it call the observer
-
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `m`
-
-<!-- div -->
-
-<h3 id="m"><a href="#m">#</a>&nbsp;<code>m</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Observe.js#L127 "View in source") [&#x24C9;][1]
-
-unknown
-
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `objs`
-
-<!-- div -->
-
-<h3 id="objs"><a href="#objs">#</a>&nbsp;<code>objs</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Observe.js#L14 "View in source") [&#x24C9;][1]
-
-(Map): scoped clones
-
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `objs.set`
-
-<!-- div -->
-
-<h3 id="objs-set"><a href="#objs-set">#</a>&nbsp;<code>objs.set()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Observe.js#L153 "View in source") [&#x24C9;][1]
-
-(Function): it did change - clone it for next deepEquals check
-
 ---
 
 <!-- /div -->

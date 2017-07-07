@@ -39,7 +39,7 @@
 <a href="https://github.com/fluents/chain-able/blob/master/test/TransformChain.js">🔬  Tests: TransformChain</a>&nbsp;
 
 <h3 id="TransformChain-prototype-"><a href="#TransformChain-prototype-">#</a>&nbsp;<code>TransformChain.prototype.</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Transform.js#L40 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Transform.js#L8 "View in source") [&#x24C9;][1]
 
 Map
 

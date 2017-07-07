@@ -275,7 +275,6 @@
 
 ## `define`
 * <a href="#define">`define`</a>
-* <a href="#define">`define`</a>
 
 <!-- /div -->
 
@@ -336,15 +335,7 @@
 
 <!-- div -->
 
-## `fn.call`
-* <a href="#fn-call">`fn.call`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
 ## `forEach`
-* <a href="#forEach">`forEach`</a>
 * <a href="#forEach">`forEach`</a>
 
 <!-- /div -->
@@ -372,13 +363,6 @@
 
 <!-- div -->
 
-## `handleExisting`
-* <a href="#handleExisting">`handleExisting`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
 ## `has`
 * <a href="#has">`has`</a>
 * <a href="#has">`has`</a>
@@ -389,10 +373,6 @@
 <!-- div -->
 
 ## `if`
-* <a href="#if">`if`</a>
-* <a href="#if">`if`</a>
-* <a href="#if">`if`</a>
-* <a href="#if">`if`</a>
 * <a href="#if">`if`</a>
 
 <!-- /div -->
@@ -479,13 +459,6 @@
 
 <!-- div -->
 
-## `m`
-* <a href="#m">`m`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
 ## `markForGarbageCollection`
 * <a href="#markForGarbageCollection">`markForGarbageCollection`</a>
 
@@ -543,20 +516,6 @@
 
 ## `node_`
 * <a href="#node_">`node_`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `objs`
-* <a href="#objs">`objs`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `objs.set`
-* <a href="#objs-set">`objs.set`</a>
 
 <!-- /div -->
 
@@ -697,7 +656,6 @@
 <!-- div -->
 
 ## `setChosen`
-* <a href="#setChosen">`setChosen`</a>
 * <a href="#setChosen">`setChosen`</a>
 
 <!-- /div -->
@@ -842,23 +800,6 @@
 
 <!-- div -->
 
-## `/* istanbul ignore next`
-
-<!-- div -->
-
-<h3 id="/* istanbul ignore next"><a href="#/* istanbul ignore next">#</a>&nbsp;<code>/* istanbul ignore next</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4875 "View in source") [&#x24C9;][1]
-
-unknown
-
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
 ## `CM`
 
 <!-- div -->
@@ -917,7 +858,7 @@ hehchain instanceof heh
 <a href="https://github.com/fluents/chain-able/blob/master/test/Chainable.js">🔬  Tests: Chainable</a>&nbsp;
 
 <h3 id="Chainable-prototype-Chainable"><a href="#Chainable-prototype-Chainable">#</a>&nbsp;<code>Chainable.prototype.Chainable</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L336 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L16 "View in source") [&#x24C9;][1]
 
 (Chainable): Trait class that can inherit any class passed into compose, extended by ChainedMap & ChainedSet
 
@@ -929,7 +870,7 @@ hehchain instanceof heh
 ### @classProps 
 
 * {parent}  
-* {className} {@link https://github.com/iluwatar/java-design-patterns/tree/master/chain chain-pattern} 
+* {className}  
  
 ---
 
@@ -948,7 +889,7 @@ hehchain instanceof heh
 <a href="https://github.com/fluents/chain-able/blob/master/test/ChainedMap.js">🔬  Tests: ChainedMap</a>&nbsp;
 
 <h3 id="ChainedMapBase-prototype-CMC"><a href="#ChainedMapBase-prototype-CMC">#</a>&nbsp;<code>ChainedMapBase.prototype.CMC</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1726 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L23 "View in source") [&#x24C9;][1]
 
 (Chainable): this is to avoid circular requires
 because MergeChain & MethodChain extend this
@@ -962,10 +903,7 @@ yet .method & .merge use those chains
 ### @classProps 
 
 * {meta} meta fn 
-* {store} main store
-
-{@link https://ponyfoo.com/articles/es6-maps-in-depth pony-map}
-{@link https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map mozilla-map} 
+* {store} main store 
  
 
 ### @extends
@@ -1008,7 +946,7 @@ hehchain instanceof heh
 <!-- div -->
 
 <h3 id="ChainedMapBase-prototype-entries"><a href="#ChainedMapBase-prototype-entries">#</a>&nbsp;<code>ChainedMapBase.prototype.entries([chains=false])</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1879 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L27 "View in source") [&#x24C9;][1]
 
 (Function): spreads the entries from ChainedMapBase.store *(Map)* return store.entries, plus all chain properties if they exist
 
@@ -1027,9 +965,6 @@ hehchain instanceof heh
 <br>
 <br>
 //
-<br>
-<br>
-{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/entries mozilla-map-entries}
 
 #### Example
 ```js
@@ -1109,7 +1044,7 @@ eq(from, eh)
 <!-- div -->
 
 <h3 id="ChainedMapBase-prototype-get"><a href="#ChainedMapBase-prototype-get">#</a>&nbsp;<code>ChainedMapBase.prototype.get(key=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1915 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L27 "View in source") [&#x24C9;][1]
 
 (Function): get value for key path in the Map store ❗ `debug` is a special key and is *not* included into .store it goes onto .meta
 
@@ -1125,9 +1060,6 @@ eq(from, eh)
 
 #### Returns
 *(any)*: value in .store at key
-<br>
-<br>
-{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/get mozilla-map-get}
 
 #### Example
 ```js
@@ -1147,7 +1079,7 @@ chain.get('nope')
 <!-- div -->
 
 <h3 id="ChainedMapBase-prototype-set"><a href="#ChainedMapBase-prototype-set">#</a>&nbsp;<code>ChainedMapBase.prototype.set(key=undefined, value=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1944 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L25 "View in source") [&#x24C9;][1]
 
 (Function): sets the value using the key on store adds or updates an element with a specified key and value
 
@@ -1164,9 +1096,6 @@ chain.get('nope')
 
 #### Returns
 *(ChainedMapBase)*: @chainable
-<br>
-<br>
-{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/set mozilla-map-set}
 
 #### Example
 ```js
@@ -1183,7 +1112,7 @@ chain.get('eh')
 <!-- div -->
 
 <h3 id="ChainedMapBase-prototype-tap"><a href="#ChainedMapBase-prototype-tap">#</a>&nbsp;<code>ChainedMapBase.prototype.tap(name=undefined, fn=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1779 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L44 "View in source") [&#x24C9;][1]
 
 (Function): tap a value with a function
 
@@ -1200,11 +1129,6 @@ chain.get('eh')
 
 #### Returns
 *(Chain)*: @chainable
-<br>
-<br>
-{@link https://github.com/sindresorhus/awesome-tap awesome-tap}
-{@link https://github.com/midknight41/map-factory map-factory}
-{@link https://github.com/webpack/tapable tapable}
 
 #### Example
 ```js
@@ -1374,7 +1298,7 @@ chain.set('moose.simple', 1)
 <a href="https://github.com/fluents/chain-able/blob/master/test/FactoryChain.js">🔬  Tests: FactoryChain</a>&nbsp;
 
 <h3 id="FactoryChain-prototype-FactoryChain"><a href="#FactoryChain-prototype-FactoryChain">#</a>&nbsp;<code>FactoryChain.prototype.FactoryChain</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5697 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7 "View in source") [&#x24C9;][1]
 
 Map
 
@@ -1592,7 +1516,7 @@ person.name().age().email()
 <a href="https://github.com/fluents/chain-able/blob/master/test/MergeChain.js">🔬  Tests: MergeChain</a>&nbsp;
 
 <h3 id="MergeChain-prototype-MergeChain"><a href="#MergeChain-prototype-MergeChain">#</a>&nbsp;<code>MergeChain.prototype.MergeChain</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5162 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L12 "View in source") [&#x24C9;][1]
 
 Map
 
@@ -2132,7 +2056,7 @@ chain.updated_at = false
 <!-- div -->
 
 <h3 id="Observe-prototype-"><a href="#Observe-prototype-">#</a>&nbsp;<code>Observe.prototype.observe(properties=undefined, fn=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6564 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L62 "View in source") [&#x24C9;][1]
 
 (Function): observe properties when they change
 
@@ -2252,7 +2176,7 @@ chain.get(['moose', 'canada', 'igloo'])
 <a href="https://github.com/fluents/chain-able/blob/master/test/observe.js">🔬  Tests: observe</a>&nbsp;
 
 <h3 id="Observe-prototype-Observe"><a href="#Observe-prototype-Observe">#</a>&nbsp;<code>Observe.prototype.Observe(Chain=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6508 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L34 "View in source") [&#x24C9;][1]
 
 (Function): > subscribe to changes ❗ called only on **change** observers are only called when data they subscribe to changes
 
@@ -2464,7 +2388,7 @@ compose(class {})
 <a href="https://github.com/fluents/chain-able/blob/master/test/TransformChain.js">🔬  Tests: TransformChain</a>&nbsp;
 
 <h3 id="TransformChain-prototype-"><a href="#TransformChain-prototype-">#</a>&nbsp;<code>TransformChain.prototype.</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7111 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L11 "View in source") [&#x24C9;][1]
 
 Map
 
@@ -3926,31 +3850,6 @@ var desc = Object.getOwnPropertyDescriptor(obj, 'eh', {
 
 <!-- /div -->
 
-<!-- div -->
-
-<h3 id="define"><a href="#define">#</a>&nbsp;<code>define()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L679 "View in source") [&#x24C9;][1]
-
-Function
-
-
-### @see 
-
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/reduce/clean.js">fluents/chain able/blob/master/src/deps/reduce/clean.js</a>
-#### Since
-0.5.0
-
-#### Returns
-*(number)*:
-
-#### Example
-```js
-for (var i = 0; i < chain.length; i++)
-```
----
-
-<!-- /div -->
-
 <!-- /div -->
 
 <!-- div -->
@@ -4135,7 +4034,7 @@ merge([1, 2, 3], [3, 2, 1], { arrayMerge: concatMerge })
 <a href="https://github.com/fluents/chain-able/blob/master/typings/_dopemergelater.d.ts">🌊  Types: _dopemergelater.d</a>&nbsp;
 
 <h3 id="dopemerge-prototype-dopemerge"><a href="#dopemerge-prototype-dopemerge">#</a>&nbsp;<code>dopemerge.prototype.dopemerge(obj1=undefined, obj2=undefined, opts=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1250 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L67 "View in source") [&#x24C9;][1]
 
 (Function): Merge the enumerable attributes of two objects deeply. Merge two objects `x` and `y` deeply, returning a new merged object with the elements from both `x` and `y`. If an element at the same key is present for both `x` and `y`, the value from
 `y` will appear in the result. Merging creates a new object, so that neither `x` or `y` are be modified. However, child objects on `x` or `y` are copied over - if you want to copy all values, you must pass `true` to the clone option.
@@ -4151,9 +4050,6 @@ merge([1, 2, 3], [3, 2, 1], { arrayMerge: concatMerge })
 
 #### Returns
 *(&#42;)*: merged
-<br>
-<br>
-{@link https://github.com/KyleAMathews/deepmerge deepmerge}
 
 #### Example
 ```js
@@ -4536,61 +4432,7 @@ const reducedIgnored = {
 
 <!-- div -->
 
-## `fn.call`
-
-<!-- div -->
-
-<h3 id="fn-call"><a href="#fn-call">#</a>&nbsp;<code>fn.call()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6607 "View in source") [&#x24C9;][1]
-
-(Function): call the observer - it matched & data changed
-
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
 ## `forEach`
-
-<!-- div -->
-
-<h3 id="forEach"><a href="#forEach">#</a>&nbsp;<code>forEach(xs=undefined, fn=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2164 "View in source") [&#x24C9;][1]
-
-Function
-
-
-### @notes 
-
-* if there is .forEach on the obj already, use it
-otherwise, call function for each
- 
-
-### @todos 
-
-- [ ] unexpectedly breaks things iterating
-if you are relying on internal functionality
-(such as .path, .get, .value...) with map & set
- 
-#### Since
-3.0.0
-
-#### Arguments
-1. `xs=undefined` *(Array|Object|any)*: iteratee
-2. `fn=undefined` *(Function)*: callback for each iteration
-
-#### Example
-```js
-forEach([1], console.log)
-//=> 1
-
-```
----
-
-<!-- /div -->
 
 <!-- div -->
 
@@ -4673,50 +4515,6 @@ Function
 #### Returns
 *(Chain)*:
 
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `handleExisting`
-
-<!-- div -->
-
-<h3 id="handleExisting"><a href="#handleExisting">#</a>&nbsp;<code>handleExisting(key=undefined, value=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5285 "View in source") [&#x24C9;][1]
-
-Function
-
-
-### @todos 
-
-- [ ] could use .eq here
-- [ ] if (isMapish(obj)) obj = obj.entries()
- 
-#### Arguments
-1. `key=undefined` *(Primitive): key &#42;(shorthands&#91;key&#93; or just key)*&#42;
-2. `value=undefined` *(&#42;)*: obj&#91;key&#93;
-
-#### Returns
-*(void)*:
-
-#### Example
-```js
-var obj = { key: 1 }
-
-MergeChain.init(obj).merge({ key: ['value'] })
-
-// goes to this internal scoped function
-handleExisting('key', ['value'])
-// if there is .onValue or .onExisting, use them, default deepmerge
-
-obj
-//=> {key: [1, 'value']}
-
-```
 ---
 
 <!-- /div -->
@@ -4815,64 +4613,9 @@ chain.has('one.two')
 <!-- div -->
 
 <h3 id="if"><a href="#if">#</a>&nbsp;<code>if()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L658 "View in source") [&#x24C9;][1]
-
-(Function): hint === 'number'
-`s`tring is `115`
-`n`umber is `110`
-110 & `4` = `1`
-115 & `4` = `0`
-<br>
-<br>
-if *(hint === 'string' && this.toJSON) return this.toJSON()*
-else if *(hint === 'number' && this.toNumber) return this.toNumber()*
-
----
-
-<!-- /div -->
-
-<!-- div -->
-
-<h3 id="if"><a href="#if">#</a>&nbsp;<code>if()</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4536 "View in source") [&#x24C9;][1]
 
 (Function): this is a plugin for building methods schema defaults value to `.type` this defaults values to `.onCall`
-
----
-
-<!-- /div -->
-
-<!-- div -->
-
-<h3 id="if"><a href="#if">#</a>&nbsp;<code>if()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5319 "View in source") [&#x24C9;][1]
-
-(Function): check if it's shorthanded
--> check if it has a value already
-
----
-
-<!-- /div -->
-
-<!-- div -->
-
-<h3 id="if"><a href="#if">#</a>&nbsp;<code>if()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5327 "View in source") [&#x24C9;][1]
-
-(Function): if we have onExisting, call it
-else default to dopemerge
-
----
-
-<!-- /div -->
-
-<!-- div -->
-
-<h3 id="if"><a href="#if">#</a>&nbsp;<code>if()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6592 "View in source") [&#x24C9;][1]
-
-(Function): if we have called it at least once... and it has not changed, leave it
-else clone it call the observer
 
 ---
 
@@ -4982,7 +4725,7 @@ Function
 <!-- div -->
 
 <h3 id=""><a href="#">#</a>&nbsp;<code></code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4315 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2 "View in source") [&#x24C9;][1]
 
 unknown
 
@@ -4990,15 +4733,6 @@ unknown
 ### @todos 
 
 - [ ] clarify .set vs .call
-{@link https://github.com/iluwatar/java-design-patterns/tree/master/property property-pattern}
-{@link https://github.com/iluwatar/java-design-patterns/tree/master/prototype prototype-pattern}
-{@link https://github.com/iluwatar/java-design-patterns/tree/master/step-builder step-builder-pattern}
-{@link https://github.com/iluwatar/java-design-patterns/tree/master/builder builder-pattern}
-{@link https://github.com/addyosmani/essential-js-design-patterns/blob/master/diagrams/mixins.png mixin-png}
-{@link https://sourcemaking.com/design_patterns/creational_patterns creational-patterns}
-{@link https://sourcemaking.com/design_patterns/factory_method factory-method}
-{@link https://medium.com/javascript-scene/javascript-factory-functions-vs-constructor-functions-vs-classes-2f22ceddf33e constructors}
-{@link https://www.sitepoint.com/factory-functions-javascript/ js-factory-functions}
  
 ---
 
@@ -6229,23 +5963,6 @@ unknown
 
 <!-- div -->
 
-## `m`
-
-<!-- div -->
-
-<h3 id="m"><a href="#m">#</a>&nbsp;<code>m</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6576 "View in source") [&#x24C9;][1]
-
-unknown
-
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
 ## `markForGarbageCollection`
 
 <!-- div -->
@@ -6300,7 +6017,7 @@ obj
 <!-- div -->
 
 <h3 id="matcher-prototype-escapeStringRegExp"><a href="#matcher-prototype-escapeStringRegExp">#</a>&nbsp;<code>matcher.prototype.escapeStringRegex(str=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6183 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L20 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -6321,9 +6038,6 @@ Function
 
 #### Returns
 *(string)*: escaped string
-<br>
-<br>
-{@link https://github.com/sindresorhus/escape-string-regexp escape-string-regexp}
 
 #### Example
 ```js
@@ -6777,40 +6491,6 @@ Array
 ### @see 
 
 * <a href="https://github.com/fluents/chain-able/blob/master/src/deps/reduce/clean.js">fluents/chain able/blob/master/src/deps/reduce/clean.js</a>
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `objs`
-
-<!-- div -->
-
-<h3 id="objs"><a href="#objs">#</a>&nbsp;<code>objs</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6461 "View in source") [&#x24C9;][1]
-
-(Map): scoped clones
-
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `objs.set`
-
-<!-- div -->
-
-<h3 id="objs-set"><a href="#objs-set">#</a>&nbsp;<code>objs.set()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6602 "View in source") [&#x24C9;][1]
-
-(Function): it did change - clone it for next deepEquals check
-
 ---
 
 <!-- /div -->
@@ -7560,23 +7240,6 @@ parent.get('oh')
 
 <!-- /div -->
 
-<!-- div -->
-
-<h3 id="setChosen"><a href="#setChosen">#</a>&nbsp;<code>setChosen()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5353 "View in source") [&#x24C9;][1]
-
-(Function): maybe we should not even have `.onExisting`
-since we can just override merge method...
-and then client can just use a custom merger...
-<br>
-<br>
-could add and remove subscriber but that's overhead and
-tricky here, because if we set a value that was just set...
-
----
-
-<!-- /div -->
-
 <!-- /div -->
 
 <!-- div -->
@@ -7820,9 +7483,9 @@ matcher({ test: x => x === 'kinga' }, 'nope')
 <!-- div -->
 
 <h3 id="traverse"><a href="#traverse">#</a>&nbsp;<code>traverse(obj=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2182 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4 "View in source") [&#x24C9;][1]
 
-(Function): {@link https://sourcemaking.com/design_patterns/chain_of_responsibility chainofresponsibility}
+Function
 
 #### Arguments
 1. `obj=undefined` *(Traversable)*: object to traverse
@@ -8195,7 +7858,7 @@ All the elements in value will be recursively traversed unless stopHere is true.
 <!-- div -->
 
 <h3 id="values"><a href="#values">#</a>&nbsp;<code>values()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L600 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L31 "View in source") [&#x24C9;][1]
 
 (Function): spreads the entries from ChainedMap.store.values allocates a new array, adds the values from the iterator
 
@@ -8209,11 +7872,6 @@ All the elements in value will be recursively traversed unless stopHere is true.
 * look at Chainable.constructor to ensure not to use `new Array...`
 * moved from ChainedMap and ChainedSet to Chainable @2.0.2
 * this was [...] & Array.from(this.store.values())
-
-{@link https://kangax.github.io/compat-table/es6/#test-Array_static_methods compat-array-static-methods}
-{@link https://stackoverflow.com/questions/20069828/how-to-convert-set-to-array set-to-array}
-{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/values mozilla-map-values}
-{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/values mozilla-set-values}
  
 #### Since
 0.4.0
@@ -8303,4 +7961,4 @@ Function
 
 <!-- /div -->
 
- [1]: #/* istanbul ignore next "Jump back to the TOC."
+ [1]: #cm "Jump back to the TOC."

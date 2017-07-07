@@ -31,7 +31,7 @@
 <a href="https://github.com/fluents/chain-able/blob/master/test/ChainedMap.js">🔬  Tests: ChainedMap</a>&nbsp;
 
 <h3 id="ChainedMapBase-prototype-CMC"><a href="#ChainedMapBase-prototype-CMC">#</a>&nbsp;<code>ChainedMapBase.prototype.CMC</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMapBase.js#L44 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMapBase.js#L18 "View in source") [&#x24C9;][1]
 
 (Chainable): this is to avoid circular requires
 because MergeChain & MethodChain extend this
@@ -41,10 +41,7 @@ yet .method & .merge use those chains
 ### @classProps 
 
 * {meta} meta fn 
-* {store} main store
-
-{@link https://ponyfoo.com/articles/es6-maps-in-depth pony-map}
-{@link https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map mozilla-map} 
+* {store} main store 
  
 
 ### @extends
@@ -87,7 +84,7 @@ hehchain instanceof heh
 <!-- div -->
 
 <h3 id="ChainedMapBase-prototype-entries"><a href="#ChainedMapBase-prototype-entries">#</a>&nbsp;<code>ChainedMapBase.prototype.entries([chains=false])</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMapBase.js#L200 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMapBase.js#L23 "View in source") [&#x24C9;][1]
 
 (Function): spreads the entries from ChainedMapBase.store *(Map)* return store.entries, plus all chain properties if they exist
 
@@ -102,9 +99,6 @@ hehchain instanceof heh
 <br>
 <br>
 //
-<br>
-<br>
-{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/entries mozilla-map-entries}
 
 #### Example
 ```js
@@ -184,7 +178,7 @@ eq(from, eh)
 <!-- div -->
 
 <h3 id="ChainedMapBase-prototype-get"><a href="#ChainedMapBase-prototype-get">#</a>&nbsp;<code>ChainedMapBase.prototype.get(key=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMapBase.js#L236 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMapBase.js#L22 "View in source") [&#x24C9;][1]
 
 (Function): get value for key path in the Map store ❗ `debug` is a special key and is *not* included into .store it goes onto .meta
 
@@ -196,9 +190,6 @@ eq(from, eh)
 
 #### Returns
 *(any)*: value in .store at key
-<br>
-<br>
-{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/get mozilla-map-get}
 
 #### Example
 ```js
@@ -218,7 +209,7 @@ chain.get('nope')
 <!-- div -->
 
 <h3 id="ChainedMapBase-prototype-set"><a href="#ChainedMapBase-prototype-set">#</a>&nbsp;<code>ChainedMapBase.prototype.set(key=undefined, value=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMapBase.js#L265 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMapBase.js#L18 "View in source") [&#x24C9;][1]
 
 (Function): sets the value using the key on store adds or updates an element with a specified key and value
 
@@ -231,9 +222,6 @@ chain.get('nope')
 
 #### Returns
 *(ChainedMapBase)*: @chainable
-<br>
-<br>
-{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/set mozilla-map-set}
 
 #### Example
 ```js
@@ -250,7 +238,7 @@ chain.get('eh')
 <!-- div -->
 
 <h3 id="ChainedMapBase-prototype-tap"><a href="#ChainedMapBase-prototype-tap">#</a>&nbsp;<code>ChainedMapBase.prototype.tap(name=undefined, fn=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMapBase.js#L104 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMapBase.js#L32 "View in source") [&#x24C9;][1]
 
 (Function): tap a value with a function
 
@@ -263,11 +251,6 @@ chain.get('eh')
 
 #### Returns
 *(Chain)*: @chainable
-<br>
-<br>
-{@link https://github.com/sindresorhus/awesome-tap awesome-tap}
-{@link https://github.com/midknight41/map-factory map-factory}
-{@link https://github.com/webpack/tapable tapable}
 
 #### Example
 ```js

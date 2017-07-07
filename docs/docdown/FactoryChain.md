@@ -29,7 +29,7 @@
 <a href="https://github.com/fluents/chain-able/blob/master/test/FactoryChain.js">🔬  Tests: FactoryChain</a>&nbsp;
 
 <h3 id="FactoryChain-prototype-"><a href="#FactoryChain-prototype-">#</a>&nbsp;<code>FactoryChain.prototype.</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/FactoryChain.js#L23 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/FactoryChain.js#L7 "View in source") [&#x24C9;][1]
 
 Map
 

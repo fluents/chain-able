@@ -29,6 +29,10 @@
 (Function): Defaults to `false`.
 If `clone` is `true` then both `x` and `y` are recursively cloned as part of the merge.
 
+
+### @see 
+
+* <a href="https://github.com/KyleAMathews/deepmerge">kyle a mathews/deepmerge</a>
 #### Since
 2.0.0
 
@@ -102,7 +106,7 @@ merge([1, 2, 3], [3, 2, 1], { arrayMerge: concatMerge })
 <a href="https://github.com/fluents/chain-able/blob/master/typings/_dopemergelater.d.ts">🌊  Types: _dopemergelater.d</a>&nbsp;
 
 <h3 id="dopemerge-prototype-dopemerge"><a href="#dopemerge-prototype-dopemerge">#</a>&nbsp;<code>dopemerge.prototype.dopemerge(obj1=undefined, obj2=undefined, opts=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/dopemerge/dopemerge.js#L255 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/dopemerge/dopemerge.js#L67 "View in source") [&#x24C9;][1]
 
 (Function): Merge the enumerable attributes of two objects deeply. Merge two objects `x` and `y` deeply, returning a new merged object with the elements from both `x` and `y`. If an element at the same key is present for both `x` and `y`, the value from
 `y` will appear in the result. Merging creates a new object, so that neither `x` or `y` are be modified. However, child objects on `x` or `y` are copied over - if you want to copy all values, you must pass `true` to the clone option.
@@ -111,9 +115,6 @@ merge([1, 2, 3], [3, 2, 1], { arrayMerge: concatMerge })
 ### @see 
 
 * <a href="https://github.com/KyleAMathews/deepmerge">kyle a mathews/deepmerge</a>
-
-[deepmerge}]: https://github.com/KyleAMathews/deepmerge <!-- NAMED_LINK -->
-
 #### Arguments
 1. `obj1=undefined` *(&#42;)*: left
 2. `obj2=undefined` *(&#42;)*: right
@@ -121,9 +122,6 @@ merge([1, 2, 3], [3, 2, 1], { arrayMerge: concatMerge })
 
 #### Returns
 *(&#42;)*: merged
-<br>
-<br>
-{@link https://github.com/KyleAMathews/deepmerge deepmerge}
 
 #### Example
 ```js

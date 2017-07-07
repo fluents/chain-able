@@ -24,7 +24,7 @@
 <a href="https://github.com/fluents/chain-able/blob/master/test/ChainedMap.js">🔬  Tests: ChainedMap</a>&nbsp;
 
 <h3 id="ChainedMapBase-prototype-playground"><a href="#ChainedMapBase-prototype-playground">#</a>&nbsp;<code>ChainedMapBase.prototype.playground</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/_Playground.js#L42 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/_Playground.js#L31 "View in source") [&#x24C9;][1]
 
 (Chainable): 3 steps 0. enhance error 1. encase function with a specification 2. build a function to call onInvalid or onInvalid depending
 
@@ -37,15 +37,6 @@
 * <a href="https://github.com/fluents/chain-able/blob/master/src/MergeChain.js">fluents/chain able/blob/master/src/merge chain.js</a>
 * <a href="https://github.com/fluents/chain-able/blob/master/src/MethodChain.js">fluents/chain able/blob/master/src/method chain.js</a>
 * <a href="https://github.com/fluents/chain-able/blob/master/src/ChainedMap.js">fluents/chain able/blob/master/src/chained map.js</a>
-
-[@links]: undefined <!-- NAMED_LINK -->
-
-
-[pony-map}]: https://ponyfoo.com/articles/es6-maps-in-depth <!-- NAMED_LINK -->
-
-
-[mozilla-map}]: https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map <!-- NAMED_LINK -->
-
 
 ### @classProps 
 

@@ -32,13 +32,6 @@
 
 <!-- /div -->
 
-<!-- div -->
-
-## `if`
-* <a href="#if">`if`</a>
-
-<!-- /div -->
-
 <!-- /div -->
 
 <!-- div class="doc-container" -->
@@ -114,7 +107,7 @@ map.className
 <a href="https://github.com/fluents/chain-able/blob/master/test/Chainable.js">🔬  Tests: Chainable</a>&nbsp;
 
 <h3 id="Chainable-prototype-"><a href="#Chainable-prototype-">#</a>&nbsp;<code>Chainable.prototype.</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L49 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L10 "View in source") [&#x24C9;][1]
 
 (Chainable): Trait class that can inherit any class passed into compose, extended by ChainedMap & ChainedSet
 
@@ -122,7 +115,7 @@ map.className
 ### @classProps 
 
 * {parent}  
-* {className} {@link https://github.com/iluwatar/java-design-patterns/tree/master/chain chain-pattern} 
+* {className}  
  
 ---
 
@@ -357,7 +350,7 @@ for (var i = 0; i < chain.length; i++)
 <!-- div -->
 
 <h3 id="Chainable-prototype-values"><a href="#Chainable-prototype-values">#</a>&nbsp;<code>Chainable.prototype.values()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L334 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L20 "View in source") [&#x24C9;][1]
 
 (Function): spreads the entries from ChainedMap.store.values allocates a new array, adds the values from the iterator
 
@@ -367,11 +360,6 @@ for (var i = 0; i < chain.length; i++)
 * look at Chainable.constructor to ensure not to use `new Array...`
 * moved from ChainedMap and ChainedSet to Chainable @2.0.2
 * this was [...] & Array.from(this.store.values())
-
-{@link https://kangax.github.io/compat-table/es6/#test-Array_static_methods compat-array-static-methods}
-{@link https://stackoverflow.com/questions/20069828/how-to-convert-set-to-array set-to-array}
-{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/values mozilla-map-values}
-{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/values mozilla-set-values}
  
 #### Since
 0.4.0
@@ -412,31 +400,6 @@ const prod = process.env.NODE_ENV === 'production'
 chains.when(prod, c => c.set('prod', true), c => c.set('prod', false))
 
 ```
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `if`
-
-<!-- div -->
-
-<h3 id="if"><a href="#if">#</a>&nbsp;<code>if()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L394 "View in source") [&#x24C9;][1]
-
-(Function): hint === 'number'
-`s`tring is `115`
-`n`umber is `110`
-110 & `4` = `1`
-115 & `4` = `0`
-<br>
-<br>
-if *(hint === 'string' && this.toJSON) return this.toJSON()*
-else if *(hint === 'number' && this.toNumber) return this.toNumber()*
-
 ---
 
 <!-- /div -->

@@ -39,13 +39,6 @@
 
 <!-- /div -->
 
-<!-- div -->
-
-## `shouldDot`
-* <a href="#shouldDot">`shouldDot`</a>
-
-<!-- /div -->
-
 <!-- /div -->
 
 <!-- div class="doc-container" -->
@@ -322,54 +315,6 @@ unknown
 chain.set('one.two', 3)
 chain.has('one.two')
 //=> true
-
-```
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `shouldDot`
-
-<!-- div -->
-
-<h3 id="shouldDot"><a href="#shouldDot">#</a>&nbsp;<code>shouldDot(key=undefined, thisArg=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/DotProp.js#L39 "View in source") [&#x24C9;][1]
-
-(Function): checks if this.meta.dot != false & isDot(key) - scoped
-
-
-### @see 
-
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/dot/delete.js">fluents/chain able/blob/master/src/deps/dot/delete.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/dot.js">fluents/chain able/blob/master/src/deps/is/dot.js</a>
-#### Since
-3.0.1
-
-#### Arguments
-1. `key=undefined` *(string)*: key in .get/.has/.delete/set
-2. `thisArg=undefined` *(DotProp)*: Chain
-
-#### Returns
-*(boolean)*: shouldDot
-
-#### Example
-```js
-const chain = new DotProp()
-shouldDot('me.me', chain)
-//=> true
-
-const chain = new DotProp()
-shouldDot('me', chain)
-//=> false
-
-const chain = new DotProp()
-chain.dot(false)
-shouldDot('me.me', chain)
-//=> false
 
 ```
 ---

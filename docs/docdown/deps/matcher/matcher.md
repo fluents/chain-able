@@ -173,7 +173,7 @@ unknown
 <!-- div -->
 
 <h3 id="test"><a href="#test">#</a>&nbsp;<code>test</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/matcher/matcher.js#L169 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/matcher/matcher.js#L166 "View in source") [&#x24C9;][1]
 
 unknown
 

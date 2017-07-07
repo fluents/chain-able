@@ -20,12 +20,9 @@
 <!-- div -->
 
 <h3 id="matcher-prototype-escapeStringRegExp"><a href="#matcher-prototype-escapeStringRegExp">#</a>&nbsp;<code>matcher.prototype.exports(str=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/matcher/escape-string-regex.js#L22 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/matcher/escape-string-regex.js#L19 "View in source") [&#x24C9;][1]
 
 Function
-
-
-[escape-string-regexp}]: https://github.com/sindresorhus/escape-string-regexp <!-- NAMED_LINK -->
 
 
 ### @notes 
@@ -40,9 +37,6 @@ Function
 
 #### Returns
 *(string)*: escaped string
-<br>
-<br>
-{@link https://github.com/sindresorhus/escape-string-regexp escape-string-regexp}
 
 #### Example
 ```js

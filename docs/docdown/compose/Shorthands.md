@@ -177,7 +177,7 @@ new Chain()
 <a href="https://github.com/fluents/chain-able/blob/master/test/shorthands.js">🔬  Tests: shorthands</a>&nbsp;
 
 <h3 id="Shorthands-prototype-exports"><a href="#Shorthands-prototype-exports">#</a>&nbsp;<code>Shorthands.prototype.exports(SuperClass=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Shorthands.js#L44 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Shorthands.js#L30 "View in source") [&#x24C9;][1]
 
 Function
 

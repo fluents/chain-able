@@ -57,29 +57,12 @@
 
 <!-- div -->
 
-## `/* istanbul ignore next`
-
-<!-- div -->
-
-<h3 id="/* istanbul ignore next"><a href="#/* istanbul ignore next">#</a>&nbsp;<code>/* istanbul ignore next</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MethodChain.js#L564 "View in source") [&#x24C9;][1]
-
-unknown
-
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
 ## `MethodChain`
 
 <!-- div -->
 
 <h3 id=""><a href="#">#</a>&nbsp;<code></code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MethodChain.js#L17 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MethodChain.js#L2 "View in source") [&#x24C9;][1]
 
 unknown
 
@@ -87,15 +70,6 @@ unknown
 ### @todos 
 
 - [ ] clarify .set vs .call
-{@link https://github.com/iluwatar/java-design-patterns/tree/master/property property-pattern}
-{@link https://github.com/iluwatar/java-design-patterns/tree/master/prototype prototype-pattern}
-{@link https://github.com/iluwatar/java-design-patterns/tree/master/step-builder step-builder-pattern}
-{@link https://github.com/iluwatar/java-design-patterns/tree/master/builder builder-pattern}
-{@link https://github.com/addyosmani/essential-js-design-patterns/blob/master/diagrams/mixins.png mixin-png}
-{@link https://sourcemaking.com/design_patterns/creational_patterns creational-patterns}
-{@link https://sourcemaking.com/design_patterns/factory_method factory-method}
-{@link https://medium.com/javascript-scene/javascript-factory-functions-vs-constructor-functions-vs-classes-2f22ceddf33e constructors}
-{@link https://www.sitepoint.com/factory-functions-javascript/ js-factory-functions}
  
 ---
 
@@ -591,4 +565,4 @@ chain
 
 <!-- /div -->
 
- [1]: #/* istanbul ignore next "Jump back to the TOC."
+ [1]: #methodchain "Jump back to the TOC."

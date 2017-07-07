@@ -20,21 +20,6 @@
 
 <!-- div -->
 
-## `handleExisting`
-* <a href="#handleExisting">`handleExisting`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `if`
-* <a href="#if">`if`</a>
-* <a href="#if">`if`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
 ## `merge`
 * <a href="#merge">`merge`</a>
 
@@ -43,7 +28,6 @@
 <!-- div -->
 
 ## `setChosen`
-* <a href="#setChosen">`setChosen`</a>
 * <a href="#setChosen">`setChosen`</a>
 
 <!-- /div -->
@@ -95,7 +79,7 @@ console.dir(map)
 <a href="https://github.com/fluents/chain-able/blob/master/test/MergeChain.js">🔬  Tests: MergeChain</a>&nbsp;
 
 <h3 id="MergeChain-prototype-"><a href="#MergeChain-prototype-">#</a>&nbsp;<code>MergeChain.prototype.</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MergeChain.js#L37 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MergeChain.js#L9 "View in source") [&#x24C9;][1]
 
 Map
 
@@ -182,80 +166,6 @@ chain.get('str')
 
 <!-- div -->
 
-## `handleExisting`
-
-<!-- div -->
-
-<h3 id="handleExisting"><a href="#handleExisting">#</a>&nbsp;<code>handleExisting(key=undefined, value=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MergeChain.js#L173 "View in source") [&#x24C9;][1]
-
-Function
-
-
-### @todos 
-
-- [ ] could use .eq here
-- [ ] if (isMapish(obj)) obj = obj.entries()
- 
-#### Arguments
-1. `key=undefined` *(Primitive): key &#42;(shorthands&#91;key&#93; or just key)*&#42;
-2. `value=undefined` *(&#42;)*: obj&#91;key&#93;
-
-#### Returns
-*(void)*:
-
-#### Example
-```js
-var obj = { key: 1 }
-
-MergeChain.init(obj).merge({ key: ['value'] })
-
-// goes to this internal scoped function
-handleExisting('key', ['value'])
-// if there is .onValue or .onExisting, use them, default deepmerge
-
-obj
-//=> {key: [1, 'value']}
-
-```
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `if`
-
-<!-- div -->
-
-<h3 id="if"><a href="#if">#</a>&nbsp;<code>if()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MergeChain.js#L208 "View in source") [&#x24C9;][1]
-
-(Function): check if it's shorthanded
--> check if it has a value already
-
----
-
-<!-- /div -->
-
-<!-- div -->
-
-<h3 id="if"><a href="#if">#</a>&nbsp;<code>if()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MergeChain.js#L216 "View in source") [&#x24C9;][1]
-
-(Function): if we have onExisting, call it
-else default to dopemerge
-
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
 ## `merge`
 
 <!-- div -->
@@ -333,23 +243,6 @@ parent.get('oh')
 //=> 1
 
 ```
----
-
-<!-- /div -->
-
-<!-- div -->
-
-<h3 id="setChosen"><a href="#setChosen">#</a>&nbsp;<code>setChosen()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MergeChain.js#L242 "View in source") [&#x24C9;][1]
-
-(Function): maybe we should not even have `.onExisting`
-since we can just override merge method...
-and then client can just use a custom merger...
-<br>
-<br>
-could add and remove subscriber but that's overhead and
-tricky here, because if we set a value that was just set...
-
 ---
 
 <!-- /div -->

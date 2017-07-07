@@ -57,7 +57,6 @@
 
 ## `forEach`
 * <a href="#forEach">`forEach`</a>
-* <a href="#forEach">`forEach`</a>
 
 <!-- /div -->
 
@@ -580,43 +579,6 @@ unknown
 
 <!-- div -->
 
-<h3 id="forEach"><a href="#forEach">#</a>&nbsp;<code>forEach(xs=undefined, fn=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L44 "View in source") [&#x24C9;][1]
-
-Function
-
-
-### @notes 
-
-* if there is .forEach on the obj already, use it
-otherwise, call function for each
- 
-
-### @todos 
-
-- [ ] unexpectedly breaks things iterating
-if you are relying on internal functionality
-(such as .path, .get, .value...) with map & set
- 
-#### Since
-3.0.0
-
-#### Arguments
-1. `xs=undefined` *(Array|Object|any)*: iteratee
-2. `fn=undefined` *(Function)*: callback for each iteration
-
-#### Example
-```js
-forEach([1], console.log)
-//=> 1
-
-```
----
-
-<!-- /div -->
-
-<!-- div -->
-
 <h3 id="forEach"><a href="#forEach">#</a>&nbsp;<code>forEach()</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L673 "View in source") [&#x24C9;][1]
 
@@ -934,9 +896,9 @@ Function
 <!-- div -->
 
 <h3 id="traverse"><a href="#traverse">#</a>&nbsp;<code>traverse(obj=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L62 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L7 "View in source") [&#x24C9;][1]
 
-(Function): {@link https://sourcemaking.com/design_patterns/chain_of_responsibility chainofresponsibility}
+Function
 
 #### Arguments
 1. `obj=undefined` *(Traversable)*: object to traverse
