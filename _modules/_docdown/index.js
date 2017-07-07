@@ -34,6 +34,8 @@ function docdown(options) {
     debug: false,
     log: false,
     dev: false,
+    private: false,
+    // access
     // tagBuilders: undefined,
     // ignores: [Matchable],
   })

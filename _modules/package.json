@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "humanize-url": "^1.0.1",
+    "string": "^3.3.3"
+  },
+  "dependencies": {
+    "humanize-string": "^1.0.1"
+  }
+}
