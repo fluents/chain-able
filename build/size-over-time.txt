@@ -794,7 +794,7 @@ Done in 0.29s.
 ---
 yarn run v0.24.6
 $ gzip-size dists/umd/index.js --raw
-8751
+8751 <- remove error thrower artifact in
 Done in 0.24s.
 2017:31:07/07/17:02:31:05
 ---

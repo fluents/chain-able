@@ -1,3 +1,95 @@
+# 🏷 v4.1.0
+- 🏰 refactoring to add prototype methods, instead of many multi-inherit
+- 📜📒 Makefile
+  - ⚡ deopt checking
+  - 🃏🚩 more jest flags
+- ⚒👣 fix traverser map
+- 📖 docs
+  - ℹ️️ migrate almost all docs into docblocks in preparation
+  - 🆙⛓ start updating chain-able-md (unreleased, so new)
+  - 🆕🎁🤖📚 docgen!
+    - 🍴 fork
+      - docdown (had a bug that threw an error, made it unusable)
+      - doxdox
+      - ramda site docgen (unused)
+      - lodash site docgen (unused)
+    - 🖇 utils
+      - 🆙 improve/update/change
+        - modernize utils
+        - move normalize
+      - 🎁 add
+        - removeDotCom
+        - humanizeLinkLabel
+        - stringify
+        - deref
+        - urlRegExp & isUrl
+        - isNotReal
+        - getIncludesCount
+        - replace
+        - isNotFile
+        - getDocBlocksFrom
+        - isNativePropFilter
+        - stripPeriodsAndDashes
+        - isLowerCaseType
+        - matchesFunction
+        - formatWithParens
+        - toHash
+        - getParentParam
+        - getFunction
+        - getFallbackFunction
+        - extractCall
+        - getAsStr
+        - slashStarToSlash
+    - 🏰 modernize generator, divide pieces with comments for future split since 600 line function is not so maintainable
+    - 🏰⛓ℹ️ refactor giant entry fn proto assignment into Chain class
+    - + scoped persisted .file for searching filenames to auto-link with
+    - + persist path
+    - + parse-as-needed
+  - 📖🤖 docgen: 🎁
+    - 🏭 factories to make accessing & adding easier, +better to maintainable
+  - 🎁🏷🔨️ ALMOST ALL TAGS!
+    - [🏷] support arrays of tags
+      - @see
+      - @example
+      - @note
+      - @todo
+    - 🎯 WITH ALIAS SUPPORT! WITH PRESET COMBOS!
+      - @sig
+      - @symb
+      - @modifies
+      - @enum
+      - @variation
+      - @mixins
+      - @class @classdesc @classdescription
+      - @throws @exception
+      - @func @function @method @callback
+      - @inheritdoc
+      - @override
+      - @module @namespace
+      - @abstract @virtual
+      - @see @link
+      - @desc @description (not just default from doctrine)
+      - @types @tests @typedef
+  - 🔗⛓ @LinkChain
+    - 🚑🐛 doctrine has an issue with valid jsdoc
+    - parse @link and @see with @link
+    - strip @link out so doctrine does not choke
+    - 💸 cache
+  - ⛓ EntryChain
+   - ⚡ optimizes the `getEntries` which was creating hundreds of instances, now uses scoped instances from a cache, and the pre-created api array of entry instances when possible
+  - 🐫📦📇🐈 (de-)camelize & humanize deps & metadata
+
+# 4.0.1-4.0.7
+- multiple releases quickly debugging an issue:
+- 🚑🐛 fixed major bug with `.when` where the falseBrancher was being checked for isUndefined instead of isFunction & was *also* being checked for the true brancher!
+- 🚑🐛🕴 fixed export minification for uglifiable names
+
+# 4.0.0
+- 🏗🔨️ really battoned-down the hatches on build system
+  - 🗞️🔌🥙 falafel-rollup-plugin!!!
+- 🔬 more tests, ensured the lines were all covered
+- 🎡 updated playground
+
 # 4.0.0-beta.2
 - 🔬 tests 🃏
   - 🃏 convert to jest
@@ -63,7 +155,7 @@
   - completely redid type definitions
   - took out unsable-to-be-used method `instanceof` static instance on Chainable
 - PATCH
-  - updating all docs
+  - 📖 updating all docs
   - tsc for dev version
   - exported more deps
   - fixed `hasInstance` Object.prototype.instanceOf.call in Chainable
@@ -76,7 +168,7 @@
   - traverser
     - eq: optimized typechecks, const & let, size
     - traverse-js: optimized argument slicing, const & let, jsdocs
-  - many more tests
+  - 🔬 many more tests
     - covered reduce for tests
     - covered almost all traverser branches
     - all old tests updated to new .method api
