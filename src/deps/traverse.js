@@ -1,680 +1,834 @@
-/* eslint no-new-wrappers: "off" */
-/* eslint eqeqeq: "off" */
-/* eslint func-style: "off" */
-/* eslint complexity: "off" */
-
 const isObjStrict = require('./is/objStrict')
 const isRegExp = require('./is/regexp')
 const isError = require('./is/error')
+const isTrue = require('./is/true')
 const isBoolean = require('./is/boolean')
 const isNumber = require('./is/number')
 const isString = require('./is/string')
 const isDate = require('./is/date')
 const isUndefined = require('./is/undefined')
+const isNullOrUndefined = require('./is/nullOrUndefined')
 const isArray = require('./is/array')
 const isMap = require('./is/map')
+// const isFalse = require('./is/false')
 const isSet = require('./is/set')
-const argumentor = require('./argumentor')
+const isSymbol = require('./is/symbol')
+const isAsyncish = require('./is/asyncish')
+const isFunction = require('./is/function')
+const isNative = require('./is/native')
+const isObj = require('./is/obj')
 const ObjectKeys = require('./util/keys')
 const hasOwnProperty = require('./util/hasOwnProperty')
-const getPrototypeOf = require('./util/getPrototypeOf')
+const isObjLoose = require('./is/objLoose')
+const isEqEq = require('./is/eqeq')
+const toS = require('./is/toS')
 const reduce = require('./reduce')
 const toarr = require('./to-arr')
+const dot = require('./dot')
+const props = require('./util/props')
 
-/**
- * @since 3.0.0
- *
- * @param {Array | Object | any} xs iteratee
- * @param {Function} fn callback for each iteration
- * @TODO unexpectedly breaks things iterating
- * if you are relying on internal functionality
- * (such as .path, .get, .value...) with map & set
- *
- * @NOTE if there is .forEach on the obj already, use it
- * otherwise, call function for each
- *
- * @private
- *
- * @example
- *
- *   forEach([1], console.log)
- *   //=> 1
- *
- */
-var forEach = function(xs, fn) {
-  if (xs.forEach) xs.forEach(fn)
-  else for (let i = 0; i < xs.length; i++) fn(xs[i], i, xs)
+// const ENV_DEBUG = true
+const ENV_DEBUG = false
+
+function isPrimitive(node) {
+  return (
+    isNullOrUndefined(node) ||
+    isString(node) ||
+    isNumber(node) ||
+    isBoolean(node)
+  )
+}
+function isIteratable(node) {
+  const notIteratable =
+    isPrimitive(node) ||
+    isRegExp(node) ||
+    isDate(node) ||
+    isSymbol(node) ||
+    isAsyncish(node) ||
+    // isNative(node) ||
+    isError(node)
+
+  const isIteratables = isObj(node) || isArray(node)
+  if (isIteratables) return true
+  if (notIteratable) return false
+  else return true
+
+  // if (isNullOrUndefined(node)) {
+  // }
+  // else if (isString(node)) {
+  // }
+  // else if (isNumber(node)) {
+  // }
+  // else if (isBoolean(node)) {
+  // }
+  // else if (isRegExp(node)) {
+  // }
+  // else if (isDate(node)) {
+  // }
+  // else if (isSymbol(node) || isAsyncish(node)) {
+  // }
+  // else if (isNative(node)) {
+  // }
+  // else {
+  //   return true
+  // }
+  // return false
 }
 
-/**
- * {@link https://sourcemaking.com/design_patterns/chain_of_responsibility chainofresponsibility}
- *
- * @param {Traversable} obj object to traverse
- *
- * @constructor
- *
- * @example
- *
- *    traverse({})
- *    //=> new Traverse(obj)
- *
- */
-var traverse = function(obj) {
-  return new Traverse(obj)
-}
-module.exports = traverse
+// function isSpecial(x) {
+//   // isPromise(x) ||
+//   return isSymbol(x) || isError(x) ||
+//   //  || isGenerator(x)
+// }
 
 /**
- * @func
- * @class TraverseJS
- * @classdesc Traverse and transform objects by visiting every node on a recursive walk.
- * @prop {any} value the data passed in as an argument to traverse on
+ * {@link https://github.com/wmira/object-traverse/blob/master/index.js }
+ * {@link https://www.npmjs.com/browse/keyword/traverse }
+ * {@link https://www.npmjs.com/package/tree-walk }
+ * {@link https://www.npmjs.com/package/1tree }
+ * {@link https://www.npmjs.com/package/pathway }
+ * {@link https://www.npmjs.com/package/@mojule/tree }
  *
- * @category traverse
- * @memberOf Traverse
- * @see deps/traverse
- * @category traverse
- * @types traverse
- * @tests traverse/*
+ * --------------------
  *
- * @TODO: symbol, map, set
- * @tutorial https://github.com/substack/js-traverse
+ * if needed, clone
  *
- * @param {Traversable} obj any traversable value
+ * first things to check are number/string/boolean/null/undefined
  *
- * @example
+ * then check non-iteratables
+ * symbol, promise,
  *
- *   traverse({})
- *   //=> Traverser
+ * then check conversions
+ * - map, set
  *
+ * then check empties
+ * - obj
+ * - fn
+ *
+ * -------
+ *
+ * numbers f-or first/last
+ * and as a sort of hash like
+ * 1 + 2 + 4 = ISLEAF & ISROOT ?
+ *
+ * Array
+ *
+ * Object Function Date Error Map Set
+ *
+ * String
+ * Number NaN Infinity
+ * Boolean
+ *
+ *
+ * null undefined
+ *
+ * Promise Symbol
+ *
+ * ----
+ *
+ * @emits before
+ * @emits pre
+ * @emits post
+ * @emits after
  */
-function Traverse(obj) {
-  this.value = obj
-}
 
-/**
- * @desc Get the element at the array path.
- *
- * @param  {Array<string>} ps paths
- * @return {any} value at dot-prop
- *
- * @memberOf Traverse
- * @see this.forEach
- * @todo hasOwnProperty
- */
-Traverse.prototype.get = function(ps) {
-  let node = this.value
-  for (let i = 0; i < ps.length; i++) {
-    const key = ps[i]
-    if (!node || !hasOwnProperty(node, key)) {
-      node = undefined
-      break
-    }
-    node = node[key]
+const isObjOrArr = x => isObj(x) || isArray(x)
+
+const makeIterator = () => {
+  // always cleared when done anyway
+  const parents = new Set()
+  const hasParent = (depth, value) => isObjOrArr(value) && parents.has(value)
+  const addParent = (depth, value) => {
+    if (!isObjOrArr(value)) return
+    if (parents.size >= 100) parents.clear()
+    parents.add(value)
   }
-  return node
-}
+  // (isObjOrArr(value) ? parents.add(value) : parents.add(value))
+  // const removeLastParent = () => parents.delete(lastParent)
+  const clearParents = (depth, value) => parents.clear()
+  const removeParent = (depth, value) => parents.delete(value)
 
-/**
- * @desc Return whether the element at the array path exists.
- *
- * @param  {Array<string>} pathsArray paths
- * @return {boolean} has element at path
- *
- * @memberOf Traverse
- * @see hasOwnProperty
- *
- * @example
- *
- *    traverse({eh: true}).has(['eh'])
- *    //=> true
- *
- * @example
- *
- *    traverse({eh: true}).has(['canada'])
- *    //=> false
- *
- *
- * @example
- *
- *    traverse([0]).has([2])
- *    //=> false
- *
- */
-Traverse.prototype.has = function(pathsArray) {
-  let node = this.value
-  for (let i = 0; i < pathsArray.length; i++) {
-    const key = pathsArray[i]
-    if (!node || !hasOwnProperty(node, key)) {
-      return false
-    }
-    node = node[key]
+  // should be inheriting
+  function ItOrAteOr(iteratee, config) {
+    this.iteratee = iteratee
+    this.parent = iteratee
+
+    this.paths = []
+
+    // @HACK @FIXME @TODO remove, not needed, compat
+    this.path = this.paths
+
+    this.key = undefined
+
+    // @TODO: benchmark with just 1 set
+    // this.parents = new Set()
+
+    this.isAlive = true
+    this.isCircular = false
+    this.isLeaf = false
+    this.isRoot = true
+
+    // iterates +1 so start at 0
+    this.depth = -1
+
+    // to pass in the events (as commented below) without messing up scope?
+    // if (config.on) this.on = config.on
+    return this
   }
-  return true
-}
 
-/**
- * @desc Set the element at the array path to value.
- *
- * @param  {Array<string>} arrayPath paths
- * @param  {any} value any value to assign to the element @ the path
- * @return {any} value passed in
- *
- * @memberOf Traverse
- * @see deps/dot
- */
-Traverse.prototype.set = function(arrayPath, value) {
-  let node = this.value
-  let i = 0
-  for (; i < arrayPath.length - 1; i++) {
-    const key = arrayPath[i]
-    if (!hasOwnProperty(node, key)) node[key] = {}
-    node = node[key]
-  }
-  node[arrayPath[i]] = value
-  return value
-}
-
-/**
- * @desc Execute fn for each node in the object and return a new object with the results of the walk. To update nodes in the result use this.update(value).
- *
- * @method
- * @memberOf Traverse
- * @see walk
- * @param  {Function} cb fn for each node in the object
- * @return {any}
- *
- * @example
- *    var {traverse} = require('chain-able')
- *
- *    var obj = {a: 1, b: 2, c: [3, 4]}
- *    obj.c.push(obj)
- *
- *    var scrubbed = traverse(obj).map(function(x) {
- *      if (this.circular) this.remove()
- *    })
- *    console.dir(scrubbed)
- *    //=> { a: 1, b: 2, c: [ 3, 4 ] }
- */
-Traverse.prototype.map = function(cb) {
-  return walk(this.value, cb, true)
-}
-
-/**
- * @desc Execute fn for each node in the object but unlike .map(), when this.update() is called it updates the object in-place.
- *       executes a provided function once for each traversed element.
- *
- * @param  {Function} callback provided callback function
- * @return {any} this.value
- *
- * @memberOf Traverse
- * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
- *
- *  @example
- *
- *     var {traverse} = require('chain-able')
- *
- *     var obj = [5, 6, -3, [7, 8, -2, 1], {f: 10, g: -13}]
- *     traverse(obj).forEach(function(x) {
- *       if (x < 0) this.update(x + 128)
- *     })
- *
- *     console.dir(obj)
- *     //=> [ 5, 6, 125, [ 7, 8, 126, 1 ], { f: 10, g: 115 } ]
- *
- */
-Traverse.prototype.forEach = function(callback) {
-  this.value = walk(this.value, callback, false)
-  return this.value
-}
-
-/**
- * @desc applies a function against an accumulator and each element in the array (from left to right) to reduce it to a single value.
- *       calls cb for each loop that is .notRoot
- *       defaults initial value to `this.value`
- *
- * @param  {Function} cb callback forEach
- * @param  {Object | Array | any} init initial value
- * @return {Object | Array | any}
- *
- * @see https://en.wikipedia.org/wiki/Fold_(higher-order_function)
- * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
- * @memberOf Traverse
- *
- * @example
- *
- *    var {traverse} = require('chain-able')
- *
- *    var obj = {
- *      a: [1, 2, 3],
- *      b: 4,
- *      c: [5, 6],
- *      d: {e: [7, 8], f: 9},
- *    }
- *
- *    var leaves = traverse(obj).reduce(function(acc, x) {
- *      if (this.isLeaf) acc.push(x)
- *      return acc
- *    }, [])
- *
- *    console.dir(leaves)
- *    //=> [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
- *
- */
-Traverse.prototype.reduce = function(cb, init) {
-  const skip = arguments.length === 1
-  let acc = skip ? this.value : init
-  this.forEach(function(x) {
-    if (!this.isRoot || !skip) {
-      acc = cb.call(this, acc, x)
+  ItOrAteOr.prototype.forEach = function iterateForEach(cb) {
+    if (ENV_DEBUG) {
+      console.log('\n forEach \n')
     }
-  })
-  return acc
-}
 
-/**
- * @desc Return an Array of every possible non-cyclic path in the object. Paths are Arrays of string keys.
- * @return {Array<string>}
- * @memberOf Traverse
- * @tests traverse/keys
- */
-Traverse.prototype.paths = function() {
-  const acc = []
-  this.forEach(function(x) {
-    acc.push(this.path)
-  })
-  return acc
-}
+    const result = this.iterate(cb)
 
-/**
- * @desc Return an Array of every node in the object.
- * @memberOf Traverse
- * @return {Array<any>}
- */
-Traverse.prototype.nodes = function() {
-  const acc = []
-  this.forEach(function(x) {
-    acc.push(this.node)
-  })
-  return acc
-}
+    // TODO: HERE, WHEN THIS IS ADDED, CAN BREAK SOME TESTS? SCOPED PARENTS MAP?
+    this.done()
 
-/**
- * @desc Create a deep clone of the object.
- *
- * @return {any}
- *
- * @memberOf Traverse
- *
- * @example
- *    const {traverse, eq} = require('chain-able')
- *
- *    const obj = {eh: true, canada: [1]}
- *    const cloned = traverse(obj).clone()
- *    cloned.eh = false
- *    eq(cloned, obj)
- *    //=> false
- *
- */
-Traverse.prototype.clone = function() {
-  let parents = []
-  let nodes = []
+    return result
+  }
+  ItOrAteOr.prototype.stop = function stop() {
+    this.isAlive = false
+    // this.done()
+  }
 
-  return (function clone(src) {
-    for (let i = 0; i < parents.length; i++) {
-      if (parents[i] === src) {
-        return nodes[i]
+  // @TODO skip 1 branch
+  ItOrAteOr.prototype.skip = function skip() {
+    this.skip = true
+  }
+
+  /* prettier-ignore */
+  ItOrAteOr.prototype.checkIteratable = function check(node) {
+    this.isIteratable = isIteratable(node)
+    // just put these as an array?
+    if (isTrue(this.isIteratable)) {
+    // native = leaf if not root
+      this.isLeaf = false
+
+      if (hasParent(this.depth, node)) {
+        this.isCircular = true
+      }
+      else {
+        addParent(this.depth, node)
+        this.isCircular = false
       }
     }
+    else {
+    // ---
+      this.isLeaf = true
+    // require('fliplog').data(node).echo()
+    }
+  }
 
+  /* prettier-ignore */
+  /**
+ * Remove the current element from the output.
+ * If the node is in an Array it will be spliced off.
+ * Otherwise it will be deleted from its parent.
+ * @return {void}
+ * @example
+ *
+ *    traverse([0]).forEach((key, val, it) => it.remove())
+ *    //=> []
+ *
+ */
+  ItOrAteOr.prototype.remove = function removes(arg) {
+    let obj = arg || this.iteratee
+
+    console.log({parent: this.parent})
+    removeParent(obj)
+
+    if (isUndefined(obj)) {
+      throw new Error('why?')
+    }
+    else if (isArray(obj)) {
+      if (ENV_DEBUG) {
+        console.log('traverse:remove:array', obj, this.key)
+      }
+
+      obj.splice(this.key, 1)
+    }
+    else if (isObjStrict(obj)) {
+      if (ENV_DEBUG) {
+        console.log('traverse:remove:obj', this.key)
+      }
+
+      delete obj[this.key]
+    }
+
+    if (isObjStrict(this.parent)) {
+      delete this.parent[this.key]
+      if (ENV_DEBUG) {
+        console.log('traverse:remove:parent', this.key)
+      }
+    }
+    if (isObjStrict(this.iteratee)) {
+      delete this.iteratee[this.key]
+      if (ENV_DEBUG) {
+        console.log('traverse:remove:iteratee', this.key)
+      }
+    }
+    if (ENV_DEBUG) {
+      console.log('traverse:remove:', this.key, {obj, iteratee: this.iteratee})
+    }
+  }
+  ItOrAteOr.prototype.update = function update(value) {
+    if (!isUndefined(this.iteratee)) {
+      this.iteratee[this.key] = value
+    }
+  }
+
+  ItOrAteOr.prototype.done = function done() {
+    // throw new Error('how')
+    // this.iteratee = undefined
+    // this.key = undefined
+    // this.isCircular = undefined
+    // this.isLeaf = undefined
+    // this.isAlive = undefined
+    // this.paths = undefined
+
+    clearParents()
+  }
+
+  // @TODO deal with .isRoot if needed
+  /* prettier-ignore */
+  ItOrAteOr.prototype.iterate = function iterate(on) {
+    if (ENV_DEBUG) {
+      console.log('\n...iterate...\n')
+    }
+
+    if (parents.size >= 30) {
+      clearParents()
+    }
+
+    if (this.isAlive === false) {
+      if (ENV_DEBUG) {
+        console.log('DEAD')
+      }
+
+      return this.done()
+    }
+
+    let node = this.iteratee
+
+    if (isMap(node)) {
+      node = reduce(node)
+    }
+    else if (isSet(node)) {
+      node = toarr(node)
+    }
+
+    addParent(this.depth, node)
+
+    const nodeIsArray = isArray(node)
+    const nodeIsObj = nodeIsArray || isObj(node)
+
+    // ---
+
+    // if (!isUndefined) this.before(node)
+    if (ENV_DEBUG) {
+      // const str = require('pretty-format')({nodeIsObj, nodeIsArray, node})
+      // console.log(str)
+      console.log({nodeIsObj, nodeIsArray, node})
+    }
+    if (ENV_DEBUG) {
+      // require('fliplog').verbose(1).data({nodeIsObj, nodeIsArray, node}).echo()
+    }
+
+    if (isTrue(this.isRoot)) {
+      on.call(this, null, node, this)
+      this.isRoot = false
+    }
+
+    // console.log(node, parents)
+
+    // --------------------
+    // @TODO: IF OBJWITHOUTKEYS, IF ARRAY WITHOUT LENGTH...
+    if (nodeIsArray && node.length === 0) {
+      on.call(this, this.key, node, this)
+      this.iteratee = node
+    }
+    else if (nodeIsObj && ObjectKeys(node).length === 0) {
+    // eqValue(node, )
+      on.call(this, this.key, node, this)
+      this.iteratee = node
+    }
+    // --------------------
+
+    else if (nodeIsObj || nodeIsArray) {
+      this.depth = this.paths.length
+
+      // if (isTrue(this.isRoot)) this.isRoot = false
+
+      // @TODO SAFETY WITH `props(node)` <- fixes Error
+      let keys = nodeIsArray ? node : ObjectKeys(node)
+
+      if (ENV_DEBUG) {
+        console.log({keys})
+      // require('fliplog').verbose(1).data({keys}).echo()
+      }
+
+      // @event
+      if (!isUndefined(this.before)) this.before()
+
+      this.checkIteratable(node)
+      // require('fliplog').verbose(1).data(this).echo()
+
+      // @loop
+      for (let key = 0; key < keys.length; key++) {
+      // --- safety ---
+        if (this.isAlive === false) {
+          if (ENV_DEBUG) {
+            console.log('DEAD')
+          }
+          return this.done()
+        }
+        addParent(this.depth, node)
+
+        // @event
+        if (!isUndefined(this.pre)) this.pre()
+
+        // ----- setup our data ----
+
+        // to make it deletable
+        this.parent = node
+
+        this.key = nodeIsArray ? key : keys[key]
+
+        if (ENV_DEBUG) {
+          console.log('alive', this.key)
+        }
+
+        const value = node[this.key]
+
+        this.checkIteratable(value)
+        // addParent(value)
+
+        // @NOTE: can go forward-backwards if this is after the nested iterating
+        this.paths.push(this.key)
+        this.depth = this.paths.length
+
+        // ----- continue events, loop deeper when needed ----
+
+        on.call(this, this.key, value, this)
+
+        // require('fliplog').data(parents).echo()
+        // require('fliplog').data(this).echo()
+
+        // handle data
+        if (isTrue(this.isCircular)) {
+          if (ENV_DEBUG) {
+            console.log('(((circular)))', this.key)
+          }
+          // on.call(this, this.key, value, this)
+          this.paths.pop()
+          // break
+          continue
+          // return
+        }
+
+        // &&
+        if (isTrue(this.isIteratable)) {
+          if (ENV_DEBUG) {
+            console.log('(((iteratable)))', this.key)
+          }
+
+          this.iteratee = value
+          this.iterate(on)
+        }
+
+        // @event
+        if (!isUndefined(this.post)) this.post()
+
+        // cleanup, backup 1 level
+        this.paths.pop()
+        removeParent(node)
+      }
+
+      // this.paths.pop()
+      this.depth = this.paths.length
+    }
+    else {
+      on.call(this, this.depth, node, this)
+    }
+
+    // @NOTE: careful
+    removeParent(node)
+    // this.parent = this.iteratee // node
+
+    // @event
+    if (!isUndefined(this.after)) this.after(node)
+    this.paths.pop()
+
+    return this.iteratee
+  }
+
+  // when it's some sort of itertable object, loop it further
+
+  // @TODO: need to handle these better without totally messing with bad scope
+  // ItOrAteOr.onPre = function(fn) {
+  //   this.pre = fn
+  // }
+  // ItOrAteOr.onPost = function(fn) {
+  //   this.post = fn
+  // }
+  // ItOrAteOr.onBefore = function(fn) {
+  //   this.before = fn
+  // }
+  // ItOrAteOr.onAfter = function(fn) {
+  //   this.after = fn
+  // }
+
+  // merge with dopemerge?
+  ItOrAteOr.prototype.clone = function clone(arg) {
+    const obj = this.iteratee || arg
+    if (isPrimitive(obj)) return obj
+    let cloned = isArray(obj) ? [] : {}
+    let current = cloned
+
+    traverse(obj).forEach((key, value, traverser) => {
+      if (key === null) return
+      current[key] = traverser.copy(value)
+      if (isObj(value)) current = current[key]
+    })
+
+    return cloned
+  }
+
+  // ugh, how to clone better with *recursive* objects?
+  /* prettier-ignore */
+  ItOrAteOr.prototype.copy = function copy(src) {
     if (isObjStrict(src)) {
-      let dst = copy(src)
+      let dst
 
-      parents.push(src)
-      nodes.push(dst)
+      // if (isPrimitive(src)) {
+      // if (isNullOrUndefined(src)) {
+      //   dst = src
+      // }
+      // for string value number boolean objects...
+      if (isString(src)) {
+        dst = src + ''
+      }
+      else if (isNumber(src)) {
+        dst = src + 0
+      }
+      else if (isBoolean(src)) {
+        dst = !!src
+      }
+      // lists...
+      else if (isMap(src)) {
+        dst = reduce(src)
+      }
+      else if (isSet(src)) {
+        dst = toarr(src)
+      }
 
-      forEach(ObjectKeys(src), key => {
-        dst[key] = clone(src[key])
-      })
+      // ------
+      if (isArray(src)) {
+        dst = []
+      }
+      else if (isDate(src)) {
+        dst = new Date(src.getTime ? src.getTime() : src)
+      }
+      else if (isRegExp(src)) {
+        dst = new RegExp(src)
+      }
+      else if (isError(src)) {
+        dst = new Error(src.message)
+        dst.stack = src.stack
+      }
+      else {
+        dst = Object.create(Object.getPrototypeOf(src))
+      }
 
-      parents.pop()
-      nodes.pop()
+      // @TODO: copy descriptor
+      // eslint-disable-next-line
+    for (var prop in src) {
+      // dst[prop] = src
+        const desc = Object.getOwnPropertyDescriptor(src, prop)
+        Object.defineProperty(dst, prop, desc)
+      }
       return dst
     }
     else {
+    // require('fliplog').red('is NOT OBJ').echo()
       return src
     }
-  })(this.value)
+  }
+  return ItOrAteOr
 }
-
 /**
- * @func
- *
- * @param  {any} root root node
- * @param  {Function} cb callback for each
- * @param  {boolean} immutable should mutate or not
- * @return {any}
- *
- * @see traverse.forEach
+ * @protected
+ * @TODO !!!!!! USE ENUM FLAGS ON LOOSE TO ALLOW MORE CONFIG FOR ==, COMPARATOR, VALUEOF, walk proto (check ownProps...)...
+ * @param  {*} x compare to y
+ * @param  {*} y compare to x
+ * @param  {boolean | number} [loose=false] use == checks when typof !=
+ * @return {boolean}
  */
-function walk(root, cb, immutable) {
-  let path = []
-  let parents = []
-  let alive = true
+/* prettier-ignore */
+function eqValue(x, y, loose) {
+  // console.log({node, y})
+  if (ENV_DEBUG) {
+    console.log('eqValue', {x, y, loose})
+  }
 
-  /**
-   * @emits before
-   * @emits pre
-   * @emits post
-   * @emits after
-   *
-   * @param  {any} node_
-   * @return {State} see types
-   */
-  return (function walker(node_) {
-    // both are objs with properties that get changed but
-    const node = immutable ? copy(node_) : node_
-    const modifiers = {}
-    let keepGoing = true
-
-    /**
-     * Each method that takes a callback has a context (its this object) with these attributes:
-     * @prop {boolean} isRoot @alias isNotRoot Whether or not the present node is a leaf node (has no children)
-     * @type {Object}
-     */
-    const state = {
-      /**
-       * The present node on the recursive walk
-       * @type {Array}
-       */
-      node,
-      /**
-       * @see traverse.context.node
-       * @protected
-       * @type {Array}
-       */
-      node_,
-      /**
-       * An array of string keys from the root to the present node
-       * @type {Array}
-       */
-      path: [].concat(path),
-      /**
-       * The context of the node's parent. This is undefined for the root node.
-       * @type {undefined | Primitive}
-       */
-      parent: parents[parents.length - 1],
-      parents,
-      /**
-       * The name of the key of the present node in its parent. This is undefined for the root node.
-       * @type {undefined | Primitive}
-       */
-      key: path.slice(-1)[0],
-      /**
-       * Whether the present node is the root node
-       * @type {Boolean}
-       */
-      isRoot: path.length === 0,
-      /**
-       * Depth of the node within the traversal
-       * @type {number}
-       */
-      level: path.length,
-      /**
-       * If the node equals one of its parents, the circular attribute is set to the context of that parent and the traversal progresses no deeper.
-       * @type {null | boolean}
-       */
-      circular: null,
-      /**
-       * Set a new value for the present node.
-       * All the elements in value will be recursively traversed unless stopHere is true.
-       *
-       * @param  {Function} x
-       * @param  {boolean} stopHere
-       * @return {void}
-       */
-      update(x, stopHere) {
-        if (!state.isRoot) {
-          state.parent.node[state.key] = x
-        }
-        state.node = x
-        if (stopHere) keepGoing = false
-      },
-      /**
-       * Delete the current element from its parent in the output. Calls delete even on Arrays.
-       * @param  {boolean} stopHere
-       * @return {void}
-       */
-      delete(stopHere) {
-        delete state.parent.node[state.key]
-        if (stopHere) keepGoing = false
-      },
-      /**
-       * Remove the current element from the output. If the node is in an Array it will be spliced off. Otherwise it will be deleted from its parent.
-       * @param  {boolean} stopHere
-       * @return {void}
-       */
-      remove(stopHere) {
-        // @NOTE safety
-        if (isUndefined(state.parent)) {
-          return
-        }
-        else if (isArray(state.parent.node)) {
-          state.parent.node.splice(state.key, 1)
-        }
-        else {
-          delete state.parent.node[state.key]
-        }
-        if (stopHere) keepGoing = false
-      },
-      keys: null,
-      /**
-       * Call this function before any of the children are traversed.
-       * You can assign into this.keys here to traverse in a custom order.
-       * @param  {Function} fn
-       * @return {any}
-       */
-      before(fn) {
-        modifiers.before = fn
-      },
-      /**
-       * Call this function after any of the children are traversed.
-       * @param  {Function} fn
-       * @return {any}
-       */
-      after(fn) {
-        modifiers.after = fn
-      },
-      /**
-       * Call this function before each of the children are traversed.
-       * @param  {Function} fn
-       * @return {any}
-       */
-      pre(fn) {
-        modifiers.pre = fn
-      },
-      /**
-       * Call this function after each of the children are traversed.
-       * @param  {Function} fn
-       * @return {any}
-       */
-      post(fn) {
-        modifiers.post = fn
-      },
-      /**
-       * @modifies alive
-       * @protected
-       * @return {void}
-       */
-      stop() {
-        alive = false
-      },
-      /**
-       * @modifies keepGoing
-       * @protected
-       * @return {void}
-       */
-      block() {
-        keepGoing = false
-      },
+  // if (x === y) {
+  //   if (ENV_DEBUG) {
+  //     console.log('===', {x, y})
+  //   }
+  //   // noop
+  // }
+  // else
+  if (isNullOrUndefined(x) || isNullOrUndefined(y)) {
+    if (ENV_DEBUG) {
+      console.log('null or undef !=', {x, y})
     }
 
-    if (!alive) return state
-
-    /**
-     * @desc updates if needed:
-     *       @modifies keys
-     *       @modifies circular
-     *       @modifies isLeaf
-     *       @modifies notLeaf
-     *       @modifies notRoot
-     * @return {void}
-     */
-    function updateState() {
-      if (isObjStrict(state.node)) {
-        if (!state.keys || state.node_ !== state.node) {
-          state.keys = ObjectKeys(state.node)
-        }
-
-        // @NOTE was ==
-        state.isLeaf = state.keys.length === 0
-
-        for (let i = 0; i < parents.length; i++) {
-          if (parents[i].node_ === node_) {
-            state.circular = parents[i]
-            break
-          }
-        }
-      }
-      else {
-        state.isLeaf = true
-        state.keys = null
-      }
-
-      state.notLeaf = !state.isLeaf
-      state.notRoot = !state.isRoot
+    if (x !== y) {
+      return false
     }
-
-    updateState()
-    // @NOTE added last `,state` arg to not have it have to use `this`,
-    // but broke some things so moved to another fn
-    //
-    // use return values to update if defined
-    let ret = cb.call(state, state.node)
-    if (!isUndefined(ret) && state.update) state.update(ret)
-
-    if (modifiers.before) modifiers.before.call(state, state.node)
-
-    if (!keepGoing) return state
-
-    // when it's some sort of itertable object, loop it further
-    if (isObjStrict(state.node) && !state.circular) {
-      parents.push(state)
-
-      updateState()
-
-      forEach(state.keys, (key, i) => {
-        path.push(key)
-
-        if (modifiers.pre) modifiers.pre.call(state, state.node[key], key)
-
-        const child = walker(state.node[key])
-        if (immutable && hasOwnProperty(state.node, key)) {
-          state.node[key] = child.node
-        }
-
-        // @NOTE was ==
-        child.isLast = i === state.keys.length - 1
-        child.isFirst = i === 0
-
-        if (modifiers.post) modifiers.post.call(state, child)
-
-        path.pop()
-      })
-      parents.pop()
-    }
-
-    if (modifiers.after) modifiers.after.call(state, state.node)
-
-    return state
-  })(root).node
-}
-
-/**
- * @func
- * @TODO   does not respect ObjectDescriptors
- * @NOTE   wicked ternary
- * @param  {any} src
- * @return {any}
- */
-function copy(src) {
-  // require('fliplog').data(src).bold('copying').echo()
-  if (isObjStrict(src)) {
-    let dst
-
-    // require('fliplog').underline('is obj').echo()
-    if (isMap(src)) {
-      dst = reduce(src)
-    }
-    else if (isSet(src)) {
-      dst = toarr(src)
-    }
-    if (isArray(src)) {
-      dst = []
-    }
-    else if (isDate(src)) {
-      dst = new Date(src.getTime ? src.getTime() : src)
-    }
-    else if (isRegExp(src)) {
-      dst = new RegExp(src)
-    }
-    else if (isError(src)) {
-      dst = {message: src.message}
-    }
-    else if (isBoolean(src)) {
-      dst = new Boolean(src)
-    }
-    else if (isNumber(src)) {
-      dst = new Number(src)
-    }
-    else if (isString(src)) {
-      dst = new String(src)
+  }
+  else if (typeof x !== typeof y) {
+    // eslint-disable-next-line
+    if (isTrue(loose) && x == y) {
+      // ignore
     }
     else {
-      //if (Object.create && Object.getPrototypeOf)
-      dst = Object.create(getPrototypeOf(src))
-    }
-    // else if (src.constructor === Object) {
-    //   dst = {}
-    // }
-    // else {
-    //   // @NOTE: only happens if above getPrototypeOf does not exist
-    //   var proto = (src.constructor && src.constructor.prototype) ||
-    //   src.__proto__ || {}
-    //   var T = function() {}
-    //   T.prototype = proto
-    //   dst = new T()
-    // }
+      if (ENV_DEBUG) {
+        console.log('typeof !=', {x, y})
+      }
 
-    forEach(ObjectKeys(src), key => {
-      dst[key] = src[key]
-    })
-    return dst
+      return false
+    }
   }
-  else {
-    // require('fliplog').red('is NOT OBJ').echo()
-    return src
+  else if (isObjStrict(x)) {
+    if (ENV_DEBUG) {
+      console.log('isObjStrict', {x})
+    }
+    // if (isArray(x)) {
+    //   if (x.length !== y.length) {
+    //     return false
+    //   }
+    // }
+    // @NOTE .toString will be covered for functions and regexes in objStrict
+    if (isRegExp(x) || isRegExp(y)) {
+      if (ENV_DEBUG) {
+        console.log('regexp', {x, y})
+      }
+
+      if (!x || !y || x.toString() !== y.toString()) {
+        if (ENV_DEBUG) {
+          console.log('regexp !=', {x, y})
+        }
+
+        return false
+      }
+    }
+    else if (isDate(x) || isDate(y)) {
+      if (ENV_DEBUG) {
+        console.log('dates', {x, y})
+      }
+
+      if (!isDate(x) || !isDate(y) || x.getTime() !== y.getTime()) {
+        if (ENV_DEBUG) {
+          console.log('!= dates', {x, y})
+        }
+
+        return false
+      }
+    }
+    else if (isError(x) || isError(y)) {
+      if (ENV_DEBUG) {
+        console.log('isError', {x, y})
+      }
+
+      if (!isError(x) || !isError(y) || x.stack !== y.stack) {
+        if (ENV_DEBUG) {
+          console.log('!= errors', {x, y})
+        }
+
+        return false
+      }
+    }
+    else if (isArray(x) && !isArray(y)) {
+      if (ENV_DEBUG) {
+        console.log('isArray(x) || isArray(y)!')
+      }
+
+      return false
+    }
+    else if (!isArray(x) && isArray(y)) {
+      if (ENV_DEBUG) {
+        console.log('!isArray(x) && isArray(y):')
+      }
+
+      return false
+    }
+    else {
+      // @NOTE it will traverse through values if they are == here
+      const xKeys = ObjectKeys(x)
+      const yKeys = ObjectKeys(y).length
+
+      if (xKeys.length !== yKeys) {
+        if (ENV_DEBUG) {
+          console.log('!= obj key length', {xKeys, yKeys})
+        }
+
+        return false
+      }
+
+      for (let k = 0; k < xKeys.length; k++) {
+        if (!hasOwnProperty(y, xKeys[k])) {
+          if (ENV_DEBUG) {
+            console.log('!= obj property', {y, val: xKeys[k]})
+          }
+
+          return false
+        }
+      }
+    }
   }
+  else if (toS(x) === toS(y) && x !== y) {
+    // isString(x) || isBoolean(x) || isNumber(x) || isIterator(x)
+    /* istanbul ignore next: dev */
+    if (ENV_DEBUG) {
+      console.log('same str types - diff values', {s: toS(x), x, y})
+    }
+
+    return false
+  }
+  else if (toS(x) !== toS(y)) {
+    /* istanbul ignore next: dev */
+    if (ENV_DEBUG) {
+      console.log('diff str types', {x: toS(x), y: toS(y)})
+    }
+
+    return false
+  }
+
+  // go deeper
+  else if (isFunction(x) || isFunction(y)) {
+    /* istanbul ignore next: dev */
+    if (ENV_DEBUG) {
+      console.log('isFunction(x) && isFunction(y):')
+      console.log(x.toString())
+      console.log(y.toString())
+    }
+
+    if (!x || !y || x.toString() !== y.toString()) {
+      if (ENV_DEBUG) {
+        console.log('x.toString() !== y.toString()', x.toString() !== y.toString())
+      }
+      return false
+    }
+    else {
+      return true
+    }
+  }
+
+  else if (isObj(x) && isObj(y)) {
+    /* istanbul ignore next: dev */
+    if (ENV_DEBUG) {
+      console.log('isObj(x) && isObj(y):')
+    }
+
+    return false
+  }
+  // else {
+  /* istanbul ignore next: dev */
+  if (ENV_DEBUG) {
+    console.log('eqeqeq:', {[toS(x) + 'X']: x, [toS(y) + 'Y']: y})
+  }
+  return true
+  // }
 }
 
-/**
- * @desc adds methods to Traverser
- */
-forEach(ObjectKeys(Traverse.prototype), key => {
-  traverse[key] = function(obj) {
-    const t = new Traverse(obj)
-
-    // args = argumentor.apply(null, arguments).slice(1)
-    return t[key].apply(t, argumentor.apply(null, arguments).slice(1))
+/* prettier-ignore */
+function eq(a, b, loose, scoped = false) {
+  /* istanbul ignore next: dev */
+  if (ENV_DEBUG) {
+    console.log('\n')
   }
-})
+
+  let equal = true
+  let node = b
+
+  let _node = b
+
+  const instance = traverse(a)
+  const notEqual = () => {
+    // throw new Error()
+    equal = false
+    instance.stop()
+  }
+
+  /* istanbul ignore next: dev */
+  if (ENV_DEBUG) {
+    console.log('eq?')
+  }
+
+  instance.forEach(function(key, y, traverser) {
+    /* istanbul ignore next: dev */
+    if (ENV_DEBUG) {
+      console.log('eq: iterating:')
+    }
+
+    // BREAKS ANY BUT OBJ
+    // if (!isObjLoose(node)) {
+    //   node = _node
+    //   return notEqual()
+    // }
+    // else {
+    //   _node = node
+    // }
+
+    if (isObjStrict(node))  {
+      _node = node
+      node = node[traverser.key]
+    }
+
+    // node = node ? node[traverser.key] : node
+
+    let x = node
+    x = dot.get(b, traverser.paths.join('.'), b)
+
+    /* istanbul ignore next: dev */
+    if (ENV_DEBUG) {
+      console.log({key, y, x, a, b})
+    }
+
+    const eqv = eqValue(x, y, loose)
+
+    /* istanbul ignore next: dev */
+    if (ENV_DEBUG) {
+      console.log({eqv})
+    }
+
+    if (eqv === false) {
+      // equal
+      notEqual()
+    }
+    // }
+  })
+
+  if (equal === false && scoped === false) return eq(b, a, loose, true)
+  else return equal
+}
+
+function traverse(value) {
+  const ItOrAteOr = makeIterator()
+  return new ItOrAteOr(value)
+}
+
+module.exports = traverse
+module.exports.eq = eq
+
+// eslint-disable-next-line
+// debugger
+// const eeeeq = eq(new Error(''), 1)
+// console.log(eeeeq)
+
+// -------------------------------------
+// -------------------------------------
+// -------------------------------------
