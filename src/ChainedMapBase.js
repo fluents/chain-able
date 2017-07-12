@@ -12,6 +12,9 @@ const SHORTHANDS_KEY = require('./deps/meta/shorthands')
  * this is to avoid circular requires
  * because MergeChain & MethodChain extend this
  * yet .method & .merge use those chains
+ * ...also, it serves as a non-references creator for extending new instances
+ *    of Chainable, where it splits into (Map | Set) -> composed prototype decorators
+ *
  *
  * @file
  * @since 4.0.0-alpha.1
@@ -41,8 +44,8 @@ const SHORTHANDS_KEY = require('./deps/meta/shorthands')
  *
  */
 
-const CMC = SuperClass => {
-  return class ChainedMapBase extends SuperClass {
+const ComposeChainedMapBase = Target => {
+  return class ChainedMapBase extends Target {
     /**
      * @param {ChainedMapBase | Chainable | ParentType | any} parent ParentType
      * @constructor
@@ -276,7 +279,7 @@ const CMC = SuperClass => {
  * @method compose
  * @memberOf ChainedMapBase
  *
- * @param {Class | Object | Composable} [SuperClass=Chainable] class to extend
+ * @param {Class | Object | Composable} [Target=Chainable] class to extend
  * @return {Class} ChainedMapBase
  *
  * @example
@@ -288,7 +291,7 @@ const CMC = SuperClass => {
  *    //=> true
  *
  */
-const cmc = CMC(Chainable)
-cmc.compose = CMC
+const cmc = ComposeChainedMapBase(Chainable)
+cmc.compose = ComposeChainedMapBase
 
 module.exports = cmc

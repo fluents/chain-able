@@ -1,4 +1,3 @@
-const isObj = require('../deps/is/obj')
 const DECORATED_KEY = require('../deps/meta/decorated')
 const meta = require('../deps/meta')
 

@@ -231,6 +231,7 @@ class MergeChain extends ChainedMapBase {
               {existing, onExisting, [key]: value}
             )
           }
+
           /**
            * maybe we should not even have `.onExisting`
            * since we can just override merge method...

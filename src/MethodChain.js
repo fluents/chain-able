@@ -138,7 +138,7 @@ class MethodChain extends ChainedMap {
     // shorthand
     this.method = this.methods = name => {
       if (!this.length) return this.name(name)
-      return this.build().methods(name)
+      else return this.build().methods(name)
     }
 
     // default argument...
