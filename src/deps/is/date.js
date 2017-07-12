@@ -34,5 +34,6 @@ const toS = require('./toS')
  *  //=> true
  */
 module.exports = function isDate(x) {
-  return x instanceof Date || toS(x) === '[object Date]'
+  return toS(x) === '[object Date]'
+  // x instanceof Date ||
 }

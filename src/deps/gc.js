@@ -39,28 +39,36 @@ const isArray = require('./is/array')
  *
  */
 function markForGarbageCollection(obj) {
-  let props = ObjectProperties(obj)
+  // @TODO: ArrayOrObj loop... like tons of libs do...
+  let props = isObj(obj) ? ObjectProperties(obj) : obj //isArray(obj) ? obj
 
-  traverse(obj).forEach(function(x) {
-    const {value} = this
-
-    // @NOTE: just delete the main path first, later we can use cleaner
-    // const shouldIgnore = path
-    //   .map(pathPart => ignore.includes(pathPart))
-    //   .includes(true)
-    //   !shouldIgnore &&
-
-    /* istanbul ignore else: safety for bottom up */
-    // ensure the longest paths in traverser are used...
-    if (!isArray(value) && !isObj(value)) {
-      this.remove()
-    }
-  })
-
-  // simple fast easy cleanup
   for (let p = 0; p < props.length; p++) {
+    if (isObj(obj[p])) {
+      markForGarbageCollection(obj[p])
+    }
     delete obj[p]
   }
+
+  // traverse(obj).forEach(function(x) {
+  //   const {value} = this
+  //
+  //   // @NOTE: just delete the main path first, later we can use cleaner
+  //   // const shouldIgnore = path
+  //   //   .map(pathPart => ignore.includes(pathPart))
+  //   //   .includes(true)
+  //   //   !shouldIgnore &&
+  //
+  //   /* istanbul ignore else: safety for bottom up */
+  //   // ensure the longest paths in traverser are used...
+  //   if (!isArray(value) && !isObj(value)) {
+  //     this.remove()
+  //   }
+  // })
+
+  // simple fast easy cleanup
+  // for (let p = 0; p < props.length; p++) {
+  //   delete obj[p]
+  // }
 
   props = undefined
   obj = undefined

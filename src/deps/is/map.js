@@ -41,5 +41,6 @@ const toS = require('./toS')
  *
  */
 module.exports = function isMap(x) {
-  return x instanceof Map || toS(x) === '[object Map]'
+  // return x instanceof Map ||
+  return toS(x) === '[object Map]'
 }

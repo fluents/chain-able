@@ -33,5 +33,6 @@ const toS = require('./toS')
  *
  */
 module.exports = function isError(x) {
-  return x instanceof Error || toS(x) === '[object Error]'
+  return toS(x) === '[object Error]'
+  // x instanceof Error ||
 }

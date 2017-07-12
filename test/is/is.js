@@ -3,9 +3,16 @@ const isGenerator = require('../../src/deps/is/generator')
 const isPromise = require('../../src/deps/is/promise')
 const isAsync = require('../../src/deps/is/async')
 const isAsyncish = require('../../src/deps/is/asyncish')
+const isNative = require('../../src/deps/is/native')
 const ObjectDefine = require('../../src/deps/define')
 const stress = require('../_stress')
-const {isMap, isSet, isFunction, isObjWithKeys, isPrototypeOf} = require('./')
+const {
+  isMap,
+  isSet,
+  isFunction,
+  isObjWithKeys,
+  isPrototypeOf,
+} = require('./')
 
 test('stress', () => {
   stress()
@@ -193,4 +200,13 @@ test('isAsync & isAsyncish', () => {
   expect(isAsyncish(1)).toBe(false)
   stress(isAsync)
   stress(isAsyncish)
+})
+
+test('isNative', () => {
+  function normalFunction() {}
+  normalFunction()
+
+  expect(isNative(Array.prototype.push)).toBe(true)
+  expect(isNative(normalFunction)).toBe(false)
+  stress(isNative)
 })

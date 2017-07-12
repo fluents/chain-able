@@ -5,7 +5,7 @@ const toS = require('./toS')
  *
  * @since 0.1.0
  * @category Lang
- * @param {*} value The value to check.
+ * @param {*} x The value to check.
  * @return {boolean} Returns `true` if `value` is a regexp, else `false`.
  * @see https://github.com/lodash/lodash/blob/master/isRegExp.js
  *
@@ -18,4 +18,5 @@ const toS = require('./toS')
  * // => false
  *
  */
-module.exports = obj => obj instanceof RegExp || toS(obj) === '[object RegExp]'
+module.exports = x => toS(x) === '[object RegExp]'
+// obj instanceof RegExp ||
