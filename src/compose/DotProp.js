@@ -45,7 +45,7 @@ const shouldDot = (key, thisArg) => thisArg.meta.dot !== false && isDot(key)
  * @memberOf compose
  * @category Chainable
  *
- * @param  {Class | Composable} SuperClass composable class
+ * @param  {Class | Composable} Target composable class
  * @return {DotProp} class
  *
  * @tests DotProp
@@ -85,171 +85,178 @@ const shouldDot = (key, thisArg) => thisArg.meta.dot !== false && isDot(key)
  *    //=> true
  *
  */
-module.exports = SuperClass => {
-  return class DotProp extends SuperClass {
-    /**
-     * @method dot
-     * @methodChain DotProp
-     * @since 3.0.1
-     *
-     * @param  {boolean} [useDot=undefined] use dot prop or not
-     * @return {DotProp} @chainable
-     *
-     * @see deps/meta
-     *
-     * @example
-     *
-     *     const chain = new Chain()
-     *     chain.dot(false)
-     *     chain.set('moose.simple', 1)
-     *
-     *     toArr(chain.store.keys())
-     *     //=> ['moose.simple']
-     *
-     */
-    dot(useDot) {
-      this.meta.dot = useDot
-      return this
-    }
+module.exports = Target => {
+  // is this any better?
+  const entries = Target.prototype.entries
+  const set = Target.prototype.set
+  const has = Target.prototype.has
+  const get = Target.prototype.get
+  const del = Target.prototype.delete
 
-    /**
-     * @desc since we have a map,
-     *       we need to ensure the first property is available
-     *       otherwise we have an empty map.entries obj
-     *       which does nothing by reference
-     * @since 3.0.1
-     * @memberOf DotProp
-     *
-     * @override
-     * @inheritdoc
-     *
-     * @see ChainedMap.set
-     * @see .dot
-     *
-     * @example
-     *    const chain = new Chain()
-     *
-     *    chain.set('moose.simple', 1)
-     *    //=> Chain store:Map:  { moose: { simple: 1 } }
-     */
-    set(key, val) {
-      if (shouldDot(key, this)) {
-        // first accessor
-        // @example: `canada` in `canada.eh`
-        const prop = key.split('.').shift()
-
-        // we already know it is .dot, call super instead
-        // if (!super.has(prop)) super.set(prop, {})
-
-        // spread
-        const data = super.entries()
-
-        // set on the spread data
-        dot.set(data, key, val)
-
-        // is already by ref, but be extra safe, + observables
-        return super.set(prop, data[prop], key)
-      }
-      return super.set(key, val)
-    }
-
-    /**
-     * @desc dot-prop enabled get
-     * @method get
-     * @memberOf DotProp
-     *
-     * @since 3.0.1
-     * @override
-     * @inheritdoc
-     *
-     * @param {Primitive} key dot prop key, or any primitive key
-     * @param {any} [fallback=undefined] fallback value, if it cannot find value with key path
-     * @return {any} value for path, or fallback value if provided
-     *
-     * @see ChainedMap.get
-     * @see deps/dot
-     * @see deps/is/dot
-     *
-     * @TODO dot-prop on non-store instance.property when using nested chains...
-     *
-     * @example
-     *
-     *    chain.set('moose.simple', 1)
-     *    //=> Chain
-     *
-     *    chain.get('moose.simple')
-     *    //=>1
-     *
-     *    chain.get('moose')
-     *    //=> {simple: 1}
-     *
-     * @example
-     *
-     *    //also works with an array (moose.simple)
-     *    chain.get(['moose', 'simple'])
-     *    //=> 1
-     *
-     */
-    get(key, fallback) {
-      return shouldDot(key, this)
-        ? dot.get(super.entries(), key, fallback)
-        : super.get(key)
-    }
-
-    /**
-     * @method has
-     * @methodOf DotProp
-     * @since 3.0.1
-     * @override
-     * @inheritdoc
-     *
-     * @see deps/dot
-     * @see deps/is/dot
-     *
-     * @example
-     *
-     *  chain.set('one.two', 3)
-     *  chain.has('one.two')
-     *  //=> true
-     *
-     */
-    has(key) {
-      return shouldDot(key, this)
-        ? dot.has(super.entries(), key)
-        : super.has(key)
-    }
-
-    /**
-     * @method delete
-     * @methodOf DotProp
-     * @since 3.0.1
-     *
-     * @override
-     * @inheritdoc
-     * @see deps/dot
-     * @see deps/is/dot
-     *
-     * @example
-     *
-     *    chain.set('moose.canada.eh', true)
-     *    chain.set('moose.canada.igloo', true)
-     *    //=> Chain
-     *
-     *    chain.delete('moose.canada.eh')
-     *    //=> Chain
-     *
-     *    chain.has('moose.canada.eh')
-     *    //=> true
-     *
-     *    //still has moose.canada.igloo
-     *    chain.has('moose.canada')
-     *    //=> true
-     *
-     */
-    delete(key) {
-      return shouldDot(key, this)
-        ? dot.delete(super.entries(), key)
-        : super.delete(key)
-    }
+  /**
+   * @method dot
+   * @methodTarget DotProp
+   * @since 3.0.1
+   *
+   * @param  {boolean} [useDot=undefined] use dot prop or not
+   * @return {DotProp} @chainable
+   *
+   * @see deps/meta
+   *
+   * @example
+   *
+   *     const chain = new Target()
+   *     chain.dot(false)
+   *     chain.set('moose.simple', 1)
+   *
+   *     toArr(chain.store.keys())
+   *     //=> ['moose.simple']
+   *
+   */
+  Target.prototype.dot = function enableDisableDot(useDot) {
+    this.meta.dot = useDot
+    return this
   }
+
+  /**
+   * @desc since we have a map,
+   *       we need to ensure the first property is available
+   *       otherwise we have an empty map.entries obj
+   *       which does nothing by reference
+   * @since 3.0.1
+   * @memberOf DotProp
+   *
+   * @override
+   * @inheritdoc
+   *
+   * @see TargetedMap.set
+   * @see .dot
+   *
+   * @example
+   *    const chain = new Target()
+   *
+   *    chain.set('moose.simple', 1)
+   *    //=> Target store:Map:  { moose: { simple: 1 } }
+   */
+  Target.prototype.set = function dotSet(key, val) {
+    if (shouldDot(key, this)) {
+      // first accessor
+      // @example: `canada` in `canada.eh`
+      const prop = key.split('.').shift()
+
+      // we already know it is .dot, call super instead
+      // if (!super.has(prop)) super.set(prop, {})
+
+      // spread
+      const data = entries.call(this)
+
+      // set on the spread data
+      dot.set(data, key, val)
+
+      // is already by ref, but be extra safe, + observables
+      return set.call(this, prop, data[prop], key)
+    }
+    return set.call(this, key, val)
+  }
+
+  /**
+   * @desc dot-prop enabled get
+   * @method get
+   * @memberOf DotProp
+   *
+   * @since 3.0.1
+   * @override
+   * @inheritdoc
+   *
+   * @param {Primitive} key dot prop key, or any primitive key
+   * @param {any} [fallback=undefined] fallback value, if it cannot find value with key path
+   * @return {any} value for path, or fallback value if provided
+   *
+   * @see ChainedMap.get
+   * @see deps/dot
+   * @see deps/is/dot
+   *
+   * @TODO dot-prop on non-store instance.property when using nested chains...
+   *
+   * @example
+   *
+   *    chain.set('moose.simple', 1)
+   *    //=> Chain
+   *
+   *    chain.get('moose.simple')
+   *    //=>1
+   *
+   *    chain.get('moose')
+   *    //=> {simple: 1}
+   *
+   * @example
+   *
+   *    //also works with an array (moose.simple)
+   *    chain.get(['moose', 'simple'])
+   *    //=> 1
+   *
+   */
+  Target.prototype.get = function dotGet(key, fallback) {
+    return shouldDot(key, this)
+      ? dot.get(entries.call(this), key, fallback)
+      : get.call(this, key)
+  }
+
+  /**
+   * @method has
+   * @methodOf DotProp
+   * @since 3.0.1
+   * @override
+   * @inheritdoc
+   *
+   * @see deps/dot
+   * @see deps/is/dot
+   *
+   * @example
+   *
+   *  chain.set('one.two', 3)
+   *  chain.has('one.two')
+   *  //=> true
+   *
+   */
+  Target.prototype.has = function dotHas(key) {
+    return shouldDot(key, this)
+      ? dot.has(entries.call(this), key)
+      : has.call(this, key)
+  }
+
+  /**
+   * @method delete
+   * @methodOf DotProp
+   * @since 3.0.1
+   *
+   * @override
+   * @inheritdoc
+   * @see deps/dot
+   * @see deps/is/dot
+   *
+   * @example
+   *
+   *    chain.set('moose.canada.eh', true)
+   *    chain.set('moose.canada.igloo', true)
+   *    //=> Chain
+   *
+   *    chain.delete('moose.canada.eh')
+   *    //=> Chain
+   *
+   *    chain.has('moose.canada.eh')
+   *    //=> true
+   *
+   *    //still has moose.canada.igloo
+   *    chain.has('moose.canada')
+   *    //=> true
+   *
+   */
+  Target.prototype.delete = function dotDelete(key) {
+    return shouldDot(key, this)
+      ? dot.delete(entries.call(this), key)
+      : del.call(this, key)
+  }
+
+  return Target
 }

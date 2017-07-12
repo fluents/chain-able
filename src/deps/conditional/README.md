@@ -16,3 +16,6 @@ maybe also have `lib` for lodash style things?
 //   }
 //   return get(key)
 // }
+
+https://github.com/fantasyland/daggy
+https://github.com/paldepind/union-type

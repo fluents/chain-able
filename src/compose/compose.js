@@ -13,12 +13,13 @@ const ComposableExtensions = [Observe, Shorthands, Transform, DotProp]
  * @since 3.0.0
  *
  * @param  {Class | Function | undefined} [target=ChainedMap] class or function to extend
- * @param  {Array | undefined} [extensions=[Observe, Shorthands, Transform, DotProp]] Array of extensions to compose together left ro right
+ * @param  {Array | undefined} [extensions=[Observe, Shorthands, Transform, DotProp]] Array of extensions to compose together left to right
  * @return {Class | Function} composed
  *
  * @tutorial examples/playground/compose
  * @tutorial examples/babel/decorators
  *
+ * @name compose
  * @func compose
  * @member compose
  * @tests compose
