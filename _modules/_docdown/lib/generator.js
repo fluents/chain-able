@@ -198,12 +198,12 @@ function generateDoc(source, options) {
       separator,
       sourceHref: url + '#L' + entry.getLineNumber(),
 
-      sourceLink: _.get(
+      sourceLink: '\n' + _.get(
         options,
         'sourceLink',
         // eslint-disable-next-line no-template-curly-in-string
         '[&#x24C8;](${sourceHref} "View in source")'
-      ),
+      ) + '\n',
       tocHref: '1',
       // eslint-disable-next-line no-template-curly-in-string
       tocLink: _.get(options, 'tocLink', '[&#x24C9;][${tocHref}]'),
