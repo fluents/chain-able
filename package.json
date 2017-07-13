@@ -94,9 +94,7 @@
     "sourceMap": true,
     "instrument": false,
     "cache": false,
-    "include": [
-      "./dist/**/*.js"
-    ],
+    "include": ["./dist/**/*.js"],
     "exclude": [
       "_todos/**",
       "_play/**",
@@ -111,22 +109,13 @@
       "test-dist/built.js",
       "test-dist/chainsaw/*.js"
     ],
-    "_require": [
-      "babel-register",
-      "babel-core/register"
-    ],
+    "_require": ["babel-register", "babel-core/register"],
     "lines": 85,
     "statements": 85,
     "functions": 85,
     "branches": 70,
-    "extension": [
-      ".js"
-    ],
-    "reporter": [
-      "lcov",
-      "html",
-      "text"
-    ]
+    "extension": [".js"],
+    "reporter": ["lcov", "html", "text"]
   },
   "jest": {
     "transformIgnorePatterns": [
@@ -155,10 +144,7 @@
     "watch": false,
     "cache": true,
     "setupTestFrameworkScriptFile": "./test/__testsetup.js",
-    "collectCoverageFrom": [
-      "src/**/*.js",
-      "test/**/*.js"
-    ],
+    "collectCoverageFrom": ["src/**/*.js", "test/**/*.js"],
     "coveragePathIgnorePatterns": [
       "\\\\node_modules\\\\",
       "_modules",
@@ -186,12 +172,7 @@
       "src/index.web.js",
       "src/index.js"
     ],
-    "coverageReporters": [
-      "json",
-      "text",
-      "lcov",
-      "clover"
-    ],
+    "coverageReporters": ["json", "text", "lcov", "clover"],
     "automock": false,
     "bail": false,
     "browser": false,
@@ -210,26 +191,19 @@
     ]
   },
   "ava": {
-    "files": [
-      "!index.*.js",
-      "test-dist/*.js"
-    ],
-    "source": [
-      "dist/**",
-      "!src/**/*"
-    ],
+    "files": ["!index.*.js", "test-dist/*.js"],
+    "source": ["dist/**", "!src/**/*"],
     "verbose": true,
     "concurrency": 3,
     "failFast": false,
     "failWithoutAssertions": false,
     "powerAssert": true,
-    "require": [
-      "babel-core/register"
-    ],
+    "require": ["babel-core/register"],
     "babel": "inherit"
   },
   "_optionalDependencies": {
-    "bench-chain": "^0.5.1"
+    "bench-chain": "^0.5.1",
+    "memwatch-next": "^0.3.0"
   },
   "devDependencies": {
     "@types/node": "^7.0.31",
@@ -274,7 +248,6 @@
     "jest-benchmark": "^0.0.0",
     "lodash": "^4.17.4",
     "marked": "^0.3.6",
-    "memwatch-next": "^0.3.0",
     "mobx": "^3.1.14",
     "module-alias": "^2.0.0",
     "nyc": "^10.3.2",
