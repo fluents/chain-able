@@ -23,6 +23,8 @@ test('traversal with .onMatch', () => {
     .traverse(false)
     .vals([/true/])
     .onMatch((current, traverser) => {
+      // log.quick(traverser)
+      log.data(traverser, current, traverser.remove, traverser.update).echo()
       expect(traverser.path.join('.')).toEqual('one.two')
       expect(current === true).toBe(true)
       expect(typeof traverser.remove === 'function').toBe(true)
