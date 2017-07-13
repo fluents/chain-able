@@ -134,6 +134,64 @@ function isIteratable(node) {
 
 const isObjOrArr = x => isObj(x) || isArray(x)
 
+// need some thin wrapper around values to go up and down path
+//
+//
+// const ValueObject = {
+//   node: value,
+//   kind: typeof,
+//   isRoot: false,
+//   isLeaf: false,
+//   isPrimitive: false,
+//   branches: [],
+//   isFirst: false,
+//   isLast: false,
+//   parent: {},
+// }
+//
+// class It {
+//   constructor(x) {
+//     // this.tree = {
+//     // parent: {},
+//     // }
+//
+//     // this.root = x
+//
+//     // this.previous = x
+//     this.current = x
+//
+//     this.depth = 0
+//     this.all = new Set()
+//     // this.path
+//     // this.key
+//   }
+//
+//   get node() {
+//     return this.current
+//   }
+//
+//   addBranch() {}
+//
+//   // for updating
+//   branchHead() {}
+//
+//   goUp() {
+//     this.depth--
+//   }
+//   goDown(current) {
+//     this.parent = this.current
+//     this.depth++
+//     this.current = current
+//   }
+//   // not needed but conceptually
+//   // goNext() {}
+//
+//   find() {}
+//   path() {}
+// }
+// const it = x => new It(x)
+
+// @TODO make this a trie OR a linked-list
 const makeIterator = () => {
   // always cleared when done anyway
   const parents = new Set()
@@ -148,20 +206,23 @@ const makeIterator = () => {
   const clearParents = (depth, value) => parents.clear()
   const removeParent = (depth, value) => parents.delete(value)
 
-  // should be inheriting
+  /**
+   * @param       {Traversable} iteratee
+   * @param       {Object | undefined} [config] wip config for things such as events or configs
+   * @constructor
+   */
   function ItOrAteOr(iteratee, config) {
     this.iteratee = iteratee
     this.parent = iteratee
+    this.root = iteratee
+    // this.tree = it(iteratee)
 
-    this.paths = []
+    this.path = []
 
     // @HACK @FIXME @TODO remove, not needed, compat
-    this.path = this.paths
+    // this.path = this.path
 
     this.key = undefined
-
-    // @TODO: benchmark with just 1 set
-    // this.parents = new Set()
 
     this.isAlive = true
     this.isCircular = false
@@ -177,6 +238,7 @@ const makeIterator = () => {
   }
 
   ItOrAteOr.prototype.forEach = function iterateForEach(cb) {
+    /* istanbul ignore next: dev */
     if (ENV_DEBUG) {
       console.log('\n forEach \n')
     }
@@ -188,25 +250,53 @@ const makeIterator = () => {
 
     return result
   }
+
+  /**
+   * @modifies this.isAlive = false
+   *
+   * @return {void}
+   *
+   * @example
+   *
+   *   traverse({eh: true, arr: []}).forEach((key, val, t) => {
+   *      if (isArray(val)) this.stop()
+   *   })
+   *
+   */
   ItOrAteOr.prototype.stop = function stop() {
     this.isAlive = false
     // this.done()
   }
 
-  // @TODO skip 1 branch
+  /**
+   * @TODO skip 1 branch
+   * @return {void}
+   */
   ItOrAteOr.prototype.skip = function skip() {
-    this.skip = true
+    this.skipBranch = true
   }
 
   /* prettier-ignore */
+  /**
+   * @desc checks whether a node is iteratable
+   *       @modifies this.isIteratable
+   *       @modifies this.isLeaf
+   *       @modifies this.isCircular
+   *
+   * @protected
+   *
+   * @param  {*} node value to check
+   * @return {void}
+   */
   ItOrAteOr.prototype.checkIteratable = function check(node) {
     this.isIteratable = isIteratable(node)
     // just put these as an array?
     if (isTrue(this.isIteratable)) {
-    // native = leaf if not root
+      // native = leaf if not root
       this.isLeaf = false
 
       if (hasParent(this.depth, node)) {
+        console.log('circular___________', {node})
         this.isCircular = true
       }
       else {
@@ -217,32 +307,41 @@ const makeIterator = () => {
     else {
     // ---
       this.isLeaf = true
-    // require('fliplog').data(node).echo()
+      // require('fliplog').data(node).echo()
     }
   }
 
   /* prettier-ignore */
   /**
- * Remove the current element from the output.
- * If the node is in an Array it will be spliced off.
- * Otherwise it will be deleted from its parent.
- * @return {void}
- * @example
- *
- *    traverse([0]).forEach((key, val, it) => it.remove())
- *    //=> []
- *
- */
+   * Remove the current element from the output.
+   * If the node is in an Array it will be spliced off.
+   * Otherwise it will be deleted from its parent.
+   *
+   * @since 2.0.0
+   * @param {undefined | Object} [arg] optional obj to use, defaults to this.iteratee
+   * @return {void}
+   *
+   * @example
+   *
+   *    traverse([0]).forEach((key, val, it) => it.remove())
+   *    //=> []
+   *
+   */
   ItOrAteOr.prototype.remove = function removes(arg) {
     let obj = arg || this.iteratee
 
-    console.log({parent: this.parent})
+    /* istanbul ignore next: dev */
+    if (ENV_DEBUG) {
+      console.log({parent: this.parent})
+    }
+
     removeParent(obj)
 
     if (isUndefined(obj)) {
-      throw new Error('why?')
+      // throw new Error('why?')
     }
     else if (isArray(obj)) {
+      /* istanbul ignore next: dev */
       if (ENV_DEBUG) {
         console.log('traverse:remove:array', obj, this.key)
       }
@@ -250,6 +349,7 @@ const makeIterator = () => {
       obj.splice(this.key, 1)
     }
     else if (isObjStrict(obj)) {
+      /* istanbul ignore next: dev */
       if (ENV_DEBUG) {
         console.log('traverse:remove:obj', this.key)
       }
@@ -259,24 +359,54 @@ const makeIterator = () => {
 
     if (isObjStrict(this.parent)) {
       delete this.parent[this.key]
+
+      /* istanbul ignore next: dev */
       if (ENV_DEBUG) {
         console.log('traverse:remove:parent', this.key)
       }
     }
     if (isObjStrict(this.iteratee)) {
       delete this.iteratee[this.key]
+
+      /* istanbul ignore next: dev */
       if (ENV_DEBUG) {
         console.log('traverse:remove:iteratee', this.key)
       }
     }
+
+    /* istanbul ignore next: dev */
     if (ENV_DEBUG) {
       console.log('traverse:remove:', this.key, {obj, iteratee: this.iteratee})
     }
   }
+
+  /**
+   * @desc update the value for the current key
+   * @since 2.0.0
+   *
+   * @param  {*} value this.iteratee[this.key] = value
+   * @return {void}
+   *
+   * @example
+   *
+   *    traverse({eh: true})
+   *    .forEach((key, val, traverser) => {
+   *       if (this.isRoot) return
+   *       traverser.update(false)
+   *    })
+   *    //=> {eh: false}
+   *
+   */
   ItOrAteOr.prototype.update = function update(value) {
-    if (!isUndefined(this.iteratee)) {
-      this.iteratee[this.key] = value
-    }
+    // if (!isUndefined(this.iteratee)) {
+    //   this.iteratee[this.key] = value
+    // }
+    // // dot.set(this.iteratee, this.key, value)
+    dot.set(this.root, this.path, value)
+    // dot.set(this.iteratee, this.path, value)
+
+    // dot.set(this.iteratee, this.key, value)
+    // console.log({traverser: this})
   }
 
   ItOrAteOr.prototype.done = function done() {
@@ -286,14 +416,22 @@ const makeIterator = () => {
     // this.isCircular = undefined
     // this.isLeaf = undefined
     // this.isAlive = undefined
-    // this.paths = undefined
+    // this.path = undefined
 
     clearParents()
   }
 
-  // @TODO deal with .isRoot if needed
   /* prettier-ignore */
+  /**
+   * @TODO deal with .isRoot if needed
+   *
+   * @param  {Function} on callback fn for each iteration
+   * @return {*}
+   *
+   * eh
+   */
   ItOrAteOr.prototype.iterate = function iterate(on) {
+    /* istanbul ignore next : dev */
     if (ENV_DEBUG) {
       console.log('\n...iterate...\n')
     }
@@ -303,6 +441,7 @@ const makeIterator = () => {
     }
 
     if (this.isAlive === false) {
+      /* istanbul ignore next : dev */
       if (ENV_DEBUG) {
         console.log('DEAD')
       }
@@ -312,6 +451,7 @@ const makeIterator = () => {
 
     let node = this.iteratee
 
+    // convert to iteratable
     if (isMap(node)) {
       node = reduce(node)
     }
@@ -326,161 +466,234 @@ const makeIterator = () => {
 
     // ---
 
-    // if (!isUndefined) this.before(node)
+    // @event
+    if (!isUndefined(this.onBefore)) {
+      // eslint-disable-next-line no-useless-call
+      this.onBefore(this)
+    }
+
+    /* istanbul ignore next : dev */
     if (ENV_DEBUG) {
       // const str = require('pretty-format')({nodeIsObj, nodeIsArray, node})
+      // require('fliplog').verbose(1).data({nodeIsObj, nodeIsArray, node}).echo()
+      // console.log(node, parents)
       // console.log(str)
       console.log({nodeIsObj, nodeIsArray, node})
     }
-    if (ENV_DEBUG) {
-      // require('fliplog').verbose(1).data({nodeIsObj, nodeIsArray, node}).echo()
-    }
 
+    /**
+     * call as root, helpful when we
+     * - iterate something with no keys
+     * - iterate a non-iteratable (symbol, error, native, promise, etc)
+     */
     if (isTrue(this.isRoot)) {
       on.call(this, null, node, this)
       this.isRoot = false
     }
 
-    // console.log(node, parents)
 
     // --------------------
-    // @TODO: IF OBJWITHOUTKEYS, IF ARRAY WITHOUT LENGTH...
+    // IF OBJWITHOUTKEYS, IF ARRAY WITHOUT LENGTH...
     if (nodeIsArray && node.length === 0) {
       on.call(this, this.key, node, this)
       this.iteratee = node
     }
     else if (nodeIsObj && ObjectKeys(node).length === 0) {
-    // eqValue(node, )
+      // eqValue(node, )
       on.call(this, this.key, node, this)
       this.iteratee = node
     }
     // --------------------
 
     else if (nodeIsObj || nodeIsArray) {
-      this.depth = this.paths.length
+      this.depth = this.path.length
 
       // if (isTrue(this.isRoot)) this.isRoot = false
 
       // @TODO SAFETY WITH `props(node)` <- fixes Error
       let keys = nodeIsArray ? node : ObjectKeys(node)
 
+      /* istanbul ignore next : dev */
       if (ENV_DEBUG) {
         console.log({keys})
-      // require('fliplog').verbose(1).data({keys}).echo()
+        // require('fliplog').verbose(1).data(this).echo()
       }
 
       // @event
-      if (!isUndefined(this.before)) this.before()
+      // if (!isUndefined(this.onBefore)) this.onBefore()
 
-      this.checkIteratable(node)
-      // require('fliplog').verbose(1).data(this).echo()
+      // @NOTE: safety here
+      // this.checkIteratable(node)
+
+      // const last = keys[keys.length - 1]
 
       // @loop
       for (let key = 0; key < keys.length; key++) {
-      // --- safety ---
+        // --- safety ---
         if (this.isAlive === false) {
+          /* istanbul ignore next : dev */
           if (ENV_DEBUG) {
             console.log('DEAD')
           }
+
           return this.done()
         }
+
         addParent(this.depth, node)
 
-        // @event
-        if (!isUndefined(this.pre)) this.pre()
 
         // ----- setup our data ----
 
         // to make it deletable
-        this.parent = node
+        if (node !== this.iteratee) this.parent = node
 
         this.key = nodeIsArray ? key : keys[key]
+        // this.isLast = key === last
 
+        /* istanbul ignore next: dev */
         if (ENV_DEBUG) {
           console.log('alive', this.key)
         }
+
+        // @event
+        if (!isUndefined(this.onPre)) {
+          // eslint-disable-next-line no-useless-call
+          this.onPre(this)
+        }
+
 
         const value = node[this.key]
 
         this.checkIteratable(value)
         // addParent(value)
+        const pathBeforeNesting = this.path.slice(0)
 
         // @NOTE: can go forward-backwards if this is after the nested iterating
-        this.paths.push(this.key)
-        this.depth = this.paths.length
+        this.path.push(this.key)
+        this.depth = this.path.length
 
         // ----- continue events, loop deeper when needed ----
 
         on.call(this, this.key, value, this)
 
-        // require('fliplog').data(parents).echo()
-        // require('fliplog').data(this).echo()
+        /* istanbul ignore next: dev */
+        if (ENV_DEBUG) {
+          // require('fliplog').data(parents).echo()
+          // require('fliplog').data(this).echo()
+        }
 
         // handle data
         if (isTrue(this.isCircular)) {
+          /* istanbul ignore next: dev */
           if (ENV_DEBUG) {
             console.log('(((circular)))', this.key)
           }
+
           // on.call(this, this.key, value, this)
-          this.paths.pop()
+          this.path.pop()
+
           // break
           continue
           // return
         }
 
+
         // &&
         if (isTrue(this.isIteratable)) {
+          /* istanbul ignore next: dev */
           if (ENV_DEBUG) {
             console.log('(((iteratable)))', this.key)
           }
 
           this.iteratee = value
           this.iterate(on)
+          this.path = pathBeforeNesting
         }
 
+        /* istanbul ignore next: dev */
+        if (ENV_DEBUG) {
+          if (this.isIteratable === false) {
+            console.log('not iteratable', this.key)
+          }
+        }
+
+
+        // console.log('----------------- post ----------', node)
+
+
         // @event
-        if (!isUndefined(this.post)) this.post()
+        if (!isUndefined(this.onPost)) {
+          // eslint-disable-next-line no-useless-call
+          this.onPost(this)
+        }
 
         // cleanup, backup 1 level
-        this.paths.pop()
+        this.path.pop()
         removeParent(node)
       }
 
-      // this.paths.pop()
-      this.depth = this.paths.length
+      // this.path.pop()
+      this.depth = this.path.length
     }
     else {
+      // this.isLast = false
       on.call(this, this.depth, node, this)
     }
 
     // @NOTE: careful
     removeParent(node)
-    // this.parent = this.iteratee // node
+
+    // @NOTE: just for .after ?
+    this.iteratee = node
 
     // @event
-    if (!isUndefined(this.after)) this.after(node)
-    this.paths.pop()
+    if (!isUndefined(this.onAfter)) {
+      // eslint-disable-next-line no-useless-call
+      this.onAfter(this)
+    }
+
+    this.path.pop()
 
     return this.iteratee
   }
 
+  // is smaller
+  // function onEvent(property) {
+  //   return function(fn) {
+  //     this[property] = function
+  //   }
+  // }
   // when it's some sort of itertable object, loop it further
-
   // @TODO: need to handle these better without totally messing with bad scope
-  // ItOrAteOr.onPre = function(fn) {
-  //   this.pre = fn
-  // }
-  // ItOrAteOr.onPost = function(fn) {
-  //   this.post = fn
-  // }
-  // ItOrAteOr.onBefore = function(fn) {
-  //   this.before = fn
-  // }
-  // ItOrAteOr.onAfter = function(fn) {
-  //   this.after = fn
-  // }
+  ItOrAteOr.prototype.pre = function(fn) {
+    this.onPre = fn
+  }
+  ItOrAteOr.prototype.post = function(fn) {
+    this.onPost = fn
+  }
+  ItOrAteOr.prototype.before = function(fn) {
+    this.onBefore = fn
+  }
+  ItOrAteOr.prototype.after = function(fn) {
+    this.onAfter = fn
+  }
 
-  // merge with dopemerge?
+  /**
+   * @TODO merge with dopemerge?
+   * @TODO needs tests converted back for this (observe tests do cover somewhat)
+   *
+   * @param  {*} arg defaults to this.iteratee
+   * @return {*} cloned
+   *
+   * @example
+   *
+   *   var obj = {}
+   *   var cloned = traverse().clone(obj)
+   *   obj.eh = true
+   *   eq(obj, cloned)
+   *   //=> false
+   *
+   */
   ItOrAteOr.prototype.clone = function clone(arg) {
     const obj = this.iteratee || arg
     if (isPrimitive(obj)) return obj
@@ -488,16 +701,23 @@ const makeIterator = () => {
     let current = cloned
 
     traverse(obj).forEach((key, value, traverser) => {
+      // t.isRoot
       if (key === null) return
-      current[key] = traverser.copy(value)
-      if (isObj(value)) current = current[key]
+      // require('fliplog').bold(key).data({value, traverser, current}).echo()
+      dot.set(current, traverser.path, traverser.copy(value))
+      // current[key] = traverser.copy(value)
+      // if (isObj(value)) current = current[key]
     })
 
     return cloned
   }
 
-  // ugh, how to clone better with *recursive* objects?
   /* prettier-ignore */
+  /**
+   * @todo ugh, how to clone better with *recursive* objects?
+   * @param  {any} src wip
+   * @return {any} wip
+   */
   ItOrAteOr.prototype.copy = function copy(src) {
     if (isObjStrict(src)) {
       let dst
@@ -545,9 +765,9 @@ const makeIterator = () => {
       // @TODO: copy descriptor
       // eslint-disable-next-line
     for (var prop in src) {
-      // dst[prop] = src
-        const desc = Object.getOwnPropertyDescriptor(src, prop)
-        Object.defineProperty(dst, prop, desc)
+        dst[prop] = src
+        // const desc = Object.getOwnPropertyDescriptor(src, prop)
+        // Object.defineProperty(dst, prop, desc)
       }
       return dst
     }
@@ -556,19 +776,31 @@ const makeIterator = () => {
       return src
     }
   }
+
+  // end factory
   return ItOrAteOr
 }
+
+/* prettier-ignore */
 /**
+ * @since 4.1.0
+ *
  * @protected
  * @TODO !!!!!! USE ENUM FLAGS ON LOOSE TO ALLOW MORE CONFIG FOR ==, COMPARATOR, VALUEOF, walk proto (check ownProps...)...
+ *
  * @param  {*} x compare to y
  * @param  {*} y compare to x
  * @param  {boolean | number} [loose=false] use == checks when typof !=
  * @return {boolean}
+ *
+ * @example
+ *    eqValue(1, 1) //=> true
+ *    eqValue('1', 1) //=> false
+ *    eqValue('1', 1, true) //=> true
+ *    eqValue({}, {}) //=> true
  */
-/* prettier-ignore */
 function eqValue(x, y, loose) {
-  // console.log({node, y})
+  /* istanbul ignore next: dev */
   if (ENV_DEBUG) {
     console.log('eqValue', {x, y, loose})
   }
@@ -580,7 +812,9 @@ function eqValue(x, y, loose) {
   //   // noop
   // }
   // else
+
   if (isNullOrUndefined(x) || isNullOrUndefined(y)) {
+    /* istanbul ignore next: dev */
     if (ENV_DEBUG) {
       console.log('null or undef !=', {x, y})
     }
@@ -595,6 +829,7 @@ function eqValue(x, y, loose) {
       // ignore
     }
     else {
+      /* istanbul ignore next: dev */
       if (ENV_DEBUG) {
         console.log('typeof !=', {x, y})
       }
@@ -603,21 +838,26 @@ function eqValue(x, y, loose) {
     }
   }
   else if (isObjStrict(x)) {
+    /* istanbul ignore next: dev */
     if (ENV_DEBUG) {
       console.log('isObjStrict', {x})
     }
+
     // if (isArray(x)) {
     //   if (x.length !== y.length) {
     //     return false
     //   }
     // }
+
     // @NOTE .toString will be covered for functions and regexes in objStrict
     if (isRegExp(x) || isRegExp(y)) {
+      /* istanbul ignore next: dev */
       if (ENV_DEBUG) {
         console.log('regexp', {x, y})
       }
 
       if (!x || !y || x.toString() !== y.toString()) {
+        /* istanbul ignore next: dev */
         if (ENV_DEBUG) {
           console.log('regexp !=', {x, y})
         }
@@ -626,11 +866,13 @@ function eqValue(x, y, loose) {
       }
     }
     else if (isDate(x) || isDate(y)) {
+      /* istanbul ignore next: dev */
       if (ENV_DEBUG) {
         console.log('dates', {x, y})
       }
 
       if (!isDate(x) || !isDate(y) || x.getTime() !== y.getTime()) {
+        /* istanbul ignore next: dev */
         if (ENV_DEBUG) {
           console.log('!= dates', {x, y})
         }
@@ -639,11 +881,13 @@ function eqValue(x, y, loose) {
       }
     }
     else if (isError(x) || isError(y)) {
+      /* istanbul ignore next: dev */
       if (ENV_DEBUG) {
         console.log('isError', {x, y})
       }
 
       if (!isError(x) || !isError(y) || x.stack !== y.stack) {
+        /* istanbul ignore next: dev */
         if (ENV_DEBUG) {
           console.log('!= errors', {x, y})
         }
@@ -652,6 +896,7 @@ function eqValue(x, y, loose) {
       }
     }
     else if (isArray(x) && !isArray(y)) {
+      /* istanbul ignore next: dev */
       if (ENV_DEBUG) {
         console.log('isArray(x) || isArray(y)!')
       }
@@ -659,6 +904,7 @@ function eqValue(x, y, loose) {
       return false
     }
     else if (!isArray(x) && isArray(y)) {
+      /* istanbul ignore next: dev */
       if (ENV_DEBUG) {
         console.log('!isArray(x) && isArray(y):')
       }
@@ -671,6 +917,7 @@ function eqValue(x, y, loose) {
       const yKeys = ObjectKeys(y).length
 
       if (xKeys.length !== yKeys) {
+        /* istanbul ignore next: dev */
         if (ENV_DEBUG) {
           console.log('!= obj key length', {xKeys, yKeys})
         }
@@ -680,6 +927,7 @@ function eqValue(x, y, loose) {
 
       for (let k = 0; k < xKeys.length; k++) {
         if (!hasOwnProperty(y, xKeys[k])) {
+          /* istanbul ignore next: dev */
           if (ENV_DEBUG) {
             console.log('!= obj property', {y, val: xKeys[k]})
           }
@@ -717,6 +965,7 @@ function eqValue(x, y, loose) {
     }
 
     if (!x || !y || x.toString() !== y.toString()) {
+      /* istanbul ignore next: dev */
       if (ENV_DEBUG) {
         console.log('x.toString() !== y.toString()', x.toString() !== y.toString())
       }
@@ -791,7 +1040,7 @@ function eq(a, b, loose, scoped = false) {
     // node = node ? node[traverser.key] : node
 
     let x = node
-    x = dot.get(b, traverser.paths.join('.'), b)
+    x = dot.get(b, traverser.path.join('.'), b)
 
     /* istanbul ignore next: dev */
     if (ENV_DEBUG) {
@@ -823,12 +1072,3 @@ function traverse(value) {
 
 module.exports = traverse
 module.exports.eq = eq
-
-// eslint-disable-next-line
-// debugger
-// const eeeeq = eq(new Error(''), 1)
-// console.log(eeeeq)
-
-// -------------------------------------
-// -------------------------------------
-// -------------------------------------

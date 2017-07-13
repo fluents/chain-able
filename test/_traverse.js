@@ -1,8 +1,10 @@
 // eslint-disable-next-line
 'use strict'
 
-var {eq} = require('../src/deps/traverse')
+var log = require('fliplog')
+var traverse = require('../src/deps/traverse')
 
+var {eq} = traverse
 var deepEqual = eq
 
 test('deepDates', () => {
@@ -290,4 +292,107 @@ test.skip('edge', () => {
 
   // '{1, 4} == {1, 3}'
   expect(eq({'1': 2, '2': 3}, {'1': 2, '2': 4})).toBe(true)
+})
+
+test.only('negative update test', () => {
+  var obj = [5, 6, -3, [7, 8, -2, 1], {f: 10, g: -13}]
+  var cloned = traverse(obj).clone()
+  // log.quick({obj, cloned})
+  var fixed = traverse(cloned).forEach(function(key, x, t) {
+    log.bold(t.path.join('.')).data({[key]: x}).echo()
+    if (x < 0) t.update(x + 128)
+  })
+  // console.log({fixed})
+
+  expect(fixed).toEqual([5, 6, 125, [7, 8, 126, 1], {f: 10, g: 115}])
+
+  expect(obj).toEqual([5, 6, -3, [7, 8, -2, 1], {f: 10, g: -13}])
+})
+
+// -----
+
+var {EventEmitter} = require('events')
+
+test('check instanceof on node elems', () => {
+  var counts = {emitter: 0}
+  var list = [new EventEmitter(), 3, 4, {ev: new EventEmitter()}]
+
+  traverse(list).forEach((key, node, t) => {
+    if (node instanceof EventEmitter) counts.emitter++
+  })
+
+  expect(counts.emitter).toEqual(2)
+})
+
+// ---- obj ---
+
+test('traverse an object with nested functions', () => {
+  expect.assertions(1)
+
+  function Cons(x) {
+    expect(x).toEqual(10)
+  }
+  traverse(new Cons(10))
+})
+
+//// ------ stringify ----
+test('stringify', () => {
+  var isObj = x => typeof x === 'object'
+  var isArr = Array.isArray
+
+  // var obj = [5, 6, -3, [7, 8, -2, 1], {f: 10, g: -13}]
+  // var obj = [1, 2, 3]
+  var obj = [1, 2, 3, [4, 5, 6], {a: 7, b: 8}]
+  var s = ''
+
+  const trav = traverse(obj)
+
+  trav.before(t => {
+    console.log('befroee', t.key, t.paths.join(''), '\n\n')
+
+    // s += '\nbefore\n'
+    if (isArr(t.iteratee)) s += '['
+    else if (isObj(t.iteratee)) s += '{'
+  })
+
+  trav.pre(traverser => {
+    // s += '\npre\n'
+    console.log('pre', traverser.key, traverser.paths.join(''), '\n\n')
+    const key = traverser.key || traverser.paths.join('')
+
+    if (key && isObj(traverser.iteratee) && !isArr(traverser.iteratee)) {
+      s += '"' + key + '"' + ':'
+    }
+  })
+
+  trav.after(t => {
+    console.log('after')
+    if (s.endsWith(',')) s = s.slice(0, -1)
+    // s += '\nafter\n'
+    if (isArr(t.iteratee)) s += ']'
+    else if (isObj(t.iteratee)) s += '}'
+  })
+  trav.post(child => {
+    console.log('post', child)
+    // s += '\npost\n'
+    s += ','
+  })
+
+  trav.forEach(function(key, node, t) {
+    console.log({
+      [key]: node,
+      t,
+      isArray: Array.isArray(node),
+      typeof: typeof node,
+    })
+
+    if (typeof node === 'function') {
+      s += 'null'
+    }
+    else if (!isArr(node) && !isObj(node)) {
+      s += node.toString()
+    }
+  })
+
+  expect(s).toEqual(JSON.stringify(obj))
 })

@@ -48,7 +48,7 @@ module.exports = function(key, value, longest) {
 
     /* istanbul-ignore next: debug */
     if (ENV_DEBUG) {
-      console.log('paths', run++, this.paths)
+      console.log('paths', run++, this.path)
     }
 
     // ignore
