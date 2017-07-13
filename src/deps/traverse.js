@@ -278,6 +278,8 @@ const makeIterator = () => {
 
   /* prettier-ignore */
   /**
+   * @TODO move into the wrapper? if perf allows?
+   *
    * @desc checks whether a node is iteratable
    *       @modifies this.isIteratable
    *       @modifies this.isLeaf
@@ -287,6 +289,26 @@ const makeIterator = () => {
    *
    * @param  {*} node value to check
    * @return {void}
+   *
+   * @example
+   *
+   *    .checkIteratable({eh: true})
+   *    //=> this.isLeaf = false
+   *    //=> this.isCircular = false
+   *    //=> this.isIteratable = true
+   *
+   *    .checkIteratable({} || [])
+   *    //=> this.isLeaf = true
+   *    //=> this.isCircular = false
+   *    //=> this.isIteratable = false
+   *
+   *    var circular = {}
+   *    circular.circular = circular
+   *    .checkIteratable(circular)
+   *    //=> this.isLeaf = false
+   *    //=> this.isCircular = true
+   *    //=> this.isIteratable = true
+   *
    */
   ItOrAteOr.prototype.checkIteratable = function check(node) {
     this.isIteratable = isIteratable(node)
@@ -296,7 +318,10 @@ const makeIterator = () => {
       this.isLeaf = false
 
       if (hasParent(this.depth, node)) {
-        console.log('circular___________', {node})
+        /* istanbul-ignore next: dev */
+        if (ENV_DEBUG) {
+          console.log('circular___________', {node})
+        }
         this.isCircular = true
       }
       else {
@@ -305,9 +330,8 @@ const makeIterator = () => {
       }
     }
     else {
-    // ---
+      // ---
       this.isLeaf = true
-      // require('fliplog').data(node).echo()
     }
   }
 
@@ -424,11 +448,47 @@ const makeIterator = () => {
   /* prettier-ignore */
   /**
    * @TODO deal with .isRoot if needed
+   * @TODO examples with clone and stop
+   *
+   * @sig on(key: null | Primitive, val: any, instance: Traverse): any
    *
    * @param  {Function} on callback fn for each iteration
-   * @return {*}
+   * @return {*} this.iteratee
    *
-   * eh
+   * @example
+   *
+   *    iterate([])
+   *    //=> []
+   *    //=> on(null, [])
+   *
+   * @example
+   *
+   *    iterate([1])
+   *    //=> [1]
+   *    //=> on(null, [1])
+   *    //=> on('1', 1)
+   *
+   * @example
+   *    //primitive - same for any number, string, symbol, null, undefined
+   *    iterate(Symbol('eh'))
+   *    //=> Symbol('eh')
+   *    //=> on(Symbol('eh'))
+   *
+   * @example
+   *
+   *    var deeper = {eh: 'canada', arr: [{moose: true}, 0]}
+   *    iterate(deeper)
+   *    //=> deeper // returns
+   *    //=> on(null, deeper, this) // root
+   *
+   *    //=> on('eh', 'canada', this) // 1st branch
+   *
+   *    //=> on('arr', [{moose: true}, 0], this)
+   *    //=> on('arr.0', [{moose: true}], this)
+   *    //=> on('arr.0.moose', true, this)
+   *    //=> on('arr.1', [0], this)
+   *
+   *
    */
   ItOrAteOr.prototype.iterate = function iterate(on) {
     /* istanbul ignore next : dev */

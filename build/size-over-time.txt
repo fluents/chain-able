@@ -816,3 +816,21 @@ $ gzip-size dists/umd/index.js --raw
 Done in 0.23s.
 2017:01:07/12/17:18:01:18
 ---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+8763
+Done in 0.51s.
+2017:39:07/12/17:18:39:36
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+8763
+Done in 0.52s.
+2017:12:07/12/17:19:12:26
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+8763
+Done in 0.68s.
+2017:15:07/12/17:19:15:45
+---
