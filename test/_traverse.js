@@ -294,7 +294,7 @@ test.skip('edge', () => {
   expect(eq({'1': 2, '2': 3}, {'1': 2, '2': 4})).toBe(true)
 })
 
-test.only('negative update test', () => {
+test('negative update test', () => {
   var obj = [5, 6, -3, [7, 8, -2, 1], {f: 10, g: -13}]
   var cloned = traverse(obj).clone()
   // log.quick({obj, cloned})
@@ -348,7 +348,7 @@ test('stringify', () => {
   const trav = traverse(obj)
 
   trav.before(t => {
-    console.log('befroee', t.key, t.paths.join(''), '\n\n')
+    // console.log('before', t.key, t.path.join(''), '\n\n')
 
     // s += '\nbefore\n'
     if (isArr(t.iteratee)) s += '['
@@ -357,8 +357,8 @@ test('stringify', () => {
 
   trav.pre(traverser => {
     // s += '\npre\n'
-    console.log('pre', traverser.key, traverser.paths.join(''), '\n\n')
-    const key = traverser.key || traverser.paths.join('')
+    // console.log('pre', traverser.key, traverser.path.join(''), '\n\n')
+    const key = traverser.key || traverser.path.join('')
 
     if (key && isObj(traverser.iteratee) && !isArr(traverser.iteratee)) {
       s += '"' + key + '"' + ':'
@@ -366,25 +366,25 @@ test('stringify', () => {
   })
 
   trav.after(t => {
-    console.log('after')
+    // console.log('after')
     if (s.endsWith(',')) s = s.slice(0, -1)
     // s += '\nafter\n'
     if (isArr(t.iteratee)) s += ']'
     else if (isObj(t.iteratee)) s += '}'
   })
   trav.post(child => {
-    console.log('post', child)
+    // console.log('post', child)
     // s += '\npost\n'
     s += ','
   })
 
   trav.forEach(function(key, node, t) {
-    console.log({
-      [key]: node,
-      t,
-      isArray: Array.isArray(node),
-      typeof: typeof node,
-    })
+    // console.log({
+    //   [key]: node,
+    //   t,
+    //   isArray: Array.isArray(node),
+    //   typeof: typeof node,
+    // })
 
     if (typeof node === 'function') {
       s += 'null'
