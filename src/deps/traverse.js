@@ -1,4 +1,16 @@
-const isObjStrict = require('./is/objStrict')
+// conditionals
+/* eslint complexity: "OFF" */
+
+// inlined rollup
+/* eslint import/max-dependencies: "OFF" */
+
+// one file
+/* eslint max-lines: "OFF" */
+
+// debug conditionals
+/* eslint max-depth: "OFF" */
+
+const isObjNotNull = require('./is/objNotNull')
 const isRegExp = require('./is/regexp')
 const isError = require('./is/error')
 const isTrue = require('./is/true')
@@ -10,22 +22,19 @@ const isUndefined = require('./is/undefined')
 const isNullOrUndefined = require('./is/nullOrUndefined')
 const isArray = require('./is/array')
 const isMap = require('./is/map')
-// const isFalse = require('./is/false')
 const isSet = require('./is/set')
 const isSymbol = require('./is/symbol')
 const isAsyncish = require('./is/asyncish')
 const isFunction = require('./is/function')
-const isNative = require('./is/native')
 const isObj = require('./is/obj')
 const ObjectKeys = require('./util/keys')
 const hasOwnProperty = require('./util/hasOwnProperty')
-const isObjLoose = require('./is/objLoose')
-const isEqEq = require('./is/eqeq')
 const toS = require('./is/toS')
 const reduce = require('./reduce')
 const toarr = require('./to-arr')
 const dot = require('./dot')
-const props = require('./util/props')
+// const props = require('./util/props')
+// const emptyTarget = require('./dopemerge/emptyTarget')
 
 // const ENV_DEBUG = true
 const ENV_DEBUG = false
@@ -39,6 +48,9 @@ function isPrimitive(node) {
   )
 }
 function isIteratable(node) {
+  // ez ones
+  if (isObj(node) || isArray(node)) return true
+
   const notIteratable =
     isPrimitive(node) ||
     isRegExp(node) ||
@@ -48,8 +60,6 @@ function isIteratable(node) {
     // isNative(node) ||
     isError(node)
 
-  const isIteratables = isObj(node) || isArray(node)
-  if (isIteratables) return true
   if (notIteratable) return false
   else return true
 
@@ -194,17 +204,64 @@ const isObjOrArr = x => isObj(x) || isArray(x)
 // @TODO make this a trie OR a linked-list
 const makeIterator = () => {
   // always cleared when done anyway
+  // const parents = new Map()
   const parents = new Set()
-  const hasParent = (depth, value) => isObjOrArr(value) && parents.has(value)
+  // const parentKeys = []
+  const hasParent = (depth, value) => {
+    if (!isObjOrArr(value)) return false
+
+    // return Array.from(parents.values()).indexOf(value) !== -1
+    // const keys = Array.from(parents.keys())
+    // console.log('___pk', {keys})
+    // for (let k = 0; k < keys.length; k++) {
+    //   const key = keys[k]
+    //   const matches =
+    //     depth.includes(key) || (key.includes && key.includes(depth))
+    //   console.log({key, matches, depth})
+    //   // .has(value)
+    //   if (matches) {
+    //     let has = false
+    //     parents.get(key).forEach(haz => {
+    //       if (value === haz) has = true
+    //     })
+    //     return has
+    //   }
+    // }
+
+    // for (let i = depth; i >= depth; i--) {
+    // if (parents.get(i).has(value)) return true
+    // }
+
+    // return false
+    return parents.has(value)
+  }
   const addParent = (depth, value) => {
     if (!isObjOrArr(value)) return
     if (parents.size >= 100) parents.clear()
+
+    // if (!parents.has(depth)) parents.set(depth, new Set())
+    // parents.get(depth).add(value)
+
     parents.add(value)
   }
   // (isObjOrArr(value) ? parents.add(value) : parents.add(value))
   // const removeLastParent = () => parents.delete(lastParent)
   const clearParents = (depth, value) => parents.clear()
+
+  // parents.forEach(parent => (parent.has(value) ? parent.delete(value) : null))
+  // parents.delete(value)
   const removeParent = (depth, value) => parents.delete(value)
+
+  // const pps = []
+  // const ppHas = value => {
+  //   for (let i = 0; i < pps.length; i++) {
+  //     if (pps[i] === value) {
+  //       return true
+  //     }
+  //   }
+  // }
+  // const ppAdd = value => pps.push(value)
+  // const ppPop = () => pps.pop()
 
   /**
    * @param       {Traversable} iteratee
@@ -317,21 +374,28 @@ const makeIterator = () => {
       // native = leaf if not root
       this.isLeaf = false
 
-      if (hasParent(this.depth, node)) {
-        /* istanbul-ignore next: dev */
+      if (hasParent(this.path.join('.'), node)) {
+        /* istanbul ignore next: dev */
         if (ENV_DEBUG) {
-          console.log('circular___________', {node})
+          console.log('circular___________', {node, path: this.path})
         }
         this.isCircular = true
       }
+      // else if (ppHas(node)) {
+      //   if (ENV_DEBUG) {
+      //     console.log('PPHAS!!!!!!!!!!!', {node, path: this.path})
+      //   }
+      //   this.isCircular = true
+      // }
       else {
-        addParent(this.depth, node)
+        addParent(this.path.join('.'), node)
         this.isCircular = false
       }
     }
     else {
       // ---
       this.isLeaf = true
+      this.isCircular = false
     }
   }
 
@@ -372,7 +436,7 @@ const makeIterator = () => {
 
       obj.splice(this.key, 1)
     }
-    else if (isObjStrict(obj)) {
+    else if (isObjNotNull(obj)) {
       /* istanbul ignore next: dev */
       if (ENV_DEBUG) {
         console.log('traverse:remove:obj', this.key)
@@ -381,7 +445,7 @@ const makeIterator = () => {
       delete obj[this.key]
     }
 
-    if (isObjStrict(this.parent)) {
+    if (isObjNotNull(this.parent)) {
       delete this.parent[this.key]
 
       /* istanbul ignore next: dev */
@@ -389,7 +453,7 @@ const makeIterator = () => {
         console.log('traverse:remove:parent', this.key)
       }
     }
-    if (isObjStrict(this.iteratee)) {
+    if (isObjNotNull(this.iteratee)) {
       delete this.iteratee[this.key]
 
       /* istanbul ignore next: dev */
@@ -431,7 +495,12 @@ const makeIterator = () => {
 
     // dot.set(this.iteratee, this.key, value)
     // console.log({traverser: this})
+
+    // @NOTE think about this more, but updating can change structure
+    // if (isTrue(clear)) clearParents()
   }
+
+  ItOrAteOr.prototype.clear = clearParents
 
   ItOrAteOr.prototype.done = function done() {
     // throw new Error('how')
@@ -447,6 +516,8 @@ const makeIterator = () => {
 
   /* prettier-ignore */
   /**
+   * @TODO handler for Set & Map so they can be skipped or traversed, for example when cloning...
+   * @TODO add hook to add custom checking if isIteratable
    * @TODO deal with .isRoot if needed
    * @TODO examples with clone and stop
    *
@@ -491,12 +562,15 @@ const makeIterator = () => {
    *
    */
   ItOrAteOr.prototype.iterate = function iterate(on) {
+    // require('fliplog').bold(this.path.join('.')).data(parents).echo()
+    // require('fliplog').bold(this.path.join('.')).data(parents.keys()).echo()
+
     /* istanbul ignore next : dev */
     if (ENV_DEBUG) {
       console.log('\n...iterate...\n')
     }
 
-    if (parents.size >= 30) {
+    if (parents.size >= 100) {
       clearParents()
     }
 
@@ -519,7 +593,9 @@ const makeIterator = () => {
       node = toarr(node)
     }
 
+    // @TODO: maybe only right before sub-loop
     addParent(this.depth, node)
+    // ppAdd(node)
 
     const nodeIsArray = isArray(node)
     const nodeIsObj = nodeIsArray || isObj(node)
@@ -599,7 +675,9 @@ const makeIterator = () => {
           return this.done()
         }
 
-        addParent(this.depth, node)
+        // @NOTE: look above add prev add parent
+        // addParent(this.depth, node)
+        // ppAdd(node)
 
 
         // ----- setup our data ----
@@ -650,8 +728,10 @@ const makeIterator = () => {
           }
 
           // on.call(this, this.key, value, this)
-          this.path.pop()
+          // this.path.pop()
+          this.path = pathBeforeNesting
 
+          // this.isCircular = false
           // break
           continue
           // return
@@ -689,6 +769,8 @@ const makeIterator = () => {
 
         // cleanup, backup 1 level
         this.path.pop()
+
+        // ppPop()
         removeParent(node)
       }
 
@@ -701,7 +783,7 @@ const makeIterator = () => {
     }
 
     // @NOTE: careful
-    removeParent(node)
+    // removeParent(node)
 
     // @NOTE: just for .after ?
     this.iteratee = node
@@ -738,6 +820,8 @@ const makeIterator = () => {
     this.onAfter = fn
   }
 
+  // -----------------------
+
   /**
    * @TODO merge with dopemerge?
    * @TODO needs tests converted back for this (observe tests do cover somewhat)
@@ -754,91 +838,121 @@ const makeIterator = () => {
    *   //=> false
    *
    */
-  ItOrAteOr.prototype.clone = function clone(arg) {
-    const obj = this.iteratee || arg
-    if (isPrimitive(obj)) return obj
-    let cloned = isArray(obj) ? [] : {}
-    let current = cloned
+  ItOrAteOr.prototype.clone = clone
 
-    traverse(obj).forEach((key, value, traverser) => {
-      // t.isRoot
-      if (key === null) return
-      // require('fliplog').bold(key).data({value, traverser, current}).echo()
-      dot.set(current, traverser.path, traverser.copy(value))
-      // current[key] = traverser.copy(value)
-      // if (isObj(value)) current = current[key]
-    })
-
-    return cloned
-  }
-
-  /* prettier-ignore */
   /**
    * @todo ugh, how to clone better with *recursive* objects?
    * @param  {any} src wip
    * @return {any} wip
    */
-  ItOrAteOr.prototype.copy = function copy(src) {
-    if (isObjStrict(src)) {
-      let dst
-
-      // if (isPrimitive(src)) {
-      // if (isNullOrUndefined(src)) {
-      //   dst = src
-      // }
-      // for string value number boolean objects...
-      if (isString(src)) {
-        dst = src + ''
-      }
-      else if (isNumber(src)) {
-        dst = src + 0
-      }
-      else if (isBoolean(src)) {
-        dst = !!src
-      }
-      // lists...
-      else if (isMap(src)) {
-        dst = reduce(src)
-      }
-      else if (isSet(src)) {
-        dst = toarr(src)
-      }
-
-      // ------
-      if (isArray(src)) {
-        dst = []
-      }
-      else if (isDate(src)) {
-        dst = new Date(src.getTime ? src.getTime() : src)
-      }
-      else if (isRegExp(src)) {
-        dst = new RegExp(src)
-      }
-      else if (isError(src)) {
-        dst = new Error(src.message)
-        dst.stack = src.stack
-      }
-      else {
-        dst = Object.create(Object.getPrototypeOf(src))
-      }
-
-      // @TODO: copy descriptor
-      // eslint-disable-next-line
-    for (var prop in src) {
-        dst[prop] = src
-        // const desc = Object.getOwnPropertyDescriptor(src, prop)
-        // Object.defineProperty(dst, prop, desc)
-      }
-      return dst
-    }
-    else {
-    // require('fliplog').red('is NOT OBJ').echo()
-      return src
-    }
-  }
+  ItOrAteOr.prototype.copy = copy
 
   // end factory
   return ItOrAteOr
+}
+
+/* prettier-ignore */
+function copy(src) {
+  if (isObjNotNull(src)) {
+    let dst
+
+    // if (isPrimitive(src)) {
+    // if (isNullOrUndefined(src)) {
+    //   dst = src
+    // }
+
+    // @TODO @IMPORTANT @FIXME @!IMPORTANT - COVER THIS OR NOT?
+    // for string value number boolean objects...
+    // if (isString(src)) {
+    //   dst = src + ''
+    // }
+    // else if (isNumber(src)) {
+    //   dst = src + 0
+    // }
+    // else if (isBoolean(src)) {
+    //   dst = !!src
+    // }
+    // else
+
+    // lists... <- needs to have dot-prop support on Map/Set
+    // if (isMap(src)) {
+    //   dst = new Map()
+    //   const obj = reduce(src)
+    //   // src.clear()
+    //   ObjectKeys(obj).forEach(key => dst.set(key, obj[key]))
+    //   return dst
+    // }
+    // else if (isSet(src)) {
+    //   dst = new Set()
+    //   // could clone here too
+    //   const obj = toarr(src)
+    //   // src.clear()
+    //   obj.forEach(value => dst.add(value))
+    //   return dst
+    // }
+
+    // ------
+    if (isArray(src)) {
+      dst = []
+    }
+    else if (isDate(src)) {
+      dst = new Date(src.getTime ? src.getTime() : src)
+    }
+    else if (isRegExp(src)) {
+      dst = new RegExp(src)
+    }
+    else if (isError(src)) {
+      dst = new Error(src.message)
+      dst.stack = src.stack
+    }
+    else {
+      dst = Object.create(Object.getPrototypeOf(src))
+    }
+
+    // @TODO: copy descriptor
+    // eslint-disable-next-line
+      for (var prop in src) {
+      dst[prop] = src
+      // const desc = Object.getOwnPropertyDescriptor(src, prop)
+      // Object.defineProperty(dst, prop, desc)
+    }
+    return dst
+  }
+  else {
+    // require('fliplog').red('is NOT OBJ').echo()
+    return src
+  }
+}
+
+function clone(arg) {
+  const obj = isUndefined(arg) ? this.iteratee : arg
+  if (isPrimitive(obj)) return obj
+  let cloned = isArray(obj) ? [] : {}
+  let current = cloned
+
+  traverse(obj).forEach((key, value, traverser) => {
+    // t.isRoot
+    if (key === null) return
+    // require('fliplog').bold(key).data({value, traverser, current}).echo()
+    // if (isSet(value)) {
+    //   const copied = copy(value)
+    //   dot.set(current, traverser.path, copied)
+    //
+    //   // require('fliplog')
+    //   //   .red('copy:')
+    //   //   .data({value, path: traverser.path, current, copied})
+    //   //   .exit()
+    // }
+
+    let copied = copy(value)
+    if (traverser.isCircular && isArray(value)) copied = value.slice(0)
+    dot.set(current, traverser.path, copied)
+
+    // current[key] = traverser.copy(value)
+    // if (isObj(value)) current = current[key]
+  })
+
+  return cloned
 }
 
 /* prettier-ignore */
@@ -897,10 +1011,10 @@ function eqValue(x, y, loose) {
       return false
     }
   }
-  else if (isObjStrict(x)) {
+  else if (isObjNotNull(x)) {
     /* istanbul ignore next: dev */
     if (ENV_DEBUG) {
-      console.log('isObjStrict', {x})
+      console.log('isObjNotNull', {x})
     }
 
     // if (isArray(x)) {
@@ -1054,7 +1168,7 @@ function eqValue(x, y, loose) {
 }
 
 /* prettier-ignore */
-function eq(a, b, loose, scoped = false) {
+function eq(a, b, loose, scoped) {
   /* istanbul ignore next: dev */
   if (ENV_DEBUG) {
     console.log('\n')
@@ -1063,7 +1177,8 @@ function eq(a, b, loose, scoped = false) {
   let equal = true
   let node = b
 
-  let _node = b
+  // @TODO can be helpful? for left to right in 1 traverse for faster eq?
+  // let _node = b
 
   const instance = traverse(a)
   const notEqual = () => {
@@ -1092,8 +1207,8 @@ function eq(a, b, loose, scoped = false) {
     //   _node = node
     // }
 
-    if (isObjStrict(node))  {
-      _node = node
+    if (isObjNotNull(node))  {
+      // _node = node
       node = node[traverser.key]
     }
 
@@ -1132,3 +1247,5 @@ function traverse(value) {
 
 module.exports = traverse
 module.exports.eq = eq
+module.exports.clone = clone
+module.exports.copy = copy

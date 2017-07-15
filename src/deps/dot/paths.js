@@ -16,6 +16,7 @@ let run = 0
  * @param  {boolean | undefined} [longest] optionally filter to keep only longest/deepest paths
  * @return {Array<string>} paths[]
  *
+ * @TODO   should build a trie if doing this
  * @NOTE   had `onlyLongest` & `asString` but can just .join(',') to match
  *
  * @example
