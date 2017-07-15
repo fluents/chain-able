@@ -133,13 +133,19 @@ module.exports = Target => {
     // super.set(key, value)
     set.call(this, key, value)
 
+    // get
+    const observers = this.meta(OBSERVERS_KEY)
+
+    // skip the below if we have no observers
+    if (!observers.length) {
+      return this
+    }
+
     const data = {key: dotPropKey, value}
     if (isUndefined(dotPropKey)) {
       data.key = isObj(value) ? dotPropPaths(key, value) : key
     }
 
-    // get
-    const observers = this.meta(OBSERVERS_KEY)
     for (let o = 0; o < observers.length; o++) {
       observers[o](data)
     }

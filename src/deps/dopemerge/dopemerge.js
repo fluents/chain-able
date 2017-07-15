@@ -1,5 +1,5 @@
 /* eslint complexity: "OFF" */
-const isObjStrict = require('../is/objStrict')
+const isObjNotNull = require('../is/objNotNull')
 const isArray = require('../is/array')
 const isTrue = require('../is/true')
 const ObjectKeys = require('../util/keys')
@@ -11,6 +11,7 @@ const isBoolean = require('../is/boolean')
 const isString = require('../is/string')
 const simpleKindOf = require('../util/simpleKindOf')
 const includes = require('../conditional/includes')
+const emptyTarget = require('./emptyTarget')
 
 /**
  * @desc 1: not null object
@@ -39,27 +40,7 @@ const includes = require('../conditional/includes')
  *
  */
 function isMergeableObj(x) {
-  return isObjStrict(x) && !isRegExp(x) && !isDate(x)
-}
-
-/**
- * @desc make a new empty Array or Object for cloning
- * @memberOf dopemerge
- * @since 2.0.0
- *
- * @param {*} val array or object to return an empty one of
- * @return {Object | Array} depending on the data type of val
- *
- * @example
- *
- *    emptyTarget({eh: true})
- *    //=> {}
- *
- *    emptyTarget([1])
- *    //=> []
- */
-function emptyTarget(val) {
-  return isArray(val) ? [] : {}
+  return isObjNotNull(x) && !isRegExp(x) && !isDate(x)
 }
 
 /**

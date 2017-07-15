@@ -1,5 +1,3 @@
-'use strict'
-
 /**
  * @desc turns arguments into an array, used as a util, for opt
  *
@@ -22,7 +20,7 @@
  */
 module.exports = function() {
   const len = arguments.length
-  const args = new Array(len)
+  const args = new Array(len > 1 ? len - 1 : 0)
   for (let i = 0; i < len; ++i) args[i] = arguments[i]
   return args
 }
