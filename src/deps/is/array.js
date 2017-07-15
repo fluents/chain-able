@@ -5,3 +5,7 @@
  * @since 3.0.0
  */
 module.exports = Array.isArray
+
+// function isArray(xs) {
+//   return Object.prototype.toString.call(xs) === '[object Array]'
+// }

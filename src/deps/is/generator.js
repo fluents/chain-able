@@ -6,11 +6,15 @@ const toS = require('./toS')
  * @param  {*} x value to check
  * @return {boolean} x isGenerator
  *
+ * @alternate fn.constructor.name === 'GeneratorFunction'
  * @see https://github.com/jonschlinkert/kind-of/blob/master/index.js#L66
+ *
  * @example
- *  isGenerator(*function() {})
+ *
+ *   isGenerator(*function() {})
  *  //=> true
  *  isGenerator(function() {})
  *  //=> false
+ *
  */
 module.exports = x => toS(x) === '[object GeneratorFunction]'

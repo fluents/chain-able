@@ -1,6 +1,6 @@
 {
   "name": "chain-able",
-  "version": "4.0.7",
+  "version": "5.0.0",
   "description": "interfaces that describe their intentions.",
   "main:es6": "src/index.js",
   "main:dev": "dists/dev/index.js",
@@ -120,6 +120,8 @@
   "jest": {
     "transformIgnorePatterns": [
       "/node_modules/",
+      "/_",
+      "/examples",
       "/src/deps/_r|meta|external|env|primitives/",
       "/src/deps/external/lodash/",
       "/src/deps/external/",
@@ -187,7 +189,8 @@
       "test/_api.js",
       "test/is/index.js",
       "test/chainsaw",
-      "test/traverse/index.js"
+      "test/traverse/index.js",
+      "/examples"
     ]
   },
   "ava": {

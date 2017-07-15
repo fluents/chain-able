@@ -2,6 +2,8 @@ const ObjectKeys = require('../util/keys')
 const isObj = require('./obj')
 
 /**
+ * @TODO @NOTE need to be more careful, needs to check for vanilla objects, not native ones since e.g. Error has no keys
+ *
  * @param  {*} x value
  * @return {boolean} isObjWithKeys
  *

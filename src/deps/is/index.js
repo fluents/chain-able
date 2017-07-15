@@ -1,18 +1,19 @@
 const toS = require('./toS')
-const isObjStrict = require('./objStrict')
 const isRegExp = require('./regexp')
 const isError = require('./error')
 const isBoolean = require('./boolean')
 const isNumber = require('./number')
 const isString = require('./string')
 const isDate = require('./date')
+const isObj = require('./obj')
+const isObjPure = require('./objPure')
 const isObjWithKeys = require('./objWithKeys')
+const isObjNotNull = require('./objNotNull')
 const isReal = require('./real')
 const isMap = require('./map')
 const isSet = require('./set')
 const isSymbol = require('./symbol')
 const isFunction = require('./function')
-const isObj = require('./obj')
 const isPrototypeOf = require('./prototypeOf')
 const isArray = require('./array')
 const isIterator = require('./iterator')
@@ -20,11 +21,11 @@ const isUndefined = require('./undefined')
 const isNull = require('./null')
 const isMatcher = require('./matcher')
 // dont need these yet
-// const isNullOrUndefined = require('./nullOrUndefined')
+const isNill = require('./nullOrUndefined')
+const isTrue = require('./true')
 // const isClass = require('./class')
 // const isEnumerable = require('./enumerable')
 // const isMapish = require('./mapish')
-// isTrue
 
 /**
  * @member is
@@ -37,8 +38,9 @@ const isMatcher = require('./matcher')
 module.exports = {
   isObjWithKeys,
   isObj,
-  isObject: isObj,
-  isObjStrict,
+  // isObject: isObj,
+  isObjPure,
+  isObjNotNull,
   isFunction,
   isReal,
   toS,
@@ -57,5 +59,7 @@ module.exports = {
   isIterator,
   isUndefined,
   isNull,
+  isNill,
+  isTrue,
   isMatcher,
 }
