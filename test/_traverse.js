@@ -1,11 +1,14 @@
 // eslint-disable-next-line
 'use strict'
 
-var log = require('fliplog')
-var traverse = require('../src/deps/traverse')
+const {EventEmitter} = require('events')
+const log = require('fliplog')
+const traverse = require('../src/deps/traverse')
+const isArray = require('../src/deps/is/array')
+const isObj = require('../src/deps/is/obj')
 
-var {eq} = traverse
-var deepEqual = eq
+const {eq} = traverse
+const deepEqual = eq
 
 test('deepDates', () => {
   expect.assertions(2)
@@ -17,7 +20,7 @@ test('deepDates', () => {
     )
   ).toBeTruthy()
 
-  var d0 = new Date()
+  const d0 = new Date()
   return new Promise(res => setTimeout(res, 5)).then(val => {
     expect(
       !deepEqual({d: d0, x: [1, 2, 3]}, {d: new Date(), x: [1, 2, 3]})
@@ -309,9 +312,7 @@ test('negative update test', () => {
   expect(obj).toEqual([5, 6, -3, [7, 8, -2, 1], {f: 10, g: -13}])
 })
 
-// -----
-
-var {EventEmitter} = require('events')
+// ----- events ----
 
 test('check instanceof on node elems', () => {
   var counts = {emitter: 0}
@@ -337,9 +338,6 @@ test('traverse an object with nested functions', () => {
 
 //// ------ stringify ----
 test('stringify', () => {
-  var isObj = x => typeof x === 'object'
-  var isArr = Array.isArray
-
   // var obj = [5, 6, -3, [7, 8, -2, 1], {f: 10, g: -13}]
   // var obj = [1, 2, 3]
   var obj = [1, 2, 3, [4, 5, 6], {a: 7, b: 8}]
@@ -351,7 +349,7 @@ test('stringify', () => {
     // console.log('before', t.key, t.path.join(''), '\n\n')
 
     // s += '\nbefore\n'
-    if (isArr(t.iteratee)) s += '['
+    if (isArray(t.iteratee)) s += '['
     else if (isObj(t.iteratee)) s += '{'
   })
 
@@ -360,7 +358,7 @@ test('stringify', () => {
     // console.log('pre', traverser.key, traverser.path.join(''), '\n\n')
     const key = traverser.key || traverser.path.join('')
 
-    if (key && isObj(traverser.iteratee) && !isArr(traverser.iteratee)) {
+    if (key && isObj(traverser.iteratee) && !isArray(traverser.iteratee)) {
       s += '"' + key + '"' + ':'
     }
   })
@@ -369,7 +367,7 @@ test('stringify', () => {
     // console.log('after')
     if (s.endsWith(',')) s = s.slice(0, -1)
     // s += '\nafter\n'
-    if (isArr(t.iteratee)) s += ']'
+    if (isArray(t.iteratee)) s += ']'
     else if (isObj(t.iteratee)) s += '}'
   })
   trav.post(child => {
@@ -382,17 +380,248 @@ test('stringify', () => {
     // console.log({
     //   [key]: node,
     //   t,
-    //   isArray: Array.isArray(node),
+    //   isArrayay: Array.isArrayay(node),
     //   typeof: typeof node,
     // })
 
     if (typeof node === 'function') {
       s += 'null'
     }
-    else if (!isArr(node) && !isObj(node)) {
+    else if (!isArray(node) && !isObj(node)) {
       s += node.toString()
     }
   })
 
   expect(s).toEqual(JSON.stringify(obj))
 })
+
+/* istanbul ignore next: is a failing test */
+test('Map can iterate in order with leaves', () => {
+  var acc = []
+
+  const map = new Map()
+  map.set('a', {a: [1, 2, 3]})
+  map.set('b', 4)
+  map.set('c', [5, 6])
+  map.set('d', {e: [7, 8], f: 9})
+  const obj = map
+
+  traverse({obj}).forEach(function(key, x) {
+    if (this.isLeaf) acc.push(x)
+  })
+
+  expect(acc.join(' ')).toEqual('1 2 3 4 5 6 7 8 9')
+})
+
+/* istanbul ignore next: is a failing test */
+test('Set can iterate in order', () => {
+  var acc = []
+
+  const set = new Set()
+  set.add({a: [1, 2, 3]})
+  set.add([4])
+  set.add([5, 6])
+  set.add({e: [7, 8], f: 9})
+
+  traverse(set).forEach(function(key, x) {
+    if (this.isLeaf) acc.push(x)
+  })
+
+  expect(acc.join(' ')).toEqual('1 2 3 4 5 6 7 8 9')
+})
+
+test('eq: loose', () => {
+  expect(eq('1', 1, true)).toBe(true)
+})
+
+test.skip('clone: MapSet', () => {
+  const map = new Map()
+  const set = new Set()
+
+  set.add(0)
+  set.add(1)
+  set.add(2)
+  map.set('zero', 0)
+  map.set('one', 1)
+  map.set('two', 2)
+
+  const mapset = [map, set]
+
+  // log.quick(traverse.clone(mapset))
+})
+
+test('stop', () => {
+  var visits = 0
+  traverse('abcdefghij'.split('')).forEach(function(key, node, t) {
+    if (typeof node === 'string') {
+      visits++
+      if (node === 'e') t.stop()
+    }
+  })
+
+  expect(visits).toEqual(5)
+})
+
+// ---- keys.js
+// test.skip('sort test', () => {
+//   var acc = []
+//   traverse({
+//     a: 30,
+//     b: 22,
+//     id: 9,
+//   }).forEach(function(key, node) {
+//     if (!Array.isArrayay(node) && typeof node === 'object') {
+//       this.before(function(node) {
+//         this.keys = Object.keys(node)
+//         this.keys.sort((a, b) => {
+//           a = [a === 'id' ? 0 : 1, a]
+//           b = [b === 'id' ? 0 : 1, b]
+//           return a < b ? -1 : a > b ? 1 : 0
+//         })
+//       })
+//     }
+//     if (t.isLeaf) acc.push(node)
+//   })
+//
+//   expect(acc.join(' ')).toEqual('9 30 22')
+// })
+
+// --- leaves.js
+test('leaves test', () => {
+  var acc = []
+  traverse({
+    a: [1, 2, 3],
+    b: 4,
+    c: [5, 6],
+    d: {e: [7, 8], f: 9},
+  }).forEach(function(key, x, t) {
+    if (t.isLeaf) acc.push(x)
+  })
+
+  expect(acc.join(' ')).toEqual('1 2 3 4 5 6 7 8 9')
+})
+
+// --- circular.js
+
+test('circular', () => {
+  expect.assertions(1)
+
+  var obj = {x: 3}
+  obj.y = obj
+  traverse(obj).forEach(function(key, x, t) {
+    if (key == 'y') {
+      expect(x == obj).toBe(true)
+    }
+  })
+})
+
+test('deepCirc', () => {
+  expect.assertions(1)
+  var obj = {x: [1, 2, 3], y: [4, 5]}
+  obj.y[2] = obj
+
+  var times = 0
+  traverse(obj).forEach(function(key, x, t) {
+    if (t.isCircular) {
+      // expect(t.circular.path).toEqual([])
+      expect(t.path).toEqual(['y', 2])
+    }
+  })
+})
+
+test('doubleCirc', () => {
+  var obj = {x: [1, 2, 3], y: [4, 5]}
+  obj.y[2] = obj
+  obj.x.push(obj.y)
+
+  var circs = []
+  traverse(obj).forEach(function(key, x, self) {
+    if (self.isCircular) {
+      circs.push({self, path: self.path.slice(0)})
+    }
+  })
+
+  expect(circs[0].path).toEqual(['x', 3, 2])
+  // de(circs[0].circ.path, [])
+
+  // 'y', 2
+  expect(circs[1].path).toEqual(['y'])
+  // de(circs[1].circ.path, [])
+
+  expect(circs.length).toBe(2)
+})
+
+test('circDubForEach', () => {
+  var obj = {x: [1, 2, 3], y: [4, 5]}
+  obj.y[2] = obj
+  obj.x.push(obj.y)
+
+  traverse(obj).forEach(function(key, x, t) {
+    if (t.isCircular) {
+      t.update('...')
+      t.clear()
+    }
+  })
+
+  expect(obj).toEqual({x: [1, 2, 3, [4, 5, '...']], y: [4, 5, '...']})
+})
+
+// test('circDubMap', () => {
+//   var obj = {x: [1, 2, 3], y: [4, 5]}
+//   obj.y[2] = obj
+//   obj.x.push(obj.y)
+//
+//   var c = traverse(obj).map(function(x) {
+//     if (this.circular) {
+//       this.update('...')
+//     }
+//   })
+//
+//   expect(c).toEqual({x: [1, 2, 3, [4, 5, '...']], y: [4, 5, '...']})
+// })
+
+test('circClone', () => {
+  var obj = {x: [1, 2, 3], y: [4, 5]}
+  obj.y[2] = obj
+  obj.x.push(obj.y)
+
+  var clone = traverse.clone(obj)
+
+  expect(obj !== clone).toBeTruthy()
+
+  // log.quick({clone, obj}, clone.x.slice(0, 3), obj.x.slice(0, 3))
+
+  expect(clone.x.slice(0, 3)).toEqual([1, 2, 3])
+  expect(clone.y.slice(0, 2)).toEqual([4, 5])
+})
+
+test.skip('circClone - @FIXME', () => {
+  var obj = {x: [1, 2, 3], y: [4, 5]}
+  obj.y[2] = obj
+  obj.x.push(obj.y)
+
+  var clone = traverse.clone(obj)
+
+  log.quick(clone.x[3][2], clone)
+  // expect(clone.y[2] === clone).toBeTruthy()
+
+  expect(eq(clone.y[2], clone)).toBeTruthy()
+  expect(eq(clone, clone.y[2])).toBeTruthy()
+  expect(eq(clone.x[3][2], clone)).toBeTruthy()
+
+  console.log(clone.y[2] !== obj)
+  console.log(clone.x[3][2] !== obj)
+})
+
+// test('circMapScrub', () => {
+//   var obj = {a: 1, b: 2}
+//   obj.c = obj
+//
+//   var scrubbed = traverse(obj).map(function(node) {
+//     if (this.circular) this.remove()
+//   })
+//   expect(Object.keys(scrubbed).sort()).toEqual(['a', 'b'])
+//   expect(deepEqual(scrubbed, {a: 1, b: 2}, true)).toBeTruthy()
+//
+//   expect(deepEqual(obj.c, obj, true)).toBeTruthy()
+// })

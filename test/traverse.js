@@ -102,8 +102,10 @@ test('traverse', () => {
 
     if (prop === 'eh') it.remove()
     else if (typeof val === 'number') it.update(val + 1)
-    eq(val, its)
+
     set.add(prop)
+    eq(val, its)
+
     // const {paths, key, isCircular, isLeaf, isRoot, depth, iteratable} = it
     // const data = {paths, key, isCircular, isLeaf, isRoot, depth, iteratable}
 

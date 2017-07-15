@@ -21,8 +21,6 @@ const Script = require('script-chain')
 const log = require('fliplog')
 const {read, write} = require('flipfile')
 const {del} = require('./util')
-const docdown = require('../_modules/_docdown')
-const {filesMatcher} = require('../_modules/_docdown/lib/chain-able')
 // const docdown = require('docdown')
 const {stripRollup} = require('./plugins/ast')
 const find = require('chain-able-find')
@@ -362,6 +360,8 @@ class CLI {
       // eslint-disable-next-line
       // debugger
 
+      const docdown = require('../_modules/_docdown')
+
       const markdown = docdown({
         path: filepath,
         url: repoPath + relatived,
@@ -409,6 +409,8 @@ class CLI {
     const docFiles = vfs.src.rel
       .map(vfs.toRepoDocPath)
       .map(rel => rel.replace('/src/', '/'))
+
+    const {filesMatcher} = require('../_modules/_docdown/lib/chain-able')
 
     const findDir = filesMatcher(dirs)
 
