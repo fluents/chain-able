@@ -1,2 +1,4 @@
+const prop = require('../fp/prop')
+
 // reduces size by hundreds of bytes gzipped...
-module.exports = x => x.length
+module.exports = prop('length')
