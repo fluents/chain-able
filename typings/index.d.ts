@@ -10,9 +10,11 @@ export * from './MethodChain'
 export * from './Chainable'
 export * from './ChainedSet'
 export * from './ChainedMap'
+export * from './ChainedMapBase'
 export * from './FactoryChain'
 export * from './compose'
 export * from './schema'
 
-import { Chain } from './chain'
+import {Chain} from './chain'
+
 export default Chain

@@ -17,38 +17,58 @@ const isArray = require('./is/array')
  * @see https://stackoverflow.com/questions/27597335/ensuring-object-can-be-garbage-collected
  * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management
  *
- * @TODO: , blacklist = []
- * @TODO: put all GC events into a cached map and debounce the operation
+ * @TODO blacklist = [] param
+ * @TODO put all GC events into a cached map and debounce the operation
  *
  * @since 4.0.0
  * @desc remove all methods, mark for garbage collection
- * @param {Object} obj
- * @param {Array<string>} ignore
+ * @param {Object} obj object to traverse and clear
  * @return {void}
+ *
+ * @example
+ *
+ *  var scoped = {}
+ *  var ref = () => scoped
+ *  var obj = {scoped, ref, eh: true}
+ *
+ *  markForGarbageCollection(obj)
+ *  //=> void
+ *
+ *  obj
+ *  //=> undefined|{}
+ *
  */
 function markForGarbageCollection(obj) {
-  let props = ObjectProperties(obj)
+  // @TODO: ArrayOrObj loop... like tons of libs do...
+  let props = isObj(obj) ? ObjectProperties(obj) : obj //isArray(obj) ? obj
 
-  traverse(obj).forEach(function(x) {
-    const {value} = this
-
-    // @NOTE: just delete the main path first, later we can use cleaner
-    // const shouldIgnore = path
-    //   .map(pathPart => ignore.includes(pathPart))
-    //   .includes(true)
-    //   !shouldIgnore &&
-
-    /* istanbul ignore else: safety for bottom up */
-    // ensure the longest paths in traverser are used...
-    if (!isArray(value) && !isObj(value)) {
-      this.remove()
-    }
-  })
-
-  // simple fast easy cleanup
   for (let p = 0; p < props.length; p++) {
+    if (isObj(obj[p])) {
+      markForGarbageCollection(obj[p])
+    }
     delete obj[p]
   }
+
+  // traverse(obj).forEach(function(x) {
+  //   const {value} = this
+  //
+  //   // @NOTE: just delete the main path first, later we can use cleaner
+  //   // const shouldIgnore = path
+  //   //   .map(pathPart => ignore.includes(pathPart))
+  //   //   .includes(true)
+  //   //   !shouldIgnore &&
+  //
+  //   /* istanbul ignore else: safety for bottom up */
+  //   // ensure the longest paths in traverser are used...
+  //   if (!isArray(value) && !isObj(value)) {
+  //     this.remove()
+  //   }
+  // })
+
+  // simple fast easy cleanup
+  // for (let p = 0; p < props.length; p++) {
+  //   delete obj[p]
+  // }
 
   props = undefined
   obj = undefined

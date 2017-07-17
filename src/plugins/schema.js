@@ -30,6 +30,7 @@ const isObjOrArray = x => (isObj(x) && !isFunction(x)) || isArray(x)
  *       3. carrying over the inheritable properties
  *       4. @modifies @injects @decorates .add(customValidators)
  *       @pattern decorator...builder...plugin...
+ *
  * @param  {Schema} obj
  * @return {MethodFactory} @chainable
  */

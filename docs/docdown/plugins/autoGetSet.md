@@ -19,14 +19,18 @@
 
 <!-- div -->
 
-<h3 id="MethodChain-prototype-autoGetSet"><a href="#MethodChain-prototype-autoGetSet">#</a>&nbsp;<code>MethodChain.prototype.autoGetSet(name, parent)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/plugins/autoGetSet.js#L23 "View in source") [&#x24C9;][1]
+<h3 id="MethodChain-prototype-autoGetSet"><a href="#MethodChain-prototype-autoGetSet">#</a>&nbsp;<code>MethodChain.prototype.autoGetSet(name=undefined, parent=undefined)</code></h3>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/plugins/autoGetSet.js#L24 "View in source") [&#x24C9;][1]
+
+Function
 
 
+### @see 
 
+* <a href="https://github.com/fluents/chain-able/blob/master/src/MethodChain.js">fluents/chain able/blob/master/src/method chain.js</a>
 #### Arguments
-1. `name` *(Primitive)*: method name being built
-2. `parent` *(Object)*: parent containing the method
+1. `name=undefined` *(Primitive)*: method name being built
+2. `parent=undefined` *(Object)*: parent containing the method
 
 #### Returns
 *(MethodChain)*: @chainable
@@ -34,12 +38,13 @@
 #### Example
 ```js
 const chain = new Chain()
-   chain.methods('eh').plugin(autoGetSet).build()
+chain.methods('eh').plugin(autoGetSet).build()
 
-   chain.eh(1)
-   //=> Chain
-   chain.eh()
-   //=> 1
+chain.eh(1)
+//=> Chain
+chain.eh()
+//=> 1
+
 ```
 ---
 

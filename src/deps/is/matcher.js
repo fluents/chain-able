@@ -1,4 +1,5 @@
 const isFunction = require('./function')
+const isRegExp = require('./regexp')
 
 /**
  * @func isMatcher
@@ -22,4 +23,5 @@ const isFunction = require('./function')
  *    //=> false
  *
  */
-module.exports = x => isFunction(x) || x instanceof RegExp
+module.exports = x => isFunction(x) || isRegExp(x)
+// x instanceof RegExp

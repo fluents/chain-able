@@ -17,4 +17,8 @@ const toS = require('./toS')
  * // => false
  *
  */
-module.exports = x => x instanceof Set || toS(x) === '[object Set]'
+module.exports = function isSet(x) {
+  return x instanceof Set || toS(x) === '[object Set]'
+  // return toS(x) === '[object Set]'
+}
+// x instanceof Set ||

@@ -1,4 +1,4 @@
-const isObjLoose = require('./objLoose')
+const isObjTypeof = require('./objTypeof')
 const isNullOrUndef = require('./nullOrUndefined')
 
 /**
@@ -10,12 +10,12 @@ const isNullOrUndef = require('./nullOrUndefined')
  * @func isObjStrict
  * @see is/obj
  * @see is/objWithKeys
- * @see is/objLoose
+ * @see is/objTypeof
  * @see is/null
  * @see https://github.com/sindresorhus/is-obj/blob/master/index.js
  * @TODO !Array.isArray
  *
- * @extends isObjLoose
+ * @extends isObjTypeof
  * @variation null will not count as an object
  *
  * @example
@@ -39,4 +39,4 @@ const isNullOrUndef = require('./nullOrUndefined')
  *  //=> false
  *
  */
-module.exports = x => !isNullOrUndef(x) && isObjLoose(x)
+module.exports = x => !isNullOrUndef(x) && isObjTypeof(x)

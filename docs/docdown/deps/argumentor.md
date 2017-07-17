@@ -22,7 +22,7 @@
 <h3 id="exports"><a href="#exports">#</a>&nbsp;<code>exports()</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/argumentor.js#L23 "View in source") [&#x24C9;][1]
 
-
+(Function): turns arguments into an array, used as a util, for opt
 
 #### Since
 3.0.0
@@ -33,12 +33,13 @@
 #### Example
 ```js
 function eh() {
-     const args = argumentor.apply(null, arguments).slice(1)
+  const args = argumentor.apply(null, arguments).slice(1)
 
-     console.log(args)
-     //=> [1, 10, 100]
-   }
-   eh(0, 1, 10, 100)
+  console.log(args)
+  //=> [1, 10, 100]
+}
+eh(0, 1, 10, 100)
+
 ```
 ---
 

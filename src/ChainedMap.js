@@ -1,7 +1,7 @@
 const isUndefined = require('./deps/is/undefined')
 const MergeChain = require('./MergeChain')
 const MethodChain = require('./MethodChain')
-const ChainedMapCore = require('./ChainedMapBase')
+const ChainedMapBase = require('./ChainedMapBase')
 
 /**
  * @desc ChainedMap composer
@@ -29,9 +29,10 @@ const ChainedMapCore = require('./ChainedMapBase')
  *
  */
 const CM = SuperClass => {
-  const Composed = SuperClass === ChainedMapCore
-    ? SuperClass
-    : ChainedMapCore.compose(SuperClass)
+  const Composed =
+    SuperClass === ChainedMapBase
+      ? SuperClass
+      : ChainedMapBase.compose(SuperClass)
 
   class ChainedMap extends Composed {
     /* prettier-ignore */
@@ -109,7 +110,7 @@ const CM = SuperClass => {
   return ChainedMap
 }
 
-const cm = CM(ChainedMapCore)
+const cm = CM(ChainedMapBase)
 cm.compose = CM
 
 module.exports = cm

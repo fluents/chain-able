@@ -2,6 +2,7 @@ const ChainedMapBase = require('./ChainedMapBase')
 const traverse = require('./deps/traverse')
 const isTrue = require('./deps/is/true')
 const matchFactory = require('./deps/matcher/any-key-val')
+const ENV_DEBUG = require('./deps/env/debug')
 
 const TRAVERSED_KEY = 1
 const EXTENSION_KEYS = ['obj', 'keys', 'vals', 'onNonMatch', 'onMatch', 'clone']
@@ -86,6 +87,7 @@ module.exports = class Traverser extends ChainedMapBase {
    *
    *   traversed
    *   //=> {flat: 0}
+   *
    */
   traverse(shouldReturn) {
     const {obj, keys, vals, onMatch, onNonMatch, clone} = this.entries()
@@ -94,13 +96,29 @@ module.exports = class Traverser extends ChainedMapBase {
     // diff between keys and val is order of arg in ^ tester
     const matcher = matchFactory(keys, vals)
 
+    /* istanbul-ignore next: debug */
+    if (ENV_DEBUG) {
+      console.log('matcher for traverse...', keys, vals)
+    }
+
     // bound to the traverser
-    traverse(obj).forEach(function(x) {
-      if (matcher(this.key, x)) {
-        onMatch(x, this)
+    traverse(result).forEach(function(key, x, traverser) {
+      if (traverser.isRoot) return
+      if (matcher(key, x)) {
+        /* istanbul-ignore next: debug */
+        if (ENV_DEBUG) {
+          console.log('------- match ------- ', key, x)
+        }
+
+        onMatch(x, traverser)
       }
       else if (onNonMatch) {
-        onNonMatch(x, this)
+        /* istanbul-ignore next: debug */
+        if (ENV_DEBUG) {
+          console.log('------- NONmatch ------- ', key, x)
+        }
+
+        onNonMatch(x, traverser)
       }
     })
 
@@ -109,6 +127,7 @@ module.exports = class Traverser extends ChainedMapBase {
   }
 
   /**
+   * value traversed in traverse
    * @since 1.0.0
    * @see TraverseChain.traverse
    * @return {Object | Array | any} traversed
@@ -121,7 +140,7 @@ module.exports = class Traverser extends ChainedMapBase {
    *   traverser.traverse()
    *
    *   traverser.traversed()
-   *   // => ['goose']
+   *   //=> ['goose']
    *
    * @example
    *
@@ -152,7 +171,7 @@ module.exports = class Traverser extends ChainedMapBase {
    *      .call(false)
    *
    *    traverser.traversed()
-   *    // => {
+   *    //=> {
    *      className: 'DotProp',
    *      me: true,
    *      nested: {

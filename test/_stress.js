@@ -31,7 +31,7 @@ module.exports = cb => {
   const g = typeof global === 'undefined' ? window : global
 
   /* istanbul ignore next: tests run in node */
-  const xml = g.XMLHttpRequest ? new g.XMLHttpRequest() : require('http')
+  // const xml = g.XMLHttpRequest ? new g.XMLHttpRequest() : require('http')
 
   const datas = [
     generatorFunction,
@@ -105,8 +105,8 @@ module.exports = cb => {
     Array,
     Set,
     Map,
-    g,
-    xml,
+    // g,
+    // xml,
   ]
 
   if (cb) datas.map(data => cb(data))

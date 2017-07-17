@@ -13,20 +13,4 @@ export * from './ChainedMap'
 export * from './FactoryChain'
 export * from './compose'
 export * from './schema'
-
-import {
-  eq,
-  camelCase,
-  toarr,
-  Dot,
-  MagicMatchers,
-  clean,
-  reduce,
-  FnTap,
-} from './deps'
-import {
-  TraverseChain,
-  Traverse,
-  TraverseContext,
-  TraverseCallback,
-} from './traverse'
+export * from './ChainedMapBase'

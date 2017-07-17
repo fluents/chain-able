@@ -4,104 +4,109 @@ const {minify} = require('uglify-es')
 // https://github.com/mishoo/UglifyJS2/pull/733/files !!!
 // https://github.com/mishoo/UglifyJS2#minify-options-structure
 // should mangle...
-module.exports = () =>
-  uglify(
-    {
-      warnings: true,
-      parse: {
-        // parse options
-        html5_comments: false,
-        shebang: false,
-      },
-      // https://github.com/mishoo/UglifyJS2#conditional-compilation-api
-      compress: {
-        // compress options
-        dead_code: true,
-        global_defs: {
-          ENV_DEBUG: false,
-          ENV_DEVELOPMENT: false,
-          dev: false,
-          debug: false,
-        },
+module.exports = options => {
+  const mangles = options.mangles === undefined ? true : options.mangles
+  const beautify = !!options.beautify
 
-        drop_debugger: true,
-        booleans: true,
-        unused: true,
-        comparisons: true,
-        conditionals: true,
-        hoist_funs: true,
-        if_return: true,
-        join_vars: true,
-        cascade: true,
-        collapse_vars: true,
-
-        // drop_console: true,
-
-        // debug: '',
-        // only 1 getters - length
-        pure_getters: true,
-
-        // helpful - except when you WANT the constants
-        evaluate: true,
-        sequences: true,
-
-        // @TODO:
-        // pure_funcs: true, side_effects: false,
-        keep_fargs: false,
-        keep_fnames: false, // for now
-
-        // keep_fargs: false,
-        // keep_fnames: false, // for now
-        passes: 10,
+  const uglifyOptions = {
+    warnings: true,
+    parse: {
+      // parse options
+      html5_comments: false,
+      shebang: false,
+    },
+    // https://github.com/mishoo/UglifyJS2#conditional-compilation-api
+    compress: {
+      // compress options
+      dead_code: true,
+      global_defs: {
+        ENV_DEBUG: false,
+        ENV_DEVELOPMENT: false,
+        dev: false,
+        debug: false,
       },
 
-      // mangle: false,
-      mangle: {
+      // drop_debugger: true,
+      booleans: true,
+      unused: true,
+      comparisons: true,
+      conditionals: true,
+      hoist_funs: true,
+      if_return: true,
+      join_vars: true,
+      cascade: true,
+      collapse_vars: true,
+
+      // drop_console: true,
+
+      // debug: '',
+      // only 1 getters - length
+      pure_getters: true,
+
+      // helpful - except when you WANT the constants
+      evaluate: true,
+      sequences: true,
+
+      // @TODO:
+      // pure_funcs: true, side_effects: false,
+      keep_fargs: beautify,
+      keep_fnames: beautify, // for now
+
+      // keep_fargs: false,
+      // keep_fnames: false, // for now
+      passes: 10,
+    },
+
+    // mangle: false,
+    mangle: mangles
+      ? {
         properties: false,
         //  {
         //    name_cache: resolve('./tmp/namecache.json'),
         //    unsafe: true,
         //    builtins: true,
         //  }
-        toplevel: true,
+        toplevel: mangles,
 
         // ties to compression opt
-        keep_fnames: false,
+        keep_fnames: beautify,
         reserved: ['unwrapExports'],
-      },
+      }
+      : false,
 
-      // output: {
-      //   beautify: true,
-      // },
-      sourceMap: true,
-      toplevel: true,
-      ie8: false,
-    },
-    minify
-  )
+    // output: {
+    //   beautify: true,
+    // },
+    sourceMap: true,
+    toplevel: mangles,
+    ie8: false,
+  }
+  console.log(uglifyOptions)
+  return uglify(uglifyOptions, minify)
 
-// more minimal
-// plugins.push(
-//   uglify(
-//     {
-//       warnings: false,
-//       parse: {
-//         // parse options
-//         html5_comments: false,
-//         shebang: false,
-//       },
-//       compress: {
-//         // compress options
-//         dead_code: true,
-//         drop_debugger: true,
-//         booleans: true,
-//         unused: true,
-//       },
-//
-//       sourceMap: true,
-//       toplevel: false,
-//       ie8: false,
-//     },
-//     minify
-//   )
-// )
+  // more minimal
+  // plugins.push(
+  //   uglify(
+  //     {
+  //       warnings: false,
+  //       parse: {
+  //         // parse options
+  //         html5_comments: false,
+  //         shebang: false,
+  //       },
+  //       compress: {
+  //         // compress options
+  //         dead_code: true,
+  //         drop_debugger: true,
+  //         booleans: true,
+  //         unused: true,
+  //       },
+  //
+  //       sourceMap: true,
+  //       toplevel: false,
+  //       ie8: false,
+  //     },
+  //     minify
+  //   )
+  // )
+}

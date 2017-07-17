@@ -25,21 +25,44 @@
 
 ## steps
 
-0. ✅ `src` code is [es6 supported by LTS node & last many versions of chrome][node.green]
-1. run the [Makefile][] with shorthand combinations for what needs to be run (e.g., `make`, or `make copy test cov prepublish`)
-2. copy with [flow-remove-types][] (_types are no longer in the src but the copying for easy importing is still helpful_)
-  - `src/` -> `/`
+### 0. ✅ `src` code is [es6 supported by LTS node & last many versions of chrome][node.green]
+  - this makes it extremely easy to export & run quickly
+  - easy understanding & control over exactly how your code will turn out when you export it
+
+### 1. run the [Makefile][] with shorthand combinations for what needs to be run (e.g., `make`, or `make copy test cov prepublish`)
+  - all npm scripts are run by default with [Makefile][]
+  - all scripting logic is done in Makefile, e.g. `yarn run jest -- --coverage`
+  - none of the npm scripts are in [package.json](https://github.com/fluents/chain-able/blob/master/package.json), it looks like this ```js
+    "scripts": {
+      "buble": "buble",
+      "rollup": "rollup",
+      "jest": "jest",
+      "webpack": "webpack",
+      "gzip": "gzip-size",
+    }
+    ```
+### 2. copy with [flow-remove-types][] (_types are no longer in the src but the copying for easy importing is still helpful_)
+  - `src/` -> `/` copying the files to the root encourages much easier modular imports
   - `src/` -> `dist/`
   - `test/` -> `test-dist`
-3. code coverage: run [buble][] on the `dist/` & `test-dist/` with sourceMaps inlined (_output into those same respective dirs_)
-4. [nyc][] runs [ava][], which uses [babel][], which uses the inline sourceMaps from [buble][]... this is an unfortunate & required convoluted sequence of steps because:
+
+### 3. code coverage: run [buble][] on the `dist/` & `test-dist/` with sourceMaps inlined (_output into those same respective dirs_)
+
+### 4. [nyc][] runs [ava][], which uses [babel][], which uses the inline sourceMaps from [buble][]... this is an unfortunate & required convoluted sequence of steps because:
   - [nyc][] does not support for es6
   - [ava][] forces the use of [babel][]
   - unfortunately the [tap][tap] reporter for [ava][] doesn't play nicely with [covert][] (which is old anyway)
   - there are barely any code coverage libraries for js
   - [babel][] has issues (breaks) when _running_ babel-transpiled-code that _extends_ raw es6 classes
-  - **GOING TO TRY JEST** https://medium.com/@kentcdodds/migrating-to-jest-881f75366e7e
-5. run [rollup][] - exports
+
+**UPDATE** - [migrated to jest!](https://medium.com/@kentcdodds/migrating-to-jest-881f75366e7e)
+  - much easier code coverage available with just `--coverage`
+  - no need to transpile and deal with sourceMaps
+  - about 10x faster
+  - some inconsistent issues on CI that are known jest issues
+  - used [jest codemods](https://github.com/skovhus/jest-codemods) which worked very well this time
+
+### 5. run [rollup][] - exports
   - `rollup: config: {}` entry in `package.json` for some targets that need a little extra config
   - we already have a `dist` folder that is es3+, and we can use it for each target (vs transpiling all of the source code each time)
   - best practice here is an index/entry file that just conditionally requires & exports the right file for the environment
@@ -49,7 +72,16 @@
     - `es` (*default*) – Keep the bundle as an ES module file
     - `iife` – A self-executing function, suitable for inclusion as a <script> tag. (If you want to - create a bundle for your application, you probably want to use this, because it leads to - smaller file sizes.) ([preact][] builds with this)
     - `umd` – Universal Module Definition, works as amd, cjs and iife all in one ❗ (this is default dev export, used also for dev by [inferno][])
-5. production finishing touches:
+
+**UPDATE**
+  - additional exports specifically have been crafted with a custom rollup plugin, [rollup-plugin-falafel][falafel-plugin] do some things the rollup replace plugin cannot do,
+    - remove the not-needed unwrapModuleExports wrapper (for export default)
+    - replace constant variable names before rollup temporarily changes all code to es6 imports and then back to commonjs
+  - debugger exports added, which is a set of the best places for the `debugger` to be used, so just importing from (or aliasing to) `/debugger` will enable that flow
+  - .min (as mangled) exports alongside the more readable dist files for each format that are compressed but not mangled, shaken, not stirred.
+  - _// @TODO need to document the upcoming documentation generating_
+
+### 6. production finishing touches:
   - replace our environment variables to [remove things for production](#ReplaceDefine)
   - export a _development_ build that keeps these conditions, for easier debugging
   - [uglify-js3][uglify-js3] is run with [uglify-es][uglify-es]
@@ -58,21 +90,23 @@
   - [codacy][] checks the lint rules in case any were missed by local tools
   - [travis][] does the same thing all over again so we are sure it didn't "just work for us"
   - [coveralls][] & [badgesize][]  gets the result & then you get badges & graphs
-5. record build data [size-over-time][]
-  - [gzip-size][gzip-size] of the build `gzip-size dist/index.js --raw >> build/size-over-time.txt`
-  - record date `date +%Y:%M:%D:%H:%M:%S >> build/size-over-time.txt`
-  - format `echo --- >> build/size-over-time.txt`
-  - comment (_should do a cli prompt_)
-6. experiment with other bundling setups
-  - [fuse-box][] has a much easier build process, reports gzip, much faster, can compile with buble, typescript, or babel without any extra plugins, but the size is just a _little_ bigger than [rollup][] so I can't use it for `main` export yet - but likely soon
+  - record build data [size-over-time][]
+    - [gzip-size][gzip-size] of the build `gzip-size dist/index.js --raw >> build/size-over-time.txt`
+    - record date `date +%Y:%M:%D:%H:%M:%S >> build/size-over-time.txt`
+    - format `echo --- >> build/size-over-time.txt`
+    - comment (_should do a cli prompt_)
+
+5. experiment with other bundling setups
+  - [fuse-box][] has a much easier build process, reports gzip, much faster, can compile with [buble][], [typescript][], or [babel][] without any extra plugins, but the size is just a _little_ bigger than [rollup][] so I can't use it for `main` export yet - but likely soon
   - at one point, creating a [rollup][] bundle of es6 code, transpiling that with [typescript][] (_so helpers are not duplicated, though with the latest version they have a helper for that_), then re-bundling & uglifying gave a little better size than [buble][], but it didn't stay that way for long :-/
   - using [webpack][], even with the new [webpack 3 scope hoisting][] was many many times bigger than everything else so it was just not an option, more for applications than libraries (using webpack is much better with [webpack-chain][])
-  - [gulp][] probably would work, but would need 100 plugins
-  - [browserify][], although the slowest, was the easiest to just with 1 line cli cmd, and is the most stable by far, so when I just wanted to zip an html + css + js file, it just worked no trouble no config, kudos there, but not really for optimizing size
-  - [brunch][] is definitely not focused on this job, but similar to [yeoman][] in the way that it can get you started with a skeleton, probably worth putting a getting started repo on it for chainable
-  - [grunt][] using grunt nowadays, is like using underscore, jquery, and coffeescript all together nowadays - not for a good reason (which there are), but just because the code wasn't maintained
-  - [pin.gy][] nice looking cli, but that's about the same as [browserify][] without being an OG
-  - [broccoli.js][] it says node 0.10.x as `node --version` for "latest"
+  - **NOTE** these were not used, but are other bundlerishes
+    - [gulp][] probably would work, but would need 100 plugins
+    - [browserify][], although the slowest, was the easiest to just with 1 line cli cmd, and is the most stable by far, so when I just wanted to zip an html + css + js file, it just worked no trouble no config, kudos there, but not really for optimizing size
+    - [brunch][] is definitely not focused on this job, but similar to [yeoman][] in the way that it can get you started with a skeleton, probably worth putting a getting started repo on it for chainable
+    - [grunt][] using grunt nowadays, is like using underscore, jquery, and coffeescript all together nowadays - not for a good reason (which there are), but just because the code wasn't maintained
+    - [pin.gy][] nice looking cli, but that's about the same as [browserify][] without being an OG
+    - [broccoli.js][] it says node 0.10.x as `node --version` for "latest"
 
 
 
@@ -88,6 +122,10 @@
 - [uglify-js3][]
 - [optimize-js][]
 - [fuse-box][]
+- [falafel][]
+
+[falafel-plugin]: https://github.com/fluents/chain-able/blob/master/build/plugins/ast.js
+[falafel]: https://github.com/substack/node-falafel
 
 # targets
 some notes
@@ -161,6 +199,7 @@ to see more on deadcode elimination
 
 > be careful - module.exports & exports.name work perfectly well, test your dist files
 
+- [dist file testing in chain-able](https://github.com/fluents/chain-able/blob/master/test/built.js)
 - https://github.com/infernojs/inferno/issues/928
 - https://github.com/infernojs/inferno/issues/903
 - https://github.com/infernojs/inferno/issues/686

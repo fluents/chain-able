@@ -34,4 +34,6 @@
  *  isFunction(/abc/)
  *  // => false
  */
-module.exports = x => typeof x === 'function'
+module.exports = function isFunction(x) {
+  return typeof x === 'function'
+}

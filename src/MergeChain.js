@@ -117,6 +117,7 @@ class MergeChain extends ChainedMapBase {
    *  chain.merge({canada: {arr: [0, {'1': 2}], eh: {again: true}}})
    *  chain.entries()
    *  //=> {canada:{ eh: {again: true}, arr: [0, {'1': 2}] }}
+   *
    */
   merge(obj2) {
     // better uglifying
@@ -193,6 +194,7 @@ class MergeChain extends ChainedMapBase {
        *    //=> parent //<- unless .set is overriden
        *    parent.get('oh')
        *    //=> 1
+       *
        */
       const setChosen = (keyToSet, valueToSet) =>
         (isFunction(parent[key])
@@ -229,6 +231,7 @@ class MergeChain extends ChainedMapBase {
               {existing, onExisting, [key]: value}
             )
           }
+
           /**
            * maybe we should not even have `.onExisting`
            * since we can just override merge method...
@@ -315,6 +318,7 @@ class MergeChain extends ChainedMapBase {
  * @method onExisting
  * @since 0.9.0
  * @example
+ *
  *    const {Chain, MergeChain} = require('chain-able')
  *
  *    const chain = new Chain().set('str', 'stringy')
@@ -325,6 +329,7 @@ class MergeChain extends ChainedMapBase {
  *
  *    chain.get('str')
  *    //=> 'stringy+'
+ *
  */
 
 module.exports = MergeChain

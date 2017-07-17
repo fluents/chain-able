@@ -5,6 +5,7 @@ const isPrototypeOf = require('./deps/is/prototypeOf')
 const isMap = require('./deps/is/map')
 const isSet = require('./deps/is/set')
 const isUndefined = require('./deps/is/undefined')
+const isFunction = require('./deps/is/function')
 const isString = require('./deps/is/string')
 const isFalse = require('./deps/is/false')
 const ObjectKeys = require('./deps/util/keys')
@@ -16,11 +17,11 @@ const shouldClear = (key, property) =>
   !ignored(key) &&
   (isMap(property) || isSet(property) || (property && property.store))
 
-const C = SuperClass => {
+const ComposeChainable = Target => {
   /* istanbul ignore next: dev */
   if (ENV_DEVELOPMENT) {
-    if (!SuperClass || !SuperClass.prototype) {
-      console.log({SuperClass})
+    if (!Target || !Target.prototype) {
+      console.log({Target})
       throw new TypeError('did not have a super class / target base')
     }
   }
@@ -45,9 +46,11 @@ const C = SuperClass => {
    * @tests Chainable
    * @types Chainable
    */
-  class Chainable extends SuperClass {
+  class Chainable extends Target {
     /**
      * @since 0.0.1
+     * @memberOf Chainable
+     *
      * @param {Chainable | any | ParentType} parent ParentType
      * @constructor
      *
@@ -57,6 +60,7 @@ const C = SuperClass => {
      *    const map = new ChainedMap()
      *    map.className
      *    //=> ChainedMap
+     *
      */
     constructor(parent) {
       super()
@@ -67,8 +71,9 @@ const C = SuperClass => {
     /**
      * @desc Iterator for looping values in the store
      *
+     * @memberOf Chainable
      * @since 0.5.0
-     * @see this.store
+     *
      * @type {generator}
      * @return {Object} {value: undefined | any, done: true | false}
      *
@@ -77,6 +82,7 @@ const C = SuperClass => {
      * @see https://stackoverflow.com/questions/36976832/what-is-the-meaning-of-symbol-iterator-in-this-context
      * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator
      * @tests iteration
+     * @see this.store
      *
      * @example
      *
@@ -138,7 +144,10 @@ const C = SuperClass => {
     /**
      * @desc for ending nested chains
      * @since 0.4.0
+     * @memberOf Chainable
+     *
      * @return {Chainable | any}
+     *
      * @see Chainable.parent
      * @see FactoryChain
      *
@@ -159,6 +168,7 @@ const C = SuperClass => {
      *       trueBrancher is called,
      *       else, falseBrancher is called
      *
+     * @memberOf Chainable
      * @since 4.0.0 <- added string-as-has(condition)
      * @since 2.0.0
      *
@@ -177,7 +187,7 @@ const C = SuperClass => {
      */
     when(condition, trueBrancher, falseBrancher) {
       if (condition) {
-        if (!isUndefined(trueBrancher)) {
+        if (isFunction(trueBrancher)) {
           if (isString(condition)) {
             if (this.get(condition)) {
               trueBrancher(this)
@@ -188,7 +198,7 @@ const C = SuperClass => {
           }
         }
       }
-      else if (!isUndefined(trueBrancher)) {
+      else if (isFunction(falseBrancher)) {
         falseBrancher(this)
       }
 
@@ -200,6 +210,7 @@ const C = SuperClass => {
      *       goes through this properties,
      *       calls .clear if they are instanceof Chainable or Map
      *
+     * @memberOf Chainable
      * @since 4.0.0 (moved only to Chainable, added option to clear this keys)
      * @since 0.4.0 (in ChainedMap)
      * @since 0.3.0 (in Chainable)
@@ -240,6 +251,7 @@ const C = SuperClass => {
     /**
      * @desc calls .delete on this.store.map
      * @since 0.3.0
+     * @memberOf Chainable
      *
      * @param {Primitive} key on a Map: key referencing the value. on a Set: the index
      * @return {Chainable}
@@ -267,8 +279,11 @@ const C = SuperClass => {
 
     /**
      * @since 0.3.0
+     * @memberOf Chainable
+     *
      * @param {any} keyOrValue key when Map, value when Set
      * @return {boolean}
+     *
      * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/has
      *
      * @example
@@ -286,6 +301,9 @@ const C = SuperClass => {
 
     /**
      * @desc spreads the entries from ChainedMap.store.values
+     *       allocates a new array, adds the values from the iterator
+     *
+     * @memberOf Chainable
      * @since 0.4.0
      *
      * @return {Array<any>} toArr(this.store.values())
@@ -304,6 +322,7 @@ const C = SuperClass => {
      * @see {@link compat-array-static-methods}
      * @see {@link set-to-array}
      *
+     *
      * @example
      *
      *  const chain = new Chain()
@@ -313,14 +332,32 @@ const C = SuperClass => {
      *
      */
     values() {
-      const vals = []
-      this.store.forEach(v => vals.push(v))
-      return vals
+      const allocated = new Array(this.store.size)
+      let i = 0
+      this.store.forEach(v => (allocated[i++] = v))
+      return allocated
+
+      // const size = this.store.size
+      // const allocated = new Array(size)
+      // // .forEach((value, index) => {
+      //
+      // const values = this.store.values()
+      //
+      // for (let index = 0; index < size; index++) {
+      //   // const value = values[index]
+      //   const value = values.next().value
+      //   // console.log({value, index, values})
+      //   allocated[index] = value
+      // }
+      //
+      // return allocated
     }
 
     /**
      * @see http://2ality.com/2015/09/well-known-symbols-es6.html#default-tostring-tags
      * @since 1.0.2
+     *
+     * @memberOf Chainable
      *
      * @param {string} hint enum[default, string, number]
      * @return {Primitive}
@@ -367,7 +404,10 @@ const C = SuperClass => {
   const ChainPrototype = Chainable.prototype
 
   /**
-   * @private
+   * @memberOf Chainable
+   * @name length
+   * @method length
+   * @readonly
    * @since 0.5.0
    * @example for (var i = 0; i < chain.length; i++)
    * @see ChainedMap.store
@@ -388,7 +428,7 @@ const C = SuperClass => {
   return Chainable
 }
 
-const c = C(class {})
+const c = ComposeChainable(class {})
 
 /**
  * @since 3.0.0
@@ -402,6 +442,6 @@ const c = C(class {})
  *  //=> true
  *
  */
-c.compose = C
+c.compose = ComposeChainable
 
 module.exports = c

@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is.prototype`
-* <a href="#is-prototype-exports">`is.prototype.exports`</a>
+* <a href="#is-prototype-isObj">`is.prototype.isObj`</a>
 
 <!-- /div -->
 
@@ -19,16 +19,21 @@
 
 <!-- div -->
 
-<h3 id="is-prototype-exports"><a href="#is-prototype-exports">#</a>&nbsp;<code>is.prototype.exports(value)</code></h3>
+<h3 id="is-prototype-isObj"><a href="#is-prototype-isObj">#</a>&nbsp;<code>is.prototype.exports(value=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/obj.js#L34 "View in source") [&#x24C9;][1]
 
+Function
 
 
+### @notes 
+
+* Object.prototype.toString.call(val) === '[object Object]'
+ 
 #### Since
 3.0.0
 
 #### Arguments
-1. `value` *(&#42;)*: The value to check.
+1. `value=undefined` *(&#42;)*: The value to check.
 
 #### Returns
 *(boolean)*: Returns `true` if `value` is an object, else `false`.
@@ -46,6 +51,7 @@ isObject(Function)
 
 isObject(null)
 // => false
+
 ```
 ---
 

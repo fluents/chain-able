@@ -20,4 +20,6 @@ const toS = require('./toS')
  *  //=> false
  *  isAsync(function() {})
  */
-module.exports = x => toS(x) === '[object AsyncFunction]'
+module.exports = function isAsync(x) {
+  return toS(x) === '[object AsyncFunction]'
+}

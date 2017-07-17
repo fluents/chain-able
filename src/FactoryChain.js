@@ -208,12 +208,14 @@ class FactoryChain extends ChainedMap {
 
   /* istanbul ignore next: sourcemaps trigger istanbul here incorrectly */
   /**
-   * @desc creates/add the `.end` method, which checks how many methods have been called, and decides whether to return parent or not
+   * @desc creates/add the `.end` method,
+   *       which checks how many methods have been called,
+   *       and decides whether to return parent or not
    *       @modifies this.end
    *
    * @since 2.0.0
    *
-   * @param  {Object} [obj={}] optiona object to use for creating .end
+   * @param  {Object} [obj={}] optional object to use for creating .end
    * @return {FactoryChain} @chainable
    *
    * @memberOf FactoryChain

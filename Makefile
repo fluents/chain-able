@@ -1,5 +1,6 @@
 # 📜📒 Makefile
 # learn more here: https://gist.github.com/isaacs/62a2d1825d04437c6f08
+# TODO: https://github.com/eslint/doctrine/blob/master/Makefile.js
 cwd := $(shell pwd)
 
 # --- unused ---
@@ -43,6 +44,9 @@ docgen:
 dox:
 	yarn run dox -- 'src/**/*.js' --layout markdown --output docs/bits/doxdox.md
 
+tracknode:
+	node --max-old-space-size=10000000 --trace-hydrogen --trace-phase=Z --trace-opt --trace-opt-verbose --trace-deopt --code-comments --hydrogen-track-positions --redirect-code-traces --redirect-code-traces-to=./code.asm
+
 # --- build ---
 
 buble:
@@ -52,7 +56,7 @@ babel:
 	yarn run babel -- src/ --out-dir dist
 
 tests:
-	yarn run test
+	yarn run test -- --notify
 
 testdist:
 	yarn run ava -- test/built.js --verbose
@@ -75,12 +79,16 @@ rollupcli:
 
 cov:
 	yarn run jest -- --coverage
-
+jestsnap:
+	yarn run jest -- --updateSnapshot
 jestserialcov:
-	yarn run jest --coverage --runInBand
-
+	yarn run jest -- --coverage --runInBand
 jestserial:
-	yarn run jest --runInBand
+	yarn run jest -- --runInBand
+jestperf:
+	yarn run jest -- --logHeapUsage
+jestdiff:
+	yarn run jest -- --lastCommit --onlyChanged
 
 coveralls:
 	yarn run coveralls -- < coverage/lcov.info
@@ -100,6 +108,9 @@ rollup:
 # --- makefile combos/presets ---
 # (the above things use names so they are non conflicting, e.g. we cannot have `build`)
 
+precommit:
+	$(MAKE) jestdiff
+
 stripcombo:
 	$(MAKE) copysrc && $(MAKE) copyroot
 
@@ -107,7 +118,7 @@ distcombo:
 	$(MAKE) copysrc && $(MAKE) buble
 
 buildcombo:
-	$(MAKE) distcombo && $(MAKE) cli
+	$(MAKE) distcombo && $(MAKE) cli && $(MAKE) gzip
 
 buildcombofuse:
 	$(MAKE) distcombo && $(MAKE) cli && $(MAKE) fuse && $(MAKE) webpack && $(MAKE) gzip
@@ -119,6 +130,6 @@ travis:
 	&& $(MAKE) jestserial
 
 prepublish:
-	$(MAKE) buildcombo && $(MAKE) cov && $(MAKE) testdist
+	$(MAKE) copyroot && $(MAKE) buildcombo && $(MAKE) cov && $(MAKE) testdist
 
 .PHONY: clean, quick

@@ -33,14 +33,14 @@
 
 <!-- div -->
 
-<h3 id="arrayHasAll"><a href="#arrayHasAll">#</a>&nbsp;<code>arrayHasAll(needles, haystack)</code></h3>
+<h3 id="arrayHasAll"><a href="#arrayHasAll">#</a>&nbsp;<code>arrayHasAll(needles=undefined, haystack=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/all.js#L24 "View in source") [&#x24C9;][1]
 
-
+Function
 
 #### Arguments
-1. `needles` *(string&#91;&#93;)*:
-2. `haystack` *(string&#91;&#93;)*:
+1. `needles=undefined` *(string&#91;&#93;)*:
+2. `haystack=undefined` *(string&#91;&#93;)*:
 
 #### Returns
 *(boolean)*:
@@ -57,14 +57,14 @@
 
 <!-- div -->
 
-<h3 id="includesAll"><a href="#includesAll">#</a>&nbsp;<code>includesAll(needle, haystack)</code></h3>
+<h3 id="includesAll"><a href="#includesAll">#</a>&nbsp;<code>includesAll(needle=undefined, haystack=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/all.js#L39 "View in source") [&#x24C9;][1]
 
-
+Function
 
 #### Arguments
-1. `needle` *(string|string&#91;&#93;)*:
-2. `haystack` *(string&#91;&#93;)*:
+1. `needle=undefined` *(string|string&#91;&#93;)*:
+2. `haystack=undefined` *(string&#91;&#93;)*:
 
 #### Returns
 *(boolean)*:
@@ -81,14 +81,14 @@
 
 <!-- div -->
 
-<h3 id="strHasAll"><a href="#strHasAll">#</a>&nbsp;<code>strHasAll(needle, haystack)</code></h3>
+<h3 id="strHasAll"><a href="#strHasAll">#</a>&nbsp;<code>strHasAll(needle=undefined, haystack=undefined)</code></h3>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/all.js#L9 "View in source") [&#x24C9;][1]
 
-
+Function
 
 #### Arguments
-1. `needle` *(string)*:
-2. `haystack` *(string&#91;&#93;)*:
+1. `needle=undefined` *(string)*:
+2. `haystack=undefined` *(string&#91;&#93;)*:
 
 #### Returns
 *(boolean)*:

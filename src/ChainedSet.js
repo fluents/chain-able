@@ -14,6 +14,7 @@ const toarr = require('./deps/to-arr')
  * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/isConcatSpreadable
  * @see Chainable
  * @tests ChainedSet
+ * @types ChainedSet
  *
  * @extends {Chainable}
  * @prop {Set} store

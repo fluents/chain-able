@@ -696,3 +696,141 @@ $ gzip-size dists/umd/index.js --raw
 Done in 0.25s.
 2017:38:06/30/17:08:38:31
 ---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8733
+Done in 0.27s.
+2017:38:06/30/17:10:38:42
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+9545 <- keeping all fn and variable names
+Done in 0.23s.
+2017:50:06/30/17:10:50:34
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+9545 <- keeping all names - surprisingly not too bad
+Done in 0.25s.
+2017:54:06/30/17:10:54:51
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+12324 <- with all variables and names...
+Done in 0.23s.
+2017:57:06/30/17:10:57:57
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+12321
+Done in 0.23s.
+2017:06:06/30/17:11:06:14
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+12004
+Done in 0.23s.
+2017:08:06/30/17:11:08:07
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8728
+Done in 0.25s.
+2017:08:06/30/17:11:08:58
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8728
+Done in 0.25s.
+2017:09:06/30/17:11:09:49
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8728
+Done in 0.26s.
+2017:10:06/30/17:11:10:46
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8728
+Done in 0.25s.
+2017:12:06/30/17:11:12:17
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8736
+Done in 0.26s.
+2017:19:07/01/17:03:19:21
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8895 <- with classes
+Done in 0.25s.
+2017:21:07/05/17:16:21:25
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8804 <- with proto
+Done in 0.25s.
+2017:14:07/05/17:17:14:27
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8804
+Done in 0.28s.
+2017:11:07/05/17:18:11:26
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8804
+Done in 0.27s.
+2017:12:07/05/17:18:12:22
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8804
+Done in 0.29s.
+2017:16:07/05/17:21:16:50
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8751 <- remove error thrower artifact in
+Done in 0.24s.
+2017:31:07/07/17:02:31:05
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8763
+Done in 0.25s.
+2017:54:07/12/17:17:54:56
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8763
+Done in 0.23s.
+2017:00:07/12/17:18:00:42
+---
+yarn run v0.24.6
+$ gzip-size dists/umd/index.js --raw
+8763
+Done in 0.23s.
+2017:01:07/12/17:18:01:18
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+8763
+Done in 0.51s.
+2017:39:07/12/17:18:39:36
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+8763
+Done in 0.52s.
+2017:12:07/12/17:19:12:26
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+8763
+Done in 0.68s.
+2017:15:07/12/17:19:15:45
+---

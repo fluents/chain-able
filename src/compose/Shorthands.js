@@ -13,7 +13,7 @@ const isFalse = require('../deps/is/false')
  * @memberOf compose
  * @category Chainable
  *
- * @param  {Class | Composable} SuperClass composable class
+ * @param  {Class | Composable} Target composable class
  * @return {Shorthands} class
  *
  * @tests Shorthands
@@ -41,8 +41,8 @@ const isFalse = require('../deps/is/false')
  *    //=> DotProp
  *
  */
-module.exports = SuperClass => {
-  return class Shorthands extends SuperClass {
+module.exports = Target => {
+  return class Shorthands extends Target {
     // --- helpers  ---
     constructor(parent) {
       super(parent)
@@ -54,6 +54,27 @@ module.exports = SuperClass => {
         this.debug(false)
       }
     }
+
+    // https://github.com/fluents/chain-able/issues/32
+    // find(key, data = this.entries(true)) {
+    //   let val = null
+    //   const matcher = new RegExp(key.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&'))
+    //   // console.debug(`key: ${key} `)
+    //   const cb = (x, traverser) => {
+    //     if (matcher.test(traverser.key) || traverser.path.includes(key)) {
+    //       val = x
+    //       traverser.stop()
+    //       // console.error({x})
+    //     }
+    //     // console.debug(`path: ${traverser.path.join('.')} prop: ${traverser.key}`)
+    //     // console.dir({x, path: traverser.path, key: traverser.key})
+    //   }
+    //
+    //   traverse(data).forEach(function(x) {
+    //     cb(x, this)
+    //   })
+    //   return val
+    // }
 
     /**
      * @desc sets on store not this.set for easier extension
@@ -131,12 +152,11 @@ module.exports = SuperClass => {
       else return this
     }
 
-    // --- added new ChainedMapExtendable stuff ---
-
     /**
      * @desc returns any value passed in
      *       return a value at the end of a chain regardless
      *
+     * @memberOf ShorthandChain
      * @since 3.0.0
      *
      * @param  {any} value value to return at the end of a chain
@@ -161,9 +181,30 @@ module.exports = SuperClass => {
      * @desc wrap a value, if it's a Function call it, return this
      *       aka execute something and return this
      *
+     * @memberOf ShorthandChain
      * @since 2.0.0
-     * @param  {any} fn
-     * @return {This} @chainable
+     * @param  {Function | any} fn function to call, or just any value
+     * @return {ShorthandChain} @chainable
+     *
+     * @example
+     *
+     *    const {eh} = chain.wrap(chain => chain.eh = true)
+     *    //=> true
+     *
+     * @example
+     *
+     *    new Chain()
+     *      .wrap(encased => encased.fn = arg => {
+     *        throw new Error('encased yo')
+     *      })
+     *      .method('fn')
+     *      .encase()
+     *      .catch(error => {
+     *        //=> Error('encasedYo')
+     *      })
+     *      .build()
+     *      .fn(true)
+     *
      */
     wrap(fn) {
       if (isFunction(fn)) fn.call(this, this)

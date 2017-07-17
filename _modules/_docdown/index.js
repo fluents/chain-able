@@ -3,12 +3,11 @@
  * Copyright 2011-2016 John-David Dalton <http://allyoucanleet.com/>
  * Available under MIT license <https://mths.be/mit>
  */
-'use strict';
 
-var _ = require('lodash'),
-    fs = require('fs'),
-    path = require('path'),
-    generator = require('./lib/generator.js');
+const fs = require('fs')
+const path = require('path')
+const _ = require('lodash')
+const generator = require('./lib/generator.js')
 
 /**
  * Generates Markdown documentation based on JSDoc comments.
@@ -25,17 +24,35 @@ var _ = require('lodash'),
  */
 function docdown(options) {
   options = _.defaults(options, {
-    'lang': 'js',
-    'sort': true,
-    'style': 'default',
-    'title': path.basename(options.path) + ' API documentation',
-    'toc': 'properties'
-  });
+    lang: 'js',
+    sort: true,
+    style: 'default',
+    title: 'API documentation',
+    toc: 'properties',
 
-  if (!options.path || !options.url) {
-    throw new Error('Path and URL must be specified');
+    // @TODO
+    debug: false,
+    log: false,
+    dev: false,
+    private: false,
+    // access
+    // tagBuilders: undefined,
+    // ignores: [Matchable],
+  })
+
+  const hasPathOrUrl = options.path || options.url
+  let source = options.source
+  if (!hasPathOrUrl && !source) {
+    throw new Error('Path and URL must be specified')
   }
-  return generator(fs.readFileSync(options.path, 'utf8'), options);
+
+  if (options.path && path.isAbsolute(options.path)) {
+    source = fs.readFileSync(options.path, 'utf8')
+    options.title = path.basename(options.path) + ' API documentation'
+  }
+
+  // console.log(options.title)
+  return generator(source, options)
 }
 
-module.exports = docdown;
+module.exports = docdown
