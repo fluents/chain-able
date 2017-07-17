@@ -6,13 +6,7 @@ const isAsyncish = require('../../src/deps/is/asyncish')
 const isNative = require('../../src/deps/is/native')
 const ObjectDefine = require('../../src/deps/define')
 const stress = require('../_stress')
-const {
-  isMap,
-  isSet,
-  isFunction,
-  isObjWithKeys,
-  isPrototypeOf,
-} = require('./')
+const {isMap, isSet, isFunction, isObjWithKeys, isPrototypeOf} = require('./')
 
 test('stress', () => {
   stress()
