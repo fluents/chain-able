@@ -1,3 +1,4 @@
+const or = require('../conditional/or')
 const isFunction = require('./function')
 const isRegExp = require('./regexp')
 
@@ -8,6 +9,10 @@ const isRegExp = require('./regexp')
  *
  * @param  {*} x value to check
  * @return {boolean} isFunction || isRegExp
+ *
+ * @see is/regexp
+ * @see is/function
+ * @see conditionals/or
  *
  * @example
  *
@@ -23,5 +28,5 @@ const isRegExp = require('./regexp')
  *    //=> false
  *
  */
-module.exports = x => isFunction(x) || isRegExp(x)
+module.exports = or(isFunction, isRegExp) // x => isFunction(x) || isRegExp(x)
 // x instanceof RegExp

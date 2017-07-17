@@ -10,6 +10,7 @@
  * @see https://github.com/lodash/lodash/blob/master/.internal/baseGetTag.js
  * @see https://github.com/jonschlinkert/kind-of
  * @see https://github.com/substack/js-traverse/blob/master/index.js#L285
+ * @see http://luxiyalu.com/object-prototype-tostring-call/
  *
  * @TODO obj[Symbol.toStringTag]
  *

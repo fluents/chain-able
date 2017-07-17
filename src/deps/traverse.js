@@ -14,9 +14,6 @@ const isObjNotNull = require('./is/objNotNull')
 const isRegExp = require('./is/regexp')
 const isError = require('./is/error')
 const isTrue = require('./is/true')
-const isBoolean = require('./is/boolean')
-const isNumber = require('./is/number')
-const isString = require('./is/string')
 const isDate = require('./is/date')
 const isUndefined = require('./is/undefined')
 const isNullOrUndefined = require('./is/nullOrUndefined')
@@ -27,6 +24,8 @@ const isSymbol = require('./is/symbol')
 const isAsyncish = require('./is/asyncish')
 const isFunction = require('./is/function')
 const isObj = require('./is/obj')
+const isPrimitive = require('./is/primitive')
+const isNull = require('./is/null')
 const ObjectKeys = require('./util/keys')
 const hasOwnProperty = require('./util/hasOwnProperty')
 const toS = require('./is/toS')
@@ -39,14 +38,6 @@ const dot = require('./dot')
 // const ENV_DEBUG = true
 const ENV_DEBUG = false
 
-function isPrimitive(node) {
-  return (
-    isNullOrUndefined(node) ||
-    isString(node) ||
-    isNumber(node) ||
-    isBoolean(node)
-  )
-}
 function isIteratable(node) {
   // ez ones
   if (isObj(node) || isArray(node)) return true
@@ -142,8 +133,6 @@ function isIteratable(node) {
  * @emits after
  */
 
-const isObjOrArr = x => isObj(x) || isArray(x)
-
 // need some thin wrapper around values to go up and down path
 //
 //
@@ -208,7 +197,8 @@ const makeIterator = () => {
   const parents = new Set()
   // const parentKeys = []
   const hasParent = (depth, value) => {
-    if (!isObjOrArr(value)) return false
+    // or array
+    if (!isObj(value)) return false
 
     // return Array.from(parents.values()).indexOf(value) !== -1
     // const keys = Array.from(parents.keys())
@@ -236,7 +226,7 @@ const makeIterator = () => {
     return parents.has(value)
   }
   const addParent = (depth, value) => {
-    if (!isObjOrArr(value)) return
+    if (!isObj(value)) return
     if (parents.size >= 100) parents.clear()
 
     // if (!parents.has(depth)) parents.set(depth, new Set())
@@ -244,7 +234,7 @@ const makeIterator = () => {
 
     parents.add(value)
   }
-  // (isObjOrArr(value) ? parents.add(value) : parents.add(value))
+  // (isObj(value) ? parents.add(value) : parents.add(value))
   // const removeLastParent = () => parents.delete(lastParent)
   const clearParents = (depth, value) => parents.clear()
 
@@ -540,6 +530,7 @@ const makeIterator = () => {
    *    //=> on('1', 1)
    *
    * @example
+   *
    *    //primitive - same for any number, string, symbol, null, undefined
    *    iterate(Symbol('eh'))
    *    //=> Symbol('eh')
@@ -932,7 +923,8 @@ function clone(arg) {
 
   traverse(obj).forEach((key, value, traverser) => {
     // t.isRoot
-    if (key === null) return
+    if (isNull(key)) return
+
     // require('fliplog').bold(key).data({value, traverser, current}).echo()
     // if (isSet(value)) {
     //   const copied = copy(value)
@@ -1012,6 +1004,10 @@ function eqValue(x, y, loose) {
     }
   }
   else if (isObjNotNull(x)) {
+    if (hasOwnProperty(x, 'equals')) {
+      return x.equals(y)
+    }
+
     /* istanbul ignore next: dev */
     if (ENV_DEBUG) {
       console.log('isObjNotNull', {x})
@@ -1214,6 +1210,7 @@ function eq(a, b, loose, scoped) {
 
     // node = node ? node[traverser.key] : node
 
+    // @TODO !!!!!!!!!!!!!!!!!!!! PERF HIT HERE --- NEEDS STACK INSTEAD !!!!!!!!!!!!!!!
     let x = node
     x = dot.get(b, traverser.path.join('.'), b)
 

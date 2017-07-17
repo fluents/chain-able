@@ -1,5 +1,6 @@
 const objTypeof = require('./objTypeof')
 const isFunction = require('./function')
+const isNull = require('./null')
 
 /**
  * @func isObj
@@ -10,6 +11,7 @@ const isFunction = require('./function')
  *
  * @since 3.0.0
  * @category Lang
+ *
  * @param {*} value The value to check.
  * @return {boolean} Returns `true` if `value` is an object, else `false`.
  *
@@ -31,5 +33,6 @@ const isFunction = require('./function')
  *
  * isObject(null)
  * // => false
+ *
  */
-module.exports = x => x !== null && (objTypeof(x) || isFunction(x))
+module.exports = x => !isNull(x) && (objTypeof(x) || isFunction(x))
