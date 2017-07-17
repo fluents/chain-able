@@ -43,10 +43,7 @@ module.exports = function schema(obj) {
     const key = keys[k]
     const value = obj[key]
 
-    // parent.method
-    //   ? parent.method(key)
-    //   :
-    //
+    // parent.method ? parent.method(key) :
     let builder = this.newThis().name(key) // MethodChain
 
     // @TODO: PLUCK METHOD FOR USING VALID KEYS

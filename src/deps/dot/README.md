@@ -3,6 +3,7 @@
 - https://github.com/mariocasciaro/object-path/blob/master/index.js
 - https://github.com/sindresorhus/dot-prop/blob/master/index.js
 - https://github.com/sindresorhus/is-obj/blob/master/index.js
+- https://github.com/facebook/fbjs/blob/master/packages/fbjs/src/misc/getByPath.js
 
 # segments:
 ```js

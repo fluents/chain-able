@@ -17,6 +17,7 @@ module.exports = function dotset(obj, path, value) {
       obj[p] = {}
     }
 
+    // isLast
     if (i === lengthMinusOne(pathArr)) {
       obj[p] = value
     }

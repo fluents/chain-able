@@ -51,6 +51,7 @@ class ChainedSet extends Chainable {
    *
    *   for (let name of people) console.log(name)
    *   //=> sam, sue
+   *
    */
   add(value) {
     this.store.add(value)
@@ -72,6 +73,7 @@ class ChainedSet extends Chainable {
    *
    *   for (let name of people) console.log(name)
    *   //=> first, sue
+   *
    */
   prepend(value) {
     this.store = new Set([value].concat(super.values()))
@@ -96,6 +98,7 @@ class ChainedSet extends Chainable {
    *
    *   for (let name of people) console.log(name)
    *   //=> first, sam, sue, merged
+   *
    */
   merge(arr) {
     const mergeable = toarr(arr)

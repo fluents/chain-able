@@ -94,7 +94,9 @@
     "sourceMap": true,
     "instrument": false,
     "cache": false,
-    "include": ["./dist/**/*.js"],
+    "include": [
+      "./dist/**/*.js"
+    ],
     "exclude": [
       "_todos/**",
       "_play/**",
@@ -109,13 +111,22 @@
       "test-dist/built.js",
       "test-dist/chainsaw/*.js"
     ],
-    "_require": ["babel-register", "babel-core/register"],
+    "_require": [
+      "babel-register",
+      "babel-core/register"
+    ],
     "lines": 85,
     "statements": 85,
     "functions": 85,
     "branches": 70,
-    "extension": [".js"],
-    "reporter": ["lcov", "html", "text"]
+    "extension": [
+      ".js"
+    ],
+    "reporter": [
+      "lcov",
+      "html",
+      "text"
+    ]
   },
   "jest": {
     "transformIgnorePatterns": [
@@ -146,7 +157,10 @@
     "watch": false,
     "cache": true,
     "setupTestFrameworkScriptFile": "./test/__testsetup.js",
-    "collectCoverageFrom": ["src/**/*.js", "test/**/*.js"],
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "test/**/*.js"
+    ],
     "coveragePathIgnorePatterns": [
       "\\\\node_modules\\\\",
       "_modules",
@@ -174,7 +188,12 @@
       "src/index.web.js",
       "src/index.js"
     ],
-    "coverageReporters": ["json", "text", "lcov", "clover"],
+    "coverageReporters": [
+      "json",
+      "text",
+      "lcov",
+      "clover"
+    ],
     "automock": false,
     "bail": false,
     "browser": false,
@@ -194,14 +213,22 @@
     ]
   },
   "ava": {
-    "files": ["!index.*.js", "test-dist/*.js"],
-    "source": ["dist/**", "!src/**/*"],
+    "files": [
+      "!index.*.js",
+      "test-dist/*.js"
+    ],
+    "source": [
+      "dist/**",
+      "!src/**/*"
+    ],
     "verbose": true,
     "concurrency": 3,
     "failFast": false,
     "failWithoutAssertions": false,
     "powerAssert": true,
-    "require": ["babel-core/register"],
+    "require": [
+      "babel-core/register"
+    ],
     "babel": "inherit"
   },
   "_optionalDependencies": {
@@ -209,9 +236,6 @@
     "memwatch-next": "^0.3.0"
   },
   "devDependencies": {
-    "humanize-url": "^1.0.1",
-    "humanize-string": "^1.0.1",
-    "string": "^3.3.3",
     "@types/node": "^7.0.31",
     "acorn": "^5.0.3",
     "acorn-dynamic-import": "^2.0.2",
@@ -248,16 +272,21 @@
     "funwithflags": "^1.0.2",
     "fuse-box": "2.2.0-beta.21",
     "gzip-size-cli": "^2.0.0",
+    "humanize-string": "^1.0.1",
+    "humanize-url": "^1.0.1",
     "immutable": "^3.8.1",
     "inspector-gadget": "^1.0.0",
     "jest": "^20.0.4",
     "jest-benchmark": "^0.0.0",
+    "jssmartcheck": "^0.2.3",
+    "jsverify": "^0.8.2",
     "lodash": "^4.17.4",
     "marked": "^0.3.6",
     "mobx": "^3.1.14",
     "module-alias": "^2.0.0",
     "nyc": "^10.3.2",
     "optimize-js": "^1.0.3",
+    "preact": "^8.2.1",
     "ramda": "^0.24.1",
     "rimraf": "^2.6.1",
     "rollup": "^0.43.0",
@@ -272,6 +301,7 @@
     "rollup-plugin-typescript2": "^0.4.4",
     "rollup-plugin-uglify": "^2.0.1",
     "script-chain": "^0.0.9",
+    "string": "^3.3.3",
     "traverse": "^0.6.6",
     "treeify": "^1.0.1",
     "tslint": "^5.4.3",

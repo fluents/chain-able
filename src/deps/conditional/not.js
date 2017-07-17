@@ -1,7 +1,8 @@
 /**
- * return a negated function
+ * @desc return a negated function
  * @memberOf conditional
  * @since  4.0.1
+ *
  * @param  {Function} fn any function
  * @return {Function} !Function
  *
@@ -18,3 +19,9 @@
  *
  */
 module.exports = fn => x => !fn(x)
+
+// function not(predicate) {
+//   return function() {
+//     return !predicate.apply(this, arguments)
+//   }
+// }
