@@ -1,5 +1,3 @@
-// eslint-disable-next-line
-'use strict'
 // frisbee
 // Copyright (c) 2015- Nick Baugh <niftylettuce@gmail.com>
 // MIT Licensed
@@ -7,9 +5,11 @@
 // * Source: <https://github.com/niftylettuce/frisbee>
 // # frisbee
 
+// eslint-disable-next-line
+'use strict'
+
 const {Buffer} = require('buffer')
 const qs = require('qs')
-const isJSON = require('./isJSON')
 const {
   Chain,
   isFunction,
@@ -21,6 +21,7 @@ const {
   isArray,
   isNull,
   isNill,
+  isJSON,
   merge,
 } = require('./chains')
 
@@ -71,7 +72,7 @@ const throwWithMsg = msg => {
   throw new Error(errMsg(msg))
 }
 
-if (!fetch) throw new Error(errMsg('req_fetch'))
+if (!fetch) throwWithMsg('req_fetch')
 
 const methods = ['get', 'head', 'post', 'put', 'del', 'options', 'patch']
 
@@ -202,6 +203,26 @@ function createFrisbeeResponse(origResp) {
   return resp
 }
 
+function copySetToMethodPlugin(name, parent) {
+  const copySetOntoMethod = arg => {
+    if (isUndefined(arg)) {
+      parent.get(name)
+    }
+    else {
+      parent.set(name, arg)
+      Object.assign(parent[name], arg)
+    }
+    return parent
+  }
+
+  // so we know if we defaulted them
+  copySetOntoMethod.copySetOntoMethod = true
+
+  return this.onSet(copySetOntoMethod)
+    .onGet(copySetOntoMethod)
+    .onCall(copySetOntoMethod)
+}
+
 // easy destructure err
 const fetchIt = async(url, opts) => {
   let error = null
@@ -217,10 +238,23 @@ const fetchIt = async(url, opts) => {
 /* prettier-ignore */
 class Frisbee extends Chain {
   constructor(opts = {}) {
-    super()
+    super('frisbee')
+
+    // because conflicting names
+    this._get = this.get.bind(this)
+
+    // @default
+    // wish you could make better stack traces once thrown? extend error??
+    this.onError(function defaultErrorThrower(error) {
+      console.log('throwing...')
+      throw error
+    })
 
     this
-      .extend(['headers', 'arrayFormat'])
+      .method('headers')
+      .plugin(copySetToMethodPlugin)
+      .build()
+      .extend(['arrayFormat'])
       // .autoGetSet()
       // .getSet()
       // .build()
@@ -229,16 +263,6 @@ class Frisbee extends Chain {
       .headers(opts.headers)
       .arrayFormat(opts.arrayFormat || 'indices')
       .when(opts.auth, () => this.auth(opts.auth))
-
-    // @default
-    // wish you could make better stack traces once thrown? extend error??
-    this.onError(function defaultErrorThrower(error) {
-      console.log('throwing...')
-      // throw error
-    })
-
-    // because conflicting names
-    this._get = this.get.bind(this)
 
     methods.forEach(method => {
       this[method] = this._setup(method)
@@ -260,27 +284,32 @@ class Frisbee extends Chain {
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error#Custom_Error_Types
   // can have arrays of handlers, middleware, this is baby steps
   onError(handler) {
+    console.log('onerror')
     return this.set('onError', handler)
   }
   handleError(msg, data) {
+    console.log('handleerror')
     const error = new Error(msg)
     error.data = data
-    console.log({data})
-    throw error
+
+    // console.log(error.message, error.stack)
+    // throw error
+
 
     try {
-      const error = new Error(msg)
+      const errorPlus = new Error(msg)
       // newest at top, remove this line
-      // error.stack = error.stack.split('\n')
-      // error.stack.shift()
-      // error.stack = error.stack.join('\n')
+      errorPlus.stack = errorPlus.stack.split('\n')
+      errorPlus.stack.shift()
+      errorPlus.stack = errorPlus.stack.join('\n')
       const onerr = this._get('onError')
-      onerr(error)
+      // console.log({onerr})
+      // console.log(this.store)
+      onerr(errorPlus)
     }
-    catch (e) {
-      console.log({e})
+    catch (errorError) {
+      console.log({errorError})
     }
-    console.log('wut in the fuck')
     // this._get('onError').call(this, error, this)
   }
 
@@ -297,19 +326,21 @@ class Frisbee extends Chain {
       // validate ---
 
       // path must be string
-      if (!isString(path)) this.handleError('str_path')
+      if (!isString(path)) return this.handleError('str_path')
 
       // otherwise check if its an object
-      if (!isObjPure(options)) this.handleError('obj_opts', options)
+      if (!isObjPure(options)) return this.handleError('obj_opts', options)
 
       // console.log('about to get', this)
       // require('fliplog').quick(this)
 
       // setup data ---
-      const baseURI = this._get('opts').baseURI
+      const {baseURI} = this._get('opts')
 
       // swappable/placeholder var to use existing them update with merged
       let headers = this._get('headers')
+
+      // console.log({baseURI, headers}, this)
 
       // --- here down is not tied to any instance ---
 
@@ -338,11 +369,20 @@ class Frisbee extends Chain {
        * @see https://github.com/facebook/react-native/issues/4890
        */
       if (isUndefined(opts.body)) {
-        if (opts.method === 'POST') opts.body = ''
+        if (opts.method === 'POST') {
+          opts.body = ''
+        }
       }
       else if (isObj(opts.body)) {
         if (opts.method === 'GET' || opts.method === 'DELETE') {
-          path += `?${qs.stringify(opts.body, {arrayFormat: this._get('arrayFormat')})}`
+          let qsOpts = null
+          if (this.has('arrayFormat')) {
+            // qsOpts = {arrayFormat: this._get('arrayFormat')}
+          }
+
+          console.log('QS', qs.stringify(opts.body))
+
+          path += `?${qs.stringify(opts.body, qsOpts)}`
           delete opts.body
         }
         // @TODO: better stringify here
@@ -436,5 +476,6 @@ class Frisbee extends Chain {
 }
 
 module.exports = function Frisbees(opts) {
+  console.log({opts})
   return new Frisbee(opts)
 }
