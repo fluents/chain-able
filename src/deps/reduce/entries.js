@@ -12,6 +12,7 @@ const ObjectAssign = require('../util/assign')
  * @param {Object | any} reduced merged object and reduced
  * @return {Function} Function(values: Object)
  *
+ * @see https://www.airpair.com/javascript/javascript-array-reduce
  * @see ChainedMap
  *
  * @example
