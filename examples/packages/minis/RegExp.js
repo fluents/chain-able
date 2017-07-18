@@ -1,3 +1,5 @@
+// https://github.com/thebinarysearchtree/regexpbuilderjs
+// https://github.com/VerbalExpressions/JSVerbalExpressions
 const {Chain, isUndefined, isString, isEmpty} = require('chain-able')
 
 function sanitize(s) {
@@ -418,7 +420,7 @@ class RegExpBuilder extends Chain {
   _incrementGroupNumbering(literal, increment) {
     if (increment > 0) {
       literal = literal.replace(/[^\\]\\\d+/g, function(groupReference) {
-        var groupNumber = parseInt(groupReference.substring(2)) + increment
+        const groupNumber = parseInt(groupReference.substring(2)) + increment
         return groupReference.substring(0, 2) + groupNumber
       })
     }
