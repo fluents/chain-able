@@ -1,4 +1,4 @@
-# insert-at-index.js API documentation
+# index.js API documentation
 
 <!-- div class="toc-container" -->
 

@@ -30,7 +30,7 @@ const toarr = require('./to-arr')
 const dotSet = require('./dot/set')
 const emptyTarget = require('./dopemerge/emptyTarget')
 const copy = require('./traversers/copy')
-const eq = require('./traversers/eq')
+const eq = require('./traversers/_eq')
 const addPoolingTo = require('./cache/pooler')
 // const props = require('./util/props')
 

@@ -1,4 +1,4 @@
-# objects.js API documentation
+# getterOnSet.js API documentation
 
 <!-- div class="toc-container" -->
 

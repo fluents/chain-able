@@ -1,4 +1,4 @@
-# false.js API documentation
+# arguments.js API documentation
 
 <!-- div class="toc-container" -->
 

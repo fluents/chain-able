@@ -4,8 +4,8 @@
 
 <!-- div -->
 
-## `traverse.prototype`
-* <a href="#traverse-prototype-exports">`traverse.prototype.exports`</a>
+## `Traverse`
+* <a href="#Traverse-prototype-eq"  data-meta="eq traverse undefined a undefined b undefined loose undefined scoped undefined"  data-call="eq traverse undefined a undefined b undefined loose undefined scoped undefined"  data-category="Methods"  data-description="Function"  data-name="eq"  data-member="Traverse"  data-all="meta eq traverse undefined a undefined b undefined loose undefined scoped undefined call eq traverse undefined a undefined b undefined loose undefined scoped undefined category Methods description Function name eq member Traverse see notes todos klassProps" >`Traverse.eq`</a>
 
 <!-- /div -->
 
@@ -15,85 +15,42 @@
 
 <!-- div -->
 
-## `traverse.prototype`
+## `Traverse`
 
 <!-- div -->
 
-* <a href="https://github.com/fluents/chain-able/blob/master/typings/TraverseChain.d.ts">🌊  Types: TraverseChain.d</a>&nbsp;
-* <a href="https://github.com/fluents/chain-able/blob/master/typings/traverse.d.ts">🌊  Types: traverse.d</a>&nbsp;
+<h3 id="Traverse-prototype-eq" data-member="Traverse" data-category="Methods" data-name="eq"><code>Traverse.eq(traverse=undefined, a=undefined, b=undefined, [loose=undefined], [scoped=undefined])</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traversers/eq.js#L34 "View in source") [&#x24C9;][1]
 
-<h3 id="traverse-prototype-exports"><a href="#traverse-prototype-exports">#</a>&nbsp;<code>traverse.prototype.exports(a=undefined, b=undefined, [loose=false])</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traversers/eq.js#L94 "View in source") [&#x24C9;][1]
-
-(Function): deep traversal of nodes to compare any data types does not check reference, only value equality
+Function
 
 
-### @see 
+#### @extends
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/TraverseChain.js">fluents/chain able/blob/master/src/traverse chain.js</a>
 
-### @symb 
 
-⚖️ 
-#### Since
+
+#### @Since
 3.0.0
 
 #### Arguments
-1. `a=undefined` *(any)*: compare a with b
-2. `b=undefined` *(any)*: compare b with a
-3. `[loose=false]` *(boolean)*: whether to do looser equals check
+1. `traverse=undefined` *(Traverse)*: traversejs
+2. `a=undefined` *(&#42;)*: compare to b
+3. `b=undefined` *(&#42;)*: compare to a
+4. `[loose=undefined]` *(boolean)*: compare loosely
+5. `[scoped=undefined]` *(boolean)*: doing a second pass, private
 
 #### Returns
 *(boolean)*: isEqual
 
 #### Example
 ```js
-eq(1, 1)
-//=> true
-
-eq(true, false)
-//=> false
-
-eq({}, {})
-//=> true
-
-```
-#### Example
-```js
-eq(
-  { d: new Date(0, 0, 0, 0), x: [1, 2, 3] },
-  { d: new Date(0, 0, 0, 0), x: [1, 2, 3] }
-)
-//=> true
-
-eq([new RegExp('x')], [/x/])
-//=> true
-
-eq([new String('x')], ['x'])
-//=> true
-
-eq([new Boolean(false)], [false])
-//=> true
-
-eq([undefined], [null]) || eq(undefined, null)
-//=> false
-
-```
-#### Example
-```js
-var xs = [1, 2, 3, 4]
-delete xs[2]
-
-var ys = Object.create(Array.prototype)
-ys[0] = 1
-ys[1] = 2
-ys[3] = 4
-
-eq(xs, ys)
-//=> true
-
-eq(xs, [1, 2, undefined, 4])
-//=> false
+eq(1, 1) //=> true
+eq(1, '1') //=> false
+eq(1, '1', true) //=> true
+eq([1], [1]) //=> true
 
 ```
 ---
@@ -104,4 +61,4 @@ eq(xs, [1, 2, undefined, 4])
 
 <!-- /div -->
 
- [1]: #traverse.prototype "Jump back to the TOC."
+ [1]: #traverse "Jump back to the TOC."

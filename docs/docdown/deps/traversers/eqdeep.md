@@ -1,4 +1,4 @@
-# true.js API documentation
+# eqdeep.js API documentation
 
 <!-- div class="toc-container" -->
 

@@ -11,7 +11,7 @@ const curry = require('../fp/curry')
  * @param  {Function} call
  * @return {boolean | any} validation/encased function call result
  */
-module.exports = curry(4, (call, onValid, onInvalid, rethrow) => (a, b, c) => {
+module.exports = curry(3, (call, onValid, onInvalid) => (a, b, c) => {
   let result
   try {
     result = call(a, b, c)

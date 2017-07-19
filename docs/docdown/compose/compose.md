@@ -4,8 +4,8 @@
 
 <!-- div -->
 
-## `compose.prototype`
-* <a href="#compose-prototype-compose">`compose.prototype.compose`</a>
+## `compose`
+* <a href="#compose-prototype-compose"  data-meta="compose target ChainedMap extensions Observe Shorthands Transform DotProp"  data-call="compose target ChainedMap extensions Observe Shorthands Transform DotProp"  data-category="Methods"  data-description="Function compose chains all the way up from Chainable"  data-name="compose"  data-member="compose"  data-all="meta n compose target ChainedMap extensions Observe Shorthands Transform DotProp call compose target ChainedMap extensions Observe Shorthands Transform DotProp category Methods description Function compose chains all the way up from Chainable name compose member compose see notes todos klassProps" >`compose.compose`</a>
 
 <!-- /div -->
 
@@ -15,7 +15,7 @@
 
 <!-- div -->
 
-## `compose.prototype`
+## `compose`
 
 <!-- div -->
 
@@ -23,16 +23,19 @@
 
 <a href="https://github.com/fluents/chain-able/blob/master/test/compose.js">🔬  Tests: compose</a>&nbsp;
 
-<h3 id="compose-prototype-compose"><a href="#compose-prototype-compose">#</a>&nbsp;<code>compose.prototype.compose([target=ChainedMap], [extensions=[Observe,Shorthands,Transform,DotProp]])</code></h3>
+<h3 id="compose-prototype-compose" data-member="compose" data-category="Methods" data-name="compose"><code>compose.compose([target=ChainedMap], [extensions=[Observe,Shorthands,Transform,DotProp]])</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/compose.js#L70 "View in source") [&#x24C9;][1]
 
 (Function): compose chains all the way up from Chainable
 
 
-### @symb 
+#### @symb 
 
 🎼 
-#### Since
+
+#### @Since
 3.0.0
 
 #### Arguments
@@ -87,4 +90,4 @@ yes instanceof Winning && yes.winning
 
 <!-- /div -->
 
- [1]: #compose.prototype "Jump back to the TOC."
+ [1]: #compose "Jump back to the TOC."

@@ -4,8 +4,8 @@
 
 <!-- div -->
 
-## `is.prototype`
-* <a href="#is-prototype-isMatcher">`is.prototype.isMatcher`</a>
+## `is`
+* <a href="#is-prototype-isMatcher"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Methods"  data-description="Function"  data-name="isMatcher"  data-member="is"  data-see="href https github com fluents chain able blob master src deps is regexp js label fluents chain able blob master src deps is regexp js href https github com fluents chain able blob master src deps is function js label fluents chain able blob master src deps is function js"  data-all="meta exports x undefined call exports x undefined category Methods description Function name isMatcher member is see href https github com fluents chain able blob master src deps is regexp js label fluents chain able blob master src deps is regexp js href https github com fluents chain able blob master src deps is function js label fluents chain able blob master src deps is function js notes todos klassProps" >`is.isMatcher`</a>
 
 <!-- /div -->
 
@@ -15,16 +15,24 @@
 
 <!-- div -->
 
-## `is.prototype`
+## `is`
 
 <!-- div -->
 
-<h3 id="is-prototype-isMatcher"><a href="#is-prototype-isMatcher">#</a>&nbsp;<code>is.prototype.exports(x=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/matcher.js#L25 "View in source") [&#x24C9;][1]
+<h3 id="is-prototype-isMatcher" data-member="is" data-category="Methods" data-name="isMatcher"><code>is.exports(x=undefined)</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/matcher.js#L31 "View in source") [&#x24C9;][1]
 
 Function
 
-#### Since
+
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/regexp.js" >fluents/chain able/blob/master/src/deps/is/regexp.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/function.js" >fluents/chain able/blob/master/src/deps/is/function.js</a>
+
+#### @Since
 3.0.0
 
 #### Arguments
@@ -55,4 +63,4 @@ isMatcher('.*')
 
 <!-- /div -->
 
- [1]: #is.prototype "Jump back to the TOC."
+ [1]: #is "Jump back to the TOC."

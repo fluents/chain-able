@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `exports`
-* <a href="#exports">`exports`</a>
+* <a href="#exports"  data-meta="exports keys undefined vals undefined"  data-call="exports keys undefined vals undefined"  data-category="Methods"  data-description="Function the original simple to test matcher for traversable will be merged into or simplified as simplified into matcher"  data-name="exports"  data-todos="should use matcher should inprove the callback data"  data-all="meta exports keys undefined vals undefined call exports keys undefined vals undefined category Methods description Function the original simple to test matcher for traversable nwill be merged into or simplified as simplified into matcher name exports member see notes todos should use matcher n should inprove the callback data n klassProps" >`exports`</a>
 
 <!-- /div -->
 
@@ -21,19 +21,22 @@
 
 <a href="https://github.com/fluents/chain-able/blob/master/typings/matcher.d.ts">🌊  Types: matcher.d</a>&nbsp;
 
-<h3 id="exports"><a href="#exports">#</a>&nbsp;<code>exports(keys=undefined, vals=undefined)</code></h3>
+<h3 id="exports" data-member="" data-category="Methods" data-name="exports"><code>exports(keys=undefined, vals=undefined)</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/matcher/any-key-val.js#L27 "View in source") [&#x24C9;][1]
 
 (Function): the original simple to-test matcher for traversable,
 will be merged into, or simplified as simplified into matcher
 
 
-### @todos 
+#### @todos 
 
 - [ ] should use matcher,
 - [ ] should inprove the callback data...
  
-#### Since
+
+#### @Since
 2.0.0
 
 #### Arguments

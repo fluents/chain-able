@@ -5,14 +5,14 @@
 <!-- div -->
 
 ## `exports`
-* <a href="#exports">`exports`</a>
+* <a href="#exports"  data-meta="exports ar undefined Array"  data-call="exports ar undefined"  data-category="Methods"  data-description="Function anything into an array"  data-name="exports"  data-all="meta exports ar undefined n Array call exports ar undefined category Methods description Function anything into an array name exports member see notes todos klassProps" >`exports`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
 ## `to-arr`
-* <a href="#">``</a>
+* <a href="#"  data-category="Properties"  data-description="unknown"  data-all="meta call category Properties description unknown name member see notes todos klassProps" >``</a>
 
 <!-- /div -->
 
@@ -28,16 +28,19 @@
 
 <a href="https://github.com/fluents/chain-able/blob/master/typings/deps.d.ts">🌊  Types: deps.d</a>&nbsp;
 
-<h3 id="exports"><a href="#exports">#</a>&nbsp;<code>exports(ar=undefined)</code></h3>
+<h3 id="exports" data-member="" data-category="Methods" data-name="exports"><code>exports(ar=undefined)</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/to-arr.js#L48 "View in source") [&#x24C9;][1]
 
 (Function): anything into an array
 
 
-### @sig 
+#### @sig 
 
 * => Array 
-#### Since
+
+#### @Since
 0.0.1
 
 #### Arguments
@@ -87,7 +90,9 @@ toarr('').concat(toarr(false)).concat(toarr(null))
 
 <!-- div -->
 
-<h3 id=""><a href="#">#</a>&nbsp;<code></code></h3>
+<h3 id="" data-member="" data-category="Properties" data-name="to-arr"><code></code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/to-arr.js#L58 "View in source") [&#x24C9;][1]
 
 unknown

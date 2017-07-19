@@ -1,4 +1,4 @@
-# escape-string-regex.js API documentation
+# toObj.js API documentation
 
 <!-- div class="toc-container" -->
 

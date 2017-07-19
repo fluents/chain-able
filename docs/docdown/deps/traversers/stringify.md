@@ -1,4 +1,4 @@
-# to-regexp.js API documentation
+# stringify.js API documentation
 
 <!-- div class="toc-container" -->
 

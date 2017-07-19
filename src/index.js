@@ -26,7 +26,7 @@ exp.traverse = traverse
 exp.addMethodFactories = MethodChain.add
 
 exp.toArr = require('./deps/to-arr') // exp.toarr =
-exp.camelCase = require('./deps/camel-case')
+exp.camelCase = require('./deps/string/camelCase')
 exp.dot = require('./deps/dot')
 exp.matcher = require('./deps/matcher')
 exp.reduce = require('./deps/reduce')

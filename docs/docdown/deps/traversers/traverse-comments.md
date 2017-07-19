@@ -1,4 +1,4 @@
-# uniq.js API documentation
+# traverse-comments.js API documentation
 
 <!-- div class="toc-container" -->
 

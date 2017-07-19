@@ -4,17 +4,17 @@
 
 <!-- div -->
 
-## `matcher.prototype`
-* <a href="#matcher-prototype-make">`matcher.prototype.make`</a>
-* <a href="#matcher-prototype-match">`matcher.prototype.match`</a>
-* <a href="#matcher-prototype-matcher">`matcher.prototype.matcher`</a>
+## `matcher`
+* <a href="#matcher-prototype-make"  data-meta="make pattern undefined shouldNegate undefined alphaOmega undefined"  data-call="make pattern undefined shouldNegate undefined alphaOmega undefined"  data-category="Methods"  data-description="Function turn any string function or RegExp into a matcher"  data-name="make"  data-member="matcher"  data-all="meta make pattern undefined shouldNegate undefined alphaOmega undefined call make pattern undefined shouldNegate undefined alphaOmega undefined category Methods description Function turn any string function or RegExp into a matcher name make member matcher see notes todos klassProps" >`matcher.make`</a>
+* <a href="#matcher-prototype-match"  data-meta="matcher inputs undefined patterns undefined shouldNegate undefined alphaOmega undefined"  data-call="matcher inputs undefined patterns undefined shouldNegate undefined alphaOmega undefined"  data-category="Methods"  data-description="Function same as make but also accepts inputs and returns an array"  data-name="match"  data-member="matcher"  data-all="meta matcher inputs undefined patterns undefined shouldNegate undefined alphaOmega undefined call matcher inputs undefined patterns undefined shouldNegate undefined alphaOmega undefined category Methods description Function same as make but also accepts inputs and returns an array name match member matcher see notes todos klassProps" >`matcher.match`</a>
+* <a href="#matcher-prototype-matcher"  data-meta="matcher"  data-call="matcher"  data-category="Properties"  data-description="unknown"  data-name="matcher"  data-member="matcher"  data-all="meta n matcher call matcher category Properties description unknown name matcher member matcher see notes todos klassProps" >`matcher.matcher`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
 ## `test`
-* <a href="#test">`test`</a>
+* <a href="#test"  data-meta="test"  data-call="test"  data-category="Properties"  data-description="unknown"  data-name="test"  data-todos="replace to test"  data-all="meta test call test category Properties description unknown name test member see notes todos replace to test n klassProps" >`test`</a>
 
 <!-- /div -->
 
@@ -24,16 +24,19 @@
 
 <!-- div -->
 
-## `matcher.prototype`
+## `matcher`
 
 <!-- div -->
 
-<h3 id="matcher-prototype-make"><a href="#matcher-prototype-make">#</a>&nbsp;<code>matcher.prototype.make(pattern=undefined, shouldNegate=undefined, alphaOmega=undefined)</code></h3>
+<h3 id="matcher-prototype-make" data-member="matcher" data-category="Methods" data-name="make"><code>matcher.make(pattern=undefined, shouldNegate=undefined, alphaOmega=undefined)</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/matcher/matcher.js#L64 "View in source") [&#x24C9;][1]
 
 (Function): turn any string[], function[], or RegExp[] into a matcher
 
-#### Since
+
+#### @Since
 3.0.0
 
 #### Arguments
@@ -91,12 +94,15 @@ matcher.make(noName, true, true)
 
 <!-- div -->
 
-<h3 id="matcher-prototype-match"><a href="#matcher-prototype-match">#</a>&nbsp;<code>matcher.prototype.matcher(inputs=undefined, patterns=undefined, shouldNegate=undefined, alphaOmega=undefined)</code></h3>
+<h3 id="matcher-prototype-match" data-member="matcher" data-category="Methods" data-name="match"><code>matcher.matcher(inputs=undefined, patterns=undefined, shouldNegate=undefined, alphaOmega=undefined)</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/matcher/matcher.js#L140 "View in source") [&#x24C9;][1]
 
 (Function): same as .make but also accepts inputs, and returns an array
 
-#### Since
+
+#### @Since
 3.0.0
 
 #### Arguments
@@ -151,13 +157,15 @@ matcher({ test: x => x === 'kinga' }, 'nope')
 
 <a href="https://github.com/fluents/chain-able/blob/master/test/deps/matcher.js">🔬  Tests: matcher</a>&nbsp;
 
-<h3 id="matcher-prototype-matcher"><a href="#matcher-prototype-matcher">#</a>&nbsp;<code>matcher.prototype.matcher</code></h3>
+<h3 id="matcher-prototype-matcher" data-member="matcher" data-category="Properties" data-name="matcher"><code>matcher.matcher</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/matcher/matcher.js#L9 "View in source") [&#x24C9;][1]
 
 unknown
 
 
-### @symb 
+#### @symb 
 
 🎯 
 ---
@@ -172,13 +180,15 @@ unknown
 
 <!-- div -->
 
-<h3 id="test"><a href="#test">#</a>&nbsp;<code>test</code></h3>
+<h3 id="test" data-member="" data-category="Properties" data-name="test"><code>test</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/matcher/matcher.js#L166 "View in source") [&#x24C9;][1]
 
 unknown
 
 
-### @todos 
+#### @todos 
 
 - [ ] replace to-test
  
@@ -190,4 +200,4 @@ unknown
 
 <!-- /div -->
 
- [1]: #matcher.prototype "Jump back to the TOC."
+ [1]: #matcher "Jump back to the TOC."

@@ -5,21 +5,21 @@
 <!-- div -->
 
 ## `arrayHasAll`
-* <a href="#arrayHasAll">`arrayHasAll`</a>
+* <a href="#arrayHasAll"  data-meta="arrayHasAll needles undefined haystack undefined"  data-call="arrayHasAll needles undefined haystack undefined"  data-category="Methods"  data-description="Function"  data-name="arrayHasAll"  data-all="meta arrayHasAll needles undefined haystack undefined call arrayHasAll needles undefined haystack undefined category Methods description Function name arrayHasAll member see notes todos klassProps" >`arrayHasAll`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
 ## `includesAll`
-* <a href="#includesAll">`includesAll`</a>
+* <a href="#includesAll"  data-meta="includesAll needle undefined haystack undefined"  data-call="includesAll needle undefined haystack undefined"  data-category="Methods"  data-description="Function"  data-name="includesAll"  data-all="meta includesAll needle undefined haystack undefined call includesAll needle undefined haystack undefined category Methods description Function name includesAll member see notes todos klassProps" >`includesAll`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
 ## `strHasAll`
-* <a href="#strHasAll">`strHasAll`</a>
+* <a href="#strHasAll"  data-meta="strHasAll needle undefined haystack undefined"  data-call="strHasAll needle undefined haystack undefined"  data-category="Methods"  data-description="Function"  data-name="strHasAll"  data-all="meta strHasAll needle undefined haystack undefined call strHasAll needle undefined haystack undefined category Methods description Function name strHasAll member see notes todos klassProps" >`strHasAll`</a>
 
 <!-- /div -->
 
@@ -33,7 +33,9 @@
 
 <!-- div -->
 
-<h3 id="arrayHasAll"><a href="#arrayHasAll">#</a>&nbsp;<code>arrayHasAll(needles=undefined, haystack=undefined)</code></h3>
+<h3 id="arrayHasAll" data-member="" data-category="Methods" data-name="arrayHasAll"><code>arrayHasAll(needles=undefined, haystack=undefined)</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/all.js#L24 "View in source") [&#x24C9;][1]
 
 Function
@@ -57,7 +59,9 @@ Function
 
 <!-- div -->
 
-<h3 id="includesAll"><a href="#includesAll">#</a>&nbsp;<code>includesAll(needle=undefined, haystack=undefined)</code></h3>
+<h3 id="includesAll" data-member="" data-category="Methods" data-name="includesAll"><code>includesAll(needle=undefined, haystack=undefined)</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/all.js#L39 "View in source") [&#x24C9;][1]
 
 Function
@@ -81,7 +85,9 @@ Function
 
 <!-- div -->
 
-<h3 id="strHasAll"><a href="#strHasAll">#</a>&nbsp;<code>strHasAll(needle=undefined, haystack=undefined)</code></h3>
+<h3 id="strHasAll" data-member="" data-category="Methods" data-name="strHasAll"><code>strHasAll(needle=undefined, haystack=undefined)</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/all.js#L9 "View in source") [&#x24C9;][1]
 
 Function

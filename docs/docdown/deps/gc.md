@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `markForGarbageCollection`
-* <a href="#markForGarbageCollection">`markForGarbageCollection`</a>
+* <a href="#markForGarbageCollection"  data-meta="markForGarbageCollection obj undefined"  data-call="markForGarbageCollection obj undefined"  data-category="Methods"  data-description="Function remove all methods mark for garbage collection"  data-name="markForGarbageCollection"  data-todos="blacklist param put all GC events into a cached map and debounce the operation"  data-all="meta markForGarbageCollection obj undefined call markForGarbageCollection obj undefined category Methods description Function remove all methods mark for garbage collection name markForGarbageCollection member see notes todos blacklist param n put all GC events into a cached map and debounce the operation n klassProps" >`markForGarbageCollection`</a>
 
 <!-- /div -->
 
@@ -19,18 +19,21 @@
 
 <!-- div -->
 
-<h3 id="markForGarbageCollection"><a href="#markForGarbageCollection">#</a>&nbsp;<code>markForGarbageCollection(obj=undefined)</code></h3>
+<h3 id="markForGarbageCollection" data-member="" data-category="Methods" data-name="markForGarbageCollection"><code>markForGarbageCollection(obj=undefined)</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/gc.js#L41 "View in source") [&#x24C9;][1]
 
 (Function): remove all methods, mark for garbage collection
 
 
-### @todos 
+#### @todos 
 
 - [ ] blacklist = [] param
 - [ ] put all GC events into a cached map and debounce the operation
  
-#### Since
+
+#### @Since
 4.0.0
 
 #### Arguments

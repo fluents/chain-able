@@ -4,8 +4,8 @@
 
 <!-- div -->
 
-## `is.prototype`
-* <a href="#is-prototype-isError">`is.prototype.isError`</a>
+## `is`
+* <a href="#is-prototype-isError"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Methods"  data-description="Function"  data-name="isError"  data-member="is"  data-all="meta exports x undefined call exports x undefined category Methods description Function name isError member is see notes todos klassProps" >`is.isError`</a>
 
 <!-- /div -->
 
@@ -15,11 +15,13 @@
 
 <!-- div -->
 
-## `is.prototype`
+## `is`
 
 <!-- div -->
 
-<h3 id="is-prototype-isError"><a href="#is-prototype-isError">#</a>&nbsp;<code>is.prototype.exports(x=undefined)</code></h3>
+<h3 id="is-prototype-isError" data-member="is" data-category="Methods" data-name="isError"><code>is.exports(x=undefined)</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/error.js#L35 "View in source") [&#x24C9;][1]
 
 Function
@@ -64,4 +66,4 @@ class Eh extends Error()
 
 <!-- /div -->
 
- [1]: #is.prototype "Jump back to the TOC."
+ [1]: #is "Jump back to the TOC."

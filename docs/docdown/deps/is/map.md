@@ -4,8 +4,8 @@
 
 <!-- div -->
 
-## `is.prototype`
-* <a href="#is-prototype-isMap">`is.prototype.isMap`</a>
+## `is`
+* <a href="#is-prototype-isMap"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Methods"  data-description="Function Checks if value is classified as a Map object"  data-name="isMap"  data-member="is"  data-all="meta exports x undefined call exports x undefined category Methods description Function Checks if value is classified as a Map object name isMap member is see notes todos klassProps" >`is.isMap`</a>
 
 <!-- /div -->
 
@@ -15,16 +15,19 @@
 
 <!-- div -->
 
-## `is.prototype`
+## `is`
 
 <!-- div -->
 
-<h3 id="is-prototype-isMap"><a href="#is-prototype-isMap">#</a>&nbsp;<code>is.prototype.exports(x=undefined)</code></h3>
+<h3 id="is-prototype-isMap" data-member="is" data-category="Methods" data-name="isMap"><code>is.exports(x=undefined)</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/map.js#L43 "View in source") [&#x24C9;][1]
 
 (Function): Checks if `value` is classified as a `Map` object.
 
-#### Since
+
+#### @Since
 3.0.0
 
 #### Arguments
@@ -72,4 +75,4 @@ class Eh extends Map()
 
 <!-- /div -->
 
- [1]: #is.prototype "Jump back to the TOC."
+ [1]: #is "Jump back to the TOC."
