@@ -1,4 +1,9 @@
+const curry = require('../fp/curry')
+
 /**
+ * @TODO could curry
+ *
+ * @memberOf encase
  * @see https://github.com/fluture-js/Fluture#encase
  * @since 4.0.0 <- moved out into a dep
  * @since 1.0.0
@@ -6,7 +11,7 @@
  * @param  {Function} call
  * @return {boolean | any} validation/encased function call result
  */
-module.exports = call => (onValid, onInvalid, rethrow) => (a, b, c) => {
+module.exports = curry(4, (call, onValid, onInvalid, rethrow) => (a, b, c) => {
   let result
   try {
     result = call(a, b, c)
@@ -18,4 +23,4 @@ module.exports = call => (onValid, onInvalid, rethrow) => (a, b, c) => {
     if (onInvalid) return onInvalid(error)
     else return error
   }
-}
+})
