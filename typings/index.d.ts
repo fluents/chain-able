@@ -14,6 +14,9 @@ export * from './ChainedMapBase'
 export * from './FactoryChain'
 export * from './compose'
 export * from './schema'
+export * from './FantasyLand'
+export * from './FantasyLandCurry'
+export * from './fp'
 
 import {Chain} from './chain'
 

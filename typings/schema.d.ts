@@ -5,9 +5,7 @@ export interface ValidationFunction {
 // all `is` validators, or any custom added ones
 export type Type =
   | ValidationFunction
-  | '?'
-  | '|'
-  | '[]'
+  | '? | [] ! &'
   | 'string'
   | 'number'
   | 'date'
@@ -21,6 +19,7 @@ export type Type =
   | 'array'
   | 'symbol'
   | 'real'
+  | 'empty'
   | 'iterator'
   | 'objWithKeys'
   | 'null'
