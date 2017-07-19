@@ -103,8 +103,10 @@ module.exports = class Traverser extends ChainedMapBase {
 
     // bound to the traverser
     traverse(result).forEach(function(key, x, traverser) {
-      if (traverser.isRoot) return
-      if (matcher(key, x)) {
+      if (traverser.isRoot) {
+        // nothing
+      }
+      else if (matcher(key, x)) {
         /* istanbul-ignore next: debug */
         if (ENV_DEBUG) {
           console.log('------- match ------- ', key, x)
