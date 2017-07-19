@@ -16,6 +16,7 @@ let run = 0
  * @param  {boolean | undefined} [longest] optionally filter to keep only longest/deepest paths
  * @return {Array<string>} paths[]
  *
+ * @see    deps/traverse
  * @TODO   should build a trie if doing this
  * @NOTE   had `onlyLongest` & `asString` but can just .join(',') to match
  *
@@ -53,7 +54,8 @@ module.exports = function(key, value, longest) {
     }
 
     // ignore
-    if (!currentPath || !currentPath.length) return
+    if (!currentPath) return
+    else if (!currentPath.length) return
 
     // dot-prop the array of paths
     // if we have a key, prefix it
