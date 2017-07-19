@@ -834,3 +834,159 @@ $ gzip-size "dists/umd/index.js" "--raw"
 Done in 0.68s.
 2017:15:07/12/17:19:15:45
 ---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+8774
+Done in 0.53s.
+2017:30:07/13/17:00:30:48
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+2357 <- traverser only (along with deps) (before any size optimization)
+Done in 0.56s.
+2017:55:07/13/17:03:55:41
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+2080 <- original traverse-js size (along with deps) (with all deopts)
+Done in 0.53s.
+2017:59:07/13/17:03:59:39
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+8780
+Done in 0.54s.
+2017:01:07/13/17:04:01:49
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+8835
+Done in 0.51s.
+2017:59:07/15/17:01:59:43
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+9162
+Done in 0.61s.
+2017:34:07/16/17:19:34:30
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+9161
+Done in 0.47s.
+2017:14:07/16/17:20:14:21
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+9161
+Done in 0.55s.
+2017:51:07/17/17:20:51:34
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+9161
+Done in 0.59s.
+2017:58:07/17/17:20:58:46
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+9161
+Done in 0.56s.
+2017:23:07/17/17:21:23:44
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+9161
+Done in 0.61s.
+2017:02:07/17/17:22:02:19
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+9161
+Done in 0.58s.
+2017:48:07/18/17:00:48:19
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+9161
+Done in 0.54s.
+2017:50:07/18/17:00:50:01
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+9161
+Done in 0.55s.
+2017:50:07/18/17:00:50:43
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+9161
+Done in 0.54s.
+2017:51:07/18/17:00:51:39
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+9161
+Done in 0.54s.
+2017:52:07/18/17:00:52:12
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+9161
+Done in 0.58s.
+2017:53:07/18/17:00:53:59
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+9161
+Done in 0.54s.
+2017:54:07/18/17:00:54:51
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+9161
+Done in 0.55s.
+2017:55:07/18/17:00:55:15
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+9161
+Done in 0.58s.
+2017:55:07/18/17:00:55:52
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+9161
+Done in 0.55s.
+2017:56:07/18/17:00:56:24
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+9161
+Done in 0.70s.
+2017:57:07/18/17:00:57:27
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+12612 <- not uglified top level
+Done in 0.53s.
+2017:00:07/18/17:01:00:43
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+9183 <- before trying curry in tryCatch
+Done in 0.49s.
+2017:27:07/18/17:15:27:26
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+9219 <- with curry, sad
+Done in 0.57s.
+2017:28:07/18/17:15:28:24
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+9216 <- currying tryCatch, so minor, why bigger for the other one? because they are both curried? sheesh
+Done in 0.56s.
+2017:30:07/18/17:15:30:38
+---

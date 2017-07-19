@@ -1,7 +1,9 @@
 /**
  * @desc return a negated function
+ * @name not
  * @memberOf conditional
  * @since  4.0.1
+ * @func
  *
  * @param  {Function} fn any function
  * @return {Function} !Function

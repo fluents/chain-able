@@ -1,7 +1,10 @@
 /**
- * first fn & second fn
+ * @desc first fn & second fn
+ * @name and
  * @memberOf conditional
  * @since  4.0.1
+ * @func
+ *
  * @param  {Function} left first fn
  * @param  {Function} right second fn
  * @return {boolean} both functions return truthy
