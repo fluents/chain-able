@@ -131,8 +131,8 @@
   "jest": {
     "transformIgnorePatterns": [
       "/node_modules/",
-      "/_",
-      "/examples",
+      "/_/",
+      "/examples/",
       "/src/deps/_r|meta|external|env|primitives/",
       "/src/deps/external/lodash/",
       "/src/deps/external/",
@@ -164,6 +164,11 @@
     "coveragePathIgnorePatterns": [
       "\\\\node_modules\\\\",
       "_modules",
+      "src/deps/array/insertAtIndex.js",
+      "src/deps/conditional/eqeq.js",
+      "src/deps/traversers/stringify.js",
+      "src/deps/traversers/eqdeep.js",
+      "src/plugins/getterOnSet.js",
       "src/deps/_r|meta|external|env|primitives",
       "src/deps/external/lodash",
       "src/deps/external",
@@ -278,6 +283,7 @@
     "inspector-gadget": "^1.0.0",
     "jest": "^20.0.4",
     "jest-benchmark": "^0.0.0",
+    "js-beautify": "^1.6.14",
     "jssmartcheck": "^0.2.3",
     "jsverify": "^0.8.2",
     "lodash": "^4.17.4",

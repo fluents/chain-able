@@ -71,7 +71,10 @@ function escape(string) {
  * @returns {string} Returns the member seperator.
  */
 function getSeparator(entry) {
-  return entry.isPlugin() ? '.prototype.' : '.'
+  return '.'
+
+  // @NOTE: removed this temporarily, is ugly
+  // return entry.isPlugin() ? '.prototype.' : '.'
 }
 
 /*----------------------------------------------------------------------------*/
@@ -92,6 +95,7 @@ function generateDoc(source, options) {
   const byCategories = options.toc === 'categories'
   const entries = getEntries(source)
   const organized = {}
+  const useMetadata = options.metadata
 
   const sortEntries = options.sort
   const {style, url, files} = options
@@ -180,10 +184,34 @@ function generateDoc(source, options) {
     // Start markdown for the entry.
     const entryMarkdown = ['\n<!-- div -->\n']
 
-    const {linksToString, seeToString, makeTypes, makeTests} = maker(files, entry, entryMarkdown)
+    const {
+      linksToString,
+      seeToString,
+      makeTypes,
+      makeTests,
+    } = maker(files, entry, entryMarkdown)
+
+    // @NOTE: moved here to add as metadata to toc for search with data-* attr
+    const links = entry.getLink()
+    const see = entry.getSee()
+    const notes = entry.getNote()
+    const todos = entry.getTodo()
+    const sig = entry.getSig()
+    const symb = entry.getSymb()
+    const klass = entry.getClass()
+    const klassDesc = entry.getClassDesc()
+    const klassProps = entry.getClassProps()
+    const xtends = entry.getExtends()
+    const variation = entry.getVariation()
+    const description = entry.getDesc()
+    const hash = entry.getHash(style)
+    const call = entry.getCall()
+    const category = entry.getCategory()
+
     const entryData = {
-      call: entry.getCall(),
-      category: entry.getCategory(),
+      call,
+      see,
+      category,
       // eslint-disable-next-line no-template-curly-in-string
       entryHref: '#${hash}',
       entryLink: _.get(
@@ -192,12 +220,12 @@ function generateDoc(source, options) {
         // eslint-disable-next-line no-template-curly-in-string
         style === 'github' ? '' : '<a href="${entryHref}">#</a>&nbsp;'
       ),
-      hash: entry.getHash(style),
+      hash,
       member,
       name,
       separator,
+      description,
       sourceHref: url + '#L' + entry.getLineNumber(),
-
       sourceLink: '\n' + _.get(
         options,
         'sourceLink',
@@ -229,38 +257,43 @@ function generateDoc(source, options) {
       }
     )
 
-    // Add the heading.
-    entryMarkdown.push(
+    let entryLinkTemplate = ''
+    entryLinkTemplate += '<h3'
+    entryLinkTemplate += ' id="${hash}"'
+    // entryLinkTemplate += ' data-meta="${meta}"'
+    entryLinkTemplate += ' data-member="${member}"'
+    entryLinkTemplate += ' data-category="${category}"'
+    entryLinkTemplate += ' data-name="${name}"'
+    // entryLinkTemplate += ' data-desc="${description}"'
+    // entryLinkTemplate += ' data-all="${description} ${category} ${meta} ${name} ${member}"'
+    entryLinkTemplate += '>'
+    entryLinkTemplate += '<code>'
+    entryLinkTemplate += '${member}'
+    entryLinkTemplate += '${separator}'
+    entryLinkTemplate += '${call}'
+    entryLinkTemplate += '</code></h3>\n'
+
+    const renderedHeading = interpolate(
+      // eslint-disable-next-line no-template-curly-in-string
+      entryLinkTemplate +
       interpolate(
         // eslint-disable-next-line no-template-curly-in-string
-        '<h3 id="${hash}">${entryLink}<code>${member}${separator}${call}</code></h3>\n' +
-        interpolate(
-          // eslint-disable-next-line no-template-curly-in-string
-          _(['${sourceLink}', _.get(options, 'sublinks', []), '${tocLink}'])
-            .flatten()
-            .compact()
-            .join(' '),
-          entryData
-        ).replace(/ {2,}/g, ' '),
+        _(['${sourceLink}', _.get(options, 'sublinks', []), '${tocLink}'])
+          .flatten()
+          .compact()
+          .join(' '),
         entryData
-      )
+      ).replace(/ {2,}/g, ' '),
+      entryData
     )
 
+    // Add the heading.
+    entryMarkdown.push(renderedHeading)
+
     // Add the description.
-    entryMarkdown.push('\n' + entry.getDesc() + '\n')
+    entryMarkdown.push('\n' + description + '\n')
 
     // ----- new -----
-    const links = entry.getLink()
-    const see = entry.getSee()
-    const notes = entry.getNote()
-    const todos = entry.getTodo()
-    const sig = entry.getSig()
-    const symb = entry.getSymb()
-    const klass = entry.getClass()
-    const klassDesc = entry.getClassDesc()
-    const klassProps = entry.getClassProps()
-    const xtends = entry.getExtends()
-    const variation = entry.getVariation()
 
     const news = {
       see,
@@ -278,6 +311,7 @@ function generateDoc(source, options) {
 
     // log.white('new').data(news).echo(false)
 
+    const h4 = '\n#### @'
     const newsKeys = Object.keys(news)
     newsKeys.forEach(key => {
       const value = news[key]
@@ -308,7 +342,7 @@ function generateDoc(source, options) {
         log.yellow('is @see').data(seeString).echo(false)
 
         if (value.length !== 0) {
-          entryMarkdown.push('\n### @' + key + ' \n')
+          entryMarkdown.push(h4 + key + ' \n')
           entryMarkdown.push(seeString)
         }
       }
@@ -316,7 +350,7 @@ function generateDoc(source, options) {
         entryMarkdown.push(value + ' ')
       }
       else if (key === 'extends') {
-        const md = '\n### @' + key
+        const md = h4 + key
         const augments = value
         if (augments.length === 1) {
           entryMarkdown.push(md)
@@ -334,7 +368,7 @@ function generateDoc(source, options) {
         // log.cyan('\n### @' + key + ' \n').data({data: value, str}).echo(false)
         if (str === ' ') return
 
-        entryMarkdown.push('\n### @' + key + ' \n')
+        entryMarkdown.push(h4 + key + ' \n')
         entryMarkdown.push(str)
       }
       // console.log('###H3: ' + key + ': ', news[key], news[key] + ' <- ')
@@ -344,7 +378,7 @@ function generateDoc(source, options) {
     // Add optional since version.
     const since = entry.getSince()
     if (!_.isEmpty(since)) {
-      entryMarkdown.push('#### Since', since, '')
+      entryMarkdown.push(h4 + 'Since', since, '')
     }
     // @TODO: needs comments not just tag
     // var version = entry.getVersion()
@@ -353,7 +387,7 @@ function generateDoc(source, options) {
     // }
 
     // Add optional aliases.
-    var aliases = entry.getAliases()
+    let aliases = entry.getAliases()
     if (!_.isEmpty(aliases)) {
       entryMarkdown.push(
         '#### Aliases',
@@ -429,6 +463,7 @@ function generateDoc(source, options) {
       examples.map(example => entryMarkdown.push('#### Example', example))
     }
 
+
     // ----
 
     // End markdown for the entry.
@@ -469,8 +504,8 @@ function generateDoc(source, options) {
     if (sortEntries && organized[group]) {
       // Sort the TOC groups.
       organized[group].sort(function(value, other) {
-        var valMember = value.getMembers(0)
-        var othMember = other.getMembers(0)
+        const valMember = value.getMembers(0)
+        const othMember = other.getMembers(0)
 
         return util.compareNatural(
           (valMember ? valMember + getSeparator(value) : '') + value.getName(),
@@ -479,6 +514,7 @@ function generateDoc(source, options) {
       })
     }
 
+    // -----------
     // Add TOC entries for each category.
     _.each(organized[group], function(entry) {
       const member = entry.getMembers(0) || ''
@@ -488,6 +524,50 @@ function generateDoc(source, options) {
       if (isIgnored(title)) {
         return
       }
+
+      // @NOTE: added for metadata
+      const see = entry.getSee()
+      const notes = entry.getNote()
+      const todos = entry.getTodo()
+      const sig = entry.getSig()
+      const symb = entry.getSymb()
+      const klass = entry.getClass()
+      const klassDesc = entry.getClassDesc()
+      const klassProps = entry.getClassProps()
+      const xtends = entry.getExtends()
+      const description = entry.getDesc()
+      const call = entry.getCall()
+      const category = entry.getCategory()
+
+      const meta = `
+      ${(klass || '')}
+      ${(klassDesc || '')}
+      ${(xtends || '')}
+      ${(symb || '')}
+      ${(call || '')}
+      ${(sig || '')}
+    `.trim().replace(/\r\t/gmi, '')
+
+      // @TODO could do examples too...
+      const metadata = {
+        meta,
+        call,
+        category,
+        description,
+        name,
+        member,
+        see,
+        notes,
+        todos,
+        klassProps,
+      }
+
+      log.bold('toc').data({metadata}).echo()
+
+      const metaKeys = Object.keys(metadata)
+      metadata.all = {}
+      metaKeys.forEach(key => metadata.all[key] = metadata[key])
+
 
       if (entry.isAlias()) {
         // An alias has a more complex html structure.
@@ -504,10 +584,13 @@ function generateDoc(source, options) {
         )
       }
       else {
+        const metadataArg = useMetadata ? metadata : ''
+
         // Add a simple TOC entry.
-        tocMarkdown.push(
-          '* ' + makeAnchor('#' + entry.getHash(style), '`' + title + '`')
-        )
+        const hash = entry.getHash(style)
+        const anchor = makeAnchor('#' + hash, '`' + title + '`', metadataArg)
+        const tocEntry = '* ' + anchor
+        tocMarkdown.push(tocEntry)
       }
     })
 

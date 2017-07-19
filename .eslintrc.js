@@ -7,6 +7,14 @@ module.exports = {
     'jsdoc/require-param': 'error',
     'jsdoc/require-param-description': 'error',
     'jsdoc/require-returns-type': 'error',
+
+    // 'filenames/match-regex': [2, '^[a-z_]+[a-zA-Z_]+$', true],
+    // "filenames/match-exported": [2, [ null, "kebab", "snake" ] ],
+    // "filenames/match-exported": [ 2, null, "\\.react$" ],
+    // 'filenames/match-regex': 2,
+    // 'filenames/match-exported': 2,
+    // 'filenames/no-index': 2,
+
     // 'inferno/display-name': 'OFF',
     // 'inferno/display-no-depreciated': 'OFF',
   },

@@ -5,6 +5,7 @@ const optimizejs = require('./optimizejs')
 const filesize = require('./filesize')
 const replace = require('./replace')
 const falafelPlugin = require('./ast')
+const commentsPlugin = require('./comments')
 
 module.exports = (version, options) => {
   if (options.env === 'development') {
@@ -16,6 +17,8 @@ module.exports = (version, options) => {
 
   const plugins = []
   const add = plugin => plugins.push(plugin)
+
+  add(commentsPlugin(options))
 
   if (options.falafel) add(falafelPlugin(options))
   if (options.replace) add(replace(options))

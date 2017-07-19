@@ -11,8 +11,6 @@
 [![fluent](https://img.shields.io/badge/⛓-fluent-9659F7.svg)](https://github.com/fluents/awesome-fluents)
 [![fluent](https://img.shields.io/badge/🎡-playground-black.svg)](https://aretecode.github.io/chain-able-playground/)
 
-
-<!-- https://david-dm.org/fluents/chain-able.svg -->
 [david-deps-img]: https://img.shields.io/badge/0-dependencies-blue.svg
 [david-deps-url]: https://david-dm.org/fluents/chain-able
 [chain-able-npm-image]: https://img.shields.io/npm/v/chain-able.svg
@@ -64,6 +62,11 @@
 yarn add chain-able
 npm i chain-able --save
 ```
+
+#### cdn
+- _dev_ `<script src="https://unpkg.com/chain-able@beta/dists/dev/index.js"></script>`
+- _min_ `<script src="https://unpkg.com/chain-able@beta/dists/umd/index.js"></script>`
+
 
 # 🏰 benefits
 
@@ -140,4 +143,4 @@ writing an api using chain-able means:
 - thanks to [Jon Schlinkert](https://github.com/jonschlinkert/kind-of) & [inferno](https://github.com/infernojs/inferno/blob/master/packages/inferno-shared/src/index.ts) for type checking inspirations
 - transpiled with [buble](https://gitlab.com/Rich-Harris/buble)
 - [Martin Fowler on FluentInterface](https://www.martinfowler.com/bliki/FluentInterface.html)
-<!-- - thanks to [ramda](https://github.com/ramda/ramda/tree/master/src/internal) & [lodash](https://github.com/lodash/lodash) for the currying -->
+- [ramda](https://github.com/ramda/ramda) & [lodash](https://github.com/lodash/lodash) for some well tested & documented utilities (currying, mapping)

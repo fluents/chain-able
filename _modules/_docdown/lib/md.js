@@ -6,10 +6,31 @@ const _ = require('lodash')
  * @private
  * @param {string} href The anchor href.
  * @param {string} text The anchor text.
+ * @param {Object} [metadata] additional data for attriubutes
  * @returns {string} Returns the anchor HTML.
  */
-function makeAnchor(href, text) {
-  return '<a href="' + href + '">' + _.toString(text) + '</a>'
+function makeAnchor(href, text, metadata = '') {
+  if (typeof metadata === 'object') {
+    let attrs = ''
+    for (let prop in metadata) {
+      let value = metadata[prop]
+      if (typeof value === 'object') value = JSON.stringify(value)
+      // keep whitespaces as underscores
+      value = value.replace(/\s+/, '_')
+      // strip everything not letters/nums
+      // value = value.replace(/[\W_]+/g, '')
+      value = value.replace(/[^a-z0-9]/gmi, ' ')
+      // trim empty lines
+      // value = value.replace(/\"/gmi, `'`)
+      value = value.replace(/\r|\n|\t|\s+/gmi, ' ').trim()
+
+      if (value === '') continue
+      attrs += ` data-${prop}="${value}" `
+    }
+    metadata = attrs
+  }
+
+  return `<a href="${href}" ${metadata}>${_.toString(text)}</a>`
 }
 
 const maker = (files, entry, entryMarkdown) => {
