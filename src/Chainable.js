@@ -13,6 +13,7 @@ const ObjectDefine = require('./deps/define')
 const ignored = require('./deps/ignored')
 const ENV_DEVELOPMENT = require('./deps/env/dev')
 
+// @TODO change from `||` to if else
 const shouldClear = (key, property) =>
   !ignored(key) &&
   (isMap(property) || isSet(property) || (property && property.store))
