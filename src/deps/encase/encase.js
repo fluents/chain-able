@@ -37,6 +37,7 @@ const tryCatch = require('./tryCatch')
 module.exports = (call, encaser) => {
   const encased = encaser ? encaser(call) : tryCatch(call)
 
+  // @TODO rethink this scoped approach
   // left, right, rethrow
   let onInvalid
   let onValid

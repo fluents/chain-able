@@ -100,15 +100,18 @@ const ComposeChainedMap = SuperClass => {
      */
     merge(obj, handleMergeFn) {
       const merger = MergeChain.init(this)
+
       if (isUndefined(handleMergeFn)) {
         merger.merge(obj)
       }
       else {
         handleMergeFn(merger.obj(obj))
       }
+
       return this
     }
   }
+
   return ChainedMap
 }
 

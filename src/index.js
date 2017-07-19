@@ -34,6 +34,7 @@ exp.clean = require('./deps/reduce/clean')
 exp.meta = require('./deps/meta')
 exp.eq = require('./deps/traversers/eq')
 exp.types = require('./deps/validators')
+exp.encase = require('./deps/encase')
 
 exp.addTypes = exp.types.addTypes
 

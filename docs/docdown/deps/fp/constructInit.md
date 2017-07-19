@@ -1,4 +1,4 @@
-# eq.js API documentation
+# constructInit.js API documentation
 
 <!-- div class="toc-container" -->
 

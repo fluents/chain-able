@@ -1,1 +1,1 @@
-module.exports = require('./Frisbee')
+module.exports = require('./frisbee')

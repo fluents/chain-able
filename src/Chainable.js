@@ -8,6 +8,7 @@ const isUndefined = require('./deps/is/undefined')
 const isFunction = require('./deps/is/function')
 const isString = require('./deps/is/string')
 const isFalse = require('./deps/is/false')
+const noop = require('./deps/util/noop')
 const ObjectKeys = require('./deps/util/keys')
 const ObjectDefine = require('./deps/define')
 const ignored = require('./deps/ignored')
@@ -79,11 +80,13 @@ const ComposeChainable = Target => {
      * @return {Object} {value: undefined | any, done: true | false}
      *
      * @NOTE assigned to a variable so buble ignores it
+     *
+     *
      * @see https://github.com/sindresorhus/quick-lru/blob/master/index.js
      * @see https://stackoverflow.com/questions/36976832/what-is-the-meaning-of-symbol-iterator-in-this-context
      * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator
-     * @tests iteration
      * @see this.store
+     * @tests iteration
      *
      * @example
      *
@@ -223,6 +226,9 @@ const ComposeChainable = Target => {
      * @see ChainedSet
      * @see ChainedMap
      *
+     * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/clear map-clear}
+     * @see {@link map-clear}
+     *
      * @example
      *
      *    const chain = new Chain()
@@ -279,13 +285,15 @@ const ComposeChainable = Target => {
     }
 
     /**
-     * @since 0.3.0
+     * @desc checks whether the store has a value for a given key
      * @memberOf Chainable
+     * @since 0.3.0
      *
      * @param {any} keyOrValue key when Map, value when Set
      * @return {boolean}
      *
-     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/has
+     * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/has map-has}
+     * @see {@link map-has}
      *
      * @example
      *
@@ -337,31 +345,19 @@ const ComposeChainable = Target => {
       let i = 0
       this.store.forEach(v => (allocated[i++] = v))
       return allocated
-
-      // const size = this.store.size
-      // const allocated = new Array(size)
-      // // .forEach((value, index) => {
-      //
-      // const values = this.store.values()
-      //
-      // for (let index = 0; index < size; index++) {
-      //   // const value = values[index]
-      //   const value = values.next().value
-      //   // console.log({value, index, values})
-      //   allocated[index] = value
-      // }
-      //
-      // return allocated
     }
 
     /**
-     * @see http://2ality.com/2015/09/well-known-symbols-es6.html#default-tostring-tags
-     * @since 1.0.2
-     *
+     * @desc symbol method for toString, toJSON, toNumber
      * @memberOf Chainable
+     * @since 1.0.2
+     * @version 2
      *
      * @param {string} hint enum[default, string, number]
      * @return {Primitive}
+     *
+     * {@link http://2ality.com/2015/09/well-known-symbols-es6.html#default-tostring-tags well-known-symbols-es6}
+     * @see {@link well-known-symbols-es6}
      *
      * @example
      *
@@ -410,9 +406,9 @@ const ComposeChainable = Target => {
    * @method length
    * @readonly
    * @since 0.5.0
-   * @example for (var i = 0; i < chain.length; i++)
    * @see ChainedMap.store
    * @return {number}
+   * @example for (var i = 0; i < chain.length; i++)
    */
   ObjectDefine(ChainPrototype, 'length', {
     enumerable: false,
@@ -429,7 +425,8 @@ const ComposeChainable = Target => {
   return Chainable
 }
 
-const c = ComposeChainable(class {})
+// class {}
+const c = ComposeChainable(noop)
 
 /**
  * @since 3.0.0

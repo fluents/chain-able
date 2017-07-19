@@ -22,9 +22,13 @@
 <h3 id="is-prototype-isError" data-member="is" data-category="Methods" data-name="isError"><code>is.exports(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/error.js#L35 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/error.js#L36 "View in source") [&#x24C9;][1]
 
 Function
+
+
+#### @Since
+4.0.0
 
 #### Arguments
 1. `x=undefined` *(&#42;)*: value
