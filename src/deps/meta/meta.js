@@ -1,11 +1,12 @@
 // without it, the arguments & caller are uglier when drbugging
-'use strict'
+
 
 const isSet = require('../is/set')
 const ArrayFrom = require('../util/from')
 const isUndefined = require('../is/undefined')
 const concat = require('../concat')
 const toarr = require('../to-arr')
+const always = require('../fp/always')
 const TRANSFORMERS_KEY = require('./transformers')
 const OBSERVERS_KEY = require('./observers')
 const SHORTHANDS_KEY = require('./shorthands')
@@ -13,6 +14,7 @@ const DECORATED_KEY = require('./decorated')
 
 // will expand this later
 const isInKeyMapAsSet = x => x === OBSERVERS_KEY
+const emptyArray = [] // always([])
 
 // @NOTE: using `[]` deopts o.o
 // eslint-disable-next-line
@@ -70,7 +72,7 @@ function getMeta(_this) {
    * @param  {Primitive | undefined} [prop=undefined]
    * @return {any}
    */
-  const get = (key, prop) => (has(key, prop) ? store[key].get(prop) : [])
+  const get = (key, prop) => (has(key, prop) ? store[key].get(prop) : emptyArray)
 
   /**
    * @since  4.0.0
@@ -117,8 +119,8 @@ function getMeta(_this) {
       // when we want to just access the property, return an array
       // @example `.meta('transformers')`
       if (isUndefined(prop)) {
-        if (isUndefined(store[key])) return []
-        else return store[key].size === 0 ? [] : ArrayFrom(store[key].values())
+        if (isUndefined(store[key])) return emptyArray
+        else return store[key].size === 0 ? emptyArray : ArrayFrom(store[key].values())
       }
       // we have `key, prop`
       //
@@ -129,7 +131,7 @@ function getMeta(_this) {
       }
       // 2: prop is a key, we want to return the [..] for that specific property
       // @example `.meta('transformers', 'eh')`
-      else if (isUndefined(store[key])) return []
+      else if (isUndefined(store[key])) return emptyArray
       else return toarr(get(key, prop))
     }
     // we have `key, prop, value`

@@ -31,7 +31,7 @@ module.exports = map => {
     reduced = ArrayFrom(map.entries()).reduce((acc, [key, value]) => {
       acc[key] = value
       return acc
-    }, {})
+    }, reduced)
   }
 
   return reduced

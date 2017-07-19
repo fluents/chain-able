@@ -4,6 +4,9 @@ const getPrototypeOf = require('./getPrototypeOf')
 const getOwnPropertyNames = Object.getOwnPropertyNames
 const getOwnPropertySymbols = Object.getOwnPropertySymbols
 
+// @TODO https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptors
+// const getOwnPropertyDescriptors = Object.getOwnPropertyDescriptors
+
 /**
  * @desc properties, property symbols, object keys
  *       ^ all again for prototype

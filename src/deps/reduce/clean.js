@@ -1,13 +1,7 @@
 const isReal = require('../is/real')
-const isObj = require('../is/obj')
-const isArray = require('../is/array')
 const isEmpty = require('../is/empty')
 const ObjectKeys = require('../util/keys')
-const curry = require('../fp/curry')
 const mapWhere = require('../fp/mapWhere')
-const prop = require('../fp/prop')
-const not = require('../conditional/not')
-const or = require('../conditional/or')
 const reduceToObj = require('./toObj')
 
 // const [isNotReal, isNotEmpty] = [isReal, isEmpty].map(not)

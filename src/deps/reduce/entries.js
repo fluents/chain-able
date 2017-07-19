@@ -1,4 +1,5 @@
 const isFunction = require('../is/function')
+const isObj = require('../is/obj')
 const ignored = require('../ignored')
 const ObjectKeys = require('../util/keys')
 const ObjectAssign = require('../util/assign')
@@ -71,9 +72,9 @@ module.exports = reduced => obj => {
       continue
     }
 
-    const val = obj[key]
-    if (val && isFunction(val.entries)) {
-      ObjectAssign(reduced, {[key]: val.entries(true) || {}})
+    const value = obj[key]
+    if (isObj(value) && isFunction(value.entries)) {
+      ObjectAssign(reduced, {[key]: value.entries(true) || {}})
     }
   }
 

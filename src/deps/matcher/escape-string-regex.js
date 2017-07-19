@@ -1,3 +1,5 @@
+const replace = require('../fp/replace')
+
 /**
  * @func escapeStringRegExp
  * @module escape-string-regexp
@@ -9,6 +11,7 @@
  *
  * {@link https://github.com/sindresorhus/escape-string-regexp escape-string-regexp}
  * @see {@link escape-string-regexp *} 🍴
+ * @see fp/replace
  *
  * @NOTE also as const escapeStringRegexp = require('escape-string-regexp');
  *
@@ -19,4 +22,4 @@
  *    new RegExp(escaped);
  *
  */
-module.exports = str => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
+module.exports = replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
