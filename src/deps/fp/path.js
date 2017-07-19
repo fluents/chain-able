@@ -5,8 +5,8 @@ const curry = require('./curry')
  * Retrieve the value at a given path.
  *
  * @func
- * @memberOf R
- * @since v0.2.0
+ * @memberOf fp
+ * @since v5.0.0
  * @category Object
  * @typedefn Idx = String | Int
  * @sig [Idx] -> {a} -> a | Undefined

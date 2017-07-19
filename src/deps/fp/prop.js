@@ -5,14 +5,17 @@ const curry = require('./curry')
  * property of that object, if it exists.
  *
  * @func
- * @memberOf R
- * @since v0.1.0
+ * @memberOf fp
+ * @since v5.0.0
  * @category Object
  * @sig s -> {s: a} -> a | Undefined
+ *
  * @param {String} p The property name
  * @param {Object} obj The object to query
  * @return {*} The value at `obj.p`.
+ *
  * @see R.path
+ *
  * @example
  *
  *      R.prop('x', {x: 100}); //=> 100
