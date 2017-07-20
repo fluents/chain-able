@@ -1,3 +1,82 @@
+# v5.0.0-beta.1 & v5.0.0-beta.2
+- 🛁 adjustments  to clean
+
+- BREAKING:
+  - rename is objLoose & objPure & objStrict -> into understandable names that convey what they do
+
+- 🌊 update typings
+- 🤖📖 docgen
+  - 🛅 built dev version for links from docgen site until upgraded
+  - 📜📒 makefile scripts to make docgen & site
+  - make website
+  - docgen metadata for fuzzy search content
+  - fix doc html links
+  - ℹ️️ℹ️️ℹ️️ a ton of docblocks in src for outputting better docs
+- 📘⛓ examples:
+  - 📘⛓ example: SwitchChain
+  - 📘⛓ example: RegExp chain
+  - 📘⛓ example: ObjectDefineChain
+  - ⚪️ Frisbee 🆙 with updates
+
+- 🖇 utils
+  - ❔ isEmpty
+  - ❔ isJSON
+  - ❔ isArguments
+  - ❔ isBuffer
+  - 🖇❔move reusable `is` functions from validator builder into files
+  - ❔ isNotNested
+  - ❔ isPrimitive
+  - ❔ isIn
+  - ❔ isArrayOf
+  - 🤸 split isNumber
+  - + isNumberPrimitive
+  - 🗝️ keys for objOrArray
+  - 🆓 use some curry in izzez
+  - 🆓 reduce: use 🆓 fp on 🛁 clean
+  - 🆓 conditionals utils wrap with curry + ℹ️️
+  - 🐫 add camelCase 🔬 tests + move to string/ folder
+
+- 🆓🎁 FP
+  - start them, update,️dℹ️️ docblock, 🔬 test, (ramda lodash thanks for some parts of some)
+  - prop
+  - pipe
+  - path,
+  - map,
+  - curry
+  - first
+  - firstIndex
+  - last
+  - lastIndex
+  - arity
+  - replace
+  - mapWhere
+  - always
+  - remove
+  - arity
+
+- 👣 Traverse
+  - 🏰 ground up refactor for deopt
+  - 🎱 add InstancePooler with tests
+    - add reset, adjust delete (needs a better .remove for array .splice)
+  - 🤸🛁 split & clean
+  - ℹ️️ re-document
+  - 👾 variable name clarity
+  - 📝 todos
+  - 🤸🎯 split dopemerge emptyTarget to a reusable file
+
+- 🛡 encase
+  - 🆓 wrap encase: tryCatch & withSpec with curry
+  - ℹ️️ docblocks for dot-prop
+  - 🆓 use fp/replace on escape
+
+- 🏗 build &  📇 metadata
+  - lego-cli for later
+  - 📇 metadata for docgen
+  - 📇 metadata yarn lock pkg json stuff
+  - 🏗🔌 comment plugin to add filenames to output
+  - 🏸 cdn server hosting in installations in readme for site
+  - ⚒ minor eq path require fix
+
 # 🏷 v4.1.0
 - 🏰 refactoring to add prototype methods, instead of many multi-inherit
 - 📜📒 Makefile

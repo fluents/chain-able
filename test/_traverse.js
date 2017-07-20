@@ -6,6 +6,8 @@ const log = require('fliplog')
 const traverse = require('../src/deps/traverse')
 const isArray = require('../src/deps/is/array')
 const isObj = require('../src/deps/is/obj')
+const isNumber = require('../src/deps/is/number')
+const isReal = require('../src/deps/is/real')
 
 const {eq} = traverse
 const deepEqual = eq
@@ -486,6 +488,44 @@ test('stop', () => {
 //   expect(acc.join(' ')).toEqual('9 30 22')
 // })
 
+// ----- remove
+test('traverse no argument', () => {
+  traverse().forEach(() => {})
+})
+
+test('remove arr', () => {
+  traverse([]).forEach((key, val, it) => {})
+
+  const arr = [0]
+  traverse(arr).forEach((key, val, it) => it.remove())
+  expect(arr.filter(isReal)).toEqual([])
+
+  let arrString = [0, 100, 10, 100, 'not number', 200, 1000]
+  traverse(arrString).forEach((key, val, it) => {
+    log.bold(key).data(val).echo()
+    if (isNumber(val)) it.remove()
+  })
+
+  expect(arrString.filter(isReal)).toEqual(['not number'])
+})
+
+test('remove obj', () => {
+  const emptyObj = {}
+  traverse(emptyObj).forEach((key, val, it) => {})
+  expect(emptyObj).toEqual(emptyObj)
+
+  const obj = {eh: true}
+  traverse(obj).forEach((key, val, it) => it.remove())
+  expect(obj).toEqual({})
+
+  const objNumber = {eh: true, num: 100}
+  traverse(objNumber).forEach((key, val, it) => {
+    if (!isNumber(val)) it.remove()
+  })
+
+  expect(objNumber).toEqual({num: 100})
+})
+
 // --- leaves.js
 test('leaves test', () => {
   var acc = []
@@ -613,15 +653,15 @@ test.skip('circClone - @FIXME', () => {
   console.log(clone.x[3][2] !== obj)
 })
 
-// test('circMapScrub', () => {
-//   var obj = {a: 1, b: 2}
-//   obj.c = obj
-//
-//   var scrubbed = traverse(obj).map(function(node) {
-//     if (this.circular) this.remove()
-//   })
-//   expect(Object.keys(scrubbed).sort()).toEqual(['a', 'b'])
-//   expect(deepEqual(scrubbed, {a: 1, b: 2}, true)).toBeTruthy()
-//
-//   expect(deepEqual(obj.c, obj, true)).toBeTruthy()
-// })
+test.skip('circMapScrub', () => {
+  var obj = {a: 1, b: 2}
+  obj.c = obj
+
+  var scrubbed = traverse(obj).map(function(node) {
+    if (this.circular) this.remove()
+  })
+  expect(Object.keys(scrubbed).sort()).toEqual(['a', 'b'])
+  expect(deepEqual(scrubbed, {a: 1, b: 2}, true)).toBeTruthy()
+
+  expect(deepEqual(obj.c, obj, true)).toBeTruthy()
+})

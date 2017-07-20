@@ -161,7 +161,14 @@ function Traverse(iteratee, config) {
   this.iteratee = iteratee
   this.parent = iteratee
   this.root = iteratee
+  this.reset()
 
+  // to pass in the events (as commented below) without messing up scope?
+  // if (config.on) this.on = config.on
+  return this
+}
+
+Traverse.prototype.reset = function() {
   this.path = []
   this.key = undefined
   this.isAlive = true
@@ -171,10 +178,6 @@ function Traverse(iteratee, config) {
 
   // iterates +1 so start at 0
   this.depth = -1
-
-  // to pass in the events (as commented below) without messing up scope?
-  // if (config.on) this.on = config.on
-  return this
 }
 
 /**
@@ -419,53 +422,75 @@ Traverse.prototype.checkIteratable = function check(node) {
  *    traverse([0]).forEach((key, val, it) => it.remove())
  *    //=> []
  *
+ *    traverse({eh: true}).forEach((key, val, it) => it.remove())
+ *    //=> {}
+ *
+ *    traverse({eh: true, str: 'stringy'}).forEach((key, val, it) => {
+ *      if (!isString(val)) it.remove()
+ *    })
+ *    //=> {str: 'stringy'}
+ *
  */
 Traverse.prototype.remove = function removes(arg) {
+  if (isUndefined(this.key)) return
+
   let obj = arg || this.iteratee
+
+  if (!isObj(obj)) return
 
   /* istanbul ignore next: dev */
   if (ENV_DEBUG) {
-    console.log({parent: this.parent})
+    console.log('remove')
+    console.log({parent: this.parent, key: this.key, obj})
   }
 
   this.removeParent(obj)
 
-  if (isUndefined(obj)) {
-    // throw new Error('why?')
-  }
-  else if (isArray(obj)) {
-    /* istanbul ignore next: dev */
-    if (ENV_DEBUG) {
-      console.log('traverse:remove:array', obj, this.key)
-    }
+  this.skip()
 
-    obj.splice(this.key, 1)
-  }
-  else if (isObjNotNull(obj)) {
-    /* istanbul ignore next: dev */
-    if (ENV_DEBUG) {
-      console.log('traverse:remove:obj', this.key)
-    }
+  delete obj[this.key]
+  delete this.parent[this.key]
+  // if (isObj(obj)) deleteFromObjOrArray(obj, this.key)
+  // else deleteFromObjOrArray(this.parent, this.key)
+  // deleteFromObjOrArray(this.parent, this.key)
+  // deleteFromObjOrArray(this.iteratee, this.key)
 
-    delete obj[this.key]
-  }
-
-  if (isObjNotNull(this.parent)) {
-    delete this.parent[this.key]
-
-    /* istanbul ignore next: dev */
-    if (ENV_DEBUG) {
-      console.log('traverse:remove:parent', this.key)
-    }
-  }
-  if (isObjNotNull(this.iteratee)) {
-    delete this.iteratee[this.key]
-
-    /* istanbul ignore next: dev */
-    if (ENV_DEBUG) {
-      console.log('traverse:remove:iteratee', this.key)
-    }
-  }
+  // if (isUndefined(obj)) {
+  //   // throw new Error('why?')
+  // }
+  // else if (isArray(obj)) {
+  //   /* istanbul ignore next: dev */
+  //   if (ENV_DEBUG) {
+  //     console.log('traverse:remove:array', obj, this.key)
+  //   }
+  //
+  //   obj.splice(this.key, 1)
+  // }
+  // else if (isObjNotNull(obj)) {
+  //   /* istanbul ignore next: dev */
+  //   if (ENV_DEBUG) {
+  //     console.log('traverse:remove:obj', this.key)
+  //   }
+  //
+  //   delete obj[this.key]
+  // }
+  //
+  // if (isObjNotNull(this.parent)) {
+  //   delete this.parent[this.key]
+  //
+  //   /* istanbul ignore next: dev */
+  //   if (ENV_DEBUG) {
+  //     console.log('traverse:remove:parent', this.key)
+  //   }
+  // }
+  // if (isObjNotNull(this.iteratee)) {
+  //   delete this.iteratee[this.key]
+  //
+  //   /* istanbul ignore next: dev */
+  //   if (ENV_DEBUG) {
+  //     console.log('traverse:remove:iteratee', this.key)
+  //   }
+  // }
 
   /* istanbul ignore next: dev */
   if (ENV_DEBUG) {
@@ -513,13 +538,9 @@ Traverse.prototype.update = function update(value) {
  *
  */
 Traverse.prototype.destructor = function destructor() {
-  // throw new Error('how')
-  // this.iteratee = undefined
-  // this.key = undefined
-  // this.isCircular = undefined
-  // this.isLeaf = undefined
-  // this.isAlive = undefined
-  // this.path = undefined
+  this.iteratee = undefined
+  this.parent = undefined
+  this.reset()
 
   this.clear()
 }
@@ -673,6 +694,9 @@ Traverse.prototype.iterate = function iterate(on) {
 
     // @loop
     for (let key = 0; key < keys.length; key++) {
+      // if (ENV_DEBUG)
+      // console.log('iterating:', {key})
+
       // --- safety ---
       if (this.isAlive === false) {
         /* istanbul ignore next : dev */
@@ -719,7 +743,14 @@ Traverse.prototype.iterate = function iterate(on) {
 
       // ----- continue events, loop deeper when needed ----
 
+      // @NOTE since we check isAlive at the beginning of each loop
+      // could use .skip alongisde .stop
+      // @TODO @IMPORTANT @HACK @FIXME right here it should also handle the .stop
       on.call(this, this.key, value, this)
+      if (isTrue(this.skipBranch)) {
+        this.skipBranch = false
+        continue
+      }
 
       /* istanbul ignore next: dev */
       if (ENV_DEBUG) {

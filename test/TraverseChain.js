@@ -1,5 +1,5 @@
 const log = require('fliplog')
-const {Chain, matcher} = require('../src')
+const {Chain, matcher, isNumber} = require('../src')
 const TraverseChain = require('../src/TraverseChain')
 
 test('traversal with function callback for vals and keys', () => {
@@ -109,6 +109,7 @@ test('.traverse(true)', () => {
         },
         matchme: 'minime',
         notme: 'eh',
+        num: 100,
       },
     },
   }
@@ -119,7 +120,7 @@ test('.traverse(true)', () => {
     .merge(eh)
     .traverse(true)
     .keys([/super/, /parser/, /store/, /meta/, /className/])
-    .vals([/minime/])
+    .vals([/minime/, isNumber])
     .call(true)
 
   expect(cleaned).toEqual({

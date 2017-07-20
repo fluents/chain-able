@@ -34,7 +34,7 @@ module.exports = function(key, value, longest) {
 
   let paths = []
 
-  /* istanbul-ignore next: debug */
+  /* istanbul ignore next: debug */
   if (ENV_DEBUG) {
     console.log({value})
   }
@@ -48,7 +48,7 @@ module.exports = function(key, value, longest) {
     // const currentPath = this.paths
     const currentPath = this.path
 
-    /* istanbul-ignore next: debug */
+    /* istanbul ignore next: debug */
     if (ENV_DEBUG) {
       console.log('paths', run++, this.path)
     }

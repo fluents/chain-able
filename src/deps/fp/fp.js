@@ -1,3 +1,5 @@
+/* istanbul ignore: for docblocks @member */
+
 const always = require('./always')
 const curry = require('./curry')
 const first = require('./first')
