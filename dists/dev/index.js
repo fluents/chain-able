@@ -305,6 +305,28 @@
 	  return x === false
 	};
 
+	/* ___filename___: dist/deps/util/noop.js */
+	/**
+	 * @name noop
+	 *
+	 * @func
+	 * @since 5.0.0
+	 * @return {void}
+	 *
+	 * {@link https://github.com/sindresorhus/noop3 noop3}
+	 * @see {@link noop3}
+	 *
+	 * @example
+	 *
+	 *    noop
+	 *
+	 * @example
+	 *
+	 *    noop()
+	 *
+	 */
+	var noop = function noop() { /* noop */ };
+
 	/* ___filename___: dist/deps/util/keys.js */
 	var keys = Object.keys;
 	// function keys(obj) {
@@ -379,6 +401,8 @@
 
 	/* ___filename___: dist/deps/is/false.js */
 
+	/* ___filename___: dist/deps/util/noop.js */
+
 	/* ___filename___: dist/deps/util/keys.js */
 
 	/* ___filename___: dist/deps/define.js */
@@ -388,6 +412,7 @@
 	/* ___filename___: dist/deps/env/dev.js */
 
 	/* ___filename___: dist/Chainable.js */
+
 
 
 
@@ -457,11 +482,13 @@
 	     * @return {Object} {value: undefined | any, done: true | false}
 	     *
 	     * @NOTE assigned to a variable so buble ignores it
+	     *
+	     *
 	     * @see https://github.com/sindresorhus/quick-lru/blob/master/index.js
 	     * @see https://stackoverflow.com/questions/36976832/what-is-the-meaning-of-symbol-iterator-in-this-context
 	     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator
-	     * @tests iteration
 	     * @see this.store
+	     * @tests iteration
 	     *
 	     * @example
 	     *
@@ -601,6 +628,9 @@
 	     * @see ChainedSet
 	     * @see ChainedMap
 	     *
+	     * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/clear map-clear}
+	     * @see {@link map-clear}
+	     *
 	     * @example
 	     *
 	     *    const chain = new Chain()
@@ -659,13 +689,15 @@
 	    };
 
 	    /**
-	     * @since 0.3.0
+	     * @desc checks whether the store has a value for a given key
 	     * @memberOf Chainable
+	     * @since 0.3.0
 	     *
 	     * @param {any} keyOrValue key when Map, value when Set
 	     * @return {boolean}
 	     *
-	     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/has
+	     * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/has map-has}
+	     * @see {@link map-has}
 	     *
 	     * @example
 	     *
@@ -717,31 +749,19 @@
 	      var i = 0;
 	      this.store.forEach(function (v) { return (allocated[i++] = v); });
 	      return allocated
-
-	      // const size = this.store.size
-	      // const allocated = new Array(size)
-	      // // .forEach((value, index) => {
-	      //
-	      // const values = this.store.values()
-	      //
-	      // for (let index = 0; index < size; index++) {
-	      //   // const value = values[index]
-	      //   const value = values.next().value
-	      //   // console.log({value, index, values})
-	      //   allocated[index] = value
-	      // }
-	      //
-	      // return allocated
 	    };
 
 	    /**
-	     * @see http://2ality.com/2015/09/well-known-symbols-es6.html#default-tostring-tags
-	     * @since 1.0.2
-	     *
+	     * @desc symbol method for toString, toJSON, toNumber
 	     * @memberOf Chainable
+	     * @since 1.0.2
+	     * @version 2
 	     *
 	     * @param {string} hint enum[default, string, number]
 	     * @return {Primitive}
+	     *
+	     * {@link http://2ality.com/2015/09/well-known-symbols-es6.html#default-tostring-tags well-known-symbols-es6}
+	     * @see {@link well-known-symbols-es6}
 	     *
 	     * @example
 	     *
@@ -792,9 +812,9 @@
 	   * @method length
 	   * @readonly
 	   * @since 0.5.0
-	   * @example for (var i = 0; i < chain.length; i++)
 	   * @see ChainedMap.store
 	   * @return {number}
+	   * @example for (var i = 0; i < chain.length; i++)
 	   */
 	  define(ChainPrototype, 'length', {
 	    enumerable: false,
@@ -810,11 +830,8 @@
 	  return Chainable
 	};
 
-	var c = ComposeChainable((function () {
-	  function anonymous () {}
-
-	  return anonymous;
-	}()));
+	// class {}
+	var c = ComposeChainable(noop);
 
 	/**
 	 * @since 3.0.0
@@ -994,6 +1011,7 @@
 	/* ___filename___: dist/deps/is/array.js */
 	/**
 	 * @func isArray
+	 * @todo https://github.com/facebook/immutable-js/blob/master/src/utils/isArrayLike.js
 	 * @see https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray
 	 * @type {Function}
 	 * @since 3.0.0
@@ -2080,10 +2098,12 @@
 	 * @prop {Meta} meta meta fn
 	 * @prop {Map} store main store
 	 *
+	 * {@link https://tc39.github.io/ecma262/#sec-map-objects emca-map}
 	 * {@link https://ponyfoo.com/articles/es6-maps-in-depth pony-map}
 	 * {@link https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map mozilla-map}
 	 * @see {@link pony-map}
 	 * @see {@link mozilla-map}
+	 * @see {@link emca-map}
 	 *
 	 * @see ChainedMap
 	 * @see Chainable
@@ -2347,6 +2367,108 @@
 	/* ___filename___: dist/deps/env/debug.js */
 	var debug = process.env.NODE_ENV === 'debug'; // || process.env.DEBUG = true
 
+	/* ___filename___: dist/deps/util/keysObjOrArray.js */
+
+
+
+
+	/**
+	 * Creates an array of the own enumerable property names of `object`.
+	 *
+	 * **Note:** Non-object values are coerced to objects. See the
+	 * [ES spec](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
+	 * for more details.
+	 *
+	 * @since 0.1.0
+	 * @category Object
+	 *
+	 * @param {Object} object The object to query.
+	 * @return {Array} Returns the array of property names.
+	 *
+	 * @see deps/util/props
+	 * @see values, valuesIn
+	 * @see https://github.com/lodash/lodash/blob/master/.internal/getAllKeys.js
+	 * @see https://github.com/lodash/lodash/blob/master/keys.js
+	 * @TODO https://github.com/lodash/lodash/blob/master/.internal/arrayLikeKeys.js
+	 *
+	 * @example
+	 *
+	 * function Foo() {
+	 *   this.a = 1
+	 *   this.b = 2
+	 * }
+	 *
+	 * Foo.prototype.c = 3
+	 *
+	 * keys(new Foo)
+	 * // => ['a', 'b'] (iteration order is not guaranteed)
+	 *
+	 * keys('hi')
+	 * // => ['0', '1']
+	 *
+	 */
+
+	var zeroOneLength = function (obj$$2) { return (obj$$2.length > 1 ? obj$$2.length - 1 : obj$$2.length === 1 ? 1 : 0); };
+
+	var keysObjOrArray = function keys$$2(obj$$2) {
+	  return array(obj$$2)
+	    ? new Array(zeroOneLength(obj$$2))
+	    : obj(obj$$2) ? keys(obj$$2) : []
+
+	  // for (var key in obj) gathered.push(key)
+	  // return gathered
+	};
+
+	/* ___filename___: dist/deps/util/keysObjOrArray.js */
+
+	/* ___filename___: dist/deps/is/empty.js */
+
+
+
+
+
+	/* prettier-ignore */
+	/**
+	 * Returns `true` if the given value is its type's empty value;
+	 * `false` otherwise.
+	 *
+	 * @func
+	 * @memberOf is
+	 * @since v0.1.0
+	 * @category Logic
+	 * @sig a -> Boolean
+	 *
+	 * @param {*} x value to check if empty
+	 * @return {boolean}
+	 *
+	 * @see empty
+	 * @see https://github.com/ramda/ramda/issues/1228
+	 *
+	 * @example
+	 *
+	 *      isEmpty([1, 2, 3]);   //=> false
+	 *      isEmpty([]);          //=> true
+	 *      isEmpty('');          //=> true
+	 *      isEmpty(null);        //=> false
+	 *      isEmpty({});          //=> true
+	 *      isEmpty({length: 0}); //=> false
+	 *
+	 */
+	var empty = function isEmpty(x) {
+	  if (x === '') { return true }
+	  else if (nullOrUndefined(x)) { return false }
+	  else if (obj(x) || array(x)) { return keysObjOrArray(x).length === 0 }
+	  else { return false }
+
+	  // else return (
+	  //   // null|undefined = empty
+	  //   // isNullOrUndefined(x) ||
+	  //   // '' = empty
+	  //   // [] | {} = empty
+	  //   keys(x).length === 0
+	  // )
+	};
+
 	/* ___filename___: dist/deps/is/error.js */
 
 
@@ -2354,6 +2476,7 @@
 	 * @param  {*} x value
 	 * @return {boolean} isError
 	 *
+	 * @since 4.0.0
 	 * @memberOf is
 	 * @func isError
 	 *
@@ -2383,6 +2506,7 @@
 	 *
 	 */
 	var error$1 = function isError(x) {
+	  // console.log('isError', toS(x), x)
 	  return toS(x) === '[object Error]'
 	  // x instanceof Error ||
 	};
@@ -2590,12 +2714,13 @@
 	  )
 	};
 
-	/* ___filename___: dist/deps/fp/curry.js */
-	// var _isPlaceholder = require('./isPlaceholder')
-	function _isPlaceholder(x) {
+	/* ___filename___: dist/deps/fp/isPlaceholder.js */
+	var isPlaceholder = function _isPlaceholder(x) {
 	  return x === '_'
-	}
+	};
 
+	/* ___filename___: dist/deps/fp/arity.js */
+	/* istanbul ignore next: metadata, one is covered, all are covered */
 	/* prettier-ignore */
 	/**
 	 * @desc just for `.length` of a function?
@@ -2613,7 +2738,7 @@
 	 *  arity(1, wan)
 	 *  => function(one => wan(one))
 	 */
-	function _arity(n, fn) {
+	var arity = function _arity(n, fn) {
 	  /* eslint-disable no-unused-vars */
 	  if (n === 0) { return function() { return fn.apply(this, arguments) } }
 	  else if (n === 1) { return function(a0) { return fn.apply(this, arguments) } }
@@ -2626,10 +2751,16 @@
 	  else if (n === 8) { return function(a0, a1, a2, a3, a4, a5, a6, a7) { return fn.apply(this, arguments) } }
 	  else if (n === 9) { return function(a0, a1, a2, a3, a4, a5, a6, a7, a8) { return fn.apply(this, arguments) } }
 	  else if (n === 10) { return function(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9) { return fn.apply(this, arguments) } }
-	  // else {
-	  //   throw new Error('First argument to _arity must be a non-negative integer no greater than ten')
-	  // }
-	}
+	};
+
+	/* ___filename___: dist/deps/fp/isPlaceholder.js */
+
+	/* ___filename___: dist/deps/fp/arity.js */
+
+	/* ___filename___: dist/deps/fp/curry.js */
+
+
+
 
 	/**
 	 * Returns a curried equivalent of the provided function, with the specified
@@ -2692,7 +2823,7 @@
 
 	      if (
 	        combinedIdx < received.length &&
-	        (!_isPlaceholder(received[combinedIdx]) || argsIdx >= arguments$1.length)
+	        (!isPlaceholder(received[combinedIdx]) || argsIdx >= arguments$1.length)
 	      ) {
 	        result = received[combinedIdx];
 	      }
@@ -2701,14 +2832,14 @@
 	        // argsIdx += 1
 	      }
 	      combined[combinedIdx++] = result;
-	      if (!_isPlaceholder(result)) {
+	      if (!isPlaceholder(result)) {
 	        left -= 1;
 	      }
 	      // combinedIdx += 1
 	    }
 	    return left <= 0
 	      ? fn.apply(this, combined)
-	      : _arity(left, _curryN(length, combined, fn))
+	      : arity(left, _curryN(length, combined, fn))
 	  }
 	}
 
@@ -2759,7 +2890,7 @@
 	 *
 	 */
 	var curry = function curryN(length, fn) {
-	  return _arity(length, _curryN(length, [], fn))
+	  return arity(length, _curryN(length, [], fn))
 	};
 
 	/* ___filename___: dist/deps/fp/curry.js */
@@ -2980,11 +3111,15 @@
 	    if (array(src)) {
 	      dst = [];
 	    }
+	    // was new date(src.getTime())
+	    // || isBoolean(src) || isNumber(src) || isString(src)
 	    else if (date(src)) {
-	      dst = new Date(src.getTime ? src.getTime() : src);
+	      dst = new src.constructor(src.valueOf());
 	    }
 	    else if (regexp(src)) {
-	      dst = new RegExp(src);
+	      // dst = new RegExp(src)
+	      dst = new RegExp(src.src, src.toString().match(/[^/]*$/)[0]);
+	      dst.lastIndex = src.lastIndex;
 	    }
 	    else if (error$1(src)) {
 	      dst = new Error(src.message);
@@ -3083,8 +3218,6 @@
 
 	/* ___filename___: dist/deps/util/hasOwnProperty.js */
 
-	/* ___filename___: dist/deps/env/debug.js */
-
 	/* ___filename___: dist/deps/traversers/eqValue.js */
 	// conditionals
 	/* eslint complexity: "OFF" */
@@ -3102,6 +3235,10 @@
 
 
 
+	// const ENV_DEBUG = require('../env/debug')
+	var ENV_DEBUG$1 = true;
+
+	var isNotRealOrNotEqToString = function (x, y) { return !x || !y || x.toString() !== y.toString(); };
 
 	/* prettier-ignore */
 	/**
@@ -3127,7 +3264,7 @@
 	 */
 	var eqValue = function eqValue(x, y, loose) {
 	  /* istanbul ignore next: dev */
-	  if (debug) {
+	  if (ENV_DEBUG$1) {
 	    console.log('eqValue', {x: x, y: y, loose: loose});
 	  }
 
@@ -3141,7 +3278,7 @@
 
 	  if (nullOrUndefined(x) || nullOrUndefined(y)) {
 	    /* istanbul ignore next: dev */
-	    if (debug) {
+	    if (ENV_DEBUG$1) {
 	      console.log('null or undef !=', {x: x, y: y});
 	    }
 
@@ -3156,20 +3293,30 @@
 	    }
 	    else {
 	      /* istanbul ignore next: dev */
-	      if (debug) {
+	      if (ENV_DEBUG$1) {
 	        console.log('typeof !=', {x: x, y: y});
 	      }
 
 	      return false
 	    }
 	  }
+	  // @TODO put this up first?
+	  else if (toS(x) !== toS(y)) {
+	    /* istanbul ignore next: dev */
+	    if (ENV_DEBUG$1) {
+	      console.log('diff str types', {x: toS(x), y: toS(y)});
+	    }
+
+	    return false
+	  }
 	  else if (objNotNull(x)) {
+	    // use .equals if the method exists
 	    if (hasOwnProperty_1(x, 'equals')) {
 	      return x.equals(y)
 	    }
 
 	    /* istanbul ignore next: dev */
-	    if (debug) {
+	    if (ENV_DEBUG$1) {
 	      console.log('isObjNotNull', {x: x});
 	    }
 
@@ -3182,13 +3329,13 @@
 	    // @NOTE .toString will be covered for functions and regexes in objStrict
 	    if (regexp(x) || regexp(y)) {
 	      /* istanbul ignore next: dev */
-	      if (debug) {
+	      if (ENV_DEBUG$1) {
 	        console.log('regexp', {x: x, y: y});
 	      }
 
-	      if (!x || !y || x.toString() !== y.toString()) {
+	      if (isNotRealOrNotEqToString(x, y)) {
 	        /* istanbul ignore next: dev */
-	        if (debug) {
+	        if (ENV_DEBUG$1) {
 	          console.log('regexp !=', {x: x, y: y});
 	        }
 
@@ -3197,13 +3344,13 @@
 	    }
 	    else if (date(x) || date(y)) {
 	      /* istanbul ignore next: dev */
-	      if (debug) {
+	      if (ENV_DEBUG$1) {
 	        console.log('dates', {x: x, y: y});
 	      }
 
 	      if (!date(x) || !date(y) || x.getTime() !== y.getTime()) {
 	        /* istanbul ignore next: dev */
-	        if (debug) {
+	        if (ENV_DEBUG$1) {
 	          console.log('!= dates', {x: x, y: y});
 	        }
 
@@ -3212,13 +3359,13 @@
 	    }
 	    else if (error$1(x) || error$1(y)) {
 	      /* istanbul ignore next: dev */
-	      if (debug) {
+	      if (ENV_DEBUG$1) {
 	        console.log('isError', {x: x, y: y});
 	      }
 
 	      if (!error$1(x) || !error$1(y) || x.stack !== y.stack) {
 	        /* istanbul ignore next: dev */
-	        if (debug) {
+	        if (ENV_DEBUG$1) {
 	          console.log('!= errors', {x: x, y: y});
 	        }
 
@@ -3227,7 +3374,7 @@
 	    }
 	    else if (array(x) && !array(y)) {
 	      /* istanbul ignore next: dev */
-	      if (debug) {
+	      if (ENV_DEBUG$1) {
 	        console.log('isArray(x) || isArray(y)!');
 	      }
 
@@ -3235,20 +3382,29 @@
 	    }
 	    else if (!array(x) && array(y)) {
 	      /* istanbul ignore next: dev */
-	      if (debug) {
+	      if (ENV_DEBUG$1) {
 	        console.log('!isArray(x) && isArray(y):');
 	      }
 
 	      return false
 	    }
+
+	    // @TODO considering, we already know it is not null & undefined
+	    // if (isPrimitive(x) || isPrimitive(y)) {
+	    //  return x.valueOf() === y.valueOf()
+	    // }
+
 	    else {
+	      // @TODO ObjectOrArrayKeys, but have to have else where they are both array
+	      //
 	      // @NOTE it will traverse through values if they are == here
 	      var xKeys = keys(x);
 	      var yKeys = keys(y).length;
 
+	      // diff length
 	      if (xKeys.length !== yKeys) {
 	        /* istanbul ignore next: dev */
-	        if (debug) {
+	        if (ENV_DEBUG$1) {
 	          console.log('!= obj key length', {xKeys: xKeys, yKeys: yKeys});
 	        }
 
@@ -3258,7 +3414,7 @@
 	      for (var k = 0; k < xKeys.length; k++) {
 	        if (!hasOwnProperty_1(y, xKeys[k])) {
 	          /* istanbul ignore next: dev */
-	          if (debug) {
+	          if (ENV_DEBUG$1) {
 	            console.log('!= obj property', {y: y, val: xKeys[k]});
 	          }
 
@@ -3270,33 +3426,34 @@
 	  else if (toS(x) === toS(y) && x !== y) {
 	    // isString(x) || isBoolean(x) || isNumber(x) || isIterator(x)
 	    /* istanbul ignore next: dev */
-	    if (debug) {
+	    if (ENV_DEBUG$1) {
 	      console.log('same str types - diff values', {s: toS(x), x: x, y: y});
 	    }
 
 	    return false
 	  }
-	  else if (toS(x) !== toS(y)) {
-	    /* istanbul ignore next: dev */
-	    if (debug) {
-	      console.log('diff str types', {x: toS(x), y: toS(y)});
-	    }
-
-	    return false
-	  }
+	  // // @TODO put this up first?
+	  // else if (toS(x) !== toS(y)) {
+	  //   /* istanbul ignore next: dev */
+	  //   if (ENV_DEBUG) {
+	  //     console.log('diff str types', {x: toS(x), y: toS(y)})
+	  //   }
+	  //
+	  //   return false
+	  // }
 
 	  // go deeper
 	  else if (_function(x) || _function(y)) {
 	    /* istanbul ignore next: dev */
-	    if (debug) {
+	    if (ENV_DEBUG$1) {
 	      console.log('isFunction(x) && isFunction(y):');
 	      console.log(x.toString());
 	      console.log(y.toString());
 	    }
 
-	    if (!x || !y || x.toString() !== y.toString()) {
+	    if (isNotRealOrNotEqToString(x, y)) {
 	      /* istanbul ignore next: dev */
-	      if (debug) {
+	      if (ENV_DEBUG$1) {
 	        console.log('x.toString() !== y.toString()', x.toString() !== y.toString());
 	      }
 	      return false
@@ -3305,10 +3462,10 @@
 	      return true
 	    }
 	  }
-
+	  // @TODO why?
 	  else if (obj(x) && obj(y)) {
 	    /* istanbul ignore next: dev */
-	    if (debug) {
+	    if (ENV_DEBUG$1) {
 	      console.log('isObj(x) && isObj(y):');
 	    }
 
@@ -3316,7 +3473,7 @@
 	  }
 	  // else {
 	  /* istanbul ignore next: dev */
-	  if (debug) {
+	  if (ENV_DEBUG$1) {
 	    console.log('eqeqeq:', {[toS(x) + 'X']: x, [toS(y) + 'Y']: y});
 	  }
 	  return true
@@ -3325,13 +3482,19 @@
 
 	/* ___filename___: dist/deps/dot/get.js */
 
+	/* ___filename___: dist/deps/is/empty.js */
+
+	/* ___filename___: dist/deps/env/debug.js */
+
 	/* ___filename___: dist/deps/traversers/eqValue.js */
 
-	/* ___filename___: dist/deps/traversers/eq.js */
+	/* ___filename___: dist/deps/traversers/_eq.js */
 	// conditionals
 	/* eslint complexity: "OFF" */
 
 	// const traverse = require('../traverse')
+
+
 
 
 
@@ -3343,6 +3506,12 @@
 	 * @since 3.0.0
 	 * @version 5.0.0
 	 * @memberOf Traverse
+	 *
+	 * @see https://github.com/facebook/immutable-js/blob/master/src/utils/deepEqual.js
+	 * @see https://github.com/substack/node-deep-equal
+	 * @see http://ramdajs.com/docs/#equals
+	 * @see https://lodash.com/docs/4.17.4#isEqual
+	 * @see https://github.com/angular/angular.js/blob/master/src/Angular.js
 	 *
 	 * @param {Traverse} traverse traversejs
 	 * @param  {*} a compare to b
@@ -3361,7 +3530,10 @@
 	 *    eq([1], [1])        //=> true
 	 *
 	 */
-	var eq = function (traverse) { return function eq(a, b, loose, scoped) {
+	var _eq = function (traverse) { return function eq(a, b, loose, stackA, stackB) {
+	  if ( stackA === void 0 ) stackA = [];
+	  if ( stackB === void 0 ) stackB = [];
+
 	  /* istanbul ignore next: dev */
 	  if (debug) {
 	    console.log('\n');
@@ -3369,13 +3541,11 @@
 
 	  var equal = true;
 	  var node = b;
-
-	  // @TODO can be helpful? for left to right in 1 traverse for faster eq?
-	  // let _node = b
+	  var nodes = [node];
 
 	  var instance = traverse(a);
+
 	  var notEqual = function () {
-	    // throw new Error()
 	    equal = false;
 	    instance.stop();
 	  };
@@ -3386,30 +3556,50 @@
 	  }
 
 	  instance.forEach(function(key, y, traverser) {
+	    // @NOTE do base comparisons on values that are not actually iteratable
+	    // aka, .isRoot
+	    if (_null(key)) {
+	      // always-valid state opionion vs always-invalid
+	      // so it only returns false when it is !== fosho
+	      if (eqValue(node, y, loose) === false) { return notEqual() }
+	      else { return }
+	    }
+
 	    /* istanbul ignore next: dev */
 	    if (debug) {
 	      console.log('eq: iterating:');
 	    }
 
-	    // BREAKS ANY BUT OBJ
-	    // if (!isObjLoose(node)) {
-	    //   node = _node
-	    //   return notEqual()
-	    // }
-	    // else {
-	    //   _node = node
-	    // }
+	    // could use it as a fallback if undefined && y !== undefined
+	    // const xyz = get(b, traverser.path.join('.'), b)
 
-	    if (objNotNull(node))  {
-	      // _node = node
-	      node = node[traverser.key];
+	    var x = node;
+
+	    // isNotLeafAndIsObj
+	    if (objNotNull(node) && !empty(node)) {
+	      /* istanbul ignore next: dev */
+	      if (debug) {
+	        console.log('is leaf, is not empty node, going deeper');
+	      }
+
+	      // so x is our current one,
+	      // if node is not empty, use the key, push the value
+	      // and when it is empty, and it is not a leaf but has nodes, pop back up
+	      x = node[key];
+	      nodes.push(x);
 	    }
 
-	    // node = node ? node[traverser.key] : node
+	    // ENV_DEBUG
+	    // console.log({[key]: {x, xyz, y, nodes, path: traverser.path.join('.')}})
 
-	    // @TODO !!!!!!!!!!!!!!!!!!!! PERF HIT HERE --- NEEDS STACK INSTEAD !!!!!!!!!!!!!!!
-	    var x = node;
-	    x = get(b, traverser.path.join('.'), b);
+	    // for next loop!!!
+	    if (!this.isLeaf && !empty(nodes)) {
+	      /* istanbul ignore next: dev */
+	      if (debug) {
+	        console.log('is not leaf, has nodes stack, pop');
+	      }
+	      node = nodes.pop();
+	    }
 
 	    /* istanbul ignore next: dev */
 	    if (debug) {
@@ -3427,11 +3617,13 @@
 	      // equal
 	      notEqual();
 	    }
-	    // }
 	  });
 
-	  if (equal === false && scoped === false) { return eq(b, a, loose, true) }
-	  else { return equal }
+	  // cleanup
+	  nodes = undefined;
+	  node = undefined;
+
+	  return equal
 	}; };
 
 	/* ___filename___: dist/deps/cache/pooler.js */
@@ -3563,7 +3755,7 @@
 
 	/* ___filename___: dist/deps/traversers/copy.js */
 
-	/* ___filename___: dist/deps/traversers/eq.js */
+	/* ___filename___: dist/deps/traversers/_eq.js */
 
 	/* ___filename___: dist/deps/cache/pooler.js */
 
@@ -3579,6 +3771,7 @@
 
 	// debug conditionals
 	/* eslint max-depth: "OFF" */
+
 
 
 
@@ -3731,7 +3924,14 @@
 	  this.iteratee = iteratee;
 	  this.parent = iteratee;
 	  this.root = iteratee;
+	  this.reset();
 
+	  // to pass in the events (as commented below) without messing up scope?
+	  // if (config.on) this.on = config.on
+	  return this
+	}
+
+	Traverse.prototype.reset = function() {
 	  this.path = [];
 	  this.key = undefined;
 	  this.isAlive = true;
@@ -3741,11 +3941,7 @@
 
 	  // iterates +1 so start at 0
 	  this.depth = -1;
-
-	  // to pass in the events (as commented below) without messing up scope?
-	  // if (config.on) this.on = config.on
-	  return this
-	}
+	};
 
 	/**
 	 * @desc find parent,
@@ -3952,6 +4148,7 @@
 	    this.isLeaf = false;
 	    var path = this.path.join('.');
 
+
 	    if (this.hasParent(path, node)) {
 	      /* istanbul ignore next: dev */
 	      if (ENV_DEBUG) {
@@ -3962,6 +4159,11 @@
 	    else {
 	      this.addParent(path, node);
 	      this.isCircular = false;
+	    }
+
+	    /* istanbul ignore next: dev */
+	    if (ENV_DEBUG) {
+	      // console.log('IS_CIRCULAR_JSON', isCircular(node), this.isCircular, node)
 	    }
 	  }
 	  else {
@@ -3989,53 +4191,75 @@
 	 *    traverse([0]).forEach((key, val, it) => it.remove())
 	 *    //=> []
 	 *
+	 *    traverse({eh: true}).forEach((key, val, it) => it.remove())
+	 *    //=> {}
+	 *
+	 *    traverse({eh: true, str: 'stringy'}).forEach((key, val, it) => {
+	 *      if (!isString(val)) it.remove()
+	 *    })
+	 *    //=> {str: 'stringy'}
+	 *
 	 */
 	Traverse.prototype.remove = function removes(arg) {
+	  if (_undefined(this.key)) { return }
+
 	  var obj$$2 = arg || this.iteratee;
+
+	  if (!obj(obj$$2)) { return }
 
 	  /* istanbul ignore next: dev */
 	  if (ENV_DEBUG) {
-	    console.log({parent: this.parent});
+	    console.log('remove');
+	    console.log({parent: this.parent, key: this.key, obj: obj$$2});
 	  }
 
 	  this.removeParent(obj$$2);
 
-	  if (_undefined(obj$$2)) {
-	    // throw new Error('why?')
-	  }
-	  else if (array(obj$$2)) {
-	    /* istanbul ignore next: dev */
-	    if (ENV_DEBUG) {
-	      console.log('traverse:remove:array', obj$$2, this.key);
-	    }
+	  this.skip();
 
-	    obj$$2.splice(this.key, 1);
-	  }
-	  else if (objNotNull(obj$$2)) {
-	    /* istanbul ignore next: dev */
-	    if (ENV_DEBUG) {
-	      console.log('traverse:remove:obj', this.key);
-	    }
+	  delete obj$$2[this.key];
+	  delete this.parent[this.key];
+	  // if (isObj(obj)) deleteFromObjOrArray(obj, this.key)
+	  // else deleteFromObjOrArray(this.parent, this.key)
+	  // deleteFromObjOrArray(this.parent, this.key)
+	  // deleteFromObjOrArray(this.iteratee, this.key)
 
-	    delete obj$$2[this.key];
-	  }
-
-	  if (objNotNull(this.parent)) {
-	    delete this.parent[this.key];
-
-	    /* istanbul ignore next: dev */
-	    if (ENV_DEBUG) {
-	      console.log('traverse:remove:parent', this.key);
-	    }
-	  }
-	  if (objNotNull(this.iteratee)) {
-	    delete this.iteratee[this.key];
-
-	    /* istanbul ignore next: dev */
-	    if (ENV_DEBUG) {
-	      console.log('traverse:remove:iteratee', this.key);
-	    }
-	  }
+	  // if (isUndefined(obj)) {
+	  //   // throw new Error('why?')
+	  // }
+	  // else if (isArray(obj)) {
+	  //   /* istanbul ignore next: dev */
+	  //   if (ENV_DEBUG) {
+	  //     console.log('traverse:remove:array', obj, this.key)
+	  //   }
+	  //
+	  //   obj.splice(this.key, 1)
+	  // }
+	  // else if (isObjNotNull(obj)) {
+	  //   /* istanbul ignore next: dev */
+	  //   if (ENV_DEBUG) {
+	  //     console.log('traverse:remove:obj', this.key)
+	  //   }
+	  //
+	  //   delete obj[this.key]
+	  // }
+	  //
+	  // if (isObjNotNull(this.parent)) {
+	  //   delete this.parent[this.key]
+	  //
+	  //   /* istanbul ignore next: dev */
+	  //   if (ENV_DEBUG) {
+	  //     console.log('traverse:remove:parent', this.key)
+	  //   }
+	  // }
+	  // if (isObjNotNull(this.iteratee)) {
+	  //   delete this.iteratee[this.key]
+	  //
+	  //   /* istanbul ignore next: dev */
+	  //   if (ENV_DEBUG) {
+	  //     console.log('traverse:remove:iteratee', this.key)
+	  //   }
+	  // }
 
 	  /* istanbul ignore next: dev */
 	  if (ENV_DEBUG) {
@@ -4083,13 +4307,9 @@
 	 *
 	 */
 	Traverse.prototype.destructor = function destructor() {
-	  // throw new Error('how')
-	  // this.iteratee = undefined
-	  // this.key = undefined
-	  // this.isCircular = undefined
-	  // this.isLeaf = undefined
-	  // this.isAlive = undefined
-	  // this.path = undefined
+	  this.iteratee = undefined;
+	  this.parent = undefined;
+	  this.reset();
 
 	  this.clear();
 	};
@@ -4208,22 +4428,26 @@
 	    this.isRoot = false;
 	  }
 
+	  var isObjOrArray = nodeIsArray || nodeIsObj;
+
+	  // if (isObjOrArray) {
+	  //   // @event
+	  //   if (!isUndefined(this.onBefore)) {
+	  //     // eslint-disable-next-line no-useless-call
+	  //     this.onBefore(this)
+	  //   }
+	  // }
 
 	  // --------------------
 	  // IF OBJWITHOUTKEYS, IF ARRAY WITHOUT LENGTH...
-	  if (nodeIsArray && node.length === 0) {
+	  if (isObjOrArray && empty(node)) {
 	    on.call(this, this.key, node, this);
 	    this.iteratee = node;
 	  }
-	  // @TODO use !objWithKeys ?
-	  else if (nodeIsObj && keys(node).length === 0) {
-	    // eqValue(node, )
-	    on.call(this, this.key, node, this);
-	    this.iteratee = node;
-	  }
+
 	  // --------------------
 
-	  else if (nodeIsObj || nodeIsArray) {
+	  else if (isObjOrArray) {
 	    this.depth = this.path.length;
 
 	    // @TODO SAFETY WITH `props(node)` <- fixes Error
@@ -4245,6 +4469,9 @@
 
 	    // @loop
 	    for (var key = 0; key < keys$$2.length; key++) {
+	      // if (ENV_DEBUG)
+	      // console.log('iterating:', {key})
+
 	      // --- safety ---
 	      if (this$1.isAlive === false) {
 	        /* istanbul ignore next : dev */
@@ -4291,7 +4518,14 @@
 
 	      // ----- continue events, loop deeper when needed ----
 
+	      // @NOTE since we check isAlive at the beginning of each loop
+	      // could use .skip alongisde .stop
+	      // @TODO @IMPORTANT @HACK @FIXME right here it should also handle the .stop
 	      on.call(this$1, this$1.key, value, this$1);
+	      if (_true(this$1.skipBranch)) {
+	        this$1.skipBranch = false;
+	        continue
+	      }
 
 	      /* istanbul ignore next: dev */
 	      if (ENV_DEBUG) {
@@ -4475,7 +4709,7 @@
 	}
 
 	var traverse_1 = traverse;
-	var eq_1 = eq(traverse);
+	var eq_1 = _eq(traverse);
 	var clone_1 = clone;
 	var copy_1 = copy;
 
@@ -4526,7 +4760,7 @@
 
 	  var paths = [];
 
-	  /* istanbul-ignore next: debug */
+	  /* istanbul ignore next: debug */
 	  if (debug) {
 	    console.log({value: value});
 	  }
@@ -4540,7 +4774,7 @@
 	    // const currentPath = this.paths
 	    var currentPath = this.path;
 
-	    /* istanbul-ignore next: debug */
+	    /* istanbul ignore next: debug */
 	    if (debug) {
 	      console.log('paths', run++, this.path);
 	    }
@@ -5063,111 +5297,7 @@
 	  return and(array, all_1(predicate))
 	};
 
-	/* ___filename___: dist/deps/util/keysObjOrArray.js */
-
-
-
-
-	/**
-	 * Creates an array of the own enumerable property names of `object`.
-	 *
-	 * **Note:** Non-object values are coerced to objects. See the
-	 * [ES spec](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
-	 * for more details.
-	 *
-	 * @since 0.1.0
-	 * @category Object
-	 *
-	 * @param {Object} object The object to query.
-	 * @return {Array} Returns the array of property names.
-	 *
-	 * @see deps/util/props
-	 * @see values, valuesIn
-	 * @see https://github.com/lodash/lodash/blob/master/.internal/getAllKeys.js
-	 * @see https://github.com/lodash/lodash/blob/master/keys.js
-	 * @TODO https://github.com/lodash/lodash/blob/master/.internal/arrayLikeKeys.js
-	 *
-	 * @example
-	 *
-	 * function Foo() {
-	 *   this.a = 1
-	 *   this.b = 2
-	 * }
-	 *
-	 * Foo.prototype.c = 3
-	 *
-	 * keys(new Foo)
-	 * // => ['a', 'b'] (iteration order is not guaranteed)
-	 *
-	 * keys('hi')
-	 * // => ['0', '1']
-	 *
-	 */
-
-	var zeroOneLength = function (obj$$2) { return (obj$$2.length > 1 ? obj$$2.length - 1 : obj$$2.length === 1 ? 1 : 0); };
-
-	var keysObjOrArray = function keys$$2(obj$$2) {
-	  return array(obj$$2)
-	    ? new Array(zeroOneLength(obj$$2))
-	    : obj(obj$$2) ? keys(obj$$2) : []
-
-	  // for (var key in obj) gathered.push(key)
-	  // return gathered
-	};
-
-	/* ___filename___: dist/deps/util/keysObjOrArray.js */
-
-	/* ___filename___: dist/deps/is/empty.js */
-
-
-
-
-
-	/* prettier-ignore */
-	/**
-	 * Returns `true` if the given value is its type's empty value;
-	 * `false` otherwise.
-	 *
-	 * @func
-	 * @memberOf is
-	 * @since v0.1.0
-	 * @category Logic
-	 * @sig a -> Boolean
-	 *
-	 * @param {*} x value to check if empty
-	 * @return {boolean}
-	 *
-	 * @see empty
-	 * @see https://github.com/ramda/ramda/issues/1228
-	 *
-	 * @example
-	 *
-	 *      isEmpty([1, 2, 3]);   //=> false
-	 *      isEmpty([]);          //=> true
-	 *      isEmpty('');          //=> true
-	 *      isEmpty(null);        //=> false
-	 *      isEmpty({});          //=> true
-	 *      isEmpty({length: 0}); //=> false
-	 *
-	 */
-	var empty = function isEmpty(x) {
-	  if (x === '') { return true }
-	  else if (nullOrUndefined(x)) { return false }
-	  else if (obj(x) || array(x)) { return keysObjOrArray(x).length === 0 }
-	  else { return false }
-
-	  // else return (
-	  //   // null|undefined = empty
-	  //   // isNullOrUndefined(x) ||
-	  //   // '' = empty
-	  //   // [] | {} = empty
-	  //   keys(x).length === 0
-	  // )
-	};
-
 	/* ___filename___: dist/deps/conditional/not.js */
-
-	/* ___filename___: dist/deps/is/empty.js */
 
 	/* ___filename___: dist/deps/is/notRealOrIsEmpty.js */
 
@@ -5888,7 +6018,7 @@
 	 * @param  {Function} call
 	 * @return {boolean | any} validation/encased function call result
 	 */
-	var tryCatch = curry(4, function (call, onValid, onInvalid, rethrow) { return function (a, b, c) {
+	var tryCatch = curry(3, function (call, onValid, onInvalid) { return function (a, b, c) {
 	  var result;
 	  try {
 	    result = call(a, b, c);
@@ -5944,6 +6074,7 @@
 	var encase = function (call, encaser) {
 	  var encased = encaser ? encaser(call) : tryCatch(call);
 
+	  // @TODO rethink this scoped approach
 	  // left, right, rethrow
 	  var onInvalid;
 	  var onValid;
@@ -7717,17 +7848,20 @@
 	     */
 	    ChainedMap.prototype.merge = function merge (obj, handleMergeFn) {
 	      var merger = MergeChain_1.init(this);
+
 	      if (_undefined(handleMergeFn)) {
 	        merger.merge(obj);
 	      }
 	      else {
 	        handleMergeFn(merger.obj(obj));
 	      }
+
 	      return this
 	    };
 
 	    return ChainedMap;
 	  }(Composed));
+
 	  return ChainedMap
 	};
 
@@ -7778,7 +7912,11 @@
 	   *
 	   * @param {any} value any value to add to **end** of the store
 	   * @return {ChainedSet} @chainable
-	   * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/add
+	   *
+	   * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/add mozilla-set-add}
+	   * {@link https://github.com/lodash/lodash/blob/master/.internal/addSetEntry.js#L9 lodash-add-set-entry}
+	   * @see {@link mozilla-set-add}
+	   * @see {@link lodash-add-set-entry}
 	   *
 	   * @example
 	   *
@@ -8509,7 +8647,7 @@
 
 
 
-	var eq$3 = traverse_1.eq;
+	var eq$1 = traverse_1.eq;
 
 	/**
 	 * scoped clones
@@ -8651,7 +8789,7 @@
 	       *    clone it
 	       *    call the observer
 	       */
-	      if (objs.has(hashKey) && eq$3(objs.get(hashKey), data)) {
+	      if (objs.has(hashKey) && eq$1(objs.get(hashKey), data)) {
 	        // @@debugger
 	        return
 	      }
@@ -9081,7 +9219,7 @@
 	    // diff between keys and val is order of arg in ^ tester
 	    var matcher = anyKeyVal(keys, vals);
 
-	    /* istanbul-ignore next: debug */
+	    /* istanbul ignore next: debug */
 	    if (debug) {
 	      console.log('matcher for traverse...', keys, vals);
 	    }
@@ -9092,7 +9230,7 @@
 	        // nothing
 	      }
 	      else if (matcher(key, x)) {
-	        /* istanbul-ignore next: debug */
+	        /* istanbul ignore next: debug */
 	        if (debug) {
 	          console.log('------- match ------- ', key, x);
 	        }
@@ -9100,7 +9238,7 @@
 	        onMatch(x, traverser);
 	      }
 	      else if (onNonMatch) {
-	        /* istanbul-ignore next: debug */
+	        /* istanbul ignore next: debug */
 	        if (debug) {
 	          console.log('------- NONmatch ------- ', key, x);
 	        }
@@ -9342,6 +9480,27 @@
 
 	    return this
 	  };
+
+	  // @TODO
+	  // // https://stackoverflow.com/questions/31158902/is-it-possible-to-sort-a-es6-map-object
+	  // ordered(comperator = null) {
+	  //   // this.set = this.before(this.set)
+	  //   this.set = (key, value) => {
+	  //     // have to iterate over the keys before setting
+	  //     // and then after merging in values, update
+	  //     if (this.store.has(key)) {
+	  //       // first
+	  //       let keys = this.store.keys()
+	  //       if (isFunction(comperator)) keys = keys.sort(comperator)
+	  //
+	  //       // after
+	  //       const store = this.store
+	  //       this.store = new Map()
+	  //       keys.forEach(keyInOrder => this.store.set(key, store.get(key)))
+	  //       store.clear()
+	  //     }
+	  //   }
+	  // }
 
 	  // --- remap ---
 	  /**
@@ -9887,6 +10046,9 @@
 	  return toObj(keys$$2, iterator)
 	};
 
+	/* ___filename___: dist/deps/traversers/eq.js */
+	var eq$2 = traverse_1.eq;
+
 	var index$22 = validatorBuilder;
 
 	/* ___filename___: dist/ChainedSet.js */
@@ -9894,6 +10056,8 @@
 	/* ___filename___: dist/FactoryChain.js */
 
 	/* ___filename___: dist/deps/reduce/clean.js */
+
+	/* ___filename___: dist/deps/traversers/eq.js */
 
 	var index = createCommonjsModule(function (module) {
 	// dep
@@ -9930,8 +10094,9 @@
 	exp.reduce = index$6;
 	exp.clean = clean;
 	exp.meta = index$8;
-	exp.eq = eq;
+	exp.eq = eq$2;
 	exp.types = index$22;
+	exp.encase = index$14;
 
 	exp.addTypes = exp.types.addTypes;
 

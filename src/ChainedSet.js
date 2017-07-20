@@ -44,7 +44,11 @@ class ChainedSet extends Chainable {
    *
    * @param {any} value any value to add to **end** of the store
    * @return {ChainedSet} @chainable
-   * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/add
+   *
+   * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/add mozilla-set-add}
+   * {@link https://github.com/lodash/lodash/blob/master/.internal/addSetEntry.js#L9 lodash-add-set-entry}
+   * @see {@link mozilla-set-add}
+   * @see {@link lodash-add-set-entry}
    *
    * @example
    *
