@@ -81,8 +81,8 @@ writing an api using chain-able means:
 
 - [expressive, clearly communicative code][wiki]
 - [runtime type validation][Schema]
-- [🔬 230+ tests][Tests] with [96%+ code coverage][cov]
-- ⚡ [performant & tiny][Src] `~7kb` _(gzip)_ [_300 byte_ minimal version available as snippet][snippet]
+- [🔬 300+ tests][Tests] with [96%+ code coverage][cov]
+- ⚡ [performant & tiny][Src] `~8kb` _(gzip)_ [_300 byte_ minimal version available as snippet][snippet]
 
 <details><summary><em><b>more...</b></em></summary>
 
@@ -126,7 +126,6 @@ writing an api using chain-able means:
 - [🏭 infinitely nestable understandable factories][FactoryChain]
 - [▶️◀️ easy deep merging][MergeChain]
 - [☮️ compatibility - typescript, nodejs,  webpack, rollup, fusebox, babel, buble, amd][API]
-- ⚡ performant & tiny `~7kb` _(gzip)_ [_300 byte_ minimal version available as snippet][snippet]
 
 </details>
 

@@ -1,3 +1,4 @@
+const log = require('fliplog')
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
@@ -5,6 +6,7 @@ const bodyParser = require('body-parser')
 const app = express()
 const extended = {extended: false}
 
+// log.registerCatch()
 app.use(cors())
 
 // parse application/x-www-form-urlencoded
@@ -40,6 +42,8 @@ app.delete('/querystring', (req, res, next) => {
 })
 
 app.get('/404', (req, res, next) => {
+  // console.log('404...', {req, res, next})
+  // throw new Error('404')
   res.sendStatus(404)
 })
 
@@ -48,6 +52,7 @@ app.get('/404-with-valid-json', (req, res, next) => {
 })
 
 app.get('/404-with-invalid-json', (req, res, next) => {
+  console.log('404')
   res.set('Content-Type', 'application/json').status(404).send('foobaz')
 })
 

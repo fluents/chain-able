@@ -41,6 +41,9 @@ lint:
 docgen:
 	node build/cli --docs
 
+site:
+	node docs/_site/index.js
+
 dox:
 	yarn run dox -- 'src/**/*.js' --layout markdown --output docs/bits/doxdox.md
 
@@ -57,6 +60,9 @@ babel:
 
 tests:
 	yarn run test -- --notify
+
+frisbee:
+	cd _modules/frisbee && npm run test
 
 testdist:
 	yarn run ava -- test/built.js --verbose
