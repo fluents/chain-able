@@ -1,6 +1,7 @@
 const isObj = require('../is/obj')
 const isArray = require('../is/array')
 const ObjectKeys = require('./keys')
+const lengthFromZero = require('./lengthFromZero')
 
 /**
  * Creates an array of the own enumerable property names of `object`.
@@ -38,12 +39,10 @@ const ObjectKeys = require('./keys')
  *
  */
 
-const zeroOneLength = obj =>
-  (obj.length > 1 ? obj.length - 1 : obj.length === 1 ? 1 : 0)
 
 module.exports = function keys(obj) {
   return isArray(obj)
-    ? new Array(zeroOneLength(obj))
+    ? new Array(lengthFromZero(obj))
     : isObj(obj) ? ObjectKeys(obj) : []
 
   // for (var key in obj) gathered.push(key)

@@ -1020,3 +1020,27 @@ $ gzip-size "dists/umd/index.js" "--raw"
 Done in 0.58s.
 2017:36:07/20/17:02:36:25
 ---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+9308
+Done in 0.69s.
+2017:43:07/20/17:02:43:10
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+9308
+Done in 0.54s.
+2017:54:07/20/17:02:54:35
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+9308
+Done in 0.58s.
+2017:58:07/20/17:02:58:53
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+9161 <- minor easy util usage (props in gc, remove if > 100 parents in traverse, remove isArray && !isArray since it is covered already, )
+Done in 0.54s.
+2017:21:07/20/17:03:21:48
+---

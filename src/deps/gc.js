@@ -2,6 +2,7 @@ const ObjectProperties = require('./util/props')
 const traverse = require('./traverse')
 const isObj = require('./is/obj')
 const isArray = require('./is/array')
+const keys = require('./util/keysObjOrArray')
 
 // function gc() {
 //   if (typeof window !== 'undefined') window.global = window
@@ -40,7 +41,8 @@ const isArray = require('./is/array')
  */
 function markForGarbageCollection(obj) {
   // @TODO: ArrayOrObj loop... like tons of libs do...
-  let props = isObj(obj) ? ObjectProperties(obj) : obj //isArray(obj) ? obj
+  // let props = isObj(obj) ? ObjectProperties(obj) : obj //isArray(obj) ? obj
+  let props = keys(obj)
 
   for (let p = 0; p < props.length; p++) {
     if (isObj(obj[p])) {

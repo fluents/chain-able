@@ -225,9 +225,7 @@ Traverse.prototype.hasParent = function(depth, value) {
  *
  */
 Traverse.prototype.addParent = function(depth, value) {
-  if (!isObj(value)) return
-  if (this.parents.size >= 100) this.clear()
-  this.parents.add(value)
+  if (isObj(value)) this.parents.add(value)
 }
 
 /**
@@ -944,7 +942,7 @@ function traverse(value) {
   return Traverse.getPooled(value)
 }
 
+traverse.eq = eq(traverse)
+traverse.clone = clone
+traverse.copy = copy
 module.exports = traverse
-module.exports.eq = eq(traverse)
-module.exports.clone = clone
-module.exports.copy = copy

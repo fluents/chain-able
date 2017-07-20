@@ -153,22 +153,24 @@ module.exports = function eqValue(x, y, loose) {
         return false
       }
     }
-    else if (isArray(x) && !isArray(y)) {
-      /* istanbul ignore next: dev */
-      if (ENV_DEBUG) {
-        console.log('isArray(x) || isArray(y)!')
-      }
 
-      return false
-    }
-    else if (!isArray(x) && isArray(y)) {
-      /* istanbul ignore next: dev */
-      if (ENV_DEBUG) {
-        console.log('!isArray(x) && isArray(y):')
-      }
-
-      return false
-    }
+    // @NOTE this is covered by toString != toString
+    // else if (isArray(x) && !isArray(y)) {
+    //   /* istanbul ignore next: dev */
+    //   if (ENV_DEBUG) {
+    //     console.log('isArray(x) || isArray(y)!')
+    //   }
+    //
+    //   return false
+    // }
+    // else if (!isArray(x) && isArray(y)) {
+    //   /* istanbul ignore next: dev */
+    //   if (ENV_DEBUG) {
+    //     console.log('!isArray(x) && isArray(y):')
+    //   }
+    //
+    //   return false
+    // }
 
     // @TODO considering, we already know it is not null & undefined
     // if (isPrimitive(x) || isPrimitive(y)) {

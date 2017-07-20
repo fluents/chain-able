@@ -1,3 +1,5 @@
+// const lengthFromZero = require('./util/lengthFromZero')
+
 /**
  * @desc turns arguments into an array, used as a util, for opt
  *

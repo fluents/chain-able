@@ -99,7 +99,7 @@ module.exports = traverse => function eq(a, b, loose, stackA = [], stackB = []) 
     // console.log({[key]: {x, xyz, y, nodes, path: traverser.path.join('.')}})
 
     // for next loop!!!
-    if (!this.isLeaf && !isEmpty(nodes)) {
+    if (!traverser.isLeaf && !isEmpty(nodes)) {
       /* istanbul ignore next: dev */
       if (ENV_DEBUG) {
         console.log('is not leaf, has nodes stack, pop')
