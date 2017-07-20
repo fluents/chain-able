@@ -22,7 +22,7 @@
 <h3 id="Traverse-prototype-exports" data-member="Traverse" data-category="Methods" data-name="exports"><code>Traverse.exports(x=undefined, y=undefined, [loose=false])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traversers/eqValue.js#L40 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traversers/eqValue.js#L46 "View in source") [&#x24C9;][1]
 
 (Function): checks value equality, used by eq which compares all types
 

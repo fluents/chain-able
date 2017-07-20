@@ -10,6 +10,7 @@
 // debug conditionals
 /* eslint max-depth: "OFF" */
 
+const isEmpty = require('./is/empty')
 const isObjNotNull = require('./is/objNotNull')
 const isRegExp = require('./is/regexp')
 const isError = require('./is/error')
@@ -385,6 +386,7 @@ Traverse.prototype.checkIteratable = function check(node) {
     this.isLeaf = false
     const path = this.path.join('.')
 
+
     if (this.hasParent(path, node)) {
       /* istanbul ignore next: dev */
       if (ENV_DEBUG) {
@@ -395,6 +397,11 @@ Traverse.prototype.checkIteratable = function check(node) {
     else {
       this.addParent(path, node)
       this.isCircular = false
+    }
+
+    /* istanbul ignore next: dev */
+    if (ENV_DEBUG) {
+      // console.log('IS_CIRCULAR_JSON', isCircular(node), this.isCircular, node)
     }
   }
   else {
@@ -657,22 +664,26 @@ Traverse.prototype.iterate = function iterate(on) {
     this.isRoot = false
   }
 
+  const isObjOrArray = nodeIsArray || nodeIsObj
+
+  // if (isObjOrArray) {
+  //   // @event
+  //   if (!isUndefined(this.onBefore)) {
+  //     // eslint-disable-next-line no-useless-call
+  //     this.onBefore(this)
+  //   }
+  // }
 
   // --------------------
   // IF OBJWITHOUTKEYS, IF ARRAY WITHOUT LENGTH...
-  if (nodeIsArray && node.length === 0) {
+  if (isObjOrArray && isEmpty(node)) {
     on.call(this, this.key, node, this)
     this.iteratee = node
   }
-  // @TODO use !objWithKeys ?
-  else if (nodeIsObj && ObjectKeys(node).length === 0) {
-    // eqValue(node, )
-    on.call(this, this.key, node, this)
-    this.iteratee = node
-  }
+
   // --------------------
 
-  else if (nodeIsObj || nodeIsArray) {
+  else if (isObjOrArray) {
     this.depth = this.path.length
 
     // @TODO SAFETY WITH `props(node)` <- fixes Error

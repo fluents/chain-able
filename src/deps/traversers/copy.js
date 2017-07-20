@@ -67,11 +67,15 @@ module.exports = function copy(src) {
     if (isArray(src)) {
       dst = []
     }
+    // was new date(src.getTime())
+    // || isBoolean(src) || isNumber(src) || isString(src)
     else if (isDate(src)) {
-      dst = new Date(src.getTime ? src.getTime() : src)
+      dst = new src.constructor(src.valueOf())
     }
     else if (isRegExp(src)) {
-      dst = new RegExp(src)
+      // dst = new RegExp(src)
+      dst = new RegExp(src.src, src.toString().match(/[^/]*$/)[0])
+      dst.lastIndex = src.lastIndex
     }
     else if (isError(src)) {
       dst = new Error(src.message)

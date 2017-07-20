@@ -62,7 +62,7 @@ Chainable
 <h3 id="ChainedSet-prototype-add" data-member="ChainedSet" data-category="Methods" data-name="add"><code>ChainedSet.add(value=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedSet.js#L60 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedSet.js#L16 "View in source") [&#x24C9;][1]
 
 (Function): appends a new element with a specified value to the end of the .store
 
@@ -94,7 +94,7 @@ for (let name of people) console.log(name)
 <h3 id="ChainedSet-prototype-merge" data-member="ChainedSet" data-category="Methods" data-name="merge"><code>ChainedSet.merge(arr=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedSet.js#L110 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedSet.js#L114 "View in source") [&#x24C9;][1]
 
 (Function): merge any Array/Set/Iteratable/Concatables into the array, at the end
 
@@ -126,7 +126,7 @@ for (let name of people) console.log(name)
 <h3 id="ChainedSet-prototype-prepend" data-member="ChainedSet" data-category="Methods" data-name="prepend"><code>ChainedSet.prepend(value=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedSet.js#L84 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedSet.js#L88 "View in source") [&#x24C9;][1]
 
 (Function): inserts the value at the **beginning** of the Set
 

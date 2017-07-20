@@ -63,7 +63,7 @@ ChainedMap
 <h3 id="TransformChain-prototype-remap" data-member="TransformChain" data-category="Methods" data-name="remap"><code>TransformChain.remap(from=undefined, [to=undefined])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Transform.js#L189 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Transform.js#L210 "View in source") [&#x24C9;][1]
 
 (Function): remap properties from `1` to another, for example, apis with inconsistent naming
 

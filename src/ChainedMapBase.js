@@ -31,10 +31,12 @@ const SHORTHANDS_KEY = require('./deps/meta/shorthands')
  * @prop {Meta} meta meta fn
  * @prop {Map} store main store
  *
+ * {@link https://tc39.github.io/ecma262/#sec-map-objects emca-map}
  * {@link https://ponyfoo.com/articles/es6-maps-in-depth pony-map}
  * {@link https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map mozilla-map}
  * @see {@link pony-map}
  * @see {@link mozilla-map}
+ * @see {@link emca-map}
  *
  * @see ChainedMap
  * @see Chainable

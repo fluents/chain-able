@@ -123,3 +123,59 @@
 
 // parents.forEach(parent => (parent.has(value) ? parent.delete(value) : null))
 // parents.delete(value)
+
+
+// ---- eq
+
+// from underscore.js & ramda
+//
+// Assume equality for cyclic structures. The algorithm for detecting cyclic
+// structures is adapted from ES 5.1 section 15.12.3, abstract operation `JO`.
+//
+// Initializing stack of traversed objects.
+// It's done here since we only need them for objects and arrays comparison.
+// let length = stackA.length
+// while (length--) {
+//   // Linear search. Performance is inversely proportional to the number of
+//   // unique nested structures.
+//   if (stackA[length] === a) return stackB[length] === b
+// }
+//
+// // Add the first object to the stack of traversed objects.
+// stackA.push(a)
+// stackB.push(b)
+
+// BREAKS ANY BUT OBJ
+// if (!isObjLoose(node)) {
+//   node = _node
+//   return notEqual()
+// }
+// else {
+//   _node = node
+// }
+
+// if (isObjNotNull(node))  {
+//   // _node = node
+//   // nodes.push(node)
+//   // node = node[key]
+// }
+// else {
+//   // node = nodes.pop()
+// }
+
+// node = node ? node[traverser.key] : node
+// instance.before(traverser => {
+//   // node = traverser.iteratee
+//   // if (!isObjNotNull(x)) return
+//   // // nodes.push(x)
+//   // x = x[key]
+//   // nodes.push(x)
+// })
+// instance.after(() => {
+//   // x = node
+//   // console.log('x before pop', {x})
+//   // node =
+//   // nodes.pop()
+//   // x = node
+//   // console.log('x after pop, nodes', {x})
+// })

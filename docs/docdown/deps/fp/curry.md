@@ -7,7 +7,6 @@
 ## `fp`
 * <a href="#fp-prototype-"  data-meta="curryN length undefined received undefined fn undefined Number a a"  data-call="curryN length undefined received undefined fn undefined"  data-category="Function"  data-description="Function Returns a curried equivalent of the provided function with the specified arity The curried function has two unusual capabilities First its arguments needn t be provided one at a time If g is R curryN 3 f the following are equivalent br br br g 1 2 3 br g 1 2 3 br g 1 2 3 br g 1 2 3 br br Secondly the special placeholder value R may be used to specify gaps allowing partial application of any combination of arguments regardless of their positions If g is as above and is R the following are equivalent br br br g 1 2 3 br g 2 3 1 br g 3 1 2 br g 3 1 2 br g 2 1 3 br g 2 1 3 br g 2 3 1"  data-member="fp"  data-all="meta curryN length undefined received undefined fn undefined n Number a a call curryN length undefined received undefined fn undefined category Function description Function Returns a curried equivalent of the provided function with the specified narity The curried function has two unusual capabilities First its narguments needn t be provided one at a time If g is R curryN 3 f the nfollowing are equivalent n br n br n br g 1 2 3 n br g 1 2 3 n br g 1 2 3 n br g 1 2 3 n br n br nSecondly the special placeholder value R may be used to specify n gaps allowing partial application of any combination of arguments nregardless of their positions If g is as above and is R nthe following are equivalent n br n br n br g 1 2 3 n br g 2 3 1 n br g 3 1 2 n br g 3 1 2 n br g 2 1 3 n br g 2 1 3 n br g 2 3 1 name member fp see notes todos klassProps" >`fp.`</a>
 * <a href="#fp-prototype-"  data-meta="exports length undefined fn undefined Number a a"  data-call="exports length undefined fn undefined"  data-category="Function"  data-description="Function Returns a curried equivalent of the provided function with the specified arity The curried function has two unusual capabilities First its arguments needn t be provided one at a time If g is R curryN 3 f the following are equivalent br br br g 1 2 3 br g 1 2 3 br g 1 2 3 br g 1 2 3 br br Secondly the special placeholder value R may be used to specify gaps allowing partial application of any combination of arguments regardless of their positions If g is as above and is R the following are equivalent br br br g 1 2 3 br g 2 3 1 br g 3 1 2 br g 3 1 2 br g 2 1 3 br g 2 1 3 br g 2 3 1"  data-member="fp"  data-all="meta exports length undefined fn undefined n Number a a call exports length undefined fn undefined category Function description Function Returns a curried equivalent of the provided function with the specified narity The curried function has two unusual capabilities First its narguments needn t be provided one at a time If g is R curryN 3 f the nfollowing are equivalent n br n br n br g 1 2 3 n br g 1 2 3 n br g 1 2 3 n br g 1 2 3 n br n br nSecondly the special placeholder value R may be used to specify n gaps allowing partial application of any combination of arguments nregardless of their positions If g is as above and is R nthe following are equivalent n br n br n br g 1 2 3 n br g 2 3 1 n br g 3 1 2 n br g 3 1 2 n br g 2 1 3 n br g 2 1 3 n br g 2 3 1 name member fp see notes todos klassProps" >`fp.`</a>
-* <a href="#fp-prototype-_arity"  data-meta="arity n undefined fn undefined"  data-call="arity n undefined fn undefined"  data-category="Methods"  data-description="Function just for length of a function"  data-name="arity"  data-member="fp"  data-todos="keeping this means change uglify"  data-all="meta arity n undefined fn undefined call arity n undefined fn undefined category Methods description Function just for length of a function name arity member fp see notes todos keeping this means change uglify n klassProps" >`fp._arity`</a>
 
 <!-- /div -->
 
@@ -24,7 +23,7 @@
 <h3 id="fp-prototype-" data-member="fp" data-category="Function" data-name="curry"><code>fp._curryN(length=undefined, received=undefined, fn=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/fp/curry.js#L88 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/fp/curry.js#L52 "View in source") [&#x24C9;][1]
 
 (Function): Returns a curried equivalent of the provided function, with the specified
 arity. The curried function has two unusual capabilities. First, its
@@ -87,7 +86,7 @@ g(4) //=> 10
 <h3 id="fp-prototype-" data-member="fp" data-category="Function" data-name="curry"><code>fp.exports(length=undefined, fn=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/fp/curry.js#L166 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/fp/curry.js#L130 "View in source") [&#x24C9;][1]
 
 (Function): Returns a curried equivalent of the provided function, with the specified
 arity. The curried function has two unusual capabilities. First, its
@@ -139,41 +138,6 @@ var f = curriedAddFourNumbers(1, 2)
 var g = f(3)
 g(4) //=> 10
 
-```
----
-
-<!-- /div -->
-
-<!-- div -->
-
-<h3 id="fp-prototype-_arity" data-member="fp" data-category="Methods" data-name="_arity"><code>fp._arity(n=undefined, fn=undefined)</code></h3>
-<br>
-<br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/fp/curry.js#L23 "View in source") [&#x24C9;][1]
-
-(Function): just for `.length` of a function?
-
-
-#### @todos 
-
-- [ ] keeping this means change uglify...
- 
-
-#### @Since
-5.0.0
-
-#### Arguments
-1. `n=undefined` *(number)*: number of arguments
-2. `fn=undefined` *(Function)*: function to wrap
-
-#### Returns
-*(Function)*: function with params
-
-#### Example
-```js
-const wan = one => console.log(one)
- arity(1, wan)
- => function(one => wan(one))
 ```
 ---
 

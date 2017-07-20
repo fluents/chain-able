@@ -33,7 +33,7 @@
 <h3 id="ChainedMapBase-prototype-ComposeChainedMapBase" data-member="ChainedMapBase" data-category="Chainable" data-name="ComposeChainedMapBase"><code>ChainedMapBase.ComposeChainedMapBase</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMapBase.js#L22 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMapBase.js#L23 "View in source") [&#x24C9;][1]
 
 (Chainable): this is to avoid circular requires
 because MergeChain & MethodChain extend this
@@ -64,7 +64,7 @@ Chainable
 <h3 id="ChainedMapBase-prototype-compose" data-member="ChainedMapBase" data-category="Properties" data-name="compose"><code>ChainedMapBase.cmc([Target=Chainable])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMapBase.js#L294 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMapBase.js#L296 "View in source") [&#x24C9;][1]
 
 (Composer): ChainedMapBase composer
 
@@ -124,7 +124,7 @@ map.set('a', 'alpha').set('b', 'beta').entries()
 <h3 id="ChainedMapBase-prototype-extend" data-member="ChainedMapBase" data-category="Methods" data-name="extend"><code>ChainedMapBase.extend(methods=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMapBase.js#L173 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMapBase.js#L175 "View in source") [&#x24C9;][1]
 
 (Function): shorthand methods, from strings to functions that call .set
 
@@ -159,7 +159,7 @@ eq(chain2.eh, chain1.eh)
 <h3 id="ChainedMapBase-prototype-from" data-member="ChainedMapBase" data-category="Methods" data-name="from"><code>ChainedMapBase.from(obj=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMapBase.js#L131 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMapBase.js#L133 "View in source") [&#x24C9;][1]
 
 (Function): checks each property of the object calls the chains accordingly
 

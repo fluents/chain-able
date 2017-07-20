@@ -9,8 +9,29 @@ const isObj = require('../src/deps/is/obj')
 const isNumber = require('../src/deps/is/number')
 const isReal = require('../src/deps/is/real')
 
-const {eq} = traverse
+const {eq, copy} = traverse
 const deepEqual = eq
+
+test('pre-copy eq to themselves invariant for environment', () => {
+  const date = new Date(0, 0, 0, 0)
+  expect(date).toBe(date)
+
+  const error = new Error('ehror')
+  expect(error).toBe(error)
+
+  const regexp = new RegExp('../', 'gmi')
+  expect(regexp).toBe(regexp)
+})
+test('copy', () => {
+  const date = new Date(0, 0, 0, 0)
+  expect(copy(date)).not.toBe(date)
+
+  const error = new Error('ehror')
+  expect(copy(error)).not.toBe(error)
+
+  const regexp = new RegExp('../', 'gmi')
+  expect(copy(regexp)).not.toBe(regexp)
+})
 
 test('deepDates', () => {
   expect.assertions(2)

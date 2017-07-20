@@ -43,7 +43,7 @@
 <h3 id="getIncludesCount" data-member="" data-category="Methods" data-name="getIncludesCount"><code>getIncludesCount(haystack=undefined, needle=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/JSON.js#L99 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/JSON.js#L100 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -69,7 +69,7 @@ Function
 <h3 id="isEven" data-member="" data-category="Methods" data-name="isEven"><code>isEven(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/JSON.js#L87 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/JSON.js#L88 "View in source") [&#x24C9;][1]
 
 (Function): isEven
 
@@ -111,7 +111,7 @@ isEven(rando) !== isOdd(rando)
 <h3 id="isJSON" data-member="" data-category="Methods" data-name="isJSON"><code>isJSON(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/JSON.js#L129 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/JSON.js#L130 "View in source") [&#x24C9;][1]
 
 (Function): isJSON, without tryCatch
 

@@ -63,6 +63,7 @@
   - 👾 variable name clarity
   - 📝 todos
   - 🤸🎯 split dopemerge emptyTarget to a reusable file
+  - redid equals
 
 - 🛡 encase
   - 🆓 wrap encase: tryCatch & withSpec with curry

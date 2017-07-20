@@ -996,3 +996,27 @@ $ gzip-size "dists/umd/index.js" "--raw"
 Done in 0.75s.
 2017:40:07/18/17:17:40:52
 ---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+9379
+Done in 0.62s.
+2017:34:07/19/17:19:34:43
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+9379
+Done in 0.52s.
+2017:20:07/19/17:20:20:37
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+9261
+Done in 0.56s.
+2017:55:07/19/17:21:55:07
+---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+9303 <- refactor .equals
+Done in 0.58s.
+2017:36:07/20/17:02:36:25
+---

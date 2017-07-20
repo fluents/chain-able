@@ -9,10 +9,10 @@
 * <a href="#Chainable-prototype-clear"  data-meta="clear clearPropertiesThatAreChainLike true"  data-call="clear clearPropertiesThatAreChainLike true"  data-category="Methods"  data-description="Function clears the map goes through this properties calls clear if they are instanceof Chainable or Map"  data-name="clear"  data-member="Chainable"  data-see="href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js"  data-all="meta clear clearPropertiesThatAreChainLike true call clear clearPropertiesThatAreChainLike true category Methods description Function clears the map goes through this properties calls clear if they are instanceof Chainable or Map name clear member Chainable see href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js notes todos klassProps" >`Chainable.clear`</a>
 * <a href="#Chainable-prototype-delete"  data-meta="delete key undefined"  data-call="delete key undefined"  data-category="Methods"  data-description="Function calls delete on this store map"  data-name="delete"  data-member="Chainable"  data-see="href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js"  data-all="meta delete key undefined call delete key undefined category Methods description Function calls delete on this store map name delete member Chainable see href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js notes todos klassProps" >`Chainable.delete`</a>
 * <a href="#Chainable-prototype-end"  data-meta="end"  data-call="end"  data-category="Methods"  data-description="Function for ending nested chains"  data-name="end"  data-member="Chainable"  data-see="href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js"  data-all="meta end call end category Methods description Function for ending nested chains name end member Chainable see href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js notes todos klassProps" >`Chainable.end`</a>
-* <a href="#Chainable-prototype-has"  data-meta="has keyOrValue undefined"  data-call="has keyOrValue undefined"  data-category="Methods"  data-description="Function"  data-name="has"  data-member="Chainable"  data-see="href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js"  data-all="meta has keyOrValue undefined call has keyOrValue undefined category Methods description Function name has member Chainable see href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js notes todos klassProps" >`Chainable.has`</a>
+* <a href="#Chainable-prototype-has"  data-meta="has keyOrValue undefined"  data-call="has keyOrValue undefined"  data-category="Methods"  data-description="Function checks whether the store has a value for a given key"  data-name="has"  data-member="Chainable"  data-see="href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js"  data-all="meta has keyOrValue undefined call has keyOrValue undefined category Methods description Function checks whether the store has a value for a given key name has member Chainable see href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js notes todos klassProps" >`Chainable.has`</a>
 * <a href="#Chainable-prototype-length"  data-meta="length"  data-call="length"  data-category="Methods"  data-description="Function"  data-name="length"  data-member="Chainable"  data-see="href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js"  data-all="meta length call length category Methods description Function name length member Chainable see href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js notes todos klassProps" >`Chainable.length`</a>
 * <a href="#Chainable-prototype-prototype[iterator]"  data-meta="prototype iterator"  data-call="prototype iterator"  data-category="Properties"  data-description="generator Iterator for looping values in the store"  data-name="prototype iterator"  data-member="Chainable"  data-see="href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js"  data-notes="assigned to a variable so buble ignores it"  data-all="meta prototype iterator call prototype iterator category Properties description generator Iterator for looping values in the store name prototype iterator member Chainable see href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js notes assigned to a variable so buble ignores it n todos klassProps" >`Chainable.prototype&#91;iterator&#93;`</a>
-* <a href="#Chainable-prototype-prototype[primitive]"  data-meta="prototype primitive hint undefined"  data-call="prototype primitive hint undefined"  data-category="Methods"  data-description="Function"  data-name="prototype primitive"  data-member="Chainable"  data-see="href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js"  data-all="meta prototype primitive hint undefined call prototype primitive hint undefined category Methods description Function name prototype primitive member Chainable see href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js notes todos klassProps" >`Chainable.prototype&#91;primitive&#93;`</a>
+* <a href="#Chainable-prototype-prototype[primitive]"  data-meta="prototype primitive hint undefined"  data-call="prototype primitive hint undefined"  data-category="Methods"  data-description="Function symbol method for toString toJSON toNumber"  data-name="prototype primitive"  data-member="Chainable"  data-see="href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js"  data-all="meta prototype primitive hint undefined call prototype primitive hint undefined category Methods description Function symbol method for toString toJSON toNumber name prototype primitive member Chainable see href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js notes todos klassProps" >`Chainable.prototype&#91;primitive&#93;`</a>
 * <a href="#Chainable-prototype-values"  data-meta="values"  data-call="values"  data-category="Methods"  data-description="Function spreads the entries from ChainedMap store values allocates a new array adds the values from the iterator"  data-name="values"  data-member="Chainable"  data-see="href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js"  data-notes="look at Chainable constructor to ensure not to use new Array moved from ChainedMap and ChainedSet to Chainable 2 0 2 this was Array from this store values"  data-all="meta values call values category Methods description Function spreads the entries from ChainedMap store values allocates a new array adds the values from the iterator name values member Chainable see href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js notes look at Chainable constructor to ensure not to use new Array n moved from ChainedMap and ChainedSet to Chainable 2 0 2 n this was Array from this store values n todos klassProps" >`Chainable.values`</a>
 * <a href="#Chainable-prototype-when"  data-meta="when condition undefined trueBrancher Function falseBrancher Function"  data-call="when condition undefined trueBrancher Function falseBrancher Function"  data-category="Methods"  data-description="Function when the condition is true trueBrancher is called else falseBrancher is called"  data-name="when"  data-member="Chainable"  data-all="meta when condition undefined trueBrancher Function falseBrancher Function call when condition undefined trueBrancher Function falseBrancher Function category Methods description Function when the condition is true trueBrancher is called else falseBrancher is called name when member Chainable see notes todos klassProps" >`Chainable.when`</a>
 
@@ -130,7 +130,7 @@
 * <a href="#Traverse-prototype-checkIteratable"  data-meta="checkIteratable node undefined"  data-call="checkIteratable node undefined"  data-category="Methods"  data-description="Function checks whether a node is iteratable"  data-name="checkIteratable"  data-member="Traverse"  data-todos="move into the wrapper if perf allows"  data-all="meta checkIteratable node undefined call checkIteratable node undefined category Methods description Function checks whether a node is iteratable name checkIteratable member Traverse see notes todos move into the wrapper if perf allows n klassProps" >`Traverse.checkIteratable`</a>
 * <a href="#Traverse-prototype-clone"  data-meta="clone arg undefined"  data-call="clone arg undefined"  data-category="Methods"  data-description="Function clone any value"  data-name="clone"  data-member="Traverse"  data-see="href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js"  data-all="meta n n clone arg undefined call clone arg undefined category Methods description Function clone any value name clone member Traverse see href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js notes todos klassProps" >`Traverse.clone`</a>
 * <a href="#Traverse-prototype-copy"  data-meta="copy src undefined"  data-call="copy src undefined"  data-category="Methods"  data-description="Function copy any primitive value part of clone"  data-name="copy"  data-member="Traverse"  data-see="href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js"  data-all="meta copy src undefined call copy src undefined category Methods description Function copy any primitive value part of clone name copy member Traverse see href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js notes todos klassProps" >`Traverse.copy`</a>
-* <a href="#Traverse-prototype-eq"  data-meta="eq traverse undefined a undefined b undefined loose undefined scoped undefined"  data-call="eq traverse undefined a undefined b undefined loose undefined scoped undefined"  data-category="Methods"  data-description="Function"  data-name="eq"  data-member="Traverse"  data-all="meta eq traverse undefined a undefined b undefined loose undefined scoped undefined call eq traverse undefined a undefined b undefined loose undefined scoped undefined category Methods description Function name eq member Traverse see notes todos klassProps" >`Traverse.eq`</a>
+* <a href="#Traverse-prototype-eq"  data-meta="eq traverse undefined a undefined b undefined loose undefined scoped undefined"  data-call="eq traverse undefined a undefined b undefined loose undefined scoped undefined"  data-category="Methods"  data-description="Function"  data-name="eq"  data-member="Traverse"  data-see="href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js"  data-all="meta eq traverse undefined a undefined b undefined loose undefined scoped undefined call eq traverse undefined a undefined b undefined loose undefined scoped undefined category Methods description Function name eq member Traverse see href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js notes todos klassProps" >`Traverse.eq`</a>
 * <a href="#Traverse-prototype-eqValue"  data-meta="eqValue x undefined y undefined loose false"  data-call="eqValue x undefined y undefined loose false"  data-category="Methods"  data-description="Function checks value equality used by eq which compares all types"  data-name="eqValue"  data-member="Traverse"  data-todos="USE ENUM FLAGS ON LOOSE TO ALLOW MORE CONFIG FOR COMPARATOR VALUEOF walk proto check ownProps"  data-all="meta eqValue x undefined y undefined loose false call eqValue x undefined y undefined loose false category Methods description Function checks value equality used by eq which compares all types name eqValue member Traverse see notes todos USE ENUM FLAGS ON LOOSE TO ALLOW MORE CONFIG FOR COMPARATOR VALUEOF walk proto check ownProps n klassProps" >`Traverse.eqValue`</a>
 * <a href="#Traverse-prototype-forEach"  data-meta="forEach cb undefined"  data-call="forEach cb undefined"  data-category="Methods"  data-description="Function this is the main usage of Traverse"  data-name="forEach"  data-member="Traverse"  data-all="meta forEach cb undefined call forEach cb undefined category Methods description Function this is the main usage of Traverse name forEach member Traverse see notes todos klassProps" >`Traverse.forEach`</a>
 * <a href="#Traverse-prototype-iterate"  data-meta="iterate on undefined on key null Primitive val any instance Traverse any"  data-call="iterate on undefined"  data-category="Methods"  data-description="Function"  data-name="iterate"  data-member="Traverse"  data-todos="handler for Set Map so they can be skipped or traversed for example when cloning add hook to add custom checking if isIteratable deal with isRoot if needed examples with clone and stop"  data-all="meta iterate on undefined n on key null Primitive val any instance Traverse any call iterate on undefined category Methods description Function name iterate member Traverse see notes todos handler for Set Map so they can be skipped or traversed for example when cloning n add hook to add custom checking if isIteratable n deal with isRoot if needed n examples with clone and stop n klassProps" >`Traverse.iterate`</a>
@@ -332,7 +332,7 @@
 * <a href="#fp-prototype-"  data-meta="prop p undefined obj undefined s s a a Undefined"  data-call="prop p undefined obj undefined"  data-category="Object"  data-description="Function Returns a function that when supplied an object returns the indicated property of that object if it exists"  data-member="fp"  data-see="href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js"  data-all="meta prop p undefined obj undefined n s s a a Undefined call prop p undefined obj undefined category Object description Function Returns a function that when supplied an object returns the indicated nproperty of that object if it exists name member fp see href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js notes todos klassProps" >`fp.`</a>
 * <a href="#fp-prototype-"  data-meta="replace pattern undefined replacement undefined str undefined RegExp String String String String"  data-call="replace pattern undefined replacement undefined str undefined"  data-category="String"  data-description="Function Replace a substring or regex match in a string with a replacement"  data-member="fp"  data-see="href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js"  data-all="meta replace pattern undefined replacement undefined str undefined n RegExp String String String String call replace pattern undefined replacement undefined str undefined category String description Function Replace a substring or regex match in a string with a replacement name member fp see href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js notes todos klassProps" >`fp.`</a>
 * <a href="#fp-prototype-"  data-meta="R pipe f g h a b h g f a b pipe f undefined g undefined a b n o o p x y y z a b n z"  data-call="pipe f undefined g undefined"  data-category="Function"  data-description="Function Performs left to right function composition The leftmost function may have any arity the remaining functions must be unary br br In some libraries this function is named sequence"  data-member="fp"  data-see="href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js"  data-notes="The result of pipe is not automatically curried This is a variation is the internal version with only 2 functions for now"  data-all="meta R pipe f g h a b h g f a b n pipe f undefined g undefined n a b n o o p x y y z a b n z call pipe f undefined g undefined category Function description Function Performs left to right function composition The leftmost function may have nany arity the remaining functions must be unary n br n br nIn some libraries this function is named sequence name member fp see href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js notes The result of pipe is not automatically curried n This is a variation is the internal version with only 2 functions for now n todos klassProps" >`fp.`</a>
-* <a href="#fp-prototype-_arity"  data-meta="arity n undefined fn undefined"  data-call="arity n undefined fn undefined"  data-category="Methods"  data-description="Function just for length of a function"  data-name="arity"  data-member="fp"  data-todos="keeping this means change uglify"  data-all="meta arity n undefined fn undefined call arity n undefined fn undefined category Methods description Function just for length of a function name arity member fp see notes todos keeping this means change uglify n klassProps" >`fp._arity`</a>
+* <a href="#fp-prototype-arity"  data-meta="arity n undefined fn undefined"  data-call="arity n undefined fn undefined"  data-category="Methods"  data-description="Function just for length of a function"  data-name="arity"  data-member="fp"  data-todos="keeping this means change uglify"  data-all="meta arity n undefined fn undefined call arity n undefined fn undefined category Methods description Function just for length of a function name arity member fp see notes todos keeping this means change uglify n klassProps" >`fp.arity`</a>
 * <a href="#fp-prototype-mapWhere"  data-meta="mapWhere obj undefined predicate undefined"  data-call="mapWhere obj undefined predicate undefined"  data-category="Object"  data-description="Function Creates an array of values by running each property of object thru iteratee The iteratee is invoked with three arguments value key object"  data-name="mapWhere"  data-member="fp"  data-see="href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js"  data-all="meta mapWhere obj undefined predicate undefined call mapWhere obj undefined predicate undefined category Object description Function Creates an array of values by running each property of object thru n iteratee The iteratee is invoked with three arguments value key object name mapWhere member fp see href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js notes todos klassProps" >`fp.mapWhere`</a>
 
 <!-- /div -->
@@ -433,7 +433,7 @@
 <!-- div -->
 
 ## `isArray`
-* <a href="#isArray"  data-meta="array"  data-call="array"  data-category="Methods"  data-description="Function"  data-name="isArray"  data-see="href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js"  data-all="meta array call array category Methods description Function name isArray member see href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js notes todos klassProps" >`isArray`</a>
+* <a href="#isArray"  data-meta="array"  data-call="array"  data-category="Methods"  data-description="Function"  data-name="isArray"  data-see="href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js"  data-todos="https github com facebook immutable js blob master src utils isArrayLike js"  data-all="meta array call array category Methods description Function name isArray member see href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js notes todos https github com facebook immutable js blob master src utils isArrayLike js n klassProps" >`isArray`</a>
 
 <!-- /div -->
 
@@ -488,6 +488,13 @@
 
 ## `methodEncasingFactory`
 * <a href="#methodEncasingFactory"  data-meta="methodEncasingFactory name undefined parent undefined built undefined"  data-call="methodEncasingFactory name undefined parent undefined built undefined"  data-category="Methods"  data-description="Function 3 steps 0 enhance error 1 encase function with a specification 2 build a function to call onInvalid or onInvalid depending"  data-name="methodEncasingFactory"  data-all="meta n methodEncasingFactory name undefined parent undefined built undefined call methodEncasingFactory name undefined parent undefined built undefined category Methods description Function 3 steps n0 enhance error n1 encase function with a specification n2 build a function to call onInvalid or onInvalid depending name methodEncasingFactory member see notes todos klassProps" >`methodEncasingFactory`</a>
+
+<!-- /div -->
+
+<!-- div -->
+
+## `noop`
+* <a href="#noop"  data-meta="noop"  data-call="noop"  data-category="Methods"  data-description="Function"  data-name="noop"  data-see="href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js"  data-all="meta noop call noop category Methods description Function name noop member see href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js notes todos klassProps" >`noop`</a>
 
 <!-- /div -->
 
@@ -697,7 +704,7 @@
 <h3 id="Chainable-prototype-clear" data-member="Chainable" data-category="Methods" data-name="clear"><code>Chainable.clear([clearPropertiesThatAreChainLike=true])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L615 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L37 "View in source") [&#x24C9;][1]
 
 (Function): clears the map, goes through this properties, calls .clear if they are instanceof Chainable or Map
 
@@ -731,7 +738,7 @@ chain.entries()
 <h3 id="Chainable-prototype-delete" data-member="Chainable" data-category="Methods" data-name="delete"><code>Chainable.delete(key=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L656 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L686 "View in source") [&#x24C9;][1]
 
 (Function): calls .delete on this.store.map
 
@@ -769,7 +776,7 @@ chain.get('eh')
 <h3 id="Chainable-prototype-end" data-member="Chainable" data-category="Methods" data-name="end"><code>Chainable.end()</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L541 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L568 "View in source") [&#x24C9;][1]
 
 (Function): for ending nested chains
 
@@ -801,9 +808,9 @@ child.end()
 <h3 id="Chainable-prototype-has" data-member="Chainable" data-category="Methods" data-name="has"><code>Chainable.has(keyOrValue=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L679 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L15 "View in source") [&#x24C9;][1]
 
-Function
+(Function): checks whether the store has a value for a given key
 
 
 #### @see 
@@ -837,7 +844,7 @@ chain.has('canada')
 <h3 id="Chainable-prototype-length" data-member="Chainable" data-category="Methods" data-name="length"><code>Chainable.length()</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L799 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L819 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -867,7 +874,7 @@ for (var i = 0; i < chain.length; i++)
 <h3 id="Chainable-prototype-prototype[iterator]" data-member="Chainable" data-category="Properties" data-name="prototype[iterator]"><code>Chainable.prototype[iterator]()</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L496 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L523 "View in source") [&#x24C9;][1]
 
 (generator): Iterator for looping values in the store
 
@@ -927,9 +934,9 @@ for (const arr of set) {
 <h3 id="Chainable-prototype-prototype[primitive]" data-member="Chainable" data-category="Methods" data-name="prototype[primitive]"><code>Chainable.prototype[primitive](hint=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L763 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L21 "View in source") [&#x24C9;][1]
 
-Function
+(Function): symbol method for toString, toJSON, toNumber
 
 
 #### @see 
@@ -1010,7 +1017,7 @@ chain.values()
 <h3 id="Chainable-prototype-when" data-member="Chainable" data-category="Methods" data-name="when"><code>Chainable.when(condition=undefined, [trueBrancher=Function], [falseBrancher=Function])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L567 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L594 "View in source") [&#x24C9;][1]
 
 (Function): when the condition is true, trueBrancher is called, else, falseBrancher is called
 
@@ -1048,7 +1055,7 @@ chains.when(prod, c => c.set('prod', true), c => c.set('prod', false))
 <h3 id="ChainedMapBase-prototype-ComposeChainedMap" data-member="ChainedMapBase" data-category="Methods" data-name="ComposeChainedMap"><code>ChainedMapBase.ComposeChainedMap([SuperClass=ChainedMapBase])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7644 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7775 "View in source") [&#x24C9;][1]
 
 (Function): ChainedMap composer
 
@@ -1093,7 +1100,7 @@ hehchain instanceof heh
 <h3 id="ChainedMapBase-prototype-ComposeChainedMapBase" data-member="ChainedMapBase" data-category="Chainable" data-name="ComposeChainedMapBase"><code>ChainedMapBase.ComposeChainedMapBase</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L30 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L31 "View in source") [&#x24C9;][1]
 
 (Chainable): this is to avoid circular requires
 because MergeChain & MethodChain extend this
@@ -1128,7 +1135,7 @@ Chainable
 <h3 id="ChainedMapBase-prototype-compose" data-member="ChainedMapBase" data-category="Properties" data-name="compose"><code>ChainedMapBase.cmc([Target=Chainable])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2342 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2362 "View in source") [&#x24C9;][1]
 
 (Composer): ChainedMapBase composer
 
@@ -1192,7 +1199,7 @@ map.set('a', 'alpha').set('b', 'beta').entries()
 <h3 id="ChainedMapBase-prototype-extend" data-member="ChainedMapBase" data-category="Methods" data-name="extend"><code>ChainedMapBase.extend(methods=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2217 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2237 "View in source") [&#x24C9;][1]
 
 (Function): shorthand methods, from strings to functions that call .set
 
@@ -1227,7 +1234,7 @@ eq(chain2.eh, chain1.eh)
 <h3 id="ChainedMapBase-prototype-from" data-member="ChainedMapBase" data-category="Methods" data-name="from"><code>ChainedMapBase.from(obj=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2173 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2193 "View in source") [&#x24C9;][1]
 
 (Function): checks each property of the object calls the chains accordingly
 
@@ -1400,7 +1407,7 @@ const entries = new Chain()
 <h3 id="ChainedSet-prototype-ChainedSet" data-member="ChainedSet" data-category="Properties" data-name="ChainedSet"><code>ChainedSet.ChainedSet</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7764 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7898 "View in source") [&#x24C9;][1]
 
 Set
 
@@ -1437,7 +1444,7 @@ Chainable
 <h3 id="ChainedSet-prototype-add" data-member="ChainedSet" data-category="Methods" data-name="add"><code>ChainedSet.add(value=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7794 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L18 "View in source") [&#x24C9;][1]
 
 (Function): appends a new element with a specified value to the end of the .store
 
@@ -1473,7 +1480,7 @@ for (let name of people) console.log(name)
 <h3 id="ChainedSet-prototype-merge" data-member="ChainedSet" data-category="Methods" data-name="merge"><code>ChainedSet.merge(arr=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7844 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7982 "View in source") [&#x24C9;][1]
 
 (Function): merge any Array/Set/Iteratable/Concatables into the array, at the end
 
@@ -1505,7 +1512,7 @@ for (let name of people) console.log(name)
 <h3 id="ChainedSet-prototype-prepend" data-member="ChainedSet" data-category="Methods" data-name="prepend"><code>ChainedSet.prepend(value=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7818 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7956 "View in source") [&#x24C9;][1]
 
 (Function): inserts the value at the **beginning** of the Set
 
@@ -1543,7 +1550,7 @@ for (let name of people) console.log(name)
 <h3 id="DotProp-prototype-get" data-member="DotProp" data-category="Methods" data-name="get"><code>DotProp.get(key=undefined, [fallback=undefined])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9606 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9765 "View in source") [&#x24C9;][1]
 
 (Function): dot-prop enabled get
 
@@ -1595,7 +1602,7 @@ chain.get(['moose', 'simple'])
 <h3 id="DotProp-prototype-set" data-member="DotProp" data-category="Properties" data-name="set"><code>DotProp.set</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9548 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9707 "View in source") [&#x24C9;][1]
 
 unknown
 
@@ -1658,7 +1665,7 @@ ChainedMapBase
 <h3 id="FactoryChain-prototype-chainUpDowns" data-member="FactoryChain" data-category="Methods" data-name="chainUpDowns"><code>FactoryChain.chainUpDowns(methods=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7945 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8083 "View in source") [&#x24C9;][1]
 
 (Function): chain back up to parent for any of these
 
@@ -1720,7 +1727,7 @@ const returned = things
 <h3 id="FactoryChain-prototype-factory" data-member="FactoryChain" data-category="Methods" data-name="factory"><code>FactoryChain.factory([obj={}])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8095 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8233 "View in source") [&#x24C9;][1]
 
 (Function): creates/add the `.end` method, which checks how many methods have been called, and decides whether to return parent or not
 
@@ -1743,7 +1750,7 @@ const returned = things
 <h3 id="FactoryChain-prototype-getData" data-member="FactoryChain" data-category="Methods" data-name="getData"><code>FactoryChain.getData([prop=undefined])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8076 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8214 "View in source") [&#x24C9;][1]
 
 (Function): access data being built when stepping through a factory
 
@@ -1781,7 +1788,7 @@ expect(age).toBe(10)
 <h3 id="FactoryChain-prototype-prop" data-member="FactoryChain" data-category="Methods" data-name="prop"><code>FactoryChain.prop(name=undefined, [onCall=undefined])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8016 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8154 "View in source") [&#x24C9;][1]
 
 (Function): add property that are counted towards the call count for easy auto-ending chaining
 
@@ -1815,7 +1822,7 @@ person
 <h3 id="FactoryChain-prototype-props" data-member="FactoryChain" data-category="Methods" data-name="props"><code>FactoryChain.props(names=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7988 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8126 "View in source") [&#x24C9;][1]
 
 (Function): adds an *array* of properties, using FactoryChain.prop
 
@@ -1902,7 +1909,7 @@ ChainedMapBase
 <h3 id="MergeChain-prototype-init" data-member="MergeChain" data-category="Methods" data-name="init"><code>MergeChain.init(opts=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7353 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7484 "View in source") [&#x24C9;][1]
 
 (Function): options for merging with dopemerge
 
@@ -1943,7 +1950,7 @@ ChainedMapBase
 <h3 id="MergeChain-prototype-onExisting" data-member="MergeChain" data-category="Properties" data-name="onExisting"><code>MergeChain.MergeChain_1</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7602 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7733 "View in source") [&#x24C9;][1]
 
 unknown
 
@@ -1982,7 +1989,7 @@ chain.get('str')
 <h3 id="MethodChain-prototype-MethodChain" data-member="MethodChain" data-category="Properties" data-name="MethodChain"><code>MethodChain.MethodChain</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6555 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6686 "View in source") [&#x24C9;][1]
 
 (Map): ❗ using `+` will call `.build()` in a shorthand fashion
 
@@ -2013,7 +2020,7 @@ ChainedMap
 <h3 id="MethodChain-prototype-_build" data-member="MethodChain" data-category="Methods" data-name="_build"><code>MethodChain._build(name=undefined, parent=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6893 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7024 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -2049,7 +2056,7 @@ Function
 <h3 id="MethodChain-prototype-_defaults" data-member="MethodChain" data-category="Methods" data-name="_defaults"><code>MethodChain._defaults(name=undefined, parent=undefined, built=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6853 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6984 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -2114,7 +2121,7 @@ let methodFactories
 <h3 id="MethodChain-prototype-autoGetSet" data-member="MethodChain" data-category="Methods" data-name="autoGetSet"><code>MethodChain.autoGetSet(name=undefined, parent=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6251 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6382 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -2149,7 +2156,7 @@ chain.eh()
 <h3 id="MethodChain-prototype-autoIncrement" data-member="MethodChain" data-category="Methods" data-name="autoIncrement"><code>MethodChain.autoIncrement()</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7199 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7330 "View in source") [&#x24C9;][1]
 
 (Function): adds a plugin to increment the value on every call
 
@@ -2180,7 +2187,7 @@ chain.get('index')
 <h3 id="MethodChain-prototype-build" data-member="MethodChain" data-category="Methods" data-name="build"><code>MethodChain.build([returnValue=undefined])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6779 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6910 "View in source") [&#x24C9;][1]
 
 (Function): set the actual method, also need .context - use .parent
 
@@ -2222,7 +2229,7 @@ typeof obj.getEh
 <h3 id="MethodChain-prototype-decorate" data-member="MethodChain" data-category="Methods" data-name="decorate"><code>MethodChain.decorate(parentToDecorate=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6192 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6323 "View in source") [&#x24C9;][1]
 
 (Function): decorates a parent when the argument is provided
 BUT THE FUNCTIONS WILL STILL BE SCOPED TO CURRENT PARENT
@@ -2266,7 +2273,7 @@ typeof obj.ehOh
 <h3 id="MethodChain-prototype-decorate" data-member="MethodChain" data-category="Methods" data-name="decorate"><code>MethodChain.decorate([parentToDecorate=undefined])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7168 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7299 "View in source") [&#x24C9;][1]
 
 (Function): add methods to the parent for easier chaining
 
@@ -2339,7 +2346,7 @@ master.eh.get('advanced')
 <h3 id="MethodChain-prototype-name" data-member="MethodChain" data-category="builder" data-name="name"><code>MethodChain.name(methods=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6671 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6802 "View in source") [&#x24C9;][1]
 
 (Function): setup methods to build
 
@@ -2366,7 +2373,7 @@ typeof obj.eh
 <h3 id="MethodChain-prototype-schema" data-member="MethodChain" data-category="types" data-name="schema"><code>MethodChain.schema(obj=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6754 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6885 "View in source") [&#x24C9;][1]
 
 (Function): an object that contains nestable `.type`s
 they are recursively *(using an optimized traversal cache)* mapped to validators
@@ -2506,7 +2513,7 @@ chain
 <h3 id="Observe-prototype-DotProp" data-member="Observe" data-category="Chainable" data-name="DotProp"><code>Observe.DotProp(Target=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9495 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9654 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -2617,7 +2624,7 @@ new DotProp()
 <h3 id="ShorthandChain-prototype-return" data-member="ShorthandChain" data-category="Methods" data-name="return"><code>ShorthandChain.return(value=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8854 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8992 "View in source") [&#x24C9;][1]
 
 (Function): returns any value passed in return a value at the end of a chain regardless
 
@@ -2651,7 +2658,7 @@ console.log(saveAndDebug(process.env))
 <h3 id="ShorthandChain-prototype-setIfEmpty" data-member="ShorthandChain" data-category="Methods" data-name="setIfEmpty"><code>ShorthandChain.setIfEmpty(name=undefined, value=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8828 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8966 "View in source") [&#x24C9;][1]
 
 (Function): sets a value **only** when .has is false aka set if the value has not been set
 
@@ -2709,7 +2716,7 @@ chain.when(!chain.has('eh'), instance => instance.set('eh', false))
 <h3 id="ShorthandChain-prototype-wrap" data-member="ShorthandChain" data-category="Methods" data-name="wrap"><code>ShorthandChain.wrap(fn=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8887 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9025 "View in source") [&#x24C9;][1]
 
 (Function): wrap a value, if it's a Function call it, return this aka execute something and return this
 
@@ -2762,7 +2769,7 @@ new Chain()
 <h3 id="Transform" data-member="" data-category="Methods" data-name="Transform"><code>Transform(Target=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9204 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9342 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -2821,7 +2828,7 @@ ChainedMap
 <h3 id="TransformChain-prototype-remap" data-member="TransformChain" data-category="Methods" data-name="remap"><code>TransformChain.remap(from=undefined, [to=undefined])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9379 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9538 "View in source") [&#x24C9;][1]
 
 (Function): remap properties from `1` to another, for example, apis with inconsistent naming
 
@@ -2870,7 +2877,7 @@ chain
 <h3 id="TransformChain-prototype-set" data-member="TransformChain" data-category="Methods" data-name="set"><code>TransformChain.set(key=undefined, val=undefined, dotPropKey=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9312 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9450 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -2899,7 +2906,7 @@ Function
 <h3 id="TransformChain-prototype-transform" data-member="TransformChain" data-category="Methods" data-name="transform"><code>TransformChain.transform(key=undefined, value=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9294 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9432 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -2966,7 +2973,7 @@ const { created_at } = chain.entries()
 <h3 id="Traverse-prototype-TraverseChain" data-member="Traverse" data-category="traverse" data-name="TraverseChain"><code>Traverse.TraverseChain</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9014 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9152 "View in source") [&#x24C9;][1]
 
 Map
 
@@ -3006,7 +3013,7 @@ ChainedMapBase
 <h3 id="Traverse-prototype-checkIteratable" data-member="Traverse" data-category="Methods" data-name="checkIteratable"><code>Traverse.checkIteratable(node=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L3947 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4143 "View in source") [&#x24C9;][1]
 
 (Function): checks whether a node is iteratable
 
@@ -3049,7 +3056,7 @@ ChainedMapBase
 <h3 id="Traverse-prototype-clone" data-member="Traverse" data-category="Methods" data-name="clone"><code>Traverse.clone(arg=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4450 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4684 "View in source") [&#x24C9;][1]
 
 (Function): clone any value
 
@@ -3094,7 +3101,7 @@ console.log(obj2.eh) //=> true
 <h3 id="Traverse-prototype-copy" data-member="Traverse" data-category="Methods" data-name="copy"><code>Traverse.copy(src=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2940 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L3071 "View in source") [&#x24C9;][1]
 
 (Function): copy any primitive value, part of clone
 
@@ -3129,10 +3136,14 @@ copy({}) // => {}
 <h3 id="Traverse-prototype-eq" data-member="Traverse" data-category="Methods" data-name="eq"><code>Traverse.eq(traverse=undefined, a=undefined, b=undefined, [loose=undefined], [scoped=undefined])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L3364 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L3533 "View in source") [&#x24C9;][1]
 
 Function
 
+
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/reduce/clean.js" >fluents/chain able/blob/master/src/deps/reduce/clean.js</a>
 
 #### @extends
 
@@ -3169,7 +3180,7 @@ eq([1], [1]) //=> true
 <h3 id="Traverse-prototype-eqValue" data-member="Traverse" data-category="Methods" data-name="eqValue"><code>Traverse.eqValue(x=undefined, y=undefined, [loose=false])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L3128 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L3265 "View in source") [&#x24C9;][1]
 
 (Function): checks value equality, used by eq which compares all types
 
@@ -3207,7 +3218,7 @@ eqValue({}, {}) //=> true
 <h3 id="Traverse-prototype-forEach" data-member="Traverse" data-category="Methods" data-name="forEach"><code>Traverse.forEach(cb=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L3860 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4056 "View in source") [&#x24C9;][1]
 
 (Function): this is the main usage of Traverse
 
@@ -3238,7 +3249,7 @@ traverse([1, 2, 3]).forEach((key, value) => console.log({ [key]: value }))
 <h3 id="Traverse-prototype-iterate" data-member="Traverse" data-category="Methods" data-name="iterate"><code>Traverse.iterate(on=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4147 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4367 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -3307,7 +3318,7 @@ iterate(deeper)
 <h3 id="Traverse-prototype-remove" data-member="Traverse" data-category="Methods" data-name="remove"><code>Traverse.remove([arg=undefined])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L3993 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4203 "View in source") [&#x24C9;][1]
 
 (Function): Remove the current element from the output.
 If the node is in an Array it will be spliced off.
@@ -3328,6 +3339,14 @@ Otherwise it will be deleted from its parent.
 traverse([0]).forEach((key, val, it) => it.remove())
 //=> []
 
+traverse({ eh: true }).forEach((key, val, it) => it.remove())
+//=> {}
+
+traverse({ eh: true, str: 'stringy' }).forEach((key, val, it) => {
+  if (!isString(val)) it.remove()
+})
+//=> {str: 'stringy'}
+
 ```
 ---
 
@@ -3338,7 +3357,7 @@ traverse([0]).forEach((key, val, it) => it.remove())
 <h3 id="Traverse-prototype-skip" data-member="Traverse" data-category="Methods" data-name="skip"><code>Traverse.skip()</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L3908 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4104 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -3370,7 +3389,7 @@ traverse([1, 2, 3, [4]]).forEach((key, val, t) => {
 <h3 id="Traverse-prototype-stop" data-member="Traverse" data-category="Methods" data-name="stop"><code>Traverse.stop()</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L3888 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4084 "View in source") [&#x24C9;][1]
 
 (Function): stop the iteration
 
@@ -3393,7 +3412,7 @@ traverse({ eh: true, arr: [] }).forEach((key, val, t) => {
 <h3 id="Traverse-prototype-update" data-member="Traverse" data-category="Methods" data-name="update"><code>Traverse.update(value=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4065 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4289 "View in source") [&#x24C9;][1]
 
 (Function): update the value for the current key
 
@@ -3431,7 +3450,7 @@ traverse({ eh: true }).forEach((key, val, traverser) => {
 <h3 id="TraverseChain-prototype-traverse" data-member="TraverseChain" data-category="Methods" data-name="traverse"><code>TraverseChain.traverse([shouldReturn=false])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9071 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9209 "View in source") [&#x24C9;][1]
 
 (Function): runs traverser, checks the tests, calls the onMatch
 
@@ -3489,7 +3508,7 @@ traversed
 <h3 id="add" data-member="" data-category="Methods" data-name="add"><code>add(methodFactory=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7236 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7367 "View in source") [&#x24C9;][1]
 
 (Function): add methodFactories easily
 
@@ -3541,7 +3560,7 @@ chain.eh()
 <h3 id="addTypes" data-member="" data-category="Methods" data-name="addTypes"><code>addTypes(types=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5306 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5436 "View in source") [&#x24C9;][1]
 
 (Function): add custom types for validation
 
@@ -3592,7 +3611,7 @@ new Chain().methods('eh').type('*').build().eh
 <h3 id="alias" data-member="" data-category="Methods" data-name="alias"><code>alias(aliases=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6621 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6752 "View in source") [&#x24C9;][1]
 
 (Function): alias methods
 
@@ -3635,7 +3654,7 @@ chain.get('canada')
 <h3 id="allProperties" data-member="" data-category="Methods" data-name="allProperties"><code>allProperties(obj=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6332 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6463 "View in source") [&#x24C9;][1]
 
 (Function): properties, property symbols, object keys ^ all again for prototype
 
@@ -3681,7 +3700,7 @@ allProperties(new Two())
 <h3 id="anyKeyVal" data-member="" data-category="Methods" data-name="anyKeyVal"><code>anyKeyVal(keys=undefined, vals=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8972 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9110 "View in source") [&#x24C9;][1]
 
 (Function): the original simple to-test matcher for traversable,
 will be merged into, or simplified as simplified into matcher
@@ -3727,7 +3746,7 @@ anyKeyVal([() => true], [])(0, 0)
 <h3 id="argumentor" data-member="" data-category="Methods" data-name="argumentor"><code>argumentor()</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6285 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6416 "View in source") [&#x24C9;][1]
 
 (Function): turns arguments into an array, used as a util, for opt
 
@@ -3770,7 +3789,7 @@ eh(0, 1, 10, 100)
 <h3 id="arithmeticTypeFactory" data-member="" data-category="types" data-name="arithmeticTypeFactory"><code>arithmeticTypeFactory(fullKey=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5403 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5533 "View in source") [&#x24C9;][1]
 
 (Function): transform arithmetic strings into types
 
@@ -3839,7 +3858,7 @@ arithmeticTypeFactory('===')
 <h3 id="arrayOf" data-member="" data-category="Methods" data-name="arrayOf"><code>arrayOf(predicate=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5062 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5296 "View in source") [&#x24C9;][1]
 
 (Function): every item in an array matches predicate
 
@@ -3877,7 +3896,7 @@ isArrayOf(isString)(['string', Number]) //=> false
 <h3 id="autoIncrement" data-member="" data-category="Methods" data-name="autoIncrement"><code>autoIncrement(name=undefined, parent=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6223 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6354 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -3903,7 +3922,7 @@ Function
 <h3 id="builder" data-member="" data-category="types" data-name="builder"><code>builder(fullKey=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5468 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5598 "View in source") [&#x24C9;][1]
 
 (Function): @pattern @builder -> builds using multiple factories depending on conditons or abstractFactory whatever opinionated: if it's a function, it's a validator...
 
@@ -3971,7 +3990,7 @@ builder('string|string[]')
 <h3 id="camelCase" data-member="" data-category="Methods" data-name="camelCase"><code>camelCase(str=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4936 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5170 "View in source") [&#x24C9;][1]
 
 (Function): camelCase
 
@@ -4019,7 +4038,7 @@ camelCase('snake_case')
 <h3 id="clone" data-member="" data-category="Methods" data-name="clone"><code>clone(arg=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4418 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4652 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -4063,7 +4082,7 @@ eq(obj, cloned)
 <h3 id="compose-prototype-compose" data-member="compose" data-category="Methods" data-name="compose"><code>compose.compose([target=ChainedMap], [extensions=[Observe,Shorthands,Transform,DotProp]])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9749 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9908 "View in source") [&#x24C9;][1]
 
 (Function): compose chains all the way up from Chainable
 
@@ -4138,7 +4157,7 @@ yes instanceof Winning && yes.winning
 <h3 id="concat" data-member="" data-category="Methods" data-name="concat"><code>concat(one=undefined, two=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1819 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1837 "View in source") [&#x24C9;][1]
 
 (Function): conat two values, coerce to arrays
 
@@ -4181,7 +4200,7 @@ concat(1, null) //=> [1, null]
 <h3 id="conditional-prototype-all" data-member="conditional" data-category="Methods" data-name="all"><code>conditional.all(predicate=undefined, array=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5027 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5261 "View in source") [&#x24C9;][1]
 
 (Function): map all values in an array to see if all match
 
@@ -4219,7 +4238,7 @@ const allBoolean = all(x => typeof x === 'boolean'q)
 <h3 id="conditional-prototype-and" data-member="conditional" data-category="Methods" data-name="and"><code>conditional.and(left=undefined, right=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5000 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5234 "View in source") [&#x24C9;][1]
 
 (Function): first fn & second fn
 
@@ -4257,7 +4276,7 @@ both([1])
 <h3 id="conditional-prototype-not" data-member="conditional" data-category="Methods" data-name="not"><code>conditional.not(fn=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4966 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5200 "View in source") [&#x24C9;][1]
 
 (Function): return a negated function
 
@@ -4292,7 +4311,7 @@ falsed()
 <h3 id="conditional-prototype-or" data-member="conditional" data-category="Methods" data-name="or"><code>conditional.or(left=undefined, right=undefined, x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4820 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5054 "View in source") [&#x24C9;][1]
 
 (Function): first fn || second fn, curried
 
@@ -4342,7 +4361,7 @@ or(isTrue, isFalse, true) //=> true
 <h3 id="copy" data-member="" data-category="Methods" data-name="copy"><code>copy(src=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4425 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4659 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -4372,7 +4391,7 @@ Function
 <h3 id="debug" data-member="" data-category="Methods" data-name="debug"><code>debug([should=true])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8782 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8920 "View in source") [&#x24C9;][1]
 
 (Function): sets on store not this.set for easier extension
 
@@ -4416,7 +4435,7 @@ chain.entries()
 <h3 id="define" data-member="" data-category="Methods" data-name="define"><code>define(obj=undefined, name=undefined, descriptor=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L337 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L359 "View in source") [&#x24C9;][1]
 
 (Function): default to configurable and enumerable, unless configured otherwise
 
@@ -4454,7 +4473,7 @@ var desc = Object.getOwnPropertyDescriptor(obj, 'eh', {
 <h3 id="delete" data-member="" data-category="Properties" data-name="delete"><code>delete</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9662 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9821 "View in source") [&#x24C9;][1]
 
 unknown
 
@@ -4498,7 +4517,7 @@ chain.has('moose.canada')
 <h3 id="dopemerge-prototype-cloneIfNeeded" data-member="dopemerge" data-category="Methods" data-name="cloneIfNeeded"><code>dopemerge.cloneIfNeeded(value=undefined, optsArg=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1272 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1290 "View in source") [&#x24C9;][1]
 
 (Function): Defaults to `false`.
 If `clone` is `true` then both `x` and `y` are recursively cloned as part of the merge.
@@ -4538,7 +4557,7 @@ cloneIfNeeded(obj, { clone: false }) === obj
 <h3 id="dopemerge-prototype-defaultArrayMerge" data-member="dopemerge" data-category="Methods" data-name="defaultArrayMerge"><code>dopemerge.defaultArrayMerge(target=undefined, source=undefined, optsArg=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1311 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1329 "View in source") [&#x24C9;][1]
 
 (Function): The merge will also merge arrays and array values by default.
 However, there are nigh-infinite valid ways to merge arrays,
@@ -4659,7 +4678,7 @@ merge(x, y)
 <h3 id="dopemerge-prototype-emptyTarget" data-member="dopemerge" data-category="Methods" data-name="emptyTarget"><code>dopemerge.emptyTarget(val=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1185 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1203 "View in source") [&#x24C9;][1]
 
 (Function): make a new empty Array or Object for cloning
 
@@ -4691,7 +4710,7 @@ emptyTarget([1])
 <h3 id="dopemerge-prototype-isMergeableObj" data-member="dopemerge" data-category="merge" data-name="isMergeableObj"><code>dopemerge.isMergeableObj(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1243 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1261 "View in source") [&#x24C9;][1]
 
 (Function): 1: not null object `2`: object toString is not a date or regex
 
@@ -4735,7 +4754,7 @@ isMergeableObj(/eh/)
 <h3 id="dot" data-member="" data-category="Methods" data-name="dot"><code>dot([useDot=undefined])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9523 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9682 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -4772,7 +4791,7 @@ toArr(chain.store.keys())
 <h3 id="dot-prototype-dot-delete" data-member="dot" data-category="Methods" data-name="dot.delete"><code>dot.dot.delete(obj=undefined, path=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8459 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8597 "View in source") [&#x24C9;][1]
 
 (Function): delete a path on an object
 
@@ -4808,7 +4827,7 @@ dot.get({ c: { b: 2 } }, ['a', 'b']) //=> undefined
 <h3 id="dot-prototype-dot-get" data-member="dot" data-category="Methods" data-name="dot.get"><code>dot.dot.get(obj=undefined, path=undefined, fallback=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L3044 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L3179 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -4845,7 +4864,7 @@ dot.get({ c: { b: 2 } }, ['a', 'b']) //=> undefined
 <h3 id="dot-prototype-dot-has" data-member="dot" data-category="Methods" data-name="dot.has"><code>dot.dot.has(obj=undefined, path=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8410 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8548 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -4881,7 +4900,7 @@ dot.has({ c: { b: 2 } }, ['a', 'b']) //=> undefined
 <h3 id="dot-prototype-dotPropSegments" data-member="dot" data-category="Methods" data-name="dotPropSegments"><code>dot.dotPropSegments(path=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2834 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2965 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -4917,7 +4936,7 @@ dotPropSegments('ehoh') //=> ['ehoh']
 <h3 id="encase-prototype-encase" data-member="encase" data-category="Methods" data-name="encase"><code>encase.encase(call=undefined, [encaser=tryCatch])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5944 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6074 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -4967,7 +4986,7 @@ api.call(true)
 <h3 id="encase-prototype-error$3" data-member="encase" data-category="Methods" data-name="error$3"><code>encase.error$3(method=undefined, type=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5827 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5957 "View in source") [&#x24C9;][1]
 
 (Function): enhance an Error, enable rethrowing & better inspection
 
@@ -5023,7 +5042,7 @@ console.log(error)
 <h3 id="encase-prototype-tryCatch" data-member="encase" data-category="Methods" data-name="tryCatch"><code>encase.tryCatch(call=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5891 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6021 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -5051,7 +5070,7 @@ Function
 <h3 id="encase-prototype-withSpecification" data-member="encase" data-category="Methods" data-name="withSpecification"><code>encase.withSpecification(specification=undefined, call=undefined, onInvalid=undefined, onInvalid=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5767 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5897 "View in source") [&#x24C9;][1]
 
 (Function): a special encased wrapper with no try catch but same api
 
@@ -5097,7 +5116,7 @@ encased(1, 2, 3) //=> onCall (did not throw)
 <h3 id="entries" data-member="" data-category="Methods" data-name="entries"><code>entries(reduced=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1660 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1678 "View in source") [&#x24C9;][1]
 
 (Function): recursively reduce maps and objects that include reducable data
 
@@ -5179,7 +5198,7 @@ const reducedIgnored = {
 <h3 id="fp-prototype-" data-member="fp" data-category="Function" data-name="index"><code>fp./* ___filename___(value=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1850 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1868 "View in source") [&#x24C9;][1]
 
 (Function): Returns a function that always returns the given value. Note that for
 non-primitives the value returned is a reference to the original value.
@@ -5221,7 +5240,7 @@ t() //=> 'Tee'
 <h3 id="fp-prototype-" data-member="fp" data-category="Function" data-name="index"><code>fp._curryN(length=undefined, received=undefined, fn=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2681 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2812 "View in source") [&#x24C9;][1]
 
 (Function): Returns a curried equivalent of the provided function, with the specified
 arity. The curried function has two unusual capabilities. First, its
@@ -5288,7 +5307,7 @@ g(4) //=> 10
 <h3 id="fp-prototype-" data-member="fp" data-category="Function" data-name="index"><code>fp.curry(length=undefined, fn=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2761 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2892 "View in source") [&#x24C9;][1]
 
 (Function): Returns a curried equivalent of the provided function, with the specified
 arity. The curried function has two unusual capabilities. First, its
@@ -5354,7 +5373,7 @@ g(4) //=> 10
 <h3 id="fp-prototype-" data-member="fp" data-category="Object" data-name="index"><code>fp.prop(p=undefined, obj=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2792 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2923 "View in source") [&#x24C9;][1]
 
 (Function): Returns a function that when supplied an object returns the indicated
 property of that object, if it exists.
@@ -5393,7 +5412,7 @@ R.prop('x', {}) //=> undefined
 <h3 id="fp-prototype-" data-member="fp" data-category="String" data-name="index"><code>fp.replace(pattern=undefined, replacement=undefined, str=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5219 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5349 "View in source") [&#x24C9;][1]
 
 (Function): Replace a substring or regex match in a string with a replacement.
 
@@ -5435,7 +5454,7 @@ replace(/foo/g, 'bar', 'foo foo foo') //=> 'bar bar bar'
 <h3 id="fp-prototype-" data-member="fp" data-category="Function" data-name="index"><code>fp.pipe(f=undefined, g=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8149 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8287 "View in source") [&#x24C9;][1]
 
 (Function): Performs left-to-right function composition. The leftmost function may have
 any arity; the remaining functions must be unary.
@@ -5484,10 +5503,10 @@ f(3, 4) // -(3^4) + 1
 
 <!-- div -->
 
-<h3 id="fp-prototype-_arity" data-member="fp" data-category="Methods" data-name="_arity"><code>fp._arity(n=undefined, fn=undefined)</code></h3>
+<h3 id="fp-prototype-arity" data-member="fp" data-category="Methods" data-name="arity"><code>fp.arity(n=undefined, fn=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2616 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2741 "View in source") [&#x24C9;][1]
 
 (Function): just for `.length` of a function?
 
@@ -5522,7 +5541,7 @@ const wan = one => console.log(one)
 <h3 id="fp-prototype-mapWhere" data-member="fp" data-category="Object" data-name="mapWhere"><code>fp.mapWhere(obj=undefined, predicate=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9804 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9963 "View in source") [&#x24C9;][1]
 
 (Function): Creates an array of values by running each property of `object` thru
 `iteratee`. The iteratee is invoked with three arguments: *(value, key, object)*.
@@ -5564,7 +5583,7 @@ map({ a: 4, b: 8 }, square)
 <h3 id="from" data-member="" data-category="Properties" data-name="from"><code>from</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1502 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1520 "View in source") [&#x24C9;][1]
 
 unknown
 
@@ -5587,7 +5606,7 @@ unknown
 <h3 id="get" data-member="" data-category="Methods" data-name="get"><code>get(key=undefined, [prop=undefined])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1961 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1979 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -5617,7 +5636,7 @@ Function
 <h3 id="getMeta" data-member="" data-category="Methods" data-name="getMeta"><code>getMeta(_this=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1914 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1932 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -5646,7 +5665,7 @@ Function
 <h3 id="has" data-member="" data-category="Methods" data-name="has"><code>has(key=undefined, [prop=undefined])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1951 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1969 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -5670,7 +5689,7 @@ Function
 <h3 id="has" data-member="" data-category="Properties" data-name="has"><code>has</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9629 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9788 "View in source") [&#x24C9;][1]
 
 unknown
 
@@ -5704,7 +5723,7 @@ chain.has('one.two')
 <h3 id="if" data-member="" data-category="Methods" data-name="if"><code>if()</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6681 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6812 "View in source") [&#x24C9;][1]
 
 (Function): this is a plugin for building methods schema defaults value to `.type` this defaults values to `.onCall`
 
@@ -5723,7 +5742,7 @@ chain.has('one.two')
 <h3 id="" data-member="" data-category="Properties" data-name="index"><code>compose</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L831 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L848 "View in source") [&#x24C9;][1]
 
 unknown
 
@@ -5749,7 +5768,7 @@ chain instanceof Target
 <h3 id="" data-member="" data-category="Properties" data-name="index"><code></code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1784 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1802 "View in source") [&#x24C9;][1]
 
 unknown
 
@@ -5762,7 +5781,7 @@ unknown
 <h3 id="" data-member="" data-category="Properties" data-name="index"><code></code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1925 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1943 "View in source") [&#x24C9;][1]
 
 unknown
 
@@ -5806,7 +5825,7 @@ unknown
 <h3 id="" data-member="" data-category="Properties" data-name="index"><code></code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8683 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8821 "View in source") [&#x24C9;][1]
 
 unknown
 
@@ -5823,7 +5842,7 @@ unknown
 <h3 id="" data-member="" data-category="Properties" data-name="index"><code></code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9414 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9573 "View in source") [&#x24C9;][1]
 
 unknown
 
@@ -5846,7 +5865,7 @@ unknown
 <h3 id="is-prototype-" data-member="is" data-category="Logic" data-name="index"><code>is.empty(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5153 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2457 "View in source") [&#x24C9;][1]
 
 (Function): Returns `true` if the given value is its type's empty value;
 `false` otherwise.
@@ -5888,7 +5907,7 @@ isEmpty({ length: 0 }) //=> false
 <h3 id="is-prototype-isAsync" data-member="is" data-category="Lang" data-name="isAsync"><code>is.async(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2437 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2561 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -5922,7 +5941,7 @@ isAsync(function() {})
 <h3 id="is-prototype-isAsyncish" data-member="is" data-category="Lang" data-name="isAsyncish"><code>is.asyncish(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2514 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2638 "View in source") [&#x24C9;][1]
 
 (Function): async function or promise
 
@@ -5964,7 +5983,7 @@ isAsyncish(function() {})
 <h3 id="is-prototype-isBoolean" data-member="is" data-category="Lang" data-name="isBoolean"><code>is.boolean_1(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1130 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1148 "View in source") [&#x24C9;][1]
 
 (Function): Checks if `value` is classified as a boolean primitive or object.
 
@@ -6015,7 +6034,7 @@ isBoolean('')
 <h3 id="is-prototype-isDate" data-member="is" data-category="Methods" data-name="isDate"><code>is.date(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1090 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1108 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -6069,9 +6088,13 @@ class Eh extends Date()
 <h3 id="is-prototype-isError" data-member="is" data-category="Methods" data-name="isError"><code>is.error$1(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2385 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2508 "View in source") [&#x24C9;][1]
 
 Function
+
+
+#### @Since
+4.0.0
 
 #### Arguments
 1. `x=undefined` *(&#42;)*: value
@@ -6194,7 +6217,7 @@ isFunction(/abc/)
 <h3 id="is-prototype-isIterator" data-member="is" data-category="Methods" data-name="isIterator"><code>is.(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1721 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1739 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -6310,7 +6333,7 @@ class Eh extends Map()
 <h3 id="is-prototype-isMapish" data-member="is" data-category="Methods" data-name="isMapish"><code>is.mapish(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7273 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7404 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -6353,7 +6376,7 @@ isMapish(1)
 <h3 id="is-prototype-isMatcher" data-member="is" data-category="Methods" data-name="isMatcher"><code>is.matcher(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4855 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5089 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -6394,7 +6417,7 @@ isMatcher('.*')
 <h3 id="is-prototype-isNull" data-member="is" data-category="Methods" data-name="isNull"><code>is._null(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L897 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L914 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -6434,7 +6457,7 @@ isNull(1)
 <h3 id="is-prototype-isNullOrUndefined" data-member="is" data-category="Lang" data-name="isNullOrUndefined"><code>is.nullOrUndefined(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L942 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L959 "View in source") [&#x24C9;][1]
 
 (Function): Checks if `value` is `null` or `undefined`.
 
@@ -6482,7 +6505,7 @@ isNullOrUndefined(false)
 <h3 id="is-prototype-isNumber" data-member="is" data-category="Methods" data-name="isNumber"><code>is.number(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4623 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4857 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -6550,7 +6573,7 @@ isNumber(false)
 <h3 id="is-prototype-isNumberPrimitive" data-member="is" data-category="Methods" data-name="isNumberPrimitive"><code>is.numberPrimitive(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2551 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2675 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -6602,7 +6625,7 @@ isNumberPrimitive(false)
 <h3 id="is-prototype-isObj" data-member="is" data-category="Lang" data-name="isObj"><code>is.obj(value=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1591 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1609 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -6649,7 +6672,7 @@ isObject(null)
 <h3 id="is-prototype-isObjLoose" data-member="is" data-category="Methods" data-name="isObjLoose"><code>is.objTypeof(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L869 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L886 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -6697,7 +6720,7 @@ isObjLoose(1)
 <h3 id="is-prototype-isObjPure" data-member="is" data-category="Methods" data-name="isObjPure"><code>is.isObjPure(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4740 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4974 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -6742,7 +6765,7 @@ isObjPure({})
 <h3 id="is-prototype-isObjStrict" data-member="is" data-category="Methods" data-name="isObjStrict"><code>is.objNotNull(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L992 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1009 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -6800,7 +6823,7 @@ isObjStrict(1)
 <h3 id="is-prototype-isObjWithKeys" data-member="is" data-category="Methods" data-name="isObjWithKeys"><code>is.objWithKeys(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4785 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5019 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -6859,7 +6882,7 @@ isObjWithKeys(1)
 <h3 id="is-prototype-isPromise" data-member="is" data-category="Methods" data-name="isPromise"><code>is.promise(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2479 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2603 "View in source") [&#x24C9;][1]
 
 (Function): is a Promise
 
@@ -6909,7 +6932,7 @@ isPromise(1)
 <h3 id="is-prototype-isReal" data-member="is" data-category="Methods" data-name="isReal"><code>is.real(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4704 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4938 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -6975,7 +6998,7 @@ isReal(1)
 <h3 id="is-prototype-isTrue" data-member="is" data-category="Methods" data-name="isTrue"><code>is._true(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1028 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1046 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -7063,7 +7086,7 @@ isUndefined(false)
 <h3 id="is-prototype-primitive$2" data-member="is" data-category="Lang" data-name="primitive$2"><code>is.primitive$2(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2584 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2708 "View in source") [&#x24C9;][1]
 
 (Function): Checks if `value` is classified as a `String` **primitive**.
 
@@ -7144,7 +7167,7 @@ isString(1)
 <h3 id="is-prototype-stringOrNumber" data-member="is" data-category="Lang" data-name="stringOrNumber"><code>is.stringOrNumber(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4651 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4885 "View in source") [&#x24C9;][1]
 
 (Function): Checks if `value` is classified as a `String` primitive or object.
 
@@ -7219,7 +7242,7 @@ isString(1)
 <h3 id="is-prototype-symbol" data-member="is" data-category="Lang" data-name="symbol"><code>is.symbol(value=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2412 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2536 "View in source") [&#x24C9;][1]
 
 (Function): Checks if `value` is classified as a `Symbol` primitive or object.
 
@@ -7307,7 +7330,7 @@ toS(function() {})
 <h3 id="is-prototype-index$12" data-member="is" data-category="Properties" data-name="index$12"><code>is.index$12</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4881 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5115 "View in source") [&#x24C9;][1]
 
 Object
 
@@ -7330,7 +7353,7 @@ Object
 <h3 id="isArray" data-member="" data-category="Methods" data-name="isArray"><code>array</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1001 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1019 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -7338,6 +7361,11 @@ Function
 #### @see 
 
 * <a href="https://github.com/fluents/chain-able/blob/master/src/deps/reduce/clean.js" >fluents/chain able/blob/master/src/deps/reduce/clean.js</a>
+
+#### @todos 
+
+- [ ] https://github.com/facebook/immutable-js/blob/master/src/utils/isArrayLike.js
+ 
 
 #### @Since
 3.0.0
@@ -7357,7 +7385,7 @@ Function
 <h3 id="isNotRealOrIsEmpty" data-member="" data-category="Methods" data-name="isNotRealOrIsEmpty"><code>isNotRealOrIsEmpty</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5189 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5319 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -7380,7 +7408,7 @@ Function
 <h3 id="markForGarbageCollection" data-member="" data-category="Methods" data-name="markForGarbageCollection"><code>markForGarbageCollection(obj=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6387 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6518 "View in source") [&#x24C9;][1]
 
 (Function): remove all methods, mark for garbage collection
 
@@ -7471,7 +7499,7 @@ new RegExp(escaped)
 <h3 id="matcher-prototype-make" data-member="matcher" data-category="Methods" data-name="make"><code>matcher.make(pattern=undefined, shouldNegate=undefined, alphaOmega=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8277 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8415 "View in source") [&#x24C9;][1]
 
 (Function): turn any string[], function[], or RegExp[] into a matcher
 
@@ -7537,7 +7565,7 @@ matcher.make(noName, true, true)
 <h3 id="matcher-prototype-match" data-member="matcher" data-category="Methods" data-name="match"><code>matcher.matcher(inputs=undefined, patterns=undefined, shouldNegate=undefined, alphaOmega=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8353 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8491 "View in source") [&#x24C9;][1]
 
 (Function): same as .make but also accepts inputs, and returns an array
 
@@ -7604,7 +7632,7 @@ matcher({ test: x => x === 'kinga' }, 'nope')
 <h3 id="matcher-prototype-matcher" data-member="matcher" data-category="Properties" data-name="matcher"><code>matcher.matcher</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8228 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8366 "View in source") [&#x24C9;][1]
 
 unknown
 
@@ -7625,7 +7653,7 @@ unknown
 <h3 id="matcher-prototype-toRegExp" data-member="matcher" data-category="Methods" data-name="toRegExp"><code>matcher.toRegexp(str=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8209 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8347 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -7663,7 +7691,7 @@ toRegExp('*')
 <h3 id="merge" data-member="" data-category="Methods" data-name="merge"><code>merge([obj2=undefined])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7386 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7517 "View in source") [&#x24C9;][1]
 
 (Function): merges object in, goes through all keys, checks cbs, dopemerges
 
@@ -7705,7 +7733,7 @@ chain.entries()
 <h3 id="merge" data-member="" data-category="merge" data-name="merge"><code>merge(obj=undefined, [handleMergeFn=undefined])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7718 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7849 "View in source") [&#x24C9;][1]
 
 (Function): merges an object with the current store
 
@@ -7763,7 +7791,7 @@ const chain = new Chain()
 <h3 id="meta" data-member="" data-category="Methods" data-name="meta"><code>meta(key=undefined, [prop=undefined], [value=undefined])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1998 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2016 "View in source") [&#x24C9;][1]
 
 (Function): a single easily minifiable function, dynamically setting & getting depending on arguments to avoid nested property accessing only instantiating when values are **addded**
 
@@ -7794,7 +7822,7 @@ const chain = new Chain()
 <h3 id="method" data-member="" data-category="methods" data-name="method"><code>method(names=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7682 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7813 "View in source") [&#x24C9;][1]
 
 (Function): the way to easily start building methods when using chainable instances
 
@@ -7836,7 +7864,7 @@ chain.get('eh')
 <h3 id="methodEncasingFactory" data-member="" data-category="Methods" data-name="methodEncasingFactory"><code>methodEncasingFactory(name=undefined, parent=undefined, built=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6001 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6132 "View in source") [&#x24C9;][1]
 
 (Function): 3 steps
 0. enhance error
@@ -7873,6 +7901,46 @@ methodEncasingFactory('eh', {}, { onSet: console.log })
 
 <!-- div -->
 
+## `noop`
+
+<!-- div -->
+
+<h3 id="noop" data-member="" data-category="Methods" data-name="noop"><code>noop()</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4 "View in source") [&#x24C9;][1]
+
+Function
+
+
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/reduce/clean.js" >fluents/chain able/blob/master/src/deps/reduce/clean.js</a>
+
+#### @Since
+5.0.0
+
+#### Returns
+*(void)*:
+
+#### Example
+```js
+noop
+
+```
+#### Example
+```js
+noop()
+
+```
+---
+
+<!-- /div -->
+
+<!-- /div -->
+
+<!-- div -->
+
 ## `paths`
 
 <!-- div -->
@@ -7880,7 +7948,7 @@ methodEncasingFactory('eh', {}, { onSet: console.log })
 <h3 id="paths" data-member="" data-category="Methods" data-name="paths"><code>paths(key=undefined, value=undefined, [longest=undefined])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4524 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L4758 "View in source") [&#x24C9;][1]
 
 (Function): gathers dot.prop from any value, with a prefixed/base key
 
@@ -7934,7 +8002,7 @@ dotPropPaths('moose', { oh: { eh: true } })
 <h3 id="pooler-prototype-addPoolingTo" data-member="pooler" data-category="Methods" data-name="addPoolingTo"><code>pooler.addPoolingTo(CopyConstructor=undefined, pooler=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L3541 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L3733 "View in source") [&#x24C9;][1]
 
 (Function): Augments `CopyConstructor` to be a poolable class, augmenting only the class
 itself *(statically)* not adding any prototypical fields. Any CopyConstructor
@@ -7971,7 +8039,7 @@ addPoolingTo(Eh) // can optionally pass in pooler as second arg
 <h3 id="pooler-prototype-oneArgumentPooler" data-member="pooler" data-category="Methods" data-name="oneArgumentPooler"><code>pooler.oneArgumentPooler(copyFieldsFrom=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L3503 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L3695 "View in source") [&#x24C9;][1]
 
 (Function): Static poolers. Several custom versions for each potential number of
 arguments. A completely generic pooler is easy to implement, but would
@@ -8006,7 +8074,7 @@ eh.release()
 <h3 id="pooler-prototype-standardReleaser" data-member="pooler" data-category="Methods" data-name="standardReleaser"><code>pooler.standardReleaser(instance=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L3465 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L3657 "View in source") [&#x24C9;][1]
 
 (Function): call destructor on a pooled instance, put it back in the pool
 
@@ -8043,7 +8111,7 @@ eh.release()
 <h3 id="pooler-prototype-// const pooler" data-member="pooler" data-category="Properties" data-name="// const pooler"><code>pooler.// const pooler</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L3447 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L3639 "View in source") [&#x24C9;][1]
 
 Object
 
@@ -8066,7 +8134,7 @@ Object
 <h3 id="reduce" data-member="" data-category="Methods" data-name="reduce"><code>reduce(map=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1532 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1550 "View in source") [&#x24C9;][1]
 
 (Function): Map -> Object
 
@@ -8108,7 +8176,7 @@ reduce(map)
 <h3 id="reduce-prototype-clean" data-member="reduce" data-category="Methods" data-name="clean"><code>reduce.clean(obj=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9882 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L10041 "View in source") [&#x24C9;][1]
 
 (Function): goes through the maps, and the map values, reduces them to array then to an object using the reduced values
 
@@ -8157,7 +8225,7 @@ clean(map.entries())
 <h3 id="regexp" data-member="" data-category="Lang" data-name="regexp"><code>regexp(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1051 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1069 "View in source") [&#x24C9;][1]
 
 (Function): Checks if `value` is classified as a `RegExp` object.
 
@@ -8199,7 +8267,7 @@ isRegExp('/abc/')
 <h3 id="schema" data-member="" data-category="Methods" data-name="schema"><code>schema(obj=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5680 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5810 "View in source") [&#x24C9;][1]
 
 (Function): handles:<br> 1. recursively building nestable schemas, 2. creating MethodChains for all types 3. carrying over the inheritable properties 4. @modifies @injects @decorates .add(customValidators)
 
@@ -8218,7 +8286,7 @@ isRegExp('/abc/')
 <h3 id="schema-prototype-typeListFactory" data-member="schema" data-category="types" data-name="typeListFactory"><code>schema.typeListFactory(fullKey=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5331 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5461 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -8249,7 +8317,7 @@ isStringOrNumber(Object)
 <h3 id="schema-prototype-typeValidator" data-member="schema" data-category="Methods" data-name="typeValidator"><code>schema.typeValidator(input=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5606 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5736 "View in source") [&#x24C9;][1]
 
 (Function): build a recursive schema for all around runtime type safety
 
@@ -8315,7 +8383,7 @@ var isValid = typeValidator(1)
 <h3 id="schemaFactory" data-member="" data-category="Methods" data-name="schemaFactory"><code>schemaFactory(property=undefined, nestedSchema=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5564 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5694 "View in source") [&#x24C9;][1]
 
 (Function): pass the property & schema in, get a nestable typeValidator out
 
@@ -8372,7 +8440,7 @@ input = {
 <h3 id="scopedEncase" data-member="" data-category="type" data-name="scopedEncase"><code>scopedEncase(fnToEncase=undefined, [type=undefined], [specification=undefined])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6024 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6155 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -8450,7 +8518,7 @@ isSet(new WeakSet())
 <h3 id="set$$2" data-member="" data-category="Methods" data-name="set$$2"><code>set$$2(key=undefined, [prop=undefined], [value=undefined])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1970 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1988 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -8481,7 +8549,7 @@ Function
 <h3 id="setChosen" data-member="" data-category="Methods" data-name="setChosen"><code>setChosen(keyToSet=undefined, valueToSet=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7465 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L7596 "View in source") [&#x24C9;][1]
 
 (Function): when fn is a full method, not an extended shorthand
 
@@ -8528,7 +8596,7 @@ parent.get('oh')
 <h3 id="simpleKindOf" data-member="" data-category="Methods" data-name="simpleKindOf"><code>simpleKindOf(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1148 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1166 "View in source") [&#x24C9;][1]
 
 (Function): when Array -> 'array' when null -> 'null' else `typeof x`
 
@@ -8553,7 +8621,7 @@ parent.get('oh')
 <h3 id="test" data-member="" data-category="Properties" data-name="test"><code>test</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8379 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8517 "View in source") [&#x24C9;][1]
 
 unknown
 
@@ -8577,7 +8645,7 @@ unknown
 <h3 id="this-extend" data-member="" data-category="Methods" data-name="this.extend"><code>this.extend()</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6581 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6712 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -8609,7 +8677,7 @@ chain
 <h3 id="toArr" data-member="" data-category="Methods" data-name="toArr"><code>toArr(ar=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1774 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L1792 "View in source") [&#x24C9;][1]
 
 (Function): anything into an array
 
@@ -8671,7 +8739,7 @@ toarr('').concat(toarr(false)).concat(toarr(null))
 <h3 id="toTest" data-member="" data-category="Methods" data-name="toTest"><code>toTest(matchable=undefined, [arg1=undefined], [arg2=undefined])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L8937 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9075 "View in source") [&#x24C9;][1]
 
 (Function): like matcher, but .isMatch
 
@@ -8732,7 +8800,7 @@ matcher({ test: x => x === 'kinga' }, 'nope')
 <h3 id="traverse" data-member="" data-category="Methods" data-name="traverse"><code>traverse([useThis=false])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9242 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9380 "View in source") [&#x24C9;][1]
 
 (Function): traverse `this`, or `this.entries`
 
@@ -8769,7 +8837,7 @@ TAKE FROM TRAVERSECHAIN
 <h3 id="traversed" data-member="" data-category="Methods" data-name="traversed"><code>traversed()</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9177 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L9315 "View in source") [&#x24C9;][1]
 
 (Function): value traversed in traverse
 
@@ -8854,7 +8922,7 @@ const eh = {
 <h3 id="typedOnCall" data-member="" data-category="type" data-name="typedOnCall"><code>typedOnCall(arg=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6058 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6189 "View in source") [&#x24C9;][1]
 
 (Function): this is the actual built function
 
@@ -8890,7 +8958,7 @@ const encased = encase(fnToEncase)
 <h3 id="types" data-member="" data-category="Methods" data-name="types"><code>types(name=undefined, parent=undefined, built=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6108 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L6239 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -8917,7 +8985,7 @@ Function
 <h3 id="validators" data-member="" data-category="Methods" data-name="validators"><code>validators(validators=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5254 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5384 "View in source") [&#x24C9;][1]
 
 (Function): library of validators to use by name
 
@@ -8939,7 +9007,7 @@ Function
 <h3 id="while" data-member="" data-category="Methods" data-name="while"><code>while()</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2858 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2989 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -8976,7 +9044,7 @@ Function
 <h3 id="zeroOneLength" data-member="" data-category="Object" data-name="zeroOneLength"><code>zeroOneLength(object=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L5107 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/dists/dev/index.js#L2411 "View in source") [&#x24C9;][1]
 
 (Function): Creates an array of the own enumerable property names of `object`.
 <br>

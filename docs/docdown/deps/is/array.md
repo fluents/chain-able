@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `isArray`
-* <a href="#isArray"  data-meta="exports"  data-call="exports"  data-category="Methods"  data-description="Function"  data-name="isArray"  data-all="meta exports call exports category Methods description Function name isArray member see notes todos klassProps" >`isArray`</a>
+* <a href="#isArray"  data-meta="exports"  data-call="exports"  data-category="Methods"  data-description="Function"  data-name="isArray"  data-todos="https github com facebook immutable js blob master src utils isArrayLike js"  data-all="meta exports call exports category Methods description Function name isArray member see notes todos https github com facebook immutable js blob master src utils isArrayLike js n klassProps" >`isArray`</a>
 
 <!-- /div -->
 
@@ -22,10 +22,15 @@
 <h3 id="isArray" data-member="" data-category="Methods" data-name="isArray"><code>exports</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/array.js#L7 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/array.js#L8 "View in source") [&#x24C9;][1]
 
 Function
 
+
+#### @todos 
+
+- [ ] https://github.com/facebook/immutable-js/blob/master/src/utils/isArrayLike.js
+ 
 
 #### @Since
 3.0.0

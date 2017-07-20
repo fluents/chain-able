@@ -13,7 +13,13 @@ const isObj = require('../is/obj')
 const toS = require('../is/toS')
 const hasOwnProperty = require('../util/hasOwnProperty')
 const ObjectKeys = require('../util/keys')
+const ObjectOrArrayKeys = require('../util/keysObjOrArray')
 const ENV_DEBUG = require('../env/debug')
+
+// const ENV_DEBUG = true
+
+const isNotRealOrNotEqToString = (x, y) =>
+  !x || !y || x.toString() !== y.toString()
 
 /* prettier-ignore */
 /**
@@ -75,7 +81,17 @@ module.exports = function eqValue(x, y, loose) {
       return false
     }
   }
+  // @TODO put this up first?
+  else if (toS(x) !== toS(y)) {
+    /* istanbul ignore next: dev */
+    if (ENV_DEBUG) {
+      console.log('diff str types', {x: toS(x), y: toS(y)})
+    }
+
+    return false
+  }
   else if (isObjNotNull(x)) {
+    // use .equals if the method exists
     if (hasOwnProperty(x, 'equals')) {
       return x.equals(y)
     }
@@ -98,7 +114,7 @@ module.exports = function eqValue(x, y, loose) {
         console.log('regexp', {x, y})
       }
 
-      if (!x || !y || x.toString() !== y.toString()) {
+      if (isNotRealOrNotEqToString(x, y)) {
         /* istanbul ignore next: dev */
         if (ENV_DEBUG) {
           console.log('regexp !=', {x, y})
@@ -153,11 +169,20 @@ module.exports = function eqValue(x, y, loose) {
 
       return false
     }
+
+    // @TODO considering, we already know it is not null & undefined
+    // if (isPrimitive(x) || isPrimitive(y)) {
+    //  return x.valueOf() === y.valueOf()
+    // }
+
     else {
+      // @TODO ObjectOrArrayKeys, but have to have else where they are both array
+      //
       // @NOTE it will traverse through values if they are == here
       const xKeys = ObjectKeys(x)
       const yKeys = ObjectKeys(y).length
 
+      // diff length
       if (xKeys.length !== yKeys) {
         /* istanbul ignore next: dev */
         if (ENV_DEBUG) {
@@ -188,14 +213,15 @@ module.exports = function eqValue(x, y, loose) {
 
     return false
   }
-  else if (toS(x) !== toS(y)) {
-    /* istanbul ignore next: dev */
-    if (ENV_DEBUG) {
-      console.log('diff str types', {x: toS(x), y: toS(y)})
-    }
-
-    return false
-  }
+  // // @TODO put this up first?
+  // else if (toS(x) !== toS(y)) {
+  //   /* istanbul ignore next: dev */
+  //   if (ENV_DEBUG) {
+  //     console.log('diff str types', {x: toS(x), y: toS(y)})
+  //   }
+  //
+  //   return false
+  // }
 
   // go deeper
   else if (isFunction(x) || isFunction(y)) {
@@ -206,7 +232,7 @@ module.exports = function eqValue(x, y, loose) {
       console.log(y.toString())
     }
 
-    if (!x || !y || x.toString() !== y.toString()) {
+    if (isNotRealOrNotEqToString(x, y)) {
       /* istanbul ignore next: dev */
       if (ENV_DEBUG) {
         console.log('x.toString() !== y.toString()', x.toString() !== y.toString())
@@ -217,7 +243,7 @@ module.exports = function eqValue(x, y, loose) {
       return true
     }
   }
-
+  // @TODO why?
   else if (isObj(x) && isObj(y)) {
     /* istanbul ignore next: dev */
     if (ENV_DEBUG) {

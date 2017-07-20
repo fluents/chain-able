@@ -22,7 +22,7 @@
 <h3 id="Traverse-prototype-eq" data-member="Traverse" data-category="Methods" data-name="eq"><code>Traverse.eq(traverse=undefined, a=undefined, b=undefined, [loose=undefined], [scoped=undefined])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traversers/_eq.js#L34 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traversers/_eq.js#L42 "View in source") [&#x24C9;][1]
 
 Function
 

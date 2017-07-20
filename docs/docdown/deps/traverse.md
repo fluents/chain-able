@@ -50,7 +50,7 @@
 <h3 id="Traverse-prototype-checkIteratable" data-member="Traverse" data-category="Methods" data-name="checkIteratable"><code>Traverse.checkIteratable(node=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L377 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L381 "View in source") [&#x24C9;][1]
 
 (Function): checks whether a node is iteratable
 
@@ -93,7 +93,7 @@
 <h3 id="Traverse-prototype-clone" data-member="Traverse" data-category="Methods" data-name="clone"><code>Traverse.clone(arg=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L878 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L920 "View in source") [&#x24C9;][1]
 
 (Function): clone any value
 
@@ -138,7 +138,7 @@ console.log(obj2.eh) //=> true
 <h3 id="Traverse-prototype-forEach" data-member="Traverse" data-category="Methods" data-name="forEach"><code>Traverse.forEach(cb=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L290 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L294 "View in source") [&#x24C9;][1]
 
 (Function): this is the main usage of Traverse
 
@@ -169,7 +169,7 @@ traverse([1, 2, 3]).forEach((key, value) => console.log({ [key]: value }))
 <h3 id="Traverse-prototype-iterate" data-member="Traverse" data-category="Methods" data-name="iterate"><code>Traverse.iterate(on=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L577 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L605 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -238,7 +238,7 @@ iterate(deeper)
 <h3 id="Traverse-prototype-remove" data-member="Traverse" data-category="Methods" data-name="remove"><code>Traverse.remove([arg=undefined])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L423 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L441 "View in source") [&#x24C9;][1]
 
 (Function): Remove the current element from the output.
 If the node is in an Array it will be spliced off.
@@ -259,6 +259,14 @@ Otherwise it will be deleted from its parent.
 traverse([0]).forEach((key, val, it) => it.remove())
 //=> []
 
+traverse({ eh: true }).forEach((key, val, it) => it.remove())
+//=> {}
+
+traverse({ eh: true, str: 'stringy' }).forEach((key, val, it) => {
+  if (!isString(val)) it.remove()
+})
+//=> {str: 'stringy'}
+
 ```
 ---
 
@@ -269,7 +277,7 @@ traverse([0]).forEach((key, val, it) => it.remove())
 <h3 id="Traverse-prototype-skip" data-member="Traverse" data-category="Methods" data-name="skip"><code>Traverse.skip()</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L338 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L342 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -301,7 +309,7 @@ traverse([1, 2, 3, [4]]).forEach((key, val, t) => {
 <h3 id="Traverse-prototype-stop" data-member="Traverse" data-category="Methods" data-name="stop"><code>Traverse.stop()</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L318 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L322 "View in source") [&#x24C9;][1]
 
 (Function): stop the iteration
 
@@ -324,7 +332,7 @@ traverse({ eh: true, arr: [] }).forEach((key, val, t) => {
 <h3 id="Traverse-prototype-update" data-member="Traverse" data-category="Methods" data-name="update"><code>Traverse.update(value=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L495 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L527 "View in source") [&#x24C9;][1]
 
 (Function): update the value for the current key
 
@@ -362,7 +370,7 @@ traverse({ eh: true }).forEach((key, val, traverser) => {
 <h3 id="clone" data-member="" data-category="Methods" data-name="clone"><code>clone(arg=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L846 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L888 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -402,7 +410,7 @@ eq(obj, cloned)
 <h3 id="copy" data-member="" data-category="Methods" data-name="copy"><code>copy(src=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L853 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L895 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -432,7 +440,7 @@ Function
 <h3 id="" data-member="" data-category="Properties" data-name="traverse"><code></code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L22 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L23 "View in source") [&#x24C9;][1]
 
 unknown
 

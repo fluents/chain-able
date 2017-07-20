@@ -22,7 +22,7 @@
 <h3 id="fp-prototype-exports" data-member="fp" data-category="Properties" data-name="exports"><code>fp.exports</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/fp/fp.js#L14 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/fp/fp.js#L16 "View in source") [&#x24C9;][1]
 
 Object
 

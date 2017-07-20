@@ -4,6 +4,8 @@
 // const traverse = require('../traverse')
 const get = require('../dot/get')
 const isObjNotNull = require('../is/objNotNull')
+const isNull = require('../is/null')
+const isEmpty = require('../is/empty')
 const ENV_DEBUG = require('../env/debug')
 const eqValue = require('./eqValue')
 
@@ -13,6 +15,12 @@ const eqValue = require('./eqValue')
  * @since 3.0.0
  * @version 5.0.0
  * @memberOf Traverse
+ *
+ * @see https://github.com/facebook/immutable-js/blob/master/src/utils/deepEqual.js
+ * @see https://github.com/substack/node-deep-equal
+ * @see http://ramdajs.com/docs/#equals
+ * @see https://lodash.com/docs/4.17.4#isEqual
+ * @see https://github.com/angular/angular.js/blob/master/src/Angular.js
  *
  * @param {Traverse} traverse traversejs
  * @param  {*} a compare to b
@@ -31,7 +39,7 @@ const eqValue = require('./eqValue')
  *    eq([1], [1])        //=> true
  *
  */
-module.exports = traverse => function eq(a, b, loose, scoped) {
+module.exports = traverse => function eq(a, b, loose, stackA = [], stackB = []) {
   /* istanbul ignore next: dev */
   if (ENV_DEBUG) {
     console.log('\n')
@@ -39,13 +47,11 @@ module.exports = traverse => function eq(a, b, loose, scoped) {
 
   let equal = true
   let node = b
-
-  // @TODO can be helpful? for left to right in 1 traverse for faster eq?
-  // let _node = b
+  let nodes = [node]
 
   const instance = traverse(a)
+
   const notEqual = () => {
-    // throw new Error()
     equal = false
     instance.stop()
   }
@@ -56,30 +62,50 @@ module.exports = traverse => function eq(a, b, loose, scoped) {
   }
 
   instance.forEach(function(key, y, traverser) {
+    // @NOTE do base comparisons on values that are not actually iteratable
+    // aka, .isRoot
+    if (isNull(key)) {
+      // always-valid state opionion vs always-invalid
+      // so it only returns false when it is !== fosho
+      if (eqValue(node, y, loose) === false) return notEqual()
+      else return
+    }
+
     /* istanbul ignore next: dev */
     if (ENV_DEBUG) {
       console.log('eq: iterating:')
     }
 
-    // BREAKS ANY BUT OBJ
-    // if (!isObjLoose(node)) {
-    //   node = _node
-    //   return notEqual()
-    // }
-    // else {
-    //   _node = node
-    // }
+    // could use it as a fallback if undefined && y !== undefined
+    // const xyz = get(b, traverser.path.join('.'), b)
 
-    if (isObjNotNull(node))  {
-      // _node = node
-      node = node[traverser.key]
+    let x = node
+
+    // isNotLeafAndIsObj
+    if (isObjNotNull(node) && !isEmpty(node)) {
+      /* istanbul ignore next: dev */
+      if (ENV_DEBUG) {
+        console.log('is leaf, is not empty node, going deeper')
+      }
+
+      // so x is our current one,
+      // if node is not empty, use the key, push the value
+      // and when it is empty, and it is not a leaf but has nodes, pop back up
+      x = node[key]
+      nodes.push(x)
     }
 
-    // node = node ? node[traverser.key] : node
+    // ENV_DEBUG
+    // console.log({[key]: {x, xyz, y, nodes, path: traverser.path.join('.')}})
 
-    // @TODO !!!!!!!!!!!!!!!!!!!! PERF HIT HERE --- NEEDS STACK INSTEAD !!!!!!!!!!!!!!!
-    let x = node
-    x = get(b, traverser.path.join('.'), b)
+    // for next loop!!!
+    if (!this.isLeaf && !isEmpty(nodes)) {
+      /* istanbul ignore next: dev */
+      if (ENV_DEBUG) {
+        console.log('is not leaf, has nodes stack, pop')
+      }
+      node = nodes.pop()
+    }
 
     /* istanbul ignore next: dev */
     if (ENV_DEBUG) {
@@ -97,9 +123,11 @@ module.exports = traverse => function eq(a, b, loose, scoped) {
       // equal
       notEqual()
     }
-    // }
   })
 
-  if (equal === false && scoped === false) return eq(b, a, loose, true)
-  else return equal
+  // cleanup
+  nodes = undefined
+  node = undefined
+
+  return equal
 }
