@@ -3,10 +3,10 @@ const traverse = require('../deps/traverse')
 // const eq = require('../deps/traversers/eq')
 const match = require('../deps/matcher')
 const getPathSegments = require('../deps/dot/segments')
-const dot = require('../deps/dot')
+const dotSet = require('../deps/dot/set')
 const OBSERVERS_KEY = require('../deps/meta/observers')
 
-const {eq} = traverse
+const {eq, clone} = traverse
 
 /**
  * scoped clones
@@ -136,7 +136,7 @@ module.exports = Target => {
 
       for (let i = 0; i < m.length; i++) {
         const segments = getPathSegments(m[i])
-        dot.set(data, segments, this.get(segments))
+        dotSet(data, segments, this.get(segments))
       }
 
       /**
@@ -156,7 +156,7 @@ module.exports = Target => {
       /**
        * it did change - clone it for next deepEquals check
        */
-      objs.set(hashKey, traverse(data).clone())
+      objs.set(hashKey, clone(data))
 
       /**
        * call the observer - it matched & data changed

@@ -11,17 +11,12 @@
 /* eslint max-depth: "OFF" */
 
 const isEmpty = require('./is/empty')
-const isObjNotNull = require('./is/objNotNull')
-const isRegExp = require('./is/regexp')
-const isError = require('./is/error')
 const isTrue = require('./is/true')
-const isDate = require('./is/date')
+const isIteratable = require('./is/iteratable')
 const isUndefined = require('./is/undefined')
 const isArray = require('./is/array')
 const isMap = require('./is/map')
 const isSet = require('./is/set')
-const isSymbol = require('./is/symbol')
-const isAsyncish = require('./is/asyncish')
 const isObj = require('./is/obj')
 const isPrimitive = require('./is/primitive')
 const isNull = require('./is/null')
@@ -39,58 +34,15 @@ const addPoolingTo = require('./cache/pooler')
 // const ENV_DEBUG = true
 const ENV_DEBUG = false
 
-function isIteratable(node) {
-  // ez ones
-  if (isObj(node) || isArray(node)) return true
-
-  const notIteratable =
-    isPrimitive(node) ||
-    isRegExp(node) ||
-    isDate(node) ||
-    isSymbol(node) ||
-    isAsyncish(node) ||
-    // isNative(node) ||
-    isError(node)
-
-  if (notIteratable) return false
-  else return true
-
-  // if (isNullOrUndefined(node)) {
-  // }
-  // else if (isString(node)) {
-  // }
-  // else if (isNumber(node)) {
-  // }
-  // else if (isBoolean(node)) {
-  // }
-  // else if (isRegExp(node)) {
-  // }
-  // else if (isDate(node)) {
-  // }
-  // else if (isSymbol(node) || isAsyncish(node)) {
-  // }
-  // else if (isNative(node)) {
-  // }
-  // else {
-  //   return true
-  // }
-  // return false
-}
-
-// function isSpecial(x) {
-//   // isPromise(x) ||
-//   return isSymbol(x) || isError(x) ||
-//   //  || isGenerator(x)
-// }
-
 /**
- * {@link https://github.com/wmira/object-traverse/blob/master/index.js }
- * {@link https://www.npmjs.com/browse/keyword/traverse }
- * {@link https://www.npmjs.com/package/tree-walk }
- * {@link https://www.npmjs.com/package/1tree }
- * {@link https://www.npmjs.com/package/pathway }
- * {@link https://www.npmjs.com/package/@mojule/tree }
- *
+ * {@link https://github.com/wmira/object-traverse/blob/master/index.js object-traverse}
+ * {@link https://www.npmjs.com/browse/keyword/traverse traverse-js}
+ * {@link https://www.npmjs.com/package/tree-walk tree-walk}
+ * {@link https://www.npmjs.com/package/1tree 1tree}
+ * {@link https://www.npmjs.com/package/pathway pathway}
+ * {@link https://www.npmjs.com/package/@mojule/tree tree}
+ * {@link http://web.archive.org/web/20160930054101/http://substack.net/tree_traversal tree-traversal-article}
+ * {@link https://medium.com/@alexanderv/tries-javascript-simple-implementation-e2a4e54e4330 js-trie-medium}
  * --------------------
  *
  * if needed, clone
@@ -142,6 +94,7 @@ function isIteratable(node) {
  * @constructor
  * @since 5.0.0
  *
+ * @see {@link tree-traversal-article}
  * @param {Traversable} iteratee value to iterate, clone, copy, check for eq
  * @param {Object | undefined} [config] wip config for things such as events or configs
  *
@@ -159,7 +112,7 @@ function Traverse(iteratee, config) {
   // always cleared when done anyway
   this.parents = new Set()
 
-  this.iteratee = iteratee
+  this.node = iteratee
   this.parent = iteratee
   this.root = iteratee
   this.reset()
@@ -419,7 +372,7 @@ Traverse.prototype.checkIteratable = function check(node) {
  * @version 5.0.0
  * @since 2.0.0
  *
- * @param {undefined | Object} [arg] optional obj to use, defaults to this.iteratee
+ * @param {undefined | Object} [arg] optional obj to use, defaults to this.node
  * @return {void}
  *
  * @example
@@ -437,10 +390,9 @@ Traverse.prototype.checkIteratable = function check(node) {
  *
  */
 Traverse.prototype.remove = function removes(arg) {
+  // ignore undefined & non-object/arrays
   if (isUndefined(this.key)) return
-
-  let obj = arg || this.iteratee
-
+  let obj = arg || this.node
   if (!isObj(obj)) return
 
   /* istanbul ignore next: dev */
@@ -450,56 +402,14 @@ Traverse.prototype.remove = function removes(arg) {
   }
 
   this.removeParent(obj)
-
   this.skip()
 
   delete obj[this.key]
   delete this.parent[this.key]
-  // if (isObj(obj)) deleteFromObjOrArray(obj, this.key)
-  // else deleteFromObjOrArray(this.parent, this.key)
-  // deleteFromObjOrArray(this.parent, this.key)
-  // deleteFromObjOrArray(this.iteratee, this.key)
-
-  // if (isUndefined(obj)) {
-  //   // throw new Error('why?')
-  // }
-  // else if (isArray(obj)) {
-  //   /* istanbul ignore next: dev */
-  //   if (ENV_DEBUG) {
-  //     console.log('traverse:remove:array', obj, this.key)
-  //   }
-  //
-  //   obj.splice(this.key, 1)
-  // }
-  // else if (isObjNotNull(obj)) {
-  //   /* istanbul ignore next: dev */
-  //   if (ENV_DEBUG) {
-  //     console.log('traverse:remove:obj', this.key)
-  //   }
-  //
-  //   delete obj[this.key]
-  // }
-  //
-  // if (isObjNotNull(this.parent)) {
-  //   delete this.parent[this.key]
-  //
-  //   /* istanbul ignore next: dev */
-  //   if (ENV_DEBUG) {
-  //     console.log('traverse:remove:parent', this.key)
-  //   }
-  // }
-  // if (isObjNotNull(this.iteratee)) {
-  //   delete this.iteratee[this.key]
-  //
-  //   /* istanbul ignore next: dev */
-  //   if (ENV_DEBUG) {
-  //     console.log('traverse:remove:iteratee', this.key)
-  //   }
-  // }
 
   /* istanbul ignore next: dev */
   if (ENV_DEBUG) {
-    console.log('traverse:remove:', this.key, {obj, iteratee: this.iteratee})
+    console.log('traverse:remove:', this.key, {obj, iteratee: this.node})
   }
 }
 
@@ -509,7 +419,7 @@ Traverse.prototype.remove = function removes(arg) {
  * @since 2.0.0
  * @memberOf Traverse
  *
- * @param  {*} value this.iteratee[this.key] = value
+ * @param  {*} value this.node[this.key] = value
  * @return {void}
  *
  * @example
@@ -543,7 +453,7 @@ Traverse.prototype.update = function update(value) {
  *
  */
 Traverse.prototype.destructor = function destructor() {
-  this.iteratee = undefined
+  this.node = undefined
   this.parent = undefined
   this.reset()
 
@@ -562,7 +472,7 @@ Traverse.prototype.destructor = function destructor() {
  * @sig on(key: null | Primitive, val: any, instance: Traverse): any
  *
  * @param  {Function} on callback fn for each iteration
- * @return {*} this.iteratee
+ * @return {*} this.node
  *
  * @example
  *
@@ -619,7 +529,7 @@ Traverse.prototype.iterate = function iterate(on) {
     return Traverse.release(this)
   }
 
-  let node = this.iteratee
+  let node = this.node
 
   // convert to iteratable
   if (isMap(node)) {
@@ -676,7 +586,7 @@ Traverse.prototype.iterate = function iterate(on) {
   // IF OBJWITHOUTKEYS, IF ARRAY WITHOUT LENGTH...
   if (isObjOrArray && isEmpty(node)) {
     on.call(this, this.key, node, this)
-    this.iteratee = node
+    this.node = node
   }
 
   // --------------------
@@ -723,7 +633,7 @@ Traverse.prototype.iterate = function iterate(on) {
       // ----- setup our data ----
 
       // to make it deletable
-      if (node !== this.iteratee) this.parent = node
+      if (node !== this.node) this.parent = node
 
       this.key = nodeIsArray ? key : keys[key]
       // this.isLast = key === last
@@ -792,7 +702,7 @@ Traverse.prototype.iterate = function iterate(on) {
           console.log('(((iteratable)))', this.key)
         }
 
-        this.iteratee = value
+        this.node = value
         this.iterate(on)
         this.path = pathBeforeNesting
       }
@@ -830,7 +740,7 @@ Traverse.prototype.iterate = function iterate(on) {
   // removeParent(node)
 
   // @NOTE: just for .after ?
-  this.iteratee = node
+  this.node = node
 
   // @event
   if (!isUndefined(this.onAfter)) {
@@ -840,7 +750,7 @@ Traverse.prototype.iterate = function iterate(on) {
 
   this.path.pop()
 
-  return this.iteratee
+  return this.node
 }
 
 // is smaller, but probably slower
@@ -871,7 +781,7 @@ Traverse.prototype.after = function(fn) {
  * @TODO merge with dopemerge?
  * @TODO needs tests converted back for this (observe tests do cover somewhat)
  *
- * @param  {*} arg defaults to this.iteratee
+ * @param  {*} arg defaults to this.node
  * @return {*} cloned
  *
  * @example
@@ -916,7 +826,7 @@ Traverse.prototype.copy = copy
  *
  */
 function clone(arg) {
-  const obj = isUndefined(arg) ? this.iteratee : arg
+  const obj = isUndefined(arg) ? this.node : arg
   if (isPrimitive(obj)) return obj
   let cloned = emptyTarget(obj)
   let current = cloned
@@ -928,9 +838,6 @@ function clone(arg) {
     let copied = copy(value)
     if (traverser.isCircular && isArray(value)) copied = value.slice(0)
     dotSet(current, traverser.path, copied)
-
-    // current[key] = traverser.copy(value)
-    // if (isObj(value)) current = current[key]
   })
 
   return cloned

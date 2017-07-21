@@ -1,19 +1,8 @@
 const ENV_DEVELOPMENT = require('../env/dev')
 const dotPropPaths = require('../dot/paths')
 const dotGet = require('../dot/get')
-const isStringOrNumber = require('../is/stringOrNumber')
-const isReal = require('../is/real')
-const isBoolean = require('../is/boolean')
-const isRegExp = require('../is/regexp')
-const isError = require('../is/error')
+const isNotNested = require('../is/notNested')
 const validationBuilder = require('./validatorBuilder')
-
-const isNotNested = x =>
-  isStringOrNumber(x) ||
-  isBoolean(x) ||
-  !isReal(x) ||
-  isError(x) ||
-  isRegExp(x)
 
 const validateType = (type, value, nestedSchema) => {
   const validator = nestedSchema || validationBuilder(type)

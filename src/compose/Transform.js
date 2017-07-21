@@ -208,8 +208,7 @@ module.exports = Target => {
    *
    */
   Target.prototype.remap = function chainRemap(from, to) {
-    let remap = from
-    if (!isObj(from)) remap = {[from]: to}
+    let remap = isObj(from) ? from : {[from]: to}
 
     /* prettier-ignore */
     ObjectKeys(remap).forEach(key => this.transform(key, val => {

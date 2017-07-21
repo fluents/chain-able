@@ -1,5 +1,10 @@
 /**
- * @desc return a negated function
+ * return a negated function
+ * A function wrapping a call to the given function in a `!` operation.
+ * It will:
+ * - return `true` when the underlying function would return a false-y value,
+ * - and `false` when it would return a truth-y one.
+ *
  * @name not
  * @memberOf conditional
  * @since  4.0.1

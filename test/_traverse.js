@@ -372,8 +372,8 @@ test('stringify', () => {
     // console.log('before', t.key, t.path.join(''), '\n\n')
 
     // s += '\nbefore\n'
-    if (isArray(t.iteratee)) s += '['
-    else if (isObj(t.iteratee)) s += '{'
+    if (isArray(t.node)) s += '['
+    else if (isObj(t.node)) s += '{'
   })
 
   trav.pre(traverser => {
@@ -381,7 +381,7 @@ test('stringify', () => {
     // console.log('pre', traverser.key, traverser.path.join(''), '\n\n')
     const key = traverser.key || traverser.path.join('')
 
-    if (key && isObj(traverser.iteratee) && !isArray(traverser.iteratee)) {
+    if (key && isObj(traverser.node) && !isArray(traverser.node)) {
       s += '"' + key + '"' + ':'
     }
   })
@@ -390,8 +390,8 @@ test('stringify', () => {
     // console.log('after')
     if (s.endsWith(',')) s = s.slice(0, -1)
     // s += '\nafter\n'
-    if (isArray(t.iteratee)) s += ']'
-    else if (isObj(t.iteratee)) s += '}'
+    if (isArray(t.node)) s += ']'
+    else if (isObj(t.node)) s += '}'
   })
   trav.post(child => {
     // console.log('post', child)

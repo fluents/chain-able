@@ -6,6 +6,12 @@ const ENV_DEBUG = require('../env/debug')
  * @symb 🎱
  * @member pooler
  * @type {Object}
+ *
+ * {@link https://github.com/facebook/react/blob/master/src/renderers/shared/utils/PooledClass.js react-pooler}
+ * @see {@link react-pooler}
+ *
+ * @tests deps/pooler
+ * @types deps.cache.pooler
  */
 // const pooler = }}
 

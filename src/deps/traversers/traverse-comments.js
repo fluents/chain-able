@@ -125,7 +125,7 @@
 // parents.delete(value)
 
 
-// ---- eq
+// ---- eq ----
 
 // from underscore.js & ramda
 //
@@ -179,3 +179,47 @@
 //   // x = node
 //   // console.log('x after pop, nodes', {x})
 // })
+
+
+// ----- remove -----
+// if (isObj(obj)) deleteFromObjOrArray(obj, this.key)
+// else deleteFromObjOrArray(this.parent, this.key)
+// deleteFromObjOrArray(this.parent, this.key)
+// deleteFromObjOrArray(this.iteratee, this.key)
+
+// if (isUndefined(obj)) {
+//   // throw new Error('why?')
+// }
+// else if (isArray(obj)) {
+//   /* istanbul ignore next: dev */
+//   if (ENV_DEBUG) {
+//     console.log('traverse:remove:array', obj, this.key)
+//   }
+//
+//   obj.splice(this.key, 1)
+// }
+// else if (isObjNotNull(obj)) {
+//   /* istanbul ignore next: dev */
+//   if (ENV_DEBUG) {
+//     console.log('traverse:remove:obj', this.key)
+//   }
+//
+//   delete obj[this.key]
+// }
+//
+// if (isObjNotNull(this.parent)) {
+//   delete this.parent[this.key]
+//
+//   /* istanbul ignore next: dev */
+//   if (ENV_DEBUG) {
+//     console.log('traverse:remove:parent', this.key)
+//   }
+// }
+// if (isObjNotNull(this.iteratee)) {
+//   delete this.iteratee[this.key]
+//
+//   /* istanbul ignore next: dev */
+//   if (ENV_DEBUG) {
+//     console.log('traverse:remove:iteratee', this.key)
+//   }
+// }
