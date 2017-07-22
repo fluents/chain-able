@@ -3,7 +3,7 @@
 
 // const {XMLHttpRequest} = require('xmlhttprequest')
 global.fetch = require('node-fetch')
-var Frisbees = require('./Frisbee')
+var Frisbees = require('../../frisbee')
 var log = require('fliplog')
 
 log.registerCatch()

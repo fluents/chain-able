@@ -7,6 +7,7 @@ const ChainedMapBase = require('./ChainedMapBase')
  * @desc ChainedMap composer
  * @category Chainable
  * @category Map
+ * @memberOf ChainedMapBase
  * @class ChainedMap
  * @since 0.0.1
  * @alias ComposeMap
@@ -28,7 +29,8 @@ const ChainedMapBase = require('./ChainedMapBase')
  *    //=> true
  *
  */
-const CM = SuperClass => {
+
+const ComposeChainedMap = SuperClass => {
   const Composed =
     SuperClass === ChainedMapBase
       ? SuperClass
@@ -98,19 +100,22 @@ const CM = SuperClass => {
      */
     merge(obj, handleMergeFn) {
       const merger = MergeChain.init(this)
+
       if (isUndefined(handleMergeFn)) {
         merger.merge(obj)
       }
       else {
         handleMergeFn(merger.obj(obj))
       }
+
       return this
     }
   }
+
   return ChainedMap
 }
 
-const cm = CM(ChainedMapBase)
-cm.compose = CM
+const composed = ComposeChainedMap(ChainedMapBase)
+composed.compose = ComposeChainedMap
 
-module.exports = cm
+module.exports = composed

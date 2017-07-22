@@ -13,11 +13,12 @@ const FactoryChain = require('./FactoryChain')
 const MethodChain = require('./MethodChain')
 // composer
 const compose = require('./compose')
+const construct = require('./deps/fp/construct')
 
 // export
 const exp = compose()
-exp.chainable = parent => new exp(parent)
-exp.builder = obj => new MethodChain(obj)
+exp.chainable = construct(1, exp)
+exp.builder = construct(1, MethodChain)
 exp.Chain = exp
 exp.compose = compose
 
@@ -26,7 +27,7 @@ exp.traverse = traverse
 exp.addMethodFactories = MethodChain.add
 
 exp.toArr = require('./deps/to-arr') // exp.toarr =
-exp.camelCase = require('./deps/camel-case')
+exp.camelCase = require('./deps/string/camelCase')
 exp.dot = require('./deps/dot')
 exp.matcher = require('./deps/matcher')
 exp.reduce = require('./deps/reduce')
@@ -34,6 +35,9 @@ exp.clean = require('./deps/reduce/clean')
 exp.meta = require('./deps/meta')
 exp.eq = require('./deps/traversers/eq')
 exp.types = require('./deps/validators')
+exp.encase = require('./deps/encase')
+exp.curry = require('./deps/fp/curry')
+exp.replace = require('./deps/fp/replace')
 
 exp.addTypes = exp.types.addTypes
 

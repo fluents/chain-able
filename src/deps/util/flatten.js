@@ -1,8 +1,12 @@
 /**
  * @desc flatten multi-dimensional arrays in 1 line
- * @see https://stackoverflow.com/questions/10865025/merge-flatten-an-array-of-arrays-in-javascript
- * @param  {Array<Array | any>} arr array(s) to flatten
+ * @since 4.0.0
+ * @memberOf util
+ *
+ * @param  {Array<Array | any>} x array(s) to flatten
  * @return {Array<any>} flattened arrays
+ *
+ * @see https://stackoverflow.com/questions/10865025/merge-flatten-an-array-of-arrays-in-javascript
  * @example
  *
  *    flatten([[1], [2]])

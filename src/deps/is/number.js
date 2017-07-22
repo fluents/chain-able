@@ -46,5 +46,6 @@ const isNumberPrimitive = require('./numberPrimitive')
  *     ? false
  *     : (/^0x[0-9a-f]+$/i).test(x) ||
  *         (/^[-+]?(?:\d+(?:\.\d*)?|\.\d+)(e[-+]?\d+)?$/).test(x))
+ *
  */
 module.exports = x => isNumberPrimitive(x) || toS(x) === '[object Number]'

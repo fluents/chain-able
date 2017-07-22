@@ -153,6 +153,27 @@ module.exports = Target => {
     return this
   }
 
+  // @TODO
+  // // https://stackoverflow.com/questions/31158902/is-it-possible-to-sort-a-es6-map-object
+  // ordered(comperator = null) {
+  //   // this.set = this.before(this.set)
+  //   this.set = (key, value) => {
+  //     // have to iterate over the keys before setting
+  //     // and then after merging in values, update
+  //     if (this.store.has(key)) {
+  //       // first
+  //       let keys = this.store.keys()
+  //       if (isFunction(comperator)) keys = keys.sort(comperator)
+  //
+  //       // after
+  //       const store = this.store
+  //       this.store = new Map()
+  //       keys.forEach(keyInOrder => this.store.set(key, store.get(key)))
+  //       store.clear()
+  //     }
+  //   }
+  // }
+
   // --- remap ---
   /**
    * @desc remap properties from 1 to another, for example, apis with inconsistent naming
@@ -187,8 +208,7 @@ module.exports = Target => {
    *
    */
   Target.prototype.remap = function chainRemap(from, to) {
-    let remap = from
-    if (!isObj(from)) remap = {[from]: to}
+    let remap = isObj(from) ? from : {[from]: to}
 
     /* prettier-ignore */
     ObjectKeys(remap).forEach(key => this.transform(key, val => {

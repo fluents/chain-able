@@ -1,6 +1,6 @@
 // https://github.com/substack/camelize/blob/master/test/camel.js
-const log = require('fliplog');
-const camelize = require('../../src/deps/camel-case')
+const log = require('fliplog')
+const camelize = require('../../src/deps/string/camelCase')
 
 test('camelCase', () => {
   expect(camelize('one two') == 'oneTwo').toBe(true)

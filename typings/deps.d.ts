@@ -14,30 +14,32 @@ import {
   SchemaType,
   ValidMap,
 } from './generic'
-import {ChainedMapI, Composable, MethodChain} from './_mediator'
-import {MergeChain, dopemerge} from './merge'
+import { ChainedMapI, Composable, MethodChain } from './_mediator'
+import { MergeChain, dopemerge } from './merge'
+import { List } from './FantasyLand'
+import { Traverse } from './traverse'
 
 export declare function camelCase(str: string): string
 export declare function toarr(arr: Arr): Arr
+export declare function noop(): void
+export declare function simpleKindOf(x: any): string
 
 export interface Dot {
   has(object: Obj, path: strings): boolean
   get(object: Obj, path: strings): any
   set(object: Obj, path: strings, value: any): void
   delete(object: Obj, path: strings): void
+  escape(patgh: strings): strings
 }
 export interface DotPropSegments {
   (paths: strings): Array<string>
 }
-export interface DotPropPaths {
+export interface DotPropPaths extends Traverse {
   (key: Primitive, value: Traversable, longest?: boolean): Array<string>
 }
 
-// undefined and null values are removed
-export declare function clean(obj: Obj): Obj
+// ------------
 
-// map iterator -> obj
-export declare function reduce(map: ValidMap): Obj
 export declare function argumentor(...args: Arguments[]): Array<any>
 
 export interface FnTap {

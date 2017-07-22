@@ -4,8 +4,8 @@
 
 <!-- div -->
 
-## `is.prototype`
-* <a href="#is-prototype-isMapish">`is.prototype.isMapish`</a>
+## `is`
+* <a href="#is-prototype-isMapish"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Methods"  data-description="Function"  data-name="isMapish"  data-member="is"  data-all="meta exports x undefined call exports x undefined category Methods description Function name isMapish member is see notes todos klassProps" >`is.isMapish`</a>
 
 <!-- /div -->
 
@@ -15,21 +15,24 @@
 
 <!-- div -->
 
-## `is.prototype`
+## `is`
 
 <!-- div -->
 
-<h3 id="is-prototype-isMapish"><a href="#is-prototype-isMapish">#</a>&nbsp;<code>is.prototype.exports(x=undefined)</code></h3>
+<h3 id="is-prototype-isMapish" data-member="is" data-category="Methods" data-name="isMapish"><code>is.exports(x=undefined)</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/mapish.js#L30 "View in source") [&#x24C9;][1]
 
 Function
 
 
-### @extends
+#### @extends
 
 
 
-#### Since
+
+#### @Since
 3.0.0
 
 #### Arguments
@@ -61,4 +64,4 @@ isMapish(1)
 
 <!-- /div -->
 
- [1]: #is.prototype "Jump back to the TOC."
+ [1]: #is "Jump back to the TOC."

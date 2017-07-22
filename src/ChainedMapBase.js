@@ -31,10 +31,12 @@ const SHORTHANDS_KEY = require('./deps/meta/shorthands')
  * @prop {Meta} meta meta fn
  * @prop {Map} store main store
  *
+ * {@link https://tc39.github.io/ecma262/#sec-map-objects emca-map}
  * {@link https://ponyfoo.com/articles/es6-maps-in-depth pony-map}
  * {@link https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map mozilla-map}
  * @see {@link pony-map}
  * @see {@link mozilla-map}
+ * @see {@link emca-map}
  *
  * @see ChainedMap
  * @see Chainable
@@ -133,17 +135,17 @@ const ComposeChainedMapBase = Target => {
 
       for (let k = 0; k < keys.length; k++) {
         const key = keys[k]
-        const val = obj[key]
+        const value = obj[key]
         const fn = this[key]
 
         if (fn && fn.merge) {
-          fn.merge(val)
+          fn.merge(value)
         }
         else if (isFunction(fn)) {
-          fn.call(this, val)
+          fn.call(this, value)
         }
         else {
-          this.set(key, val)
+          this.set(key, value)
         }
       }
 

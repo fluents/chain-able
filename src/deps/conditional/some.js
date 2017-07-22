@@ -1,10 +1,16 @@
+const curry = require('../fp/curry')
+
 /**
- * map all values in an array to see if **some** match
+ * @desc map all values in an array to see if **some** match, curried
  * @memberOf conditional
- *
+ * @name some
+ * @alias any
  * @since  4.0.1
+ * @func
+ *
  * @param  {Function} predicate match the value
- * @return {boolean} all match predicate
+ * @param  {Array | any} arr values to match on the predicate
+ * @return {boolean} **some** match predicate
  *
  * @example
  *
@@ -20,11 +26,9 @@
  *    //=> true
  *
  */
-const some = test => arr => {
+module.exports = curry(2, function some(test, arr) {
   for (let i in arr) {
     if (test(arr[i])) return true
   }
   return false
-}
-
-module.exports = some
+})

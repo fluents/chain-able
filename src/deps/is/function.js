@@ -1,12 +1,12 @@
 /**
  * Checks if `value` is classified as a `Function` object.
  * @category Lang
+ * @memberOf is
+ * @since 3.0.0
  *
  * @param  {*} x The value to check.
  * @return {boolean} x isFunction
  *
- * @since 3.0.0
- * @memberOf is
  * @func isFunction
  *
  * @NOTE || x instanceof Function
@@ -17,6 +17,9 @@
  *   there is no polyfill for this
  *   https://github.com/krambuhl/custom-event-polyfill/issues/2
  *   browser usage is < 0.3%, very edge case
+ *
+ * {@link http://underscorejs.org/docs/underscore.html#section-141 underscore-is-function}
+ * @see {@link underscore-is-function}
  *
  * @example
  *
@@ -33,6 +36,7 @@
  *  //=> false
  *  isFunction(/abc/)
  *  // => false
+ *
  */
 module.exports = function isFunction(x) {
   return typeof x === 'function'

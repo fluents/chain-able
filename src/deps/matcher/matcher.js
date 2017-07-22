@@ -10,7 +10,8 @@ const ObjectAssign = require('../util/assign')
 const isMatcher = require('../is/matcher')
 const cache = require('../cache')
 const toarr = require('../to-arr')
-const toRegExp = require('./to-regexp')
+const newRegExp = require('../construct/regexp')
+const toEscapedRegExp = require('./to-regexp')
 
 const m = {}
 
@@ -74,12 +75,12 @@ m.make = (pattern, shouldNegate, alphaOmega) => {
   // }
   let negated = matchable[0] === '!'
   if (negated) matchable = matchable.slice(1)
-  matchable = toRegExp(matchable)
+  matchable = toEscapedRegExp(matchable)
 
   if (negated && shouldNegate) matchable = `(?!${matchable})`
   if (alphaOmega) matchable = `^${matchable}$`
 
-  matchable = new RegExp(`${matchable}`, 'i')
+  matchable = newRegExp(`${matchable}`, 'i')
   matchable.negated = negated
 
   cache.set(pattern, matchable)

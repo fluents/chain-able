@@ -6,13 +6,7 @@ const isAsyncish = require('../../src/deps/is/asyncish')
 const isNative = require('../../src/deps/is/native')
 const ObjectDefine = require('../../src/deps/define')
 const stress = require('../_stress')
-const {
-  isMap,
-  isSet,
-  isFunction,
-  isObjWithKeys,
-  isPrototypeOf,
-} = require('./')
+const {isMap, isSet, isFunction, isObjWithKeys, isPrototypeOf} = require('./')
 
 test('stress', () => {
   stress()
@@ -124,7 +118,7 @@ test('objWithKeys', () => {
 test('isPrototypeOf', () => {
   class SuperProto {}
   class SubProto extends SuperProto {}
-  var sub = new SubProto()
+  const sub = new SubProto()
 
   // SuperProto.isPrototypeOf(sub)
   expect(isPrototypeOf(Object.getPrototypeOf(sub), sub)).toBe(true)
@@ -139,7 +133,7 @@ test('isPrototypeOf on instance', () => {
     enumerable: false,
     value: instance => isPrototypeOf(SubProto.prototype, instance),
   })
-  var sub = new SubProto()
+  const sub = new SubProto()
 
   expect(new RegExp() instanceof SubProto).toBe(false)
   expect(sub instanceof SubProto).toBe(true)

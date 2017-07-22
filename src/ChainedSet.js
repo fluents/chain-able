@@ -5,6 +5,8 @@ const toarr = require('./deps/to-arr')
  * @class
  * @category Chainable
  * @category Set
+ * @memberOf Chainable
+ * @member ChainedSet
  *
  * @TODO could add .first .last ?
  * @NOTE had Symbol.isConcatSpreadable but it was not useful
@@ -37,10 +39,16 @@ class ChainedSet extends Chainable {
 
   /**
    * @desc appends a new element with a specified value to the end of the .store
+   * @memberOf ChainedSet
    * @since 0.4.0
+   *
    * @param {any} value any value to add to **end** of the store
    * @return {ChainedSet} @chainable
-   * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/add
+   *
+   * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/add mozilla-set-add}
+   * {@link https://github.com/lodash/lodash/blob/master/.internal/addSetEntry.js#L9 lodash-add-set-entry}
+   * @see {@link mozilla-set-add}
+   * @see {@link lodash-add-set-entry}
    *
    * @example
    *
@@ -51,6 +59,7 @@ class ChainedSet extends Chainable {
    *
    *   for (let name of people) console.log(name)
    *   //=> sam, sue
+   *
    */
   add(value) {
     this.store.add(value)
@@ -58,8 +67,10 @@ class ChainedSet extends Chainable {
   }
 
   /**
-   * @since 0.4.0
    * @desc inserts the value at the **beginning** of the Set
+   * @memberOf ChainedSet
+   * @since 0.4.0
+   *
    * @param {any} value any value to add to **beginning** the store
    * @return {ChainedSet} @chainable
    *
@@ -72,6 +83,7 @@ class ChainedSet extends Chainable {
    *
    *   for (let name of people) console.log(name)
    *   //=> first, sue
+   *
    */
   prepend(value) {
     this.store = new Set([value].concat(super.values()))
@@ -81,6 +93,7 @@ class ChainedSet extends Chainable {
   /**
    * @desc merge any Array/Set/Iteratable/Concatables into the array, at the end
    * @since 0.4.0
+   * @memberOf ChainedSet
    *
    * @param {Array | Set | Concatable} arr values to merge in and append
    * @return {ChainedSet} @chainable
@@ -96,6 +109,7 @@ class ChainedSet extends Chainable {
    *
    *   for (let name of people) console.log(name)
    *   //=> first, sam, sue, merged
+   *
    */
   merge(arr) {
     const mergeable = toarr(arr)

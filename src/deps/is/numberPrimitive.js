@@ -30,5 +30,6 @@
  *  //=> false
  *  isNumberPrimitive(false)
  *  //=> false
+ *
  */
 module.exports = x => typeof x === 'number'

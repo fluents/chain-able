@@ -1,7 +1,13 @@
+const curry = require('../fp/curry')
+
 /**
- * first fn & second fn
+ * @desc first fn & second fn
+ * @name and
+ * @alias both
  * @memberOf conditional
  * @since  4.0.1
+ * @func
+ *
  * @param  {Function} left first fn
  * @param  {Function} right second fn
  * @return {boolean} both functions return truthy
@@ -20,4 +26,5 @@
  *    //=> false
  *
  */
-module.exports = (left, right) => x => left(x) && right(x)
+const and = (left, right) => x => left(x) && right(x)
+module.exports = curry(2, and)

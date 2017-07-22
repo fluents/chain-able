@@ -3,6 +3,22 @@ const isUndefined = require('../is/undefined')
 const lengthMinusOne = require('../util/lengthMinusOne')
 
 let cache
+
+/**
+ * @name dotPropSegments
+ * @since 4.0.0
+ * @memberOf dot
+ *
+ * @param  {string | Array<string>} path dot-prop-path
+ * @return {Array<string>} array path
+ *
+ * @example
+ *
+ *    dotPropSegments('eh.oh') //=> ['eh', 'oh']
+ *    dotPropSegments(['eh', 'oh']) //=> ['eh', 'oh']
+ *    dotPropSegments('ehoh') //=> ['ehoh']
+ *
+ */
 module.exports = path => {
   if (!cache) cache = new Map()
   if (cache.has(path)) return cache.get(path)

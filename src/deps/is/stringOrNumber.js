@@ -1,3 +1,4 @@
+const or = require('../conditional/or')
 const isString = require('./string')
 const isNumber = require('./number')
 
@@ -21,4 +22,4 @@ const isNumber = require('./number')
  * isString(1)
  * // => false
  */
-module.exports = x => isString(x) || isNumber(x)
+module.exports = or(isString, isNumber)

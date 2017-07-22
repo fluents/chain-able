@@ -8,8 +8,16 @@ const getOwnPropertySymbols = Object.getOwnPropertySymbols
  * @desc properties, property symbols, object keys
  *       ^ all again for prototype
  *
+ * @since 3.0.0
  * @param  {Object} obj object to get properties & symbols from
  * @return {Array<string>} properties
+ *
+ * only used in gc (as of 5.0.0-beta.4)
+ * @see deps/gc
+ * @see deps/utils/nonEnumerableTypes
+ * @see http://2ality.com/2011/07/js-properties.html
+ * @TODO https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptors
+ * `const getOwnPropertyDescriptors = Object.getOwnPropertyDescriptors`
  *
  * @example
  *    var obj = {key: true}
@@ -28,13 +36,20 @@ const getOwnPropertySymbols = Object.getOwnPropertySymbols
  *
  */
 function allProperties(obj) {
-  const proto = getPrototypeOf(obj)
-  return [].concat(
-    getOwnPropertyNames(obj),
-    getOwnPropertySymbols(obj),
-    ObjectKeys(obj),
-    proto ? allProperties(proto) : []
-  )
+  return getOwnPropertyNames(obj).concat(getOwnPropertySymbols(obj))
+
+  // const result = []
+  // for (const prop in obj) result.push(prop)
+  // return result
+
+  // flatten(getOwnPropertyNames, getOwnPropertySymbols)
+  // const proto = getPrototypeOf(obj)
+  // return [].concat(
+  //   getOwnPropertyNames(obj),
+  //   getOwnPropertySymbols(obj)
+  //   // ObjectKeys(obj),
+  //   // proto ? allProperties(proto) : []
+  // )
 }
 
 module.exports = allProperties

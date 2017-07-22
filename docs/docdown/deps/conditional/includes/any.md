@@ -5,21 +5,21 @@
 <!-- div -->
 
 ## `arrayHasAny`
-* <a href="#arrayHasAny">`arrayHasAny`</a>
+* <a href="#arrayHasAny"  data-meta="arrayHasAny needles undefined haystack undefined"  data-call="arrayHasAny needles undefined haystack undefined"  data-category="Methods"  data-description="Function"  data-name="arrayHasAny"  data-all="meta arrayHasAny needles undefined haystack undefined call arrayHasAny needles undefined haystack undefined category Methods description Function name arrayHasAny member see notes todos klassProps" >`arrayHasAny`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
 ## `includesAny`
-* <a href="#includesAny">`includesAny`</a>
+* <a href="#includesAny"  data-meta="includesAny needle undefined haystack undefined"  data-call="includesAny needle undefined haystack undefined"  data-category="Methods"  data-description="Function"  data-name="includesAny"  data-all="meta includesAny needle undefined haystack undefined call includesAny needle undefined haystack undefined category Methods description Function name includesAny member see notes todos klassProps" >`includesAny`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
 ## `strHasAny`
-* <a href="#strHasAny">`strHasAny`</a>
+* <a href="#strHasAny"  data-meta="strHasAny needle undefined haystack undefined"  data-call="strHasAny needle undefined haystack undefined"  data-category="Methods"  data-description="Function"  data-name="strHasAny"  data-all="meta strHasAny needle undefined haystack undefined call strHasAny needle undefined haystack undefined category Methods description Function name strHasAny member see notes todos klassProps" >`strHasAny`</a>
 
 <!-- /div -->
 
@@ -33,8 +33,10 @@
 
 <!-- div -->
 
-<h3 id="arrayHasAny"><a href="#arrayHasAny">#</a>&nbsp;<code>arrayHasAny(needles=undefined, haystack=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/any.js#L27 "View in source") [&#x24C9;][1]
+<h3 id="arrayHasAny" data-member="" data-category="Methods" data-name="arrayHasAny"><code>arrayHasAny(needles=undefined, haystack=undefined)</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/any.js#L26 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -57,8 +59,10 @@ Function
 
 <!-- div -->
 
-<h3 id="includesAny"><a href="#includesAny">#</a>&nbsp;<code>includesAny(needle=undefined, haystack=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/any.js#L47 "View in source") [&#x24C9;][1]
+<h3 id="includesAny" data-member="" data-category="Methods" data-name="includesAny"><code>includesAny(needle=undefined, haystack=undefined)</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/any.js#L52 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -69,6 +73,14 @@ Function
 #### Returns
 *(boolean)*:
 
+#### Example
+```js
+includesAny('eh', 'e') //=> true
+includesAny('eh', 'eh') //=> true
+includesAny(['eh'], 'e') //=> true
+includesAny(['eh'], 'nope') //=> false
+
+```
 ---
 
 <!-- /div -->
@@ -81,8 +93,10 @@ Function
 
 <!-- div -->
 
-<h3 id="strHasAny"><a href="#strHasAny">#</a>&nbsp;<code>strHasAny(needle=undefined, haystack=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/any.js#L9 "View in source") [&#x24C9;][1]
+<h3 id="strHasAny" data-member="" data-category="Methods" data-name="strHasAny"><code>strHasAny(needle=undefined, haystack=undefined)</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/any.js#L10 "View in source") [&#x24C9;][1]
 
 Function
 

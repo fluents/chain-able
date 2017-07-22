@@ -1,6 +1,6 @@
 {
   "name": "chain-able",
-  "version": "5.0.0",
+  "version": "5.0.0-beta.4",
   "description": "interfaces that describe their intentions.",
   "main:es6": "src/index.js",
   "main:dev": "dists/dev/index.js",
@@ -94,7 +94,9 @@
     "sourceMap": true,
     "instrument": false,
     "cache": false,
-    "include": ["./dist/**/*.js"],
+    "include": [
+      "./dist/**/*.js"
+    ],
     "exclude": [
       "_todos/**",
       "_play/**",
@@ -109,19 +111,28 @@
       "test-dist/built.js",
       "test-dist/chainsaw/*.js"
     ],
-    "_require": ["babel-register", "babel-core/register"],
+    "_require": [
+      "babel-register",
+      "babel-core/register"
+    ],
     "lines": 85,
     "statements": 85,
     "functions": 85,
     "branches": 70,
-    "extension": [".js"],
-    "reporter": ["lcov", "html", "text"]
+    "extension": [
+      ".js"
+    ],
+    "reporter": [
+      "lcov",
+      "html",
+      "text"
+    ]
   },
   "jest": {
     "transformIgnorePatterns": [
       "/node_modules/",
-      "/_",
-      "/examples",
+      "/_/",
+      "/examples/",
       "/src/deps/_r|meta|external|env|primitives/",
       "/src/deps/external/lodash/",
       "/src/deps/external/",
@@ -146,10 +157,18 @@
     "watch": false,
     "cache": true,
     "setupTestFrameworkScriptFile": "./test/__testsetup.js",
-    "collectCoverageFrom": ["src/**/*.js", "test/**/*.js"],
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "test/**/*.js"
+    ],
     "coveragePathIgnorePatterns": [
       "\\\\node_modules\\\\",
       "_modules",
+      "src/deps/to|string/*.js",
+      "src/deps/array/insertAtIndex.js",
+      "src/deps/conditional/eqeq.js",
+      "src/deps/traversers/stringify.js",
+      "src/plugins/getterOnSet.js",
       "src/deps/_r|meta|external|env|primitives",
       "src/deps/external/lodash",
       "src/deps/external",
@@ -161,6 +180,8 @@
       "src/deps/util/flatten|charCodeAtZero.js",
       "src/deps/is/class|node|stringOrNumber.js",
       "src/deps/reduce/objects.js",
+      "src/deps/fp/fp.js",
+      "src/deps/fp/index.js",
       "src/deps/symbols/index|species|spreadable.js",
       "src/deps/index|uniq|eqCurry|typeof|insert-at-index|nonEnumerableTypes.js",
       "src/compose/decorators.js",
@@ -170,11 +191,16 @@
       "src/plugins/index|plugins.js",
       "COMMENT/ignore-below-pass-along-indexes.COMMENT",
       "src/is|dopemerge|matcher|validators|encase|dot|includes|cache|compose|reduce/index.js",
-      "src/deps/is|dopemerge|matcher|validators|encase|dot|includes|cache|compose|reduce/index.js",
+      "src/deps/fp|is|dopemerge|matcher|validators|encase|dot|includes|cache|compose|reduce/index.js",
       "src/index.web.js",
       "src/index.js"
     ],
-    "coverageReporters": ["json", "text", "lcov", "clover"],
+    "coverageReporters": [
+      "json",
+      "text",
+      "lcov",
+      "clover"
+    ],
     "automock": false,
     "bail": false,
     "browser": false,
@@ -194,14 +220,22 @@
     ]
   },
   "ava": {
-    "files": ["!index.*.js", "test-dist/*.js"],
-    "source": ["dist/**", "!src/**/*"],
+    "files": [
+      "!index.*.js",
+      "test-dist/*.js"
+    ],
+    "source": [
+      "dist/**",
+      "!src/**/*"
+    ],
     "verbose": true,
     "concurrency": 3,
     "failFast": false,
     "failWithoutAssertions": false,
     "powerAssert": true,
-    "require": ["babel-core/register"],
+    "require": [
+      "babel-core/register"
+    ],
     "babel": "inherit"
   },
   "_optionalDependencies": {
@@ -209,9 +243,6 @@
     "memwatch-next": "^0.3.0"
   },
   "devDependencies": {
-    "humanize-url": "^1.0.1",
-    "humanize-string": "^1.0.1",
-    "string": "^3.3.3",
     "@types/node": "^7.0.31",
     "acorn": "^5.0.3",
     "acorn-dynamic-import": "^2.0.2",
@@ -248,17 +279,24 @@
     "funwithflags": "^1.0.2",
     "fuse-box": "2.2.0-beta.21",
     "gzip-size-cli": "^2.0.0",
+    "humanize-string": "^1.0.1",
+    "humanize-url": "^1.0.1",
     "immutable": "^3.8.1",
     "inspector-gadget": "^1.0.0",
     "jest": "^20.0.4",
     "jest-benchmark": "^0.0.0",
+    "js-beautify": "^1.6.14",
+    "jssmartcheck": "^0.2.3",
+    "jsverify": "^0.8.2",
     "lodash": "^4.17.4",
     "marked": "^0.3.6",
     "mobx": "^3.1.14",
     "module-alias": "^2.0.0",
     "nyc": "^10.3.2",
     "optimize-js": "^1.0.3",
+    "preact": "^8.2.1",
     "ramda": "^0.24.1",
+    "react": "^15.6.1",
     "rimraf": "^2.6.1",
     "rollup": "^0.43.0",
     "rollup-plugin-babili": "^3.0.0",
@@ -272,6 +310,7 @@
     "rollup-plugin-typescript2": "^0.4.4",
     "rollup-plugin-uglify": "^2.0.1",
     "script-chain": "^0.0.9",
+    "string": "^3.3.3",
     "traverse": "^0.6.6",
     "treeify": "^1.0.1",
     "tslint": "^5.4.3",

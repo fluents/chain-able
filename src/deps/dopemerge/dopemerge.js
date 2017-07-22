@@ -182,6 +182,7 @@ function deepmerge(target, source, optsArg) {
  * @param {*} opts dopemerge options
  * @return {Object | Array | any} merged
  *
+ * {@link https://github.com/lodash/lodash/blob/master/merge.js lodash-merge}
  * {@link https://github.com/KyleAMathews/deepmerge deepmerge}
  * @see {@link deepmerge}
  *

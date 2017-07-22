@@ -4,8 +4,8 @@
 
 <!-- div -->
 
-## `reduce.prototype`
-* <a href="#reduce-prototype-exports">`reduce.prototype.exports`</a>
+## `reduce`
+* <a href="#reduce-prototype-exports"  data-meta="exports obj undefined"  data-call="exports obj undefined"  data-category="Methods"  data-description="Function goes through the maps and the map values reduces them to array then to an object using the reduced values"  data-name="exports"  data-member="reduce"  data-see="href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js"  data-todos="seems to be overkill with reducing mapping just copy ignore or delete"  data-all="meta exports obj undefined call exports obj undefined category Methods description Function goes through the maps and the map values reduces them to array then to an object using the reduced values name exports member reduce see href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js notes todos seems to be overkill with reducing mapping just copy ignore or delete n klassProps" >`reduce.exports`</a>
 
 <!-- /div -->
 
@@ -15,19 +15,26 @@
 
 <!-- div -->
 
-## `reduce.prototype`
+## `reduce`
 
 <!-- div -->
 
-<h3 id="reduce-prototype-exports"><a href="#reduce-prototype-exports">#</a>&nbsp;<code>reduce.prototype.exports(obj=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/reduce/clean.js#L39 "View in source") [&#x24C9;][1]
+<h3 id="reduce-prototype-exports" data-member="reduce" data-category="Methods" data-name="exports"><code>reduce.exports(obj=undefined)</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/reduce/clean.js#L47 "View in source") [&#x24C9;][1]
 
 (Function): goes through the maps, and the map values, reduces them to array then to an object using the reduced values
 
 
-### @see 
+#### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/reduce/clean.js">fluents/chain able/blob/master/src/deps/reduce/clean.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/reduce/clean.js" >fluents/chain able/blob/master/src/deps/reduce/clean.js</a>
+
+#### @todos 
+
+- [ ] seems to be overkill with reducing mapping just copy & ignore or delete?
+ 
 #### Arguments
 1. `obj=undefined` *(Object): object to clean, usually .entries()*
 
@@ -57,4 +64,4 @@ clean(map.entries())
 
 <!-- /div -->
 
- [1]: #reduce.prototype "Jump back to the TOC."
+ [1]: #reduce "Jump back to the TOC."

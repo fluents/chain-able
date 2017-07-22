@@ -1,3 +1,5 @@
+const replace = require('../fp/replace')
+const pipe = require('../fp/pipeTwo')
 const escapeStringRegExp = require('./escape-string-regex')
 
 /**
@@ -18,4 +20,4 @@ const escapeStringRegExp = require('./escape-string-regex')
  *    => 'eh'
  *
  */
-module.exports = str => escapeStringRegExp(str).replace(/\\\*/g, '.*')
+module.exports = pipe(escapeStringRegExp, replace(/\\\*/g, '.*'))

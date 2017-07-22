@@ -4,8 +4,8 @@
 
 <!-- div -->
 
-## `is.prototype`
-* <a href="#is-prototype-isReal">`is.prototype.isReal`</a>
+## `is`
+* <a href="#is-prototype-isReal"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Methods"  data-description="Function"  data-name="isReal"  data-member="is"  data-see="href https github com fluents chain able blob master src deps is null js label fluents chain able blob master src deps is null js href https github com fluents chain able blob master src deps is undefined js label fluents chain able blob master src deps is undefined js"  data-notes="eslint disable next line no self compare x x"  data-all="meta exports x undefined call exports x undefined category Methods description Function name isReal member is see href https github com fluents chain able blob master src deps is null js label fluents chain able blob master src deps is null js href https github com fluents chain able blob master src deps is undefined js label fluents chain able blob master src deps is undefined js notes eslint disable next line no self compare n x x n todos klassProps" >`is.isReal`</a>
 
 <!-- /div -->
 
@@ -15,32 +15,35 @@
 
 <!-- div -->
 
-## `is.prototype`
+## `is`
 
 <!-- div -->
 
-<h3 id="is-prototype-isReal"><a href="#is-prototype-isReal">#</a>&nbsp;<code>is.prototype.exports(x=undefined)</code></h3>
+<h3 id="is-prototype-isReal" data-member="is" data-category="Methods" data-name="isReal"><code>is.exports(x=undefined)</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/real.js#L51 "View in source") [&#x24C9;][1]
 
 Function
 
 
-### @see 
+#### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/null.js">fluents/chain able/blob/master/src/deps/is/null.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/undefined.js">fluents/chain able/blob/master/src/deps/is/undefined.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/null.js" >fluents/chain able/blob/master/src/deps/is/null.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/undefined.js" >fluents/chain able/blob/master/src/deps/is/undefined.js</a>
 
-### @notes 
+#### @notes 
 
 * eslint-disable-next-line no-self-compare
       && x !== x
  
 
-### @extends
+#### @extends
 
 
 
-#### Since
+
+#### @Since
 3.0.0
 
 #### Arguments
@@ -85,4 +88,4 @@ isReal(1)
 
 <!-- /div -->
 
- [1]: #is.prototype "Jump back to the TOC."
+ [1]: #is "Jump back to the TOC."

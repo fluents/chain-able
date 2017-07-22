@@ -96,16 +96,18 @@ module.exports = class Traverser extends ChainedMapBase {
     // diff between keys and val is order of arg in ^ tester
     const matcher = matchFactory(keys, vals)
 
-    /* istanbul-ignore next: debug */
+    /* istanbul ignore next: debug */
     if (ENV_DEBUG) {
       console.log('matcher for traverse...', keys, vals)
     }
 
     // bound to the traverser
     traverse(result).forEach(function(key, x, traverser) {
-      if (traverser.isRoot) return
-      if (matcher(key, x)) {
-        /* istanbul-ignore next: debug */
+      if (traverser.isRoot) {
+        // nothing
+      }
+      else if (matcher(key, x)) {
+        /* istanbul ignore next: debug */
         if (ENV_DEBUG) {
           console.log('------- match ------- ', key, x)
         }
@@ -113,7 +115,7 @@ module.exports = class Traverser extends ChainedMapBase {
         onMatch(x, traverser)
       }
       else if (onNonMatch) {
-        /* istanbul-ignore next: debug */
+        /* istanbul ignore next: debug */
         if (ENV_DEBUG) {
           console.log('------- NONmatch ------- ', key, x)
         }

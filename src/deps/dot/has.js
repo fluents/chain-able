@@ -2,6 +2,24 @@ const isObj = require('../is/obj')
 const getPathSegments = require('./segments')
 const isDottable = require('./dottable')
 
+/**
+ * @name dot.has
+ * @memberOf dot
+ * @func
+ * @since 3.0.0
+ * @extends dot/getPathSegments
+ *
+ * @param  {Object} obj the object to retrieve the nested property from.
+ * @param  {Dottable | string | Array} path dot-prop-path to use
+ * @return {boolean} has at path
+ *
+ * @example
+ *
+ *    dot.has({a: {b: 2}}, 'a.b'); //=> true
+ *    dot.has({a: {b: 2}}, ['a', 'b']); //=> true
+ *    dot.has({c: {b: 2}}, ['a', 'b']); //=> undefined
+ *
+ */
 module.exports = function dotHas(obj, path) {
   if (!isDottable(obj, path)) {
     return false
