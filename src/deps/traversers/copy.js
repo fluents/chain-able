@@ -3,6 +3,7 @@ const isRegExp = require('../is/regexp')
 const isError = require('../is/error')
 const isDate = require('../is/date')
 const isArray = require('../is/array')
+const newRegExp = require('../construct/regexp')
 const ENV_DEBUG = require('../env/debug')
 
 /* prettier-ignore */
@@ -68,6 +69,7 @@ module.exports = function copy(src) {
     if (isArray(src)) {
       dst = []
     }
+    // @TODO also would just be isPrimitive
     // was new date(src.getTime())
     // || isBoolean(src) || isNumber(src) || isString(src)
     else if (isDate(src)) {
@@ -75,13 +77,15 @@ module.exports = function copy(src) {
     }
     else if (isRegExp(src)) {
       // dst = new RegExp(src)
-      dst = new RegExp(src.src, src.toString().match(/[^/]*$/)[0])
+      dst = newRegExp(src.src, src.toString().match(/[^/]*$/)[0])
+      // dst = new RegExp(src.src, src.toString().match(/[^/]*$/)[0])
       dst.lastIndex = src.lastIndex
     }
-    else if (isError(src)) {
-      dst = new Error(src.message)
-      dst.stack = src.stack
-    }
+    // @TODO this should just be handled by the next condition...
+    // else if (isError(src)) {
+    //   dst = new Error(src.message)
+    //   dst.stack = src.stack
+    // }
     else {
       dst = Object.create(Object.getPrototypeOf(src))
     }

@@ -1,10 +1,35 @@
+/* istanbul ignore: WIP */
 const ObjectKeys = require('../util/keys')
 const isMap = require('../is/map')
 const isFalse = require('../is/false')
 const reduce = require('../reduce')
 const dopemerge = require('./dopemerge')
 
-function dopemergeMap(obj1, obj2) {
+/**
+ * merge maps & sets
+ * @memberOf dopemerge
+ *
+ * @param  {Map | Set} obj1 merge with 2
+ * @param  {Map | Set} obj2 merge with 1
+ * @return {Map | Set} merged
+ *
+ * @TODO easy clone
+ *
+ * @example
+ *
+ *   var targetMap = new Map()
+ *   targetMap.set('true', false)
+ *   targetMap.set('obj', {obj: []})
+ *   targetMap.set('arr', [1])
+ *   var srcMap = new Map()
+ *   srcMap.set('true', true)
+ *   srcMap.set('obj', {obj: [Symbol]})
+ *   srcMap.set('arr', [2])
+ *   srcMap.set('emptyArr', [])
+ *   var mergedMap = dopemergeMap(targetMap, srcMap, {clone: true})
+ *
+ */
+module.exports = function dopemergeMap(obj1, obj2) {
   const oneIsMap = isMap(obj1)
   const twoIsMap = isMap(obj2)
 
@@ -45,15 +70,3 @@ function dopemergeMap(obj1, obj2) {
 
   return dest
 }
-
-// test
-var targetMap = new Map()
-targetMap.set('true', false)
-targetMap.set('obj', {obj: []})
-targetMap.set('arr', [1])
-var srcMap = new Map()
-srcMap.set('true', true)
-srcMap.set('obj', {obj: [Symbol]})
-srcMap.set('arr', [2])
-srcMap.set('emptyArr', [])
-var mergedMap = dopemergeMap(targetMap, srcMap, {clone: true})

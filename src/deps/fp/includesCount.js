@@ -23,6 +23,7 @@ const toTest = x => y => x.test(y)
 // const newRegExp = (source) => new RegExp(source)
 const toRegExp = pipe(esc, newRegExp, toTest)
 
+// @TODO could have `method` for curring with .flip .invoke
 const split = invoke('_', 'split')
 const filter = invoke('_', 'filter')
 
@@ -70,5 +71,6 @@ function getIncludesCount(haystack, needle) {
   }
 }
 
+// curry for 2 args, pipe result through to .length - 1
 const getIncludesThenLength = pipe(getIncludesCount, lengthMinusOne)
 module.exports = curry(2, getIncludesThenLength)

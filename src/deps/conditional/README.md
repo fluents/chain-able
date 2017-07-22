@@ -2,6 +2,7 @@ things like some utils like `not` and such can go in here
 
 maybe also have `lib` for lodash style things?
 
+@TODO `none`
 
 // @NOTE: there is no need for enum, just `|`, could use `==`
 // this way we could also just do ==

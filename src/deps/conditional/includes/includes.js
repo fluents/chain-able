@@ -1,8 +1,28 @@
 const curry = require('../../fp/curry')
 
-// .curry for .reverse on this?
-// @see https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Bitwise_NOT
-// ~haystack.indexOf(needle)
+/**
+ * @memberOf includes
+ * @name includes
+ * @func
+ *
+ * @param  {Array | string} haystack haystack includes needle
+ * @param  {string | *} needle needle in haystack
+ * @return {boolean} needle in haystack
+ *
+ * @TODO `~haystack.indexOf(needle)`
+ *
+ * {@link https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Bitwise_NOT mozilla-bitwise-not}
+ * @see {@link mozilla-bitwise-not}
+ * @see conditional/includes/flipped
+ *
+ * @example
+ *
+ *    includes('eh', 'e')      //=> true
+ *    includes('eh', 'nope')   //=> false
+ *    includes(['eh'], 'eh')   //=> true
+ *    includes(['eh'], 'nope') //=> false
+ *
+ */
 const includes = (haystack, needle) => haystack.includes(needle)
 
 module.exports = curry(2, includes)

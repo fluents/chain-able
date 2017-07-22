@@ -9,6 +9,7 @@ const toS = require('./toS')
  * @param {Object | *} x value to check if isArguments
  * @return {boolean} isArguments
  *
+ * @see is/toS
  * @name isArguments
  * @func
  *
