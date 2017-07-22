@@ -5,14 +5,14 @@
 <!-- div -->
 
 ## `ChainedMapBase`
-* <a href="#ChainedMapBase-prototype-ComposeChainedMapBase"  data-meta="Chainable ComposeChainedMapBase"  data-call="ComposeChainedMapBase"  data-category="Chainable"  data-description="Chainable this is to avoid circular requires because MergeChain MethodChain extend this yet method merge use those chains also it serves as a non references creator for extending new instances of Chainable where it splits into Map Set composed prototype decorators"  data-name="ComposeChainedMapBase"  data-member="ChainedMapBase"  data-klassProps="meta meta fn store main store"  data-all="meta Chainable n n ComposeChainedMapBase call ComposeChainedMapBase category Chainable description Chainable this is to avoid circular requires nbecause MergeChain MethodChain extend this nyet method merge use those chains n also it serves as a non references creator for extending new instances of Chainable where it splits into Map Set composed prototype decorators name ComposeChainedMapBase member ChainedMapBase see notes todos klassProps meta meta fn n store main store n" >`ChainedMapBase.ComposeChainedMapBase`</a>
+* <a href="#ChainedMapBase-prototype-ComposeChainedMapBase"  data-meta="Chainable ComposeChainedMapBase"  data-call="ComposeChainedMapBase"  data-category="Chainable"  data-description="Chainable this is to avoid circular requires because MergeChain MethodChain extend this yet method merge use those chains also it serves as a non references creator for extending new instances of Chainable where it splits into Map Set composed prototype decorators"  data-name="ComposeChainedMapBase"  data-member="ChainedMapBase"  data-see="href https ponyfoo com articles es6 maps in depth label pony map href https developer mozilla org en docs Web JavaScript Reference Global Objects Map label mozilla map href https github com fluents chain able search utf8 E2 9C 93 q https tc39 github io ecma262 sec map objects type label emca map href https github com fluents chain able blob master src ChainedMap js label ChainedMap href https github com fluents chain able blob master src Chainable js label Chainable href https github com fluents chain able blob master src MergeChain js label MergeChain href https github com fluents chain able blob master src MethodChain js label MethodChain href https github com fluents chain able blob master src ChainedMap js label ChainedMap"  data-klassProps="meta meta fn store main store"  data-all="meta Chainable n n ComposeChainedMapBase call ComposeChainedMapBase category Chainable description Chainable this is to avoid circular requires nbecause MergeChain MethodChain extend this nyet method merge use those chains n also it serves as a non references creator for extending new instances of Chainable where it splits into Map Set composed prototype decorators name ComposeChainedMapBase member ChainedMapBase see href https ponyfoo com articles es6 maps in depth label pony map href https developer mozilla org en docs Web JavaScript Reference Global Objects Map label mozilla map href https github com fluents chain able search utf8 E2 9C 93 q https tc39 github io ecma262 sec map objects type label emca map href https github com fluents chain able blob master src ChainedMap js label ChainedMap href https github com fluents chain able blob master src Chainable js label Chainable href https github com fluents chain able blob master src MergeChain js label MergeChain href https github com fluents chain able blob master src MethodChain js label MethodChain href https github com fluents chain able blob master src ChainedMap js label ChainedMap notes todos klassProps meta meta fn n store main store n" >`ChainedMapBase.ComposeChainedMapBase`</a>
 * <a href="#ChainedMapBase-prototype-compose"  data-meta="cmc Target Chainable"  data-call="cmc Target Chainable"  data-category="Properties"  data-description="Composer ChainedMapBase composer"  data-name="compose"  data-member="ChainedMapBase"  data-all="meta cmc Target Chainable call cmc Target Chainable category Properties description Composer ChainedMapBase composer name compose member ChainedMapBase see notes todos klassProps" >`ChainedMapBase.compose`</a>
-* <a href="#ChainedMapBase-prototype-entries"  data-meta="entries chains false"  data-call="entries chains false"  data-category="Methods"  data-description="Function spreads the entries from ChainedMapBase store Map return store entries plus all chain properties if they exist"  data-name="entries"  data-member="ChainedMapBase"  data-all="meta entries chains false call entries chains false category Methods description Function spreads the entries from ChainedMapBase store Map return store entries plus all chain properties if they exist name entries member ChainedMapBase see notes todos klassProps" >`ChainedMapBase.entries`</a>
+* <a href="#ChainedMapBase-prototype-entries"  data-meta="entries chains false"  data-call="entries chains false"  data-category="Methods"  data-description="Function spreads the entries from ChainedMapBase store Map return store entries plus all chain properties if they exist"  data-name="entries"  data-member="ChainedMapBase"  data-see="href https developer mozilla org en US docs Web JavaScript Reference Global Objects Map entries label mozilla map entries"  data-all="meta entries chains false call entries chains false category Methods description Function spreads the entries from ChainedMapBase store Map return store entries plus all chain properties if they exist name entries member ChainedMapBase see href https developer mozilla org en US docs Web JavaScript Reference Global Objects Map entries label mozilla map entries notes todos klassProps" >`ChainedMapBase.entries`</a>
 * <a href="#ChainedMapBase-prototype-extend"  data-meta="extend methods undefined"  data-call="extend methods undefined"  data-category="Methods"  data-description="Function shorthand methods from strings to functions that call set"  data-name="extend"  data-member="ChainedMapBase"  data-all="meta extend methods undefined call extend methods undefined category Methods description Function shorthand methods from strings to functions that call set name extend member ChainedMapBase see notes todos klassProps" >`ChainedMapBase.extend`</a>
 * <a href="#ChainedMapBase-prototype-from"  data-meta="from obj undefined"  data-call="from obj undefined"  data-category="Methods"  data-description="Function checks each property of the object calls the chains accordingly"  data-name="from"  data-member="ChainedMapBase"  data-todos="could also add parsing stringified"  data-all="meta from obj undefined call from obj undefined category Methods description Function checks each property of the object calls the chains accordingly name from member ChainedMapBase see notes todos could also add parsing stringified n klassProps" >`ChainedMapBase.from`</a>
-* <a href="#ChainedMapBase-prototype-get"  data-meta="get key undefined"  data-call="get key undefined"  data-category="Methods"  data-description="Function get value for key path in the Map store debug is a special key and is not included into store it goes onto meta"  data-name="get"  data-member="ChainedMapBase"  data-all="meta get key undefined call get key undefined category Methods description Function get value for key path in the Map store debug is a special key and is not included into store it goes onto meta name get member ChainedMapBase see notes todos klassProps" >`ChainedMapBase.get`</a>
-* <a href="#ChainedMapBase-prototype-set"  data-meta="set key undefined value undefined"  data-call="set key undefined value undefined"  data-category="Methods"  data-description="Function sets the value using the key on store adds or updates an element with a specified key and value"  data-name="set"  data-member="ChainedMapBase"  data-all="meta set key undefined value undefined call set key undefined value undefined category Methods description Function sets the value using the key on store adds or updates an element with a specified key and value name set member ChainedMapBase see notes todos klassProps" >`ChainedMapBase.set`</a>
-* <a href="#ChainedMapBase-prototype-tap"  data-meta="tap name undefined fn undefined"  data-call="tap name undefined fn undefined"  data-category="Methods"  data-description="Function tap a value with a function"  data-name="tap"  data-member="ChainedMapBase"  data-all="meta tap name undefined fn undefined call tap name undefined fn undefined category Methods description Function tap a value with a function name tap member ChainedMapBase see notes todos klassProps" >`ChainedMapBase.tap`</a>
+* <a href="#ChainedMapBase-prototype-get"  data-meta="get key undefined"  data-call="get key undefined"  data-category="Methods"  data-description="Function get value for key path in the Map store debug is a special key and is not included into store it goes onto meta"  data-name="get"  data-member="ChainedMapBase"  data-see="href https developer mozilla org en US docs Web JavaScript Reference Global Objects Map get label mozilla map get"  data-all="meta get key undefined call get key undefined category Methods description Function get value for key path in the Map store debug is a special key and is not included into store it goes onto meta name get member ChainedMapBase see href https developer mozilla org en US docs Web JavaScript Reference Global Objects Map get label mozilla map get notes todos klassProps" >`ChainedMapBase.get`</a>
+* <a href="#ChainedMapBase-prototype-set"  data-meta="set key undefined value undefined"  data-call="set key undefined value undefined"  data-category="Methods"  data-description="Function sets the value using the key on store adds or updates an element with a specified key and value"  data-name="set"  data-member="ChainedMapBase"  data-see="href https developer mozilla org en US docs Web JavaScript Reference Global Objects Map set label mozilla map set href https github com fluents chain able search utf8 E2 9C 93 q ChainedMapBase store type label ChainedMapBase store"  data-all="meta set key undefined value undefined call set key undefined value undefined category Methods description Function sets the value using the key on store adds or updates an element with a specified key and value name set member ChainedMapBase see href https developer mozilla org en US docs Web JavaScript Reference Global Objects Map set label mozilla map set href https github com fluents chain able search utf8 E2 9C 93 q ChainedMapBase store type label ChainedMapBase store notes todos klassProps" >`ChainedMapBase.set`</a>
+* <a href="#ChainedMapBase-prototype-tap"  data-meta="tap name undefined fn undefined"  data-call="tap name undefined fn undefined"  data-category="Methods"  data-description="Function tap a value with a function"  data-name="tap"  data-member="ChainedMapBase"  data-see="href https github com webpack tapable label tapable href https github com fluents chain able search utf8 E2 9C 93 q ChainedMapBase set type label ChainedMapBase set href https github com fluents chain able search utf8 E2 9C 93 q ChainedMapBase get type label ChainedMapBase get"  data-all="meta tap name undefined fn undefined call tap name undefined fn undefined category Methods description Function tap a value with a function name tap member ChainedMapBase see href https github com webpack tapable label tapable href https github com fluents chain able search utf8 E2 9C 93 q ChainedMapBase set type label ChainedMapBase set href https github com fluents chain able search utf8 E2 9C 93 q ChainedMapBase get type label ChainedMapBase get notes todos klassProps" >`ChainedMapBase.tap`</a>
 
 <!-- /div -->
 
@@ -40,6 +40,17 @@ because MergeChain & MethodChain extend this
 yet .method & .merge use those chains
 ...also, it serves as a non-references creator for extending new instances of Chainable, where it splits into *(Map | Set)* -> composed prototype decorators
 
+
+#### @see 
+
+* <a href="https://ponyfoo.com/articles/es6-maps-in-depth" >pony-map</a>
+* <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map" >mozilla-map</a>
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=https://tc39.github.io/ecma262/#sec-map-objects&type=" >emca-map</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/ChainedMap.js" >ChainedMap</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/Chainable.js" >Chainable</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/MergeChain.js" >MergeChain</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/MethodChain.js" >MethodChain</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/ChainedMap.js" >ChainedMap</a>
 
 #### @classProps 
 
@@ -96,6 +107,10 @@ hehchain instanceof heh
 
 (Function): spreads the entries from ChainedMapBase.store *(Map)* return store.entries, plus all chain properties if they exist
 
+
+#### @see 
+
+* <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/entries" >mozilla-map-entries</a>
 
 #### @Since
 0.4.0
@@ -200,6 +215,10 @@ eq(from, eh)
 (Function): get value for key path in the Map store ❗ `debug` is a special key and is *not* included into .store it goes onto .meta
 
 
+#### @see 
+
+* <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/get" >mozilla-map-get</a>
+
 #### @Since
 0.4.0
 
@@ -234,6 +253,11 @@ chain.get('nope')
 (Function): sets the value using the key on store adds or updates an element with a specified key and value
 
 
+#### @see 
+
+* <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/set" >mozilla-map-set</a>
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=ChainedMapBase.store&type=" >ChainedMapBase.store</a>
+
 #### @Since
 0.4.0
 
@@ -265,6 +289,12 @@ chain.get('eh')
 
 (Function): tap a value with a function
 
+
+#### @see 
+
+* <a href="https://github.com/webpack/tapable" >tapable</a>
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=ChainedMapBase.set&type=" >ChainedMapBase.set</a>
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=ChainedMapBase.get&type=" >ChainedMapBase.get</a>
 
 #### @Since
 4.0.0-alpha.1 <- moved from transform & shorthands

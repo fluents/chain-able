@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `MethodChain`
-* <a href="#MethodChain-prototype-exports"  data-meta="exports parentToDecorate undefined"  data-call="exports parentToDecorate undefined"  data-category="Methods"  data-description="Function decorates a parent when the argument is provided BUT THE FUNCTIONS WILL STILL BE SCOPED TO CURRENT PARENT for easy factory chaining"  data-name="exports"  data-member="MethodChain"  data-see="href https github com fluents chain able blob master src MethodChain js label fluents chain able blob master src method chain js"  data-todos="this is more like a preset since it adds plugins more of methodFactory now"  data-all="meta exports parentToDecorate undefined call exports parentToDecorate undefined category Methods description Function decorates a parent when the argument is provided nBUT THE FUNCTIONS WILL STILL BE SCOPED TO CURRENT PARENT nfor easy factory chaining name exports member MethodChain see href https github com fluents chain able blob master src MethodChain js label fluents chain able blob master src method chain js notes todos this is more like a preset since it adds plugins n more of methodFactory now n klassProps" >`MethodChain.exports`</a>
+* <a href="#MethodChain-prototype-exports"  data-meta="exports parentToDecorate undefined"  data-call="exports parentToDecorate undefined"  data-category="Methods"  data-description="Function decorates a parent when the argument is provided BUT THE FUNCTIONS WILL STILL BE SCOPED TO CURRENT PARENT for easy factory chaining"  data-name="exports"  data-member="MethodChain"  data-see="href https github com fluents chain able blob master src MethodChain js label MethodChain"  data-todos="this is more like a preset since it adds plugins more of methodFactory now"  data-all="meta exports parentToDecorate undefined call exports parentToDecorate undefined category Methods description Function decorates a parent when the argument is provided nBUT THE FUNCTIONS WILL STILL BE SCOPED TO CURRENT PARENT nfor easy factory chaining name exports member MethodChain see href https github com fluents chain able blob master src MethodChain js label MethodChain notes todos this is more like a preset since it adds plugins n more of methodFactory now n klassProps" >`MethodChain.exports`</a>
 
 <!-- /div -->
 
@@ -31,7 +31,7 @@ for easy factory chaining
 
 #### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/MethodChain.js" >fluents/chain able/blob/master/src/method chain.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/MethodChain.js" >MethodChain</a>
 
 #### @todos 
 

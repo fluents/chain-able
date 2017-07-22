@@ -5,8 +5,8 @@
 <!-- div -->
 
 ## `TransformChain`
-* <a href="#TransformChain-prototype-"  data-meta="ChainedMap"  data-category="Chainable"  data-description="Map"  data-member="TransformChain"  data-all="meta ChainedMap n call category Chainable description Map name member TransformChain see notes todos klassProps" >`TransformChain.`</a>
-* <a href="#TransformChain-prototype-remap"  data-meta="remap from undefined to undefined"  data-call="remap from undefined to undefined"  data-category="Methods"  data-description="Function remap properties from 1 to another for example apis with inconsistent naming"  data-name="remap"  data-member="TransformChain"  data-all="meta n remap from undefined to undefined call remap from undefined to undefined category Methods description Function remap properties from 1 to another for example apis with inconsistent naming name remap member TransformChain see notes todos klassProps" >`TransformChain.remap`</a>
+* <a href="#TransformChain-prototype-"  data-meta="ChainedMap"  data-category="Chainable"  data-description="Map"  data-member="TransformChain"  data-see="href https github com fluents chain able blob master src deps traverse js label deps traverse href https github com fluents chain able blob master src TraverseChain js label TraverseChain"  data-all="meta ChainedMap n call category Chainable description Map name member TransformChain see href https github com fluents chain able blob master src deps traverse js label deps traverse href https github com fluents chain able blob master src TraverseChain js label TraverseChain notes todos klassProps" >`TransformChain.`</a>
+* <a href="#TransformChain-prototype-remap"  data-meta="remap from undefined to undefined"  data-call="remap from undefined to undefined"  data-category="Methods"  data-description="Function remap properties from 1 to another for example apis with inconsistent naming"  data-name="remap"  data-member="TransformChain"  data-see="href https github com fluents chain able search utf8 E2 9C 93 q TransformChain transform type label TransformChain transform"  data-all="meta n remap from undefined to undefined call remap from undefined to undefined category Methods description Function remap properties from 1 to another for example apis with inconsistent naming name remap member TransformChain see href https github com fluents chain able search utf8 E2 9C 93 q TransformChain transform type label TransformChain transform notes todos klassProps" >`TransformChain.remap`</a>
 * <a href="#TransformChain-prototype-set"  data-meta="set key undefined val undefined dotPropKey undefined"  data-call="set key undefined val undefined dotPropKey undefined"  data-category="Methods"  data-description="Function"  data-name="set"  data-member="TransformChain"  data-all="meta set key undefined val undefined dotPropKey undefined call set key undefined val undefined dotPropKey undefined category Methods description Function name set member TransformChain see notes todos klassProps" >`TransformChain.set`</a>
 * <a href="#TransformChain-prototype-transform"  data-meta="transform key undefined value undefined"  data-call="transform key undefined value undefined"  data-category="Methods"  data-description="Function"  data-name="transform"  data-member="TransformChain"  data-todos="dot prop here"  data-all="meta transform key undefined value undefined call transform key undefined value undefined category Methods description Function name transform member TransformChain see notes todos dot prop here n klassProps" >`TransformChain.transform`</a>
 
@@ -22,7 +22,7 @@
 <!-- div -->
 
 ## `traverse`
-* <a href="#traverse"  data-meta="traverse useThis false"  data-call="traverse useThis false"  data-category="Methods"  data-description="Function traverse this or this entries"  data-name="traverse"  data-all="meta traverse useThis false call traverse useThis false category Methods description Function traverse this or this entries name traverse member see notes todos klassProps" >`traverse`</a>
+* <a href="#traverse"  data-meta="traverse useThis false"  data-call="traverse useThis false"  data-category="Methods"  data-description="Function traverse this or this entries"  data-name="traverse"  data-see="href https github com fluents chain able blob master src TraverseChain js label TraverseChain href https github com fluents chain able search utf8 E2 9C 93 q js traverse type label js traverse"  data-all="meta traverse useThis false call traverse useThis false category Methods description Function traverse this or this entries name traverse member see href https github com fluents chain able blob master src TraverseChain js label TraverseChain href https github com fluents chain able search utf8 E2 9C 93 q js traverse type label js traverse notes todos klassProps" >`traverse`</a>
 
 <!-- /div -->
 
@@ -46,6 +46,11 @@
 Map
 
 
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js" >deps/traverse</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/TraverseChain.js" >TraverseChain</a>
+
 #### @symb 
 
 🤖 
@@ -67,6 +72,10 @@ ChainedMap
 
 (Function): remap properties from `1` to another, for example, apis with inconsistent naming
 
+
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=TransformChain.transform&type=" >TransformChain.transform</a>
 
 #### @symb 
 
@@ -112,6 +121,10 @@ chain
 
 Function
 
+
+#### @see 
+
+* <a href="undefined" ></a>
 
 #### @Since
 1.0.0
@@ -231,6 +244,11 @@ compose(class {})
 
 (Function): traverse `this`, or `this.entries`
 
+
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/blob/master/src/TraverseChain.js" >TraverseChain</a>
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=js-traverse&type=" >js-traverse</a>
 
 #### @Since
 1.0.2

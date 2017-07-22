@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is`
-* <a href="#is-prototype-isNotEmptyArray"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Methods"  data-description="Function value is an Array with at least 1 value"  data-name="isNotEmptyArray"  data-member="is"  data-see="href https github com fluents chain able blob master src deps is objWithKeys js label fluents chain able blob master src deps is obj with keys js href https github com fluents chain able blob master src deps is array js label fluents chain able blob master src deps is array js"  data-all="meta exports x undefined call exports x undefined category Methods description Function value is an Array with at least 1 value name isNotEmptyArray member is see href https github com fluents chain able blob master src deps is objWithKeys js label fluents chain able blob master src deps is obj with keys js href https github com fluents chain able blob master src deps is array js label fluents chain able blob master src deps is array js notes todos klassProps" >`is.isNotEmptyArray`</a>
+* <a href="#is-prototype-isNotEmptyArray"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Methods"  data-description="Function value is an Array with at least 1 value"  data-name="isNotEmptyArray"  data-member="is"  data-see="href https github com fluents chain able blob master src deps is objWithKeys js label is objWithKeys href https github com fluents chain able blob master src deps is array js label is array"  data-all="meta exports x undefined call exports x undefined category Methods description Function value is an Array with at least 1 value name isNotEmptyArray member is see href https github com fluents chain able blob master src deps is objWithKeys js label is objWithKeys href https github com fluents chain able blob master src deps is array js label is array notes todos klassProps" >`is.isNotEmptyArray`</a>
 
 <!-- /div -->
 
@@ -29,8 +29,8 @@
 
 #### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/objWithKeys.js" >fluents/chain able/blob/master/src/deps/is/obj with keys.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/array.js" >fluents/chain able/blob/master/src/deps/is/array.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/objWithKeys.js" >is/objWithKeys</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/array.js" >is/array</a>
 
 #### @extends
 

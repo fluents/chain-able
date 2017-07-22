@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `uniqFilter`
-* <a href="#uniqFilter"  data-meta="uniqFilter value undefined index undefined arr undefined"  data-call="uniqFilter value undefined index undefined arr undefined"  data-category="Methods"  data-description="Function"  data-name="uniqFilter"  data-see="href https developer mozilla org en US docs Web JavaScript Reference Global Objects Array filter label Developer mozilla org en us docs web java script reference global objects array filter"  data-all="meta uniqFilter value undefined index undefined arr undefined call uniqFilter value undefined index undefined arr undefined category Methods description Function name uniqFilter member see href https developer mozilla org en US docs Web JavaScript Reference Global Objects Array filter label Developer mozilla org en us docs web java script reference global objects array filter notes todos klassProps" >`uniqFilter`</a>
+* <a href="#uniqFilter"  data-meta="uniqFilter value undefined index undefined arr undefined"  data-call="uniqFilter value undefined index undefined arr undefined"  data-category="Methods"  data-description="Function"  data-name="uniqFilter"  data-see="href https developer mozilla org en US docs Web JavaScript Reference Global Objects Array filter label mozilla array filter"  data-all="meta uniqFilter value undefined index undefined arr undefined call uniqFilter value undefined index undefined arr undefined category Methods description Function name uniqFilter member see href https developer mozilla org en US docs Web JavaScript Reference Global Objects Array filter label mozilla array filter notes todos klassProps" >`uniqFilter`</a>
 
 <!-- /div -->
 
@@ -29,7 +29,7 @@ Function
 
 #### @see 
 
-* <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter" >Developer.mozilla.org/en us/docs/web/java script/reference/global objects/array/filter</a>
+* <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter" >mozilla-array-filter</a>
 
 #### @Since
 0.1.0

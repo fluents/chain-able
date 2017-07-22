@@ -19,6 +19,7 @@ const eqValue = require('./eqValue')
  * @version 5.0.0
  * @memberOf Traverse
  *
+ * {@link http://dorey.github.io/JavaScript-Equality-Table/ js-equality-table}
  * {@link https://github.com/facebook/react/blob/master/src/__mocks__/deepDiffer.js react-deep-differ}
  * {@link https://github.com/substack/js-traverse/blob/master/test/lib/deep_equal.js traverse-deep-equal}
  * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L1183 underscore-equal}
@@ -27,6 +28,7 @@ const eqValue = require('./eqValue')
  * {@link http://ramdajs.com/docs/#equals ramda-equals}
  * {@link https://github.com/substack/node-deep-equal node-deep-equal}
  * {@link https://github.com/facebook/immutable-js/blob/master/src/utils/deepEqual.js immutable-js-deep-equal}
+ * @see {@link js-equality-table}
  * @see {@link immutable-js-deep-equal}
  * @see {@link node-deep-equal}
  * @see {@link ramda-equals}

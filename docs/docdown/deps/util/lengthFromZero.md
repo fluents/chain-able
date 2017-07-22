@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `util`
-* <a href="#util-prototype-lengthFromZero"  data-meta="lengthFromZero obj undefined"  data-call="lengthFromZero obj undefined"  data-category="Methods"  data-description="Function when length 1 use length 1 otherwise when length 1 use 0 default use length"  data-name="lengthFromZero"  data-member="util"  data-see="href https github com fluents chain able blob master src deps util length js label fluents chain able blob master src deps util length js href https github com fluents chain able blob master src deps util lengthMinusOne js label fluents chain able blob master src deps util length minus one js"  data-todos="lense to use an object or transform it to one with length const len prop length when isObj use len otherwise value const coerceLength lense isObj len"  data-all="meta lengthFromZero obj undefined call lengthFromZero obj undefined category Methods description Function when length 1 use length 1 notherwise when length 1 use 0 ndefault use length name lengthFromZero member util see href https github com fluents chain able blob master src deps util length js label fluents chain able blob master src deps util length js href https github com fluents chain able blob master src deps util lengthMinusOne js label fluents chain able blob master src deps util length minus one js notes todos lense to use an object or transform it to one with length n const len prop length n when isObj use len otherwise value n const coerceLength lense isObj len n klassProps" >`util.lengthFromZero`</a>
+* <a href="#util-prototype-lengthFromZero"  data-meta="lengthFromZero obj undefined"  data-call="lengthFromZero obj undefined"  data-category="Methods"  data-description="Function when length 1 use length 1 otherwise when length 1 use 0 default use length"  data-name="lengthFromZero"  data-member="util"  data-see="href https github com fluents chain able blob master src deps util length js label util length href https github com fluents chain able blob master src deps util lengthMinusOne js label util lengthMinusOne"  data-todos="lense to use an object or transform it to one with length const len prop length when isObj use len otherwise value const coerceLength lense isObj len"  data-all="meta lengthFromZero obj undefined call lengthFromZero obj undefined category Methods description Function when length 1 use length 1 notherwise when length 1 use 0 ndefault use length name lengthFromZero member util see href https github com fluents chain able blob master src deps util length js label util length href https github com fluents chain able blob master src deps util lengthMinusOne js label util lengthMinusOne notes todos lense to use an object or transform it to one with length n const len prop length n when isObj use len otherwise value n const coerceLength lense isObj len n klassProps" >`util.lengthFromZero`</a>
 
 <!-- /div -->
 
@@ -31,8 +31,8 @@ default, use length
 
 #### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/util/length.js" >fluents/chain able/blob/master/src/deps/util/length.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/util/lengthMinusOne.js" >fluents/chain able/blob/master/src/deps/util/length minus one.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/util/length.js" >util/length</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/util/lengthMinusOne.js" >util/lengthMinusOne</a>
 
 #### @todos 
 

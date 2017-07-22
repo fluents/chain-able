@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `exports`
-* <a href="#exports"  data-meta="exports key undefined value undefined longest undefined"  data-call="exports key undefined value undefined longest undefined"  data-category="Methods"  data-description="Function gathers dot prop from any value with a prefixed base key"  data-name="exports"  data-see="href https github com fluents chain able blob master src deps traverse js label fluents chain able blob master src deps traverse js"  data-notes="had onlyLongest asString but can just join to match"  data-todos="should build a trie if doing this"  data-all="meta exports key undefined value undefined longest undefined call exports key undefined value undefined longest undefined category Methods description Function gathers dot prop from any value with a prefixed base key name exports member see href https github com fluents chain able blob master src deps traverse js label fluents chain able blob master src deps traverse js notes had onlyLongest asString but can just join to match n todos should build a trie if doing this n klassProps" >`exports`</a>
+* <a href="#exports"  data-meta="exports key undefined value undefined longest undefined"  data-call="exports key undefined value undefined longest undefined"  data-category="Methods"  data-description="Function gathers dot prop from any value with a prefixed base key"  data-name="exports"  data-see="href https github com fluents chain able blob master src deps traverse js label deps traverse"  data-notes="had onlyLongest asString but can just join to match"  data-todos="should build a trie if doing this"  data-all="meta exports key undefined value undefined longest undefined call exports key undefined value undefined longest undefined category Methods description Function gathers dot prop from any value with a prefixed base key name exports member see href https github com fluents chain able blob master src deps traverse js label deps traverse notes had onlyLongest asString but can just join to match n todos should build a trie if doing this n klassProps" >`exports`</a>
 
 <!-- /div -->
 
@@ -29,7 +29,7 @@
 
 #### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js" >fluents/chain able/blob/master/src/deps/traverse.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js" >deps/traverse</a>
 
 #### @notes 
 

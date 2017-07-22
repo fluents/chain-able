@@ -12,21 +12,21 @@
 <!-- div -->
 
 ## `addTypes`
-* <a href="#addTypes"  data-meta="addTypes types undefined"  data-call="addTypes types undefined"  data-category="Methods"  data-description="Function add custom types for validation"  data-name="addTypes"  data-all="meta addTypes types undefined call addTypes types undefined category Methods description Function add custom types for validation name addTypes member see notes todos klassProps" >`addTypes`</a>
+* <a href="#addTypes"  data-meta="addTypes types undefined"  data-call="addTypes types undefined"  data-category="Methods"  data-description="Function add custom types for validation"  data-name="addTypes"  data-see="href https github com fluents chain able search utf8 E2 9C 93 q deps validators validatorFactory type label deps validators validatorFactory"  data-all="meta addTypes types undefined call addTypes types undefined category Methods description Function add custom types for validation name addTypes member see href https github com fluents chain able search utf8 E2 9C 93 q deps validators validatorFactory type label deps validators validatorFactory notes todos klassProps" >`addTypes`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
 ## `arithmeticTypeFactory`
-* <a href="#arithmeticTypeFactory"  data-meta="arithmeticTypeFactory fullKey undefined"  data-call="arithmeticTypeFactory fullKey undefined"  data-category="types"  data-description="Function transform arithmetic strings into types"  data-name="arithmeticTypeFactory"  data-todos="coercing values to certain types arithmeticTypeFactory value"  data-all="meta arithmeticTypeFactory fullKey undefined call arithmeticTypeFactory fullKey undefined category types description Function transform arithmetic strings into types name arithmeticTypeFactory member see notes todos coercing values to certain types arithmeticTypeFactory value n klassProps" >`arithmeticTypeFactory`</a>
+* <a href="#arithmeticTypeFactory"  data-meta="arithmeticTypeFactory fullKey undefined"  data-call="arithmeticTypeFactory fullKey undefined"  data-category="types"  data-description="Function transform arithmetic strings into types"  data-name="arithmeticTypeFactory"  data-see="href https github com fluents chain able blob master src deps expressions bitwiseMathOperator js label is"  data-todos="coercing values to certain types arithmeticTypeFactory value"  data-all="meta arithmeticTypeFactory fullKey undefined call arithmeticTypeFactory fullKey undefined category types description Function transform arithmetic strings into types name arithmeticTypeFactory member see href https github com fluents chain able blob master src deps expressions bitwiseMathOperator js label is notes todos coercing values to certain types arithmeticTypeFactory value n klassProps" >`arithmeticTypeFactory`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
 ## `builder`
-* <a href="#builder"  data-meta="builder fullKey undefined"  data-call="builder fullKey undefined"  data-category="types"  data-description="Function pattern builder builds using multiple factories depending on conditons or abstractFactory whatever opinionated if it s a function it s a validator"  data-name="builder"  data-notes="if else is for uglifying ternaries even though else if is not needed if key is number iterating the array"  data-all="meta builder fullKey undefined call builder fullKey undefined category types description Function pattern builder builds using multiple factories depending on conditons or abstractFactory whatever opinionated if it s a function it s a validator name builder member see notes if else is for uglifying ternaries even though else if is not needed n if key is number iterating the array n todos klassProps" >`builder`</a>
+* <a href="#builder"  data-meta="builder fullKey undefined"  data-call="builder fullKey undefined"  data-category="types"  data-description="Function pattern builder builds using multiple factories depending on conditons or abstractFactory whatever opinionated if it s a function it s a validator"  data-name="builder"  data-see="href https developer mozilla org en docs Web JavaScript Reference Functions Default parameters label https developer mozilla org en docs Web JavaScript Reference Functions Default parameters"  data-notes="if else is for uglifying ternaries even though else if is not needed if key is number iterating the array"  data-all="meta builder fullKey undefined call builder fullKey undefined category types description Function pattern builder builds using multiple factories depending on conditons or abstractFactory whatever opinionated if it s a function it s a validator name builder member see href https developer mozilla org en docs Web JavaScript Reference Functions Default parameters label https developer mozilla org en docs Web JavaScript Reference Functions Default parameters notes if else is for uglifying ternaries even though else if is not needed n if key is number iterating the array n todos klassProps" >`builder`</a>
 
 <!-- /div -->
 
@@ -78,6 +78,10 @@
 
 (Function): add custom types for validation
 
+
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=deps/validators/validatorFactory&type=" >deps/validators/validatorFactory</a>
 #### Arguments
 1. `types=undefined` *(Object)*: custom Types
 
@@ -127,6 +131,10 @@ new Chain().methods('eh').type('*').build().eh
 
 (Function): transform arithmetic strings into types
 
+
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/expressions/bitwiseMathOperator.js" >is</a>
 
 #### @todos 
 
@@ -192,6 +200,10 @@ arithmeticTypeFactory('===')
 
 (Function): @pattern @builder -> builds using multiple factories depending on conditons or abstractFactory whatever opinionated: if it's a function, it's a validator...
 
+
+#### @see 
+
+* <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Default_parameters" >https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Default_parameters</a>
 
 #### @notes 
 

@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is`
-* <a href="#is-prototype-isUndefined"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Lang"  data-description="Function Checks if value is undefined"  data-name="isUndefined"  data-member="is"  data-see="href https github com fluents chain able blob master src deps is nullOrUndefined js label fluents chain able blob master src deps is null or undefined js"  data-all="meta exports x undefined call exports x undefined category Lang description Function Checks if value is undefined name isUndefined member is see href https github com fluents chain able blob master src deps is nullOrUndefined js label fluents chain able blob master src deps is null or undefined js notes todos klassProps" >`is.isUndefined`</a>
+* <a href="#is-prototype-isUndefined"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Lang"  data-description="Function Checks if value is undefined"  data-name="isUndefined"  data-member="is"  data-see="href https github com fluents chain able blob master src deps is nullOrUndefined js label is nullOrUndefined href https github com infernojs inferno blob master packages inferno shared src index ts L57 label https github com infernojs inferno blob master packages inferno shared src index ts L57"  data-all="meta exports x undefined call exports x undefined category Lang description Function Checks if value is undefined name isUndefined member is see href https github com fluents chain able blob master src deps is nullOrUndefined js label is nullOrUndefined href https github com infernojs inferno blob master packages inferno shared src index ts L57 label https github com infernojs inferno blob master packages inferno shared src index ts L57 notes todos klassProps" >`is.isUndefined`</a>
 
 <!-- /div -->
 
@@ -29,7 +29,8 @@
 
 #### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/nullOrUndefined.js" >fluents/chain able/blob/master/src/deps/is/null or undefined.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/nullOrUndefined.js" >is/nullOrUndefined</a>
+* <a href="https://github.com/infernojs/inferno/blob/master/packages/inferno-shared/src/index.ts#L57" >https://github.com/infernojs/inferno/blob/master/packages/inferno-shared/src/index.ts#L57</a>
 
 #### @Since
 4.0.0-alpha.1

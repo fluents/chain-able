@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `exports`
-* <a href="#exports"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Lang"  data-description="Function Checks if value is classified as a RegExp object"  data-name="exports"  data-all="meta exports x undefined call exports x undefined category Lang description Function Checks if value is classified as a RegExp object name exports member see notes todos klassProps" >`exports`</a>
+* <a href="#exports"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Lang"  data-description="Function Checks if value is classified as a RegExp object"  data-name="exports"  data-see="href https github com lodash lodash blob master isRegExp js label https github com lodash lodash blob master isRegExp js"  data-all="meta exports x undefined call exports x undefined category Lang description Function Checks if value is classified as a RegExp object name exports member see href https github com lodash lodash blob master isRegExp js label https github com lodash lodash blob master isRegExp js notes todos klassProps" >`exports`</a>
 
 <!-- /div -->
 
@@ -26,6 +26,10 @@
 
 (Function): Checks if `value` is classified as a `RegExp` object.
 
+
+#### @see 
+
+* <a href="https://github.com/lodash/lodash/blob/master/isRegExp.js" >https://github.com/lodash/lodash/blob/master/isRegExp.js</a>
 
 #### @Since
 0.1.0

@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is`
-* <a href="#is-prototype-isBrowser"  data-meta="isBrowser"  data-call="isBrowser"  data-category="Methods"  data-description="Function check typeof window"  data-name="isBrowser"  data-member="is"  data-all="meta isBrowser call isBrowser category Methods description Function check typeof window name isBrowser member is see notes todos klassProps" >`is.isBrowser`</a>
+* <a href="#is-prototype-isBrowser"  data-meta="isBrowser"  data-call="isBrowser"  data-category="Methods"  data-description="Function check typeof window"  data-name="isBrowser"  data-member="is"  data-see="href https github com fluents chain able search utf8 E2 9C 93 q utils localGlobal type label utils localGlobal"  data-all="meta isBrowser call isBrowser category Methods description Function check typeof window name isBrowser member is see href https github com fluents chain able search utf8 E2 9C 93 q utils localGlobal type label utils localGlobal notes todos klassProps" >`is.isBrowser`</a>
 
 <!-- /div -->
 
@@ -26,6 +26,10 @@
 
 (Function): check typeof window
 
+
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=utils/localGlobal&type=" >utils/localGlobal</a>
 
 #### @extends
 

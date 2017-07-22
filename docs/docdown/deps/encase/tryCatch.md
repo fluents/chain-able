@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `encase`
-* <a href="#encase-prototype-exports"  data-meta="exports call undefined"  data-call="exports call undefined"  data-category="Methods"  data-description="Function"  data-name="exports"  data-member="encase"  data-todos="could curry"  data-all="meta exports call undefined call exports call undefined category Methods description Function name exports member encase see notes todos could curry n klassProps" >`encase.exports`</a>
+* <a href="#encase-prototype-exports"  data-meta="exports call undefined"  data-call="exports call undefined"  data-category="Methods"  data-description="Function"  data-name="exports"  data-member="encase"  data-see="href https github com fluture js Fluture encase label https github com fluture js Fluture encase"  data-todos="could curry"  data-all="meta exports call undefined call exports call undefined category Methods description Function name exports member encase see href https github com fluture js Fluture encase label https github com fluture js Fluture encase notes todos could curry n klassProps" >`encase.exports`</a>
 
 <!-- /div -->
 
@@ -26,6 +26,10 @@
 
 Function
 
+
+#### @see 
+
+* <a href="https://github.com/fluture-js/Fluture#encase" >https://github.com/fluture-js/Fluture#encase</a>
 
 #### @todos 
 

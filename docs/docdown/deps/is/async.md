@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is`
-* <a href="#is-prototype-isAsync"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Lang"  data-description="Function"  data-name="isAsync"  data-member="is"  data-see="href https github com fluents chain able blob master src deps is toS js label fluents chain able blob master src deps is to s js"  data-all="meta exports x undefined call exports x undefined category Lang description Function name isAsync member is see href https github com fluents chain able blob master src deps is toS js label fluents chain able blob master src deps is to s js notes todos klassProps" >`is.isAsync`</a>
+* <a href="#is-prototype-isAsync"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Lang"  data-description="Function"  data-name="isAsync"  data-member="is"  data-see="href https github com fluents chain able blob master src deps is toS js label is toS"  data-all="meta exports x undefined call exports x undefined category Lang description Function name isAsync member is see href https github com fluents chain able blob master src deps is toS js label is toS notes todos klassProps" >`is.isAsync`</a>
 
 <!-- /div -->
 
@@ -29,7 +29,7 @@ Function
 
 #### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/toS.js" >fluents/chain able/blob/master/src/deps/is/to s.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/toS.js" >is/toS</a>
 
 #### @Since
 4.0.0-beta.2

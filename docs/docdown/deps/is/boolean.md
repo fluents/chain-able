@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is`
-* <a href="#is-prototype-isBoolean"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Lang"  data-description="Function Checks if value is classified as a boolean primitive OR object"  data-name="isBoolean"  data-member="is"  data-see="href https github com fluents chain able blob master src deps is toS js label fluents chain able blob master src deps is to s js"  data-all="meta n n exports x undefined call exports x undefined category Lang description Function Checks if value is classified as a boolean primitive OR object name isBoolean member is see href https github com fluents chain able blob master src deps is toS js label fluents chain able blob master src deps is to s js notes todos klassProps" >`is.isBoolean`</a>
+* <a href="#is-prototype-isBoolean"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Lang"  data-description="Function Checks if value is classified as a boolean primitive OR object"  data-name="isBoolean"  data-member="is"  data-see="href https github com fluents chain able blob master src deps is toS js label is toS"  data-all="meta n n exports x undefined call exports x undefined category Lang description Function Checks if value is classified as a boolean primitive OR object name isBoolean member is see href https github com fluents chain able blob master src deps is toS js label is toS notes todos klassProps" >`is.isBoolean`</a>
 
 <!-- /div -->
 
@@ -29,7 +29,7 @@
 
 #### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/toS.js" >fluents/chain able/blob/master/src/deps/is/to s.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/toS.js" >is/toS</a>
 
 #### @extends 
 

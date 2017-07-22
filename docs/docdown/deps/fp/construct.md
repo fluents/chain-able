@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `fp`
-* <a href="#fp-prototype-"  data-meta="constructN n undefined Klass undefined Number"  data-call="constructN n undefined Klass undefined"  data-category="Function"  data-description="Function Wraps a constructor function inside a curried function that can be called with the same arguments and returns the same type The arity of the function returned is specified to allow using variadic constructor functions"  data-member="fp"  data-see="href https github com ramda ramda blob master src constructN js label ramda ramda blob master src construct n js"  data-all="meta n n constructN n undefined Klass undefined n Number call constructN n undefined Klass undefined category Function description Function Wraps a constructor function inside a curried function that can be called nwith the same arguments and returns the same type The arity of the function nreturned is specified to allow using variadic constructor functions name member fp see href https github com ramda ramda blob master src constructN js label ramda ramda blob master src construct n js notes todos klassProps" >`fp.`</a>
+* <a href="#fp-prototype-"  data-meta="constructN n undefined Klass undefined Number"  data-call="constructN n undefined Klass undefined"  data-category="Function"  data-description="Function Wraps a constructor function inside a curried function that can be called with the same arguments and returns the same type The arity of the function returned is specified to allow using variadic constructor functions"  data-member="fp"  data-see="href https github com ramda ramda blob master src constructN js label ramda construct href https github com fluents chain able search utf8 E2 9C 93 q isNumberPrimitive type label isNumberPrimitive"  data-all="meta n n constructN n undefined Klass undefined n Number call constructN n undefined Klass undefined category Function description Function Wraps a constructor function inside a curried function that can be called nwith the same arguments and returns the same type The arity of the function nreturned is specified to allow using variadic constructor functions name member fp see href https github com ramda ramda blob master src constructN js label ramda construct href https github com fluents chain able search utf8 E2 9C 93 q isNumberPrimitive type label isNumberPrimitive notes todos klassProps" >`fp.`</a>
 
 <!-- /div -->
 
@@ -31,7 +31,8 @@ returned is specified to allow using variadic constructor functions.
 
 #### @see 
 
-* <a href="https://github.com/ramda/ramda/blob/master/src/constructN.js" >ramda/ramda/blob/master/src/construct n.js</a>
+* <a href="https://github.com/ramda/ramda/blob/master/src/constructN.js" >ramda-construct</a>
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=isNumberPrimitive&type=" >isNumberPrimitive</a>
 
 #### @sig 
 

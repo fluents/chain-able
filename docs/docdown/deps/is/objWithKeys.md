@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is`
-* <a href="#is-prototype-isObjWithKeys"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Methods"  data-description="Function"  data-name="isObjWithKeys"  data-member="is"  data-see="href https github com fluents chain able blob master src deps is obj js label fluents chain able blob master src deps is obj js href https github com fluents chain able blob master src deps is objWithKeys js label fluents chain able blob master src deps is obj with keys js href https github com fluents chain able blob master src deps is null js label fluents chain able blob master src deps is null js"  data-todos="NOTE need to be more careful needs to check for vanilla objects not native ones since e g Error has no keys"  data-all="meta exports x undefined call exports x undefined category Methods description Function name isObjWithKeys member is see href https github com fluents chain able blob master src deps is obj js label fluents chain able blob master src deps is obj js href https github com fluents chain able blob master src deps is objWithKeys js label fluents chain able blob master src deps is obj with keys js href https github com fluents chain able blob master src deps is null js label fluents chain able blob master src deps is null js notes todos NOTE need to be more careful needs to check for vanilla objects not native ones since e g Error has no keys n klassProps" >`is.isObjWithKeys`</a>
+* <a href="#is-prototype-isObjWithKeys"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Methods"  data-description="Function"  data-name="isObjWithKeys"  data-member="is"  data-see="href https github com fluents chain able blob master src deps is obj js label is obj href https github com fluents chain able blob master src deps is objWithKeys js label is objWithKeys href https github com fluents chain able search utf8 E2 9C 93 q is objStrict type label is objStrict href https github com fluents chain able blob master src deps is null js label is null"  data-todos="NOTE need to be more careful needs to check for vanilla objects not native ones since e g Error has no keys"  data-all="meta exports x undefined call exports x undefined category Methods description Function name isObjWithKeys member is see href https github com fluents chain able blob master src deps is obj js label is obj href https github com fluents chain able blob master src deps is objWithKeys js label is objWithKeys href https github com fluents chain able search utf8 E2 9C 93 q is objStrict type label is objStrict href https github com fluents chain able blob master src deps is null js label is null notes todos NOTE need to be more careful needs to check for vanilla objects not native ones since e g Error has no keys n klassProps" >`is.isObjWithKeys`</a>
 
 <!-- /div -->
 
@@ -29,9 +29,10 @@ Function
 
 #### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/obj.js" >fluents/chain able/blob/master/src/deps/is/obj.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/objWithKeys.js" >fluents/chain able/blob/master/src/deps/is/obj with keys.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/null.js" >fluents/chain able/blob/master/src/deps/is/null.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/obj.js" >is/obj</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/objWithKeys.js" >is/objWithKeys</a>
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=is/objStrict&type=" >is/objStrict</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/null.js" >is/null</a>
 
 #### @todos 
 

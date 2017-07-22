@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is`
-* <a href="#is-prototype-isObj"  data-meta="exports value undefined"  data-call="exports value undefined"  data-category="Lang"  data-description="Function"  data-name="isObj"  data-member="is"  data-notes="Object prototype toString call val object Object"  data-all="meta exports value undefined call exports value undefined category Lang description Function name isObj member is see notes Object prototype toString call val object Object n todos klassProps" >`is.isObj`</a>
+* <a href="#is-prototype-isObj"  data-meta="exports value undefined"  data-call="exports value undefined"  data-category="Lang"  data-description="Function"  data-name="isObj"  data-member="is"  data-see="href http stackoverflow com questions 34111902 why do lodashs isobject isplainobject behave differently than typeof x label http stackoverflow com questions 34111902 why do lodashs isobject isplainobject behave differently than typeof x href https github com lodash lodash blob master isObject js label https github com lodash lodash blob master isObject js"  data-notes="Object prototype toString call val object Object"  data-all="meta exports value undefined call exports value undefined category Lang description Function name isObj member is see href http stackoverflow com questions 34111902 why do lodashs isobject isplainobject behave differently than typeof x label http stackoverflow com questions 34111902 why do lodashs isobject isplainobject behave differently than typeof x href https github com lodash lodash blob master isObject js label https github com lodash lodash blob master isObject js notes Object prototype toString call val object Object n todos klassProps" >`is.isObj`</a>
 
 <!-- /div -->
 
@@ -26,6 +26,11 @@
 
 Function
 
+
+#### @see 
+
+* <a href="http://stackoverflow.com/questions/34111902/why-do-lodashs-isobject-isplainobject-behave-differently-than-typeof-x" >http://stackoverflow.com/questions/34111902/why-do-lodashs-isobject-isplainobject-behave-differently-than-typeof-x</a>
+* <a href="https://github.com/lodash/lodash/blob/master/isObject.js" >https://github.com/lodash/lodash/blob/master/isObject.js</a>
 
 #### @notes 
 

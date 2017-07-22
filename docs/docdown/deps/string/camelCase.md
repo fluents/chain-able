@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `exports`
-* <a href="#exports"  data-meta="exports str undefined"  data-call="exports str undefined"  data-category="Methods"  data-description="Function camelCase"  data-name="exports"  data-todos="s charAt 0 toLowerCase string slice 1"  data-all="meta n exports str undefined call exports str undefined category Methods description Function camelCase name exports member see notes todos s charAt 0 toLowerCase string slice 1 n klassProps" >`exports`</a>
+* <a href="#exports"  data-meta="exports str undefined"  data-call="exports str undefined"  data-category="Methods"  data-description="Function camelCase"  data-name="exports"  data-see="href https stackoverflow com questions 1533131 what useful bitwise operator code tricks should a developer know about label https stackoverflow com questions 1533131 what useful bitwise operator code tricks should a developer know about"  data-todos="s charAt 0 toLowerCase string slice 1"  data-all="meta n exports str undefined call exports str undefined category Methods description Function camelCase name exports member see href https stackoverflow com questions 1533131 what useful bitwise operator code tricks should a developer know about label https stackoverflow com questions 1533131 what useful bitwise operator code tricks should a developer know about notes todos s charAt 0 toLowerCase string slice 1 n klassProps" >`exports`</a>
 
 <!-- /div -->
 
@@ -32,6 +32,10 @@
 
 (Function): camelCase
 
+
+#### @see 
+
+* <a href="https://stackoverflow.com/questions/1533131/what-useful-bitwise-operator-code-tricks-should-a-developer-know-about" >https://stackoverflow.com/questions/1533131/what-useful-bitwise-operator-code-tricks-should-a-developer-know-about</a>
 
 #### @todos 
 

@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `fp`
-* <a href="#fp-prototype-"  data-meta="exports fn undefined a b c z b a c z"  data-call="exports fn undefined"  data-category="Function"  data-description="Function flip the fn args br Creates a function that invokes func with arguments reversed"  data-member="fp"  data-see="href https github com ramda ramda blob master src flip js label ramda ramda blob master src flip js href https github com lodash lodash blob 4 2 1 npm packages lodash flip index js label lodash lodash blob 4 2 1 npm packages lodash flip index js href https github com fluents chain able blob master src deps fp reverse js label fluents chain able blob master src deps fp reverse js"  data-todos="could also just call with fn apply b a and have flipN"  data-all="meta n exports fn undefined n a b c z b a c z call exports fn undefined category Function description Function flip the fn args br Creates a function that invokes func with arguments reversed name member fp see href https github com ramda ramda blob master src flip js label ramda ramda blob master src flip js href https github com lodash lodash blob 4 2 1 npm packages lodash flip index js label lodash lodash blob 4 2 1 npm packages lodash flip index js href https github com fluents chain able blob master src deps fp reverse js label fluents chain able blob master src deps fp reverse js notes todos could also just call with fn apply b a and have flipN n klassProps" >`fp.`</a>
+* <a href="#fp-prototype-"  data-meta="exports fn undefined a b c z b a c"  data-call="exports fn undefined"  data-category="Function"  data-description="Function flip the fn args br Creates a function that invokes func with arguments reversed"  data-member="fp"  data-see="href https github com ramda ramda blob master src flip js label ramda flip href https github com lodash lodash blob 4 2 1 npm packages lodash flip index js label lodash flip href https github com fluents chain able blob master src deps fp reverse js label fp reverse"  data-todos="could also just call with fn apply b a and have flipN"  data-all="meta n exports fn undefined n a b c z b a c call exports fn undefined category Function description Function flip the fn args br Creates a function that invokes func with arguments reversed name member fp see href https github com ramda ramda blob master src flip js label ramda flip href https github com lodash lodash blob 4 2 1 npm packages lodash flip index js label lodash flip href https github com fluents chain able blob master src deps fp reverse js label fp reverse notes todos could also just call with fn apply b a and have flipN n klassProps" >`fp.`</a>
 
 <!-- /div -->
 
@@ -34,9 +34,9 @@
 
 #### @see 
 
-* <a href="https://github.com/ramda/ramda/blob/master/src/flip.js" >ramda/ramda/blob/master/src/flip.js</a>
-* <a href="https://github.com/lodash/lodash/blob/4.2.1-npm-packages/lodash.flip/index.js" >lodash/lodash/blob/4.2.1 npm packages/lodash.flip/index.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/fp/reverse.js" >fluents/chain able/blob/master/src/deps/fp/reverse.js</a>
+* <a href="https://github.com/ramda/ramda/blob/master/src/flip.js" >ramda-flip</a>
+* <a href="https://github.com/lodash/lodash/blob/4.2.1-npm-packages/lodash.flip/index.js" >lodash-flip</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/fp/reverse.js" >fp/reverse</a>
 
 #### @todos 
 

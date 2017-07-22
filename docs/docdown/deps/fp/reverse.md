@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `fp`
-* <a href="#fp-prototype-"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="List"  data-description="Function Returns a new list or string with the elements or characters in reverse order"  data-member="fp"  data-see="href https github com ramda ramda blob master src reverse js label ramda ramda blob master src reverse js href https stackoverflow com a 26610963 2855712 label a 26610963 2855712"  data-all="meta n exports x undefined call exports x undefined category List description Function Returns a new list or string with the elements or characters in reverse norder name member fp see href https github com ramda ramda blob master src reverse js label ramda ramda blob master src reverse js href https stackoverflow com a 26610963 2855712 label a 26610963 2855712 notes todos klassProps" >`fp.`</a>
+* <a href="#fp-prototype-"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="List"  data-description="Function Returns a new list or string with the elements or characters in reverse order"  data-member="fp"  data-see="href https github com ramda ramda blob master src reverse js label ramda reverse href https stackoverflow com a 26610963 2855712 label stack overflow 10 ways to reverse string"  data-all="meta n exports x undefined call exports x undefined category List description Function Returns a new list or string with the elements or characters in reverse norder name member fp see href https github com ramda ramda blob master src reverse js label ramda reverse href https stackoverflow com a 26610963 2855712 label stack overflow 10 ways to reverse string notes todos klassProps" >`fp.`</a>
 
 <!-- /div -->
 
@@ -30,8 +30,8 @@ order.
 
 #### @see 
 
-* <a href="https://github.com/ramda/ramda/blob/master/src/reverse.js" >ramda/ramda/blob/master/src/reverse.js</a>
-* <a href="https://stackoverflow.com/a/26610963/2855712" >a/26610963/2855712</a>
+* <a href="https://github.com/ramda/ramda/blob/master/src/reverse.js" >ramda-reverse</a>
+* <a href="https://stackoverflow.com/a/26610963/2855712" >stack-overflow-10-ways-to-reverse-string</a>
 
 #### @symb 
 

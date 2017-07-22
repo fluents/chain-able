@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is`
-* <a href="#is-prototype-isObjNotNull"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Methods"  data-description="Function"  data-name="isObjNotNull"  data-member="is"  data-see="href https github com fluents chain able blob master src deps is obj js label fluents chain able blob master src deps is obj js href https github com fluents chain able blob master src deps is objWithKeys js label fluents chain able blob master src deps is obj with keys js href https github com fluents chain able blob master src deps is objTypeof js label fluents chain able blob master src deps is obj typeof js href https github com fluents chain able blob master src deps is null js label fluents chain able blob master src deps is null js href https github com sindresorhus is obj blob master index js label sindresorhus is obj blob master index js href https github com lodash lodash blob master isObjectLike js label lodash lodash blob master is object like js"  data-todos="Array isArray"  data-all="meta exports x undefined call exports x undefined category Methods description Function name isObjNotNull member is see href https github com fluents chain able blob master src deps is obj js label fluents chain able blob master src deps is obj js href https github com fluents chain able blob master src deps is objWithKeys js label fluents chain able blob master src deps is obj with keys js href https github com fluents chain able blob master src deps is objTypeof js label fluents chain able blob master src deps is obj typeof js href https github com fluents chain able blob master src deps is null js label fluents chain able blob master src deps is null js href https github com sindresorhus is obj blob master index js label sindresorhus is obj blob master index js href https github com lodash lodash blob master isObjectLike js label lodash lodash blob master is object like js notes todos Array isArray n klassProps" >`is.isObjNotNull`</a>
+* <a href="#is-prototype-isObjNotNull"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Methods"  data-description="Function"  data-name="isObjNotNull"  data-member="is"  data-see="href https github com fluents chain able blob master src deps is obj js label is obj href https github com fluents chain able blob master src deps is objWithKeys js label is objWithKeys href https github com fluents chain able blob master src deps is objTypeof js label is objTypeof href https github com fluents chain able blob master src deps is null js label is null href https github com sindresorhus is obj blob master index js label is obj href https github com lodash lodash blob master isObjectLike js label lodash is object like"  data-todos="Array isArray"  data-all="meta exports x undefined call exports x undefined category Methods description Function name isObjNotNull member is see href https github com fluents chain able blob master src deps is obj js label is obj href https github com fluents chain able blob master src deps is objWithKeys js label is objWithKeys href https github com fluents chain able blob master src deps is objTypeof js label is objTypeof href https github com fluents chain able blob master src deps is null js label is null href https github com sindresorhus is obj blob master index js label is obj href https github com lodash lodash blob master isObjectLike js label lodash is object like notes todos Array isArray n klassProps" >`is.isObjNotNull`</a>
 
 <!-- /div -->
 
@@ -29,12 +29,12 @@ Function
 
 #### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/obj.js" >fluents/chain able/blob/master/src/deps/is/obj.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/objWithKeys.js" >fluents/chain able/blob/master/src/deps/is/obj with keys.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/objTypeof.js" >fluents/chain able/blob/master/src/deps/is/obj typeof.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/null.js" >fluents/chain able/blob/master/src/deps/is/null.js</a>
-* <a href="https://github.com/sindresorhus/is-obj/blob/master/index.js" >sindresorhus/is obj/blob/master/index.js</a>
-* <a href="https://github.com/lodash/lodash/blob/master/isObjectLike.js" >lodash/lodash/blob/master/is object like.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/obj.js" >is/obj</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/objWithKeys.js" >is/objWithKeys</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/objTypeof.js" >is/objTypeof</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/null.js" >is/null</a>
+* <a href="https://github.com/sindresorhus/is-obj/blob/master/index.js" >is-obj</a>
+* <a href="https://github.com/lodash/lodash/blob/master/isObjectLike.js" >lodash-is-object-like</a>
 
 #### @todos 
 

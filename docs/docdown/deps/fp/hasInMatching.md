@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is`
-* <a href="#is-prototype-hasInMatching"  data-meta="hasInMatching predicate undefined obj undefined prop undefined"  data-call="hasInMatching predicate undefined obj undefined prop undefined"  data-category="Methods"  data-description="Function isIn hasIn and also allows a predicate matcher specification"  data-name="hasInMatching"  data-member="is"  data-todos="surely would be better with focusing on a prop then applying predicate lense s is it better in fp or is needs some definitions"  data-all="meta n n hasInMatching predicate undefined obj undefined prop undefined call hasInMatching predicate undefined obj undefined prop undefined category Methods description Function isIn hasIn and also allows a predicate matcher specification name hasInMatching member is see notes todos surely would be better with focusing on a prop then applying predicate lense s n is it better in fp or is needs some definitions n klassProps" >`is.hasInMatching`</a>
+* <a href="#is-prototype-hasInMatching"  data-meta="hasInMatching predicate undefined obj undefined prop undefined"  data-call="hasInMatching predicate undefined obj undefined prop undefined"  data-category="Methods"  data-description="Function isIn hasIn and also allows a predicate matcher specification"  data-name="hasInMatching"  data-member="is"  data-see="href https github com ramda ramda blob master src propOr js label https github com ramda ramda blob master src propOr js"  data-todos="surely would be better with focusing on a prop then applying predicate lense s is it better in fp or is needs some definitions"  data-all="meta n n hasInMatching predicate undefined obj undefined prop undefined call hasInMatching predicate undefined obj undefined prop undefined category Methods description Function isIn hasIn and also allows a predicate matcher specification name hasInMatching member is see href https github com ramda ramda blob master src propOr js label https github com ramda ramda blob master src propOr js notes todos surely would be better with focusing on a prop then applying predicate lense s n is it better in fp or is needs some definitions n klassProps" >`is.hasInMatching`</a>
 
 <!-- /div -->
 
@@ -26,6 +26,10 @@
 
 (Function): isIn + hasIn ...and also allows a predicate/matcher/specification
 
+
+#### @see 
+
+* <a href="https://github.com/ramda/ramda/blob/master/src/propOr.js" >https://github.com/ramda/ramda/blob/master/src/propOr.js</a>
 
 #### @todos 
 

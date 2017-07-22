@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `compose`
-* <a href="#compose-prototype-compose"  data-meta="compose target ChainedMap extensions Observe Shorthands Transform DotProp"  data-call="compose target ChainedMap extensions Observe Shorthands Transform DotProp"  data-category="Methods"  data-description="Function compose chains all the way up from Chainable"  data-name="compose"  data-member="compose"  data-all="meta n compose target ChainedMap extensions Observe Shorthands Transform DotProp call compose target ChainedMap extensions Observe Shorthands Transform DotProp category Methods description Function compose chains all the way up from Chainable name compose member compose see notes todos klassProps" >`compose.compose`</a>
+* <a href="#compose-prototype-compose"  data-meta="compose target ChainedMap extensions Observe Shorthands Transform DotProp"  data-call="compose target ChainedMap extensions Observe Shorthands Transform DotProp"  data-category="Methods"  data-description="Function compose chains all the way up from Chainable"  data-name="compose"  data-member="compose"  data-see="href https formidable com blog 2017 infinite state composition with freactal label https formidable com blog 2017 infinite state composition with freactal href https blog javascripting com 2016 02 02 encapsulation in redux label https blog javascripting com 2016 02 02 encapsulation in redux href https www barbarianmeetscoding com blog 2016 01 04 safer javascript object composition with traits and traits dot js label https www barbarianmeetscoding com blog 2016 01 04 safer javascript object composition with traits and traits dot js href https medium com javascript scene why learn functional programming in javascript composing software ea13afc7a257 label https medium com javascript scene why learn functional programming in javascript composing software ea13afc7a257 href https hackernoon com javascript functional composition for every day use 22421ef65a10 label https hackernoon com javascript functional composition for every day use 22421ef65a10 href https github com stoeffel awesome fp js label https github com stoeffel awesome fp js"  data-all="meta n compose target ChainedMap extensions Observe Shorthands Transform DotProp call compose target ChainedMap extensions Observe Shorthands Transform DotProp category Methods description Function compose chains all the way up from Chainable name compose member compose see href https formidable com blog 2017 infinite state composition with freactal label https formidable com blog 2017 infinite state composition with freactal href https blog javascripting com 2016 02 02 encapsulation in redux label https blog javascripting com 2016 02 02 encapsulation in redux href https www barbarianmeetscoding com blog 2016 01 04 safer javascript object composition with traits and traits dot js label https www barbarianmeetscoding com blog 2016 01 04 safer javascript object composition with traits and traits dot js href https medium com javascript scene why learn functional programming in javascript composing software ea13afc7a257 label https medium com javascript scene why learn functional programming in javascript composing software ea13afc7a257 href https hackernoon com javascript functional composition for every day use 22421ef65a10 label https hackernoon com javascript functional composition for every day use 22421ef65a10 href https github com stoeffel awesome fp js label https github com stoeffel awesome fp js notes todos klassProps" >`compose.compose`</a>
 
 <!-- /div -->
 
@@ -30,6 +30,15 @@
 
 (Function): compose chains all the way up from Chainable
 
+
+#### @see 
+
+* <a href="https://formidable.com/blog/2017/infinite-state-composition-with-freactal/" >https://formidable.com/blog/2017/infinite-state-composition-with-freactal/</a>
+* <a href="https://blog.javascripting.com/2016/02/02/encapsulation-in-redux/" >https://blog.javascripting.com/2016/02/02/encapsulation-in-redux/</a>
+* <a href="https://www.barbarianmeetscoding.com/blog/2016/01/04/safer-javascript-object-composition-with-traits-and-traits-dot-js/" >https://www.barbarianmeetscoding.com/blog/2016/01/04/safer-javascript-object-composition-with-traits-and-traits-dot-js/</a>
+* <a href="https://medium.com/javascript-scene/why-learn-functional-programming-in-javascript-composing-software-ea13afc7a257" >https://medium.com/javascript-scene/why-learn-functional-programming-in-javascript-composing-software-ea13afc7a257</a>
+* <a href="https://hackernoon.com/javascript-functional-composition-for-every-day-use-22421ef65a10" >https://hackernoon.com/javascript-functional-composition-for-every-day-use-22421ef65a10</a>
+* <a href="https://github.com/stoeffel/awesome-fp-js" >https://github.com/stoeffel/awesome-fp-js</a>
 
 #### @symb 
 

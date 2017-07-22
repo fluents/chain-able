@@ -5,6 +5,7 @@ const _ = require('lodash')
 const Entry = require('./entry.js')
 const util = require('./util.js')
 const {maker, makeAnchor} = require('./md')
+const {uniq} = require('./chain-able')
 
 const getEntries = Entry.getEntries
 
@@ -546,7 +547,7 @@ function generateDoc(source, options) {
       ${(symb || '')}
       ${(call || '')}
       ${(sig || '')}
-    `.trim().replace(/\r\t/gmi, '')
+    `.trim().replace(/\r\t/gmi, '').split(' ').filter(uniq).join(' ')
 
       // @TODO could do examples too...
       const metadata = {
@@ -562,7 +563,7 @@ function generateDoc(source, options) {
         klassProps,
       }
 
-      log.bold('toc').data({metadata}).echo()
+      // log.bold('toc').data({metadata}).echo()
 
       const metaKeys = Object.keys(metadata)
       metadata.all = {}

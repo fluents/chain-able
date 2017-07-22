@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is`
-* <a href="#is-prototype-isEnumerable"  data-meta="isEnumerable obj undefined prop undefined"  data-call="isEnumerable obj undefined prop undefined"  data-category="Methods"  data-description="Function object at property is enumerable"  data-name="isEnumerable"  data-member="is"  data-see="href https developer mozilla org en docs Web JavaScript Reference Global Objects Object propertyIsEnumerable label Developer mozilla org en docs web java script reference global objects object property is enumerable"  data-todos="use fp call"  data-all="meta isEnumerable obj undefined prop undefined call isEnumerable obj undefined prop undefined category Methods description Function object at property is enumerable name isEnumerable member is see href https developer mozilla org en docs Web JavaScript Reference Global Objects Object propertyIsEnumerable label Developer mozilla org en docs web java script reference global objects object property is enumerable notes todos use fp call n klassProps" >`is.isEnumerable`</a>
+* <a href="#is-prototype-isEnumerable"  data-meta="isEnumerable obj undefined prop undefined"  data-call="isEnumerable obj undefined prop undefined"  data-category="Methods"  data-description="Function object at property is enumerable"  data-name="isEnumerable"  data-member="is"  data-see="href https developer mozilla org en docs Web JavaScript Reference Global Objects Object propertyIsEnumerable label mozilla propertyisenumerable"  data-todos="use fp call"  data-all="meta isEnumerable obj undefined prop undefined call isEnumerable obj undefined prop undefined category Methods description Function object at property is enumerable name isEnumerable member is see href https developer mozilla org en docs Web JavaScript Reference Global Objects Object propertyIsEnumerable label mozilla propertyisenumerable notes todos use fp call n klassProps" >`is.isEnumerable`</a>
 
 <!-- /div -->
 
@@ -29,7 +29,7 @@
 
 #### @see 
 
-* <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/propertyIsEnumerable" >Developer.mozilla.org/en/docs/web/java script/reference/global objects/object/property is enumerable</a>
+* <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/propertyIsEnumerable" >mozilla-propertyisenumerable</a>
 
 #### @todos 
 

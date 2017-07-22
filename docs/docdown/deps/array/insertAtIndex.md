@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `exports`
-* <a href="#exports"  data-meta="exports arr undefined index undefined val undefined"  data-call="exports arr undefined index undefined val undefined"  data-category="Methods"  data-description="Function put a value at any index in an array"  data-name="exports"  data-all="meta exports arr undefined index undefined val undefined call exports arr undefined index undefined val undefined category Methods description Function put a value at any index in an array name exports member see notes todos klassProps" >`exports`</a>
+* <a href="#exports"  data-meta="exports arr undefined index undefined val undefined"  data-call="exports arr undefined index undefined val undefined"  data-category="Methods"  data-description="Function put a value at any index in an array"  data-name="exports"  data-see="href http stackoverflow com questions 7032550 javascript insert an array inside another array label http stackoverflow com questions 7032550 javascript insert an array inside another array href http stackoverflow com questions 1348178 a better way to splice an array into an array in javascript 41465578 41465578 label http stackoverflow com questions 1348178 a better way to splice an array into an array in javascript 41465578 41465578 href http stackoverflow com questions 38060705 replace element at specific position in an array without mutating it label http stackoverflow com questions 38060705 replace element at specific position in an array without mutating it"  data-all="meta exports arr undefined index undefined val undefined call exports arr undefined index undefined val undefined category Methods description Function put a value at any index in an array name exports member see href http stackoverflow com questions 7032550 javascript insert an array inside another array label http stackoverflow com questions 7032550 javascript insert an array inside another array href http stackoverflow com questions 1348178 a better way to splice an array into an array in javascript 41465578 41465578 label http stackoverflow com questions 1348178 a better way to splice an array into an array in javascript 41465578 41465578 href http stackoverflow com questions 38060705 replace element at specific position in an array without mutating it label http stackoverflow com questions 38060705 replace element at specific position in an array without mutating it notes todos klassProps" >`exports`</a>
 
 <!-- /div -->
 
@@ -26,6 +26,12 @@
 
 (Function): put a value at any index in an array
 
+
+#### @see 
+
+* <a href="http://stackoverflow.com/questions/7032550/javascript-insert-an-array-inside-another-array" >http://stackoverflow.com/questions/7032550/javascript-insert-an-array-inside-another-array</a>
+* <a href="http://stackoverflow.com/questions/1348178/a-better-way-to-splice-an-array-into-an-array-in-javascript/41465578#41465578" >http://stackoverflow.com/questions/1348178/a-better-way-to-splice-an-array-into-an-array-in-javascript/41465578#41465578</a>
+* <a href="http://stackoverflow.com/questions/38060705/replace-element-at-specific-position-in-an-array-without-mutating-it" >http://stackoverflow.com/questions/38060705/replace-element-at-specific-position-in-an-array-without-mutating-it</a>
 
 #### @Since
 ? was in insert-at-index dep...

@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `Traverse`
-* <a href="#Traverse-prototype-exports"  data-meta="ChainedMapBase exports"  data-call="exports"  data-category="traverse"  data-description="Map"  data-name="exports"  data-member="Traverse"  data-klassProps="obj keys vals onMatch onNonMatch clone"  data-all="meta ChainedMapBase n n exports call exports category traverse description Map name exports member Traverse see notes todos klassProps obj n keys n vals n onMatch n onNonMatch n clone n" >`Traverse.exports`</a>
+* <a href="#Traverse-prototype-exports"  data-meta="ChainedMapBase exports"  data-call="exports"  data-category="traverse"  data-description="Map"  data-name="exports"  data-member="Traverse"  data-see="href https github com fluents chain able blob master src deps traverse js label deps traverse"  data-klassProps="obj keys vals onMatch onNonMatch clone"  data-all="meta ChainedMapBase n n exports call exports category traverse description Map name exports member Traverse see href https github com fluents chain able blob master src deps traverse js label deps traverse notes todos klassProps obj n keys n vals n onMatch n onNonMatch n clone n" >`Traverse.exports`</a>
 
 <!-- /div -->
 
@@ -19,7 +19,7 @@
 <!-- div -->
 
 ## `traversed`
-* <a href="#traversed"  data-meta="traversed"  data-call="traversed"  data-category="Methods"  data-description="Function value traversed in traverse"  data-name="traversed"  data-all="meta traversed call traversed category Methods description Function value traversed in traverse name traversed member see notes todos klassProps" >`traversed`</a>
+* <a href="#traversed"  data-meta="traversed"  data-call="traversed"  data-category="Methods"  data-description="Function value traversed in traverse"  data-name="traversed"  data-see="href https github com fluents chain able search utf8 E2 9C 93 q TraverseChain traverse type label TraverseChain traverse"  data-all="meta traversed call traversed category Methods description Function value traversed in traverse name traversed member see href https github com fluents chain able search utf8 E2 9C 93 q TraverseChain traverse type label TraverseChain traverse notes todos klassProps" >`traversed`</a>
 
 <!-- /div -->
 
@@ -44,6 +44,10 @@
 
 Map
 
+
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js" >deps/traverse</a>
 
 #### @symb 
 
@@ -144,6 +148,10 @@ traversed
 
 (Function): value traversed in traverse
 
+
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=TraverseChain.traverse&type=" >TraverseChain.traverse</a>
 
 #### @Since
 1.0.0

@@ -6,8 +6,8 @@
 
 ## `MergeChain`
 * <a href="#"  data-meta="parent undefined"  data-call="parent undefined"  data-category="Methods"  data-description="Function"  data-all="meta parent undefined call parent undefined category Methods description Function name member see notes todos klassProps" >``</a>
-* <a href="#MergeChain-prototype-"  data-meta="ChainedMapBase"  data-category="Properties"  data-description="Map"  data-member="MergeChain"  data-todos="consider just making this a function because 80 20 onValue merger onExisting are rarely used are easily overridable with merge"  data-all="meta ChainedMapBase call category Properties description Map name member MergeChain see notes todos consider just making this a function n because 80 20 onValue merger onExisting n are rarely used are easily overridable with merge n klassProps" >`MergeChain.`</a>
-* <a href="#MergeChain-prototype-merger"  data-meta="merger opts undefined"  data-call="merger opts undefined"  data-category="Methods"  data-description="Function options for merging with dopemerge"  data-name="merger"  data-member="MergeChain"  data-all="meta merger opts undefined call merger opts undefined category Methods description Function options for merging with dopemerge name merger member MergeChain see notes todos klassProps" >`MergeChain.merger`</a>
+* <a href="#MergeChain-prototype-"  data-meta="ChainedMapBase"  data-category="Properties"  data-description="Map"  data-member="MergeChain"  data-see="href https github com fluents chain able blob master src deps dopemerge dopemerge js label deps dopemerge"  data-todos="consider just making this a function because 80 20 onValue merger onExisting are rarely used are easily overridable with merge"  data-all="meta ChainedMapBase call category Properties description Map name member MergeChain see href https github com fluents chain able blob master src deps dopemerge dopemerge js label deps dopemerge notes todos consider just making this a function n because 80 20 onValue merger onExisting n are rarely used are easily overridable with merge n klassProps" >`MergeChain.`</a>
+* <a href="#MergeChain-prototype-merger"  data-meta="merger opts undefined"  data-call="merger opts undefined"  data-category="Methods"  data-description="Function options for merging with dopemerge"  data-name="merger"  data-member="MergeChain"  data-see="href https github com fluents chain able blob master src deps dopemerge dopemerge js label dopemerge"  data-all="meta merger opts undefined call merger opts undefined category Methods description Function options for merging with dopemerge name merger member MergeChain see href https github com fluents chain able blob master src deps dopemerge dopemerge js label dopemerge notes todos klassProps" >`MergeChain.merger`</a>
 * <a href="#MergeChain-prototype-onExisting"  data-meta="exports"  data-call="exports"  data-category="Properties"  data-description="unknown"  data-name="onExisting"  data-member="MergeChain"  data-all="meta exports call exports category Properties description unknown name onExisting member MergeChain see notes todos klassProps" >`MergeChain.onExisting`</a>
 
 <!-- /div -->
@@ -15,7 +15,7 @@
 <!-- div -->
 
 ## `merge`
-* <a href="#merge"  data-meta="merge obj2 undefined"  data-call="merge obj2 undefined"  data-category="Methods"  data-description="Function merges object in goes through all keys checks cbs dopemerges"  data-name="merge"  data-todos="issue here if we extend without shorthands we want to merge existing values s"  data-all="meta merge obj2 undefined call merge obj2 undefined category Methods description Function merges object in goes through all keys checks cbs dopemerges name merge member see notes todos issue here if we extend without shorthands n we want to merge existing values s n klassProps" >`merge`</a>
+* <a href="#merge"  data-meta="merge obj2 undefined"  data-call="merge obj2 undefined"  data-category="Methods"  data-description="Function merges object in goes through all keys checks cbs dopemerges"  data-name="merge"  data-see="href https github com fluents chain able blob master src ChainedMap js label ChainedMap"  data-todos="issue here if we extend without shorthands we want to merge existing values s"  data-all="meta merge obj2 undefined call merge obj2 undefined category Methods description Function merges object in goes through all keys checks cbs dopemerges name merge member see href https github com fluents chain able blob master src ChainedMap js label ChainedMap notes todos issue here if we extend without shorthands n we want to merge existing values s n klassProps" >`merge`</a>
 
 <!-- /div -->
 
@@ -76,6 +76,10 @@ console.dir(map)
 Map
 
 
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/dopemerge/dopemerge.js" >deps/dopemerge</a>
+
 #### @todos 
 
 - [ ] consider just making this a function,
@@ -104,6 +108,10 @@ ChainedMapBase
 
 (Function): options for merging with dopemerge
 
+
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/dopemerge/dopemerge.js" >dopemerge</a>
 
 #### @Since
 1.0.2
@@ -176,6 +184,10 @@ chain.get('str')
 
 (Function): merges object in, goes through all keys, checks cbs, dopemerges
 
+
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/blob/master/src/ChainedMap.js" >ChainedMap</a>
 
 #### @todos 
 

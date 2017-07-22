@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `fp`
-* <a href="#fp-prototype-firstIndex"  data-meta="firstIndex x undefined"  data-call="firstIndex x undefined"  data-category="Methods"  data-description="Function get first index in a list"  data-name="firstIndex"  data-member="fp"  data-see="href https github com fluents chain able blob master src deps fp first js label fluents chain able blob master src deps fp first js"  data-notes="works for strings too eh"  data-all="meta firstIndex x undefined call firstIndex x undefined category Methods description Function get first index in a list name firstIndex member fp see href https github com fluents chain able blob master src deps fp first js label fluents chain able blob master src deps fp first js notes works for strings too eh n todos klassProps" >`fp.firstIndex`</a>
+* <a href="#fp-prototype-firstIndex"  data-meta="firstIndex x undefined"  data-call="firstIndex x undefined"  data-category="Methods"  data-description="Function get first index in a list"  data-name="firstIndex"  data-member="fp"  data-see="href https github com fluents chain able blob master src deps fp first js label deps fp first"  data-notes="works for strings too eh"  data-all="meta firstIndex x undefined call firstIndex x undefined category Methods description Function get first index in a list name firstIndex member fp see href https github com fluents chain able blob master src deps fp first js label deps fp first notes works for strings too eh n todos klassProps" >`fp.firstIndex`</a>
 
 <!-- /div -->
 
@@ -29,7 +29,7 @@
 
 #### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/fp/first.js" >fluents/chain able/blob/master/src/deps/fp/first.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/fp/first.js" >deps/fp/first</a>
 
 #### @notes 
 

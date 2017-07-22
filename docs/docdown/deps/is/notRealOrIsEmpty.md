@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `isNotRealOrIsEmpty`
-* <a href="#isNotRealOrIsEmpty"  data-meta="isNotRealOrIsEmpty"  data-call="isNotRealOrIsEmpty"  data-category="Methods"  data-description="Function"  data-name="isNotRealOrIsEmpty"  data-see="href https github com fluents chain able blob master src deps conditional and js label fluents chain able blob master src deps conditional and js href https github com fluents chain able blob master src deps conditional not js label fluents chain able blob master src deps conditional not js"  data-all="meta isNotRealOrIsEmpty call isNotRealOrIsEmpty category Methods description Function name isNotRealOrIsEmpty member see href https github com fluents chain able blob master src deps conditional and js label fluents chain able blob master src deps conditional and js href https github com fluents chain able blob master src deps conditional not js label fluents chain able blob master src deps conditional not js notes todos klassProps" >`isNotRealOrIsEmpty`</a>
+* <a href="#isNotRealOrIsEmpty"  data-meta="isNotRealOrIsEmpty"  data-call="isNotRealOrIsEmpty"  data-category="Methods"  data-description="Function"  data-name="isNotRealOrIsEmpty"  data-see="href https github com fluents chain able search utf8 E2 9C 93 q is isReal type label is isReal href https github com fluents chain able search utf8 E2 9C 93 q is isEmpty type label is isEmpty href https github com fluents chain able blob master src deps conditional and js label conditional and href https github com fluents chain able blob master src deps conditional not js label conditional not"  data-all="meta isNotRealOrIsEmpty call isNotRealOrIsEmpty category Methods description Function name isNotRealOrIsEmpty member see href https github com fluents chain able search utf8 E2 9C 93 q is isReal type label is isReal href https github com fluents chain able search utf8 E2 9C 93 q is isEmpty type label is isEmpty href https github com fluents chain able blob master src deps conditional and js label conditional and href https github com fluents chain able blob master src deps conditional not js label conditional not notes todos klassProps" >`isNotRealOrIsEmpty`</a>
 
 <!-- /div -->
 
@@ -29,8 +29,10 @@ Function
 
 #### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/conditional/and.js" >fluents/chain able/blob/master/src/deps/conditional/and.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/conditional/not.js" >fluents/chain able/blob/master/src/deps/conditional/not.js</a>
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=is/isReal&type=" >is/isReal</a>
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=is/isEmpty&type=" >is/isEmpty</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/conditional/and.js" >conditional/and</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/conditional/not.js" >conditional/not</a>
 ---
 
 <!-- /div -->

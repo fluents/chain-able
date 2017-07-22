@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `exports`
-* <a href="#exports"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Methods"  data-description="Function is generator function"  data-name="exports"  data-all="meta exports x undefined call exports x undefined category Methods description Function is generator function name exports member see notes todos klassProps" >`exports`</a>
+* <a href="#exports"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Methods"  data-description="Function is generator function"  data-name="exports"  data-see="href https github com fluents chain able search utf8 E2 9C 93 q kind of type label kind of"  data-all="meta exports x undefined call exports x undefined category Methods description Function is generator function name exports member see href https github com fluents chain able search utf8 E2 9C 93 q kind of type label kind of notes todos klassProps" >`exports`</a>
 
 <!-- /div -->
 
@@ -26,6 +26,10 @@
 
 (Function): is generator function
 
+
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=kind-of&type=" >kind-of</a>
 
 #### @Since
 4.0.0-beta.2

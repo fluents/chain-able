@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `exports`
-* <a href="#exports"  data-meta="exports reduced undefined reduced object isMap object reduced merge object reduced"  data-call="exports reduced undefined"  data-category="Methods"  data-description="Function recursively reduce maps and objects that include reducable data"  data-name="exports"  data-see="href https github com fluents chain able blob master src ChainedMap js label fluents chain able blob master src chained map js"  data-notes="could curry but this is super hot function"  data-all="meta exports reduced undefined n reduced object isMap object reduced merge object reduced call exports reduced undefined category Methods description Function recursively reduce maps and objects that include reducable data name exports member see href https github com fluents chain able blob master src ChainedMap js label fluents chain able blob master src chained map js notes could curry but this is super hot function n todos klassProps" >`exports`</a>
+* <a href="#exports"  data-meta="exports reduced undefined reduced object isMap object reduced merge object reduced"  data-call="exports reduced undefined"  data-category="Methods"  data-description="Function recursively reduce maps and objects that include reducable data"  data-name="exports"  data-see="href https www airpair com javascript javascript array reduce label https www airpair com javascript javascript array reduce href https github com fluents chain able blob master src ChainedMap js label ChainedMap"  data-notes="could curry but this is super hot function"  data-all="meta exports reduced undefined n reduced object isMap object reduced merge object reduced call exports reduced undefined category Methods description Function recursively reduce maps and objects that include reducable data name exports member see href https www airpair com javascript javascript array reduce label https www airpair com javascript javascript array reduce href https github com fluents chain able blob master src ChainedMap js label ChainedMap notes could curry but this is super hot function n todos klassProps" >`exports`</a>
 
 <!-- /div -->
 
@@ -29,7 +29,8 @@
 
 #### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/ChainedMap.js" >fluents/chain able/blob/master/src/chained map.js</a>
+* <a href="https://www.airpair.com/javascript/javascript-array-reduce" >https://www.airpair.com/javascript/javascript-array-reduce</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/ChainedMap.js" >ChainedMap</a>
 
 #### @notes 
 

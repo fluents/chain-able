@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is`
-* <a href="#is-prototype-isNumberPrimitive"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Methods"  data-description="Function"  data-name="isNumberPrimitive"  data-member="is"  data-see="href https github com fluents chain able blob master src deps is real js label fluents chain able blob master src deps is real js"  data-all="meta exports x undefined call exports x undefined category Methods description Function name isNumberPrimitive member is see href https github com fluents chain able blob master src deps is real js label fluents chain able blob master src deps is real js notes todos klassProps" >`is.isNumberPrimitive`</a>
+* <a href="#is-prototype-isNumberPrimitive"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Methods"  data-description="Function"  data-name="isNumberPrimitive"  data-member="is"  data-see="href https github com fluents chain able blob master src deps is real js label is real"  data-all="meta exports x undefined call exports x undefined category Methods description Function name isNumberPrimitive member is see href https github com fluents chain able blob master src deps is real js label is real notes todos klassProps" >`is.isNumberPrimitive`</a>
 
 <!-- /div -->
 
@@ -29,7 +29,7 @@ Function
 
 #### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/real.js" >fluents/chain able/blob/master/src/deps/is/real.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/real.js" >is/real</a>
 
 #### @Since
 3.0.0

@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is`
-* <a href="#is-prototype-isMap"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Methods"  data-description="Function Checks if value is classified as a Map object"  data-name="isMap"  data-member="is"  data-all="meta exports x undefined call exports x undefined category Methods description Function Checks if value is classified as a Map object name isMap member is see notes todos klassProps" >`is.isMap`</a>
+* <a href="#is-prototype-isMap"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Methods"  data-description="Function Checks if value is classified as a Map object"  data-name="isMap"  data-member="is"  data-see="href https github com jonschlinkert kind of label https github com jonschlinkert kind of"  data-all="meta exports x undefined call exports x undefined category Methods description Function Checks if value is classified as a Map object name isMap member is see href https github com jonschlinkert kind of label https github com jonschlinkert kind of notes todos klassProps" >`is.isMap`</a>
 
 <!-- /div -->
 
@@ -26,6 +26,10 @@
 
 (Function): Checks if `value` is classified as a `Map` object.
 
+
+#### @see 
+
+* <a href="https://github.com/jonschlinkert/kind-of" >https://github.com/jonschlinkert/kind-of</a>
 
 #### @Since
 3.0.0

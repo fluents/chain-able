@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `fp`
-* <a href="#fp-prototype-"  data-meta="exports value undefined a a"  data-call="exports value undefined"  data-category="Function"  data-description="Function Returns a function that always returns the given value Note that for non primitives the value returned is a reference to the original value br br This function is known as const constant or K for K combinator in other languages and libraries"  data-member="fp"  data-see="href https github com ramda ramda issues 1038 label ramda ramda issues 1038 href https github com ramda ramda blob master src always js label ramda ramda blob master src always js href https github com lodash lodash issues 1010 label lodash lodash issues 1010 href http underscorejs org constant label Underscorejs org"  data-all="meta exports value undefined n a a call exports value undefined category Function description Function Returns a function that always returns the given value Note that for nnon primitives the value returned is a reference to the original value n br n br nThis function is known as const constant or K for K combinator in nother languages and libraries name member fp see href https github com ramda ramda issues 1038 label ramda ramda issues 1038 href https github com ramda ramda blob master src always js label ramda ramda blob master src always js href https github com lodash lodash issues 1010 label lodash lodash issues 1010 href http underscorejs org constant label Underscorejs org notes todos klassProps" >`fp.`</a>
+* <a href="#fp-prototype-"  data-meta="exports value undefined a a"  data-call="exports value undefined"  data-category="Function"  data-description="Function Returns a function that always returns the given value Note that for non primitives the value returned is a reference to the original value br br This function is known as const constant or K for K combinator in other languages and libraries"  data-member="fp"  data-see="href https github com ramda ramda issues 1038 label ramda constant docs issue href https github com ramda ramda blob master src always js label ramda always href https github com lodash lodash issues 1010 label lodash constant href http underscorejs org constant label underscore constant"  data-all="meta exports value undefined n a a call exports value undefined category Function description Function Returns a function that always returns the given value Note that for nnon primitives the value returned is a reference to the original value n br n br nThis function is known as const constant or K for K combinator in nother languages and libraries name member fp see href https github com ramda ramda issues 1038 label ramda constant docs issue href https github com ramda ramda blob master src always js label ramda always href https github com lodash lodash issues 1010 label lodash constant href http underscorejs org constant label underscore constant notes todos klassProps" >`fp.`</a>
 
 <!-- /div -->
 
@@ -38,10 +38,10 @@ other languages and libraries.
 
 #### @see 
 
-* <a href="https://github.com/ramda/ramda/issues/1038" >ramda/ramda/issues/1038</a>
-* <a href="https://github.com/ramda/ramda/blob/master/src/always.js" >ramda/ramda/blob/master/src/always.js</a>
-* <a href="https://github.com/lodash/lodash/issues/1010" >lodash/lodash/issues/1010</a>
-* <a href="http://underscorejs.org/#constant" >Underscorejs.org</a>
+* <a href="https://github.com/ramda/ramda/issues/1038" >ramda-constant-docs-issue</a>
+* <a href="https://github.com/ramda/ramda/blob/master/src/always.js" >ramda-always</a>
+* <a href="https://github.com/lodash/lodash/issues/1010" >lodash-constant</a>
+* <a href="http://underscorejs.org/#constant" >underscore-constant</a>
 
 #### @sig 
 

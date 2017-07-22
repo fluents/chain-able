@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `exports`
-* <a href="#exports"  data-meta="exports map undefined"  data-call="exports map undefined"  data-category="Methods"  data-description="Function Map Object"  data-name="exports"  data-all="meta exports map undefined call exports map undefined category Methods description Function Map Object name exports member see notes todos klassProps" >`exports`</a>
+* <a href="#exports"  data-meta="exports map undefined"  data-call="exports map undefined"  data-category="Methods"  data-description="Function Map Object"  data-name="exports"  data-see="href https github com fluents chain able search utf8 E2 9C 93 q ArrayFrom type label ArrayFrom"  data-all="meta exports map undefined call exports map undefined category Methods description Function Map Object name exports member see href https github com fluents chain able search utf8 E2 9C 93 q ArrayFrom type label ArrayFrom notes todos klassProps" >`exports`</a>
 
 <!-- /div -->
 
@@ -26,6 +26,10 @@
 
 (Function): Map -> Object
 
+
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=ArrayFrom&type=" >ArrayFrom</a>
 
 #### @Since
 4.0.0

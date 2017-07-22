@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is`
-* <a href="#is-prototype-isMatcher"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Methods"  data-description="Function"  data-name="isMatcher"  data-member="is"  data-see="href https github com fluents chain able blob master src deps is regexp js label fluents chain able blob master src deps is regexp js href https github com fluents chain able blob master src deps is function js label fluents chain able blob master src deps is function js"  data-all="meta exports x undefined call exports x undefined category Methods description Function name isMatcher member is see href https github com fluents chain able blob master src deps is regexp js label fluents chain able blob master src deps is regexp js href https github com fluents chain able blob master src deps is function js label fluents chain able blob master src deps is function js notes todos klassProps" >`is.isMatcher`</a>
+* <a href="#is-prototype-isMatcher"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Methods"  data-description="Function"  data-name="isMatcher"  data-member="is"  data-see="href https github com fluents chain able blob master src deps is regexp js label is regexp href https github com fluents chain able blob master src deps is function js label is function href https github com fluents chain able search utf8 E2 9C 93 q conditionals or type label conditionals or"  data-all="meta exports x undefined call exports x undefined category Methods description Function name isMatcher member is see href https github com fluents chain able blob master src deps is regexp js label is regexp href https github com fluents chain able blob master src deps is function js label is function href https github com fluents chain able search utf8 E2 9C 93 q conditionals or type label conditionals or notes todos klassProps" >`is.isMatcher`</a>
 
 <!-- /div -->
 
@@ -29,8 +29,9 @@ Function
 
 #### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/regexp.js" >fluents/chain able/blob/master/src/deps/is/regexp.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/function.js" >fluents/chain able/blob/master/src/deps/is/function.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/regexp.js" >is/regexp</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/function.js" >is/function</a>
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=conditionals/or&type=" >conditionals/or</a>
 
 #### @Since
 3.0.0

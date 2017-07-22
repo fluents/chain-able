@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `fp`
-* <a href="#fp-prototype-lastIndex"  data-meta="lastIndex x undefined"  data-call="lastIndex x undefined"  data-category="Methods"  data-description="Function get last index in a list"  data-name="lastIndex"  data-member="fp"  data-see="href https github com fluents chain able blob master src deps fp last js label fluents chain able blob master src deps fp last js"  data-notes="works for strings too eh"  data-all="meta lastIndex x undefined call lastIndex x undefined category Methods description Function get last index in a list name lastIndex member fp see href https github com fluents chain able blob master src deps fp last js label fluents chain able blob master src deps fp last js notes works for strings too eh n todos klassProps" >`fp.lastIndex`</a>
+* <a href="#fp-prototype-lastIndex"  data-meta="lastIndex x undefined"  data-call="lastIndex x undefined"  data-category="Methods"  data-description="Function get last index in a list"  data-name="lastIndex"  data-member="fp"  data-see="href https github com fluents chain able blob master src deps fp last js label deps fp last"  data-notes="works for strings too eh"  data-all="meta lastIndex x undefined call lastIndex x undefined category Methods description Function get last index in a list name lastIndex member fp see href https github com fluents chain able blob master src deps fp last js label deps fp last notes works for strings too eh n todos klassProps" >`fp.lastIndex`</a>
 
 <!-- /div -->
 
@@ -29,7 +29,7 @@
 
 #### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/fp/last.js" >fluents/chain able/blob/master/src/deps/fp/last.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/fp/last.js" >deps/fp/last</a>
 
 #### @notes 
 

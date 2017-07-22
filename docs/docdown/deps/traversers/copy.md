@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `Traverse`
-* <a href="#Traverse-prototype-copy"  data-meta="copy src undefined"  data-call="copy src undefined"  data-category="Methods"  data-description="Function copy any primitive value part of clone"  data-name="copy"  data-member="Traverse"  data-all="meta copy src undefined call copy src undefined category Methods description Function copy any primitive value part of clone name copy member Traverse see notes todos klassProps" >`Traverse.copy`</a>
+* <a href="#Traverse-prototype-copy"  data-meta="copy src undefined"  data-call="copy src undefined"  data-category="Methods"  data-description="Function copy any primitive value part of clone"  data-name="copy"  data-member="Traverse"  data-see="href https github com fluents chain able search utf8 E2 9C 93 q clone type label clone"  data-all="meta copy src undefined call copy src undefined category Methods description Function copy any primitive value part of clone name copy member Traverse see href https github com fluents chain able search utf8 E2 9C 93 q clone type label clone notes todos klassProps" >`Traverse.copy`</a>
 
 <!-- /div -->
 
@@ -26,6 +26,10 @@
 
 (Function): copy any primitive value, part of clone
 
+
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=clone&type=" >clone</a>
 
 #### @Since
 3.0.0

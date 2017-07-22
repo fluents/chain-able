@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is`
-* <a href="#is-prototype-isArray"  data-meta="isArray arg undefined"  data-call="isArray arg undefined"  data-category="Methods"  data-description="Function"  data-name="isArray"  data-member="is"  data-see="href https developer mozilla org en docs Web JavaScript Reference Global Objects Array isArray label Developer mozilla org en docs web java script reference global objects array is array"  data-todos="is arraylike https github com facebook immutable js blob master src utils isArrayLike js"  data-all="meta isArray arg undefined call isArray arg undefined category Methods description Function name isArray member is see href https developer mozilla org en docs Web JavaScript Reference Global Objects Array isArray label Developer mozilla org en docs web java script reference global objects array is array notes todos is arraylike https github com facebook immutable js blob master src utils isArrayLike js n klassProps" >`is.isArray`</a>
+* <a href="#is-prototype-isArray"  data-meta="isArray arg undefined"  data-call="isArray arg undefined"  data-category="Methods"  data-description="Function"  data-name="isArray"  data-member="is"  data-see="href https developer mozilla org en docs Web JavaScript Reference Global Objects Array isArray label mozilla isarray"  data-todos="is arraylike https github com facebook immutable js blob master src utils isArrayLike js"  data-all="meta isArray arg undefined call isArray arg undefined category Methods description Function name isArray member is see href https developer mozilla org en docs Web JavaScript Reference Global Objects Array isArray label mozilla isarray notes todos is arraylike https github com facebook immutable js blob master src utils isArrayLike js n klassProps" >`is.isArray`</a>
 
 <!-- /div -->
 
@@ -29,7 +29,7 @@ Function
 
 #### @see 
 
-* <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray" >Developer.mozilla.org/en/docs/web/java script/reference/global objects/array/is array</a>
+* <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray" >mozilla-isarray</a>
 
 #### @todos 
 

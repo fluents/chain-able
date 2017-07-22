@@ -6,8 +6,8 @@
 
 ## `matcher`
 * <a href="#matcher-prototype-make"  data-meta="make pattern undefined shouldNegate undefined alphaOmega undefined"  data-call="make pattern undefined shouldNegate undefined alphaOmega undefined"  data-category="Methods"  data-description="Function turn any string function or RegExp into a matcher"  data-name="make"  data-member="matcher"  data-all="meta make pattern undefined shouldNegate undefined alphaOmega undefined call make pattern undefined shouldNegate undefined alphaOmega undefined category Methods description Function turn any string function or RegExp into a matcher name make member matcher see notes todos klassProps" >`matcher.make`</a>
-* <a href="#matcher-prototype-match"  data-meta="matcher inputs undefined patterns undefined shouldNegate undefined alphaOmega undefined"  data-call="matcher inputs undefined patterns undefined shouldNegate undefined alphaOmega undefined"  data-category="Methods"  data-description="Function same as make but also accepts inputs and returns an array"  data-name="match"  data-member="matcher"  data-all="meta matcher inputs undefined patterns undefined shouldNegate undefined alphaOmega undefined call matcher inputs undefined patterns undefined shouldNegate undefined alphaOmega undefined category Methods description Function same as make but also accepts inputs and returns an array name match member matcher see notes todos klassProps" >`matcher.match`</a>
-* <a href="#matcher-prototype-matcher"  data-meta="matcher"  data-call="matcher"  data-category="Properties"  data-description="unknown"  data-name="matcher"  data-member="matcher"  data-all="meta n matcher call matcher category Properties description unknown name matcher member matcher see notes todos klassProps" >`matcher.matcher`</a>
+* <a href="#matcher-prototype-match"  data-meta="matcher inputs undefined patterns undefined shouldNegate undefined alphaOmega undefined"  data-call="matcher inputs undefined patterns undefined shouldNegate undefined alphaOmega undefined"  data-category="Methods"  data-description="Function same as make but also accepts inputs and returns an array"  data-name="match"  data-member="matcher"  data-see="href https github com fluents chain able search utf8 E2 9C 93 q Matcher make type label Matcher make href https github com fluents chain able blob master src compose Observe js label compose Observe"  data-all="meta matcher inputs undefined patterns undefined shouldNegate undefined alphaOmega undefined call matcher inputs undefined patterns undefined shouldNegate undefined alphaOmega undefined category Methods description Function same as make but also accepts inputs and returns an array name match member matcher see href https github com fluents chain able search utf8 E2 9C 93 q Matcher make type label Matcher make href https github com fluents chain able blob master src compose Observe js label compose Observe notes todos klassProps" >`matcher.match`</a>
+* <a href="#matcher-prototype-matcher"  data-meta="matcher"  data-call="matcher"  data-category="Properties"  data-description="unknown"  data-name="matcher"  data-member="matcher"  data-see="href https github com sindresorhus matcher blob master index js label https github com sindresorhus matcher blob master index js"  data-all="meta n matcher call matcher category Properties description unknown name matcher member matcher see href https github com sindresorhus matcher blob master index js label https github com sindresorhus matcher blob master index js notes todos klassProps" >`matcher.matcher`</a>
 
 <!-- /div -->
 
@@ -102,6 +102,11 @@ matcher.make(noName, true, true)
 (Function): same as .make but also accepts inputs, and returns an array
 
 
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=Matcher.make&type=" >Matcher.make</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/compose/Observe.js" >compose/Observe</a>
+
 #### @Since
 3.0.0
 
@@ -164,6 +169,10 @@ matcher({ test: x => x === 'kinga' }, 'nope')
 
 unknown
 
+
+#### @see 
+
+* <a href="https://github.com/sindresorhus/matcher/blob/master/index.js" >https://github.com/sindresorhus/matcher/blob/master/index.js</a>
 
 #### @symb 
 

@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is`
-* <a href="#is-prototype-isIterator"  data-meta="x undefined"  data-call="x undefined"  data-category="Methods"  data-description="Function"  data-name="isIterator"  data-member="is"  data-all="meta x undefined call x undefined category Methods description Function name isIterator member is see notes todos klassProps" >`is.isIterator`</a>
+* <a href="#is-prototype-isIterator"  data-meta="x undefined"  data-call="x undefined"  data-category="Methods"  data-description="Function"  data-name="isIterator"  data-member="is"  data-see="href https github com jonschlinkert kind of pull 12 label https github com jonschlinkert kind of pull 12"  data-all="meta x undefined call x undefined category Methods description Function name isIterator member is see href https github com jonschlinkert kind of pull 12 label https github com jonschlinkert kind of pull 12 notes todos klassProps" >`is.isIterator`</a>
 
 <!-- /div -->
 
@@ -26,6 +26,10 @@
 
 Function
 
+
+#### @see 
+
+* <a href="https://github.com/jonschlinkert/kind-of/pull/12" >https://github.com/jonschlinkert/kind-of/pull/12</a>
 
 #### @Since
 3.0.0

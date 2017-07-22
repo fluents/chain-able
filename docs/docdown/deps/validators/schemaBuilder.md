@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `schema`
-* <a href="#schema-prototype-typeValidator"  data-meta="typeValidator input undefined"  data-call="typeValidator input undefined"  data-category="Methods"  data-description="Function build a recursive schema for all around runtime type safety"  data-name="typeValidator"  data-member="schema"  data-see="href https github com fluents chain able blob master src deps expressions bitwiseMathOperator js label fluents chain able blob master src deps expressions bitwise math operator js"  data-all="meta n typeValidator input undefined call typeValidator input undefined category Methods description Function build a recursive schema for all around runtime type safety name typeValidator member schema see href https github com fluents chain able blob master src deps expressions bitwiseMathOperator js label fluents chain able blob master src deps expressions bitwise math operator js notes todos klassProps" >`schema.typeValidator`</a>
+* <a href="#schema-prototype-typeValidator"  data-meta="typeValidator input undefined"  data-call="typeValidator input undefined"  data-category="Methods"  data-description="Function build a recursive schema for all around runtime type safety"  data-name="typeValidator"  data-member="schema"  data-see="href https github com fluents chain able blob master src deps expressions bitwiseMathOperator js label is"  data-all="meta n typeValidator input undefined call typeValidator input undefined category Methods description Function build a recursive schema for all around runtime type safety name typeValidator member schema see href https github com fluents chain able blob master src deps expressions bitwiseMathOperator js label is notes todos klassProps" >`schema.typeValidator`</a>
 
 <!-- /div -->
 
@@ -36,7 +36,7 @@
 
 #### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/expressions/bitwiseMathOperator.js" >fluents/chain able/blob/master/src/deps/expressions/bitwise math operator.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/expressions/bitwiseMathOperator.js" >is</a>
 
 #### @symb 
 

@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `util`
-* <a href="#util-prototype-exports"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Methods"  data-description="Function flatten multi dimensional arrays in 1 line"  data-name="exports"  data-member="util"  data-all="meta exports x undefined call exports x undefined category Methods description Function flatten multi dimensional arrays in 1 line name exports member util see notes todos klassProps" >`util.exports`</a>
+* <a href="#util-prototype-exports"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Methods"  data-description="Function flatten multi dimensional arrays in 1 line"  data-name="exports"  data-member="util"  data-see="href https stackoverflow com questions 10865025 merge flatten an array of arrays in javascript label https stackoverflow com questions 10865025 merge flatten an array of arrays in javascript"  data-all="meta exports x undefined call exports x undefined category Methods description Function flatten multi dimensional arrays in 1 line name exports member util see href https stackoverflow com questions 10865025 merge flatten an array of arrays in javascript label https stackoverflow com questions 10865025 merge flatten an array of arrays in javascript notes todos klassProps" >`util.exports`</a>
 
 <!-- /div -->
 
@@ -26,6 +26,10 @@
 
 (Function): flatten multi-dimensional arrays in `1` line
 
+
+#### @see 
+
+* <a href="https://stackoverflow.com/questions/10865025/merge-flatten-an-array-of-arrays-in-javascript" >https://stackoverflow.com/questions/10865025/merge-flatten-an-array-of-arrays-in-javascript</a>
 
 #### @Since
 4.0.0

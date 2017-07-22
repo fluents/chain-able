@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `argumentor`
-* <a href="#argumentor"  data-meta="argumentor"  data-call="argumentor"  data-category="Methods"  data-description="Function turns arguments into an array used as a util for opt"  data-name="argumentor"  data-see="href https github com fluents chain able blob master src deps util lengthFromZero js label fluents chain able blob master src deps util length from zero js"  data-all="meta argumentor call argumentor category Methods description Function turns arguments into an array used as a util for opt name argumentor member see href https github com fluents chain able blob master src deps util lengthFromZero js label fluents chain able blob master src deps util length from zero js notes todos klassProps" >`argumentor`</a>
+* <a href="#argumentor"  data-meta="argumentor"  data-call="argumentor"  data-category="Methods"  data-description="Function turns arguments into an array used as a util for opt"  data-name="argumentor"  data-see="href https github com aretecode awesome deopt label https github com aretecode awesome deopt href https github com petkaantonov bluebird wiki Optimization killers label https github com petkaantonov bluebird wiki Optimization killers href https github com fluents chain able blob master src deps util lengthFromZero js label deps util lengthFromZero"  data-all="meta argumentor call argumentor category Methods description Function turns arguments into an array used as a util for opt name argumentor member see href https github com aretecode awesome deopt label https github com aretecode awesome deopt href https github com petkaantonov bluebird wiki Optimization killers label https github com petkaantonov bluebird wiki Optimization killers href https github com fluents chain able blob master src deps util lengthFromZero js label deps util lengthFromZero notes todos klassProps" >`argumentor`</a>
 
 <!-- /div -->
 
@@ -29,7 +29,9 @@
 
 #### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/util/lengthFromZero.js" >fluents/chain able/blob/master/src/deps/util/length from zero.js</a>
+* <a href="https://github.com/aretecode/awesome-deopt" >https://github.com/aretecode/awesome-deopt</a>
+* <a href="https://github.com/petkaantonov/bluebird/wiki/Optimization-killers" >https://github.com/petkaantonov/bluebird/wiki/Optimization-killers</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/util/lengthFromZero.js" >deps/util/lengthFromZero</a>
 
 #### @Since
 3.0.0

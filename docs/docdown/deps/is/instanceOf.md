@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `instanceOf`
-* <a href="#instanceOf"  data-meta="instanceOf instanceToCheckAgainst undefined isThisInstanceOfThat undefined"  data-call="instanceOf instanceToCheckAgainst undefined isThisInstanceOfThat undefined"  data-category="Methods"  data-description="Function"  data-name="instanceOf"  data-all="meta instanceOf instanceToCheckAgainst undefined isThisInstanceOfThat undefined call instanceOf instanceToCheckAgainst undefined isThisInstanceOfThat undefined category Methods description Function name instanceOf member see notes todos klassProps" >`instanceOf`</a>
+* <a href="#instanceOf"  data-meta="instanceOf instanceToCheckAgainst undefined isThisInstanceOfThat undefined"  data-call="instanceOf instanceToCheckAgainst undefined isThisInstanceOfThat undefined"  data-category="Methods"  data-description="Function"  data-name="instanceOf"  data-see="href https github com lodash lodash issues 620 label https github com lodash lodash issues 620 href https github com ramda ramda commit 9d4cb895595aca3d83ce0a4b10416ae7302bd8ac label https github com ramda ramda commit 9d4cb895595aca3d83ce0a4b10416ae7302bd8ac"  data-all="meta instanceOf instanceToCheckAgainst undefined isThisInstanceOfThat undefined call instanceOf instanceToCheckAgainst undefined isThisInstanceOfThat undefined category Methods description Function name instanceOf member see href https github com lodash lodash issues 620 label https github com lodash lodash issues 620 href https github com ramda ramda commit 9d4cb895595aca3d83ce0a4b10416ae7302bd8ac label https github com ramda ramda commit 9d4cb895595aca3d83ce0a4b10416ae7302bd8ac notes todos klassProps" >`instanceOf`</a>
 
 <!-- /div -->
 
@@ -26,6 +26,11 @@
 
 Function
 
+
+#### @see 
+
+* <a href="https://github.com/lodash/lodash/issues/620" >https://github.com/lodash/lodash/issues/620</a>
+* <a href="https://github.com/ramda/ramda/commit/9d4cb895595aca3d83ce0a4b10416ae7302bd8ac" >https://github.com/ramda/ramda/commit/9d4cb895595aca3d83ce0a4b10416ae7302bd8ac</a>
 
 #### @Since
 5.0.0-beta.4

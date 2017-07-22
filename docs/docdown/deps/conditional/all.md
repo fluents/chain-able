@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `conditional`
-* <a href="#conditional-prototype-all"  data-meta="all predicate undefined array undefined a Boolean a Boolean"  data-call="all predicate undefined array undefined"  data-category="Methods"  data-description="Function map all values in an array to see if all match Returns true if all elements of the list match the predicate false if there are any that don t"  data-name="all"  data-member="conditional"  data-see="href https github com ramda ramda blob master src all js label ramda ramda blob master src all js href https github com fluents chain able blob master src deps fp curry js label fluents chain able blob master src deps fp curry js"  data-todos="not some"  data-all="meta all predicate undefined array undefined n a Boolean a Boolean call all predicate undefined array undefined category Methods description Function map all values in an array to see if all match nReturns true if all elements of the list match the predicate false if there are any that don t name all member conditional see href https github com ramda ramda blob master src all js label ramda ramda blob master src all js href https github com fluents chain able blob master src deps fp curry js label fluents chain able blob master src deps fp curry js notes todos not some n klassProps" >`conditional.all`</a>
+* <a href="#conditional-prototype-all"  data-meta="all predicate undefined array undefined a Boolean a Boolean"  data-call="all predicate undefined array undefined"  data-category="Methods"  data-description="Function map all values in an array to see if all match Returns true if all elements of the list match the predicate false if there are any that don t"  data-name="all"  data-member="conditional"  data-see="href https github com ramda ramda blob master src all js label ramda all href https github com fluents chain able blob master src deps fp curry js label fp curry"  data-todos="not some"  data-all="meta all predicate undefined array undefined n a Boolean a Boolean call all predicate undefined array undefined category Methods description Function map all values in an array to see if all match nReturns true if all elements of the list match the predicate false if there are any that don t name all member conditional see href https github com ramda ramda blob master src all js label ramda all href https github com fluents chain able blob master src deps fp curry js label fp curry notes todos not some n klassProps" >`conditional.all`</a>
 
 <!-- /div -->
 
@@ -30,8 +30,8 @@ Returns `true` if all elements of the list match the predicate, `false` if there
 
 #### @see 
 
-* <a href="https://github.com/ramda/ramda/blob/master/src/all.js" >ramda/ramda/blob/master/src/all.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/fp/curry.js" >fluents/chain able/blob/master/src/deps/fp/curry.js</a>
+* <a href="https://github.com/ramda/ramda/blob/master/src/all.js" >ramda-all</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/fp/curry.js" >fp/curry</a>
 
 #### @todos 
 

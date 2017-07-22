@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `matcher`
-* <a href="#matcher-prototype-escapeStringRegExp"  data-meta="exports str undefined"  data-call="exports str undefined"  data-category="Methods"  data-description="Function"  data-name="escapeStringRegExp"  data-member="matcher"  data-see="href https github com fluents chain able blob master src deps fp replace js label fluents chain able blob master src deps fp replace js"  data-notes="also as const escapeStringRegexp require escape string regexp"  data-all="meta exports str undefined call exports str undefined category Methods description Function name escapeStringRegExp member matcher see href https github com fluents chain able blob master src deps fp replace js label fluents chain able blob master src deps fp replace js notes also as const escapeStringRegexp require escape string regexp n todos klassProps" >`matcher.escapeStringRegExp`</a>
+* <a href="#matcher-prototype-escapeStringRegExp"  data-meta="exports str undefined"  data-call="exports str undefined"  data-category="Methods"  data-description="Function"  data-name="escapeStringRegExp"  data-member="matcher"  data-see="href https github com sindresorhus escape string regexp label escape string regexp href https github com fluents chain able blob master src deps fp replace js label fp replace"  data-notes="also as const escapeStringRegexp require escape string regexp"  data-all="meta exports str undefined call exports str undefined category Methods description Function name escapeStringRegExp member matcher see href https github com sindresorhus escape string regexp label escape string regexp href https github com fluents chain able blob master src deps fp replace js label fp replace notes also as const escapeStringRegexp require escape string regexp n todos klassProps" >`matcher.escapeStringRegExp`</a>
 
 <!-- /div -->
 
@@ -29,7 +29,8 @@ Function
 
 #### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/fp/replace.js" >fluents/chain able/blob/master/src/deps/fp/replace.js</a>
+* <a href="https://github.com/sindresorhus/escape-string-regexp" >escape-string-regexp</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/fp/replace.js" >fp/replace</a>
 
 #### @notes 
 

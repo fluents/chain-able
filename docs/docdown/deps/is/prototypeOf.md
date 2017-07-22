@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is`
-* <a href="#is-prototype-isPrototypeOf"  data-meta="isPrototypeOf haystack undefined needle undefined"  data-call="isPrototypeOf haystack undefined needle undefined"  data-category="Methods"  data-description="Function check if arg 1 is prototype of arg 2"  data-name="isPrototypeOf"  data-member="is"  data-see="href https developer mozilla org en US docs Web JavaScript Reference Global Objects Object isPrototypeOf label Developer mozilla org en us docs web java script reference global objects object is prototype of"  data-todos="curry2"  data-all="meta isPrototypeOf haystack undefined needle undefined call isPrototypeOf haystack undefined needle undefined category Methods description Function check if arg 1 is prototype of arg 2 name isPrototypeOf member is see href https developer mozilla org en US docs Web JavaScript Reference Global Objects Object isPrototypeOf label Developer mozilla org en us docs web java script reference global objects object is prototype of notes todos curry2 n klassProps" >`is.isPrototypeOf`</a>
+* <a href="#is-prototype-isPrototypeOf"  data-meta="isPrototypeOf haystack undefined needle undefined"  data-call="isPrototypeOf haystack undefined needle undefined"  data-category="Methods"  data-description="Function check if arg 1 is prototype of arg 2"  data-name="isPrototypeOf"  data-member="is"  data-see="href https developer mozilla org en US docs Web JavaScript Reference Global Objects Object isPrototypeOf label mozilla obj isprototypeof"  data-todos="curry2"  data-all="meta isPrototypeOf haystack undefined needle undefined call isPrototypeOf haystack undefined needle undefined category Methods description Function check if arg 1 is prototype of arg 2 name isPrototypeOf member is see href https developer mozilla org en US docs Web JavaScript Reference Global Objects Object isPrototypeOf label mozilla obj isprototypeof notes todos curry2 n klassProps" >`is.isPrototypeOf`</a>
 
 <!-- /div -->
 
@@ -29,7 +29,7 @@
 
 #### @see 
 
-* <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isPrototypeOf" >Developer.mozilla.org/en us/docs/web/java script/reference/global objects/object/is prototype of</a>
+* <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isPrototypeOf" >mozilla-obj-isprototypeof</a>
 
 #### @todos 
 

@@ -1,4 +1,4 @@
-const ChainAble = require('../../../src')
+const ChainAble = require('../../../index.all.js')
 const props = require('../../../src/deps/util/props')
 const isNullOrUndefined = require('../../../src/deps/is/nullOrUndefined')
 

@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `encase`
-* <a href="#encase-prototype-withSpecification"  data-meta="withSpecification specification undefined call undefined onInvalid undefined onInvalid undefined"  data-call="withSpecification specification undefined call undefined onInvalid undefined onInvalid undefined"  data-category="Methods"  data-description="Function a special encased wrapper with no try catch but same api"  data-name="withSpecification"  data-member="encase"  data-see="href https github com fluents chain able blob master src deps fp curry js label fluents chain able blob master src deps fp curry js"  data-all="meta withSpecification specification undefined call undefined onInvalid undefined onInvalid undefined call withSpecification specification undefined call undefined onInvalid undefined onInvalid undefined category Methods description Function a special encased wrapper with no try catch but same api name withSpecification member encase see href https github com fluents chain able blob master src deps fp curry js label fluents chain able blob master src deps fp curry js notes todos klassProps" >`encase.withSpecification`</a>
+* <a href="#encase-prototype-withSpecification"  data-meta="withSpecification specification undefined call undefined onInvalid undefined onInvalid undefined"  data-call="withSpecification specification undefined call undefined onInvalid undefined onInvalid undefined"  data-category="Methods"  data-description="Function a special encased wrapper with no try catch but same api"  data-name="withSpecification"  data-member="encase"  data-see="href https github com fluents chain able blob master src deps fp curry js label fp curry"  data-all="meta withSpecification specification undefined call undefined onInvalid undefined onInvalid undefined call withSpecification specification undefined call undefined onInvalid undefined onInvalid undefined category Methods description Function a special encased wrapper with no try catch but same api name withSpecification member encase see href https github com fluents chain able blob master src deps fp curry js label fp curry notes todos klassProps" >`encase.withSpecification`</a>
 
 <!-- /div -->
 
@@ -29,7 +29,7 @@
 
 #### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/fp/curry.js" >fluents/chain able/blob/master/src/deps/fp/curry.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/fp/curry.js" >fp/curry</a>
 
 #### @Since
 4.0.0

@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `encase`
-* <a href="#encase-prototype-exports"  data-meta="exports method undefined type undefined"  data-call="exports method undefined type undefined"  data-category="Methods"  data-description="Function enhance an Error enable rethrowing better inspection"  data-name="exports"  data-member="encase"  data-see="href https github com fluents chain able blob master src MethodChain js label fluents chain able blob master src method chain js href https github com fluents chain able blob master src deps validators schemaBuilder js label fluents chain able blob master src deps validators schema builder js href https github com fluents chain able blob master src deps validators validatorBuilder js label fluents chain able blob master src deps validators validator builder js href https github com fluents chain able blob master src plugins encase js label fluents chain able blob master src plugins encase js"  data-todos="js stringify if development"  data-all="meta exports method undefined type undefined call exports method undefined type undefined category Methods description Function enhance an Error enable rethrowing better inspection name exports member encase see href https github com fluents chain able blob master src MethodChain js label fluents chain able blob master src method chain js href https github com fluents chain able blob master src deps validators schemaBuilder js label fluents chain able blob master src deps validators schema builder js href https github com fluents chain able blob master src deps validators validatorBuilder js label fluents chain able blob master src deps validators validator builder js href https github com fluents chain able blob master src plugins encase js label fluents chain able blob master src plugins encase js notes todos js stringify if development n klassProps" >`encase.exports`</a>
+* <a href="#encase-prototype-exports"  data-meta="exports method undefined type undefined"  data-call="exports method undefined type undefined"  data-category="Methods"  data-description="Function enhance an Error enable rethrowing better inspection"  data-name="exports"  data-member="encase"  data-see="href https github com fluents chain able blob master src MethodChain js label MethodChain href https github com fluents chain able blob master src deps validators schemaBuilder js label validators schemaBuilder href https github com fluents chain able blob master src deps validators validatorBuilder js label validators validatorBuilder href https github com fluents chain able blob master src plugins encase js label plugins encase"  data-todos="js stringify if development"  data-all="meta exports method undefined type undefined call exports method undefined type undefined category Methods description Function enhance an Error enable rethrowing better inspection name exports member encase see href https github com fluents chain able blob master src MethodChain js label MethodChain href https github com fluents chain able blob master src deps validators schemaBuilder js label validators schemaBuilder href https github com fluents chain able blob master src deps validators validatorBuilder js label validators validatorBuilder href https github com fluents chain able blob master src plugins encase js label plugins encase notes todos js stringify if development n klassProps" >`encase.exports`</a>
 
 <!-- /div -->
 
@@ -29,10 +29,10 @@
 
 #### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/MethodChain.js" >fluents/chain able/blob/master/src/method chain.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/validators/schemaBuilder.js" >fluents/chain able/blob/master/src/deps/validators/schema builder.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/validators/validatorBuilder.js" >fluents/chain able/blob/master/src/deps/validators/validator builder.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/plugins/encase.js" >fluents/chain able/blob/master/src/plugins/encase.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/MethodChain.js" >MethodChain</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/validators/schemaBuilder.js" >validators/schemaBuilder</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/validators/validatorBuilder.js" >validators/validatorBuilder</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/plugins/encase.js" >plugins/encase</a>
 
 #### @todos 
 

@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is`
-* <a href="#is-prototype-"  data-meta="exports x undefined a Boolean"  data-call="exports x undefined"  data-category="Logic"  data-description="Function Returns true if the given value is its type s empty value false otherwise"  data-member="is"  data-see="href https github com fluents chain able blob master src deps dopemerge emptyTarget js label fluents chain able blob master src deps dopemerge empty target js"  data-all="meta exports x undefined n a Boolean call exports x undefined category Logic description Function Returns true if the given value is its type s empty value n false otherwise name member is see href https github com fluents chain able blob master src deps dopemerge emptyTarget js label fluents chain able blob master src deps dopemerge empty target js notes todos klassProps" >`is.`</a>
+* <a href="#is-prototype-"  data-meta="exports x undefined a Boolean"  data-call="exports x undefined"  data-category="Logic"  data-description="Function Returns true if the given value is its type s empty value false otherwise"  data-member="is"  data-see="href https github com fluents chain able blob master src deps dopemerge emptyTarget js label empty href https github com ramda ramda issues 1228 label https github com ramda ramda issues 1228"  data-all="meta exports x undefined n a Boolean call exports x undefined category Logic description Function Returns true if the given value is its type s empty value n false otherwise name member is see href https github com fluents chain able blob master src deps dopemerge emptyTarget js label empty href https github com ramda ramda issues 1228 label https github com ramda ramda issues 1228 notes todos klassProps" >`is.`</a>
 
 <!-- /div -->
 
@@ -30,7 +30,8 @@
 
 #### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/dopemerge/emptyTarget.js" >fluents/chain able/blob/master/src/deps/dopemerge/empty target.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/dopemerge/emptyTarget.js" >empty</a>
+* <a href="https://github.com/ramda/ramda/issues/1228" >https://github.com/ramda/ramda/issues/1228</a>
 
 #### @sig 
 

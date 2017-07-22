@@ -41,6 +41,10 @@
 (Function): Returns the last element of the given list or string.
 
 
+#### @see 
+
+* <a href="undefined" ></a>
+
 #### @extends
 
 

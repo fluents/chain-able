@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is`
-* <a href="#is-prototype-exports"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Methods"  data-description="Function isBuffer global Buffer"  data-name="exports"  data-member="is"  data-all="meta exports x undefined call exports x undefined category Methods description Function isBuffer global Buffer name exports member is see notes todos klassProps" >`is.exports`</a>
+* <a href="#is-prototype-exports"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Methods"  data-description="Function isBuffer global Buffer"  data-name="exports"  data-member="is"  data-see="href https github com feross is buffer label https github com feross is buffer"  data-all="meta exports x undefined call exports x undefined category Methods description Function isBuffer global Buffer name exports member is see href https github com feross is buffer label https github com feross is buffer notes todos klassProps" >`is.exports`</a>
 
 <!-- /div -->
 
@@ -26,6 +26,10 @@
 
 (Function): isBuffer, global Buffer
 
+
+#### @see 
+
+* <a href="https://github.com/feross/is-buffer" >https://github.com/feross/is-buffer</a>
 
 #### @Since
 5.0.0-beta.1

@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is`
-* <a href="#is-prototype-isNative"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Methods"  data-description="Function based on isNative from react fibers based on isNative from Lodash"  data-name="isNative"  data-member="is"  data-see="href https developer mozilla org en US docs Web JavaScript Reference Global Objects Function toString label Developer mozilla org en us docs web java script reference global objects function to string href https github com fluents chain able blob masterhttp tc39 github io Function prototype toString revision label fluents chain able blob masterhttp tc39 github io function prototype to string revision href https github com lodash lodash issues 2185 label lodash lodash issues 2185 href https esdiscuss org topic spec feedback on rev 6 content 2 label Esdiscuss org topic spec feedback on rev 6"  data-all="meta exports x undefined call exports x undefined category Methods description Function based on isNative from react fibers based on isNative from Lodash name isNative member is see href https developer mozilla org en US docs Web JavaScript Reference Global Objects Function toString label Developer mozilla org en us docs web java script reference global objects function to string href https github com fluents chain able blob masterhttp tc39 github io Function prototype toString revision label fluents chain able blob masterhttp tc39 github io function prototype to string revision href https github com lodash lodash issues 2185 label lodash lodash issues 2185 href https esdiscuss org topic spec feedback on rev 6 content 2 label Esdiscuss org topic spec feedback on rev 6 notes todos klassProps" >`is.isNative`</a>
+* <a href="#is-prototype-isNative"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Methods"  data-description="Function based on isNative from react fibers based on isNative from Lodash"  data-name="isNative"  data-member="is"  data-see="href https developer mozilla org en US docs Web JavaScript Reference Global Objects Function toString label Function toString href https github com fluents chain able search utf8 E2 9C 93 q http tc39 github io Function prototype toString revision type label functiontostring emca href https github com lodash lodash issues 2185 label lodash functiontostring issue href https esdiscuss org topic spec feedback on rev 6 content 2 label esdiscuss functiontostring"  data-all="meta exports x undefined call exports x undefined category Methods description Function based on isNative from react fibers based on isNative from Lodash name isNative member is see href https developer mozilla org en US docs Web JavaScript Reference Global Objects Function toString label Function toString href https github com fluents chain able search utf8 E2 9C 93 q http tc39 github io Function prototype toString revision type label functiontostring emca href https github com lodash lodash issues 2185 label lodash functiontostring issue href https esdiscuss org topic spec feedback on rev 6 content 2 label esdiscuss functiontostring notes todos klassProps" >`is.isNative`</a>
 
 <!-- /div -->
 
@@ -29,10 +29,10 @@
 
 #### @see 
 
-* <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/toString" >Developer.mozilla.org/en us/docs/web/java script/reference/global objects/function/to string</a>
-* <a href="https://github.com/fluents/chain-able/blob/masterhttp://tc39.github.io/Function-prototype-toString-revision/" >fluents/chain able/blob/masterhttp:/tc39.github.io/function prototype to string revision</a>
-* <a href="https://github.com/lodash/lodash/issues/2185" >lodash/lodash/issues/2185</a>
-* <a href="https://esdiscuss.org/topic/spec-feedback-on-rev-6#content-2" >Esdiscuss.org/topic/spec feedback on rev 6</a>
+* <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/toString" >Function.toString</a>
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=http://tc39.github.io/Function-prototype-toString-revision/&type=" >functiontostring-emca</a>
+* <a href="https://github.com/lodash/lodash/issues/2185" >lodash-functiontostring-issue</a>
+* <a href="https://esdiscuss.org/topic/spec-feedback-on-rev-6#content-2" >esdiscuss-functiontostring</a>
 
 #### @Since
 4.0.6

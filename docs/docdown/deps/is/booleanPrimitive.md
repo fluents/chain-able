@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is`
-* <a href="#is-prototype-isBooleanPrimitive"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Lang"  data-description="Function Checks if value is classified as a boolean primitive NOT object"  data-name="isBooleanPrimitive"  data-member="is"  data-see="href https github com fluents chain able blob master src deps is toS js label fluents chain able blob master src deps is to s js"  data-notes="could also have typeof x boolean true false test x"  data-all="meta n n exports x undefined call exports x undefined category Lang description Function Checks if value is classified as a boolean primitive NOT object name isBooleanPrimitive member is see href https github com fluents chain able blob master src deps is toS js label fluents chain able blob master src deps is to s js notes could also have typeof x boolean true false test x n todos klassProps" >`is.isBooleanPrimitive`</a>
+* <a href="#is-prototype-isBooleanPrimitive"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Lang"  data-description="Function Checks if value is classified as a boolean primitive NOT object"  data-name="isBooleanPrimitive"  data-member="is"  data-see="href https github com fluents chain able blob master src deps is toS js label is toS"  data-notes="could also have typeof x boolean true false test x"  data-all="meta n n exports x undefined call exports x undefined category Lang description Function Checks if value is classified as a boolean primitive NOT object name isBooleanPrimitive member is see href https github com fluents chain able blob master src deps is toS js label is toS notes could also have typeof x boolean true false test x n todos klassProps" >`is.isBooleanPrimitive`</a>
 
 <!-- /div -->
 
@@ -29,7 +29,7 @@
 
 #### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/toS.js" >fluents/chain able/blob/master/src/deps/is/to s.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/toS.js" >is/toS</a>
 
 #### @notes 
 

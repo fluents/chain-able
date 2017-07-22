@@ -10,7 +10,7 @@
 * <a href="#FactoryChain-prototype-factory"  data-meta="factory obj"  data-call="factory obj"  data-category="Methods"  data-description="Function creates add the end method which checks how many methods have been called and decides whether to return parent or not"  data-name="factory"  data-member="FactoryChain"  data-all="meta factory obj call factory obj category Methods description Function creates add the end method which checks how many methods have been called and decides whether to return parent or not name factory member FactoryChain see notes todos klassProps" >`FactoryChain.factory`</a>
 * <a href="#FactoryChain-prototype-getData"  data-meta="getData prop undefined"  data-call="getData prop undefined"  data-category="Methods"  data-description="Function access data being built when stepping through a factory"  data-name="getData"  data-member="FactoryChain"  data-all="meta getData prop undefined call getData prop undefined category Methods description Function access data being built when stepping through a factory name getData member FactoryChain see notes todos klassProps" >`FactoryChain.getData`</a>
 * <a href="#FactoryChain-prototype-prop"  data-meta="prop name undefined onCall undefined"  data-call="prop name undefined onCall undefined"  data-category="Methods"  data-description="Function add property that are counted towards the call count for easy auto ending chaining"  data-name="prop"  data-member="FactoryChain"  data-all="meta prop name undefined onCall undefined call prop name undefined onCall undefined category Methods description Function add property that are counted towards the call count for easy auto ending chaining name prop member FactoryChain see notes todos klassProps" >`FactoryChain.prop`</a>
-* <a href="#FactoryChain-prototype-props"  data-meta="props names undefined"  data-call="props names undefined"  data-category="Methods"  data-description="Function adds an array of properties using FactoryChain prop"  data-name="props"  data-member="FactoryChain"  data-all="meta props names undefined call props names undefined category Methods description Function adds an array of properties using FactoryChain prop name props member FactoryChain see notes todos klassProps" >`FactoryChain.props`</a>
+* <a href="#FactoryChain-prototype-props"  data-meta="props names undefined"  data-call="props names undefined"  data-category="Methods"  data-description="Function adds an array of properties using FactoryChain prop"  data-name="props"  data-member="FactoryChain"  data-see="href https github com fluents chain able search utf8 E2 9C 93 q FactoryChain prop type label FactoryChain prop"  data-all="meta props names undefined call props names undefined category Methods description Function adds an array of properties using FactoryChain prop name props member FactoryChain see href https github com fluents chain able search utf8 E2 9C 93 q FactoryChain prop type label FactoryChain prop notes todos klassProps" >`FactoryChain.props`</a>
 
 <!-- /div -->
 
@@ -216,6 +216,10 @@ person
 
 (Function): adds an *array* of properties, using FactoryChain.prop
 
+
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=FactoryChain.prop&type=" >FactoryChain.prop</a>
 
 #### @Since
 2.0.0

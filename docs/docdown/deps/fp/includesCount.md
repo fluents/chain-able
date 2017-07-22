@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `getIncludesCount`
-* <a href="#getIncludesCount"  data-meta="getIncludesCount haystack undefined needle undefined"  data-call="getIncludesCount haystack undefined needle undefined"  data-category="Methods"  data-description="Function getIncludesCount how many times a needle occurrs in a haystack"  data-name="getIncludesCount"  data-see="href https developer mozilla org en docs Web JavaScript Reference Global Objects String indexOf Using indexOf to count occurrences of a letter in a string label Developer mozilla org en docs web java script reference global objects string index of href https developer mozilla org en docs Web JavaScript Reference Global Objects Array indexOf Finding all the occurrences of an element label Developer mozilla org en docs web java script reference global objects array index of"  data-all="meta getIncludesCount haystack undefined needle undefined call getIncludesCount haystack undefined needle undefined category Methods description Function getIncludesCount how many times a needle occurrs in a haystack name getIncludesCount member see href https developer mozilla org en docs Web JavaScript Reference Global Objects String indexOf Using indexOf to count occurrences of a letter in a string label Developer mozilla org en docs web java script reference global objects string index of href https developer mozilla org en docs Web JavaScript Reference Global Objects Array indexOf Finding all the occurrences of an element label Developer mozilla org en docs web java script reference global objects array index of notes todos klassProps" >`getIncludesCount`</a>
+* <a href="#getIncludesCount"  data-meta="getIncludesCount haystack undefined needle undefined"  data-call="getIncludesCount haystack undefined needle undefined"  data-category="Methods"  data-description="Function getIncludesCount how many times a needle occurrs in a haystack"  data-name="getIncludesCount"  data-see="href https developer mozilla org en docs Web JavaScript Reference Global Objects String indexOf Using indexOf to count occurrences of a letter in a string label mozilla occurrences href https developer mozilla org en docs Web JavaScript Reference Global Objects Array indexOf Finding all the occurrences of an element label mozilla array occurrences"  data-all="meta getIncludesCount haystack undefined needle undefined call getIncludesCount haystack undefined needle undefined category Methods description Function getIncludesCount how many times a needle occurrs in a haystack name getIncludesCount member see href https developer mozilla org en docs Web JavaScript Reference Global Objects String indexOf Using indexOf to count occurrences of a letter in a string label mozilla occurrences href https developer mozilla org en docs Web JavaScript Reference Global Objects Array indexOf Finding all the occurrences of an element label mozilla array occurrences notes todos klassProps" >`getIncludesCount`</a>
 
 <!-- /div -->
 
@@ -29,8 +29,8 @@
 
 #### @see 
 
-* <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf#Using_indexOf()_to_count_occurrences_of_a_letter_in_a_string" >Developer.mozilla.org/en/docs/web/java script/reference/global objects/string/index of</a>
-* <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf#Finding_all_the_occurrences_of_an_element" >Developer.mozilla.org/en/docs/web/java script/reference/global objects/array/index of</a>
+* <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf#Using_indexOf()_to_count_occurrences_of_a_letter_in_a_string" >mozilla-occurrences</a>
+* <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf#Finding_all_the_occurrences_of_an_element" >mozilla-array-occurrences</a>
 
 #### @Since
 5.0.0-beta.4

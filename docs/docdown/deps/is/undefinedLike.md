@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is`
-* <a href="#is-prototype-isUndefinedLike"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Lang"  data-description="Function Checks if value is undefined OR undefined"  data-name="isUndefinedLike"  data-member="is"  data-see="href https github com fluents chain able blob master src deps is nullOrUndefined js label fluents chain able blob master src deps is null or undefined js"  data-all="meta exports x undefined call exports x undefined category Lang description Function Checks if value is undefined OR undefined name isUndefinedLike member is see href https github com fluents chain able blob master src deps is nullOrUndefined js label fluents chain able blob master src deps is null or undefined js notes todos klassProps" >`is.isUndefinedLike`</a>
+* <a href="#is-prototype-isUndefinedLike"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Lang"  data-description="Function Checks if value is undefined OR undefined"  data-name="isUndefinedLike"  data-member="is"  data-see="href https github com fluents chain able blob master src deps is nullOrUndefined js label is nullOrUndefined"  data-all="meta exports x undefined call exports x undefined category Lang description Function Checks if value is undefined OR undefined name isUndefinedLike member is see href https github com fluents chain able blob master src deps is nullOrUndefined js label is nullOrUndefined notes todos klassProps" >`is.isUndefinedLike`</a>
 
 <!-- /div -->
 
@@ -29,7 +29,7 @@
 
 #### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/nullOrUndefined.js" >fluents/chain able/blob/master/src/deps/is/null or undefined.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/nullOrUndefined.js" >is/nullOrUndefined</a>
 
 #### @extends
 

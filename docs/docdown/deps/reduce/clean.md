@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `reduce`
-* <a href="#reduce-prototype-exports"  data-meta="exports obj undefined"  data-call="exports obj undefined"  data-category="Methods"  data-description="Function goes through the maps and the map values reduces them to array then to an object using the reduced values"  data-name="exports"  data-member="reduce"  data-see="href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js"  data-todos="seems to be overkill with reducing mapping just copy ignore or delete"  data-all="meta exports obj undefined call exports obj undefined category Methods description Function goes through the maps and the map values reduces them to array then to an object using the reduced values name exports member reduce see href https github com fluents chain able blob master src deps reduce clean js label fluents chain able blob master src deps reduce clean js notes todos seems to be overkill with reducing mapping just copy ignore or delete n klassProps" >`reduce.exports`</a>
+* <a href="#reduce-prototype-exports"  data-meta="exports obj undefined"  data-call="exports obj undefined"  data-category="Methods"  data-description="Function goes through the maps and the map values reduces them to array then to an object using the reduced values"  data-name="exports"  data-member="reduce"  data-see="href https github com fluents chain able blob master src deps reduce clean js label reduce href https github com fluents chain able search utf8 E2 9C 93 q isObjWithKeys type label isObjWithKeys href https github com fluents chain able search utf8 E2 9C 93 q isNotEmptyArray type label isNotEmptyArray href https github com fluents chain able search utf8 E2 9C 93 q isReal type label isReal href http underscorejs org reduce label http underscorejs org reduce"  data-todos="seems to be overkill with reducing mapping just copy ignore or delete"  data-all="meta exports obj undefined call exports obj undefined category Methods description Function goes through the maps and the map values reduces them to array then to an object using the reduced values name exports member reduce see href https github com fluents chain able blob master src deps reduce clean js label reduce href https github com fluents chain able search utf8 E2 9C 93 q isObjWithKeys type label isObjWithKeys href https github com fluents chain able search utf8 E2 9C 93 q isNotEmptyArray type label isNotEmptyArray href https github com fluents chain able search utf8 E2 9C 93 q isReal type label isReal href http underscorejs org reduce label http underscorejs org reduce notes todos seems to be overkill with reducing mapping just copy ignore or delete n klassProps" >`reduce.exports`</a>
 
 <!-- /div -->
 
@@ -29,7 +29,11 @@
 
 #### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/reduce/clean.js" >fluents/chain able/blob/master/src/deps/reduce/clean.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/reduce/clean.js" >reduce</a>
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=isObjWithKeys&type=" >isObjWithKeys</a>
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=isNotEmptyArray&type=" >isNotEmptyArray</a>
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=isReal&type=" >isReal</a>
+* <a href="http://underscorejs.org/#reduce" >http://underscorejs.org/#reduce</a>
 
 #### @todos 
 

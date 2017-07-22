@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is`
-* <a href="#is-prototype-isFunction"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Lang"  data-description="Function Checks if value is classified as a Function object"  data-name="isFunction"  data-member="is"  data-see="href http underscorejs org docs underscore html section 141 label Underscorejs org docs underscore html"  data-notes="x instanceof Function"  data-all="meta exports x undefined call exports x undefined category Lang description Function Checks if value is classified as a Function object name isFunction member is see href http underscorejs org docs underscore html section 141 label Underscorejs org docs underscore html notes x instanceof Function n todos klassProps" >`is.isFunction`</a>
+* <a href="#is-prototype-isFunction"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Lang"  data-description="Function Checks if value is classified as a Function object"  data-name="isFunction"  data-member="is"  data-see="href http underscorejs org docs underscore html section 141 label underscore is function"  data-notes="x instanceof Function"  data-all="meta exports x undefined call exports x undefined category Lang description Function Checks if value is classified as a Function object name isFunction member is see href http underscorejs org docs underscore html section 141 label underscore is function notes x instanceof Function n todos klassProps" >`is.isFunction`</a>
 
 <!-- /div -->
 
@@ -29,7 +29,7 @@
 
 #### @see 
 
-* <a href="http://underscorejs.org/docs/underscore.html#section-141" >Underscorejs.org/docs/underscore.html</a>
+* <a href="http://underscorejs.org/docs/underscore.html#section-141" >underscore-is-function</a>
 
 #### @notes 
 

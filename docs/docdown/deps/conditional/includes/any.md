@@ -5,14 +5,14 @@
 <!-- div -->
 
 ## `arrayHasAny`
-* <a href="#arrayHasAny"  data-meta="arrayHasAny needles undefined haystack undefined"  data-call="arrayHasAny needles undefined haystack undefined"  data-category="Methods"  data-description="Function"  data-name="arrayHasAny"  data-all="meta arrayHasAny needles undefined haystack undefined call arrayHasAny needles undefined haystack undefined category Methods description Function name arrayHasAny member see notes todos klassProps" >`arrayHasAny`</a>
+* <a href="#arrayHasAny"  data-meta="arrayHasAny needles undefined haystack undefined"  data-call="arrayHasAny needles undefined haystack undefined"  data-category="Methods"  data-description="Function"  data-name="arrayHasAny"  data-see="href https github com fluents chain able search utf8 E2 9C 93 q strHasAny type label strHasAny"  data-all="meta arrayHasAny needles undefined haystack undefined call arrayHasAny needles undefined haystack undefined category Methods description Function name arrayHasAny member see href https github com fluents chain able search utf8 E2 9C 93 q strHasAny type label strHasAny notes todos klassProps" >`arrayHasAny`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
 ## `includesAny`
-* <a href="#includesAny"  data-meta="includesAny needle undefined haystack undefined"  data-call="includesAny needle undefined haystack undefined"  data-category="Methods"  data-description="Function"  data-name="includesAny"  data-all="meta includesAny needle undefined haystack undefined call includesAny needle undefined haystack undefined category Methods description Function name includesAny member see notes todos klassProps" >`includesAny`</a>
+* <a href="#includesAny"  data-meta="includesAny needle undefined haystack undefined"  data-call="includesAny needle undefined haystack undefined"  data-category="Methods"  data-description="Function"  data-name="includesAny"  data-see="href https github com fluents chain able search utf8 E2 9C 93 q arrayHasAny type label arrayHasAny href https github com fluents chain able search utf8 E2 9C 93 q strHasAny type label strHasAny"  data-all="meta includesAny needle undefined haystack undefined call includesAny needle undefined haystack undefined category Methods description Function name includesAny member see href https github com fluents chain able search utf8 E2 9C 93 q arrayHasAny type label arrayHasAny href https github com fluents chain able search utf8 E2 9C 93 q strHasAny type label strHasAny notes todos klassProps" >`includesAny`</a>
 
 <!-- /div -->
 
@@ -40,6 +40,10 @@
 
 Function
 
+
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=strHasAny&type=" >strHasAny</a>
 #### Arguments
 1. `needles=undefined` *(string&#91;&#93;)*:
 2. `haystack=undefined` *(string&#91;&#93;)*:
@@ -66,6 +70,11 @@ Function
 
 Function
 
+
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=arrayHasAny&type=" >arrayHasAny</a>
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=strHasAny&type=" >strHasAny</a>
 #### Arguments
 1. `needle=undefined` *(string|string&#91;&#93;)*:
 2. `haystack=undefined` *(string&#91;&#93;)*:

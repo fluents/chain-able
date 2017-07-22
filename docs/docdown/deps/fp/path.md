@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `fp`
-* <a href="#fp-prototype-"  data-meta="exports path undefined obj undefined Idx a a Undefined"  data-call="exports path undefined obj undefined"  data-category="Object"  data-description="Function Retrieve the value at a given path"  data-member="fp"  data-all="meta exports path undefined obj undefined n Idx a a Undefined call exports path undefined obj undefined category Object description Function Retrieve the value at a given path name member fp see notes todos klassProps" >`fp.`</a>
+* <a href="#fp-prototype-"  data-meta="exports path undefined obj undefined Idx a a Undefined"  data-call="exports path undefined obj undefined"  data-category="Object"  data-description="Function Retrieve the value at a given path"  data-member="fp"  data-see="href https github com ramda ramda blob master src path js label https github com ramda ramda blob master src path js href https github com fluents chain able search utf8 E2 9C 93 q R prop type label R prop"  data-all="meta exports path undefined obj undefined n Idx a a Undefined call exports path undefined obj undefined category Object description Function Retrieve the value at a given path name member fp see href https github com ramda ramda blob master src path js label https github com ramda ramda blob master src path js href https github com fluents chain able search utf8 E2 9C 93 q R prop type label R prop notes todos klassProps" >`fp.`</a>
 
 <!-- /div -->
 
@@ -26,6 +26,11 @@
 
 (Function): Retrieve the value at a given path.
 
+
+#### @see 
+
+* <a href="https://github.com/ramda/ramda/blob/master/src/path.js" >https://github.com/ramda/ramda/blob/master/src/path.js</a>
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=R.prop&type=" >R.prop</a>
 
 #### @sig 
 

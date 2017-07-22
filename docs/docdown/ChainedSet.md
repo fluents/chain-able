@@ -5,8 +5,8 @@
 <!-- div -->
 
 ## `ChainedSet`
-* <a href="#ChainedSet-prototype-"  data-meta="Chainable"  data-category="Properties"  data-description="Set"  data-member="ChainedSet"  data-notes="had Symbol isConcatSpreadable but it was not useful"  data-todos="could add first last"  data-klassProps="store"  data-all="meta Chainable call category Properties description Set name member ChainedSet see notes had Symbol isConcatSpreadable but it was not useful n todos could add first last n klassProps store n" >`ChainedSet.`</a>
-* <a href="#ChainedSet-prototype-add"  data-meta="add value undefined"  data-call="add value undefined"  data-category="Methods"  data-description="Function appends a new element with a specified value to the end of the store"  data-name="add"  data-member="ChainedSet"  data-all="meta add value undefined call add value undefined category Methods description Function appends a new element with a specified value to the end of the store name add member ChainedSet see notes todos klassProps" >`ChainedSet.add`</a>
+* <a href="#ChainedSet-prototype-"  data-meta="Chainable"  data-category="Properties"  data-description="Set"  data-member="ChainedSet"  data-see="href http 2ality com 2015 09 well known symbols es6 html label http 2ality com 2015 09 well known symbols es6 html href https developer mozilla org en US docs Web JavaScript Reference Global Objects Symbol isConcatSpreadable label https developer mozilla org en US docs Web JavaScript Reference Global Objects Symbol isConcatSpreadable href https github com fluents chain able blob master src Chainable js label Chainable"  data-notes="had Symbol isConcatSpreadable but it was not useful"  data-todos="could add first last"  data-klassProps="store"  data-all="meta Chainable call category Properties description Set name member ChainedSet see href http 2ality com 2015 09 well known symbols es6 html label http 2ality com 2015 09 well known symbols es6 html href https developer mozilla org en US docs Web JavaScript Reference Global Objects Symbol isConcatSpreadable label https developer mozilla org en US docs Web JavaScript Reference Global Objects Symbol isConcatSpreadable href https github com fluents chain able blob master src Chainable js label Chainable notes had Symbol isConcatSpreadable but it was not useful n todos could add first last n klassProps store n" >`ChainedSet.`</a>
+* <a href="#ChainedSet-prototype-add"  data-meta="add value undefined"  data-call="add value undefined"  data-category="Methods"  data-description="Function appends a new element with a specified value to the end of the store"  data-name="add"  data-member="ChainedSet"  data-see="href https developer mozilla org en US docs Web JavaScript Reference Global Objects Set add label mozilla set add href https github com lodash lodash blob master internal addSetEntry js L9 label lodash add set entry"  data-all="meta add value undefined call add value undefined category Methods description Function appends a new element with a specified value to the end of the store name add member ChainedSet see href https developer mozilla org en US docs Web JavaScript Reference Global Objects Set add label mozilla set add href https github com lodash lodash blob master internal addSetEntry js L9 label lodash add set entry notes todos klassProps" >`ChainedSet.add`</a>
 * <a href="#ChainedSet-prototype-merge"  data-meta="merge arr undefined"  data-call="merge arr undefined"  data-category="Methods"  data-description="Function merge any Array Set Iteratable Concatables into the array at the end"  data-name="merge"  data-member="ChainedSet"  data-all="meta merge arr undefined call merge arr undefined category Methods description Function merge any Array Set Iteratable Concatables into the array at the end name merge member ChainedSet see notes todos klassProps" >`ChainedSet.merge`</a>
 * <a href="#ChainedSet-prototype-prepend"  data-meta="prepend value undefined"  data-call="prepend value undefined"  data-category="Methods"  data-description="Function inserts the value at the beginning of the Set"  data-name="prepend"  data-member="ChainedSet"  data-all="meta prepend value undefined call prepend value undefined category Methods description Function inserts the value at the beginning of the Set name prepend member ChainedSet see notes todos klassProps" >`ChainedSet.prepend`</a>
 
@@ -33,6 +33,12 @@
 
 Set
 
+
+#### @see 
+
+* <a href="http://2ality.com/2015/09/well-known-symbols-es6.html" >http://2ality.com/2015/09/well-known-symbols-es6.html</a>
+* <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/isConcatSpreadable" >https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/isConcatSpreadable</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/Chainable.js" >Chainable</a>
 
 #### @notes 
 
@@ -66,6 +72,11 @@ Chainable
 
 (Function): appends a new element with a specified value to the end of the .store
 
+
+#### @see 
+
+* <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/add" >mozilla-set-add</a>
+* <a href="https://github.com/lodash/lodash/blob/master/.internal/addSetEntry.js#L9" >lodash-add-set-entry</a>
 
 #### @Since
 0.4.0

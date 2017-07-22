@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `noop`
-* <a href="#noop"  data-meta="noop"  data-call="noop"  data-category="Methods"  data-description="Function"  data-name="noop"  data-see="href https github com sindresorhus noop3 label sindresorhus noop3"  data-all="meta noop call noop category Methods description Function name noop member see href https github com sindresorhus noop3 label sindresorhus noop3 notes todos klassProps" >`noop`</a>
+* <a href="#noop"  data-meta="noop"  data-call="noop"  data-category="Methods"  data-description="Function"  data-name="noop"  data-see="href https github com sindresorhus noop3 label noop3"  data-all="meta noop call noop category Methods description Function name noop member see href https github com sindresorhus noop3 label noop3 notes todos klassProps" >`noop`</a>
 
 <!-- /div -->
 
@@ -29,7 +29,7 @@ Function
 
 #### @see 
 
-* <a href="https://github.com/sindresorhus/noop3" >sindresorhus/noop3</a>
+* <a href="https://github.com/sindresorhus/noop3" >noop3</a>
 
 #### @Since
 5.0.0

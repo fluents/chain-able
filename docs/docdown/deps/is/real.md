@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is`
-* <a href="#is-prototype-isReal"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Methods"  data-description="Function"  data-name="isReal"  data-member="is"  data-see="href https github com fluents chain able blob master src deps is null js label fluents chain able blob master src deps is null js href https github com fluents chain able blob master src deps is undefined js label fluents chain able blob master src deps is undefined js"  data-notes="eslint disable next line no self compare x x"  data-all="meta exports x undefined call exports x undefined category Methods description Function name isReal member is see href https github com fluents chain able blob master src deps is null js label fluents chain able blob master src deps is null js href https github com fluents chain able blob master src deps is undefined js label fluents chain able blob master src deps is undefined js notes eslint disable next line no self compare n x x n todos klassProps" >`is.isReal`</a>
+* <a href="#is-prototype-isReal"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Methods"  data-description="Function"  data-name="isReal"  data-member="is"  data-see="href https github com fluents chain able blob master src deps is null js label is null href https github com fluents chain able blob master src deps is undefined js label is undefined href http 2ality com 2013 04 quirk implicit conversion html label http 2ality com 2013 04 quirk implicit conversion html href https github com fluents chain able search utf8 E2 9C 93 q https javascriptrefined io nan and typeof 36cd6e2a4e43 type label https javascriptrefined io nan and typeof 36cd6e2a4e43 href https developer mozilla org en docs Web JavaScript Reference Global Objects isNaN label https developer mozilla org en docs Web JavaScript Reference Global Objects isNaN"  data-notes="eslint disable next line no self compare x x"  data-all="meta exports x undefined call exports x undefined category Methods description Function name isReal member is see href https github com fluents chain able blob master src deps is null js label is null href https github com fluents chain able blob master src deps is undefined js label is undefined href http 2ality com 2013 04 quirk implicit conversion html label http 2ality com 2013 04 quirk implicit conversion html href https github com fluents chain able search utf8 E2 9C 93 q https javascriptrefined io nan and typeof 36cd6e2a4e43 type label https javascriptrefined io nan and typeof 36cd6e2a4e43 href https developer mozilla org en docs Web JavaScript Reference Global Objects isNaN label https developer mozilla org en docs Web JavaScript Reference Global Objects isNaN notes eslint disable next line no self compare n x x n todos klassProps" >`is.isReal`</a>
 
 <!-- /div -->
 
@@ -29,8 +29,11 @@ Function
 
 #### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/null.js" >fluents/chain able/blob/master/src/deps/is/null.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/undefined.js" >fluents/chain able/blob/master/src/deps/is/undefined.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/null.js" >is/null</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/undefined.js" >is/undefined</a>
+* <a href="http://2ality.com/2013/04/quirk-implicit-conversion.html" >http://2ality.com/2013/04/quirk-implicit-conversion.html</a>
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=https://javascriptrefined.io/nan-and-typeof-36cd6e2a4e43&type=" >https://javascriptrefined.io/nan-and-typeof-36cd6e2a4e43</a>
+* <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/isNaN" >https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/isNaN</a>
 
 #### @notes 
 

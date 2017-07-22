@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `fp`
-* <a href="#fp-prototype-"  data-meta="exports pattern undefined replacement undefined str undefined RegExp String String String String"  data-call="exports pattern undefined replacement undefined str undefined"  data-category="String"  data-description="Function Replace a substring or regex match in a string with a replacement"  data-member="fp"  data-see="href https github com ramda ramda blob master src replace js label ramda ramda blob master src replace js href https github com lodash lodash blob master replace js label lodash lodash blob master replace js"  data-all="meta exports pattern undefined replacement undefined str undefined n RegExp String String String String call exports pattern undefined replacement undefined str undefined category String description Function Replace a substring or regex match in a string with a replacement name member fp see href https github com ramda ramda blob master src replace js label ramda ramda blob master src replace js href https github com lodash lodash blob master replace js label lodash lodash blob master replace js notes todos klassProps" >`fp.`</a>
+* <a href="#fp-prototype-"  data-meta="exports pattern undefined replacement undefined str undefined RegExp String String"  data-call="exports pattern undefined replacement undefined str undefined"  data-category="String"  data-description="Function Replace a substring or regex match in a string with a replacement"  data-member="fp"  data-see="href https github com ramda ramda blob master src replace js label ramda replace href https github com lodash lodash blob master replace js label lodash replace"  data-all="meta exports pattern undefined replacement undefined str undefined n RegExp String String call exports pattern undefined replacement undefined str undefined category String description Function Replace a substring or regex match in a string with a replacement name member fp see href https github com ramda ramda blob master src replace js label ramda replace href https github com lodash lodash blob master replace js label lodash replace notes todos klassProps" >`fp.`</a>
 
 <!-- /div -->
 
@@ -33,8 +33,8 @@
 
 #### @see 
 
-* <a href="https://github.com/ramda/ramda/blob/master/src/replace.js" >ramda/ramda/blob/master/src/replace.js</a>
-* <a href="https://github.com/lodash/lodash/blob/master/replace.js" >lodash/lodash/blob/master/replace.js</a>
+* <a href="https://github.com/ramda/ramda/blob/master/src/replace.js" >ramda-replace</a>
+* <a href="https://github.com/lodash/lodash/blob/master/replace.js" >lodash-replace</a>
 
 #### @sig 
 

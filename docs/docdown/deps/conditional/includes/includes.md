@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `includes`
-* <a href="#includes-prototype-includes"  data-meta="includes haystack undefined needle undefined"  data-call="includes haystack undefined needle undefined"  data-category="Methods"  data-description="Function"  data-name="includes"  data-member="includes"  data-see="href https developer mozilla org en docs Web JavaScript Reference Operators Bitwise Operators Bitwise NOT label Developer mozilla org en docs web java script reference operators bitwise operators href https github com fluents chain able blob master src deps conditional includes flipped js label fluents chain able blob master src deps conditional includes flipped js"  data-todos="haystack indexOf needle"  data-all="meta includes haystack undefined needle undefined call includes haystack undefined needle undefined category Methods description Function name includes member includes see href https developer mozilla org en docs Web JavaScript Reference Operators Bitwise Operators Bitwise NOT label Developer mozilla org en docs web java script reference operators bitwise operators href https github com fluents chain able blob master src deps conditional includes flipped js label fluents chain able blob master src deps conditional includes flipped js notes todos haystack indexOf needle n klassProps" >`includes.includes`</a>
+* <a href="#includes-prototype-includes"  data-meta="includes haystack undefined needle undefined"  data-call="includes haystack undefined needle undefined"  data-category="Methods"  data-description="Function"  data-name="includes"  data-member="includes"  data-see="href https developer mozilla org en docs Web JavaScript Reference Operators Bitwise Operators Bitwise NOT label mozilla bitwise not href https github com fluents chain able blob master src deps conditional includes flipped js label conditional includes flipped"  data-todos="haystack indexOf needle"  data-all="meta includes haystack undefined needle undefined call includes haystack undefined needle undefined category Methods description Function name includes member includes see href https developer mozilla org en docs Web JavaScript Reference Operators Bitwise Operators Bitwise NOT label mozilla bitwise not href https github com fluents chain able blob master src deps conditional includes flipped js label conditional includes flipped notes todos haystack indexOf needle n klassProps" >`includes.includes`</a>
 
 <!-- /div -->
 
@@ -29,8 +29,8 @@ Function
 
 #### @see 
 
-* <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Bitwise_NOT" >Developer.mozilla.org/en/docs/web/java script/reference/operators/bitwise operators</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/flipped.js" >fluents/chain able/blob/master/src/deps/conditional/includes/flipped.js</a>
+* <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Bitwise_NOT" >mozilla-bitwise-not</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/flipped.js" >conditional/includes/flipped</a>
 
 #### @todos 
 

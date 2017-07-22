@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `util`
-* <a href="#util-prototype-exports"  data-meta="exports"  data-call="exports"  data-category="Methods"  data-description="Function"  data-name="exports"  data-member="util"  data-see="href https github com facebook react blob 4b2eac3de7e1dbf5c2dd742fd9989974a83972cb scripts babel transform object assign require js label facebook react blob 4b2eac3de7e1dbf5c2dd742fd9989974a83972cb scripts babel transform object assign require js href https github com ramda ramda blob master src internal objectAssign js label ramda ramda blob master src internal object assign js href https github com lodash lodash blob master internal assignValue js label lodash lodash blob master internal assign value js href https esdiscuss org topic object assign with several source objects label Esdiscuss org topic object assign with several source objects href https developer mozilla org en docs Web JavaScript Reference Global Objects Object assign label Developer mozilla org en docs web java script reference global objects object assign"  data-all="meta exports call exports category Methods description Function name exports member util see href https github com facebook react blob 4b2eac3de7e1dbf5c2dd742fd9989974a83972cb scripts babel transform object assign require js label facebook react blob 4b2eac3de7e1dbf5c2dd742fd9989974a83972cb scripts babel transform object assign require js href https github com ramda ramda blob master src internal objectAssign js label ramda ramda blob master src internal object assign js href https github com lodash lodash blob master internal assignValue js label lodash lodash blob master internal assign value js href https esdiscuss org topic object assign with several source objects label Esdiscuss org topic object assign with several source objects href https developer mozilla org en docs Web JavaScript Reference Global Objects Object assign label Developer mozilla org en docs web java script reference global objects object assign notes todos klassProps" >`util.exports`</a>
+* <a href="#util-prototype-exports"  data-meta="exports"  data-call="exports"  data-category="Methods"  data-description="Function"  data-name="exports"  data-member="util"  data-see="href https github com facebook react blob 4b2eac3de7e1dbf5c2dd742fd9989974a83972cb scripts babel transform object assign require js label react object assign href https github com ramda ramda blob master src internal objectAssign js label ramda assign href https github com lodash lodash blob master internal assignValue js label lodash assign href https esdiscuss org topic object assign with several source objects label esdiscuss object assign href https developer mozilla org en docs Web JavaScript Reference Global Objects Object assign label mozilla object assign"  data-all="meta exports call exports category Methods description Function name exports member util see href https github com facebook react blob 4b2eac3de7e1dbf5c2dd742fd9989974a83972cb scripts babel transform object assign require js label react object assign href https github com ramda ramda blob master src internal objectAssign js label ramda assign href https github com lodash lodash blob master internal assignValue js label lodash assign href https esdiscuss org topic object assign with several source objects label esdiscuss object assign href https developer mozilla org en docs Web JavaScript Reference Global Objects Object assign label mozilla object assign notes todos klassProps" >`util.exports`</a>
 
 <!-- /div -->
 
@@ -29,11 +29,11 @@ Function
 
 #### @see 
 
-* <a href="https://github.com/facebook/react/blob/4b2eac3de7e1dbf5c2dd742fd9989974a83972cb/scripts/babel/transform-object-assign-require.js" >facebook/react/blob/4b2eac3de7e1dbf5c2dd742fd9989974a83972cb/scripts/babel/transform object assign require.js</a>
-* <a href="https://github.com/ramda/ramda/blob/master/src/internal/_objectAssign.js" >ramda/ramda/blob/master/src/internal/ object assign.js</a>
-* <a href="https://github.com/lodash/lodash/blob/master/.internal/assignValue.js" >lodash/lodash/blob/master/.internal/assign value.js</a>
-* <a href="https://esdiscuss.org/topic/object-assign-with-several-source-objects" >Esdiscuss.org/topic/object assign with several source objects</a>
-* <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign" >Developer.mozilla.org/en/docs/web/java script/reference/global objects/object/assign</a>
+* <a href="https://github.com/facebook/react/blob/4b2eac3de7e1dbf5c2dd742fd9989974a83972cb/scripts/babel/transform-object-assign-require.js" >react-object-assign</a>
+* <a href="https://github.com/ramda/ramda/blob/master/src/internal/_objectAssign.js" >ramda-assign</a>
+* <a href="https://github.com/lodash/lodash/blob/master/.internal/assignValue.js" >lodash-assign</a>
+* <a href="https://esdiscuss.org/topic/object-assign-with-several-source-objects" >esdiscuss-object-assign</a>
+* <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign" >mozilla-object-assign</a>
 ---
 
 <!-- /div -->

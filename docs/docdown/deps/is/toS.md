@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is`
-* <a href="#is-prototype-exports"  data-meta="exports obj undefined"  data-call="exports obj undefined"  data-category="Methods"  data-description="Function The base implementation of getTag without fallbacks for buggy environments"  data-name="exports"  data-member="is"  data-todos="obj Symbol toStringTag run deopt check on this invoking see how many invocations are needed to inline"  data-all="meta exports obj undefined call exports obj undefined category Methods description Function The base implementation of getTag without fallbacks for buggy environments name exports member is see notes todos obj Symbol toStringTag n run deopt check on this invoking see how many invocations are needed to inline n klassProps" >`is.exports`</a>
+* <a href="#is-prototype-exports"  data-meta="exports obj undefined"  data-call="exports obj undefined"  data-category="Methods"  data-description="Function The base implementation of getTag without fallbacks for buggy environments"  data-name="exports"  data-member="is"  data-see="href https github com lodash lodash blob master internal baseGetTag js label https github com lodash lodash blob master internal baseGetTag js href https github com jonschlinkert kind of label https github com jonschlinkert kind of href https github com substack js traverse blob master index js L285 label https github com substack js traverse blob master index js L285 href http luxiyalu com object prototype tostring call label http luxiyalu com object prototype tostring call"  data-todos="obj Symbol toStringTag run deopt check on this invoking see how many invocations are needed to inline"  data-all="meta exports obj undefined call exports obj undefined category Methods description Function The base implementation of getTag without fallbacks for buggy environments name exports member is see href https github com lodash lodash blob master internal baseGetTag js label https github com lodash lodash blob master internal baseGetTag js href https github com jonschlinkert kind of label https github com jonschlinkert kind of href https github com substack js traverse blob master index js L285 label https github com substack js traverse blob master index js L285 href http luxiyalu com object prototype tostring call label http luxiyalu com object prototype tostring call notes todos obj Symbol toStringTag n run deopt check on this invoking see how many invocations are needed to inline n klassProps" >`is.exports`</a>
 
 <!-- /div -->
 
@@ -26,6 +26,13 @@
 
 (Function): The base implementation of `getTag` without fallbacks for buggy environments.
 
+
+#### @see 
+
+* <a href="https://github.com/lodash/lodash/blob/master/.internal/baseGetTag.js" >https://github.com/lodash/lodash/blob/master/.internal/baseGetTag.js</a>
+* <a href="https://github.com/jonschlinkert/kind-of" >https://github.com/jonschlinkert/kind-of</a>
+* <a href="https://github.com/substack/js-traverse/blob/master/index.js#L285" >https://github.com/substack/js-traverse/blob/master/index.js#L285</a>
+* <a href="http://luxiyalu.com/object-prototype-tostring-call/" >http://luxiyalu.com/object-prototype-tostring-call/</a>
 
 #### @todos 
 

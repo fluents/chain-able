@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is`
-* <a href="#is-prototype-isPromise"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Methods"  data-description="Function is a Promise"  data-name="isPromise"  data-member="is"  data-all="meta exports x undefined call exports x undefined category Methods description Function is a Promise name isPromise member is see notes todos klassProps" >`is.isPromise`</a>
+* <a href="#is-prototype-isPromise"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Methods"  data-description="Function is a Promise"  data-name="isPromise"  data-member="is"  data-see="href https github com jonschlinkert kind of blob master index js L66 label https github com jonschlinkert kind of blob master index js L66 href https github com sindresorhus promise fun label https github com sindresorhus promise fun"  data-all="meta exports x undefined call exports x undefined category Methods description Function is a Promise name isPromise member is see href https github com jonschlinkert kind of blob master index js L66 label https github com jonschlinkert kind of blob master index js L66 href https github com sindresorhus promise fun label https github com sindresorhus promise fun notes todos klassProps" >`is.isPromise`</a>
 
 <!-- /div -->
 
@@ -26,6 +26,11 @@
 
 (Function): is a Promise
 
+
+#### @see 
+
+* <a href="https://github.com/jonschlinkert/kind-of/blob/master/index.js#L66" >https://github.com/jonschlinkert/kind-of/blob/master/index.js#L66</a>
+* <a href="https://github.com/sindresorhus/promise-fun" >https://github.com/sindresorhus/promise-fun</a>
 
 #### @Since
 4.0.0-beta.2

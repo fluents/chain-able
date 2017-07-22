@@ -162,7 +162,6 @@ const repoDocPath =
   'https://github.com/fluents/chain-able/blob/master/docs/docdown'
 const toDocPath = filepathBasename =>
   (res('../docs/docdown/') + '/' + filepathBasename).replace('.js', '.md')
-const toRepoPath = filepathBasename => repoPath + filepathBasename
 const toRepoDocPath = filepathBasename => repoDocPath + filepathBasename
 const toBasename = filePath => basename(filePath)
 const stripDot = filePath => filePath.replace(/[.]/gim, '')
@@ -170,6 +169,16 @@ const escapeDot = filePath => filePath.replace(/[.]/gim, '\\.')
 const slashToDot = filePath => filePath.replace(/\//gim, '.')
 const toAnchor = (label, href) => `[${basename(label)}](${href || label})`
 const stripExt = filePath => filePath.replace(/\.[a-zA-Z0-9]{0,3}/, '')
+
+// ensure there is a `/` between them, say if we just resolve a filename
+const toRepoPath = filepathBasename => {
+  if (repoPath.endsWith('/') || filepathBasename.startsWith('/')) {
+    return repoPath + filepathBasename
+  }
+  else {
+    return repoPath + '/' + filepathBasename
+  }
+}
 
 // cli class
 class CLI {

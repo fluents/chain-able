@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is`
-* <a href="#is-prototype-exports"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Lang"  data-description="Function Checks if value is classified as a String primitive"  data-name="exports"  data-member="is"  data-see="href https github com fluents chain able blob master src deps is string js label fluents chain able blob master src deps is string js"  data-all="meta exports x undefined call exports x undefined category Lang description Function Checks if value is classified as a String primitive name exports member is see href https github com fluents chain able blob master src deps is string js label fluents chain able blob master src deps is string js notes todos klassProps" >`is.exports`</a>
+* <a href="#is-prototype-exports"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Lang"  data-description="Function Checks if value is classified as a String primitive"  data-name="exports"  data-member="is"  data-see="href https developer mozilla org en US docs Web JavaScript Reference Global Objects String label https developer mozilla org en US docs Web JavaScript Reference Global Objects String href https github com lodash lodash blob master isString js label https github com lodash lodash blob master isString js href https github com fluents chain able blob master src deps is string js label is string"  data-all="meta exports x undefined call exports x undefined category Lang description Function Checks if value is classified as a String primitive name exports member is see href https developer mozilla org en US docs Web JavaScript Reference Global Objects String label https developer mozilla org en US docs Web JavaScript Reference Global Objects String href https github com lodash lodash blob master isString js label https github com lodash lodash blob master isString js href https github com fluents chain able blob master src deps is string js label is string notes todos klassProps" >`is.exports`</a>
 
 <!-- /div -->
 
@@ -29,7 +29,9 @@
 
 #### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/string.js" >fluents/chain able/blob/master/src/deps/is/string.js</a>
+* <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" >https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String</a>
+* <a href="https://github.com/lodash/lodash/blob/master/isString.js" >https://github.com/lodash/lodash/blob/master/isString.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/string.js" >is/string</a>
 
 #### @Since
 3.0.0

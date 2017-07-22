@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `fp`
-* <a href="#fp-prototype-mapWhere"  data-meta="mapWhere obj undefined predicate undefined"  data-call="mapWhere obj undefined predicate undefined"  data-category="Object"  data-description="Function Creates an array of values by running each property of object thru iteratee The iteratee is invoked with three arguments value key object"  data-name="mapWhere"  data-member="fp"  data-all="meta mapWhere obj undefined predicate undefined call mapWhere obj undefined predicate undefined category Object description Function Creates an array of values by running each property of object thru n iteratee The iteratee is invoked with three arguments value key object name mapWhere member fp see notes todos klassProps" >`fp.mapWhere`</a>
+* <a href="#fp-prototype-mapWhere"  data-meta="mapWhere obj undefined predicate undefined"  data-call="mapWhere obj undefined predicate undefined"  data-category="Object"  data-description="Function Creates an array of values by running each property of object thru iteratee The iteratee is invoked with three arguments value key object"  data-name="mapWhere"  data-member="fp"  data-see="href https github com lodash lodash blob master map js label https github com lodash lodash blob master map js"  data-all="meta mapWhere obj undefined predicate undefined call mapWhere obj undefined predicate undefined category Object description Function Creates an array of values by running each property of object thru n iteratee The iteratee is invoked with three arguments value key object name mapWhere member fp see href https github com lodash lodash blob master map js label https github com lodash lodash blob master map js notes todos klassProps" >`fp.mapWhere`</a>
 
 <!-- /div -->
 
@@ -27,6 +27,10 @@
 (Function): Creates an array of values by running each property of `object` thru
 `iteratee`. The iteratee is invoked with three arguments: *(value, key, object)*.
 
+
+#### @see 
+
+* <a href="https://github.com/lodash/lodash/blob/master/map.js" >https://github.com/lodash/lodash/blob/master/map.js</a>
 
 #### @Since
 5.0.0

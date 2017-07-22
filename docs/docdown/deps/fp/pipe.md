@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `fp`
-* <a href="#fp-prototype-"  data-meta="R pipe f g h a b h g f a b exports first undefined rest undefined a b n o o p x y y z a b n z"  data-call="exports first undefined rest undefined"  data-category="Function"  data-description="Function Performs left to right function composition The leftmost function may have any arity the remaining functions must be unary In some libraries this function is named sequence"  data-member="fp"  data-all="meta R pipe f g h a b h g f a b n exports first undefined rest undefined n a b n o o p x y y z a b n z call exports first undefined rest undefined category Function description Function Performs left to right function composition The leftmost function may have nany arity the remaining functions must be unary nIn some libraries this function is named sequence name member fp see notes todos klassProps" >`fp.`</a>
+* <a href="#fp-prototype-"  data-meta="R pipe f g h a b h g f a b exports first undefined rest undefined a b n o o p x y y z a z"  data-call="exports first undefined rest undefined"  data-category="Function"  data-description="Function Performs left to right function composition The leftmost function may have any arity the remaining functions must be unary In some libraries this function is named sequence"  data-member="fp"  data-see="href R compose label R compose href https github com ramda ramda blob master src pipe js label https github com ramda ramda blob master src pipe js href https github com ramda ramda blob master test pipe js label https github com ramda ramda blob master test pipe js"  data-all="meta R pipe f g h a b h g f a b n exports first undefined rest undefined n a b n o o p x y y z a z call exports first undefined rest undefined category Function description Function Performs left to right function composition The leftmost function may have nany arity the remaining functions must be unary nIn some libraries this function is named sequence name member fp see href R compose label R compose href https github com ramda ramda blob master src pipe js label https github com ramda ramda blob master src pipe js href https github com ramda ramda blob master test pipe js label https github com ramda ramda blob master test pipe js notes todos klassProps" >`fp.`</a>
 
 <!-- /div -->
 
@@ -32,6 +32,12 @@
 any arity; the remaining functions must be unary.
 In some libraries this function is named `sequence`.
 
+
+#### @see 
+
+* <a href="R.compose" >R.compose</a>
+* <a href="https://github.com/ramda/ramda/blob/master/src/pipe.js" >https://github.com/ramda/ramda/blob/master/src/pipe.js</a>
+* <a href="https://github.com/ramda/ramda/blob/master/test/pipe.js" >https://github.com/ramda/ramda/blob/master/test/pipe.js</a>
 
 #### @sig 
 

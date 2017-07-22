@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `fp`
-* <a href="#fp-prototype-exports"  data-meta="exports fn undefined"  data-call="exports fn undefined"  data-category="Methods"  data-description="Function Returns a new function much like the supplied one except that the first two arguments order is reversed"  data-name="exports"  data-member="fp"  data-see="href https github com fluents chain able blob master src deps fp flip js label fluents chain able blob master src deps fp flip js"  data-todos="flipN"  data-all="meta n exports fn undefined call exports fn undefined category Methods description Function Returns a new function much like the supplied one except that the first two narguments order is reversed name exports member fp see href https github com fluents chain able blob master src deps fp flip js label fluents chain able blob master src deps fp flip js notes todos flipN n klassProps" >`fp.exports`</a>
+* <a href="#fp-prototype-exports"  data-meta="exports fn undefined"  data-call="exports fn undefined"  data-category="Methods"  data-description="Function Returns a new function much like the supplied one except that the first two arguments order is reversed"  data-name="exports"  data-member="fp"  data-see="href https github com fluents chain able blob master src deps fp flip js label fp flip"  data-todos="flipN"  data-all="meta n exports fn undefined call exports fn undefined category Methods description Function Returns a new function much like the supplied one except that the first two narguments order is reversed name exports member fp see href https github com fluents chain able blob master src deps fp flip js label fp flip notes todos flipN n klassProps" >`fp.exports`</a>
 
 <!-- /div -->
 
@@ -34,7 +34,7 @@ arguments' order is reversed.
 
 #### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/fp/flip.js" >fluents/chain able/blob/master/src/deps/fp/flip.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/fp/flip.js" >fp/flip</a>
 
 #### @todos 
 

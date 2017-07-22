@@ -13,8 +13,8 @@
 
 <!-- div -->
 
-## `pooler.// const pooler`
-* <a href="#pooler-prototype-// const pooler"  data-meta="const pooler"  data-call="const pooler"  data-category="Properties"  data-description="Object"  data-name="const pooler"  data-member="pooler"  data-all="meta n const pooler call const pooler category Properties description Object name const pooler member pooler see notes todos klassProps" >`pooler.// const pooler`</a>
+## `pooler.DEFAULT_POOLER`
+* <a href="#pooler-prototype-DEFAULT_POOLER"  data-meta="DEFAULT POOLER"  data-call="DEFAULT POOLER"  data-category="Properties"  data-description="Object"  data-name="DEFAULT POOLER"  data-member="pooler"  data-see="href https github com facebook react blob master src renderers shared utils PooledClass js label react pooler"  data-all="meta n DEFAULT POOLER call DEFAULT POOLER category Properties description Object name DEFAULT POOLER member pooler see href https github com facebook react blob master src renderers shared utils PooledClass js label react pooler notes todos klassProps" >`pooler.DEFAULT_POOLER`</a>
 
 <!-- /div -->
 
@@ -31,7 +31,7 @@
 <h3 id="pooler-prototype-addPoolingTo" data-member="pooler" data-category="Methods" data-name="addPoolingTo"><code>pooler.addPoolingTo(CopyConstructor=undefined, pooler=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/cache/pooler.js#L111 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/cache/pooler.js#L109 "View in source") [&#x24C9;][1]
 
 (Function): Augments `CopyConstructor` to be a poolable class, augmenting only the class
 itself *(statically)* not adding any prototypical fields. Any CopyConstructor
@@ -68,7 +68,7 @@ addPoolingTo(Eh) // can optionally pass in pooler as second arg
 <h3 id="pooler-prototype-oneArgumentPooler" data-member="pooler" data-category="Methods" data-name="oneArgumentPooler"><code>pooler.oneArgumentPooler(copyFieldsFrom=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/cache/pooler.js#L73 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/cache/pooler.js#L60 "View in source") [&#x24C9;][1]
 
 (Function): Static poolers. Several custom versions for each potential number of
 arguments. A completely generic pooler is easy to implement, but would
@@ -103,7 +103,7 @@ eh.release()
 <h3 id="pooler-prototype-standardReleaser" data-member="pooler" data-category="Methods" data-name="standardReleaser"><code>pooler.standardReleaser(instance=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/cache/pooler.js#L34 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/cache/pooler.js#L21 "View in source") [&#x24C9;][1]
 
 (Function): call destructor on a pooled instance, put it back in the pool
 
@@ -133,19 +133,23 @@ eh.release()
 
 <!-- div -->
 
-## `pooler.// const pooler`
+## `pooler.DEFAULT_POOLER`
 
 <!-- div -->
 
 <a href="https://github.com/fluents/chain-able/blob/master/test/deps/pooler.js">🔬  Tests: pooler</a>&nbsp;
 
-<h3 id="pooler-prototype-// const pooler" data-member="pooler" data-category="Properties" data-name="// const pooler"><code>pooler.// const pooler</code></h3>
+<h3 id="pooler-prototype-DEFAULT_POOLER" data-member="pooler" data-category="Properties" data-name="DEFAULT_POOLER"><code>pooler.DEFAULT_POOLER</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/cache/pooler.js#L10 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/cache/pooler.js#L7 "View in source") [&#x24C9;][1]
 
 Object
 
+
+#### @see 
+
+* <a href="https://github.com/facebook/react/blob/master/src/renderers/shared/utils/PooledClass.js" >react-pooler</a>
 
 #### @symb 
 

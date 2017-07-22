@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `fp`
-* <a href="#fp-prototype-exports"  data-meta="exports n undefined fn undefined"  data-call="exports n undefined fn undefined"  data-category="Methods"  data-description="Function just for length of a function"  data-name="exports"  data-member="fp"  data-see="href https developer mozilla org en US docs Web JavaScript Reference Global Objects Function arity label Developer mozilla org en us docs web java script reference global objects function arity"  data-todos="keeping this means change uglify"  data-all="meta exports n undefined fn undefined call exports n undefined fn undefined category Methods description Function just for length of a function name exports member fp see href https developer mozilla org en US docs Web JavaScript Reference Global Objects Function arity label Developer mozilla org en us docs web java script reference global objects function arity notes todos keeping this means change uglify n klassProps" >`fp.exports`</a>
+* <a href="#fp-prototype-exports"  data-meta="exports n undefined fn undefined"  data-call="exports n undefined fn undefined"  data-category="Methods"  data-description="Function just for length of a function"  data-name="exports"  data-member="fp"  data-see="href https developer mozilla org en US docs Web JavaScript Reference Global Objects Function arity label mozilla func arity"  data-todos="keeping this means change uglify"  data-all="meta exports n undefined fn undefined call exports n undefined fn undefined category Methods description Function just for length of a function name exports member fp see href https developer mozilla org en US docs Web JavaScript Reference Global Objects Function arity label mozilla func arity notes todos keeping this means change uglify n klassProps" >`fp.exports`</a>
 
 <!-- /div -->
 
@@ -29,7 +29,7 @@
 
 #### @see 
 
-* <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/arity" >Developer.mozilla.org/en us/docs/web/java script/reference/global objects/function/arity</a>
+* <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/arity" >mozilla-func-arity</a>
 
 #### @todos 
 

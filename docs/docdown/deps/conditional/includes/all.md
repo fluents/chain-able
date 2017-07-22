@@ -5,14 +5,14 @@
 <!-- div -->
 
 ## `arrayIncludesAll`
-* <a href="#arrayIncludesAll"  data-meta="arrayIncludesAll needles undefined haystack undefined"  data-call="arrayIncludesAll needles undefined haystack undefined"  data-category="Methods"  data-description="Function"  data-name="arrayIncludesAll"  data-all="meta arrayIncludesAll needles undefined haystack undefined call arrayIncludesAll needles undefined haystack undefined category Methods description Function name arrayIncludesAll member see notes todos klassProps" >`arrayIncludesAll`</a>
+* <a href="#arrayIncludesAll"  data-meta="arrayIncludesAll needles undefined haystack undefined"  data-call="arrayIncludesAll needles undefined haystack undefined"  data-category="Methods"  data-description="Function"  data-name="arrayIncludesAll"  data-see="href https github com fluents chain able search utf8 E2 9C 93 q stringIncludesAll type label stringIncludesAll"  data-all="meta arrayIncludesAll needles undefined haystack undefined call arrayIncludesAll needles undefined haystack undefined category Methods description Function name arrayIncludesAll member see href https github com fluents chain able search utf8 E2 9C 93 q stringIncludesAll type label stringIncludesAll notes todos klassProps" >`arrayIncludesAll`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
 ## `includesAll`
-* <a href="#includesAll"  data-meta="includesAll needle undefined haystack undefined"  data-call="includesAll needle undefined haystack undefined"  data-category="Methods"  data-description="Function"  data-name="includesAll"  data-all="meta includesAll needle undefined haystack undefined call includesAll needle undefined haystack undefined category Methods description Function name includesAll member see notes todos klassProps" >`includesAll`</a>
+* <a href="#includesAll"  data-meta="includesAll needle undefined haystack undefined"  data-call="includesAll needle undefined haystack undefined"  data-category="Methods"  data-description="Function"  data-name="includesAll"  data-see="href https github com fluents chain able search utf8 E2 9C 93 q arrayIncludesAll type label arrayIncludesAll href https github com fluents chain able search utf8 E2 9C 93 q stringIncludesAll type label stringIncludesAll"  data-all="meta includesAll needle undefined haystack undefined call includesAll needle undefined haystack undefined category Methods description Function name includesAll member see href https github com fluents chain able search utf8 E2 9C 93 q arrayIncludesAll type label arrayIncludesAll href https github com fluents chain able search utf8 E2 9C 93 q stringIncludesAll type label stringIncludesAll notes todos klassProps" >`includesAll`</a>
 
 <!-- /div -->
 
@@ -40,6 +40,10 @@
 
 Function
 
+
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=stringIncludesAll&type=" >stringIncludesAll</a>
 #### Arguments
 1. `needles=undefined` *(string&#91;&#93;)*:
 2. `haystack=undefined` *(string&#91;&#93;)*:
@@ -66,6 +70,11 @@ Function
 
 Function
 
+
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=arrayIncludesAll&type=" >arrayIncludesAll</a>
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=stringIncludesAll&type=" >stringIncludesAll</a>
 
 #### @Since
 4.0.0

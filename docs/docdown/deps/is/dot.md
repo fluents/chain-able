@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is`
-* <a href="#is-prototype-isDot"  data-meta="isDot x undefined"  data-call="isDot x undefined"  data-category="Methods"  data-description="Function"  data-name="isDot"  data-member="is"  data-see="href https github com fluents chain able blob master src deps conditional includes all js label fluents chain able blob master src deps conditional includes all js"  data-todos="update with conditional"  data-all="meta isDot x undefined call isDot x undefined category Methods description Function name isDot member is see href https github com fluents chain able blob master src deps conditional includes all js label fluents chain able blob master src deps conditional includes all js notes todos update with conditional n klassProps" >`is.isDot`</a>
+* <a href="#is-prototype-isDot"  data-meta="isDot x undefined"  data-call="isDot x undefined"  data-category="Methods"  data-description="Function"  data-name="isDot"  data-member="is"  data-see="href https github com fluents chain able search utf8 E2 9C 93 q isArray type label isArray href https github com fluents chain able search utf8 E2 9C 93 q isString type label isString href https github com fluents chain able blob master src deps conditional includes all js label includes"  data-todos="update with conditional"  data-all="meta isDot x undefined call isDot x undefined category Methods description Function name isDot member is see href https github com fluents chain able search utf8 E2 9C 93 q isArray type label isArray href https github com fluents chain able search utf8 E2 9C 93 q isString type label isString href https github com fluents chain able blob master src deps conditional includes all js label includes notes todos update with conditional n klassProps" >`is.isDot`</a>
 
 <!-- /div -->
 
@@ -29,7 +29,9 @@ Function
 
 #### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/all.js" >fluents/chain able/blob/master/src/deps/conditional/includes/all.js</a>
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=isArray&type=" >isArray</a>
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=isString&type=" >isString</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/all.js" >includes</a>
 
 #### @todos 
 

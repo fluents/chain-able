@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is`
-* <a href="#is-prototype-exports"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Lang"  data-description="Function Checks if value is classified as a String primitive or object"  data-name="exports"  data-member="is"  data-all="meta exports x undefined call exports x undefined category Lang description Function Checks if value is classified as a String primitive or object name exports member is see notes todos klassProps" >`is.exports`</a>
+* <a href="#is-prototype-exports"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Lang"  data-description="Function Checks if value is classified as a String primitive or object"  data-name="exports"  data-member="is"  data-see="href https github com infernojs inferno blob master packages inferno shared src index ts L23 label https github com infernojs inferno blob master packages inferno shared src index ts L23 href https github com lodash lodash blob master isString js label https github com lodash lodash blob master isString js"  data-all="meta exports x undefined call exports x undefined category Lang description Function Checks if value is classified as a String primitive or object name exports member is see href https github com infernojs inferno blob master packages inferno shared src index ts L23 label https github com infernojs inferno blob master packages inferno shared src index ts L23 href https github com lodash lodash blob master isString js label https github com lodash lodash blob master isString js notes todos klassProps" >`is.exports`</a>
 
 <!-- /div -->
 
@@ -26,6 +26,11 @@
 
 (Function): Checks if `value` is classified as a `String` primitive or object.
 
+
+#### @see 
+
+* <a href="https://github.com/infernojs/inferno/blob/master/packages/inferno-shared/src/index.ts#L23" >https://github.com/infernojs/inferno/blob/master/packages/inferno-shared/src/index.ts#L23</a>
+* <a href="https://github.com/lodash/lodash/blob/master/isString.js" >https://github.com/lodash/lodash/blob/master/isString.js</a>
 
 #### @Since
 3.0.0

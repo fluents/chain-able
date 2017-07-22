@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is.exports`
-* <a href="#is-prototype-exports"  data-meta="exports"  data-call="exports"  data-category="Properties"  data-description="Object"  data-name="exports"  data-member="is"  data-all="meta exports call exports category Properties description Object name exports member is see notes todos klassProps" >`is.exports`</a>
+* <a href="#is-prototype-exports"  data-meta="exports"  data-call="exports"  data-category="Properties"  data-description="Object"  data-name="exports"  data-member="is"  data-see="href https github com lodash lodash issues 3237 label https github com lodash lodash issues 3237"  data-all="meta exports call exports category Properties description Object name exports member is see href https github com lodash lodash issues 3237 label https github com lodash lodash issues 3237 notes todos klassProps" >`is.exports`</a>
 
 <!-- /div -->
 
@@ -36,6 +36,10 @@
 
 Object
 
+
+#### @see 
+
+* <a href="https://github.com/lodash/lodash/issues/3237" >https://github.com/lodash/lodash/issues/3237</a>
 ---
 
 <!-- /div -->

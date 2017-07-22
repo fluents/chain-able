@@ -6,7 +6,7 @@
 
 ## `ShorthandChain`
 * <a href="#ShorthandChain-prototype-return"  data-meta="return value undefined"  data-call="return value undefined"  data-category="Methods"  data-description="Function returns any value passed in return a value at the end of a chain regardless"  data-name="return"  data-member="ShorthandChain"  data-all="meta return value undefined call return value undefined category Methods description Function returns any value passed in return a value at the end of a chain regardless name return member ShorthandChain see notes todos klassProps" >`ShorthandChain.return`</a>
-* <a href="#ShorthandChain-prototype-setIfEmpty"  data-meta="setIfEmpty name undefined value undefined"  data-call="setIfEmpty name undefined value undefined"  data-category="Methods"  data-description="Function sets a value only when has is false aka set if the value has not been set"  data-name="setIfEmpty"  data-member="ShorthandChain"  data-all="meta setIfEmpty name undefined value undefined call setIfEmpty name undefined value undefined category Methods description Function sets a value only when has is false aka set if the value has not been set name setIfEmpty member ShorthandChain see notes todos klassProps" >`ShorthandChain.setIfEmpty`</a>
+* <a href="#ShorthandChain-prototype-setIfEmpty"  data-meta="setIfEmpty name undefined value undefined"  data-call="setIfEmpty name undefined value undefined"  data-category="Methods"  data-description="Function sets a value only when has is false aka set if the value has not been set"  data-name="setIfEmpty"  data-member="ShorthandChain"  data-see="href https github com fluents chain able search utf8 E2 9C 93 q ChainedMapBase set type label ChainedMapBase set"  data-all="meta setIfEmpty name undefined value undefined call setIfEmpty name undefined value undefined category Methods description Function sets a value only when has is false aka set if the value has not been set name setIfEmpty member ShorthandChain see href https github com fluents chain able search utf8 E2 9C 93 q ChainedMapBase set type label ChainedMapBase set notes todos klassProps" >`ShorthandChain.setIfEmpty`</a>
 * <a href="#ShorthandChain-prototype-wrap"  data-meta="wrap fn undefined"  data-call="wrap fn undefined"  data-category="Methods"  data-description="Function wrap a value if it s a Function call it return this aka execute something and return this"  data-name="wrap"  data-member="ShorthandChain"  data-all="meta wrap fn undefined call wrap fn undefined category Methods description Function wrap a value if it s a Function call it return this aka execute something and return this name wrap member ShorthandChain see notes todos klassProps" >`ShorthandChain.wrap`</a>
 
 <!-- /div -->
@@ -14,7 +14,7 @@
 <!-- div -->
 
 ## `Shorthands`
-* <a href="#Shorthands-prototype-exports"  data-meta="ChainedMap DotProp exports Target undefined"  data-call="exports Target undefined"  data-category="Chainable"  data-description="Function"  data-name="exports"  data-member="Shorthands"  data-all="meta ChainedMap DotProp n n exports Target undefined call exports Target undefined category Chainable description Function name exports member Shorthands see notes todos klassProps" >`Shorthands.exports`</a>
+* <a href="#Shorthands-prototype-exports"  data-meta="ChainedMap DotProp exports Target undefined"  data-call="exports Target undefined"  data-category="Chainable"  data-description="Function"  data-name="exports"  data-member="Shorthands"  data-see="href https github com fluents chain able blob master src ChainedMap js label ChainedMap href https github com fluents chain able blob master src compose DotProp js label DotProp href https github com fluents chain able blob master src deps matcher any key val js label deps matcher href https github com fluents chain able blob master src deps traversers eq js label deps traversers eq href https github com fluents chain able blob master src deps traverse js label deps traverse href https github com fluents chain able blob master src compose DotProp js label DotProp href https github com ReactiveX rxjs blob master src Subscriber ts label reactivex href https github com sindresorhus awesome observables label awesome observables href https medium com benlesh learning observable by building observable d5da57405d87 label building observables"  data-all="meta ChainedMap DotProp n n exports Target undefined call exports Target undefined category Chainable description Function name exports member Shorthands see href https github com fluents chain able blob master src ChainedMap js label ChainedMap href https github com fluents chain able blob master src compose DotProp js label DotProp href https github com fluents chain able blob master src deps matcher any key val js label deps matcher href https github com fluents chain able blob master src deps traversers eq js label deps traversers eq href https github com fluents chain able blob master src deps traverse js label deps traverse href https github com fluents chain able blob master src compose DotProp js label DotProp href https github com ReactiveX rxjs blob master src Subscriber ts label reactivex href https github com sindresorhus awesome observables label awesome observables href https medium com benlesh learning observable by building observable d5da57405d87 label building observables notes todos klassProps" >`Shorthands.exports`</a>
 
 <!-- /div -->
 
@@ -83,6 +83,10 @@ console.log(saveAndDebug(process.env))
 
 (Function): sets a value **only** when .has is false aka set if the value has not been set
 
+
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=ChainedMapBase.set&type=" >ChainedMapBase.set</a>
 
 #### @Since
 1.0.2
@@ -192,6 +196,18 @@ new Chain()
 
 Function
 
+
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/blob/master/src/ChainedMap.js" >ChainedMap</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/compose/DotProp.js" >DotProp</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/matcher/any-key-val.js" >deps/matcher</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/traversers/eq.js" >deps/traversers/eq</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js" >deps/traverse</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/compose/DotProp.js" >DotProp</a>
+* <a href="https://github.com/ReactiveX/rxjs/blob/master/src/Subscriber.ts" >reactivex</a>
+* <a href="https://github.com/sindresorhus/awesome-observables" >awesome-observables</a>
+* <a href="https://medium.com/@benlesh/learning-observable-by-building-observable-d5da57405d87" >building-observables</a>
 
 #### @extends 
 
