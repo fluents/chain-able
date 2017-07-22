@@ -7,6 +7,7 @@ const isArray = require('./array')
  * @since 4.0.0 was in validatorBuilder
  * @version 5.0.0
  *
+ * @memberOf is
  * @param  {Function} predicate test to pass on every item in an array
  * @return {boolean} all match predicate
  *

@@ -12,8 +12,6 @@
  * @see is/nullOrUndefined
  * @see https://github.com/infernojs/inferno/blob/master/packages/inferno-shared/src/index.ts#L57
  *
- * @NOTE || typeof x === 'undefined'
- *
  * @example
  *
  *  isUndefined(undefined)

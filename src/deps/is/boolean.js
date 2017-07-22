@@ -1,22 +1,21 @@
 const toS = require('./toS')
-const isTrue = require('./true')
-const isFalse = require('./false')
+const isBooleanPrimitive = require('./booleanPrimitive')
 
 /**
- * @desc Checks if `value` is classified as a boolean primitive or object.
- * @category Lang
+ * @desc Checks if `value` is classified as a boolean primitive OR object.
  * @since 3.0.0
+ * @category Lang
+ * @memberOf is
  *
  * @param  {*} x value
  * @return {boolean} isBoolean
  *
  * @extends isTrue
  * @extends isFalse
- * @see is/toS
- * @memberOf is
- * @func isBoolean
+ * @extends isBooleanPrimitive
  *
- * @NOTE could also have typeof x === 'boolean' || (/true|false/).test(x)
+ * @see is/toS
+ * @func isBoolean
  *
  * @example
  *
@@ -31,5 +30,5 @@ const isFalse = require('./false')
  *
  */
 module.exports = function isBoolean(x) {
-  return isTrue(x) || isFalse(x) || toS(x) === '[object Boolean]'
+  return isBooleanPrimitive(x) || toS(x) === '[object Boolean]'
 }

@@ -1,10 +1,11 @@
-const funcToString = Function.prototype.toString
+const funcToString = require('../native/functionToString')
+const hasOwnProperty = require('../native/hasOwnProperty')
 
 const reIsNative = RegExp(
   '^' +
     funcToString
       // Take an example native function source for comparison
-      .call(Object.prototype.hasOwnProperty)
+      .call(hasOwnProperty)
       // Strip regex characters so we can use it for regex
       .replace(/[\\^$.*+?()[\]{}|]/g, '\\$&')
       // Remove hasOwnProperty from the template to make it generic
@@ -32,7 +33,7 @@ const reIsNative = RegExp(
  * @see {@link Function.toString}
  * @see {@link functiontostring-emca}
  * @see {@link lodash-functiontostring-issue}
- * @see {@link  esdiscuss-functiontostring}
+ * @see {@link esdiscuss-functiontostring}
  *
  * @example
  *
@@ -45,7 +46,7 @@ const reIsNative = RegExp(
  */
 module.exports = function isNative(x) {
   try {
-    var source = funcToString.call(x)
+    const source = funcToString.call(x)
     return reIsNative.test(source)
   }
   catch (err) {

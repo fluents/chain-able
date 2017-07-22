@@ -118,7 +118,7 @@ test('objWithKeys', () => {
 test('isPrototypeOf', () => {
   class SuperProto {}
   class SubProto extends SuperProto {}
-  var sub = new SubProto()
+  const sub = new SubProto()
 
   // SuperProto.isPrototypeOf(sub)
   expect(isPrototypeOf(Object.getPrototypeOf(sub), sub)).toBe(true)
@@ -133,7 +133,7 @@ test('isPrototypeOf on instance', () => {
     enumerable: false,
     value: instance => isPrototypeOf(SubProto.prototype, instance),
   })
-  var sub = new SubProto()
+  const sub = new SubProto()
 
   expect(new RegExp() instanceof SubProto).toBe(false)
   expect(sub instanceof SubProto).toBe(true)

@@ -4,6 +4,7 @@ const isIn = require('./in')
 /**
  * @desc isIn, but first checks it is not null
  * @since 5.0.0
+ * @memberOf is
  *
  * @param  {Object} obj object to check
  * @param  {any} prop property to check in object
