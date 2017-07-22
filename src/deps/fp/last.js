@@ -16,6 +16,9 @@ const lastIndex = require('./lastIndex')
  * @see R.init, R.head, R.tail
  * @extends deps/fp/lastIndex
  *
+ * @types fp
+ * @tests fp/*
+ *
  * @example
  *
  *      last(['fi', 'fo', 'fum']); //=> 'fum'
@@ -25,6 +28,6 @@ const lastIndex = require('./lastIndex')
  *      last(''); //=> ''
  *
  */
-module.exports = (x) => {
+module.exports = x => {
   return x[lastIndex(x)]
 }

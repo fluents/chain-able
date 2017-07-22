@@ -14,8 +14,9 @@ const curry = require('./curry')
  * @param {Object} obj The object to query
  * @return {*} The value at `obj.p`.
  *
- * @see R.path
- *
+ * @types fp
+ * @tests fp/prop
+ * 
  * @example
  *
  *      R.prop('x', {x: 100}); //=> 100

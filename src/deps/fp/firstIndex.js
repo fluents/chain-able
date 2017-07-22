@@ -4,6 +4,7 @@ const isArray = require('../is/array')
 /**
  * get first index in a list
  * @memberOf fp
+ * @since 5.0.0-beta.2
  *
  * @param  {Array | Object | string | *} x item to find the first index of
  * @return {*} first index, usually number/string
@@ -19,9 +20,10 @@ const isArray = require('../is/array')
  *
  */
 function firstIndex(x) {
-  const xKeys = isArray(x) ? x : keys(x)
-  const first = xKeys[0]
-  return first
+  return (isArray(x) ? x : keys(x))[0]
+  // const xKeys = isArray(x) ? x : keys(x)
+  // const first = xKeys[0]
+  // return first
 }
 
 module.exports = firstIndex

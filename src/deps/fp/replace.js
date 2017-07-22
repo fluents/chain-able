@@ -14,7 +14,13 @@ const curry = require('./curry')
  * @param {String} str The String to do the search and replacement in.
  * @return {String} The result.
  *
- * @see https://github.com/ramda/ramda/blob/master/src/replace.js
+ * @types fp
+ * @tests fp/replace
+ *
+ * {@link https://github.com/ramda/ramda/blob/master/src/replace.js ramda-replace}
+ * {@link https://github.com/lodash/lodash/blob/master/replace.js lodash-replace}
+ * @see {@link ramda-replace}
+ * @see {@link lodash-replace}
  *
  * @example
  *
@@ -25,6 +31,6 @@ const curry = require('./curry')
  *      replace(/foo/g, 'bar', 'foo foo foo'); //=> 'bar bar bar'
  *
  */
-module.exports = curry(3, function replace(regex, replacement, str) {
-  return str.replace(regex, replacement)
+module.exports = curry(3, function replace(pattern, replacement, str) {
+  return str.replace(pattern, replacement)
 })

@@ -21,6 +21,9 @@ const invoke = require('./invoke')
 
 /**
  * @member fp
+ * @symb 🐏
+ * @tests fp/*
+ * @types fp
  * @type {Object}
  */
 module.exports = {

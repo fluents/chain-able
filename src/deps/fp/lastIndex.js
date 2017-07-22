@@ -1,4 +1,5 @@
 const keys = require('../util/keysObjOrArray')
+const lengthMinusOne = require('../util/lengthMinusOne')
 const isArray = require('../is/array')
 
 /**
@@ -20,8 +21,9 @@ const isArray = require('../is/array')
  */
 function lastIndex(x) {
   const xKeys = isArray(x) ? x : keys(x)
-  const last = xKeys[xKeys.length - 1]
-  return last
+  return xKeys[lengthMinusOne(xKeys)]
+  // const last = xKeys[xKeys.length - 1]
+  // return last
 }
 
 module.exports = lastIndex

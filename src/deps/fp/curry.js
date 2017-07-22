@@ -28,7 +28,8 @@ const _arity = require('./arity')
  *
  * @func
  * @memberOf fp
- * @since v0.5.0
+ * @since 5.0.0-beta.1
+ * @ramda v0.5.0
  * @category Function
  * @sig Number -> (* -> a) -> (* -> a)
  *
@@ -37,7 +38,13 @@ const _arity = require('./arity')
  * @param {Function} fn The function to curry.
  * @return {Function} A new, curried function.
  *
- * @see R.curry
+ * {@link https://github.com/ramda/ramda/blob/master/src/curryN.js ramda-curry}
+ * {@link https://github.com/lodash/lodash/blob/master/curry.js lodash-curry}
+ * @see {@link ramda-curry}
+ * @see {@link lodash-curry}
+ *
+ * @types fp
+ * @tests fp/curry
  *
  * @example
  *

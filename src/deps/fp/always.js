@@ -16,8 +16,17 @@
  * @param {*} value The value to wrap in a function
  * @return {Function} A Function :: * -> val.
  *
- * @see https://github.com/ramda/ramda/issues/1038
- * @see https://github.com/ramda/ramda/blob/master/src/always.js
+ * {@link http://underscorejs.org/#constant underscore-constant}
+ * {@link https://github.com/lodash/lodash/issues/1010 lodash-constant}
+ * {@link https://github.com/ramda/ramda/issues/1038 ramda-constant-docs-issue}
+ * {@link https://github.com/ramda/ramda/blob/master/src/always.js ramda-always}
+ * @see {@link ramda-constant-docs-issue}
+ * @see {@link ramda-always}
+ * @see {@link lodash-constant}
+ * @see {@link underscore-constant}
+ *
+ * @types fp
+ * @tests fp/always
  *
  * @example
  *
