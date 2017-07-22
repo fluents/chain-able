@@ -1,7 +1,7 @@
 const toarr = require('./to-arr')
 
 /**
- * @desc conat two values, coerce to arrays
+ * @desc concat two values, coerce to arrays
  * @since 4.0.0
  *
  * @func

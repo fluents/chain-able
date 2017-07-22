@@ -1,3 +1,5 @@
+const curry = require('../fp/curry')
+
 /**
  * return a negated function
  * A function wrapping a call to the given function in a `!` operation.
@@ -11,7 +13,8 @@
  * @func
  *
  * @param  {Function} fn any function
- * @return {Function} !Function
+ * @param  {*} x value to pass to function
+ * @return {Function} !Function(x)
  *
  * @example
  *
@@ -25,8 +28,10 @@
  *    //=> false
  *
  */
-module.exports = fn => x => !fn(x)
+const not = (fn, x) => !fn(x)
+module.exports = curry(2, not)
 
+// curry(2,
 // function not(predicate) {
 //   return function() {
 //     return !predicate.apply(this, arguments)

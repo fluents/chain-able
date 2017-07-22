@@ -11,7 +11,7 @@ const isFalse = require('./deps/is/false')
 const noop = require('./deps/util/noop')
 const ObjectKeys = require('./deps/util/keys')
 const ObjectDefine = require('./deps/define')
-const ignored = require('./deps/ignored')
+const ignored = require('./deps/meta/ignored')
 const ENV_DEVELOPMENT = require('./deps/env/dev')
 
 // @TODO change from `||` to if else
@@ -47,6 +47,7 @@ const ComposeChainable = Target => {
    *
    * @tests Chainable
    * @types Chainable
+   *
    */
   class Chainable extends Target {
     /**

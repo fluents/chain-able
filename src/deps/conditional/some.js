@@ -4,6 +4,7 @@ const curry = require('../fp/curry')
  * @desc map all values in an array to see if **some** match, curried
  * @memberOf conditional
  * @name some
+ * @alias any
  * @since  4.0.1
  * @func
  *
@@ -25,7 +26,7 @@ const curry = require('../fp/curry')
  *    //=> true
  *
  */
-module.exports = curry(2, (test, arr) => {
+module.exports = curry(2, function some(test, arr) {
   for (let i in arr) {
     if (test(arr[i])) return true
   }
