@@ -20,17 +20,22 @@ const fwf = require('funwithflags')
 const Script = require('script-chain')
 const log = require('fliplog')
 const {read, write} = require('flipfile')
-const {del} = require('./util')
+const {del, _res} = require('./util')
 // const docdown = require('docdown')
 const {stripRollup} = require('./plugins/ast')
 const find = require('chain-able-find')
+const {replace} = require('../src')
+// @TODO export more on /exports.js
+const dot = require('../src/deps/dot')
+const traverse = require('../src/deps/traverse')
+const uniq = require('../src/deps/array/uniq')
 
-const res = rel => resolve(__dirname, rel)
-const resRoot = rel => resolve(res('../'), rel)
+const res = _res(__dirname)
+const resRoot = _res('../')
 
 // https://github.com/chalk/ansi-regex/blob/master/index.js
 const ansiRegex = /[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-PRZcf-nqry=><]/g
-const stripAnsi = str => str.replace(ansiRegex, '')
+const stripAnsi = replace(ansiRegex, '')
 
 const timer = log.fliptime()
 timer.start('cli')
@@ -151,9 +156,6 @@ const testFiles = find
   .results()
 
 const toRel = filepath => filepath.replace(root, '').replace(entry, '')
-const dot = require('../src/deps/dot')
-const traverse = require('../src/deps/traverse')
-const uniq = require('../src/deps/array/uniq')
 
 const repoPath = 'https://github.com/fluents/chain-able/blob/master'
 const repoDocPath =
