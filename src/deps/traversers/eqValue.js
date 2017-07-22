@@ -1,5 +1,7 @@
 // conditionals
 /* eslint complexity: "OFF" */
+// debugging
+/* eslint max-depth: "OFF" */
 
 const isObjNotNull = require('../is/objNotNull')
 const isNullOrUndefined = require('../is/nullOrUndefined')

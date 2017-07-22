@@ -1,6 +1,6 @@
 const isFunction = require('../is/function')
 const isObj = require('../is/obj')
-const ignored = require('../ignored')
+const ignored = require('../meta/ignored')
 const ObjectKeys = require('../util/keys')
 const ObjectAssign = require('../util/assign')
 
@@ -15,6 +15,7 @@ const ObjectAssign = require('../util/assign')
  *
  * @see https://www.airpair.com/javascript/javascript-array-reduce
  * @see ChainedMap
+ * @NOTE could curry, but this is super hot function
  *
  * @example
  *
@@ -73,6 +74,7 @@ module.exports = reduced => obj => {
     }
 
     const value = obj[key]
+    // @NOTE could use hasInMatching here
     if (isObj(value) && isFunction(value.entries)) {
       ObjectAssign(reduced, {[key]: value.entries(true) || {}})
     }

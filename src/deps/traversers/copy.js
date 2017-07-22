@@ -3,6 +3,7 @@ const isRegExp = require('../is/regexp')
 const isError = require('../is/error')
 const isDate = require('../is/date')
 const isArray = require('../is/array')
+const ENV_DEBUG = require('../env/debug')
 
 /* prettier-ignore */
 /**
@@ -95,7 +96,9 @@ module.exports = function copy(src) {
     return dst
   }
   else {
-    // require('fliplog').red('is NOT OBJ').echo()
+    if (ENV_DEBUG) {
+      console.log('is not obj', src)
+    }
     return src
   }
 }

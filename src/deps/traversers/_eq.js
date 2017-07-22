@@ -1,8 +1,11 @@
 // conditionals
 /* eslint complexity: "OFF" */
 
+// not iterating on empty root
+/* eslint consistent-return: "OFF" */
+
 // const traverse = require('../traverse')
-const get = require('../dot/get')
+// const get = require('../dot/get')
 const isObjNotNull = require('../is/objNotNull')
 const isNull = require('../is/null')
 const isEmpty = require('../is/empty')
@@ -16,18 +19,28 @@ const eqValue = require('./eqValue')
  * @version 5.0.0
  * @memberOf Traverse
  *
- * @see https://github.com/facebook/immutable-js/blob/master/src/utils/deepEqual.js
- * @see https://github.com/substack/node-deep-equal
- * @see http://ramdajs.com/docs/#equals
- * @see https://lodash.com/docs/4.17.4#isEqual
- * @see https://github.com/angular/angular.js/blob/master/src/Angular.js
+ * {@link https://github.com/facebook/react/blob/master/src/__mocks__/deepDiffer.js react-deep-differ}
+ * {@link https://github.com/substack/js-traverse/blob/master/test/lib/deep_equal.js traverse-deep-equal}
+ * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L1183 underscore-equal}
+ * {@link https://github.com/angular/angular.js/blob/master/src/Angular.js angular-is-equal}
+ * {@link https://lodash.com/docs/4.17.4#isEqual lodash-is-equal}
+ * {@link http://ramdajs.com/docs/#equals ramda-equals}
+ * {@link https://github.com/substack/node-deep-equal node-deep-equal}
+ * {@link https://github.com/facebook/immutable-js/blob/master/src/utils/deepEqual.js immutable-js-deep-equal}
+ * @see {@link immutable-js-deep-equal}
+ * @see {@link node-deep-equal}
+ * @see {@link ramda-equals}
+ * @see {@link lodash-is-equal}
+ * @see {@link angular-is-equal}
+ * @see {@link underscore-equal}
+ * @see {@link traverse-deep-equal}
+ * @see {@link react-deep-differ}
  *
- * @param {Traverse} traverse traversejs
+ * @param {Traverse} traverse traversejs (scoped, @FIXME @HACK)
  * @param  {*} a compare to b
  * @param  {*} b compare to a
  * @param  {boolean} [loose] compare loosely
- * @param  {boolean} [scoped] doing a second pass, private
- * @return {boolean} isEqual
+ * @return {boolean} isEqual: a === b
  *
  * @extends eqValue
  *
@@ -39,7 +52,7 @@ const eqValue = require('./eqValue')
  *    eq([1], [1])        //=> true
  *
  */
-module.exports = traverse => function eq(a, b, loose, stackA = [], stackB = []) {
+module.exports = traverse => function eq(a, b, loose) {
   /* istanbul ignore next: dev */
   if (ENV_DEBUG) {
     console.log('\n')
