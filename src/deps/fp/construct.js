@@ -1,5 +1,7 @@
 /* eslint max-len: "OFF" */
 /* eslint consistent-return: "OFF" */
+
+const isNumberPrimitive = require('../is/numberPrimitive')
 const curry = require('./curry')
 // const nAry = require('./arity')
 
@@ -17,8 +19,16 @@ const curry = require('./curry')
  * @sig Number -> (* -> {*}) -> (* -> {*})
  *
  * @param {number} n The arity of the constructor function. (aka, number of args)
- * @param {Function} Fn The constructor function to wrap. (class to do `new Klass` on)
+ * @param {Function} Klass The constructor function to wrap. (class to do `new Klass` on)
  * @return {Function} A wrapped, curried constructor function.
+ *
+ * @extends R.construct
+ * @extends R.constructN
+ * @variation with a single *notNumber* arg, it acts as construct, rather than constructN
+ *
+ * {@link https://github.com/ramda/ramda/blob/master/src/constructN.js ramda-construct}
+ * @see {@link ramda-construct}
+ * @see isNumberPrimitive
  *
  * @example
  *
@@ -43,8 +53,11 @@ const curry = require('./curry')
  *      // Add a dollop of Ketchup
  *
  */
-module.exports = curry(2, function constructN(n, Klass) {
-  if (n === 0) {
+function constructN(n, Klass) {
+  if (!isNumberPrimitive(n)) {
+    return constructN(n.length, n)
+  }
+  else if (n === 0) {
     return () => new Klass()
   }
   else {
@@ -52,17 +65,20 @@ module.exports = curry(2, function constructN(n, Klass) {
     // curry(nAry(n,
     return curry(n, function($0, $1, $2, $3, $4) {
       const len = arguments.length
-      if (len === 1 || len > 5) return new Klass($0)
+      if (len === 1 || len > 5) return new Klass($0, $1, $2)
       else if (len === 2) return new Klass($0, $1)
       else if (len === 3) return new Klass($0, $1, $2)
       else if (len === 4) return new Klass($0, $1, $2, $3)
       else if (len === 5) return new Klass($0, $1, $2, $3, $4)
-      // else if (len=== 6): return new Klass($0, $1, $2, $3, $4, $5)
-      // else if (len=== 7): return new Klass($0, $1, $2, $3, $4, $5, $6)
-      // else if (len=== 8): return new Klass($0, $1, $2, $3, $4, $5, $6, $7)
-      // else if (len=== 9): return new Klass($0, $1, $2, $3, $4, $5, $6, $7, $8)
-      // else if (len === 10): return new Klass($0, $1, $2, $3, $4, $5, $6, $7, $8, $9)
+      // else if (len=== 6) return new Klass($0, $1, $2, $3, $4, $5)
+      // else if (len=== 7) return new Klass($0, $1, $2, $3, $4, $5, $6)
+      // else if (len=== 8) return new Klass($0, $1, $2, $3, $4, $5, $6, $7)
+      // else if (len=== 9) return new Klass($0, $1, $2, $3, $4, $5, $6, $7, $8)
+      // else if (len === 10) return new Klass($0, $1, $2, $3, $4, $5, $6, $7, $8, $9)
     })
     // ))
   }
-})
+}
+
+// module.exports = curry(2, constructN)
+module.exports = constructN

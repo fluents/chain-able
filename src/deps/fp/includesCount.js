@@ -5,9 +5,10 @@ const pipe = require('../fp/pipe')
 const curry = require('../fp/curry')
 const invoke = require('../fp/invoke')
 const lengthMinusOne = require('../util/lengthMinusOne')
-const construct = require('../fp/construct')
+const newRegExp = require('../construct/regexp')
 const prop = require('../fp/prop')
 
+// @NOTE similar https://github.com/ramda/ramda/blob/master/src/countBy.js
 
 // @TODO move this
 // @TODO invoke('_', prop('test'))
@@ -20,7 +21,6 @@ const toTest = x => y => x.test(y)
 // }
 
 // const newRegExp = (source) => new RegExp(source)
-const newRegExp = construct(1, RegExp)
 const toRegExp = pipe(esc, newRegExp, toTest)
 
 const split = invoke('_', 'split')

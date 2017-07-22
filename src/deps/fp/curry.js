@@ -38,10 +38,12 @@ const _arity = require('./arity')
  * @param {Function} fn The function to curry.
  * @return {Function} A new, curried function.
  *
+ * {@link https://github.com/ramda/ramda/blob/master/src/uncurryN.js ramda-uncurry}
  * {@link https://github.com/ramda/ramda/blob/master/src/curryN.js ramda-curry}
  * {@link https://github.com/lodash/lodash/blob/master/curry.js lodash-curry}
  * @see {@link ramda-curry}
  * @see {@link lodash-curry}
+ * @see {@link ramda-uncurry}
  *
  * @types fp
  * @tests fp/curry

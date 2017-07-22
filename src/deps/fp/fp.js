@@ -18,6 +18,8 @@ const remove = require('./remove')
 const replace = require('./replace')
 const reverse = require('./reverse')
 const invoke = require('./invoke')
+const flip = require('./flip')
+const flip2 = require('./flip2')
 
 /**
  * @member fp
@@ -35,8 +37,10 @@ module.exports = {
   invoke,
   curry,
   first,
-  last,
   firstIndex,
+  flip,
+  flip2,
+  last,
   lastIndex,
   mapWhere,
   path,

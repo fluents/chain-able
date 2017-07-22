@@ -5,6 +5,7 @@ const isArray = require('../is/array')
 /**
  * get last index in a list
  * @memberOf fp
+ * @since 5.0.0-beta.2
  *
  * @param  {Array | Object | string | *} x item to find the last index of
  * @return {*} last index, usually number/string

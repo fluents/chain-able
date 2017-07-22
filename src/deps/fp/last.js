@@ -5,13 +5,15 @@ const lastIndex = require('./lastIndex')
  *
  * @func
  * @memberOf fp
- * @since v0.1.4
- * @category List
- * @sig [a] -> a | Undefined
- * @sig String -> String
+ * @since 5.0.0-beta.2
  *
  * @param {*} x list to get last index of
  * @return {*}
+ *
+ * @ramda v0.1.4
+ * @category List
+ * @sig [a] -> a | Undefined
+ * @sig String -> String
  *
  * @see R.init, R.head, R.tail
  * @extends deps/fp/lastIndex
@@ -28,6 +30,4 @@ const lastIndex = require('./lastIndex')
  *      last(''); //=> ''
  *
  */
-module.exports = x => {
-  return x[lastIndex(x)]
-}
+module.exports = x => x[lastIndex(x)]

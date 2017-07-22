@@ -4,27 +4,30 @@ const firstIndex = require('./firstIndex')
  * Returns the first element of the given list or string. In some libraries
  * this function is named `first`.
  *
- * @func
  * @memberOf fp
  * @since v5.0.0
- * @category List
- * @sig [a] -> a | Undefined
- * @sig String -> String
  *
  * @extends deps/fp/firstIndex
  * @param {*} x Array or Object find the last key of
  * @return {*} value at last index
  *
+ * @func
+ * @category List
+ * @sig [a] -> a | Undefined
+ * @sig String -> String
+ *
+ * @see https://github.com/lodash/lodash/blob/master/head.js
  * @see https://github.com/ramda/ramda/blob/master/src/head.js
  * @see R.init, R.head, R.tail
+ * @TODO could just pipe nth
  *
  * @example
  *
  *      first(['fi', 'fo', 'fum']); //=> 'fi'
- *      first([]); //=> undefined
+ *      first([]);                  //=> undefined
  *
- *      first('abc'); //=> 'a'
- *      first(''); //=> ''
+ *      first('abc');               //=> 'a'
+ *      first('');                  //=> ''
  *
  */
 module.exports = x => x[firstIndex(x)]

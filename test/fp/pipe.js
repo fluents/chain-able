@@ -1,9 +1,25 @@
-var assert = require('assert')
-var pipe = require('../../src/deps/fp/pipe')
+const assert = require('assert')
+const isFunction = require('../../src/deps/is/function')
+const pipe = require('../../src/deps/fp/pipeTwo')
+const pipeAll = require('../../src/deps/fp/pipe')
 
 describe('pipe', function() {
+  it('is in correct order', function() {
+    function x(val) {
+      return val + 'x'
+    }
+    function y(val) {
+      return val + 'y'
+    }
+    function z(val) {
+      return val + 'z'
+    }
+
+    expect(pipeAll(x, y, z)('w')).toBe('wxyz')
+  })
   it('is a variadic function', function() {
-    expect(typeof pipe).toBe('function')
+    expect(isFunction(pipe)).toBe(true)
+    expect(isFunction(pipeAll)).toBe(true)
 
     // is a smaller version just 2 args
     // expect(pipe.length).toBe(0)
