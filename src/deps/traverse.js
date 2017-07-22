@@ -98,6 +98,9 @@ const ENV_DEBUG = false
  * @param {Traversable} iteratee value to iterate, clone, copy, check for eq
  * @param {Object | undefined} [config] wip config for things such as events or configs
  *
+ * @tests traverse
+ * @types traverse
+ *
  * @extends pooler
  * @see traverse
  * @TODO make this a trie OR a linked-list

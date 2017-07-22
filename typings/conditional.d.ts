@@ -26,3 +26,6 @@ export declare function any<T>(fnpred: Pred<T>): (list: List<T>) => boolean;
 // dispatch to some `or` method:
 export declare function or<T extends {or?: (alt: U) => T|U;}, U>(fn1: T, val2: U): T|U;
 export declare function or<T extends {or?: (alt: U) => T|U;}, U>(fn1: T): (val2: U) => T|U;
+
+
+export declare function not(value: any): boolean;

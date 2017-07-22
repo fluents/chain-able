@@ -22,7 +22,7 @@
 <h3 id="is-prototype-exports" data-member="is" data-category="Lang" data-name="exports"><code>is.exports(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/stringOrNumber.js#L24 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/stringOrNumber.js#L25 "View in source") [&#x24C9;][1]
 
 (Function): Checks if `value` is classified as a `String` primitive or object.
 

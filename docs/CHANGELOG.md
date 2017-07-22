@@ -17,7 +17,8 @@
   - 📘⛓ example: RegExp chain
   - 📘⛓ example: ObjectDefineChain
   - ⚪️ Frisbee 🆙 with updates
-
+- misc
+  - ternary in transform.remap
 - 🖇 utils
   - ❔ isEmpty
   - ❔ isJSON
@@ -35,6 +36,7 @@
   - 🆓 reduce: use 🆓 fp on 🛁 clean
   - 🆓 conditionals utils wrap with curry + ℹ️️
   - 🐫 add camelCase 🔬 tests + move to string/ folder
+  - isStringOrNumber -> use `conditional/or`
 
 - 🆓🎁 FP
   - start them, update,️dℹ️️ docblock, 🔬 test, (ramda lodash thanks for some parts of some)
@@ -63,7 +65,9 @@
   - 👾 variable name clarity
   - 📝 todos
   - 🤸🎯 split dopemerge emptyTarget to a reusable file
-  - redid equals
+  - refactor equals
+  - 👾 simplify `isArrayOrObj && isObjWithKeys` -> isEmpty
+  - rename .iteratee to .node,
 
 - 🛡 encase
   - 🆓 wrap encase: tryCatch & withSpec with curry

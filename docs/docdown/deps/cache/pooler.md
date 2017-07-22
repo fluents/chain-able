@@ -31,7 +31,7 @@
 <h3 id="pooler-prototype-addPoolingTo" data-member="pooler" data-category="Methods" data-name="addPoolingTo"><code>pooler.addPoolingTo(CopyConstructor=undefined, pooler=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/cache/pooler.js#L105 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/cache/pooler.js#L111 "View in source") [&#x24C9;][1]
 
 (Function): Augments `CopyConstructor` to be a poolable class, augmenting only the class
 itself *(statically)* not adding any prototypical fields. Any CopyConstructor
@@ -68,7 +68,7 @@ addPoolingTo(Eh) // can optionally pass in pooler as second arg
 <h3 id="pooler-prototype-oneArgumentPooler" data-member="pooler" data-category="Methods" data-name="oneArgumentPooler"><code>pooler.oneArgumentPooler(copyFieldsFrom=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/cache/pooler.js#L67 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/cache/pooler.js#L73 "View in source") [&#x24C9;][1]
 
 (Function): Static poolers. Several custom versions for each potential number of
 arguments. A completely generic pooler is easy to implement, but would
@@ -103,7 +103,7 @@ eh.release()
 <h3 id="pooler-prototype-standardReleaser" data-member="pooler" data-category="Methods" data-name="standardReleaser"><code>pooler.standardReleaser(instance=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/cache/pooler.js#L28 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/cache/pooler.js#L34 "View in source") [&#x24C9;][1]
 
 (Function): call destructor on a pooled instance, put it back in the pool
 
@@ -136,6 +136,8 @@ eh.release()
 ## `pooler.// const pooler`
 
 <!-- div -->
+
+<a href="https://github.com/fluents/chain-able/blob/master/test/deps/pooler.js">🔬  Tests: pooler</a>&nbsp;
 
 <h3 id="pooler-prototype-// const pooler" data-member="pooler" data-category="Properties" data-name="// const pooler"><code>pooler.// const pooler</code></h3>
 <br>

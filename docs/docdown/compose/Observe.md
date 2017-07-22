@@ -80,7 +80,7 @@ chain
 <h3 id="Observe-prototype-exports" data-member="Observe" data-category="Chainable" data-name="exports"><code>Observe.exports(Target=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Observe.js#L39 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/Observe.js#L38 "View in source") [&#x24C9;][1]
 
 (Function): > subscribe to changes ❗ called only on **change** observers are only called when data they subscribe to changes
 

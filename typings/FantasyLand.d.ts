@@ -1,8 +1,10 @@
 // Fantasyland export interfaces
 
 // TODO: incorporate generalized inheritance e.g.: `<U extends
-// Applicative, V extends Traversable>`; possibly needs [rank 2
+// Applicative, V extends FantasyTraversable>`; possibly needs [rank 2
 // polymorphism](https://github.com/Microsoft/TypeScript/issues/1213).
+
+import {Primitive} from './generic'
 
 export interface Setoid<T> {
     equals(b: Setoid<T>): boolean;
@@ -43,8 +45,8 @@ export interface Foldable<T> {
     reduce<U>(fn: (u: U, t: T) => U, u: U): U;
 }
 
-export interface Traversable<T> extends Functor<T>, Foldable<T> {
-    traverse<U, V>(fn: (t: T) => Applicative<U>, of: (v: V) => Applicative<V>): Applicative<Traversable<U>>;
+export interface FantasyTraversable<T> extends Functor<T>, Foldable<T> {
+    traverse<U, V>(fn: (t: T) => Applicative<U>, of: (v: V) => Applicative<V>): Applicative<FantasyTraversable<U>>;
 }
 
 export interface FantasyChain<T> extends Apply<T> {
@@ -77,7 +79,7 @@ export interface Profunctor<T,U> extends Functor<T> /*, Functor<U>*/ {
 // simple types
 
 type Index = string | number;
-type Primitive = string | number | boolean;
+// type Primitive = string | number | boolean;
 type Ord = string | number | boolean | Date;
 
 export interface Dictionary<T> {

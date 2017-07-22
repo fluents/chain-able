@@ -1,5 +1,7 @@
 export * from './generic'
 export * from './deps'
+export * from './deps.cache.pooler'
+export * from './deps.reduce'
 export * from './is'
 export * from './traverse'
 export * from './interfaces'
@@ -17,7 +19,8 @@ export * from './schema'
 export * from './FantasyLand'
 export * from './FantasyLandCurry'
 export * from './fp'
+export * from './conditional'
 
-import {Chain} from './chain'
+import { Chain } from './chain'
 
 export default Chain

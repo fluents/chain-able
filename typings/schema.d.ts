@@ -3,7 +3,7 @@ export interface ValidationFunction {
 }
 
 // all `is` validators, or any custom added ones
-export type Type =
+export type ValidatableType =
   | ValidationFunction
   | '? | [] ! &'
   | 'string'
@@ -29,4 +29,4 @@ export interface Schemable<T> {
   (key: string | any): T
 }
 
-export type Schema = Schemable<Type> | Type
+export type Schema = Schemable<ValidatableType> | ValidatableType

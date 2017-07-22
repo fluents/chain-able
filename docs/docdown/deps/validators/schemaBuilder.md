@@ -29,7 +29,7 @@
 <h3 id="schema-prototype-typeValidator" data-member="schema" data-category="Methods" data-name="typeValidator"><code>schema.typeValidator(input=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/validators/schemaBuilder.js#L102 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/validators/schemaBuilder.js#L91 "View in source") [&#x24C9;][1]
 
 (Function): build a recursive schema for all around runtime type safety
 
@@ -95,7 +95,7 @@ var isValid = typeValidator(1)
 <h3 id="schemaFactory" data-member="" data-category="Methods" data-name="schemaFactory"><code>schemaFactory(property=undefined, nestedSchema=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/validators/schemaBuilder.js#L60 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/validators/schemaBuilder.js#L49 "View in source") [&#x24C9;][1]
 
 (Function): pass the property & schema in, get a nestable typeValidator out
 

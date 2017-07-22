@@ -22,7 +22,7 @@
 <h3 id="exports" data-member="" data-category="Methods" data-name="exports"><code>exports()</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/argumentor.js#L21 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/argumentor.js#L23 "View in source") [&#x24C9;][1]
 
 (Function): turns arguments into an array, used as a util, for opt
 

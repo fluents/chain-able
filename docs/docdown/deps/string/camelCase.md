@@ -19,7 +19,9 @@
 
 <!-- div -->
 
-<a href="https://github.com/fluents/chain-able/blob/master/typings/deps.d.ts">🌊  Types: deps.d</a>&nbsp;
+* <a href="https://github.com/fluents/chain-able/blob/master/typings/deps.d.ts">🌊  Types: deps.d</a>&nbsp;
+* <a href="https://github.com/fluents/chain-able/blob/master/typings/deps.encase.d.ts">🌊  Types: deps.encase.d</a>&nbsp;
+* <a href="https://github.com/fluents/chain-able/blob/master/typings/deps.reduce.d.ts">🌊  Types: deps.reduce.d</a>&nbsp;
 
 <a href="https://github.com/fluents/chain-able/blob/master/test/deps/camelCase.js">🔬  Tests: camelCase</a>&nbsp;
 

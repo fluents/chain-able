@@ -22,7 +22,7 @@
 <h3 id="markForGarbageCollection" data-member="" data-category="Methods" data-name="markForGarbageCollection"><code>markForGarbageCollection(obj=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/gc.js#L41 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/gc.js#L42 "View in source") [&#x24C9;][1]
 
 (Function): remove all methods, mark for garbage collection
 

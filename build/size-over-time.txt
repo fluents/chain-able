@@ -1044,3 +1044,9 @@ $ gzip-size "dists/umd/index.js" "--raw"
 Done in 0.54s.
 2017:21:07/20/17:03:21:48
 ---
+yarn run v0.27.5
+$ gzip-size "dists/umd/index.js" "--raw"
+9153 <- more minor utils (or in str or num), rename .iteratee to .node, ternary in transform.remap
+Done in 0.62s.
+2017:12:07/20/17:18:12:51
+---

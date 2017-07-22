@@ -1,4 +1,4 @@
-import {ArrOrObj, Primitive, Traversable, Matchable, Obj, Fn} from './generic'
+import {Arr, ArrOrObj, Primitive, Traversable, Matchable, Obj, Fn} from './generic'
 
 export type TraverseValue = any
 
@@ -8,37 +8,38 @@ export declare function TraverseCallback(
 ): TraverseContext | any
 
 export interface TraverseContext {
-  node: any
-  circular: boolean
-  path: undefined | string[]
-  parent: undefined | any
-  key: undefined | Primitive
-  notRoot: boolean
-  root: boolean
+  node: any // aka iteratee
+  isCircular: boolean
+  isRoot: boolean
   isLeaf: boolean
-  notLeaf: boolean
-  level: number
+  path: string[]
+  depth: number
+  parent: undefined | any
+  parents: Set<any>
+  key: undefined | Primitive
   update(value: Primitive, stopHere?: boolean): void
   remove(stopHere?: boolean): void
-  delete(stopHere?: boolean): void
   // events
   before(fn: Fn): void
   after(fn: Fn): void
   pre(fn: Fn): void
   post(fn: Fn): void
 }
-export interface Traverse {
+export interface Traverse extends TraverseContext {
   value: TraverseValue
-  nodes(): ArrOrObj
-  map(fn: Fn): any
+  path: Array<string>
   forEach(x: TraverseValue, fn: (t: Traverse) => any): void
-  reduce(fn: Fn, init: Obj | Arr | any): ArrOrObj
-  paths(): ArrOrObj
-  set(path: Primitive, value: any): boolean
-  has(path: Primitive): boolean
-  get(path: Primitive): any
-  clone(): Obj
+  nodes(): ArrOrObj
+  // all removed for now
+  // map(fn: Fn): any
+  // reduce(fn: Fn, init: Obj | Arr | any): ArrOrObj
+  // paths(): ArrOrObj
+  // set(path: Primitive, value: any): boolean
+  // has(path: Primitive): boolean
+  // get(path: Primitive): any
 }
 
 // loose = false
 export declare function eq(one: any, two: any, loose?: boolean): boolean
+export declare function eqValue(one: any, two: any, loose?: boolean): boolean
+export declare function clone(value: any): any

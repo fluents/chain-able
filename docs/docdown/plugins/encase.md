@@ -33,6 +33,8 @@
 
 <!-- div -->
 
+<a href="https://github.com/fluents/chain-able/blob/master/typings/deps.encase.d.ts">🌊  Types: deps.encase.d</a>&nbsp;
+
 <h3 id="methodEncasingFactory" data-member="" data-category="Methods" data-name="methodEncasingFactory"><code>methodEncasingFactory(name=undefined, parent=undefined, built=undefined)</code></h3>
 <br>
 <br>

@@ -49,7 +49,6 @@ export function isObj(o: any): o is object | Array<any> | Function
 export function isObjNotNull(o: any): o is object // !null
 export function objTypeof(o: any): o is object | null
 export function objPure(o: any): o is object // !Array
-
 export function isObjWithKeys(o: any): o is ObjectWithKeys
 
 export function isPrototypeOf(o: any, prop: any): PrototypeOf
@@ -78,6 +77,15 @@ export function isObjLoose(o: any): 'o is typeof Obj' | boolean
 export function isClass(o: any): 'o.toString().includes(class)' | boolean
 export function isMapish(o: any): o is Mapish
 
+export type Property = 'property in Object' | boolean | string | any
+export function hasIn(o: any, prop: any): prop is Property
+// no generics
+// hasIn(s: Prop, obj: Struct<any>): boolean;
+// hasIn(s: Prop): (obj: Struct<any>) => boolean;
+
+export function isNotNested(o: any): boolean
+export function isIteratable(o: any): boolean
+export function isPrimitive(o: any): boolean
 export function isEmpty(o: any): boolean
 export function isGenerator(o: any): boolean
 export function isJSON(o: any): o is JSON
@@ -122,7 +130,8 @@ export const is = {
   // @example `chain-able/deps/is/stringOrNumber`, `chain-able/deps/is/dot`
   isNotEmptyArray,
   isStringOrNumber,
-  isNullOrUndef,
+  isNullOrUndefined,
+  isNill: isNullOrUndefined,
   isFalse,
   isDot,
   isMapish,

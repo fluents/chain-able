@@ -1,6 +1,6 @@
 {
   "name": "chain-able",
-  "version": "5.0.0-beta.3",
+  "version": "5.0.0-beta.4",
   "description": "interfaces that describe their intentions.",
   "main:es6": "src/index.js",
   "main:dev": "dists/dev/index.js",
