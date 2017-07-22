@@ -11,6 +11,11 @@ const tryCatch = require('./tryCatch')
  * @param   {Function | undefined} [encaser=tryCatch] function to encase _with_
  * @return  {Function} -> FunctionObject{onInvalid, onValid, rethrow, call}
  *
+ * {@link https://github.com/fluture-js/Fluture#encase fluture-encase}
+ * {@link https://github.com/lodash/lodash/blob/master/attempt.js lodash-attempt}
+ * @see {@link lodash-attempt}
+ * @see {@link fluture-encase}
+ *
  * @example
  *
  *  const throws = x => {

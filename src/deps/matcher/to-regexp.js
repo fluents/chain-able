@@ -1,5 +1,5 @@
 const replace = require('../fp/replace')
-const pipe = require('../fp/pipe')
+const pipe = require('../fp/pipeTwo')
 const escapeStringRegExp = require('./escape-string-regex')
 
 /**
