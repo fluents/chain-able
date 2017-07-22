@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `fp`
-* <a href="#fp-prototype-"  data-meta="R pipe f g h a b h g f a b exports f undefined g undefined a b n o o p x y y z a b n z"  data-call="exports f undefined g undefined"  data-category="Function"  data-description="Function Performs left to right function composition The leftmost function may have any arity the remaining functions must be unary br br In some libraries this function is named sequence"  data-member="fp"  data-notes="The result of pipe is not automatically curried This is a variation is the internal version with only 2 functions for now"  data-all="meta R pipe f g h a b h g f a b n exports f undefined g undefined n a b n o o p x y y z a b n z call exports f undefined g undefined category Function description Function Performs left to right function composition The leftmost function may have nany arity the remaining functions must be unary n br n br nIn some libraries this function is named sequence name member fp see notes The result of pipe is not automatically curried n This is a variation is the internal version with only 2 functions for now n todos klassProps" >`fp.`</a>
+* <a href="#fp-prototype-"  data-meta="R pipe f g h a b h g f a b exports first undefined rest undefined a b n o o p x y y z a b n z"  data-call="exports first undefined rest undefined"  data-category="Function"  data-description="Function Performs left to right function composition The leftmost function may have any arity the remaining functions must be unary In some libraries this function is named sequence"  data-member="fp"  data-all="meta R pipe f g h a b h g f a b n exports first undefined rest undefined n a b n o o p x y y z a b n z call exports first undefined rest undefined category Function description Function Performs left to right function composition The leftmost function may have nany arity the remaining functions must be unary nIn some libraries this function is named sequence name member fp see notes todos klassProps" >`fp.`</a>
 
 <!-- /div -->
 
@@ -19,23 +19,19 @@
 
 <!-- div -->
 
-<h3 id="fp-prototype-" data-member="fp" data-category="Function" data-name="pipe"><code>fp.exports(f=undefined, g=undefined)</code></h3>
+<a href="https://github.com/fluents/chain-able/blob/master/typings/fp.d.ts">🌊  Types: fp.d</a>&nbsp;
+
+<a href="https://github.com/fluents/chain-able/blob/master/test/fp/pipe.js">🔬  Tests: pipe</a>&nbsp;
+
+<h3 id="fp-prototype-" data-member="fp" data-category="Function" data-name="pipe"><code>fp.exports(first=undefined, rest=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/fp/pipe.js#L30 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/fp/pipe.js#L46 "View in source") [&#x24C9;][1]
 
 (Function): Performs left-to-right function composition. The leftmost function may have
 any arity; the remaining functions must be unary.
-<br>
-<br>
 In some libraries this function is named `sequence`.
 
-
-#### @notes 
-
-* The result of pipe is not automatically curried.
-* This is a variation, is the internal version with only 2 functions, for now
- 
 
 #### @sig 
 
@@ -45,12 +41,17 @@ In some libraries this function is named `sequence`.
 
 R.pipe(f, g, h)(a, b) = h(g(f(a, b))) 
 
+#### @extends
+
+
+
+
 #### @Since
 v5.0.0
 
 #### Arguments
-1. `f=undefined` *(...Function)*: function first
-2. `g=undefined` *(...Function)*: function next
+1. `first=undefined` *(Function)*: function first
+2. `rest=undefined` *(...Function)*: function next
 
 #### Returns
 *(Function)*:
@@ -59,6 +60,18 @@ v5.0.0
 ```js
 var f = R.pipe(Math.pow, R.negate, R.inc)
 f(3, 4) // -(3^4) + 1
+
+```
+#### Example
+```js
+var x = v => v + 'x'
+var y = v => v + 'y'
+var z = v => v + 'z'
+
+const xyz = pipe(x, y, z)
+/// starts with w, adds x, then y, then z
+const wxyz = xyz('w')
+//=> 'wxyz'
 
 ```
 ---

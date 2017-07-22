@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `is`
-* <a href="#is-prototype-isFunction"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Lang"  data-description="Function Checks if value is classified as a Function object"  data-name="isFunction"  data-member="is"  data-notes="x instanceof Function"  data-all="meta exports x undefined call exports x undefined category Lang description Function Checks if value is classified as a Function object name isFunction member is see notes x instanceof Function n todos klassProps" >`is.isFunction`</a>
+* <a href="#is-prototype-isFunction"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Lang"  data-description="Function Checks if value is classified as a Function object"  data-name="isFunction"  data-member="is"  data-see="href http underscorejs org docs underscore html section 141 label Underscorejs org docs underscore html"  data-notes="x instanceof Function"  data-all="meta exports x undefined call exports x undefined category Lang description Function Checks if value is classified as a Function object name isFunction member is see href http underscorejs org docs underscore html section 141 label Underscorejs org docs underscore html notes x instanceof Function n todos klassProps" >`is.isFunction`</a>
 
 <!-- /div -->
 
@@ -22,10 +22,14 @@
 <h3 id="is-prototype-isFunction" data-member="is" data-category="Lang" data-name="isFunction"><code>is.exports(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/function.js#L37 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/function.js#L36 "View in source") [&#x24C9;][1]
 
 (Function): Checks if `value` is classified as a `Function` object.
 
+
+#### @see 
+
+* <a href="http://underscorejs.org/docs/underscore.html#section-141" >Underscorejs.org/docs/underscore.html</a>
 
 #### @notes 
 

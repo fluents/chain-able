@@ -22,7 +22,7 @@
 <h3 id="Traverse-prototype-copy" data-member="Traverse" data-category="Methods" data-name="copy"><code>Traverse.copy(src=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traversers/copy.js#L27 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traversers/copy.js#L29 "View in source") [&#x24C9;][1]
 
 (Function): copy any primitive value, part of clone
 

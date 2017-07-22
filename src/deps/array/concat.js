@@ -1,4 +1,4 @@
-const toarr = require('./to-arr')
+const toarr = require('../to-arr')
 
 /**
  * @desc concat two values, coerce to arrays

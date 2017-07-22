@@ -4,8 +4,8 @@
 
 <!-- div -->
 
-## `exports`
-* <a href="#exports"  data-meta="exports object undefined"  data-call="exports object undefined"  data-category="Object"  data-description="Function Creates an array of the own enumerable property names of object br br Note Non object values are coerced to objects See the ES spec http ecma international org ecma 262 7 0 sec object keys for more details"  data-name="exports"  data-see="href https github com fluents chain able blob master src deps util props js label fluents chain able blob master src deps util props js"  data-todos="https github com lodash lodash blob master internal arrayLikeKeys js"  data-all="meta exports object undefined call exports object undefined category Object description Function Creates an array of the own enumerable property names of object n br n br n Note Non object values are coerced to objects See the n ES spec http ecma international org ecma 262 7 0 sec object keys nfor more details name exports member see href https github com fluents chain able blob master src deps util props js label fluents chain able blob master src deps util props js notes todos https github com lodash lodash blob master internal arrayLikeKeys js n klassProps" >`exports`</a>
+## `keysObjOrArray`
+* <a href="#keysObjOrArray"  data-meta="keysObjOrArray obj undefined"  data-call="keysObjOrArray obj undefined"  data-category="Object"  data-description="Function Creates an array of the own enumerable property names of object Note Non object values are coerced to objects See the ES spec http ecma international org ecma 262 7 0 sec object keys for more details"  data-name="keysObjOrArray"  data-see="href https github com fluents chain able blob master src deps util lengthFromZero js label fluents chain able blob master src deps util length from zero js href https github com fluents chain able blob master src deps util props js label fluents chain able blob master src deps util props js href https github com lodash lodash blob master keys js label lodash lodash blob master keys js href https github com lodash lodash blob master internal getAllKeys js label lodash lodash blob master internal get all keys js"  data-todos="https github com lodash lodash blob master internal arrayLikeKeys js"  data-all="meta keysObjOrArray obj undefined call keysObjOrArray obj undefined category Object description Function Creates an array of the own enumerable property names of object n Note Non object values are coerced to objects See the n ES spec http ecma international org ecma 262 7 0 sec object keys nfor more details name keysObjOrArray member see href https github com fluents chain able blob master src deps util lengthFromZero js label fluents chain able blob master src deps util length from zero js href https github com fluents chain able blob master src deps util props js label fluents chain able blob master src deps util props js href https github com lodash lodash blob master keys js label lodash lodash blob master keys js href https github com lodash lodash blob master internal getAllKeys js label lodash lodash blob master internal get all keys js notes todos https github com lodash lodash blob master internal arrayLikeKeys js n klassProps" >`keysObjOrArray`</a>
 
 <!-- /div -->
 
@@ -15,18 +15,16 @@
 
 <!-- div -->
 
-## `exports`
+## `keysObjOrArray`
 
 <!-- div -->
 
-<h3 id="exports" data-member="" data-category="Object" data-name="exports"><code>exports(object=undefined)</code></h3>
+<h3 id="keysObjOrArray" data-member="" data-category="Object" data-name="keysObjOrArray"><code>keysObjOrArray(obj=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/util/keysObjOrArray.js#L43 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/util/keysObjOrArray.js#L27 "View in source") [&#x24C9;][1]
 
 (Function): Creates an array of the own enumerable property names of `object`.
-<br>
-<br>
 **Note:** Non-object values are coerced to objects. See the
 [ES spec](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
 for more details.
@@ -34,7 +32,10 @@ for more details.
 
 #### @see 
 
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/util/lengthFromZero.js" >fluents/chain able/blob/master/src/deps/util/length from zero.js</a>
 * <a href="https://github.com/fluents/chain-able/blob/master/src/deps/util/props.js" >fluents/chain able/blob/master/src/deps/util/props.js</a>
+* <a href="https://github.com/lodash/lodash/blob/master/keys.js" >lodash/lodash/blob/master/keys.js</a>
+* <a href="https://github.com/lodash/lodash/blob/master/.internal/getAllKeys.js" >lodash/lodash/blob/master/.internal/get all keys.js</a>
 
 #### @todos 
 
@@ -45,7 +46,7 @@ for more details.
 0.1.0
 
 #### Arguments
-1. `object=undefined` *(Object)*: The object to query.
+1. `obj=undefined` *(Object)*: The object to query.
 
 #### Returns
 *(Array)*: Returns the array of property names.
@@ -74,4 +75,4 @@ keys('hi')
 
 <!-- /div -->
 
- [1]: #exports "Jump back to the TOC."
+ [1]: #keysobjorarray "Jump back to the TOC."

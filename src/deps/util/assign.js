@@ -1,3 +1,19 @@
+/**
+ * @memberOf util
+ *
+ * {@link https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign mozilla-object-assign}
+ * {@link https://esdiscuss.org/topic/object-assign-with-several-source-objects esdiscuss-object-assign}
+ * {@link https://github.com/facebook/react/blob/4b2eac3de7e1dbf5c2dd742fd9989974a83972cb/scripts/babel/transform-object-assign-require.js react-object-assign}
+ * {@link https://github.com/lodash/lodash/blob/master/.internal/assignValue.js lodash-assign}
+ * {@link https://github.com/ramda/ramda/blob/master/src/internal/_objectAssign.js ramda-assign}
+ * @see {@link react-object-assign}
+ * @see {@link ramda-assign}
+ * @see {@link lodash-assign}
+ * @see {@link esdiscuss-object-assign}
+ * @see {@link mozilla-object-assign}
+ *
+ * @type {Function}
+ */
 module.exports = Object.assign
 
 // @TODO polyfil

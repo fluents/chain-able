@@ -22,7 +22,7 @@
 <h3 id="conditional-prototype-some" data-member="conditional" data-category="Methods" data-name="some"><code>conditional.some(predicate=undefined, arr=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/some.js#L28 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/some.js#L29 "View in source") [&#x24C9;][1]
 
 (Function): map all values in an array to see if **some** match, curried
 

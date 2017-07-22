@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `fp`
-* <a href="#fp-prototype-"  data-meta="exports pattern undefined replacement undefined str undefined RegExp String String String String"  data-call="exports pattern undefined replacement undefined str undefined"  data-category="String"  data-description="Function Replace a substring or regex match in a string with a replacement"  data-member="fp"  data-all="meta exports pattern undefined replacement undefined str undefined n RegExp String String String String call exports pattern undefined replacement undefined str undefined category String description Function Replace a substring or regex match in a string with a replacement name member fp see notes todos klassProps" >`fp.`</a>
+* <a href="#fp-prototype-"  data-meta="exports pattern undefined replacement undefined str undefined RegExp String String String String"  data-call="exports pattern undefined replacement undefined str undefined"  data-category="String"  data-description="Function Replace a substring or regex match in a string with a replacement"  data-member="fp"  data-see="href https github com ramda ramda blob master src replace js label ramda ramda blob master src replace js href https github com lodash lodash blob master replace js label lodash lodash blob master replace js"  data-all="meta exports pattern undefined replacement undefined str undefined n RegExp String String String String call exports pattern undefined replacement undefined str undefined category String description Function Replace a substring or regex match in a string with a replacement name member fp see href https github com ramda ramda blob master src replace js label ramda ramda blob master src replace js href https github com lodash lodash blob master replace js label lodash lodash blob master replace js notes todos klassProps" >`fp.`</a>
 
 <!-- /div -->
 
@@ -19,13 +19,22 @@
 
 <!-- div -->
 
+<a href="https://github.com/fluents/chain-able/blob/master/typings/fp.d.ts">🌊  Types: fp.d</a>&nbsp;
+
+<a href="https://github.com/fluents/chain-able/blob/master/test/fp/replace.js">🔬  Tests: replace</a>&nbsp;
+
 <h3 id="fp-prototype-" data-member="fp" data-category="String" data-name="replace"><code>fp.exports(pattern=undefined, replacement=undefined, str=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/fp/replace.js#L28 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/fp/replace.js#L30 "View in source") [&#x24C9;][1]
 
 (Function): Replace a substring or regex match in a string with a replacement.
 
+
+#### @see 
+
+* <a href="https://github.com/ramda/ramda/blob/master/src/replace.js" >ramda/ramda/blob/master/src/replace.js</a>
+* <a href="https://github.com/lodash/lodash/blob/master/replace.js" >lodash/lodash/blob/master/replace.js</a>
 
 #### @sig 
 

@@ -32,6 +32,7 @@ const addPoolingTo = require('./cache/pooler')
 
 // const ENV_DEBUG = require('./env/debug')
 // const ENV_DEBUG = true
+// const TRUTH = true
 const ENV_DEBUG = false
 
 /**
@@ -113,7 +114,7 @@ const ENV_DEBUG = false
  */
 function Traverse(iteratee, config) {
   // always cleared when done anyway
-  this.parents = new Set()
+  if (isUndefined(this.parents)) this.parents = new Set()
 
   this.node = iteratee
   this.parent = iteratee
@@ -160,8 +161,7 @@ Traverse.prototype.reset = function() {
  */
 Traverse.prototype.hasParent = function(depth, value) {
   // or array
-  if (!isObj(value)) return false
-  return this.parents.has(value)
+  return isObj(value) ? this.parents.has(value) : false
 }
 
 /**
@@ -181,6 +181,7 @@ Traverse.prototype.hasParent = function(depth, value) {
  *
  */
 Traverse.prototype.addParent = function(depth, value) {
+  // && this.hasParent(value) === false
   if (isObj(value)) this.parents.add(value)
 }
 
@@ -206,7 +207,8 @@ Traverse.prototype.addParent = function(depth, value) {
  *
  */
 Traverse.prototype.clear = function() {
-  if (!isUndefined(this.parents)) this.parents.clear()
+  // if (!isUndefined(this.parents))
+  this.parents.clear()
 }
 
 /**

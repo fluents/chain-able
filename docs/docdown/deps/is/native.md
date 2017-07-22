@@ -22,7 +22,7 @@
 <h3 id="is-prototype-isNative" data-member="is" data-category="Methods" data-name="isNative"><code>is.exports(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/native.js#L19 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/native.js#L14 "View in source") [&#x24C9;][1]
 
 (Function): based on isNative from react-fibers, based on isNative() from Lodash
 

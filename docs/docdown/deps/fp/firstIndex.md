@@ -22,7 +22,7 @@
 <h3 id="fp-prototype-firstIndex" data-member="fp" data-category="Methods" data-name="firstIndex"><code>fp.firstIndex(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/fp/firstIndex.js#L21 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/fp/firstIndex.js#L22 "View in source") [&#x24C9;][1]
 
 (Function): get first index in a list
 
@@ -39,6 +39,10 @@
 #### @extends
 
 
+
+
+#### @Since
+5.0.0-beta.2
 
 #### Arguments
 1. `x=undefined` *(&#42;|Array|Object|string)*: item to find the first index of

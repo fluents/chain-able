@@ -4,8 +4,8 @@
 
 <!-- div -->
 
-## `exports`
-* <a href="#exports"  data-meta="exports predicate undefined"  data-call="exports predicate undefined"  data-category="Methods"  data-description="Function every item in an array matches predicate"  data-name="exports"  data-all="meta exports predicate undefined call exports predicate undefined category Methods description Function every item in an array matches predicate name exports member see notes todos klassProps" >`exports`</a>
+## `is`
+* <a href="#is-prototype-exports"  data-meta="exports predicate undefined"  data-call="exports predicate undefined"  data-category="Methods"  data-description="Function every item in an array matches predicate"  data-name="exports"  data-member="is"  data-all="meta exports predicate undefined call exports predicate undefined category Methods description Function every item in an array matches predicate name exports member is see notes todos klassProps" >`is.exports`</a>
 
 <!-- /div -->
 
@@ -15,14 +15,14 @@
 
 <!-- div -->
 
-## `exports`
+## `is`
 
 <!-- div -->
 
-<h3 id="exports" data-member="" data-category="Methods" data-name="exports"><code>exports(predicate=undefined)</code></h3>
+<h3 id="is-prototype-exports" data-member="is" data-category="Methods" data-name="exports"><code>is.exports(predicate=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/arrayOf.js#L22 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/arrayOf.js#L23 "View in source") [&#x24C9;][1]
 
 (Function): every item in an array matches predicate
 
@@ -53,4 +53,4 @@ isArrayOf(isString)(['string', Number]) //=> false
 
 <!-- /div -->
 
- [1]: #exports "Jump back to the TOC."
+ [1]: #is "Jump back to the TOC."

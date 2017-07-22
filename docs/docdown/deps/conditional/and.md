@@ -22,7 +22,7 @@
 <h3 id="conditional-prototype-and" data-member="conditional" data-category="Methods" data-name="and"><code>conditional.and(left=undefined, right=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/and.js#L26 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/and.js#L29 "View in source") [&#x24C9;][1]
 
 (Function): first fn & second fn
 

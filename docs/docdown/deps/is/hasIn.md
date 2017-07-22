@@ -4,8 +4,8 @@
 
 <!-- div -->
 
-## `exports`
-* <a href="#exports"  data-meta="exports obj undefined prop undefined"  data-call="exports obj undefined prop undefined"  data-category="Methods"  data-description="Function isIn but first checks it is not null"  data-name="exports"  data-all="meta n n exports obj undefined prop undefined call exports obj undefined prop undefined category Methods description Function isIn but first checks it is not null name exports member see notes todos klassProps" >`exports`</a>
+## `is`
+* <a href="#is-prototype-exports"  data-meta="exports obj undefined prop undefined"  data-call="exports obj undefined prop undefined"  data-category="Methods"  data-description="Function isIn but first checks it is not null"  data-name="exports"  data-member="is"  data-all="meta n n exports obj undefined prop undefined call exports obj undefined prop undefined category Methods description Function isIn but first checks it is not null name exports member is see notes todos klassProps" >`is.exports`</a>
 
 <!-- /div -->
 
@@ -15,14 +15,14 @@
 
 <!-- div -->
 
-## `exports`
+## `is`
 
 <!-- div -->
 
-<h3 id="exports" data-member="" data-category="Methods" data-name="exports"><code>exports(obj=undefined, prop=undefined)</code></h3>
+<h3 id="is-prototype-exports" data-member="is" data-category="Methods" data-name="exports"><code>is.exports(obj=undefined, prop=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/hasIn.js#L22 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/hasIn.js#L23 "View in source") [&#x24C9;][1]
 
 (Function): isIn, but first checks it is not null
 
@@ -59,4 +59,4 @@ hasIn({ eh: true }, 'eh') //=> true
 
 <!-- /div -->
 
- [1]: #exports "Jump back to the TOC."
+ [1]: #is "Jump back to the TOC."

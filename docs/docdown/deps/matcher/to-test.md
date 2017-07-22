@@ -4,8 +4,8 @@
 
 <!-- div -->
 
-## `exports`
-* <a href="#exports"  data-meta="exports matchable undefined arg1 undefined arg2 undefined"  data-call="exports matchable undefined arg1 undefined arg2 undefined"  data-category="Methods"  data-description="Function like matcher but isMatch"  data-name="exports"  data-notes="as else if for easier ternary uglification"  data-all="meta exports matchable undefined arg1 undefined arg2 undefined call exports matchable undefined arg1 undefined arg2 undefined category Methods description Function like matcher but isMatch name exports member see notes as else if for easier ternary uglification n todos klassProps" >`exports`</a>
+## `toTest`
+* <a href="#toTest"  data-meta="toTest matchable undefined arg1 undefined arg2 undefined"  data-call="toTest matchable undefined arg1 undefined arg2 undefined"  data-category="Methods"  data-description="Function like matcher but isMatch"  data-name="toTest"  data-notes="as else if for easier ternary uglification"  data-all="meta toTest matchable undefined arg1 undefined arg2 undefined call toTest matchable undefined arg1 undefined arg2 undefined category Methods description Function like matcher but isMatch name toTest member see notes as else if for easier ternary uglification n todos klassProps" >`toTest`</a>
 
 <!-- /div -->
 
@@ -15,14 +15,14 @@
 
 <!-- div -->
 
-## `exports`
+## `toTest`
 
 <!-- div -->
 
-<h3 id="exports" data-member="" data-category="Methods" data-name="exports"><code>exports(matchable=undefined, [arg1=undefined], [arg2=undefined])</code></h3>
+<h3 id="toTest" data-member="" data-category="Methods" data-name="toTest"><code>toTest(matchable=undefined, [arg1=undefined], [arg2=undefined])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/matcher/to-test.js#L41 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/matcher/to-test.js#L47 "View in source") [&#x24C9;][1]
 
 (Function): like matcher, but .isMatch
 
@@ -76,4 +76,4 @@ matcher({ test: x => x === 'kinga' }, 'nope')
 
 <!-- /div -->
 
- [1]: #exports "Jump back to the TOC."
+ [1]: #totest "Jump back to the TOC."

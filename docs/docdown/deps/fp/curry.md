@@ -20,10 +20,14 @@
 
 <!-- div -->
 
+<a href="https://github.com/fluents/chain-able/blob/master/typings/fp.d.ts">🌊  Types: fp.d</a>&nbsp;
+
+<a href="https://github.com/fluents/chain-able/blob/master/test/fp/curry.js">🔬  Tests: curry</a>&nbsp;
+
 <h3 id="fp-prototype-" data-member="fp" data-category="Function" data-name="curry"><code>fp._curryN(length=undefined, received=undefined, fn=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/fp/curry.js#L52 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/fp/curry.js#L45 "View in source") [&#x24C9;][1]
 
 (Function): Returns a curried equivalent of the provided function, with the specified
 arity. The curried function has two unusual capabilities. First, its
@@ -57,7 +61,7 @@ the following are equivalent:
 Number -> (* -> a) -> (* -> a) 
 
 #### @Since
-v0.5.0
+5.0.0-beta.1
 
 #### Arguments
 1. `length=undefined` *(Number)*: The arity of the curried function.
@@ -86,7 +90,7 @@ g(4) //=> 10
 <h3 id="fp-prototype-" data-member="fp" data-category="Function" data-name="curry"><code>fp.exports(length=undefined, fn=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/fp/curry.js#L130 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/fp/curry.js#L139 "View in source") [&#x24C9;][1]
 
 (Function): Returns a curried equivalent of the provided function, with the specified
 arity. The curried function has two unusual capabilities. First, its

@@ -25,6 +25,7 @@
 * <a href="https://github.com/fluents/chain-able/blob/master/test/is/index.js">🔬  Tests: index</a>&nbsp;
 * <a href="https://github.com/fluents/chain-able/blob/master/test/is/is.js">🔬  Tests: is</a>&nbsp;
 * <a href="https://github.com/fluents/chain-able/blob/master/test/is/json.js">🔬  Tests: json</a>&nbsp;
+* <a href="https://github.com/fluents/chain-able/blob/master/test/is/not-exported-in-entry.js">🔬  Tests: not-exported-in-entry</a>&nbsp;
 * <a href="https://github.com/fluents/chain-able/blob/master/test/is/primitives.js">🔬  Tests: primitives</a>&nbsp;
 * <a href="https://github.com/fluents/chain-able/blob/master/test/is/simple.js">🔬  Tests: simple</a>&nbsp;
 

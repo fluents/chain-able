@@ -36,7 +36,7 @@
 <h3 id="arrayHasAny" data-member="" data-category="Methods" data-name="arrayHasAny"><code>arrayHasAny(needles=undefined, haystack=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/any.js#L27 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/any.js#L26 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -62,7 +62,7 @@ Function
 <h3 id="includesAny" data-member="" data-category="Methods" data-name="includesAny"><code>includesAny(needle=undefined, haystack=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/any.js#L47 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/any.js#L52 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -73,6 +73,14 @@ Function
 #### Returns
 *(boolean)*:
 
+#### Example
+```js
+includesAny('eh', 'e') //=> true
+includesAny('eh', 'eh') //=> true
+includesAny(['eh'], 'e') //=> true
+includesAny(['eh'], 'nope') //=> false
+
+```
 ---
 
 <!-- /div -->
@@ -88,7 +96,7 @@ Function
 <h3 id="strHasAny" data-member="" data-category="Methods" data-name="strHasAny"><code>strHasAny(needle=undefined, haystack=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/any.js#L9 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/any.js#L10 "View in source") [&#x24C9;][1]
 
 Function
 

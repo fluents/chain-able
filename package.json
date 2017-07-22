@@ -164,10 +164,10 @@
     "coveragePathIgnorePatterns": [
       "\\\\node_modules\\\\",
       "_modules",
+      "src/deps/to|string/*.js",
       "src/deps/array/insertAtIndex.js",
       "src/deps/conditional/eqeq.js",
       "src/deps/traversers/stringify.js",
-      "src/deps/traversers/eqdeep.js",
       "src/plugins/getterOnSet.js",
       "src/deps/_r|meta|external|env|primitives",
       "src/deps/external/lodash",

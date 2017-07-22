@@ -1,10 +1,96 @@
-# v5.0.0-beta.1 & v5.0.0-beta.2
-- 🛁 adjustments  to clean
+# v5.0.0-beta.1-5
 
-- BREAKING:
+https://lh3.googleusercontent.com/-G9TxkDCz4No/WBnw5HgDhaI/AAAAAAAANTE/grSmWeThmJYJkbMs0QunPnj9GtRK5-hQwCJoC/w1060-h798-p-rw/map-filter-reduce-in-emoji-1.png
+
+### 5
+- 🔩 /native/ folder
+  - 🕴 for exporting native/built-in prototype methods and such
+
+- 🆙 conditional/
+  - ℹ️ more docs to `all` & `and` & `not` & `some`
+  - 🐏 curry `not`
+  - /includes
+    - 🐏 curry
+    - ❔ use isString > isArray as first check
+
+- ⚖️ `eq` 🛁 minor clean + ℹ️🔗 doclinks 👕 lint tweaks
+- 🆕 add expressions/
+- 🚚 move ignored to meta/
+- 🚚🔬 move dopemerge map & set example into skipped test
+- 🚚 move concat to /array
+
+- 🐏 🎁 add fp/
+  - 🐏 🎁 fp: ⬅️ reverse 👷 construct 📞 invoke ℹ️️ docs
+  - ℹ️️ more docs to arity, always, curry, replace, prop
+  - 🛅 shorten firstIndex, lastIndex
+  - ⬅️🆕 reverse
+  - 👷🆕 construct (used in index when exporting .build & .init/.chainable)
+  - ❔🆕 includesCount (RESEARCH BETTER NAME) (occurs?)
+  - ❔🆕 hasInMatching
+  - 📞🆕 invoke
+  - 🕴 export more in the index
+  - 🤸`|` pipe split into pipeTwo + pipe (for dynamic length args & 2 args)
+
+- 🐏 🎁 fp/ ...again
+  - ℹ️ more docs 👷 construct/ 🆕🙃 flip 🆕 invoker
+  - ℹ️️ more docs to first, firstIndex, includesCount, last, lastIndex, reverse
+  - 🔬 more adapted tests
+  - 🆕 invoker
+  - 🆕🙃 flip
+    - 🙃🙃 flip2 (just first2 args)
+- 👷 construct/
+  - map, set, regexp
+
+- ❔ is/
+  - ❔ is/ ℹ️ℹ️ℹ️️ docs 🆕🆕🆕 🔬🔩
+  - ℹ️️ docs: arguments, array, boolean, buffer, hasIn, objNotNull, prototypeOf, string, undefined, arrayOf, asyncish, async, dot, enumerable, function, generator, json, toS/getTag
+  - ⚒ fix ℹ️ docs ⌨️ typo in primitive
+  - 🔬 tests for 🆕
+  - ❔🆕 isMatch
+  - ❔🆕 isInstanceOf
+  - ❔🆕 isUndefinedLike
+  - ❔🆕 isWeakMap
+  - ❔🆕 isWeakSet
+  - ❔🆕 isIteratable (moved from traverse)
+  - ❔🆕 isCircular
+  - ❔🆕 isBooleanPrimitive (split from isBoolean)
+  - ❔🆕 isMatch (not exported boolean version of matcher)
+  - ❔🆕 isBrowser (using util/localGlobal & isUndefinedLike)
+  - 🔩 use native/ in isNative
+  - 🆙 use `or` in isAsyncish
+
+- 🆕 add expressions/
+- to/
+  - array
+  - string
+  - boolean
+  - number
+  - object
+  - integer
+  - map
+  - set
+  - setToArray
+  - coerce
+
+- 🖇 util/
+  - 🆙 utils/ 🕴 exports
+  - 🆕🌏 localGlobal (window || global)
+  - 🔢 lengthFromZero
+    - ℹ️️ docs
+    - 😡 use lengthFromZero in `argumentor`
+  - ⛑ hasOwnProperty add `isNill` safety
+  - assign - added commented out polyfil when needed for future reference
+- build/
+  - remap all to export
+
+
+- 🔎🌎 WEBSITE!
+  - https://github.com/js-org/dns.js.org/pull/1364#issuecomment-316629304
+  - https://chain-able.js.org
+
+- ❗ BREAKING:
   - rename is objLoose & objPure & objStrict -> into understandable names that convey what they do
 
-- 🌊 update typings
 - 🤖📖 docgen
   - 🛅 built dev version for links from docgen site until upgraded
   - 📜📒 makefile scripts to make docgen & site
@@ -19,24 +105,25 @@
   - ⚪️ Frisbee 🆙 with updates
 - misc
   - ternary in transform.remap
+  - 🌊〰️ update typings
 - 🖇 utils
-  - ❔ isEmpty
-  - ❔ isJSON
-  - ❔ isArguments
-  - ❔ isBuffer
-  - 🖇❔move reusable `is` functions from validator builder into files
-  - ❔ isNotNested
-  - ❔ isPrimitive
-  - ❔ isIn
-  - ❔ isArrayOf
+  - ❔🆕 isEmpty
+  - ❔🆕 isJSON
+  - ❔🆕 isArguments
+  - ❔🆕 isBuffer
+  - ❔🆕 move reusable `is` functions from validator builder into files
+  - ❔🆕 isNotNested
+  - ❔🆕 isPrimitive
+  - ❔🆕 isIn
+  - ❔🆕 isArrayOf
+  - ❔ isStringOrNumber 🆓 use `conditional/or`
   - 🤸 split isNumber
   - + isNumberPrimitive
   - 🗝️ keys for objOrArray
   - 🆓 use some curry in izzez
   - 🆓 reduce: use 🆓 fp on 🛁 clean
   - 🆓 conditionals utils wrap with curry + ℹ️️
-  - 🐫 add camelCase 🔬 tests + move to string/ folder
-  - isStringOrNumber -> use `conditional/or`
+  - 🐫 add camelCase 🔬 tests + 🚚 move to string/ folder
 
 - 🆓🎁 FP
   - start them, update,️dℹ️️ docblock, 🔬 test, (ramda lodash thanks for some parts of some)
@@ -232,7 +319,7 @@
     - removed .extendsGetSet, .defineGetSet, .extendIncrement, .extendWith, .extendAlias, .decorateParent, .typed
     - replaced ^ with .alias(), .getSet(), .decorate(obj), .define(), .autoIncrement(), .default(), .initial(), .bind(), .encase(), .call(), .get(), .set(), .returns(), .camelCase(), .factory(for extending), .build with + support
     - removed compose/Extend, compose/Child, compose/immutable, compose/Extend, compose/Types, compose/Symbols, compose/Debug, compose/define
-    - .schema feature
+    - 🎁 .schema feature
       - optional types, array types, or types
       - 📐🛂🏭 refactor out schema factory
   - integrated histories from deepmerge, dot-prop, traverse-js, webpack-chain (all commit hashes change, extremely likely they are not used anywhere, even so there is a branch backup so hardly 100% breaking)

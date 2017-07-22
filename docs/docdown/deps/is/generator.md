@@ -22,7 +22,7 @@
 <h3 id="exports" data-member="" data-category="Methods" data-name="exports"><code>exports(x=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/generator.js#L20 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/generator.js#L18 "View in source") [&#x24C9;][1]
 
 (Function): is generator function
 

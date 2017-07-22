@@ -39,7 +39,7 @@
 <h3 id="" data-member="" data-category="Properties" data-name="Chainable"><code>compose</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L443 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L444 "View in source") [&#x24C9;][1]
 
 unknown
 
@@ -90,7 +90,7 @@ chain instanceof Target
 <h3 id="Chainable-prototype-[Iterator]" data-member="Chainable" data-category="Properties" data-name="[Iterator]"><code>Chainable.[Iterator]()</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L121 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L122 "View in source") [&#x24C9;][1]
 
 (generator): Iterator for looping values in the store
 
@@ -216,7 +216,7 @@ chain.entries()
 <h3 id="Chainable-prototype-delete" data-member="Chainable" data-category="Methods" data-name="delete"><code>Chainable.delete(key=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L282 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L283 "View in source") [&#x24C9;][1]
 
 (Function): calls .delete on this.store.map
 
@@ -250,7 +250,7 @@ chain.get('eh')
 <h3 id="Chainable-prototype-end" data-member="Chainable" data-category="Methods" data-name="end"><code>Chainable.end()</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L166 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L167 "View in source") [&#x24C9;][1]
 
 (Function): for ending nested chains
 
@@ -310,7 +310,7 @@ chain.has('canada')
 <h3 id="Chainable-prototype-length" data-member="Chainable" data-category="Methods" data-name="length"><code>Chainable.length()</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L413 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L414 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -369,7 +369,7 @@ chain.values()
 <h3 id="Chainable-prototype-when" data-member="Chainable" data-category="Methods" data-name="when"><code>Chainable.when(condition=undefined, [trueBrancher=Function], [falseBrancher=Function])</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L192 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L193 "View in source") [&#x24C9;][1]
 
 (Function): when the condition is true, trueBrancher is called, else, falseBrancher is called
 
@@ -402,7 +402,7 @@ chains.when(prod, c => c.set('prod', true), c => c.set('prod', false))
 <h3 id="Chainable-constructor" data-member="Chainable" data-category="Methods" data-name="constructor"><code>Chainable.constructor(parent=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L67 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/Chainable.js#L68 "View in source") [&#x24C9;][1]
 
 Function
 

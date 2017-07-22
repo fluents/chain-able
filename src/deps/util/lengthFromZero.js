@@ -3,6 +3,9 @@
  * otherwise, when length == 1, use 0
  * default, use length
  *
+ * @memberOf util
+ * @since 5.0.0-beta.2
+ * @name lengthFromZero
  *
  * @TODO lense to use an object, or transform it to one with .length?
  *  const len = prop('length')
@@ -11,6 +14,9 @@
  *
  * @param {Array | Object | number} obj with length
  * @return {number} obj length from 0
+ *
+ * @see util/length
+ * @see util/lengthMinusOne
  *
  * @example
  *

@@ -18,6 +18,10 @@ const noop = require('./noop')
 const simpleKindOf = require('./simpleKindOf')
 const _typeof = require('./typeof')
 
+/**
+ * @member util
+ * @type {Object}
+ */
 module.exports = {
   assign,
   flatten,

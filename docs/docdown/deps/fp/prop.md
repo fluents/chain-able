@@ -19,10 +19,12 @@
 
 <!-- div -->
 
+<a href="https://github.com/fluents/chain-able/blob/master/typings/fp.d.ts">🌊  Types: fp.d</a>&nbsp;
+
 <h3 id="fp-prototype-" data-member="fp" data-category="Object" data-name="prop"><code>fp.exports(p=undefined, obj=undefined)</code></h3>
 <br>
 <br>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/fp/prop.js#L25 "View in source") [&#x24C9;][1]
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/fp/prop.js#L26 "View in source") [&#x24C9;][1]
 
 (Function): Returns a function that when supplied an object returns the indicated
 property of that object, if it exists.
