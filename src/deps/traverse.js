@@ -88,23 +88,27 @@ const ENV_DEBUG = false
  */
 
 /**
- * @class
  * @desc Traverse class, pooled
- * @alias IterAteOr
- * @member Traverse
- * @constructor
+ * @modifies this.node
+ * @modifies this.parent
+ * @modifies this.root
  * @since 5.0.0
  *
- * @see {@link tree-traversal-article}
+ * @member Traverse
+ * @class
+ * @constructor
+ * @alias IterAteOr
+ * @extends pooler
+ *
  * @param {Traversable} iteratee value to iterate, clone, copy, check for eq
  * @param {Object | undefined} [config] wip config for things such as events or configs
  *
- * @tests traverse
- * @types traverse
- *
- * @extends pooler
+ * @see {@link tree-traversal-article}
  * @see traverse
  * @TODO make this a trie OR a linked-list
+ *
+ * @tests traverse
+ * @types traverse
  *
  * @example
  *
@@ -126,6 +130,24 @@ function Traverse(iteratee, config) {
   return this
 }
 
+/**
+ * @desc reset the properties when finished pooling or instantiating
+ * @since 5.0.0
+ * @method
+ *
+ * @memberOf Traverse
+ * @modifies Traverse.path
+ * @modifies Traverse.key
+ * @modifies Traverse.isAlive
+ * @modifies Traverse.isCircular
+ * @modifies Traverse.isLeaf
+ * @modifies Traverse.isRoot
+ * @modifies Traverse.depth
+ * @return {void}
+ *
+ * @example
+ *    traverse([]).reset()
+ */
 Traverse.prototype.reset = function() {
   this.path = []
   this.key = undefined
@@ -148,6 +170,7 @@ Traverse.prototype.reset = function() {
  * @memberOf Traverse
  * @since 5.0.0
  * @private
+ * @method
  *
  * @param  {number} depth current depth, to find parent >=
  * @param  {parent} value parent value to find
@@ -169,6 +192,7 @@ Traverse.prototype.hasParent = function(depth, value) {
  * @memberOf Traverse
  * @since 5.0.0
  * @private
+ * @method
  *
  * @param  {number} depth current depth, to add parent to >=
  * @param  {parent} value parent value to add
@@ -191,6 +215,7 @@ Traverse.prototype.addParent = function(depth, value) {
  * @memberOf Traverse
  * @since 5.0.0
  * @private
+ * @method
  *
  * @return {void}
  *
@@ -215,6 +240,7 @@ Traverse.prototype.clear = function() {
  * @memberOf Traverse
  * @since 5.0.0
  * @private
+ * @method
  *
  * @param  {number} depth current depth, to find parents >=
  * @param  {parent} value parent value to remove
@@ -235,6 +261,7 @@ Traverse.prototype.removeParent = function(depth, value) {
  * @memberOf Traverse
  * @since 3.0.0
  * @version 5.0.0
+ * @method
  *
  * @param  {Function} cb callback for each iteration
  * @return {*} mapped result or original value, depends how it is used
@@ -265,6 +292,7 @@ Traverse.prototype.forEach = function iterateForEach(cb) {
  * @desc stop the iteration
  * @modifies this.isAlive = false
  * @memberOf Traverse
+ * @method
  *
  * @return {void}
  *
@@ -285,6 +313,7 @@ Traverse.prototype.stop = function stop() {
  * @version 5.0.0
  * @since 3.0.0
  * @memberOf Traverse
+ * @method
  *
  * @return {void}
  *
@@ -301,18 +330,19 @@ Traverse.prototype.skip = function skip() {
 
 /* prettier-ignore */
 /**
- * @TODO move into the wrapper? if perf allows?
- *
  * @desc checks whether a node is iteratable
- *       @modifies this.isIteratable
- *       @modifies this.isLeaf
- *       @modifies this.isCircular
+ *       @modifies Traverse.isIteratable
+ *       @modifies Traverse.isLeaf
+ *       @modifies Traverse.isCircular
  *
  * @memberOf Traverse
  * @protected
+ * @method
  *
  * @param  {*} node value to check
  * @return {void}
+ *
+ * @TODO move into the wrapper? if perf allows?
  *
  * @example
  *
@@ -342,7 +372,6 @@ Traverse.prototype.checkIteratable = function check(node) {
     this.isLeaf = false
     const path = this.path.join('.')
 
-
     if (this.hasParent(path, node)) {
       /* istanbul ignore next: dev */
       if (ENV_DEBUG) {
@@ -361,7 +390,6 @@ Traverse.prototype.checkIteratable = function check(node) {
     }
   }
   else {
-    // ---
     this.isLeaf = true
     this.isCircular = false
   }
@@ -376,6 +404,7 @@ Traverse.prototype.checkIteratable = function check(node) {
  * @memberOf Traverse
  * @version 5.0.0
  * @since 2.0.0
+ * @method
  *
  * @param {undefined | Object} [arg] optional obj to use, defaults to this.node
  * @return {void}
@@ -819,6 +848,7 @@ Traverse.prototype.copy = copy
  * @return {*} cloned value
  *
  * @see dopemerge
+ *
  * @example
  *
  *    var obj = {eh: true}

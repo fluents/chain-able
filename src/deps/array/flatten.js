@@ -1,7 +1,7 @@
 /**
  * @desc flatten multi-dimensional arrays in 1 line
  * @since 4.0.0
- * @memberOf util
+ * @memberOf array
  *
  * @param  {Array<Array | any>} x array(s) to flatten
  * @return {Array<any>} flattened arrays

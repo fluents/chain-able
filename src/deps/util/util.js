@@ -1,5 +1,4 @@
 const assign = require('./assign')
-const flatten = require('./flatten')
 const from = require('./from')
 const charCodeAtZero = require('./charCodeAtZero')
 const getDescriptor = require('./getDescriptor')
@@ -24,7 +23,6 @@ const _typeof = require('./typeof')
  */
 module.exports = {
   assign,
-  flatten,
   from,
   charCodeAtZero,
   getDescriptor,

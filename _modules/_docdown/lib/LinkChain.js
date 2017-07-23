@@ -7,6 +7,7 @@ const {
   replace,
   humanizeLinkLabel,
 } = require('./util.js')
+const presets = require('./presets')
 
 const hrefStripTransform = href => {
   if (!href) return ''
@@ -150,6 +151,10 @@ class LinkChain extends Chain {
         else if (!isUrl(href) && href) {
           href = toRepoSearch(href)
         }
+
+        const transformed = presets(href, label)
+        href = transformed.href
+        label = transformed.label
 
         return {href, label}
 

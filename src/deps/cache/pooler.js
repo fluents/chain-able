@@ -1,6 +1,9 @@
 /* eslint consistent-this: ["error", "Klass"] */
 
 const ENV_DEBUG = require('../env/debug')
+const standardReleaser = require('./standardReleaser')
+const oneArgumentPooler = require('./oneArgumentPooler')
+
 
 /**
  * @symb 🎱
@@ -13,77 +16,8 @@ const ENV_DEBUG = require('../env/debug')
  * @tests deps/pooler
  * @types deps.cache.pooler
  */
-// const pooler = }}
-
-/**
- * @desc call destructor on a pooled instance, put it back in the pool
- * @since 5.0.0
- * @memberOf pooler
- *
- * @param  {Object} instance call destructor
- * @return {void}
- *
- * @example
- *
- *    class Eh {}
- *    addPoolingTo(Eh)
- *    const eh = Eh.getPooled()
- *    eh.release()
- *
- */
-function standardReleaser(instance) {
-  const Klass = this
-
-  if (ENV_DEBUG) {
-    if (instance instanceof Klass) {
-      throw new Error(
-        `Trying to release an instance
-        into a pool of a different type.`
-      )
-    }
-  }
-
-  instance.destructor()
-  if (Klass.instancePool.length < Klass.poolSize) {
-    Klass.instancePool.push(instance)
-  }
-}
-
-/**
- * Static poolers. Several custom versions for each potential number of
- * arguments. A completely generic pooler is easy to implement, but would
- * require accessing the `arguments` object. In each of these, `this` refers to
- * the Class itself, not an instance. If any others are needed, simply add them
- * here, or in their own files.
- *
- * @since 5.0.0
- * @memberOf pooler
- *
- * @param  {Object} copyFieldsFrom obj with instance pool
- * @return {Object} instance of Klass
- *
- * @example
- *
- *    class Eh {}
- *    addPoolingTo(Eh)
- *    const eh = Eh.getPooled() //=> oneArgumentPooler(Eh)
- *    eh.release()
- *
- */
-function oneArgumentPooler(copyFieldsFrom) {
-  const Klass = this
-  if (Klass.instancePool.length) {
-    const instance = Klass.instancePool.pop()
-    Klass.call(instance, copyFieldsFrom)
-    return instance
-  }
-  else {
-    return new Klass(copyFieldsFrom)
-  }
-}
-
-const DEFAULT_POOL_SIZE = 10
 const DEFAULT_POOLER = oneArgumentPooler
+const DEFAULT_POOL_SIZE = 10
 
 /**
  * Augments `CopyConstructor` to be a poolable class, augmenting only the class

@@ -10,6 +10,12 @@ const keys = require('./util/keysObjOrArray')
 // }
 
 /**
+ * @since 4.0.0
+ * @desc remove all methods, mark for garbage collection
+ *
+ * @param {Object} obj object to traverse and clear
+ * @return {void}
+ *
  * @see https://stackoverflow.com/questions/1947995/when-should-i-use-delete-vs-setting-elements-to-null-in-javascript
  * @see https://v8project.blogspot.ca/2015/08/getting-garbage-collection-for-free.html
  * @see https://github.com/natewatson999/js-gc
@@ -20,11 +26,6 @@ const keys = require('./util/keysObjOrArray')
  *
  * @TODO blacklist = [] param
  * @TODO put all GC events into a cached map and debounce the operation
- *
- * @since 4.0.0
- * @desc remove all methods, mark for garbage collection
- * @param {Object} obj object to traverse and clear
- * @return {void}
  *
  * @example
  *

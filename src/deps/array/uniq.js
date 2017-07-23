@@ -1,14 +1,17 @@
 /* eslint prefer-includes/prefer-includes: "OFF" */
 
 /**
- * @name uniqFilter
- * @func
- *
+ * @desc use in array.filter(uniq) to de-dupe values using indexOf
  * @since  0.1.0
+ * @memberOf array
+ *
  * @param  {*} value value in array iteration
  * @param  {number} index current index
  * @param  {Array} arr array being iterated, `thisArg` when using .filter
- * @return {Array} arr
+ * @return {Array} de-duped/uniqued array
+ *
+ * @name uniq
+ * @func
  *
  * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter mozilla-array-filter}
  * @see {@link mozilla-array-filter}
