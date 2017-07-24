@@ -3,4 +3,5 @@ module.exports = {
   del: require('./_delete'),
   res: require('./_res'),
   _res: require('./_res'),
+  fromTo: require('./fromTo'),
 }

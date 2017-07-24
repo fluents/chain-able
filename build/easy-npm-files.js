@@ -3,8 +3,7 @@ const log = require('fliplog')
 const jetpack = require('fs-jetpack')
 const ConfigStore = require('configstore')
 const find = require('chain-able-find')
-const {_res} = require('./util')
-const {read, write} = require('flipfile')
+const {read, write, exists} = require('flipfile')
 const {
   curry,
   not,
@@ -33,7 +32,7 @@ const {
   all,
   and,
   firstToUpperCase,
-} = require('../index.all')
+} = require('../exports')
 const {
   forEach,
   wrapForEach,
@@ -52,8 +51,15 @@ const {
   remapToMatch,
 } = require('./util/__fixme')
 const {
-  getFolderName, getFileName, getFolderAndFileName,
+  getFolderName,
+  getFileName,
+  getFolderAndFileName,
 } = require('./util/_filefolder')
+const {
+  _res,
+  del,
+  fromTo,
+} = require('./util')
 
 const has = x => includes('_', x)
 
@@ -62,39 +68,6 @@ const has = x => includes('_', x)
 // const hasRequire = and(includes('/'), includes('require'))
 const hasRequire = and(has('/'), has('require'))
 
-// log.quick(hasRequire, hasRequire(`require('./eh')`))
-// log.quick([hasRequire('/require'), hasRequire('require'), hasRequire('/'), hasRequire('/eh')])
-
-// SO EASY
-//  ....... or ....... way better ....... just replace any `require('./')`
-
-
-// NOW
-// !!!!! SHOULD NOT TRANSFORM FILENAMES WITH THE FOLDERNAME === FILENAME
-// E.G. UTIL/UTIL, IS/IS!
-// ------- ugh forgot
-//
-// 0. [ ] !!!!!!!!! NEED TO READ CODE, AND CHANGE ALL KNOWN PATHS TO NEW OUTPUT
-//  READ CONTENT
-//  ITERATE THROUGH ABSOLUTE FILENAMES
-//  USE IS_MATCH
-//  E.G. ./deps/is/undefined
-//  MATCH AGAINST FILE, PERMUTATE / IF NEEDED
-//  RESOLVE TO ONE OF THE OUTPUT FILENAMES
-//
-//
-//
-// 1. [x] TOROOT
-// 2. [x] PUT IN KEY-VAL AS [FROM]: TO
-// 3. [x] SAVE FILE WITH FROM-TO AS .JSON
-// 4. [ ] READ .JSON
-// 5. [ ] DELETE FILES (IN CLI.JS)
-// 6. [x] DO A TEST RUN ON A SUBFOLDER
-// 7. [ ] !!! add aliases, so it gets copied to multiple output names
-
-// - [ ] could make docs expandable sections
-// - [ ] fix fuzzy search -> the `h2`s are always shown
-
 const entry = process.cwd()
 const cwd = process.cwd()
 const cwdRes = _res(cwd)
@@ -102,22 +75,21 @@ const res = _res(__dirname)
 
 // @HACK @TODO just emulating
 // const resRoot = _res(res('../'))
-const resRoot = _res(res('./FAKEROOT'))
+const resRoot = _res(fromTo.folder)
+const outputPath = resRoot('.')
 
 // @TODO pipe?
 const src = cwdRes('./src')
 
-const defaultCopied = { /* ['absFrom']: 'absTo' */ }
-const store = new ConfigStore('easy-exports', {copied: defaultCopied})
-const fromToFilePath = res('./fromTo.json')
-
 const isRel = has('./')
 const isAbs = has('/Users')
 const isSrc = has('/src/')
+const isTooDeep = x => x.replace(outputPath, '').split('/').length >= 2
 
 const toRoot = x => {
   // @TODO relative-to
   if (isSrc(x)) return resRoot('./' + x.split('/src/').pop())
+  else if (isTooDeep(x)) return resRoot('./' + x.split('/').pop())
   else if (isAbs(x)) return x
   else if (isRel(x)) return resRoot(x)
   else return resRoot('./' + x)
@@ -144,22 +116,6 @@ const found = find
   .find(src)
   .results()
   .filter(isNotIndex)
-  // .map(file => {
-  //   return {
-  //     og: file,
-  //     remapped: file.replace(regex, dest),
-  //     rel: file.replace(regex, '.'),
-  //   }
-  // })
-  // .filter(file => {
-  //   if (exists(file.remapped)) return false
-  //
-  //   log.dim('copying:').data(file).echo(this.parent.debug)
-  //   copied.push(file.rel)
-  //
-  //   return true
-  // })
-  // .filter(uniq)
 
 
 const filesObj = {}
@@ -194,17 +150,21 @@ const transformIzzes = (abs, folder, filename) => {
 
 // (x.includes('/deps/') ? x.split('/deps/').pop() : x.split('/src/').pop())
 // pipe(replace('/src/', '/'), replace('/deps/', '/'))
-const transformToFileName = x => x.split('/').pop()
+const transformToFileName = x => (x ? x.split('/').pop() : x)
 
 const transformSymbol = (abs, folder, fileName) => {
   const beginning = abs.split(`/${folder}/`).shift()
   return beginning + '/Symbol.' + firstToUpperCase(fileName) + '.js'
 }
+const ignore = () => false
 
+// @TODO transform `compose/` to `nameChain`
+//       + root ones `Chain` if they don't already have it
 // @TODO !!!!!!!!!!!!!!!!!!! TRANSFORM, THIS-AS-A-CHAIN
 // key to matcher
 const map = {
   // 'eh': 'eh',
+  'index.web': ignore,
   '/conditional/all': 'all',
   '/to/*.js': transformFolderAndFileCamel,
   '/is/*.js': transformIzzes,
@@ -212,18 +172,17 @@ const map = {
   '*': transformToFileName,
 }
 
-// log.quick(findMatching('src/conditional/all'))
-
 // const firstIsFunction = pipe(first, isFunction)
 const firstIsFunction = x => isFunction(x[0])
 
+// includesAny
 // (['.', '-', '_']).map(has)
 const isNotCamelCase = x =>
   x.includes('.') || x.includes('-') || x.includes('_')
 
-const fromTo = {}
 
 const doubleExtHACK = has('.js.js')
+const doubleSlashToSingle = replace(/\/{2}/, '/')
 
 // isLast, isFirst ? kind of is .before .after if it's only flat...
 let remapped = founds
@@ -232,13 +191,23 @@ let remapped = founds
   })
   .map(abs => {
     // start remap
-    let remappedAbs = fromTo[abs] || []
-    fromTo[abs] = remappedAbs
-    const alreadyHas = includes(remappedAbs)
+    let remappedAbs = fromTo.data[abs] || []
+    fromTo.data[abs] = remappedAbs
+    // const alreadyHas = includes(remappedAbs)
     const add = x => {
       toArr(x).forEach(value => {
-        const rootValue = toRoot(value)
-        if (alreadyHas(rootValue)) return
+        let rootValue = toRoot(value)
+
+        if (!rootValue.endsWith('.js')) {
+          rootValue += '.js'
+        }
+        if (rootValue.endsWith('.js.js')) {
+          rootValue = rootValue.replace('.js.js', '.js')
+        }
+        if (remappedAbs.includes(rootValue)) {
+          return
+        }
+
         // remappedAbs.push(value)
         remappedAbs.push(rootValue)
       })
@@ -272,7 +241,10 @@ let remapped = founds
             transformed = val(transformed, folderName, fileName)
           })
 
-          add(transformed)
+          // ignore files that return falsy
+          if (transformed) {
+            add(transformed)
+          }
         }
         else if (firstIsFunction(value)) {
           const transformed = value[0](abs, folderName, fileName)
@@ -300,9 +272,6 @@ let remapped = founds
       const beforeFolder = abs.split(folderWithSlashes).shift()
       let transformed = beforeFolder + camelCase(folder_file)
 
-      // if (!transformedAbs.endsWith('js')) transformedAbs += '.js'
-      // console.log('hasDupe', {transformed})
-
       add(transformed)
     }
     else {
@@ -314,20 +283,32 @@ let remapped = founds
     // @TODO all snake & all camel
     if (isNotCamelCase(fileName)) {
       const beginning = abs.split(`/${fileName}`).shift()
-      let transformed = beginning + '/' + camelCase(fileName)
+      let transformed = beginning + '/' + camelCase(fileName) + '.js'
       // let transformed = replace(fileName, camelCase(fileName), abs)
       // log.data({transformed, camel: camelCase(fileName), fileName, abs}).echo()
       add(transformed)
     }
 
+    // @TODO this should check if we resolve the conflict
+    //       right now I will default it to first-come-first-serve (else)
     if (!hasDupeFileName(abs)) {
       // add(abs) <- keeps nested folders which is meh
       add(transformToFileName(abs))
 
       const [folderName] = getFolderAndFileName(abs)
       const [alpha, omega] = abs.split(folderName)
-      const transformed = alpha + omega
-      // add(transformed)
+      let transformed = alpha + omega
+      // replace doubleslash with 1
+      transformed = doubleSlashToSingle(transformed)
+      log.data({transformed}).echo()
+      if (transformed.endsWith('/')) return remappedAbs
+      // @TODO on getter, echo, pre easy log._
+      add(transformed)
+    }
+    else {
+      log.red('has dupe').data(abs).echo()
+      // already only is added if it has not been added before
+      add(abs)
     }
 
     return remappedAbs
@@ -335,25 +316,17 @@ let remapped = founds
   })
 
 
-const fromToJSON = JSON.stringify(fromTo, null, 2)
-write(fromToFilePath, fromToJSON)
+fromTo.del().write()
 
-// use when needed
-// const fromToRead = read.json(fromToFilePath)
-// log.quick(fromTo)
-
-// would just be .toMatcher...
-// const __map = (obj, transformer) => obj.map(transformer)
-// const _map = curry(2, __map)
-// const replaceAll = curry(3, (patterns, replacements, str) => {
-//   _map(patterns)
-// }
-
+// @TODO
+//  abstract this,
+//  should pull in either/and ast parsing for requires
+//  depflip
 const remapRequire = contents => contents
   .split('\n')
   .map(line => {
-    // line.includes('/') && line.includes('require')
-    if (!hasRequire(line)) return line
+    if (!(line.includes('/') && line.includes('require'))) return line
+    // if (!hasRequire(line)) return line
 
     const parts = line.split('=')
     const name = parts.shift().trim()
@@ -365,40 +338,45 @@ const remapRequire = contents => contents
       match = sanitizeRequire(match)
 
       const findFrom = () => {
-        return Object.keys(fromTo).filter(x => {
+        return fromTo.keys().filter(x => {
           const matches =
             isMatch(match, x) ||
             isMatch(x, match) ||
             x.includes(match) ||
             match.includes(x)
 
-          // if (!matches) log.quick(({x, match, matches}))
-
           return matches
         })
       }
 
-      const requireFoundInFromTo = findFrom()
-      // log.data({requireFoundInFromTo}).echo()
-      return requireFoundInFromTo
-      // findMatching(map, match)
-      // return match
-      // p1 is nondigits, p2 digits, and p3 non-alphanumerics
-      // return [p1, p2, p3].join(' - ')
+      const requiresFound = findFrom()
+      const requireFound = requiresFound ? requiresFound[0] : requiresFound
+
+      const requireValues = fromTo.data[requireFound]
+      const requireValue = requireValues ? requireValues[0] : requireValues
+      return requireValue
     }
 
     if (parts.length === 0) return line
 
+
     const ogRequire = parts.pop().trim()
 
     // @TODO right here can use a new name matching the parts, bingo bango bongo
-    const remappedRequire = ogRequire
+    const remappedRequires = ogRequire
       .replace(`require('`, '')
       .replace(')', '')
       .replace(`'`, '')
       .replace(/.*/, requireReplacer)
       .split('/')
-      .pop()
+
+    const remappedRequire = remappedRequires.pop()
+
+    // remappedRequires
+    log
+      .bold('require matches')
+      .data(({remappedRequire, ogRequire}))
+      .echo()
 
     const comment = `/* remapped from ${ogRequire} */`
     return `${name} = require('./${remappedRequire}') ${comment}`
@@ -407,8 +385,8 @@ const remapRequire = contents => contents
 
 
 // @TODO file-chain better here
-Object.keys(fromTo).forEach(key => {
-  const fileNames = fromTo[key]
+fromTo.keys().forEach(key => {
+  const fileNames = fromTo.data[key]
 
   let contents = read(key)
   contents = `/* FROM-TO: ${key.split('/chain-able/').pop()} */\n${contents}`
@@ -423,88 +401,18 @@ Object.keys(fromTo).forEach(key => {
       return
     }
 
+    if (!fileName.endsWith('.js')) fileName += '.js'
+
     // log.bold(fileName).echo()
     // log.green(contents).echo()
     // log.underline('__________ \n').echo()
+
+    if (exists(fileName)) {
+      log.red('already exists').data(fileName).echo()
+      return
+    }
 
     // log.data({[fileName]: contents}).echo()
     write(fileName, contents)
   })
 })
-
-// remapped = remapValuesToArr(remapped)
-// remapped.forEach(transformed => log.bold(transformed).echo())
-// log.verbose(200).data({entry}).exit()
-
-
-// const from = 'foo_1'
-// const to = 'foo_final'
-//
-// // Copies files from folder foo_1 to foo_final, but overwrites in
-// // foo_final only files which are newer in foo_1.
-// jetpack.copy(from, to, {
-//   overwrite: (srcInspectData, destInspectData) => {
-//     console.log('had conflict')
-//     return false
-//     // return srcInspectData.modifyTime > destInspectData.modifyTime;
-//   }
-// });
-
-// find.up
-// const res = _res(__dirname)
-// const resRoot = _res(entry)
-
-//
-//
-// ----- restructure for copying all to flat! ---
-//
-// // just have keyval map like I was doing with emoji
-// //
-// /// helpful for mapping all `toarr`
-// // MapValues of object
-// // MapKeys
-// // MapObjOrArr
-// //
-// // have each value be a string[], or Transformer which returns say
-// // function transformIs(folder, filename) {
-// //  return folder + ucFirst(filename)
-// // }
-// // or false to ignore
-//
-// // string to upper how to do best?
-// // map string?
-// // finish !!!!!! chain-able-fs with data chains
-// //
-// const firstToUpper = str => str.charAt(0).toUpperCase() + str.slice(1)
-//
-// // treeshake should also add an index with EVERY FILE
-// // put as es6 exports.name
-// // then easy to remove unused exports
-//
-// // finish proxy example
-//
-// -------------------
-//
-// add test to `require` each file just for errors sake
-// add
-//
-//
-// -------------------
-//
-// perf
-//   - argumentor
-//   - gc
-//   - obj-pooler?
-//
-//
-// arr/
-//    - to-arr || to/arr -> **copy-as('to-arr)**
-//    - concat
-//
-// // can also be `coerce`
-// to/
-//
-// traverse/
-//   - index
-//   - Traverse
-//   - traversers

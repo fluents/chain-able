@@ -111,6 +111,15 @@ gzip:
 rollup:
 	yarn run rollup -- -c build/rollup.config.js
 
+easyexports:
+	node build/easy-npm-files
+lintexports:
+	node build/cli --easyexports
+cleanexports:
+	node build/cli --cleaneasyexports
+versions:
+	node build/versions
+
 # --- makefile combos/presets ---
 # (the above things use names so they are non conflicting, e.g. we cannot have `build`)
 
@@ -137,5 +146,8 @@ travis:
 
 prepublish:
 	$(MAKE) copyroot && $(MAKE) buildcombo && $(MAKE) cov && $(MAKE) testdist
+
+export:
+	$(MAKE) cleanexports && $(MAKE) easyexports && $(MAKE) lintexports && $(MAKE) versions
 
 .PHONY: clean, quick
