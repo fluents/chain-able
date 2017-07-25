@@ -15,6 +15,7 @@ const isUndefined = require('./undefined')
  *
  * @see is/null
  * @see is/undefined
+ * @see http://ramdajs.com/docs/#isNil
  * @see https://github.com/infernojs/inferno/blob/master/packages/inferno-shared/src/index.ts#L23
  *
  * @example

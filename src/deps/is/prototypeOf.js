@@ -14,8 +14,10 @@ const isPrototypeOf = Object.prototype.isPrototypeOf
  * @param  {Object | *} needle is prototype of haystack
  * @return {boolean} needle isPrototypeOf haystack
  *
+ * {@link https://tc39.github.io/ecma262/#sec-object.prototype.isprototypeof emca-is-prototype-of}
  * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isPrototypeOf mozilla-obj-isprototypeof}
  * @see {@link mozilla-obj-isprototypeof}
+ * @see {@link emca-is-prototype-of}
  *
  * @example
  *

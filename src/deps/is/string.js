@@ -14,8 +14,12 @@ const isStringPrimitive = require('./stringPrimitive')
  * @param {*} x The value to check.
  * @return {boolean} Returns `true` if `value` is a string, else `false`.
  *
- * @see https://github.com/lodash/lodash/blob/master/isString.js
- * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
+ * {@link https://github.com/js-data/js-data/blob/v2/src/utils.js#L57 js-data-is-string}
+ * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String mozilla-string}
+ * {@link https://github.com/lodash/lodash/blob/master/isString.js lodash-isString}
+ * @see {@link lodash-isString}
+ * @see {@link mozilla-string}
+ * @see {@link js-data-is-string}
  * @see isStringPrimitive
  *
  * @example
@@ -28,5 +32,6 @@ const isStringPrimitive = require('./stringPrimitive')
  *
  * isString(1)
  * // => false
+ *
  */
 module.exports = x => isStringPrimitive(x) || toS(x) === '[object String]'

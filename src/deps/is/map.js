@@ -2,13 +2,17 @@ const toS = require('./toS')
 
 /**
  * @desc Checks if `value` is classified as a `Map` object.
+ * @since 3.0.0
+ * @memberOf is
+ *
  * @param  {*} x value
  * @return {boolean} isMap
  *
- * @since 3.0.0
- * @memberOf is
- * @func isMap
- * @see https://github.com/jonschlinkert/kind-of
+ * @func
+ * @name isMap
+ *
+ * {@link https://github.com/jonschlinkert/kind-of kind-of}
+ * @see {@link kind-of}
  *
  * @example
  *

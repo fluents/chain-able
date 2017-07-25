@@ -4,6 +4,7 @@
  * @name decrement
  * @alias dec
  * @alias minusOne
+ * @category Math
  *
  * @param {number} x number to decrement
  * @return {number} x - 1

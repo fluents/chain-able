@@ -2,13 +2,16 @@ const isObjTypeof = require('./objTypeof')
 const isNullOrUndef = require('./nullOrUndefined')
 
 /**
- * @param  {*} x value
+ * name says it all
+ *
+ * @param {*} x value
  * @return {boolean} isObjNotNull
  *
  * @since 3.0.0
  * @memberOf is
  * @func isObjNotNull
  * @alias isObjectLike
+ * @alias isObjectNotNull
  *
  * {@link https://github.com/lodash/lodash/blob/master/isObjectLike.js lodash-is-object-like}
  * {@link https://github.com/sindresorhus/is-obj/blob/master/index.js is-obj}

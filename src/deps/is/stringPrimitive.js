@@ -9,6 +9,7 @@ const toS = require('./toS')
  * @param {*} x The value to check.
  * @returns {boolean} Returns `true` if `value` is a string, else `false`.
  *
+ * @see https://github.com/canjs/can-util/blob/master/js/is-string/is-string.js
  * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
  * @see https://github.com/lodash/lodash/blob/master/isString.js
  * @see is/string

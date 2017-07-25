@@ -9,9 +9,13 @@ const isPrimitive =  require('./primitive')
 
 /**
  * @desc is able to be iterated on
+ * @since 5.0.0-beta.1
  *
- * @param  {*}  x node is iteratable
+ * @param  {*} x node is iteratable
  * @return {boolean} x isIteratable
+ *
+ * {@link https://github.com/canjs/can-util/blob/master/js/is-iterable/is-iterable.js can-is-iteratable}
+ * @see {@link can-is-iteratable}
  *
  * @extends isObj
  * @extends isArray

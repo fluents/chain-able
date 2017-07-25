@@ -1,9 +1,14 @@
 /**
- * @param  {*} x value
+ * typeof == object, includes null
+ * @param {Object | null | *} x value
  * @return {boolean} isObjLoose
  *
  * @since 3.0.0
  * @memberOf is
+ * @alias isObjLoose
+ * @alias isObjectType
+ * @alias isObjectTypeof
+ *
  * @func isObjLoose
  * @see is/obj
  * @see is/objWithKeys

@@ -1,20 +1,5 @@
 const funcToString = require('../native/functionToString')
-const hasOwnProperty = require('../native/hasOwnProperty')
-
-const reIsNative = RegExp(
-  '^' +
-    funcToString
-      // Take an example native function source for comparison
-      .call(hasOwnProperty)
-      // Strip regex characters so we can use it for regex
-      .replace(/[\\^$.*+?()[\]{}|]/g, '\\$&')
-      // Remove hasOwnProperty from the template to make it generic
-      .replace(
-        /hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g,
-        '$1.*?'
-      ) +
-    '$'
-)
+const matchNative = require('../regexp/matchNative')
 
 /**
  * @desc based on isNative from react-fibers, based on isNative() from Lodash
@@ -47,7 +32,7 @@ const reIsNative = RegExp(
 module.exports = function isNative(x) {
   try {
     const source = funcToString.call(x)
-    return reIsNative.test(source)
+    return matchNative.test(source)
   }
   catch (err) {
     return false

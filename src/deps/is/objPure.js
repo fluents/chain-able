@@ -1,20 +1,23 @@
 const isArray = require('./array')
-const isObjTypeof = require('./objTypeof')
-const isNullOrUndef = require('./nullOrUndefined')
+const isObjNotNull = require('./objNotNull')
 const isFunction = require('./function')
 
 /**
  * @name isObjPure
  * @memberOf is
- * @alias isObjNotArrayOrFunction
- * @since 3.0.0
  *
+ * @alias isObjNotArrayOrFunction
+ * @alias isObjectNotArrayOrFunction
+ * @alias isObjectPure
+ * @alias isPureObject
+ *
+ * @since 3.0.0
  *
  * @param  {*} x value to check
  * @return {boolean} is obj & !null & !undefined & !array & !function
  *
  * @extends isArray
- * @extends isObjTypeof
+ * @extends isObjNotNull
  * @extends isNullOrUndefined
  * @extends isFunction
  *
@@ -31,5 +34,4 @@ const isFunction = require('./function')
  *    //=> true
  *
  */
-module.exports = x =>
-  !isNullOrUndef(x) && !isArray(x) && !isFunction(x) && isObjTypeof(x)
+module.exports = x => isObjNotNull(x) && !isArray(x) && !isFunction(x)
