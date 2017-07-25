@@ -1,11 +1,15 @@
 const curry = require('../fp/curry')
 
 /**
+ * @alias isBetween
+ *
  * @param  {number} x number between
  * @param  {number} min minimum
  * @param  {number} max maximum
  * @param  {boolean} greaterThanOrEqualTo strictly between, not equal to (left right)
  * @return {boolean} x >= min && x <= max
+ *
+ * @category Math
  *
  * @example
  *    between(100, 0, 200)   //=> true
