@@ -1,4 +1,5 @@
 const isNullOrUndefined = require('./nullOrUndefined')
+const isNotEhNumber = require('./NaN')
 
 /**
  * @param  {*} x value
@@ -48,4 +49,4 @@ const isNullOrUndefined = require('./nullOrUndefined')
  *  //=> true
  *
  */
-module.exports = x => !isNullOrUndefined(x) && !Number.isNaN(x)
+module.exports = x => !isNullOrUndefined(x) && !isNotEhNumber(x)
