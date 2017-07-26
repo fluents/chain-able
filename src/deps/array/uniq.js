@@ -13,8 +13,14 @@
  * @name uniq
  * @func
  *
+ * {@link https://github.com/lodash/lodash/blob/master/uniq.js lodash-uniq}
+ * {@link https://github.com/mobxjs/mobx/blob/master/src/utils/utils.ts#L58 mobx-uniq}
+ * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L559 underscore-uniq}
  * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter mozilla-array-filter}
  * @see {@link mozilla-array-filter}
+ * @see {@link underscore-uniq}
+ * @see {@link mobx-uniq}
+ * @see {@link lodash-uniq}
  *
  * @example
  *

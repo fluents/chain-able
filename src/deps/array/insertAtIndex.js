@@ -26,6 +26,21 @@ module.exports = function insertAtIndex(arr, index, val) {
   }
 }
 
+// @TODO test
+// const insertAt = require('../')
+//
+// const list = [0, 1, 2, 3, 4]
+// const eh = ['canada', 'moose']
+//
+// const inserted = insertAt(list, 2, eh)
+// const expected = [0, 1, 'canada', 'moose', 3, 4]
+//
+// expected.forEach((expect, i) => {
+//   console.assert(expect === inserted[i], 'same at the same index')
+// })
+// console.log('all assertions passed :-)')
+
+
 /// another way of writing it, this one does not use spread
 //
 // function insertArrAt(array, index, arrayToInsert) {
