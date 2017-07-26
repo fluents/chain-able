@@ -17,6 +17,9 @@ const isDottable = require('./dottable')
  * @param  {*} fallback use when there is no value at specified path
  * @return {*} value at path or fallback
  *
+ * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L150 underscore-deep-get}
+ * @see {@link underscore-deep-get}
+ *
  * @example
  *
  *    dot.get({a: {b: 2}}, 'a.b'); //=> 2

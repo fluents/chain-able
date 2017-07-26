@@ -13,6 +13,9 @@ const isDottable = require('./dottable')
  * @param  {Dottable | string | Array} path dot-prop-path to use
  * @return {boolean} has at path
  *
+ * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L1369 underscore-has}
+ * @see {@link underscore-has}
+ *
  * @example
  *
  *    dot.has({a: {b: 2}}, 'a.b'); //=> true

@@ -6,6 +6,11 @@ let cache
 
 /**
  * @name dotPropSegments
+ * @alias castPath
+ *
+ * @TODO `isKey(value, object) ? [value] : stringToPath(value)`
+ *       // isKey/hasIn
+ *
  * @since 4.0.0
  * @memberOf dot
  *
@@ -32,8 +37,8 @@ module.exports = path => {
 
     /**
      * @example 1
-     *          '\.eh' -1 === '\\'      (true)
-     *                +1 !== undefined (true, eh)
+     *          '\.eh' -1 === '\\'     //=> true
+     *                +1 !== undefined //=> true, eh
      *
      * @example 2
      *          '.eh'  -1 === '\\'      (false, undefined)
