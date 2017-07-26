@@ -7,6 +7,10 @@ const ArrayFrom = require('./util/from')
 
 /**
  * @desc anything into an array
+ * @memberOf cast
+ * @name toArr
+ * @alias toArray
+ *
  * @sig * => Array
  * @since 0.0.1
  *
@@ -15,6 +19,9 @@ const ArrayFrom = require('./util/from')
  *
  * @tests deps/to-arr
  * @types deps
+ *
+ * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L465 underscore-to-arr}
+ * @see {@link underscore-to-arr}
  *
  * @example
  *
