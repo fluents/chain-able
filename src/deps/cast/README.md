@@ -1,0 +1,2 @@
+cast values
+- add `coerce`
