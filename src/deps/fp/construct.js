@@ -58,7 +58,18 @@ function constructN(n, Klass) {
     return constructN(n.length, n)
   }
   else if (n === 0) {
-    return () => new Klass()
+    /**
+     * @HACK @FIXME @TODO shows incorrect arity,
+     *                    but if we want not-specific constructs...
+     */
+    return (...args) => {
+      if (args.length !== 0) {
+        return constructN(args.length, Klass).apply(this, args)
+      }
+      else {
+        return new Klass()
+      }
+    }
   }
   else {
     /*, $5, $6, $7, $8, $9 */

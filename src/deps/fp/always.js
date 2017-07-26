@@ -16,6 +16,7 @@
  * @param {*} value The value to wrap in a function
  * @return {Function} A Function :: * -> val.
  *
+ * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L1399 underscore-src-constant}
  * {@link http://underscorejs.org/#constant underscore-constant}
  * {@link https://github.com/lodash/lodash/issues/1010 lodash-constant}
  * {@link https://github.com/ramda/ramda/issues/1038 ramda-constant-docs-issue}

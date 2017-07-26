@@ -1,6 +1,5 @@
-const _isPlaceholder = require('./isPlaceholder')
-const _arity = require('./arity')
-
+const isPlaceholder = require('./isPlaceholder')
+const arity = require('./arity')
 
 /**
  * Returns a curried equivalent of the provided function, with the specified
@@ -26,24 +25,31 @@ const _arity = require('./arity')
  *   - `g(_, 2)(1, 3)`
  *   - `g(_, 2)(_, 3)(1)`
  *
- * @func
- * @memberOf fp
+ * @alias curryN
+ * @alias partial
  * @since 5.0.0-beta.1
- * @ramda v0.5.0
- * @category Function
- * @sig Number -> (* -> a) -> (* -> a)
  *
- * @param {Number} length The arity of the curried function.
+ * @param {number} length The arity of the curried function.
  * @param {Array} received An array of arguments received thus far.
  * @param {Function} fn The function to curry.
  * @return {Function} A new, curried function.
  *
+ * @func
+ * @memberOf fp
+ * @ramda v0.5.0
+ * @category Function
+ * @sig Number -> (* -> a) -> (* -> a)
+ *
+ * {@link http://documentcloud.github.io/underscore-contrib/#curry underscore-contrib-curry}
+ * {@link https://github.com/lodash/lodash/blob/master/.internal/composeArgs.js lodash-compose-args}
+ * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L773 underscore-partial}
  * {@link https://github.com/ramda/ramda/blob/master/src/uncurryN.js ramda-uncurry}
  * {@link https://github.com/ramda/ramda/blob/master/src/curryN.js ramda-curry}
  * {@link https://github.com/lodash/lodash/blob/master/curry.js lodash-curry}
  * @see {@link ramda-curry}
  * @see {@link lodash-curry}
  * @see {@link ramda-uncurry}
+ * @see {@link underscore-partial}
  *
  * @types fp
  * @tests fp/curry
@@ -70,7 +76,7 @@ function _curryN(length, received, fn) {
 
       if (
         combinedIdx < received.length &&
-        (!_isPlaceholder(received[combinedIdx]) || argsIdx >= arguments.length)
+        (!isPlaceholder(received[combinedIdx]) || argsIdx >= arguments.length)
       ) {
         result = received[combinedIdx]
       }
@@ -79,14 +85,15 @@ function _curryN(length, received, fn) {
         // argsIdx += 1
       }
       combined[combinedIdx++] = result
-      if (!_isPlaceholder(result)) {
+      if (!isPlaceholder(result)) {
         left -= 1
       }
       // combinedIdx += 1
     }
+
     return left <= 0
       ? fn.apply(this, combined)
-      : _arity(left, _curryN(length, combined, fn))
+      : arity(left, _curryN(length, combined, fn))
   }
 }
 
@@ -120,7 +127,7 @@ function _curryN(length, received, fn) {
  * @category Function
  * @sig Number -> (* -> a) -> (* -> a)
  *
- * @param {Number} length The arity for the returned function.
+ * @param {number} length The arity for the returned function.
  * @param {Function} fn The function to curry.
  * @return {Function} A new, curried function.
  *
@@ -137,5 +144,5 @@ function _curryN(length, received, fn) {
  *
  */
 module.exports = function curryN(length, fn) {
-  return _arity(length, _curryN(length, [], fn))
+  return arity(length, _curryN(length, [], fn))
 }

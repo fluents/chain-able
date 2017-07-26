@@ -1,3 +1,4 @@
+const EMPTY_ARRAY = require('../native/EMPTY_ARRAY')
 const isArray = require('../is/array')
 const isString = require('../is/stringPrimitive')
 const esc = require('../matcher/to-regexp')
@@ -6,44 +7,36 @@ const curry = require('../fp/curry')
 const invoke = require('../fp/invoke')
 const lengthMinusOne = require('../util/lengthMinusOne')
 const newRegExp = require('../construct/regexp')
-const prop = require('../fp/prop')
+const split = require('../string/split')
+const test = require('../matcher/test')
 
-// @NOTE similar https://github.com/ramda/ramda/blob/master/src/countBy.js
-
-// @TODO move this
-// @TODO invoke('_', prop('test'))
-// const toTest = invoke('_', prop('test'))
-const toTest = x => y => x.test(y)
-// function toTest(x) {
-//   return function(y) {
-//     return x.test(y)
-//   }
-// }
-
-// const newRegExp = (source) => new RegExp(source)
-const toRegExp = pipe(esc, newRegExp, toTest)
-
+// @TODO move
+const toRegExp = pipe(esc, newRegExp, test)
 // @TODO could have `method` for curring with .flip .invoke
-const split = invoke('_', 'split')
 const filter = invoke('_', 'filter')
-
-const emptyArr = []
 
 /**
  * @desc getIncludesCount, how many times a needle occurrs in a haystack
  *
  * @since 5.0.0-beta.4
+ * @alias countBy
  * @alias occurrs
  * @alias getIncludesCount
+ *
+ * @curried 2
  *
  * @param  {string | Array} haystack haystack to look in
  * @param  {string | Matchable} needle needle to find
  * @return {number} occurrs/includes times/count
  *
+ * {@link https://github.com/ramda/ramda/blob/master/src/countBy.js ramda-count-by}
+ * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L459 underscore-count-by}
  * {@link https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf#Finding_all_the_occurrences_of_an_element mozilla-array-occurrences}
  * {@link https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf#Using_indexOf()_to_count_occurrences_of_a_letter_in_a_string mozilla-occurrences}
  * @see {@link mozilla-occurrences}
  * @see {@link mozilla-array-occurrences}
+ * @see {@link underscore-count-by}
+ * @see {@link ramda-count-by}
  *
  * @example
  *
@@ -67,7 +60,7 @@ function getIncludesCount(haystack, needle) {
   }
   // may not be needed...
   else {
-    return emptyArr
+    return EMPTY_ARRAY
   }
 }
 

@@ -50,7 +50,7 @@ const hasIn = require('../is/hasIn')
  * @TODO add `path` calling, fallback to noop
  * @see is/hasIn
  *
- * {@link http://underscorejs.org/docs/underscore.html#section-33 underscore-invoke}
+ * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L294 underscore-invoke}
  * {@link https://github.com/lodash/lodash/blob/master/invoke.js lodash-invoke}
  * @see {@link lodash-invoke}
  * @see {@link underscore-invoke}
@@ -68,7 +68,7 @@ const hasIn = require('../is/hasIn')
  */
 function _invoke(x, key, args) {
   if (hasIn(x, key)) return x[key](args)
-  // return void 0
+  // else return void 0
 }
 
 module.exports = curry(3, _invoke)

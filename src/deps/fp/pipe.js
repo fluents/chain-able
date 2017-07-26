@@ -13,14 +13,14 @@ const pipeTwo = require('./pipeTwo')
  * @since v5.0.0
  * @category Function
  * @sig (((a, b, ..., n) -> o), (o -> p), ..., (x -> y), (y -> z)) -> ((a, b, ..., n) -> z)
- * @symb R.pipe(f, g, h)(a, b) = h(g(f(a, b)))
+ * @symb pipe(f, g, h)(a, b) = h(g(f(a, b)))
  * @extends fp/pipeTwo
  *
  * @param {Function} first function first
  * @param {...Function} rest function next
  * @return {Function}
  *
- * @see R.compose
+ * @see https://github.com/ramda/ramda/blob/master/src/compose.js
  * @see https://github.com/ramda/ramda/blob/master/src/pipe.js
  * @see https://github.com/ramda/ramda/blob/master/test/pipe.js
  *
@@ -42,13 +42,16 @@ const pipeTwo = require('./pipeTwo')
  *    /// starts with w, adds x, then y, then z
  *    const wxyz = xyz('w')
  *    //=> 'wxyz'
+ *
  */
 module.exports = function pipe(first) {
   // @TODO: could move into pipeArray
   // could start from first, second? etc?
   // (isArray(first) ? first : argumentor.apply(null, arguments))
-  let args = argumentor.apply(null, arguments)
-    .slice(1).reduce((previous, next) => pipeTwo(previous, next))
+  let args = argumentor
+    .apply(null, arguments)
+    .slice(1)
+    .reduce((previous, next) => pipeTwo(previous, next))
 
   return pipeTwo(first, args)
 }

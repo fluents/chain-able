@@ -16,10 +16,18 @@ const hasInMatching = require('./hasInMatching')
 const includesCount = require('./includesCount')
 const remove = require('./remove')
 const replace = require('./replace')
+// const replaceWrap = require('./replaceWrap')
 const reverse = require('./reverse')
 const invoke = require('./invoke')
 const flip = require('./flip')
 const flip2 = require('./flip2')
+const bind = require('./bind')
+const times = require('./times')
+const nth = require('./nth')
+const invertObj = require('./invertObjKeyVal')
+const useMethodIfExists = require('./useMethodIfExists')
+const slice = require('./slice')
+// const wrap = require('./wrap')
 
 /**
  * @member fp
@@ -31,6 +39,7 @@ const flip2 = require('./flip2')
 module.exports = {
   always,
   arity,
+  bind,
   construct,
   hasInMatching,
   includesCount,
@@ -49,4 +58,9 @@ module.exports = {
   replace,
   remove,
   reverse,
+  times,
+  nth,
+  useMethodIfExists,
+  invertObj,
+  slice,
 }

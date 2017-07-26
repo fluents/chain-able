@@ -14,7 +14,12 @@ const curry = require('../fp/curry')
  * @param {Function} predicate The function invoked per iteration.
  * @return {Array} Returns the new mapped array.
  *
- * @see https://github.com/lodash/lodash/blob/master/map.js
+ *
+ * {@link https://github.com/lodash/lodash/blob/master/mapObject.js lodash-map-obj}
+ * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L1021 underscore-map-obj}
+ * {@link https://github.com/lodash/lodash/blob/master/map.js lodash-map}
+ * @see {@link lodash-map}
+ * @see {@link underscore-map}
  *
  * @example
  *

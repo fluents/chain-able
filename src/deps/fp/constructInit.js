@@ -1,10 +1,9 @@
 /* istanbul ignore: @TODO */
 
+const construct = require('./construct')
+
 // adds .init function that is constructN
-// @NOTE construct
-// function addInit(Klass) {
-//   Klass.prototype.init = function() {
-//     return new Klass(arguments)
-//   }
-//   // return Klass
-// }
+module.exports = function addInit(Klass, n = 1) {
+  Klass.init = construct(n, Klass)
+  // return Klass
+}

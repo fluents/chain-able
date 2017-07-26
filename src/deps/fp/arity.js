@@ -6,24 +6,28 @@
 /* istanbul ignore next: metadata, one is covered, all are covered */
 /* prettier-ignore */
 /**
- * @desc just for `.length` of a function?
+ * @desc just for `.length` of a function, to know how many args
  * @memberOf fp
  *
  * @since 5.0.0
- * @param {number}   n number of arguments
+ * @param {number} n number of arguments
  * @param {Function} fn function to wrap
  * @return {Function} function with params
  *
  * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/arity mozilla-func-arity}
  * @see {@link mozilla-func-arity}
  *
- * @TODO keeping this means change uglify...
+ * @NOTE keeping this means uglify `keep_func_args: false`
  *
  * @example
  *
  *  const wan = one => console.log(one)
  *  arity(1, wan)
  *  => function(one => wan(one))
+ *
+ *  const five = ($1, $2, $3, $4, $5) => console.log.apply(console, arguments)
+ *  arity(5, five).length
+ *  //=> 5
  *
  */
 module.exports = function _arity(n, fn) {
