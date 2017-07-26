@@ -1,7 +1,7 @@
 // without it, the arguments & caller are uglier when drbugging
 
-
 const isSet = require('../is/set')
+const hasOwnProperty = require('../util/hasOwnProperty')
 const ArrayFrom = require('../util/from')
 const isUndefined = require('../is/undefined')
 const concat = require('../array/concat')
@@ -27,7 +27,7 @@ const emptyArray = [] // always([])
  */
 function getMeta(_this) {
   // if we already have it, keep it
-  if (_this.meta) return _this.meta
+  if (hasOwnProperty(_this, 'meta')) return _this.meta
 
   // the store
   // shorthands: key -> method
@@ -83,6 +83,7 @@ function getMeta(_this) {
    */
   const set = (key, prop, value) => {
     const storage = store[key]
+
     // when it's a set, we have no `prop`, we just have .add
     // so `prop = value` && `value = undefined`
     if (isSet(storage)) {
@@ -140,11 +141,28 @@ function getMeta(_this) {
       // we have a value, let's add it
       set(key, prop, value)
     }
+
     return _this
   }
 
   // for debugging
   meta.store = store
+
+  // @NOTE not really needed, can just do `meta.store.[prop].clear`
+  // meta.clear = prop => meta.store[prop].clear()
+
+  // @TODO use `remove` here, so it will delete say, index
+  //
+  // @example store.transformers = Map({eh: [transformer, anotherTransformer]})
+  //          store.delete('transformers.eh[0]')
+  //
+  // @example store.observers = Map({eh: [transformer, anotherTransformer]})
+  //          store.delete('observers[-1]')
+  //
+  // eslint-disable-next-line
+  // meta['delete'] = (prop, valueOrKey) => meta.store[prop].delete(valueOrKey)
+
+  // default value
   // meta.debug = false
 
   return meta

@@ -1,7 +1,7 @@
 const stringPrimitive = require('../is/stringPrimitive')
 const isFunction = require('../is/function')
 const newRegExp = require('../construct/regexp')
-const toBoolean = require('../to/boolean')
+const toBoolean = require('../cast/boolean')
 const pipe = require('../fp/pipe')
 const esc = require('./escape-string-regex')
 
