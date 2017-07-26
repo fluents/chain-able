@@ -3,14 +3,18 @@ const curry = require('../fp/curry')
 /**
  * @desc map all values in an array to see if **some** match, curried
  * @memberOf conditional
- * @name some
- * @alias any
  * @since  4.0.1
- * @func
  *
  * @param  {Function} predicate match the value
- * @param  {Array | any} arr values to match on the predicate
+ * @param  {Array | any} list values to match on the predicate
  * @return {boolean} **some** match predicate
+ *
+ * @name some
+ * @alias any
+ * @func
+ *
+ * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L273 underscore-some}
+ * @see {@link underscore-some}
  *
  * @example
  *
@@ -26,9 +30,9 @@ const curry = require('../fp/curry')
  *    //=> true
  *
  */
-module.exports = curry(2, function some(test, arr) {
-  for (let i in arr) {
-    if (test(arr[i])) return true
+module.exports = curry(2, function some(test, list) {
+  for (let i in list) {
+    if (test(list[i])) return true
   }
   return false
 })

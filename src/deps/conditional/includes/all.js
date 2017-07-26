@@ -1,13 +1,20 @@
 const isStringPrimitive = require('../../is/stringPrimitive')
 const curry = require('../../fp/curry')
-const includes = require('./includes')
+const includes = require('./haystackNeedle')
 
 /**
- * @param  {string} needle
- * @param  {Array<string>} haystack
+ * @desc tripple equals, or every haystack item, is needle
+ * @since 0.1.0
+ * @version 1.0.0
+ *
+ * @param  {string} needle includes(haystack[index], needle)
+ * @param  {Array<string>} haystack includes(haystack[index], needle)
  * @return {boolean}
  *
  * @example
+ *
+ *    stringIncludesAll('eh', ['e', 'h']) //=> true
+ *    stringIncludesAll('eh', ['e'])      //=> false
  *
  */
 function stringIncludesAll(needle, haystack) {
@@ -20,10 +27,21 @@ function stringIncludesAll(needle, haystack) {
 }
 
 /**
+ * @desc every needle is in every hay
+ * @since 0.1.0
+ * @version 1.0.0
+ *
  * @see stringIncludesAll
- * @param  {Array<string>} needles
- * @param  {Array<string>} haystack
+ * @extends stringIncludesAll
+ *
+ * @param  {Array<string>} needles includes(haystack[index], needle)
+ * @param  {Array<string>} haystack includes(haystack[index], needle)
  * @return {boolean}
+ *
+ * @example
+ *
+ *  arrayIncludesAll(['eh'], 'eh')
+ *
  */
 function arrayIncludesAll(needles, haystack) {
   // loop needles
@@ -34,6 +52,7 @@ function arrayIncludesAll(needles, haystack) {
 }
 
 /**
+ * @desc every needle is in every hay
  * @since 4.0.0
  * @param  {Array<string> | string} needle everything in haystack is in this
  * @param  {Array<string>} haystack everything in this is in the needle

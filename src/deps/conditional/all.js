@@ -4,17 +4,22 @@ const curry = require('../fp/curry')
  * map all values in an array to see if all match
  * Returns `true` if all elements of the list match the predicate, `false` if there are any that don't.
  *
+ * @alias every
+ * @name all
  * @memberOf conditional
  * @since 4.0.1
  *
  * @TODO `not(some)` ?
  *
+ * @curried
  * @param  {Function} predicate match the value
- * @param  {Array} array to match against predicate
+ * @param  {Array} list to match against predicate
  * @return {boolean} all match predicate
  *
+ * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L262 underscore-all}
  * {@link https://github.com/ramda/ramda/blob/master/src/all.js ramda-all}
  * @see {@link ramda-all}
+ * @see {@link underscore-all}
  * @see fp/curry
  *
  * @sig (a -> Boolean) -> [a] -> Boolean
@@ -30,9 +35,9 @@ const curry = require('../fp/curry')
  *    //=> false
  *
  */
-const all = curry(2, (predicate, arr) => {
-  for (let i in arr) {
-    if (!predicate(arr[i])) return false
+const all = curry(2, (predicate, list) => {
+  for (let i in list) {
+    if (!predicate(list[i])) return false
   }
   return true
 })

@@ -1,28 +1,19 @@
-const curry = require('../../fp/curry')
+const haystackNeedle = require('./haystackNeedle')
+const needleHaystack = require('./needleHaystack')
+const includesAll = require('./all')
+const includesAny = require('./any')
 
 /**
- * @memberOf includes
- * @name includes
- * @func
- *
- * @param  {Array | string} haystack haystack includes needle
- * @param  {string | *} needle needle in haystack
- * @return {boolean} needle in haystack
- *
- * @TODO `~haystack.indexOf(needle)`
- *
- * {@link https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Bitwise_NOT mozilla-bitwise-not}
- * @see {@link mozilla-bitwise-not}
- * @see conditional/includes/flipped
- *
- * @example
- *
- *    includes('eh', 'e')      //=> true
- *    includes('eh', 'nope')   //=> false
- *    includes(['eh'], 'eh')   //=> true
- *    includes(['eh'], 'nope') //=> false
- *
+ * @member includes
+ * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L288 underscore-includes}
+ * @see {@link underscore-includes}
  */
-const includes = (haystack, needle) => haystack.includes(needle)
-
-module.exports = curry(2, includes)
+module.exports = {
+  // traditional
+  includes: haystackNeedle,
+  // rest
+  haystackNeedle,
+  needleHaystack,
+  includesAll,
+  includesAny,
+}

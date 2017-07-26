@@ -2,17 +2,19 @@ const curry = require('../fp/curry')
 
 /**
  * @desc first fn || second fn, curried
- * @name or
  * @memberOf conditional
  * @since  4.0.1
- * @func
  *
  * @param  {Function} left first fn
  * @param  {Function} right second fn
- * @param  {*} x value to pass into left & right, curried
- * @return {boolean} one of the functions return truthy
+ * @param  {*} x value to pass into left & right, @curried
+ * @return {boolean} one of the functions return truthy @curried
+ *
+ * @name or
+ * @func
  *
  * @example
+ *
  *    const {isTrue, isFalse} = require('chain-able')
  *
  *    const either = or(isFalse, isTrue)

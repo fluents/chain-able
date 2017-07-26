@@ -2,15 +2,17 @@ const curry = require('../fp/curry')
 
 /**
  * @desc first fn & second fn
- * @name and
- * @alias both
  * @memberOf conditional
  * @since  4.0.1
- * @func
  *
  * @param  {Function} left first fn
  * @param  {Function} right second fn
- * @return {boolean} both functions return truthy
+ * @return {Function | boolean} both functions return truthy @curried
+ *
+ * @curried
+ * @name and
+ * @alias both
+ * @func
  *
  * @example
  *
