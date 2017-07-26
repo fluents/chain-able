@@ -31,14 +31,14 @@ const autoGetSetPlugin = require('./plugins/autoGetSet')
 // obj
 const hasOwnProperty = require('./deps/util/hasOwnProperty')
 const getDescriptor = require('./deps/util/getDescriptor')
-const ObjectDefine = require('./deps/define')
+const ObjectDefine = require('./deps/util/define')
 const ObjectKeys = require('./deps/util/keys')
 const ObjectAssign = require('./deps/util/assign')
 // utils
 const toarr = require('./deps/to-arr')
 const argumentor = require('./deps/argumentor')
 const camelCase = require('./deps/string/camelCase')
-const markForGarbageCollection = require('./deps/gc')
+// const markForGarbageCollection = require('./deps/gc')
 // is
 const isObj = require('./deps/is/obj')
 const isArray = require('./deps/is/array')
@@ -46,6 +46,8 @@ const isUndefined = require('./deps/is/undefined')
 const isTrue = require('./deps/is/true')
 const isFalse = require('./deps/is/false')
 const isObjWithKeys = require('./deps/is/objWithKeys')
+const addPoolingTo = require('./deps/cache/pooler')
+const defaultTo = require('./deps/cast/defaultTo')
 
 const DEFAULTED_KEY = 'defaulted'
 const METHOD_KEYS = [
@@ -76,6 +78,8 @@ function aliasFactory(name, parent, aliases) {
   }
 }
 
+const defaultToTrue = defaultTo(true)
+
 // @TODO to use as a function
 // function _methods() {}
 // _methods.use(obj) {
@@ -88,6 +92,7 @@ function aliasFactory(name, parent, aliases) {
 // }
 
 let methodFactories = {}
+const ENV_DEBUGS = true
 
 /**
  * ❗ using `+` will call `.build()` in a shorthand fashion
@@ -112,13 +117,47 @@ let methodFactories = {}
 class MethodChain extends ChainedMap {
   constructor(parent) {
     // timer.start('methodchain')
-
     super(parent)
+    this.construct(parent)
+  }
+
+  construct(parent) {
+    if (ENV_DEBUGS) {
+      console.log('construct')
+    }
+    // @NOTE super(parent) only in constructor!!!
+    // if (isUndefined(this.parent))
+    this.parent = parent
+
+    // --- these are scoped with parent arg,
+    // --- !!!!!!! they could use `this.parent` though to make them reusable !!!
+    const set = this.set.bind(this)
+    this.newThis = () => MethodChain.getPooled(this.parent)
+    // default argument...
+    this.encase = x => set('encase', this.parent[x] || x || true)
+    this.returns = (x, callReturns) =>
+      set('returns', x || this.parent).callReturns(callReturns)
+
+    // @NOTE shorthands.bindMethods
+    this.bind = target =>
+      set('bind', isUndefined(target) ? this.parent : target)
+
+    // shortest method name, could also check hasOwnProperty
+    // once we add these, we can re-pool unscoped methods easily
+    if (isUndefined(this.alias)) this.setupOnce()
+
+    // need this every time...
+    this.plugin(typesPlugin)
+  }
+
+  setupOnce() {
+    if (ENV_DEBUGS) {
+      console.log('setup once')
+    }
 
     // ----------------
     const set = this.set.bind(this)
 
-    this.newThis = () => new MethodChain(parent)
     this.toNumber = () => this.build(0)
 
     /**
@@ -141,17 +180,9 @@ class MethodChain extends ChainedMap {
       else return this.name(name)
     }
 
-    // default argument...
-    this.encase = x => {
-      return set('encase', parent[x] || x || true)
-    }
-
     // alias
     this.then = this.onValid.bind(this)
     this.catch = this.onInvalid.bind(this)
-
-    this.returns = (x, callReturns) =>
-      set('returns', x || parent).callReturns(callReturns)
 
     // @NOTE replaces shorthands.chainWrap
     this.chainable = this.returns
@@ -181,17 +212,11 @@ class MethodChain extends ChainedMap {
 
     this.camelCase = () => set('camel', true)
 
-    // @NOTE: x = true is much prettier, but compiles badly
-    const defaultToTrue = x => (isUndefined(x) ? true : x)
     this.define = x => set('define', defaultToTrue(x))
     this.getSet = x => set('getSet', defaultToTrue(x))
 
     // @TODO unless these use scoped vars, they should be on proto
-    // @NOTE shorthands.bindMethods
-    this.bind = target => set('bind', isUndefined(target) ? parent : target)
     this.autoGetSet = () => this.plugin(autoGetSetPlugin)
-
-    this.plugin(typesPlugin)
 
     if (isObjWithKeys(methodFactories)) {
       ObjectKeys(methodFactories).forEach(factoryName => {
@@ -201,6 +226,19 @@ class MethodChain extends ChainedMap {
         }
       })
     }
+  }
+
+  destructor() {
+    if (ENV_DEBUGS) {
+      console.log('destructoor')
+    }
+
+    // remove refs to unused
+    this.clear()
+    this.parent = undefined
+    // require('fliplog').quick(this)
+    // delete this.parent
+    // markForGarbageCollection(this)
   }
 
   /**
@@ -342,7 +380,9 @@ class MethodChain extends ChainedMap {
     // remove refs to unused
     this.clear()
     delete this.parent
-    markForGarbageCollection(this)
+    MethodChain.release(this)
+
+    // markForGarbageCollection(this)
 
     // very fast - timer & ensuring props are cleaned
     // timer.stop('gc').log('gc')
@@ -775,9 +815,23 @@ class MethodChain extends ChainedMap {
  *   //=> 1 *
  *
  */
-MethodChain.add = function addMethodFactories(methodFactory) {
+addPoolingTo(MethodChain)
+
+// const MethodChainFunction = MethodChain.getPooled
+function MethodChainFunction(parent) {
+  // return new MethodChain(parent)
+  // require('fliplog').quick({parent})
+
+  // require('fliplog').data(MethodChain.instancePool).echo()
+  const instance = MethodChain.getPooled(parent)
+  // require('fliplog').data({instance}).echo()
+  // require('fliplog').data(MethodChain.instancePool).echo()
+  return instance
+}
+
+MethodChainFunction.add = function addMethodFactories(methodFactory) {
   ObjectAssign(methodFactories, methodFactory)
 }
-methodFactories = MethodChain.add
+methodFactories = MethodChainFunction.add
 
-module.exports = MethodChain
+module.exports = MethodChainFunction

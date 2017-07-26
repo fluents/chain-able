@@ -7,8 +7,11 @@ const lengthFromZero = require('./util/lengthFromZero')
  * @since 3.0.0
  * @return {Array<Arguments>}
  *
- * @see https://github.com/aretecode/awesome-deopt
- * @see https://github.com/petkaantonov/bluebird/wiki/Optimization-killers
+ * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L109 underscore-rest-arts}
+ * {@link https://github.com/aretecode/awesome-deopt awesome-deopt}
+ * {@link https://github.com/petkaantonov/bluebird/wiki/Optimization-killers bluebird-optimization-killers}
+ * @see {@link bluebird-optimization-killers}
+ * @see {@link underscore-rest-arts}
  * @see deps/util/lengthFromZero
  *
  * @example

@@ -10,7 +10,7 @@ const isDate = require('../is/date')
 const isBoolean = require('../is/boolean')
 const isString = require('../is/string')
 const simpleKindOf = require('../util/simpleKindOf')
-const includes = require('../conditional/includes')
+const includes = require('../conditional/includes/haystackNeedle')
 const emptyTarget = require('./emptyTarget')
 
 /**
@@ -112,6 +112,7 @@ function defaultArrayMerge(target, source, optsArg) {
 
   for (var i = 0; i < source.length; i++) {
     var v = source[i]
+
     if (isUndefined(destination[i])) {
       destination[i] = cloneIfNeeded(v, optsArg)
     }
@@ -125,6 +126,7 @@ function defaultArrayMerge(target, source, optsArg) {
       destination.push(cloneIfNeeded(v, optsArg))
     }
   }
+
   return destination
 }
 
@@ -136,6 +138,7 @@ function mergeObj(target, source, optsArg) {
       destination[targetKeys[k]] = cloneIfNeeded(target[targetKeys[k]], optsArg)
     }
   }
+
   var sourceKeys = ObjectKeys(source)
   for (var s = 0; s < sourceKeys.length; s++) {
     var key = sourceKeys[s]
@@ -182,6 +185,8 @@ function deepmerge(target, source, optsArg) {
  * @param {*} opts dopemerge options
  * @return {Object | Array | any} merged
  *
+ * {@link https://github.com/facebook/immutable-js/blob/master/src/Map.js#L145 immutable-js-merge}
+ * {@link https://github.com/ramda/ramda/blob/master/src/merge.js ramda-merge}
  * {@link https://github.com/lodash/lodash/blob/master/merge.js lodash-merge}
  * {@link https://github.com/KyleAMathews/deepmerge deepmerge}
  * @see {@link deepmerge}
@@ -249,7 +254,8 @@ function dopemerge(obj1, obj2, opts) {
       ignoreTypes: ['null', 'undefined'],
       // debug: true,
     },
-    opts || {}
+    opts
+    // || {}
   )
   const {ignoreTypes, stringToArray, boolToArray, clone} = options
 
@@ -259,6 +265,7 @@ function dopemerge(obj1, obj2, opts) {
   // const boolToArray = false
   // const clone = true
 
+  // @NOTE uglifier optimizes into a wicked ternary
   // check one then check the other
   if (isTrue(includes(ignoreTypes, simpleKindOf(obj1)))) {
     return obj2
@@ -267,7 +274,6 @@ function dopemerge(obj1, obj2, opts) {
     return obj1
   }
   else if (isBoolean(obj1) && isBoolean(obj2)) {
-    // @NOTE uglifier optimizes into a wicked ternary
     return boolToArray ? [obj1, obj2] : obj2
   }
   else if (isString(obj1) && isString(obj2)) {
