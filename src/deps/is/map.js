@@ -11,8 +11,10 @@ const toS = require('./toS')
  * @func
  * @name isMap
  *
+ * {@link https://github.com/mobxjs/mobx/blob/master/src/utils/utils.ts#L210 mobx-is-map}
  * {@link https://github.com/jonschlinkert/kind-of kind-of}
  * @see {@link kind-of}
+ * @see {@link mobx-is-map}
  *
  * @example
  *

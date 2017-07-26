@@ -18,3 +18,12 @@
  *
  */
 module.exports = (obj, prop) => prop in Object(obj)
+
+// @TODO
+// function isIn(set) {
+//   return function(d) {
+//     return !set ? false
+//       : set.indexOf ? ~set.indexOf(d)
+//         : d in set
+//   }
+// }

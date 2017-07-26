@@ -9,8 +9,10 @@ const isUndefinedLike = require('./undefinedLike')
  *
  * @return {boolean} True if running in a Web Worker.
  *
+ * {@link https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope mozilla-webworkerglobalscope}
  * {@link https://github.com/canjs/can-util/blob/master/js/is-web-worker/is-web-worker.js can-js-is-web-worker}
  * @see {@link can-js-is-web-worker}
+ * @see {@link mozilla-webworkerglobalscope}
  *
  * @example
  *

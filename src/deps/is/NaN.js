@@ -13,10 +13,12 @@ const isNumber = require('./number')
  * @alias isNotNumber
  * @alias isNotEhNumber
  *
+ * {@link https://github.com/lodash/lodash/tree/npm-packages/lodash.isnan lodash-isnan}
  * {@link https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/isNaN mozilla-isnan}
  * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L1347 underscore-is-nan}
  * @see {@link mozilla-isnan}
  * @see {@link underscore-is-nan}
+ * @see {@link lodash-isnan}
  * @see is/number
  * @see is/real
  *

@@ -24,10 +24,16 @@ const objectConstructorString = funcToString.call(Object)
  * @alias isObjectPlain
  * @alias isBlankObject
  *
+ * {@link https://github.com/mobxjs/mobx/blob/master/src/utils/utils.ts#L78 mobx-isobjectplain}
+ * {@link https://github.com/lodash/lodash/blob/master/isPlainObject.js lodash-isplainobject}
+ * {@link  http://stackoverflow.com/questions/34111902/why-do-lodashs-isobject-isplainobject-behave-differently-than-typeof-x stackoverflow-lodash-isplainobject}
  * {@link https://github.com/madrobby/zepto/blob/master/src/zepto.js#L74 zepto-isplainobject}
  * {@link https://github.com/canjs/canjs/blob/2.3-legacy/util/object/isplain/isplain.js can-is-plain}
  * @see {@link can-is-plain}
  * @see {@link zepto-isplainobject}
+ * @see {@link stackoverflow-lodash-isplainobject}
+ * @see {@link lodash-isplainobject}
+ * @see {@link mobx-isobjectplain}
  *
  * @see is/objNotNull
  * @see is/objTag

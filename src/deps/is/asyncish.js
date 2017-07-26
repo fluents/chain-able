@@ -13,6 +13,7 @@ const isPromise = require('./promise')
  * @category Lang
  * @func
  * @name isAsyncish
+ * @alias isAsyncLike
  * @extends isAsyncish
  * @extends isPromise
  * @variation isAsyncish OR isPromise

@@ -18,9 +18,10 @@ const isNull = require('./null')
  * @name isObj
  * @alias isObject
  *
- * @see http://stackoverflow.com/questions/34111902/why-do-lodashs-isobject-isplainobject-behave-differently-than-typeof-x
- * @see https://github.com/lodash/lodash/blob/master/isObject.js
- * @NOTE Object.prototype.toString.call(val) === '[object Object]'
+ * {@link https://github.com/lodash/lodash/blob/master/isObject.js lodash-isobject}
+ * {@link https://github.com/mobxjs/mobx/blob/master/src/utils/utils.ts#L74 mobx-is-obj}
+ * @see {@link mobx-isobject}
+ * @see {@link lodash-isobject}
  *
  * @example
  *

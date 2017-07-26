@@ -6,14 +6,17 @@ const toS = require('./toS')
  *
  * @memberOf is
  * @since 5.0.0-beta.1
- * @category Lang
  *
  * @param {*} x The value to check.
  * @return {boolean} Returns `true` if `value` is an object, else `false`.
  *
+ * @category Lang
  * @func
  * @name isObjTag
  * @alias isObjectTag
+ *
+ * {@link https://github.com/ramda/ramda/blob/master/src/internal/_isObject.js ramda-isobject}
+ * @see {@link ramda-isobject}
  *
  * @example
  *

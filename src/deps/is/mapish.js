@@ -7,6 +7,7 @@ const isMap = require('./map')
  * @memberOf is
  * @since 3.0.0
  * @extends isMap
+ * @alias isMapLike
  * @variation also checks `instanceof Chainable`
  *
  * @param  {*} x value to check

@@ -19,8 +19,16 @@ const isReal = require('./real')
  * @func
  * @type {Function}
  *
+ * {@link https://github.com/ramda/ramda/blob/master/src/internal/_isArrayLike.js ramda-is-array-like}
+ * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L165 underscore-is-array-like}
+ * {@link https://github.com/lodash/lodash/blob/master/isArrayLike.js lodash-is-array-like}
+ * {@link https://github.com/mobxjs/mobx/blob/master/src/utils/utils.ts#L210 mobx-is-array-like}
  * {@link https://github.com/facebook/immutable-js/blob/master/src/utils/isArrayLike.js immutables-is-array-like}
  * @see {@link immutables-is-array-like}
+ * @see {@link mobx-is-array-like}
+ * @see {@link lodash-is-array-like}
+ * @see {@link underscore-is-array-like}
+ * @see {@link ramda-is-array-like}
  *
  * @category Type
  * @category List

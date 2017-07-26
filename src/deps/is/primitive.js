@@ -12,11 +12,19 @@ const isNullOrUndefined = require('./nullOrUndefined')
  * @category Lang
  * @memberOf is
  * @param {*} x The value to check.
- * @returns {boolean} x is number|string|boolean|null|undefined
+ * @return {boolean} x is number|string|boolean|null|undefined
  *
- * @see http://www.adequatelygood.com/Object-to-Primitive-Conversions-in-JavaScript.html
- * @see https://developer.mozilla.org/en-US/docs/Glossary/Primitive
- * @see http://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html
+ * {@link http://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html java-data-types}
+ * {@link https://developer.mozilla.org/en-US/docs/Glossary/Primitive mozilla-primitive}
+ * {@link http://www.adequatelygood.com/Object-to-Primitive-Conversions-in-JavaScript.html primitive-conversions-in-js}
+ * @see {@link primitive-conversions-in-js}
+ * @see {@link mozilla-primitive}
+ * @see {@link java-data-types}
+ *
+ * @see is/nullOrUndefined
+ * @see is/stringPrimitive
+ * @see is/booleanPrimitive
+ * @see is/numberPrimitive
  *
  * @example
  *

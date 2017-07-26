@@ -5,6 +5,7 @@ const isNumber = require('./numberPrimitive')
 const isString = require('./stringPrimitive')
 const isTrue = require('./true')
 
+// http://documentcloud.github.io/underscore-contrib/#isjson
 // https://github.com/chriso/validator.js/blob/master/src/lib/isJSON.js
 // https://bitsrc.io/amit/json/global/json-validator/code
 //
