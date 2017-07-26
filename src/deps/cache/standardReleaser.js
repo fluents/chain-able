@@ -10,6 +10,10 @@ const ENV_DEBUG = require('../env/debug')
  * @param  {Object} instance call destructor
  * @return {void}
  *
+ * @prop {Array} instancePool
+ * @prop {number} poolSize
+ * @prop {Function} destructor
+ *
  * @example
  *
  *    class Eh {}

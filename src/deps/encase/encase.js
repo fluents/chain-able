@@ -1,10 +1,12 @@
 const tryCatch = require('./tryCatch')
 
 /**
+ * @desc wrap in tryCatch, or a tryCatch-like api
  * @version 5.0.0 wrapped tryCatch & withSpecification in curry
  * @version 4.0.1 added custom encaser
  * @since   4.0.0
  * @member encase
+ * @alias attempt
  * @symb 🛡
  *
  * @param   {Function} call function to _encase_

@@ -7,6 +7,10 @@ const isUndefined = require('./deps/is/undefined')
 const ObjectKeys = require('./deps/util/keys')
 const getMeta = require('./deps/meta')
 const SHORTHANDS_KEY = require('./deps/meta/shorthands')
+const newMap = require('./deps/construct/map')
+const hasOwnPropertyFlipped = require('./deps/flipped/hasOwnProperty')
+
+const hasMerge = hasOwnPropertyFlipped('merge')
 
 /**
  * this is to avoid circular requires
@@ -62,6 +66,7 @@ const ComposeChainedMapBase = Target => {
     constructor(parent) {
       super(parent)
 
+      // this.store = newMap()
       this.store = new Map()
       this.meta = getMeta(this)
     }
@@ -138,7 +143,7 @@ const ComposeChainedMapBase = Target => {
         const value = obj[key]
         const fn = this[key]
 
-        if (fn && fn.merge) {
+        if (hasMerge(fn)) {
           fn.merge(value)
         }
         else if (isFunction(fn)) {

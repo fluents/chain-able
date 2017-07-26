@@ -12,7 +12,7 @@ const ENV_DEBUG = require('../env/debug')
  * @since 5.0.0
  * @memberOf pooler
  *
- * @param  {Object} copyFieldsFrom obj with instance pool
+ * @param  {Object} copyFieldsFrom obj with instance pool (arguments for constructor?)
  * @return {Object} instance of Klass
  *
  * @example
@@ -27,7 +27,13 @@ module.exports = function oneArgumentPooler(copyFieldsFrom) {
   const Klass = this
   if (Klass.instancePool.length) {
     const instance = Klass.instancePool.pop()
-    Klass.call(instance, copyFieldsFrom)
+    // require('fliplog').quick({Klass, instance, copyFieldsFrom})
+
+    // @TODO or a static construct!
+    // if (Klass.construct) Klass.construct.call(instance, copyFieldsFrom)
+    if (instance.construct) instance.construct(copyFieldsFrom)
+    else Klass.call(instance, copyFieldsFrom)
+
     return instance
   }
   else {

@@ -4,11 +4,12 @@ const ENV_DEBUG = require('../env/debug')
 const standardReleaser = require('./standardReleaser')
 const oneArgumentPooler = require('./oneArgumentPooler')
 
-
 /**
  * @symb 🎱
  * @member pooler
  * @type {Object}
+ *
+ * {@link https://github.com/atheros/node-advanced-pool node-advanced-pool}
  *
  * {@link https://github.com/facebook/react/blob/master/src/renderers/shared/utils/PooledClass.js react-pooler}
  * @see {@link react-pooler}
@@ -31,6 +32,11 @@ const DEFAULT_POOL_SIZE = 10
  * @param {Function | Object} CopyConstructor Constructor that can be used to reset.
  * @param {Function} pooler Customizable pooler.
  * @return {Object} enhanced constructor, decorated with pooler
+ *
+ * @prop {Array} instancePool
+ * @prop {number} poolSize
+ * @prop {Function} release
+ * @prop {Function} getPooled
  *
  * @example
  *

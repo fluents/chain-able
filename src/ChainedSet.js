@@ -1,5 +1,6 @@
 const Chainable = require('./Chainable')
 const toarr = require('./deps/to-arr')
+const newSet = require('./deps/construct/set')
 
 /**
  * @class
