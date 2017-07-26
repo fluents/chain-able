@@ -20,10 +20,14 @@ const lengthFromZero = require('./lengthFromZero')
  * @see deps/util/props
  * @see values, valuesIn
  *
+ * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L988 underscore-all-keys}
+ * {@link https://github.com/ramda/ramda/blob/master/src/keys.js ramda-keys}
  * {@link https://github.com/lodash/lodash/blob/master/keys.js lodash-keys}
  * {@link https://github.com/lodash/lodash/blob/master/.internal/getAllKeys.js lodash-get-all-keys}
  * @see {@link lodash-keys}
  * @see {@link lodash-get-all-keys}
+ * @see {@link ramda-keys}
+ * @see {@link underscore-all-keys}
  *
  * @TODO https://github.com/lodash/lodash/blob/master/.internal/arrayLikeKeys.js
  *
@@ -46,7 +50,9 @@ const lengthFromZero = require('./lengthFromZero')
 module.exports = function keys(obj) {
   return isArray(obj)
     ? new Array(lengthFromZero(obj))
-    : isObj(obj) ? ObjectKeys(obj) : []
+    : isObj(obj)
+      ? ObjectKeys(obj)
+      : []
 
   // for (var key in obj) gathered.push(key)
   // return gathered

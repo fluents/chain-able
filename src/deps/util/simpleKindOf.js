@@ -7,12 +7,11 @@ const isNull = require('../is/null')
  *       when null -> 'null'
  *       else `typeof x`
  *
+ * @memberOf util
  * @since 4.0.0
+ *
  * @param  {any} x value for type
  * @return {string} type
- *
- * split at space, replace brackets and space, lowercase
- * @TODO `type.split(' ').pop().replace(/\s\[\]/g, '').toLowerCase()`
  *
  * @example
  *

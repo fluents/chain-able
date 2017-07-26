@@ -1,6 +1,7 @@
 /**
  * @name noop
  *
+ * @memberOf util
  * @func
  * @since 5.0.0
  * @return {void}

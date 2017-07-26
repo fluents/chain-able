@@ -7,12 +7,13 @@ const getOwnPropertySymbols = Object.getOwnPropertySymbols
 /**
  * @desc properties, property symbols, object keys
  *       ^ all again for prototype
- *
+ * @memberOf util
  * @since 3.0.0
+ * @version 5.0.0-beta.4 only used in gc (as of 5.0.0-beta.4)
+ *
  * @param  {Object} obj object to get properties & symbols from
  * @return {Array<string>} properties
  *
- * only used in gc (as of 5.0.0-beta.4)
  * @see deps/gc
  * @see deps/utils/nonEnumerableTypes
  * @see http://2ality.com/2011/07/js-properties.html

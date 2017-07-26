@@ -1,6 +1,8 @@
 /**
  * @memberOf util
+ * @since 4.0.0
  *
+ * {@link https://github.com/mobxjs/mobx/blob/master/src/utils/utils.ts#L86 mobx-object-assign}
  * {@link https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign mozilla-object-assign}
  * {@link https://esdiscuss.org/topic/object-assign-with-several-source-objects esdiscuss-object-assign}
  * {@link https://github.com/facebook/react/blob/4b2eac3de7e1dbf5c2dd742fd9989974a83972cb/scripts/babel/transform-object-assign-require.js react-object-assign}
@@ -9,6 +11,7 @@
  * @see {@link react-object-assign}
  * @see {@link ramda-assign}
  * @see {@link lodash-assign}
+ * @see {@link mobx-object-assign}
  * @see {@link esdiscuss-object-assign}
  * @see {@link mozilla-object-assign}
  *
@@ -16,7 +19,8 @@
  */
 module.exports = Object.assign
 
-// @TODO polyfil
+// const ENV_COMPAT = require('../env/compat')
+// @TODO if (ENV_COMPAT) polyfill
 
 // --- check
 // function shouldUseNative() {

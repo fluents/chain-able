@@ -4,7 +4,7 @@ const isPromise = require('../../src/deps/is/promise')
 const isAsync = require('../../src/deps/is/async')
 const isAsyncish = require('../../src/deps/is/asyncish')
 const isNative = require('../../src/deps/is/native')
-const ObjectDefine = require('../../src/deps/define')
+const ObjectDefine = require('../../src/deps/util/define')
 const stress = require('../_stress')
 const {isMap, isSet, isFunction, isObjWithKeys, isPrototypeOf} = require('./')
 
