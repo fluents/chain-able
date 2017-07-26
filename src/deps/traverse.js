@@ -847,6 +847,8 @@ Traverse.prototype.copy = copy
  * @param  {*} arg argument to clone
  * @return {*} cloned value
  *
+ * {@link http://underscorejs.org/#clone underscore-clone}
+ * @see {@link underscore-clone}
  * @see dopemerge
  *
  * @example

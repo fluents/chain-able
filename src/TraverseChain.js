@@ -13,7 +13,7 @@ const EXTENSION_KEYS = ['obj', 'keys', 'vals', 'onNonMatch', 'onMatch', 'clone']
  * @extends {ChainedMapBase}
  *
  * @memberOf Chainable
- * @member Traverse
+ * @memberOf Traverse
  * @see deps/traverse
  * @category traverse
  * @types TraverseChain
@@ -46,19 +46,23 @@ module.exports = class Traverser extends ChainedMapBase {
       .extend(EXTENSION_KEYS)
       .keys([])
       .vals([])
-      .onMatch((arg, traverser) => traverser.remove())
+      // key,
+      .onMatch((arg, traverser) => {
+        // no return needed
+        traverser.remove()
+      })
   }
 
   /**
    * @desc runs traverser, checks the tests, calls the onMatch
    *       @modifies this.cleaned
    *
+   * @memberOf TraverseChain
    * @alias call
    * @since 1.0.0
+   *
    * @param  {boolean} [shouldReturn=false] returns traversed object
    * @return {any} this.obj/data cleaned
-   *
-   * @memberOf TraverseChain
    *
    * @example
    *
@@ -129,6 +133,8 @@ module.exports = class Traverser extends ChainedMapBase {
   }
 
   /**
+   * @ignore
+   * @version 5.0.0-beta.5 @depreciated
    * value traversed in traverse
    * @since 1.0.0
    * @see TraverseChain.traverse
@@ -189,7 +195,7 @@ module.exports = class Traverser extends ChainedMapBase {
    *    }
    *
    */
-  traversed() {
-    return this.get(TRAVERSED_KEY)
-  }
+  // traversed() {
+  //   return this.get(TRAVERSED_KEY)
+  // }
 }

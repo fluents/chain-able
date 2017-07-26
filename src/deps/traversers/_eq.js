@@ -19,6 +19,9 @@ const eqValue = require('./eqValue')
  * @version 5.0.0
  * @memberOf Traverse
  *
+ * {@link https://github.com/mobxjs/mobx/blob/master/src/utils/utils.ts#L145 mobx-deepequal}
+ * {@link https://github.com/js-data/js-data/blob/v2/src/utils.js#L571 js-data-circular}
+ * {@link https://github.com/js-data/js-data/blob/v2/src/utils.js#L300 js-data-equals}
  * {@link http://dorey.github.io/JavaScript-Equality-Table/ js-equality-table}
  * {@link https://github.com/facebook/react/blob/master/src/__mocks__/deepDiffer.js react-deep-differ}
  * {@link https://github.com/substack/js-traverse/blob/master/test/lib/deep_equal.js traverse-deep-equal}
@@ -28,6 +31,7 @@ const eqValue = require('./eqValue')
  * {@link http://ramdajs.com/docs/#equals ramda-equals}
  * {@link https://github.com/substack/node-deep-equal node-deep-equal}
  * {@link https://github.com/facebook/immutable-js/blob/master/src/utils/deepEqual.js immutable-js-deep-equal}
+ * @see {@link mobx-deepequal}
  * @see {@link js-equality-table}
  * @see {@link immutable-js-deep-equal}
  * @see {@link node-deep-equal}
@@ -37,6 +41,7 @@ const eqValue = require('./eqValue')
  * @see {@link underscore-equal}
  * @see {@link traverse-deep-equal}
  * @see {@link react-deep-differ}
+ * @see {@link js-data-equals}
  *
  * @param {Traverse} traverse traversejs (scoped, @FIXME @HACK)
  * @param  {*} a compare to b

@@ -15,6 +15,8 @@ const ENV_DEBUG = require('../env/debug')
  * @see clone
  * @memberOf Traverse
  *
+ * {@link https://github.com/lodash/lodash/blob/master/.internal/cloneRegExp.js lodash-clone-regexp}
+ *
  * @param  {*} src value to copy
  * @return {*} copied
  *

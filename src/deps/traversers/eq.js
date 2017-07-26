@@ -1,1 +1,3 @@
-module.exports = require('../traverse').eq
+const traverser = require('../traverse')
+
+module.exports = traverser.eq

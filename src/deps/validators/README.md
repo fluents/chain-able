@@ -1,3 +1,6 @@
+https://github.com/kensho-technologies/check-more-types
+https://github.com/jquery-validation/jquery-validation/blob/master/src/core.js
+
 problem:
   - naming and file count for validator + schema was becoming bad
   - too many 'factories'
