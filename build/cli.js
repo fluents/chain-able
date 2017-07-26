@@ -594,7 +594,8 @@ class CLI {
             .shift()
         }
 
-        const sillyRegExpSpecial = /(\s|\^|\$|\#|\@|\!|\&|\=|\+|\t|\n|\?|\>|\<|\{|\}|\[|\]|\|\'|\"|\`|\\)*/gmi
+        // keeps letters, numbers, `-` & `_` & `.`
+        const sillyRegExpSpecial = /(\s|\^|\$|\#|\@|\!|\&|\=|\+|\t|\n|\?|\>|\<|\{|\}|\[|\]|\|\'|\"|\`|\\|\)|\(|\:|\;|\*|\~|\%|\,)*/gmi
         const dotSlash = /(\.\/)/gmi
         requirePath = requirePath
           .replace('require(', '')

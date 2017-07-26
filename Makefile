@@ -138,16 +138,29 @@ buildcombo:
 buildcombofuse:
 	$(MAKE) distcombo && $(MAKE) cli && $(MAKE) fuse && $(MAKE) webpack && $(MAKE) gzip
 
+export:
+	$(MAKE) cleanexports && $(MAKE) easyexports && $(MAKE) lintexports
+
+#&& $(MAKE) versions
+
 travis:
 	$(MAKE) stripcombo \
 	&& $(MAKE) buildcombo \
 	&& $(MAKE) testdist \
-	&& $(MAKE) jestserial
+	&& $(MAKE) jestserial \
+	&& $(MAKE) docgen \
+	&& $(MAKE) export \
+	&& $(MAKE) postpublish
 
 prepublish:
-	$(MAKE) copyroot && $(MAKE) buildcombo && $(MAKE) cov && $(MAKE) testdist
+	$(MAKE) copyroot \
+	&& $(MAKE) docgen \
+	&& $(MAKE) export \
+	&& $(MAKE) buildcombo \
+	&& $(MAKE) cov \
+	&& $(MAKE) testdist
 
-export:
-	$(MAKE) cleanexports && $(MAKE) easyexports && $(MAKE) lintexports && $(MAKE) versions
+postpublish:
+	$(MAKE) clean && $(MAKE) cleanexports
 
 .PHONY: clean, quick
