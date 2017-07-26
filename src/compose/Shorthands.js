@@ -4,6 +4,9 @@
 const isUndefined = require('../deps/is/undefined')
 const isFunction = require('../deps/is/function')
 const isFalse = require('../deps/is/false')
+const hasOwnPropertyFlipped = require('../deps/flipped/hasOwnProperty')
+
+const hasMeta = hasOwnPropertyFlipped('meta')
 
 /**
  * @class Shorthands
@@ -47,7 +50,7 @@ module.exports = Target => {
     constructor(parent) {
       super(parent)
 
-      if (parent && parent.meta) {
+      if (hasMeta(parent)) {
         this.meta.debug = parent.meta.debug
       }
       else {

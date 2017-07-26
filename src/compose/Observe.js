@@ -1,15 +1,18 @@
 const toarr = require('../deps/to-arr')
 const traverse = require('../deps/traverse')
-// const eq = require('../deps/traversers/eq')
 const match = require('../deps/matcher')
 const getPathSegments = require('../deps/dot/segments')
 const dotSet = require('../deps/dot/set')
+const newMap = require('../deps/construct/map')
 const OBSERVERS_KEY = require('../deps/meta/observers')
+const ENV_DEBUG = require('../deps/env/debug')
 
+// @TODO export better, this adds extra size
 const {eq, clone} = traverse
 
 /**
- * scoped clones
+ * @TODO auto-clear when near full, have cache-class with pooling
+ * @desc scoped clones
  * @private
  * @type {Map}
  */
@@ -40,6 +43,14 @@ let objs = new Map()
  * @see deps/traversers/eq
  * @see deps/traverse
  * @see DotProp
+ *
+ * {@link https://msdn.microsoft.com/en-us/library/dd456845(v=vs.110).aspx microsoft}
+ * {@link https://github.com/Hypercubed/ hypercubed}
+ * {@link http://eliperelman.com/fn.js/ fn-is}
+ * {@link https://github.com/knockout/knockout/blob/master/src/subscribables/observable.js knockoutjs-observable}
+ * {@link https://www.npmjs.com/package/simple-observable simple-observable}
+ * {@link https://github.com/canjs/can-observation can-js-observation}
+ * [ minimal OR simple OR microjs OR tiny observable ]
  *
  * {@link https://github.com/iluwatar/java-design-patterns/tree/master/observer observer-pattern}
  * {@link https://github.com/ReactiveX/rxjs/blob/master/src/Subscriber.ts reactivex}
@@ -121,8 +132,17 @@ module.exports = Target => {
    *
    */
   Target.prototype.observe = function chainObserve(properties, fn) {
+    if (ENV_DEBUG) {
+      console.log('observe', {properties, fn})
+    }
+
     const props = toarr(properties)
     const hashKey = props.join('_')
+
+    if (ENV_DEBUG) {
+      console.log('observe', {[hashKey]: props})
+    }
+
     let data = {}
 
     /* prettier-ignore */
@@ -134,8 +154,17 @@ module.exports = Target => {
 
       // @@debugger
 
+      if (ENV_DEBUG) {
+        console.log({m, key: changed.key, objs, data, hashKey})
+      }
+
+      // @NOTE faster
+      if (m.length === 0) return
+
+      // update data
       for (let i = 0; i < m.length; i++) {
         const segments = getPathSegments(m[i])
+        // console.log({segments, m, i, v: m[i]})
         dotSet(data, segments, this.get(segments))
       }
 

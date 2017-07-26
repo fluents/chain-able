@@ -1,3 +1,4 @@
+// @see https://github.com/mobxjs/mobx/blob/master/src/utils/decorators.ts
 const MethodChain = require('../MethodChain')
 const compose = require('../compose')
 

@@ -4,6 +4,8 @@
 const dot = require('../deps/dot')
 const isDot = require('../deps/is/dot')
 
+// const accessor = x => x.split('.')[0]
+
 /**
  * @desc checks if this.meta.dot != false & isDot(key) - scoped
  *
@@ -142,7 +144,9 @@ module.exports = Target => {
     if (shouldDot(key, this)) {
       // first accessor
       // @example: `canada` in `canada.eh`
-      const prop = key.split('.').shift()
+      // @TODO could use `first`
+      // @NOTE was `.shift` but this is the only `.shift` anywhere
+      const prop = key.split('.')[0]
 
       // we already know it is .dot, call super instead
       // if (!super.has(prop)) super.set(prop, {})
@@ -156,6 +160,7 @@ module.exports = Target => {
       // is already by ref, but be extra safe, + observables
       return set.call(this, prop, data[prop], key)
     }
+
     return set.call(this, key, val)
   }
 

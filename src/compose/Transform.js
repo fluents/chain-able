@@ -1,7 +1,8 @@
 const TraverseChain = require('../TraverseChain')
+const curry = require('../deps/fp/curry')
 const isObj = require('../deps/is/obj')
 const isTrue = require('../deps/is/true')
-const isFalse = require('../deps/is/false')
+const isFalsy = require('../deps/is/falsy')
 const isUndefined = require('../deps/is/undefined')
 const ObjectKeys = require('../deps/util/keys')
 const dotPropPaths = require('../deps/dot/paths')
@@ -53,14 +54,26 @@ module.exports = Target => {
    * @example
    *  TAKE FROM TRAVERSECHAIN
    */
-  Target.prototype.traverse = function traverseChain(useThis = false) {
+  Target.prototype.traverse = function traverseChain(useThis) {
     /* prettier-ignore */
     return new TraverseChain(this)
-      .obj(isFalse(useThis)
-        ? this.entries(true)
-        : isTrue(useThis)
-          ? this
-          : useThis
+      .obj(
+        // @NOTE
+        // defaultTo(false, useThis)
+        //  defaulting arg to false is shorter
+        //  & faster than void 0 inline checks
+        //  that mutate arguments (when transpiled)
+        isFalsy(useThis)
+          ? this.entries(true)
+          : isTrue(useThis)
+            ? this
+            : useThis
+
+        // isFalse(useThis)
+        //   ? this.entries(true)
+        //   : isTrue(useThis)
+        //     ? this
+        //     : useThis
       )
   }
 
@@ -121,7 +134,7 @@ module.exports = Target => {
    *
    * @see this.observe, this.transform
    */
-  Target.prototype.set = function transformSet(key, val, dotPropKey) {
+  Target.prototype.set = curry(2, function transformSet(key, val, dotPropKey) {
     let value = val
 
     // get
@@ -136,6 +149,7 @@ module.exports = Target => {
     // get
     const observers = this.meta(OBSERVERS_KEY)
 
+    // @TODO !isEmpty
     // skip the below if we have no observers
     if (!observers.length) {
       return this
@@ -151,7 +165,7 @@ module.exports = Target => {
     }
 
     return this
-  }
+  })
 
   // @TODO
   // // https://stackoverflow.com/questions/31158902/is-it-possible-to-sort-a-es6-map-object
