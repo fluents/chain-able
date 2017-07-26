@@ -4,20 +4,26 @@ const Primitive = require('./deps/symbols/primitive')
 const isPrototypeOf = require('./deps/is/prototypeOf')
 const isMap = require('./deps/is/map')
 const isSet = require('./deps/is/set')
+const isNull = require('./deps/is/null')
 const isUndefined = require('./deps/is/undefined')
 const isFunction = require('./deps/is/function')
 const isString = require('./deps/is/string')
 const isFalse = require('./deps/is/false')
 const noop = require('./deps/util/noop')
 const ObjectKeys = require('./deps/util/keys')
-const ObjectDefine = require('./deps/define')
+const ObjectDefine = require('./deps/util/define')
 const ignored = require('./deps/meta/ignored')
+const castSetToArray = require('./deps/cast/setToArray')
+const castIteratorToArray = require('./deps/cast/iteratorToArray')
+const hasOwnPropertyFlipped = require('./deps/flipped/hasOwnProperty')
 const ENV_DEVELOPMENT = require('./deps/env/dev')
+
+const hasStore = hasOwnPropertyFlipped('store')
 
 // @TODO change from `||` to if else
 const shouldClear = (key, property) =>
   !ignored(key) &&
-  (isMap(property) || isSet(property) || (property && property.store))
+  (isMap(property) || isSet(property) || hasStore(property))
 
 const ComposeChainable = Target => {
   /* istanbul ignore next: dev */
@@ -122,8 +128,8 @@ const ComposeChainable = Target => {
     [Iterator]() {
       const values = this.values()
       const size = this.store.size
-      const entries = this.entries ? this.entries() : 0
-      const keys = entries === 0 ? new Array(size) : ObjectKeys(entries)
+      const entries = this.entries ? this.entries() : null
+      const keys = isNull(entries) ? new Array(size) : ObjectKeys(entries)
 
       return {
         i: 0,
@@ -264,8 +270,10 @@ const ComposeChainable = Target => {
      * @param {Primitive} key on a Map: key referencing the value. on a Set: the index
      * @return {Chainable}
      *
-     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/has
-     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has
+     * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/delete mozilla-map-delete}
+     * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/delete mozilla-set-delete}
+     * @see {@link mozilla-map-delete}
+     * @see {@link mozilla-set-delete}
      * @see ChainedSet
      * @see ChainedMap
      *
@@ -291,10 +299,12 @@ const ComposeChainable = Target => {
      * @since 0.3.0
      *
      * @param {any} keyOrValue key when Map, value when Set
-     * @return {boolean}
+     * @return {boolean} `this.store.has(keyOrValue)`
      *
-     * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/has map-has}
-     * @see {@link map-has}
+     * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/has mozilla-map-has}
+     * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has mozilla-set-has}
+     * @see {@link mozilla-map-has}
+     * @see {@link mozilla-set-has}
      *
      * @example
      *
@@ -342,10 +352,19 @@ const ComposeChainable = Target => {
      *
      */
     values() {
-      const allocated = new Array(this.store.size)
-      let i = 0
-      this.store.forEach(v => (allocated[i++] = v))
-      return allocated
+      return castSetToArray(this.store)
+    }
+
+    /**
+     * @since 5.0.0-beta.6
+     * @return {Array} keys
+     *
+     * @example
+     *    Chain.set('eh', 1).keys()
+     *    //=> ['eh']
+     */
+    keys() {
+      return castIteratorToArray(this.store.keys())
     }
 
     /**
@@ -420,7 +439,8 @@ const ComposeChainable = Target => {
   ObjectDefine(ChainPrototype, Instance, {
     enumerable: false,
     value: instance =>
-      instance && (isPrototypeOf(ChainPrototype, instance) || instance.store),
+      instance &&
+        (isPrototypeOf(ChainPrototype, instance) || hasStore(instance)),
   })
 
   return Chainable
