@@ -1,6 +1,17 @@
 http://documentcloud.github.io/underscore-contrib/#util.existential
 
-basic math expressions, above, below, between, math, even, odd, times, increment, decrement
+basic math expressions,
+above,
+below,
+between,
+even,
+odd,
+multiply,
+increment,
+decrement,
+subtract,
+add,
+sum
 
 gte
 lte

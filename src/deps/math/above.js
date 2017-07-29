@@ -1,7 +1,7 @@
 const curry = require('../fp/curry')
 
 /**
- * @memberOf expressions
+ * @memberOf math
  * @since 5.0.0-beta.4
  * @alias gt
  *

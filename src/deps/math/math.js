@@ -7,6 +7,10 @@ const subtract = require('./subtract')
 const add = require('./add')
 const increment = require('./increment')
 const decrement = require('./decrement')
+const min = require('./min')
+const max = require('./max')
+const range = require('./range')
+const multiplySigned = require('./multiplySigned')
 
 // gte lte
 const gt = above
@@ -18,7 +22,8 @@ const inc = increment
 const dec = decrement
 
 /**
- * @member expressions
+ * @icon ➗
+ * @member math
  * @type {Object}
  */
 module.exports = {
@@ -33,8 +38,11 @@ module.exports = {
   add,
   increment,
   decrement,
-
-  // @alias
+  max,
+  min,
+  range,
+  multiplySigned,
+  // @TODO alias these
   sub,
   inc,
   dec,

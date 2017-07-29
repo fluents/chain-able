@@ -1,4 +1,4 @@
-const reduce = require('../reduce')
+const reduce = require('../loop/fantasy/_reduce')
 const add = require('./add')
 
 

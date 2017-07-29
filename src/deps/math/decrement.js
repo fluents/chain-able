@@ -1,6 +1,6 @@
 /**
  * @since 5.0.0-beta.4
- * @memberOf expressions
+ * @memberOf math
  * @name decrement
  * @alias dec
  * @alias minusOne

@@ -3,7 +3,7 @@ const isNumber = require('../is/number')
 /* prettier-ignore */
 /**
  * @desc isOdd
- * @memberOf expressions
+ * @memberOf math
  * @since 5.0.0-beta.4
  * @category Math
  *

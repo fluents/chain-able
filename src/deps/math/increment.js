@@ -6,7 +6,7 @@
  *
  * @since 5.0.0-beta.4
  * @name increment
- * @memberOf expressions
+ * @memberOf math
  *
  * @alias inc
  * @alias plusOne

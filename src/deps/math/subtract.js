@@ -2,7 +2,7 @@ const curry = require('../fp/curry')
 
 /**
  * @name subtract
- * @memberOf expressions
+ * @memberOf math
  * @since 5.0.0-beta.4
  * @category Math
  *
