@@ -51,7 +51,8 @@ module.exports = function pipe(first) {
   let args = argumentor
     .apply(null, arguments)
     .slice(1)
-    .reduce((previous, next) => pipeTwo(previous, next))
+    .reduce(pipeTwo)
+    // .reduce((previous, next) => pipeTwo(previous, next))
 
   return pipeTwo(first, args)
 }
