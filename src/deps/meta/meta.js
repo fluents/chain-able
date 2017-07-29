@@ -1,20 +1,22 @@
 // without it, the arguments & caller are uglier when drbugging
 
+// @TODO freeze store props
+
 const isSet = require('../is/set')
 const hasOwnProperty = require('../util/hasOwnProperty')
-const ArrayFrom = require('../util/from')
+const iteratorToArray = require('../cast/iteratorToArray')
 const isUndefined = require('../is/undefined')
 const concat = require('../array/concat')
 const toarr = require('../to-arr')
-const always = require('../fp/always')
-const TRANSFORMERS_KEY = require('./transformers')
-const OBSERVERS_KEY = require('./observers')
-const SHORTHANDS_KEY = require('./shorthands')
-const DECORATED_KEY = require('./decorated')
+const size = require('../util/size')
+const EMPTY_ARRAY = require('../native/EMPTY_ARRAY')
+const TRANSFORMERS_KEY = require('./TRANSFORMERS_KEY')
+const OBSERVERS_KEY = require('./OBSERVERS_KEY')
+const SHORTHANDS_KEY = require('./SHORTHANDS_KEY')
+const DECORATED_KEY = require('./DECORATED_KEY')
 
 // will expand this later
 const isInKeyMapAsSet = x => x === OBSERVERS_KEY
-const emptyArray = [] // always([])
 
 // @NOTE: using `[]` deopts o.o
 // eslint-disable-next-line
@@ -63,7 +65,7 @@ function getMeta(_this) {
    * @return {boolean}
    */
   const has = (key, prop) => {
-    if (isUndefined(prop)) return !!store[key].size
+    if (isUndefined(prop)) return !!size(store[key])
     else return store[key].has(prop)
   }
   /**
@@ -72,7 +74,11 @@ function getMeta(_this) {
    * @param  {Primitive | undefined} [prop=undefined]
    * @return {any}
    */
-  const get = (key, prop) => (has(key, prop) ? store[key].get(prop) : emptyArray)
+  const get = (key, prop) => (
+    has(key, prop)
+      ? store[key].get(prop)
+      : EMPTY_ARRAY
+  )
 
   /**
    * @since  4.0.0
@@ -120,8 +126,10 @@ function getMeta(_this) {
       // when we want to just access the property, return an array
       // @example `.meta('transformers')`
       if (isUndefined(prop)) {
-        if (isUndefined(store[key])) return emptyArray
-        else return store[key].size === 0 ? emptyArray : ArrayFrom(store[key].values())
+        if (isUndefined(store[key])) return EMPTY_ARRAY
+        else return size(store[key]) === 0
+          ? EMPTY_ARRAY
+          : iteratorToArray(store[key])
       }
       // we have `key, prop`
       //
@@ -132,7 +140,7 @@ function getMeta(_this) {
       }
       // 2: prop is a key, we want to return the [..] for that specific property
       // @example `.meta('transformers', 'eh')`
-      else if (isUndefined(store[key])) return emptyArray
+      else if (isUndefined(store[key])) return EMPTY_ARRAY
       else return toarr(get(key, prop))
     }
     // we have `key, prop, value`

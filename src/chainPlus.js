@@ -2,7 +2,7 @@
 
 const ignored = require('./deps/meta/ignored')
 const getMeta = require('./deps/meta/meta')
-const Chain = require('./compose/index')
+const Chain = require('./compose/compose')
 const throttle = require('./deps/_/throttle')
 const isFunction = require('./deps/is/function')
 const isString = require('./deps/is/string')
@@ -16,6 +16,7 @@ const escapeDot = require('./deps/dot/escape')
 const not = require('./deps/conditional/not')
 const ObjectKeys = require('./deps/util/keys')
 
+// @TODO pass in factories first, like bind, get, set, has, ifElse
 module.exports = (chain) => {
   // could also do `before` & `after` diffs for keys when instantiating
   // chain.sponge = () => {

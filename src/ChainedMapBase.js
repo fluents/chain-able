@@ -1,3 +1,4 @@
+const SHORTHANDS_KEY = require('./deps/meta/SHORTHANDS_KEY')
 const Chainable = require('./Chainable')
 const dopemerge = require('./deps/dopemerge')
 const reduce = require('./deps/reduce')
@@ -6,9 +7,9 @@ const isFunction = require('./deps/is/function')
 const isUndefined = require('./deps/is/undefined')
 const ObjectKeys = require('./deps/util/keys')
 const getMeta = require('./deps/meta')
-const SHORTHANDS_KEY = require('./deps/meta/shorthands')
 const newMap = require('./deps/construct/map')
-const hasOwnPropertyFlipped = require('./deps/flipped/hasOwnProperty')
+const hasOwnPropertyFlipped = require('./deps/flipped/hasOwnPropertyFlipped')
+const composer = require('./compose/composer')
 
 const hasMerge = hasOwnPropertyFlipped('merge')
 
@@ -49,9 +50,8 @@ const hasMerge = hasOwnPropertyFlipped('merge')
  * @see ChainedMap
  *
  */
-
 const ComposeChainedMapBase = Target => {
-  return class ChainedMapBase extends Target {
+  class ChainedMapBase extends Target {
     /**
      * @param {ChainedMapBase | Chainable | ParentType | any} parent ParentType
      * @constructor
@@ -72,8 +72,8 @@ const ComposeChainedMapBase = Target => {
     }
 
     /**
-     * @desc   tap a value with a function
-     *         @modifies this.store.get(name)
+     * @desc tap a value with a function
+     *       @modifies this.store.get(name)
      * @memberOf ChainedMapBase
      * @version 0.7.0
      * @since 4.0.0-alpha.1 <- moved from transform & shorthands
@@ -97,7 +97,7 @@ const ComposeChainedMapBase = Target => {
      *      .tap('moose', moose => {moose.eh = false; return moose})
      *      .get('moose')
      *
-     *    // => {eh: false}
+     *    //=> {eh: false}
      *
      * @example
      *
@@ -132,7 +132,7 @@ const ComposeChainedMapBase = Target => {
      *     const from = new Chain().from({eh: true})
      *     const eh = new Chain().set('eh', true)
      *     eq(from, eh)
-     *     // => true
+     *     //=> true
      *
      */
     from(obj) {
@@ -196,10 +196,9 @@ const ComposeChainedMapBase = Target => {
      * @param  {boolean} [chains=false] if true, returns all properties that are chains
      * @return {Object} reduced object containing all properties from the store, and when `chains` is true, all instance properties, and recursive chains
      *
-     * //
-     *
      * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/entries mozilla-map-entries}
      * @see {@link mozilla-map-entries}
+     * @see deps/reduce/entries
      *
      * @example
      *
@@ -260,7 +259,6 @@ const ComposeChainedMapBase = Target => {
      * @return {ChainedMapBase} @chainable
      *
      * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/set mozilla-map-set}
-     *
      * @see {@link mozilla-map-set}
      * @see ChainedMapBase.store
      *
@@ -277,6 +275,8 @@ const ComposeChainedMapBase = Target => {
       return this
     }
   }
+
+  return ChainedMapBase
 }
 
 /**
@@ -298,7 +298,7 @@ const ComposeChainedMapBase = Target => {
  *    //=> true
  *
  */
-const cmc = ComposeChainedMapBase(Chainable)
-cmc.compose = ComposeChainedMapBase
 
-module.exports = cmc
+const composed = composer(ComposeChainedMapBase, Chainable)
+
+module.exports = composed

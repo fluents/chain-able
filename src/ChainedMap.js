@@ -2,6 +2,7 @@ const isUndefined = require('./deps/is/undefined')
 const MergeChain = require('./MergeChain')
 const MethodChain = require('./MethodChain')
 const ChainedMapBase = require('./ChainedMapBase')
+const composer = require('./compose/composer')
 
 /**
  * @desc ChainedMap composer
@@ -13,7 +14,7 @@ const ChainedMapBase = require('./ChainedMapBase')
  * @alias ComposeMap
  * @extends {ChainedMapBase}
  *
- * @param {Class | Object | Composable} [SuperClass=ChainedMapBase] class to extend
+ * @param {Class | Object | Composable} [Target=ChainedMapBase] class to extend
  * @return {Class} ChainedMap
  *
  * @see ChainedMapBase
@@ -30,11 +31,14 @@ const ChainedMapBase = require('./ChainedMapBase')
  *
  */
 
-const ComposeChainedMap = SuperClass => {
-  const Composed =
-    SuperClass === ChainedMapBase
-      ? SuperClass
-      : ChainedMapBase.compose(SuperClass)
+const ComposeChainedMap = Target => {
+  let Composed = Target
+
+  // @NOTE compose now does this
+  // const Composed =
+  //   Target === ChainedMapBase || Target.constructor.name === ChainedMapBase.constructor.name
+  //     ? Target
+  //     : ChainedMapBase.compose(Target)
 
   class ChainedMap extends Composed {
     /* prettier-ignore */
@@ -59,7 +63,7 @@ const ComposeChainedMap = SuperClass => {
      *   chain.method('eh').build()
      *   chain.eh(true)
      *   chain.get('eh')
-     *   // => true
+     *   //=> true
      *
      */
     method(names) {
@@ -85,7 +89,7 @@ const ComposeChainedMap = SuperClass => {
      *    chain.set('eh', [1])
      *    chain.merge({eh: [2]})
      *    chain.get('eh')
-     *    // => [1, 2]
+     *    //=> [1, 2]
      *
      * @example
      *
@@ -115,7 +119,7 @@ const ComposeChainedMap = SuperClass => {
   return ChainedMap
 }
 
-const composed = ComposeChainedMap(ChainedMapBase)
-composed.compose = ComposeChainedMap
+
+const composed = composer(ComposeChainedMap, ChainedMapBase)
 
 module.exports = composed

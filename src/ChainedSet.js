@@ -1,6 +1,7 @@
 const Chainable = require('./Chainable')
 const toarr = require('./deps/to-arr')
 const newSet = require('./deps/construct/set')
+const arrayOfIndexes = require('./deps/cast/arrayOfIndexes')
 
 /**
  * @class
@@ -37,6 +38,20 @@ class ChainedSet extends Chainable {
     super(parent)
     this.store = new Set()
   }
+
+  /**
+   * @version 5.0.0 <- moved into ChainedMapBase & ChainedSet for less monomorphic usage
+   * @since 5.0.0-beta.6
+   * @return {Array<number | string | *>} keys
+   *
+   * @example
+   *    Chain.set('eh', 1).keys()
+   *    //=> ['eh']
+   */
+  keys() {
+    return arrayOfIndexes(this.store.size)
+  }
+
 
   /**
    * @desc appends a new element with a specified value to the end of the .store
