@@ -7,10 +7,12 @@ const hasIn = require('../is/hasIn')
  * Creates a function that invokes the method at `path` of a given object.
  * Any additional arguments are provided to the invoked method.
  *
- * @ignore
- * @private
- * @name method
- * @NOTE basically this is `invoke` but not curried
+ * @name invoke
+ * @alias method
+ * @alias callMethod
+ * @curried 3
+ *
+ * @NOTE basically this is `invoker` but not curried
  *
  * @since 5.0.0-beta.4
  * @lodash 3.7.0
@@ -20,6 +22,7 @@ const hasIn = require('../is/hasIn')
  * @param {Array} [args] The arguments to invoke the method with.
  * @returns {Function} Returns the new invoker function.
  *
+ * @see https://github.com/wycats/handlebars.js/blob/master/lib/handlebars/runtime.js#L38
  * @see https://github.com/lodash/lodash/blob/master/method.js
  *
  * @example
@@ -30,10 +33,10 @@ const hasIn = require('../is/hasIn')
  * ]
  *
  * map(objects, method('a.b'))
- * // => [2, 1]
+ * //=> [2, 1]
  *
  * map(objects, method(['a', 'b']))
- * // => [2, 1]
+ * //=> [2, 1]
  */
 
 /**
@@ -66,9 +69,9 @@ const hasIn = require('../is/hasIn')
  *    //=> '[object Array]'
  *
  */
-function _invoke(x, key, args) {
+function invoke(x, key, args) {
   if (hasIn(x, key)) return x[key](args)
   // else return void 0
 }
 
-module.exports = curry(3, _invoke)
+module.exports = curry(3, invoke)

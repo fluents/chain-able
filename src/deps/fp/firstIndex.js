@@ -20,6 +20,10 @@ const isArray = require('../is/array')
  *
  */
 function firstIndex(x) {
+  // if (isNill(x)) return x
+  // else if (isArray(x)) return x[0]
+  // else return x[0]
+
   return (isArray(x) ? x : keys(x))[0]
   // const xKeys = isArray(x) ? x : keys(x)
   // const first = xKeys[0]

@@ -1,3 +1,3 @@
-/* istanbul ignore: for ease of use */
+/* istanbul ignore next: @docblocks @exports */
 
 module.exports = require('./fp.js')

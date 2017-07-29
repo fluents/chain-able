@@ -14,8 +14,14 @@
  * @param {Function} fn function to wrap
  * @return {Function} function with params
  *
+ * {@link https://github.com/blakeembrey/nary nary}
+ * {@link https://www.npmjs.com/package/util-arity util-arity}
+ * {@link https://docs.microsoft.com/en-us/scripting/javascript/reference/length-property-function-javascript microsoft-func-length}
  * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/arity mozilla-func-arity}
  * @see {@link mozilla-func-arity}
+ * @see {@link microsoft-func-length}
+ * @see {@link util-arity}
+ * @see {@link nary}
  *
  * @NOTE keeping this means uglify `keep_func_args: false`
  *
@@ -31,12 +37,13 @@
  *
  */
 module.exports = function _arity(n, fn) {
-  if (n === 0 || n > 5) return function() { return fn.apply(this, arguments) }
-  else if (n === 1) return function($0) { return fn.apply(this, arguments) }
+  // if (n === 0 || n > 5)
+  if (n === 1) return function($0) { return fn.apply(this, arguments) }
   else if (n === 2) return function($0, $1) { return fn.apply(this, arguments) }
   else if (n === 3) return function($0, $1, $2) { return fn.apply(this, arguments) }
   else if (n === 4) return function($0, $1, $2, $3) { return fn.apply(this, arguments) }
   else if (n === 5) return function($0, $1, $2, $3, $4) { return fn.apply(this, arguments) }
+  else return function() { return fn.apply(this, arguments) }
 
   // @NOTE ignoring
   // else if (n === 6) return function(a0, a1, a2, a3, a4, a5) { return fn.apply(this, arguments) }

@@ -1,3 +1,4 @@
+const isIndexable = require('../is/indexable')
 const firstIndex = require('./firstIndex')
 
 /**
@@ -30,4 +31,4 @@ const firstIndex = require('./firstIndex')
  *      first('');                  //=> ''
  *
  */
-module.exports = x => x[firstIndex(x)]
+module.exports = x => (isIndexable(x) ? x[firstIndex(x)] : undefined)

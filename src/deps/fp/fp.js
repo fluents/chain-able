@@ -1,13 +1,13 @@
-/* istanbul ignore: for docblocks @member */
+/* istanbul ignore next: @docblocks @exports */
 
 const always = require('./always')
 const arity = require('./arity')
 const curry = require('./curry')
 const first = require('./first')
 const last = require('./last')
-const mapWhere = require('./mapWhere')
 const path = require('./path')
 const pipe = require('./pipe')
+const pipeTwo = require('./pipeTwo')
 const prop = require('./prop')
 const construct = require('./construct')
 const firstIndex = require('./firstIndex')
@@ -25,8 +25,9 @@ const bind = require('./bind')
 const times = require('./times')
 const nth = require('./nth')
 const invertObj = require('./invertObjKeyVal')
-const useMethodIfExists = require('./useMethodIfExists')
+const preferExistingMethod = require('./preferExistingMethod')
 const slice = require('./slice')
+const where = require('./where')
 // const wrap = require('./wrap')
 
 /**
@@ -51,16 +52,17 @@ module.exports = {
   flip2,
   last,
   lastIndex,
-  mapWhere,
   path,
   pipe,
+  pipeTwo,
   prop,
   replace,
   remove,
   reverse,
   times,
   nth,
-  useMethodIfExists,
+  preferExistingMethod,
   invertObj,
   slice,
+  where,
 }

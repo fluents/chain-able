@@ -1,3 +1,4 @@
+const isIndexable = require('../is/indexable')
 const lastIndex = require('./lastIndex')
 
 /**
@@ -18,6 +19,9 @@ const lastIndex = require('./lastIndex')
  * @see R.init, R.head, R.tail
  * @extends deps/fp/lastIndex
  *
+ * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L507 underscore-last}
+ * @see {@link underscore-last}
+ *
  * @types fp
  * @tests fp/*
  *
@@ -30,4 +34,4 @@ const lastIndex = require('./lastIndex')
  *      last(''); //=> ''
  *
  */
-module.exports = x => x[lastIndex(x)]
+module.exports = x => (isIndexable(x) ? x[lastIndex(x)] : undefined)

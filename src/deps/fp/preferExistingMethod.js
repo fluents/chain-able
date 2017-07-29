@@ -10,7 +10,8 @@ const argumentor = require('../argumentor')
  * @memberOf fp
  * @since 5.0.0-beta.5
  *
- * @name useMethodIfExists
+ * @name preferExistingMethod
+ * @alias useMethodIfExists
  * @alias _checkForMethod
  *
  * @param {Function} fn internal implemtation
@@ -33,17 +34,21 @@ const argumentor = require('../argumentor')
  *    //=> 0
  *
  */
-module.exports = function useMethodIfExists(methodname, fn) {
+module.exports = function preferExistingMethod(methodname, fn) {
   return function() {
     const length = arguments.length
     if (length === 0) {
       return fn()
     }
-    const obj = arguments[length - 1]
-    return (isArray(obj) || !isFunction(obj[methodname]))
-      ? fn.apply(this, arguments)
-      : obj[methodname].apply(obj,
-        argumentor.apply(null, arguments).slice(length - 1)
-      )
+    else {
+      const obj = arguments[length - 1]
+      return (isArray(obj) || !isFunction(obj[methodname]))
+        ? fn.apply(this, arguments)
+        : obj[methodname]
+          .apply(
+            obj,
+            argumentor.apply(null, arguments).slice(length - 1)
+          )
+    }
   }
 }

@@ -1,22 +1,29 @@
+const isArray = require('../is/array')
 const isUndefined = require('../is/undefined')
+const isString = require('../is/string')
+const from = require('../util/from')
 const arraySlice = require('../native/arraySlice')
 const curry = require('../fp/curry')
-const useMethodIfExists = require('../fp/useMethodIfExists')
+const preferExistingMethod = require('../fp/preferExistingMethod')
+
+const stringSlice = String.prototype.slice
 
 /**
  * Returns the elements of the given list or string (or object with a `slice`
  * method) from `fromIndex` (inclusive) to `toIndex` (exclusive).
  * Dispatches to the `slice` method of the third argument, if present.
  * @memberOf array
+ * @memberOf string
  * @memberOf fp
+ * @since 5.0.0-beta.6
  *
- * @param {*} list array to slice on
+ * @param {*} list array | string to slice on
  * @param {Number} fromIndex The start index (inclusive).
  * @param {Number} toIndex The end index (exclusive).
  * @return {*}
  *
  * @curried 3
- * @see fp/useMethodIfExists
+ * @see fp/preferExistingMethod
  *
  * @func
  * @fork v0.1.4
@@ -45,11 +52,20 @@ const useMethodIfExists = require('../fp/useMethodIfExists')
  *
  */
 function slice(list, fromIndex, toIndex) {
-  return arraySlice
-    .call(list, fromIndex, isUndefined(toIndex) ? list.length : toIndex)
+  const to = isUndefined(toIndex) ? list.length : toIndex
+  if (isString(list)) return stringSlice.call(list, fromIndex, to)
+
+  // let array = isArray(list) ? list : from(list)
+  let array = list
+  return arraySlice.call(
+    array,
+    fromIndex,
+    to
+  )
 }
 
 // @TODO put in flipped
-// fromIndex, toIndex, list
+//
 
-module.exports = curry(3, useMethodIfExists('slice', slice))
+module.exports = curry(3, preferExistingMethod('slice', slice))
+// module.exports = curry(3, slice)

@@ -5,8 +5,11 @@
  * This function is known as `const`, `constant`, or `K` (for K combinator) in
  * other languages and libraries.
  *
+ * @icon ☝
  * @alias always
  * @alias constant
+ * @alias const
+ *
  * @func
  * @memberOf fp
  * @since v5.0.0
@@ -31,8 +34,8 @@
  *
  * @example
  *
- *      var t = always('Tee');
- *      t(); //=> 'Tee'
+ *      var t = always('Tee')
+ *      t() //=> 'Tee'
  *
  */
 module.exports = function constant(value) {
