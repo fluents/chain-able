@@ -1,0 +1,23 @@
+language: node_js
+sudo: false
+
+# https://docs.travis-ci.com/user/caching/#Clearing-Caches
+# cache:
+#   apt: true
+#   directories:
+#   - node_modules
+
+# test with these versions
+node_js:
+  - 7
+
+install:
+- npm install
+
+# @TODO: swap to yarn when needed
+# once installed, run these pkg scripts
+script:
+# - npm run build
+# - npm run lint
+# - npm run flow
+- npm test

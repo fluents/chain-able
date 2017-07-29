@@ -1,0 +1,29 @@
+0000000000000000000000000000000000000000 55d975d864442218cd7438eba1e2822bf880bfd0 Arete Code <aretecode@gmail.com> 1493079510 -0700	commit (initial): 🔬 basic tests
+55d975d864442218cd7438eba1e2822bf880bfd0 8a4f13dd544b5b1708d785c1a696d59cdb2d7881 Arete Code <aretecode@gmail.com> 1493079550 -0700	commit: - 📘 add examples
+8a4f13dd544b5b1708d785c1a696d59cdb2d7881 62ca03ce495f0c3bdfbbcfcaaf8c3aac71d2598b Arete Code <aretecode@gmail.com> 1493079559 -0700	commit: - 📖📚 docs
+62ca03ce495f0c3bdfbbcfcaaf8c3aac71d2598b 2a8251b4d68c4b709325fc0fd4264a918cb9f431 Arete Code <aretecode@gmail.com> 1493079595 -0700	commit: - 📜 pkg, 📇 metadata
+2a8251b4d68c4b709325fc0fd4264a918cb9f431 2301777693951b64119ef3f6e1501bce9dea2202 Arete Code <aretecode@gmail.com> 1493079609 -0700	commit: 🏋️⛓ bench-chain 🆕 creating
+2301777693951b64119ef3f6e1501bce9dea2202 a2cea129985dd5bbeeaf240c13aa43b5483fbcdc Arete Code <aretecode@gmail.com> 1493080001 -0700	commit: 📦⬇ deps, 📖📘 readme, 💚 travis, ⛓📛 badges
+a2cea129985dd5bbeeaf240c13aa43b5483fbcdc d815394dd3606837c2717298d1a2a097deb5a614 Arete Code <aretecode@gmail.com> 1493506234 -0700	commit: 🔬 fix test folder name
+d815394dd3606837c2717298d1a2a097deb5a614 8f07639c40435ee1acb5354f742b0e76289fccbb Arete Code <aretecode@gmail.com> 1493506290 -0700	commit: 🤸 split reports into another class
+8f07639c40435ee1acb5354f742b0e76289fccbb 1b4f73cfaeaefb0c241e6ba19fc901962827cfe6 Arete Code <aretecode@gmail.com> 1493506318 -0700	commit: 🔋 battery parsing from plist when avail
+1b4f73cfaeaefb0c241e6ba19fc901962827cfe6 4186a673347c26f69c38893af09d970cdeca9dfe Arete Code <aretecode@gmail.com> 1493506375 -0700	commit: ⏱ microtime, ⛓ chainable, 📊 more graphs, 🖥 flags
+4186a673347c26f69c38893af09d970cdeca9dfe ba140192fd956412e73a43f9d6adf3e8debba788 Arete Code <aretecode@gmail.com> 1493525211 -0700	commit: # 0.3.0
+ba140192fd956412e73a43f9d6adf3e8debba788 e587b2689510aa8dd8fe4d4c6d480dcbf67e5674 Arete Code <aretecode@gmail.com> 1493525383 -0700	commit: disable percent, add issue
+e587b2689510aa8dd8fe4d4c6d480dcbf67e5674 318c6816d5c1f6eaba9f7367c1435bbcb85a94a3 Arete Code <aretecode@gmail.com> 1493722847 -0700	commit: 🔬 adding more tests
+318c6816d5c1f6eaba9f7367c1435bbcb85a94a3 7c0a9623ff2634cc85cf410682a9158558216cd5 Arete Code <aretecode@gmail.com> 1493723579 -0700	commit: - 🖼️ add screenshots
+7c0a9623ff2634cc85cf410682a9158558216cd5 3abde9f22e9c3087699ccd7d10b866f246e338c7 Arete Code <aretecode@gmail.com> 1493723618 -0700	commit: - 📦⬆ added deps
+3abde9f22e9c3087699ccd7d10b866f246e338c7 c4a24cb434f7c85dbd0f450262763f04fcf9e5d5 Arete Code <aretecode@gmail.com> 1493723675 -0700	commit: 🛁 🤸 clean avggraphinone and split into classes
+c4a24cb434f7c85dbd0f450262763f04fcf9e5d5 fda8890cb4056543b1368cf736edd2aa27c6863e Arete Code <aretecode@gmail.com> 1493723724 -0700	commit: - 📒🚚 move memory helpers and other data into deps file
+fda8890cb4056543b1368cf736edd2aa27c6863e bca2744cf4ae8792a7ffb643a8eb94580960f178 Arete Code <aretecode@gmail.com> 1493723750 -0700	commit: 🌀 add spinner, split into UI
+bca2744cf4ae8792a7ffb643a8eb94580960f178 e07d47267445630eccf94e29af3464c9d38e7e0b Arete Code <aretecode@gmail.com> 1493723768 -0700	commit: 🤸 split Results into a class
+e07d47267445630eccf94e29af3464c9d38e7e0b d2c3e04d1d22b1e2897bbef30d51285b6da52d27 Arete Code <aretecode@gmail.com> 1493723788 -0700	commit: 🏛️🏰 refactor reporting from Reporter:
+d2c3e04d1d22b1e2897bbef30d51285b6da52d27 c39342cfe692907a077b0c6597b1bd1a64947eb3 Arete Code <aretecode@gmail.com> 1493723846 -0700	commit: ⛓ℹ️️ move BenchChainClass, + chainable, + jsdocs
+c39342cfe692907a077b0c6597b1bd1a64947eb3 0578e098d492c47c416f27460f63080f78061488 Arete Code <aretecode@gmail.com> 1493724034 -0700	commit: 📖 changelog - 🆙📘 examples
+0578e098d492c47c416f27460f63080f78061488 e15beb36dae46ec81eb4f66bd8bcbb8f50cbfa16 Arete Code <aretecode@gmail.com> 1494201858 -0700	commit: 🌀 fix ending spinner missed timeout
+e15beb36dae46ec81eb4f66bd8bcbb8f50cbfa16 7dc83bcfba8cbf9adb282c2baff15124073b102b Arete Code <aretecode@gmail.com> 1494202765 -0700	commit: 📊 current reports, 🛁 cleaning, ℹ️️ jsdocs
+7dc83bcfba8cbf9adb282c2baff15124073b102b 365926e29d5b2ad2de36186dba6c239a808f0c0f Arete Code <aretecode@gmail.com> 1494202803 -0700	commit: 🖼️📦⬇ use mozilla polyfil for padEnd inline, less deps
+365926e29d5b2ad2de36186dba6c239a808f0c0f fca1b55b0cf0097216dc027d52f86838b058adf9 Arete Code <aretecode@gmail.com> 1494206865 -0700	commit: %📊 pct report improvements & 🛁 clean!
+fca1b55b0cf0097216dc027d52f86838b058adf9 c2c80ffb65fcfc9ab24a6270c964e5a0825e1457 Arete Code <aretecode@gmail.com> 1494206881 -0700	commit: ⛓ put suite in store - breaking
+c2c80ffb65fcfc9ab24a6270c964e5a0825e1457 d6b4836e8698f960e043ee8aaced7fb85448400c Arete Code <aretecode@gmail.com> 1494206920 -0700	commit: 📈 added reporting of ops, slicing only most recent messages
+d6b4836e8698f960e043ee8aaced7fb85448400c ab5c70649bc49d8998b12c9efc3b9277736a312e Arete Code <aretecode@gmail.com> 1494206967 -0700	commit: 📘 example of using for just a single benchmark
