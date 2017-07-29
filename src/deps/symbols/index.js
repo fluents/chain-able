@@ -4,6 +4,7 @@
 
 /**
  * @member symbol
+ * @icon 🔣
  */
 module.exports = {
   Iterator: Symbol.iterator,
