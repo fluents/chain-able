@@ -1,10 +1,10 @@
 const curry = require('../fp/curry')
+const isNil = require('./nullOrUndefined')
 
 /**
- * check instanceof
- *
- * @memberOf is
+ * @desc check instanceof
  * @since 5.0.0-beta.4
+ * @memberOf is
  * @curried 2
  *
  * @param  {Object} instanceToCheckAgainst check the second arg against this
@@ -31,7 +31,9 @@ const curry = require('../fp/curry')
  *
  */
 function instanceOf(instanceToCheckAgainst, isThisInstanceOfThat) {
-  return isThisInstanceOfThat instanceof instanceToCheckAgainst
+  return !isNil(instanceToCheckAgainst) &&
+    !isNil(isThisInstanceOfThat) &&
+    isThisInstanceOfThat instanceof instanceToCheckAgainst
   // || arg1.constructor === arg2
 }
 

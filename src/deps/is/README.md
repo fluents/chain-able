@@ -15,3 +15,9 @@ https://github.com/addyosmani/es6-tools
 https://github.com/madrobby/zepto
 http://code.jquery.com/jquery-3.2.1.js
 https://github.com/sstephenson/prototype
+
+- I've been improving so much code, reading every library that's any good
+- next to every single one of them has some "isX" util
+- @example `isFunction`, `isNull`, `isError`,
+- they get really hot, and they are really small, so they get inlined blazing fast and it's dope
+- **...** but if you have say 3 libraries, and each one has their own `isFunction` or `isNull`, that defeats the purpose! need a build function & compat checker to replace & merge as needed for best perf in apps not just libs

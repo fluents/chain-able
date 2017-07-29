@@ -20,6 +20,8 @@ const isIn = require('./in')
  *  hasIn({eh: true}, 'eh') //=> true
  *
  */
-module.exports = function hasIn(obj, prop) {
+function hasIn(obj, prop) {
   return !isNull(obj) && isIn(obj, prop)
 }
+
+module.exports = hasIn

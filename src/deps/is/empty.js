@@ -1,8 +1,6 @@
-const keys = require('../util/keysObjOrArray')
-const ObjectKeys = require('../util/keys')
+const size = require('../util/size')
 const isNullOrUndefined = require('./nullOrUndefined')
-const isObj = require('./obj')
-const isArray = require('./array')
+const isObj = require('./objTypeof')
 
 /* prettier-ignore */
 /**
@@ -20,12 +18,14 @@ const isArray = require('./array')
  * @category Logic
  * @sig a -> Boolean
  *
+ * {@link https://github.com/wycats/handlebars.js/blob/master/lib/handlebars/utils.js#L85 handlebars-is-empty}
  * {@link https://github.com/bitovi/u/blob/master/js/object/isEmptyObject.js can-u-is-empty-object}
  * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L1293 underscore-is-empty}
  * {@link https://github.com/ramda/ramda/issues/1228 ramda-is-empty}
  * @see {@link can-u-is-empty-object}
  * @see {@link underscore-is-empty}
  * @see {@link ramda-is-empty}
+ * @see {@link handlebars-is-empty}
  * @see empty
  *
  * @example
@@ -39,11 +39,18 @@ const isArray = require('./array')
  *
  */
 module.exports = function isEmpty(x) {
-  if (x === '') return true
-  else if (isNullOrUndefined(x)) return false
-  else if (isArray(x)) return x.length === 0
-  else if (isObj(x)) return ObjectKeys(x).length === 0
-  else return false
+  if (x === '') {
+    return true
+  }
+  else if (isNullOrUndefined(x)) {
+    return false
+  }
+  else if (isObj(x)) {
+    return size(x) !== 0
+  }
+  else {
+    return false
+  }
 
   // else return (
   //   // null|undefined = empty
