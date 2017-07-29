@@ -26,16 +26,16 @@ const isNull = require('./null')
  * @example
  *
  * isObject({})
- * // => true
+ * //=> true
  *
  * isObject([1, 2, 3])
- * // => true
+ * //=> true
  *
  * isObject(Function)
- * // => true
+ * //=> true
  *
  * isObject(null)
- * // => false
+ * //=> false
  *
  */
 module.exports = x => !isNull(x) && (objTypeof(x) || isFunction(x))

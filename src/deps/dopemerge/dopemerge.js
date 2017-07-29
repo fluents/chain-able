@@ -30,7 +30,7 @@ const emptyTarget = require('./emptyTarget')
  *    //=> true
  *
  *    isMergeableObj(Object.create(null))
- *    // => true
+ *    //=> true
  *
  *    isMergeableObj(new Date())
  *    //=> false

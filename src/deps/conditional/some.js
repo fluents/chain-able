@@ -13,8 +13,10 @@ const curry = require('../fp/curry')
  * @alias any
  * @func
  *
+ * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some mozilla-some}
  * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L273 underscore-some}
  * @see {@link underscore-some}
+ * @see {@link mozilla-some}
  *
  * @example
  *

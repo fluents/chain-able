@@ -23,9 +23,9 @@ const ENV_DEBUG = require('../env/debug')
  * @example
  *
  *    copy(/eh/gmi) //=> new RegExp('eh', 'gmi')
- *    copy(new Error('eh')) // => new Error with copied stack + msg
- *    copy([1]) // => [1]
- *    copy({}) // => {}
+ *    copy(new Error('eh')) //=> new Error with copied stack + msg
+ *    copy([1]) //=> [1]
+ *    copy({}) //=> {}
  *
  */
 module.exports = function copy(src) {

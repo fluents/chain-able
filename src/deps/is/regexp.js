@@ -19,10 +19,10 @@ const toS = require('./toS')
  * @example
  *
  * isRegExp(/abc/)
- * // => true
+ * //=> true
  *
  * isRegExp('/abc/')
- * // => false
+ * //=> false
  *
  */
 module.exports = x => toS(x) === '[object RegExp]'

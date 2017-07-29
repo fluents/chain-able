@@ -37,7 +37,7 @@ const curry = require('./curry')
  *     const obj = { 'a': 1, 'b': 2, 'c': 1 }
  *
  *     invert(obj)
- *     // => { '1': 'c', '2': 'b' }
+ *     //=> { '1': 'c', '2': 'b' }
  *
  * @example
  *

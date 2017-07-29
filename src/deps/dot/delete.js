@@ -6,6 +6,9 @@ const isDottable = require('./dottable')
 /**
  * @desc delete a path on an object
  * @name dot.delete
+ * @alias dotRemove
+ * @alias removePath
+ *
  * @memberOf dot
  * @func
  * @since 3.0.0

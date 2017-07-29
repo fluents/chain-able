@@ -13,10 +13,10 @@ const toS = require('./toS')
  * @example
  *
  * isSymbol(Symbol.iterator)
- * // => true
+ * //=> true
  *
  * isSymbol('abc')
- * // => false
+ * //=> false
  *
  */
 module.exports = x => toS(x) === '[object Symbol]'

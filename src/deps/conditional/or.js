@@ -12,6 +12,7 @@ const curry = require('../fp/curry')
  *
  * @name or
  * @func
+ * @TODO either
  *
  * @example
  *

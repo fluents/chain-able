@@ -12,10 +12,10 @@ const toS = require('./toS')
  * @example
  *
  *   isWeakMap(new WeakMap)
- *   // => true
+ *   //=> true
  *
  *   isWeakMap(new Map)
- *   // => false
+ *   //=> false
  *
  */
 function isWeakMap(x) {

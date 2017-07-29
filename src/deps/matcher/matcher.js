@@ -6,6 +6,7 @@
  * @types matcher
  * @tests deps/matcher
  */
+
 const ObjectAssign = require('../util/assign')
 const isMatcher = require('../is/matcher')
 const cache = require('../cache')
@@ -41,25 +42,25 @@ const m = {}
  *
  *    var strings = x => typeof x === 'string'
  *    matcher.make(strings)
- *    // {test: strings}
+ *    //=> {test: strings}
  *
  * @example
  *
  *    var tester = {test: x => x === true}
  *    matcher.make(tester)
- *    // tester
+ *    //=> tester
  *
  * @example
  *
  *    var noName = '!name'
  *    matcher.make(noName, true)
- *    // new RegExp('(?:name)', 'i')
+ *    //=> new RegExp('(?:name)', 'i')
  *
  * @example
  *
  *    var noName = '!name'
  *    matcher.make(noName, true, true)
- *    // new RegExp('^(?:name)$', 'i')
+ *    //=> new RegExp('^(?:name)$', 'i')
  *
  */
 m.make = (pattern, shouldNegate, alphaOmega) => {

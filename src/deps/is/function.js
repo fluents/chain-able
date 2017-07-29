@@ -43,7 +43,7 @@
  *  isFunction('')
  *  //=> false
  *  isFunction(/abc/)
- *  // => false
+ *  //=> false
  *
  */
 module.exports = function isFunction(x) {

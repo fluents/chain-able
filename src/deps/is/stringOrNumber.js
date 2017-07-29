@@ -19,10 +19,10 @@ const isNumber = require('./number')
  * @example
  *
  *   isString('abc')
- *   // => true
+ *   //=> true
  *
  *   isString(1)
- *   // => false
+ *   //=> false
  *
  */
 module.exports = or(isString, isNumber)

@@ -1,4 +1,5 @@
-/* istanbul ignore: WIP */
+/* istanbul ignore next: WIP */
+
 const ObjectKeys = require('../util/keys')
 const isMap = require('../is/map')
 const isFalse = require('../is/false')

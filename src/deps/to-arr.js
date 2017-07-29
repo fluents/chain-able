@@ -4,6 +4,9 @@ const isSet = require('./is/set')
 const isMap = require('./is/map')
 const isIterator = require('./is/iterator')
 const ArrayFrom = require('./util/from')
+const hasOwnPropertyFlipped = require('./flipped/hasOwnPropertyFlipped')
+
+const hasValues = hasOwnPropertyFlipped('values')
 
 /**
  * @desc anything into an array
@@ -26,30 +29,30 @@ const ArrayFrom = require('./util/from')
  * @example
  *
  *   toarr([])
- *   // => []
+ *   //=> []
  *
  *   toarr('')
- *   // => ['']
+ *   //=> ['']
  *
  *   toarr('1,2')
- *   // => ['1', '2']
+ *   //=> ['1', '2']
  *
  *   toarr('1,2')
- *   // => ['1', '2']
+ *   //=> ['1', '2']
  *
  *   const map = new Map()
  *   map.set('eh', true)
  *   const arr = toarr(map.entries())
- *   // => ['eh', true]
+ *   //=> ['eh', true]
  *
  *   const set = new Set()
  *   set.add('eh')
  *   set.add(true)
  *   const arr = toarr(map.entries())
- *   // => ['eh', true]
+ *   //=> ['eh', true]
  *
  *   toarr('').concat(toarr(false)).concat(toarr(null))
- *   // => ['', false, null]
+ *   //=> ['', false, null]
  *
  */
 module.exports = function(ar) {
@@ -57,10 +60,10 @@ module.exports = function(ar) {
   if (isStringPrimitive(ar)) return ar.includes(',') ? ar.split(',') : [ar]
   else if (!ar) return [ar]
   else if (isArray(ar)) return ar
-  else if (isSet(ar) || isMap(ar) || ar.values) {
+  else if (isSet(ar) || isMap(ar) || hasValues(ar)) {
     /**
      * @desc when using `new Set().values`... no forEach o.o
-     *       .values is also on `Object`...
+     * @NOTE .values is also on `Object`...
      */
     return ArrayFrom(ar.values(ar))
   }

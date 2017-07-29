@@ -23,10 +23,10 @@ const matchNative = require('../regexp/matchNative')
  * @example
  *
  * isNative(Array.prototype.push)
- * // => true
+ * //=> true
  *
  * isNative(function normalFunction() {})
- * // => false
+ * //=> false
  *
  */
 module.exports = function isNative(x) {

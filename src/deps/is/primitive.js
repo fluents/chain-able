@@ -28,17 +28,17 @@ const isNullOrUndefined = require('./nullOrUndefined')
  *
  * @example
  *
- * isPrimitive('abc')            // => true
- * isPrimitive(1)                // => true
- * isPrimitive('')               // => true
- * isPrimitive(null)             // => true
- * isPrimitive(undefined)        // => true
- * isPrimitive(void 0)           // => true
+ * isPrimitive('abc')            //=> true
+ * isPrimitive(1)                //=> true
+ * isPrimitive('')               //=> true
+ * isPrimitive(null)             //=> true
+ * isPrimitive(undefined)        //=> true
+ * isPrimitive(void 0)           //=> true
  *
- * isPrimitive(new String('abc')) // => false
- * isPrimitive([])                // => false
- * isPrimitive(() => {})          // => false
- * isPrimitive({})                // => false
+ * isPrimitive(new String('abc')) //=> false
+ * isPrimitive([])                //=> false
+ * isPrimitive(() => {})          //=> false
+ * isPrimitive({})                //=> false
  *
  */
 module.exports = function isPrimitive(node) {

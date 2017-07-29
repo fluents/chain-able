@@ -4,6 +4,7 @@ const isStringPrimitive = require('./stringPrimitive')
 /**
  * Checks if `value` is classified as a `String` primitive or object.
  *
+ * @name isString
  * @since 3.0.0
  * @category Lang
  *
@@ -30,14 +31,14 @@ const isStringPrimitive = require('./stringPrimitive')
  *
  * @example
  *
- * isString('abc')
- * // => true
+ *   isString('abc')
+ *   //=> true
  *
- * isString(new String('abc'))
- * // => true
+ *   isString(new String('abc'))
+ *   //=> true
  *
- * isString(1)
- * // => false
+ *   isString(1)
+ *   //=> false
  *
  */
 module.exports = x => isStringPrimitive(x) || toS(x) === '[object String]'

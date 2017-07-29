@@ -35,9 +35,11 @@ const argumentor = require('../argumentor')
  *
  *      const flipped = flip((...args) => args)
  *      flipped('a', 'b', 'c', 'd')
- *      // => ['d', 'c', 'b', 'a']
+ *      //=> ['d', 'c', 'b', 'a']
+ *
  */
 module.exports = function flip(fn) {
+  // could wrap in arity
   return function() {
     return fn.apply(this, argumentor.apply(null, arguments).reverse())
   }

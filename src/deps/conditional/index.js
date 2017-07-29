@@ -1,4 +1,5 @@
-/* istanbul ignore */
+/* istanbul ignore next: @docblocks @exports */
+
 const all = require('./all')
 const and = require('./and')
 const some = require('./some')

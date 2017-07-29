@@ -1,4 +1,4 @@
-/* istanbul ignore: @docblocks */
+/* istanbul ignore next */
 
 const map = require('./map')
 const set = require('./set')

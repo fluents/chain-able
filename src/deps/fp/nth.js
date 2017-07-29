@@ -34,10 +34,10 @@ const isString = require('../is/string')
  *   const array = ['a', 'b', 'c', 'd']
  *
  *   nth(array, 1)
- *   // => 'b'
+ *   //=> 'b'
  *
  *   nth(array, -2)
- *   // => 'c'
+ *   //=> 'c'
  *
  */
 function nth(list, offset) {

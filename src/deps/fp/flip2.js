@@ -28,7 +28,7 @@ const curry = require('./curry')
  *
  *      const flipped = flip((...args) => args)
  *      flipped('a', 'b', 'c', 'd')
- *      // => ['b', 'a', 'c', 'd']
+ *      //=> ['b', 'a', 'c', 'd']
  *
  */
 module.exports = function flip2(fn) {

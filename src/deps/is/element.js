@@ -18,10 +18,10 @@ const isPlainObject = require('./objPlain')
  * @example
  *
  *   isElement(document.body)
- *   // => true
+ *   //=> true
  *
  *   isElement('<body>')
- *   // => false
+ *   //=> false
  *
  */
 function isElement(x) {

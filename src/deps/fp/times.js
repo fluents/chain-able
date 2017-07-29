@@ -33,10 +33,10 @@ const curry = require('../fp/curry')
  * @example
  *
  *   times(3, String)
- *   // => ['0', '1', '2']
+ *   //=> ['0', '1', '2']
  *
  *   times(4, () => 0)
- *   // => [0, 0, 0, 0]
+ *   //=> [0, 0, 0, 0]
  *
  */
 function times(n, iteratee) {

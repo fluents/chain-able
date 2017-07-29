@@ -16,10 +16,12 @@ const curry = require('../fp/curry')
  * @param  {Array} list to match against predicate
  * @return {boolean} all match predicate
  *
+ * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every mozilla-every}
  * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L262 underscore-all}
  * {@link https://github.com/ramda/ramda/blob/master/src/all.js ramda-all}
  * @see {@link ramda-all}
  * @see {@link underscore-all}
+ * @see {@link mozilla-every}
  * @see fp/curry
  *
  * @sig (a -> Boolean) -> [a] -> Boolean

@@ -17,12 +17,12 @@ const toS = require('./toS')
  * @example
  *
  * isString('abc')
- * // => true
+ * //=> true
  *
  * isString(new String('abc'))
- * // => false
+ * //=> false
  *
  * isString(1)
- * // => false
+ * //=> false
  */
 module.exports = x => typeof x === 'string'

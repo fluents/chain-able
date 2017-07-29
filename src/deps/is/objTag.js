@@ -21,22 +21,22 @@ const toS = require('./toS')
  * @example
  *
  * isObjectTag({})
- * // => true
+ * //=> true
  *
  * isObjectTag(Object.create(null))
- * // => true
+ * //=> true
  *
  * isObjectTag(Object({}))
- * // => true
+ * //=> true
  *
  * isObjectTag([1, 2, 3])
- * // => false
+ * //=> false
  *
  * isObjectTag(Function)
- * // => false
+ * //=> false
  *
  * isObjectTag(null)
- * // => false
+ * //=> false
  *
  */
 module.exports = x => toS(x) === '[object Object]'

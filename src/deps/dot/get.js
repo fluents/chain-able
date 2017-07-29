@@ -6,28 +6,38 @@ const getPathSegments = require('./segments')
 const isDottable = require('./dottable')
 
 /**
- * @name dot.get
+ * @desc dot-prop get at path
+ * @namespace dot
  * @memberOf dot
- * @func
  * @since 3.0.0
- * @extends dot/getPathSegments
+ *
+ * @alias dotGet
+ * @alias get
  *
  * @param  {Object} obj the object to retrieve the nested property from.
  * @param  {Dottable | string | Array} path dot-prop-path to use
  * @param  {*} fallback use when there is no value at specified path
  * @return {*} value at path or fallback
  *
+ * @func
+ * @extends dot/getPathSegments
+ *
  * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L150 underscore-deep-get}
  * @see {@link underscore-deep-get}
  *
  * @example
  *
- *    dot.get({a: {b: 2}}, 'a.b'); //=> 2
- *    dot.get({a: {b: 2}}, ['a', 'b']); //=> 2
- *    dot.get({c: {b: 2}}, ['a', 'b']); //=> undefined
+ *    dot.get({a: {b: 2}}, 'a.b')      //=> 2
+ *    dot.get({a: {b: 2}}, ['a', 'b']) //=> 2
+ *    dot.get({c: {b: 2}}, ['a', 'b']) //=> undefined
  *
  */
 module.exports = function(obj, path, fallback) {
+  // if (pathArray.length === 1 && hasOwnProperty(dot, path[0]))
+  //   return dot[path[0]]
+  // else if (isString(path) && path.includes('.') === false && hasOwnProperty(dot, path))
+  //   return dot[path]
+
   if (!isDottable(obj, path)) {
     return isUndefined(fallback) ? obj : fallback
   }

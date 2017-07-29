@@ -31,7 +31,7 @@ const toS = require('./toS')
  *  isMap(1)
  *  //=> false
  *  isMap(new WeakMap)
- *  // => false
+ *  //=> false
  *
  * @example
  *

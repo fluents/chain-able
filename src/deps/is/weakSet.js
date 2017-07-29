@@ -12,10 +12,10 @@ const toS = require('./toS')
  * @example
  *
  *   isWeakSet(new WeakSet)
- *   // => true
+ *   //=> true
  *
  *   isWeakSet(new Set)
- *   // => false
+ *   //=> false
  *
  */
 function isWeakSet(x) {
