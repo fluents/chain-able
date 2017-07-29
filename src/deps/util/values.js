@@ -1,3 +1,7 @@
+/**
+ * @TODO this does not support arrays?
+ * @type {Function}
+ */
 module.exports = Object.values
 
 // const keys = require('./keys')
@@ -26,47 +30,13 @@ module.exports = Object.values
  *
  */
 // module.exports = function values(obj) {
-//   var props = keys(obj)
-//   var len = props.length
-//   var vals = []
-//   var idx = 0
+//   const props = keys(obj)
+//   let len = props.length
+//   const vals = preAllocate(len)
+//   let idx = 0
 //   while (idx < len) {
 //     vals[idx] = obj[props[idx]]
 //     idx += 1
 //   }
 //   return vals
-// }
-
-
-/**
- * Returns a list of all the properties, including prototype properties, of the
- * supplied object.
- * Note that the order of the output array is not guaranteed to be consistent
- * across different JS platforms.
- * @since 5.0.0-beta.1
- *
- * @func
- * @memberOf util
- * @fork v0.2.0
- * @category Object
- * @sig {k: v} -> [v]
- *
- * @param {Object} obj The object to extract values from
- * @return {Array} An array of the values of the object's own and prototype properties.
- *
- * @see R.values, R.keysIn
- * @example
- *
- *      var F = function() { this.x = 'X'; };
- *      F.prototype.y = 'Y';
- *      var f = new F();
- *      R.valuesIn(f); //=> ['X', 'Y']
- */
-// module.exports = function valuesIn(obj) {
-//   var prop
-//   var vs = []
-//   for (prop in obj) {
-//     vs[vs.length] = obj[prop]
-//   }
-//   return vs
 // }

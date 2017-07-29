@@ -1,6 +1,3 @@
 module.exports = Object.keys
-// function keys(obj) {
-//   var res = []
-//   for (var key in obj)
-//     { res.push(key) }
-//   return res
+
+// ENV_COMPAT: // https://github.com/ramda/ramda/blob/master/src/keys.js
