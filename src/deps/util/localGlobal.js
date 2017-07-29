@@ -11,4 +11,5 @@ const isWebWorker = require('../is/webWorker')
  * @see {@link lodash-root}
  * @type {Object}
  */
-module.exports = isBrowser() ? window : isWebWorker() ? WorkerGlobalScope : global
+module.exports = () =>
+  (isBrowser() ? window : isWebWorker() ? WorkerGlobalScope : global)

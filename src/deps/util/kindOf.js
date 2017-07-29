@@ -16,5 +16,5 @@ const toS = require('../is/toS')
  *
  */
 module.exports = function kindOf(x) {
-  return toS(x).split(' ').pop().replace(/\s\[\]/g, '').toLowerCase()
+  return toS(x).split(' ').pop().replace(/\s\[|\]/g, '').toLowerCase()
 }

@@ -1,7 +1,9 @@
+const ENV_PERF = require('../env/preferPerf')
+const EMPTY_OBJ = require('../native/EMPTY_OBJ')
+const preAllocate = require('../array/preAllocate')
 const isObj = require('../is/obj')
 const isArray = require('../is/array')
 const ObjectKeys = require('./keys')
-const lengthFromZero = require('./lengthFromZero')
 
 /**
  * Creates an array of the own enumerable property names of `object`.
@@ -13,12 +15,13 @@ const lengthFromZero = require('./lengthFromZero')
  * @category Object
  * @name keysObjOrArray
  *
- * @param {Object} obj The object to query.
- * @return {Array} Returns the array of property names.
+ * @param {Object|Array|Map|Set} obj The object to query, or value to pre-allocate with
+ * @return {Array} Returns the array of property names, or preallocated array
  *
  * @see deps/util/lengthFromZero
  * @see deps/util/props
- * @see values, valuesIn
+ * @see util/values
+ * @see util/valuesIn
  *
  * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L988 underscore-all-keys}
  * {@link https://github.com/ramda/ramda/blob/master/src/keys.js ramda-keys}
@@ -33,27 +36,30 @@ const lengthFromZero = require('./lengthFromZero')
  *
  * @example
  *
- * function Foo() {
- *   this.a = 1
- *   this.b = 2
- * }
+ *     function Foo() {
+ *       this.a = 1
+ *       this.b = 2
+ *     }
  *
- * Foo.prototype.c = 3
+ *     Foo.prototype.c = 3
  *
- * keys(new Foo)
- * // => ['a', 'b'] (iteration order is not guaranteed)
+ *     keys(new Foo)
+ *     //=> ['a', 'b'] (iteration order is not guaranteed)
  *
- * keys('hi')
- * // => ['0', '1']
+ *     keys('hi')
+ *     //=> ['0', '1']
  *
  */
 module.exports = function keys(obj) {
   return isArray(obj)
-    ? new Array(lengthFromZero(obj))
+    ? preAllocate(obj)
     : isObj(obj)
       ? ObjectKeys(obj)
-      : []
-
-  // for (var key in obj) gathered.push(key)
-  // return gathered
+      // @TODO
+      // ? hasOwnProperty(obj, 'keys')
+      //   ? castIteratorToArray(obj.keys())
+      //   : ObjectKeys(obj)
+      : ENV_PERF
+        ? EMPTY_OBJ
+        : []
 }

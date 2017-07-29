@@ -1,6 +1,5 @@
 const assign = require('./assign')
 const from = require('./from')
-const charCodeAtZero = require('./charCodeAtZero')
 const getDescriptor = require('./getDescriptor')
 const getPrototypeOf = require('./getPrototypeOf')
 const hasOwnProperty = require('./hasOwnProperty')
@@ -14,6 +13,11 @@ const lengthMinusOne = require('./lengthMinusOne')
 const localGlobal = require('./localGlobal')
 const nonEnumerableTypes = require('./nonEnumerableTypes')
 const noop = require('./noop')
+const define = require('./define')
+const defineFinal = require('./defineFinal')
+const freeze = require('./freeze')
+const values = require('./values')
+const concat = require('./concat')
 const simpleKindOf = require('./simpleKindOf')
 const _typeof = require('./typeof')
 
@@ -24,7 +28,6 @@ const _typeof = require('./typeof')
 module.exports = {
   assign,
   from,
-  charCodeAtZero,
   getDescriptor,
   getPrototypeOf,
   hasOwnProperty,
@@ -40,4 +43,10 @@ module.exports = {
   noop,
   simpleKindOf,
   'typeof': _typeof,
+  // updated
+  define,
+  defineFinal,
+  freeze,
+  values,
+  concat,
 }

@@ -3,4 +3,5 @@
 // module.exports = {
 //   'DELETE': 'delete',
 //   'DEFAULT': 'default',
+//   'RETURN'
 // }
