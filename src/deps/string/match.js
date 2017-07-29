@@ -1,9 +1,9 @@
 const curry = require('../fp/curry')
-// const hasOwnProperty = require('../is/nullOrUndefined')
 const isIn = require('../is/in')
-const ENV_PERF = require('../env/strict')
+const ENV_PERF = require('../env/preferPerf')
 const FROZEN_ARRAY = require('../native/EMPTY_ARRAY')
 // const SymbolMatch = require('../symbols/match')
+// const hasOwnProperty = require('../is/nullOrUndefined')
 
 // could use `EMPTY_ARRAY` but being frozen may mess the matches...
 // pre-initialized, can cause side-effects

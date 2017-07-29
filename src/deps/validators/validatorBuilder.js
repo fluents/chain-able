@@ -7,7 +7,7 @@
  */
 const ChainedMap = require('../../ChainedMapBase')
 const ENV_DEBUG = require('../env/debug')
-const is = require('../is')
+const is = require('../is/_core')
 const isString = require('../is/string')
 const isFunction = require('../is/function')
 const dopemerge = require('../dopemerge')
@@ -216,22 +216,22 @@ function arithmeticTypeFactory(fullKey) {
  *    // functionType
  *    const isString = x => typeof x === 'string'
  *    builder(isString)
- *    // => isString
+ *    //=> isString
  *
  * @example
  *
  *    // stringType (built in, or custom-keyed validator, or eqeqeq)
  *    builder('string')
- *    // => isString
+ *    //=> isString
  *
  *    const enummy = builder('enum')
- *    // => x => ['enum'].includes(x)
+ *    //=> x => ['enum'].includes(x)
  *
  * @example
  *
  *    // arithmeticType
  *    builder('string|string[]')
- *    // => isString || isArrayOf(isString)
+ *    //=> isString || isArrayOf(isString)
  *
  */
 function builder(fullKey) {

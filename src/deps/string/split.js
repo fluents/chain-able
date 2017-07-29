@@ -1,6 +1,8 @@
-const castSlice = './.internal/castSlice.js'
+const ENV_PERF = require('../env/preferPerf')
+const FROZEN_ARRAY = require('../native/EMPTY_ARRAY')
 const MAX_ARRAY_LENGTH = require('../native/MAX_ARRAY_LENGTH')
 const stringToArray = require('../cast/stringToArray')
+const castSlice = require('../fp/slice')
 const isString = require('../is/stringPrimitive')
 const isRegExp = require('../is/regexp')
 const isUndefined = require('../is/undefined')
@@ -21,15 +23,15 @@ const hasUnicode = require('./hasUnicode')
  *
  * @param {string} [string=''] The string to split.
  * @param {RegExp|string} separator The separator pattern to split by.
- * @param {number} [limit] The length to truncate results to.
+ * @param {number} [limitArg] The length to truncate results to.
  * @return {Array} Returns the string segments.
  *
  * @see http://speakingjs.com/es5/ch24.html
  *
  * @example
  *
- * split('a-b-c', '-', 2)
- * // => ['a', 'b']
+ *   split('a-b-c', '-', 2)
+ *   //=> ['a', 'b']
  *
  */
 function split(string, separator, limitArg) {
@@ -37,7 +39,7 @@ function split(string, separator, limitArg) {
 
   // @TODO EMPTY_ARRAY?
   if (!limit) {
-    return []
+    return ENV_PERF ? FROZEN_ARRAY : []
   }
 
   // split the unicode string into an array, then slice it
