@@ -1,5 +1,7 @@
 const {resolve} = require('path')
 const log = require('fliplog')
+const nodeResolve = require('rollup-plugin-node-resolve')
+const commonjs = require('rollup-plugin-commonjs')
 const {rollup} = require('rollup')
 const uglify = require('rollup-plugin-uglify')
 const {minify} = require('uglify-es')
@@ -10,7 +12,8 @@ const res = rel => resolve(__dirname, rel)
 
 const replacePlugin = () => {
   return replace({
-    'process.env.NODE_ENV': JSON.stringify('debug'),
+    'process.env.NODE_ENV': JSON.stringify('production'),
+    // 'process.env.NODE_ENV': JSON.stringify('debug'),
     'NO_OP': `function() {/* noop */}`,
   })
 }
@@ -76,12 +79,15 @@ const uglifyPlugin = () =>
   )
 
 const config = {
-  entry: res('./play.js'),
-  external: [],
+  // entry: res('./play.js'),
+  // entry: res('../../src/deps/fp/curry.js'),
+  entry: res('../../src/deps/is/tagEq.js'),
+  // external: [],
   onwarn(warning) {
     log.red(warning).echo()
   },
-  plugins: [replacePlugin(), bublePlugin(), uglifyPlugin()],
+  // , bublePlugin(), uglifyPlugin()
+  plugins: [replacePlugin(), nodeResolve(), commonjs()],
 }
 const bundleOptions = {
   dest: res('./play.bundled.js'),
@@ -94,7 +100,7 @@ const bundleOptions = {
 rollup(config)
   .catch()
   .then(ricky => {
-    // has the ast, imports, exports, etc
+    // @NOTE ricky has the ast, imports, exports, etc
     log.data(ricky).echo(false)
     ricky.write(bundleOptions)
   })

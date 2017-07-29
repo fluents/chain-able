@@ -7,6 +7,9 @@ module.exports = {
     'jsdoc/require-param': 'error',
     'jsdoc/require-param-description': 'error',
     'jsdoc/require-returns-type': 'error',
+    'import/max-dependencies': 'OFF',
+    // 'dot-notation': ["error", { "allowKeywords": false }],
+    /* eslint 'dot-notation': ["error", { "allowKeywords": false }] */
 
     // 'filenames/match-regex': [2, '^[a-z_]+[a-zA-Z_]+$', true],
     // "filenames/match-exported": [2, [ null, "kebab", "snake" ] ],

@@ -1710,17 +1710,22 @@
 	      : typeof x
 	};
 
-	/* ___filename___: dist/deps/conditional/includes/includes.js */
+	/* ___filename___: dist/deps/conditional/includes/haystackNeedle.js */
 
 
 	/**
+	 * @desc haystack includes needle
 	 * @memberOf includes
-	 * @name includes
-	 * @func
+	 * @version 1.0.0
+	 * @since 4.0.0
 	 *
 	 * @param  {Array | string} haystack haystack includes needle
 	 * @param  {string | *} needle needle in haystack
 	 * @return {boolean} needle in haystack
+	 *
+	 * @name includes
+	 * @alias haystackNeedle
+	 * @func
 	 *
 	 * @TODO `~haystack.indexOf(needle)`
 	 *
@@ -1738,11 +1743,7 @@
 	 */
 	var includes = function (haystack, needle) { return haystack.includes(needle); };
 
-	var includes_1 = curry(2, includes);
-
-	/* ___filename___: dist/deps/conditional/includes/includes.js */
-
-	var index$4 = includes_1;
+	var haystackNeedle = curry(2, includes);
 
 	/* ___filename___: dist/deps/dopemerge/emptyTarget.js */
 
@@ -1779,6 +1780,8 @@
 	/* ___filename___: dist/deps/is/boolean.js */
 
 	/* ___filename___: dist/deps/util/simpleKindOf.js */
+
+	/* ___filename___: dist/deps/conditional/includes/haystackNeedle.js */
 
 	/* ___filename___: dist/deps/dopemerge/emptyTarget.js */
 
@@ -1897,6 +1900,7 @@
 
 	  for (var i = 0; i < source.length; i++) {
 	    var v = source[i];
+
 	    if (_undefined(destination[i])) {
 	      destination[i] = cloneIfNeeded(v, optsArg);
 	    }
@@ -1910,6 +1914,7 @@
 	      destination.push(cloneIfNeeded(v, optsArg));
 	    }
 	  }
+
 	  return destination
 	}
 
@@ -1921,6 +1926,7 @@
 	      destination[targetKeys[k]] = cloneIfNeeded(target[targetKeys[k]], optsArg);
 	    }
 	  }
+
 	  var sourceKeys = keys(source);
 	  for (var s = 0; s < sourceKeys.length; s++) {
 	    var key = sourceKeys[s];
@@ -1967,6 +1973,8 @@
 	 * @param {*} opts dopemerge options
 	 * @return {Object | Array | any} merged
 	 *
+	 * {@link https://github.com/facebook/immutable-js/blob/master/src/Map.js#L145 immutable-js-merge}
+	 * {@link https://github.com/ramda/ramda/blob/master/src/merge.js ramda-merge}
 	 * {@link https://github.com/lodash/lodash/blob/master/merge.js lodash-merge}
 	 * {@link https://github.com/KyleAMathews/deepmerge deepmerge}
 	 * @see {@link deepmerge}
@@ -2034,7 +2042,8 @@
 	      ignoreTypes: ['null', 'undefined'],
 	      // debug: true,
 	    },
-	    opts || {}
+	    opts
+	    // || {}
 	  );
 	  var ignoreTypes = options.ignoreTypes;
 	  var stringToArray = options.stringToArray;
@@ -2047,15 +2056,15 @@
 	  // const boolToArray = false
 	  // const clone = true
 
+	  // @NOTE uglifier optimizes into a wicked ternary
 	  // check one then check the other
-	  if (_true(index$4(ignoreTypes, simpleKindOf(obj1)))) {
+	  if (_true(haystackNeedle(ignoreTypes, simpleKindOf(obj1)))) {
 	    return obj2
 	  }
-	  else if (_true(index$4(ignoreTypes, simpleKindOf(obj2)))) {
+	  else if (_true(haystackNeedle(ignoreTypes, simpleKindOf(obj2)))) {
 	    return obj1
 	  }
 	  else if (boolean_1(obj1) && boolean_1(obj2)) {
-	    // @NOTE uglifier optimizes into a wicked ternary
 	    return boolToArray ? [obj1, obj2] : obj2
 	  }
 	  else if (string(obj1) && string(obj2)) {
@@ -2133,7 +2142,7 @@
 
 	/* ___filename___: dist/deps/reduce/reduce.js */
 
-	var index$6 = reduce;
+	var index$4 = reduce;
 
 	/* ___filename___: dist/deps/is/obj.js */
 
@@ -2638,7 +2647,7 @@
 
 	/* ___filename___: dist/deps/meta/meta.js */
 
-	var index$8 = meta;
+	var index$6 = meta;
 
 	/* ___filename___: dist/Chainable.js */
 
@@ -2699,7 +2708,7 @@
 	      Target.call(this, parent);
 
 	      this.store = new Map();
-	      this.meta = index$8(this);
+	      this.meta = index$6(this);
 	    }
 
 	    if ( Target ) ChainedMapBase.__proto__ = Target;
@@ -2847,7 +2856,7 @@
 	     *
 	     */
 	    ChainedMapBase.prototype.entries = function entries$$1 (chains) {
-	      var reduced = index$6(this.store);
+	      var reduced = index$4(this.store);
 	      if (_undefined(chains)) { return reduced }
 
 	      var reducer = entries(reduced);
@@ -2978,6 +2987,99 @@
 	var lengthFromZero = function (obj) { return (obj.length > 1 ? obj.length - 1 : obj.length === 1 ? 1 : 0); };
 
 	/* ___filename___: dist/deps/util/lengthFromZero.js */
+
+	/* ___filename___: dist/deps/argumentor.js */
+
+
+	/**
+	 * @desc turns arguments into an array, used as a util, for opt
+	 *
+	 * @name argumentor
+	 * @since 3.0.0
+	 * @return {Array<Arguments>}
+	 *
+	 * @see https://github.com/aretecode/awesome-deopt
+	 * @see https://github.com/petkaantonov/bluebird/wiki/Optimization-killers
+	 * @see deps/util/lengthFromZero
+	 *
+	 * @example
+	 *
+	 *    function eh() {
+	 *      const args = argumentor.apply(null, arguments).slice(1)
+	 *
+	 *      console.log(args)
+	 *      //=> [1, 10, 100]
+	 *    }
+	 *    eh(0, 1, 10, 100)
+	 *
+	 */
+	var argumentor = function() {
+	  var arguments$1 = arguments;
+
+	  var len = arguments.length;
+	  // len > 1 ? len - 1 : 0
+	  var args = new Array(lengthFromZero(len));
+	  for (var i = 0; i < len; ++i) { args[i] = arguments$1[i]; }
+	  return args
+	};
+
+	/* ___filename___: dist/deps/argumentor.js */
+
+	/* ___filename___: dist/deps/fp/flip2.js */
+
+
+
+	/**
+	 * Returns a new function much like the supplied one, except that the first two
+	 * arguments' order is reversed.
+	 *
+	 * @memberOf fp
+	 * @symb 🙃🙃
+	 * @since 5.0.0-beta.4
+	 *
+	 * @param {Function} fn The function to invoke with its first two parameters reversed.
+	 * @return {*} The result of invoking `fn` with its first two parameters' order reversed.
+	 *
+	 * @extends fp/flip
+	 * @variation just flip, but flips arg 1-2 instead of reversing all arguments
+	 * @see fp/flip
+	 * @TODO flipN
+	 *
+	 * @types fp
+	 * @tests fp/flip2
+	 *
+	 * @example
+	 *
+	 *      var mergeThree = (a, b, c) => [].concat(a, b, c)
+	 *      mergeThree(1, 2, 3);       //=> [1, 2, 3]
+	 *      flip(mergeThree)(1, 2, 3); //=> [2, 1, 3]
+	 *
+	 *      const flipped = flip((...args) => args)
+	 *      flipped('a', 'b', 'c', 'd')
+	 *      // => ['b', 'a', 'c', 'd']
+	 *
+	 */
+	var flip2 = function flip2(fn) {
+	  return curry(2, function(a, b) {
+	    var args = argumentor.apply(null, arguments);
+	    // .slice(n).reverse().splice()
+	    args[0] = b;
+	    args[1] = a;
+	    return fn.apply(this, args)
+	  })
+	};
+
+	/* ___filename___: dist/deps/fp/flip2.js */
+
+	/* ___filename___: dist/deps/conditional/includes/needleHaystack.js */
+
+
+
+	var needleHaystack = flip2(haystackNeedle);
+
+	/* ___filename___: dist/deps/conditional/includes/needleHaystack.js */
+
+	var index$8 = needleHaystack;
 
 	/* ___filename___: dist/deps/util/keysObjOrArray.js */
 
@@ -3155,17 +3257,19 @@
 
 	/**
 	 * @desc first fn || second fn, curried
-	 * @name or
 	 * @memberOf conditional
 	 * @since  4.0.1
-	 * @func
 	 *
 	 * @param  {Function} left first fn
 	 * @param  {Function} right second fn
-	 * @param  {*} x value to pass into left & right, curried
-	 * @return {boolean} one of the functions return truthy
+	 * @param  {*} x value to pass into left & right, @curried
+	 * @return {boolean} one of the functions return truthy @curried
+	 *
+	 * @name or
+	 * @func
 	 *
 	 * @example
+	 *
 	 *    const {isTrue, isFalse} = require('chain-able')
 	 *
 	 *    const either = or(isFalse, isTrue)
@@ -4268,6 +4372,10 @@
 	 * @param  {Object} instance call destructor
 	 * @return {void}
 	 *
+	 * @prop {Array} instancePool
+	 * @prop {number} poolSize
+	 * @prop {Function} destructor
+	 *
 	 * @example
 	 *
 	 *    class Eh {}
@@ -4342,7 +4450,6 @@
 
 
 
-
 	/**
 	 * @symb 🎱
 	 * @member pooler
@@ -4369,6 +4476,11 @@
 	 * @param {Function | Object} CopyConstructor Constructor that can be used to reset.
 	 * @param {Function} pooler Customizable pooler.
 	 * @return {Object} enhanced constructor, decorated with pooler
+	 *
+	 * @prop {Array} instancePool
+	 * @prop {number} poolSize
+	 * @prop {Function} release
+	 * @prop {Function} getPooled
 	 *
 	 * @example
 	 *
@@ -4977,7 +5089,7 @@
 
 	  // convert to iteratable
 	  if (map(node)) {
-	    node = index$6(node);
+	    node = index$4(node);
 	  }
 	  else if (set(node)) {
 	    node = toArr(node);
@@ -5374,7 +5486,7 @@
 	  if (_true(longest)) {
 	    // concat a string of all paths so we can unique each branch
 	    // @example `canada.arr.0` vs `canada.arr`
-	    paths = paths.filter(function (path) { return !paths.some(function (otherPath) { return otherPath !== path && index$4(otherPath, path); }
+	    paths = paths.filter(function (path) { return !paths.some(function (otherPath) { return otherPath !== path && index$8(otherPath, path); }
 	    ); });
 	  }
 
@@ -5906,15 +6018,17 @@
 
 	/**
 	 * @desc first fn & second fn
-	 * @name and
-	 * @alias both
 	 * @memberOf conditional
 	 * @since  4.0.1
-	 * @func
 	 *
 	 * @param  {Function} left first fn
 	 * @param  {Function} right second fn
-	 * @return {boolean} both functions return truthy
+	 * @return {Function | boolean} both functions return truthy @curried
+	 *
+	 * @curried
+	 * @name and
+	 * @alias both
+	 * @func
 	 *
 	 * @example
 	 *
@@ -5940,13 +6054,15 @@
 	 * map all values in an array to see if all match
 	 * Returns `true` if all elements of the list match the predicate, `false` if there are any that don't.
 	 *
+	 * @name all
 	 * @memberOf conditional
 	 * @since 4.0.1
 	 *
 	 * @TODO `not(some)` ?
 	 *
+	 * @curried
 	 * @param  {Function} predicate match the value
-	 * @param  {Array} array to match against predicate
+	 * @param  {Array} list to match against predicate
 	 * @return {boolean} all match predicate
 	 *
 	 * {@link https://github.com/ramda/ramda/blob/master/src/all.js ramda-all}
@@ -5966,9 +6082,9 @@
 	 *    //=> false
 	 *
 	 */
-	var all = curry(2, function (predicate, arr) {
-	  for (var i in arr) {
-	    if (!predicate(arr[i])) { return false }
+	var all = curry(2, function (predicate, list) {
+	  for (var i in list) {
+	    if (!predicate(list[i])) { return false }
 	  }
 	  return true
 	});
@@ -7039,7 +7155,7 @@
 
 	  // can use this to "undecorate"
 	  // if (!parentToDecorate.meta) <- checks already inside of meta()
-	  parentToDecorate.meta = index$8(parentToDecorate);
+	  parentToDecorate.meta = index$6(parentToDecorate);
 
 	  // default returns result of calling function,
 	  // else .parentToDecorate
@@ -7103,41 +7219,6 @@
 
 	/* ___filename___: dist/deps/util/getDescriptor.js */
 	var getDescriptor = Object.getOwnPropertyDescriptor;
-
-	/* ___filename___: dist/deps/argumentor.js */
-
-
-	/**
-	 * @desc turns arguments into an array, used as a util, for opt
-	 *
-	 * @name argumentor
-	 * @since 3.0.0
-	 * @return {Array<Arguments>}
-	 *
-	 * @see https://github.com/aretecode/awesome-deopt
-	 * @see https://github.com/petkaantonov/bluebird/wiki/Optimization-killers
-	 * @see deps/util/lengthFromZero
-	 *
-	 * @example
-	 *
-	 *    function eh() {
-	 *      const args = argumentor.apply(null, arguments).slice(1)
-	 *
-	 *      console.log(args)
-	 *      //=> [1, 10, 100]
-	 *    }
-	 *    eh(0, 1, 10, 100)
-	 *
-	 */
-	var argumentor = function() {
-	  var arguments$1 = arguments;
-
-	  var len = arguments.length;
-	  // len > 1 ? len - 1 : 0
-	  var args = new Array(lengthFromZero(len));
-	  for (var i = 0; i < len; ++i) { args[i] = arguments$1[i]; }
-	  return args
-	};
 
 	/* ___filename___: dist/deps/util/getPrototypeOf.js */
 
@@ -7240,8 +7321,6 @@
 	/* ___filename___: dist/plugins/autoGetSet.js */
 
 	/* ___filename___: dist/deps/util/getDescriptor.js */
-
-	/* ___filename___: dist/deps/argumentor.js */
 
 	/* ___filename___: dist/deps/gc.js */
 
@@ -10817,6 +10896,8 @@
 	};
 
 	/* ___filename___: dist/deps/traversers/eq.js */
+
+
 	var eq$2 = traverse_1.eq;
 
 	var index$22 = validatorBuilder;
@@ -10862,9 +10943,9 @@
 	exp.camelCase = camelCase;
 	exp.dot = index$20;
 	exp.matcher = index$18;
-	exp.reduce = index$6;
+	exp.reduce = index$4;
 	exp.clean = clean;
-	exp.meta = index$8;
+	exp.meta = index$6;
 	exp.eq = eq$2;
 	exp.types = index$22;
 	exp.encase = index$14;

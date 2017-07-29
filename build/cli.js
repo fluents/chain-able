@@ -24,13 +24,20 @@ const {read, write} = require('flipfile')
 const eslint = require('eslint')
 // const docdown = require('docdown')
 const find = require('chain-able-find')
-const {replace, pipe, dot, traverse, uniq} = require('../exports')
+const Chainable = require('../exports')
 const {del, _res, fromTo} = require('./util')
 const {stripRollup} = require('./plugins/ast')
 
 const {linter, CLIEngine} = eslint
 const res = _res(__dirname)
 const resRoot = _res('../')
+
+const {
+  replace, pipe, dot, traverse, uniq, includes, not, and, trim,
+} = Chainable
+
+const hasColon = includes(':')
+const hasDot = includes('.')
 
 // https://github.com/chalk/ansi-regex/blob/master/index.js
 const ansiRegex = /[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-PRZcf-nqry=><]/g
@@ -41,13 +48,12 @@ timer.start('cli')
 log.registerCatch()
 
 // startsWith '//' || '/*'
-// @TODO would also be a invoke
-const trim = x => x.trim()
 const stripWhitespace = replace(/(\s|\t|\n)+/g, '')
 const _isComment = x =>
   x.startsWith('//') ||
   x.startsWith('*') ||
-  x.startsWith('/*')
+  x.startsWith('/*') ||
+  x.includes('remapped from')
 const isComment = pipe(trim, stripWhitespace, _isComment)
 
 // setup args
@@ -64,6 +70,7 @@ const argvOpts = {
     'doctrine',
     'easyexports',
     'cleaneasyexports',
+    'quick',
   ],
   string: ['format'],
   default: {
@@ -188,11 +195,12 @@ const toDocPath = filepathBasename =>
   (res('../docs/docdown/') + '/' + filepathBasename).replace('.js', '.md')
 const toRepoDocPath = filepathBasename => repoDocPath + filepathBasename
 const toBasename = filePath => basename(filePath)
-const stripDot = filePath => filePath.replace(/[.]/gim, '')
-const escapeDot = filePath => filePath.replace(/[.]/gim, '\\.')
-const slashToDot = filePath => filePath.replace(/\//gim, '.')
 const toAnchor = (label, href) => `[${basename(label)}](${href || label})`
-const stripExt = filePath => filePath.replace(/\.[a-zA-Z0-9]{0,3}/, '')
+const stripDot = replace(/[.]/gim, '')
+const escapeDot = replace(/[.]/gim, '\\.')
+const slashToDot = replace(/\//gim, '.')
+const stripExt = replace(/\.[a-zA-Z0-9]{0,3}/, '')
+
 
 // ensure there is a `/` between them, say if we just resolve a filename
 const toRepoPath = filepathBasename => {
@@ -295,67 +303,9 @@ class CLI {
   rollupNode(overrides = {}) {
     return require('./build')(overrides)
   }
-  doctrine() {
+  doctrine(source) {
     var doctrineAPI = require('doctrine')
-    var ast = doctrineAPI.parse(
-      [
-        `
-          /**
-           * {@link https://ponyfoo.com/articles/es6-maps-in-depth pony-map}
-           * {@link https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map mozilla-map}
-           * @see {@link pony-map}
-           * @see {@link mozilla-map}
-           *
-           * @see ChainedMap
-           * @see Chainable
-           * @see MergeChain
-           * @see MethodChain
-           * @see ChainedMap
-           *
-           */
-        `,
-        // `
-        //   /**
-        //    * @param  {*} x value
-        //    * @param  {any} [y] not real, for ast
-        //    * @return {boolean} isDate
-        //    *
-        //    * @since 3.0.0
-        //    * @memberOf is
-        //    * @func isDate
-        //    *
-        //    * @example
-        //    *
-        //    *  isDate(new Date())
-        //    *  //=> true
-        //    *  isDate(Date.now())
-        //    *  //=> false
-        //    *  isDate(1)
-        //    *  //=> false
-        //    *  isDate('')
-        //    *  //=> false
-        //    *
-        //    * @example
-        //    *
-        //    *  const e = {}
-        //    *  eh[Symbol.toStringTag] = '[Object Date]'
-        //    *  isDate(eh)
-        //    *  //=> true
-        //    *
-        //    * @example
-        //    *
-        //    *  class Eh extends Date()
-        //    *  isDate(new Eh())
-        //    *  //=> true
-        //    */
-        // `,
-        // '/**',
-        // ' * This function comment is parsed by doctrine',
-        // ' * @param {{ok:String}} userName',
-        // '*/',
-      ].join('\n'),
-      {unwrap: true, sloppy: true}
-    )
+    var ast = doctrineAPI.parse(source, {unwrap: true, sloppy: true})
     log.quick(ast)
   }
   docs() {
@@ -438,7 +388,7 @@ class CLI {
       .results()
 
     let dirs = allDirs
-      .map(dir => (dir.includes('.') ? dir.replace(basename(dir), '') : dir))
+      .map(dir => (hasDot(dir) ? dir.replace(basename(dir), '') : dir))
       .filter(uniq)
 
     const docFiles = vfs.src.rel
@@ -454,7 +404,7 @@ class CLI {
       let docName = doc.replace(repoDocPath, '')
 
       // file
-      if (doc.includes('.')) {
+      if (hasDot(doc)) {
         docName = stripExt(docName)
       }
 
@@ -475,8 +425,11 @@ class CLI {
     //   .replace(/(\[39|2m,)/gim, '')
     //   .replace(/\'/gim, '')
     //   .replace(/\,/gim, '')
-    const toCode = x => x.replace(/[├─│─┐└─]/gim, '`$&`')
+    const toCode = replace(/[├─│─┐└─]/gim, '`$&`')
     const treeify = log.requirePkg('treeify')
+
+    // const testColon = test(/\:$/)
+    // pipe(trim, testColon)
     const endsWithColon = x => (/\:$/).test(x.trim())
 
     try {
@@ -486,7 +439,7 @@ class CLI {
         .split('\n')
         .map(line => '- ' + toCode(line).replace('``', '` `'))
         .map(line => {
-          if (line.includes(':')) {
+          if (hasColon(line)) {
             return line
           }
           else {
@@ -544,7 +497,9 @@ class CLI {
     const temp = fromTo.folder
     const files = jetpack
       .list(temp)
-      .filter(filename => filename.includes('.js'))
+      // @TODO example difference currying makes
+      // .filter(filename => filename.includes('.js'))
+      .filter(includes('.js'))
       .map(filename => res(temp + '/' + filename))
 
     files.forEach(filename => this.lintEasyExport(filename, temp))
@@ -553,10 +508,21 @@ class CLI {
   // https://github.com/eslint/eslint/issues/4119 Load plugin when using eslint in node via the API
   lintEasyExport(filename, dir) {
     // @HACK @FIXME @TODO just is ignoring this silly copied over files
-    if (filename.includes('index.web')) return
+    if (!filename.includes('build/')) return
+    if (filename.includes('index.web') ||
+      filename.includes('_exported') ||
+      filename.includes('_es6') ||
+      filename.includes('runner')
+    ) return
 
-    const configPath = require.resolve('../../.eslintrc.js')
-    const config = require(configPath)
+    let config = {}
+    try {
+      const configPath = require.resolve('../../.eslintrc.js')
+      config = require(configPath)
+    }
+    catch (e) {
+      // ignore, some travis issue?
+    }
     config.rules = {
       'import/no-unresolved': 2,
       // 'node/no-missing-require': 'error',
@@ -569,10 +535,15 @@ class CLI {
 
     source
       .split('\n')
-      .filter(line => line.includes('require'))
+      // ensure relativeish
+      .filter(and(includes('require'), includes('/')))
+      // .filter(not(isComment))
       .map(line => {
         // commented out lines
         if (isComment(line)) return line
+
+        log.red(line).echo()
+        console.log('\n\n')
         const parts = line.split('=')
         const name = parts.shift().trim()
         let requirePath = parts.pop()
@@ -744,16 +715,16 @@ async function publishing() {
   const rollupProdWith = opts => cli.rollupNode(prodWith(opts))
   const rollupDevWith = opts => cli.rollupNode(devWith(opts))
 
-  const prodBuilds = [
+  let prodBuilds = [
     {format: 'amd', falafel: false},
-    {format: 'iife', falafel: false},
     {format: 'es'},
     {format: 'cjs'},
+    {format: 'iife', falafel: false},
     // @HACK @FIXME just needs sourceType script
     {format: 'umd', verbose: true, debug: false},
   ]
 
-  const devBuilds = [
+  let devBuilds = [
     {
       exportName: 'debugger',
       debugger: true,
@@ -772,8 +743,16 @@ async function publishing() {
     },
   ]
 
+  // @NOTE quick, just build one
+  if (quick) {
+    log.bold('quick').echo()
+    prodBuilds = prodBuilds.slice(prodBuilds.length - 2)
+    devBuilds = []
+  }
+
   let devOps = devBuilds.map(dev => rollupDevWith(dev))
   let prodOps = prodBuilds.map(prod => rollupProdWith(prod))
+
   let builds = [].concat(devOps).concat(prodOps)
 
   const built = await Promise.all(builds)

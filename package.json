@@ -164,7 +164,12 @@
     "coveragePathIgnorePatterns": [
       "\\\\node_modules\\\\",
       "_modules",
-      "src/deps/to|string/*.js",
+      "src/deps/regexp|native/*.js",
+      "src/deps/math/index|math.js",
+      "src/deps/loop/index|loop.js",
+      "src/deps/construct/index|construct.js",
+      "src/deps/string/index|string.js",
+      "src/deps/array/index|array.js",
       "src/deps/array/insertAtIndex.js",
       "src/deps/conditional/eqeq.js",
       "src/deps/traversers/stringify.js",

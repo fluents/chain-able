@@ -4,4 +4,5 @@ module.exports = {
   res: require('./_res'),
   _res: require('./_res'),
   fromTo: require('./fromTo'),
+  isDir: require('./_isDir'),
 }

@@ -79,6 +79,8 @@ webpack:
 
 cli:
 	node build/cli.js
+cliquick:
+	node build/cli.js --quick
 
 rollupcli:
 	yarn run rollup -- --config build/cli-rollup.js --environment format:dev
@@ -99,8 +101,9 @@ jestdiff:
 coveralls:
 	yarn run coveralls -- < coverage/lcov.info
 
-quick:
-	node build/cli.js --quick --test
+# unused now for tests anyway
+# quicktest:
+# 	node build/cli.js --quick --test
 
 gzip:
 	yarn run gzip -- dists/umd/index.js --raw \
@@ -131,6 +134,9 @@ stripcombo:
 
 distcombo:
 	$(MAKE) copysrc && $(MAKE) buble
+
+quickcombo:
+	$(MAKE) clean && $(MAKE) distcombo && $(MAKE) cliquick && $(MAKE) gzip
 
 buildcombo:
 	$(MAKE) distcombo && $(MAKE) cli && $(MAKE) gzip
