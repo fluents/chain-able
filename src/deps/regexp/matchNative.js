@@ -1,5 +1,5 @@
 const funcToString = require('../native/functionToString')
-const hasOwnProperty = require('../native/hasOwnProperty')
+const hasOwnProperty = require('../native/objectHasOwnProperty')
 
 module.exports = RegExp(
   '^' +

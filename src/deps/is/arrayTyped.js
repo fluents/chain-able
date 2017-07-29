@@ -15,8 +15,11 @@ const isObjNotNull = require('./objNotNull')
  * @fork 3.0.0
  * @category Lang
  *
- * @example isTypedArray(new Uint8Array) // => true
- * @example isTypedArray([])             // => false
+ * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays mozilla-typed-arrays}
+ * @see {@link mozilla-typed-arrays}
+ *
+ * @example isTypedArray(new Uint8Array) //=> true
+ * @example isTypedArray([])             //=> false
  *
  */
 module.exports = x => isObjNotNull(x) && matchTypedTag.test(toS(x))

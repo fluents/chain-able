@@ -6,8 +6,8 @@ const isFalsy = require('../deps/is/falsy')
 const isUndefined = require('../deps/is/undefined')
 const ObjectKeys = require('../deps/util/keys')
 const dotPropPaths = require('../deps/dot/paths')
-const TRANSFORMERS_KEY = require('../deps/meta/transformers')
-const OBSERVERS_KEY = require('../deps/meta/observers')
+const TRANSFORMERS_KEY = require('../deps/meta/TRANSFORMERS_KEY')
+const OBSERVERS_KEY = require('../deps/meta/OBSERVERS_KEY')
 
 /**
  * @param  {Class | Composable} Target composable class

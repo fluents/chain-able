@@ -1,15 +1,17 @@
+// const toObject = require('../cast/object')
+
 /**
  * @desc prop is in Object(obj)
  * @since 5.0.0
  * @memberOf is
  *
- * @func
- * @type {Function}
- * @name isIn
- *
  * @param  {Object} obj object to check property of
  * @param  {Primitive} prop property in obj
  * @return {boolean} property
+ *
+ * @func
+ * @type {Function}
+ * @name isIn
  *
  * @example
  *
@@ -17,7 +19,7 @@
  *  isIn({eh: true}, 'oh') //=> false
  *
  */
-module.exports = (obj, prop) => prop in Object(obj)
+module.exports = (obj, prop) => (prop in Object(obj))
 
 // @TODO
 // function isIn(set) {

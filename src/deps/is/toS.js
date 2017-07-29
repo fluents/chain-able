@@ -7,6 +7,8 @@ const objectToString = require('../native/objectToString')
  * @memberOf is
  * @since 3.0.0
  * @alias getTag
+ * @alias toStringTag
+ * @alias toS
  *
  * @param {*} obj The value to `Object.prototype.toString.call(obj)`.
  * @return {string} Returns the `toStringTag`.

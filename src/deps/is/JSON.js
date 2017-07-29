@@ -1,5 +1,5 @@
 const getIncludesCount = require('../fp/includesCount')
-const isEven = require('../expressions/even')
+const isEven = require('../math/even')
 const isArray = require('./array')
 const isNumber = require('./numberPrimitive')
 const isString = require('./stringPrimitive')
@@ -48,13 +48,13 @@ const isValidJSONLine = subString => {
  *
  * @example
  *    isJSON('{}')
- *    // => true
+ *    //=> true
  *
  *    isJSON('')
- *    // => false
+ *    //=> false
  *
  *    isJSON('[]')
- *    // => true
+ *    //=> true
  */
 function isJSON(x) {
   return isString(x) && x.split(',').every(isValidJSONLine)

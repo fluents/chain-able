@@ -2,12 +2,12 @@ const isNullOrUndefined = require('./nullOrUndefined')
 const isNotEhNumber = require('./NaN')
 
 /**
- * @param  {*} x value
- * @return {boolean} isReal
+ * @desc ensure a value is not nill, or nan
+ * @param {*} x value
+ * @return {boolean} x isReal
  *
  * @since 3.0.0
  * @memberOf is
- * @func isReal
  * @see is/null
  * @see is/undefined
  *
@@ -18,6 +18,8 @@ const isNotEhNumber = require('./NaN')
  * @NOTE eslint-disable-next-line no-self-compare
  *       && x !== x
  *
+ * @func
+ * @name isReal
  * @extends isNullOrUndefined
  * @variation *not* isNullOrUndefined && false for NaN
  *

@@ -1,12 +1,13 @@
 const toS = require('./toS')
 
 /**
- * @param  {*} x value
+ * @param {*} x value
  * @return {boolean} isDate
  *
  * @since 3.0.0
  * @memberOf is
- * @func isDate
+ * @func
+ * @name isDate
  * @extends toS
  *
  * @example
@@ -32,6 +33,7 @@ const toS = require('./toS')
  *  class Eh extends Date()
  *  isDate(new Eh())
  *  //=> true
+ *
  */
 module.exports = function isDate(x) {
   return toS(x) === '[object Date]'

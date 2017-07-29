@@ -1,8 +1,8 @@
-const ObjectProperties = require('./util/props')
-const traverse = require('./traverse')
-const isObj = require('./is/obj')
-const isArray = require('./is/array')
-const keys = require('./util/keysObjOrArray')
+const ObjectProperties = require('../util/props')
+const traverse = require('../traverse')
+const isObj = require('../is/obj')
+const isArray = require('../is/array')
+const keys = require('../util/keysObjOrArray')
 
 // function gc() {
 //   if (typeof window !== 'undefined') window.global = window

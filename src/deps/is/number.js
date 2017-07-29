@@ -39,13 +39,5 @@ const isNumberPrimitive = require('./numberPrimitive')
  *  isNumber(false)
  *  //=> false
  *
- * @NOTE was not needed except for abstract ==
- *   const isObj = require('./obj')
- *   const isSymbol = require('./symbol')
- *   (isObj(x) || isSymbol(x)
- *     ? false
- *     : (/^0x[0-9a-f]+$/i).test(x) ||
- *         (/^[-+]?(?:\d+(?:\.\d*)?|\.\d+)(e[-+]?\d+)?$/).test(x))
- *
  */
 module.exports = x => isNumberPrimitive(x) || toS(x) === '[object Number]'

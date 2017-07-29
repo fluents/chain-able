@@ -1,4 +1,5 @@
 const lengthMinusOne = require('../util/lengthMinusOne')
+const hasOwnProperty = require('../util/hasOwnProperty')
 const length = require('../util/length')
 const isArray = require('./array')
 const isString = require('./string')

@@ -1,2 +1,3 @@
-/* istanbul ignore: index */
+/* istanbul ignore next: @docblocks @exports */
+
 module.exports = require('./string')

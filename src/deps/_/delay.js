@@ -24,7 +24,7 @@ const curry = require('../fp/curry')
  * @example
  *
  *   delay(text => console.log(text), 1000, 'later')
- *   // => Logs 'later' after one second.
+ *   //=> Logs 'later' after one second.
  *
  */
 function delay(func, wait, ...args) {

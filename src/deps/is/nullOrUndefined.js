@@ -3,6 +3,7 @@ const isUndefined = require('./undefined')
 
 /**
  * @desc Checks if `value` is `null` or `undefined`.
+ * @alias isNill
  * @alias isNil
  * @category Lang
  *

@@ -9,10 +9,11 @@ const toarr = require('../to-arr')
  * @param  {Array | *} two toArr2
  * @return {Array} [one, two]
  *
- * @TODO https://github.com/ramda/ramda/blob/v0.24.1/src/concat.js
- * @see deps/to-arr
+ * @name concatArray
+ * @alias concatArray
+ *
  * @func
- * @name concat
+ * @see deps/to-arr
  *
  * @example
  *
@@ -28,7 +29,6 @@ const toarr = require('../to-arr')
  *
  */
 module.exports = (one, two) => toarr(one || []).concat(toarr(two))
-
 
 // merge 1-2 arrays
 // function concat(set1, set2) {
