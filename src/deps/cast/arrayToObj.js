@@ -1,4 +1,6 @@
+const isArray = require('../is/array')
 const getLength = require('../util/length')
+const castKey = require('./key')
 
 /**
  * Converts lists into objects.
@@ -12,22 +14,30 @@ const getLength = require('../util/length')
  *
  * @alias fromPairs
  *
- * @param  {Array} list
- * @param  {Array} values
+ * @param  {Array} list list of keys, or of [key, value] pairs
+ * @param  {Array} [values] values if not using pairs
  * @return {Object}
  *
+ * @see cast/pairs
  *
+ * @example
+ *  arrayToObj
  */
-const arrayToObj = function(list, values) {
+function arrayToObj(list, values) {
   let result = {}
 
   for (let i = 0, length = getLength(list); i < length; i++) {
+    // keys, values
     if (values) {
-      //
       result[list[i]] = values[i]
     }
-    else {
+    // fallback to list as an object as pairs,
+    else if (isArray(list[i])) {
       result[list[i][0]] = list[i][1]
+    }
+    // cast key, values-as-keys
+    else {
+      result[castKey(list[i])] = list[i]
     }
   }
 

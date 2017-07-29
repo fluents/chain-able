@@ -3,6 +3,8 @@
 const always = require('./always')
 const arity = require('./arity')
 const curry = require('./curry')
+const evolve = require('./evolve')
+const equals = require('./equals')
 const first = require('./first')
 const last = require('./last')
 const path = require('./path')
@@ -28,6 +30,8 @@ const invertObj = require('./invertObjKeyVal')
 const preferExistingMethod = require('./preferExistingMethod')
 const slice = require('./slice')
 const where = require('./where')
+const when = require('./when')
+const constant = require('./return')
 // const wrap = require('./wrap')
 
 /**
@@ -43,6 +47,7 @@ module.exports = {
   bind,
   construct,
   hasInMatching,
+  equals,
   includesCount,
   invoke,
   curry,
@@ -64,5 +69,9 @@ module.exports = {
   preferExistingMethod,
   invertObj,
   slice,
+  evolve,
   where,
+  when,
+  constant,
+  'return': constant,
 }

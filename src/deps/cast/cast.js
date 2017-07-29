@@ -1,4 +1,4 @@
-const array = require('./array')
+const array = require('./toArray')
 const boolean = require('./boolean')
 const integer = require('./integer')
 const number = require('./number')
@@ -15,8 +15,10 @@ const objToMap = require('./objToMap')
 const plainObj = require('./plainObj')
 const set = require('./set')
 const defaultTo = require('./defaultTo')
+const toFunction = require('./toFunction')
 // const coerce = require('./coerce')
 
+const func = toFunction
 const objToArray = pairs
 const arrayToSet = set
 
@@ -54,4 +56,5 @@ module.exports = {
   plainObj,
   defaultTo,
   arrayToSet,
+  toFunction,
 }

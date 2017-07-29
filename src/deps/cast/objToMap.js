@@ -15,16 +15,38 @@ const hasOwnProperty = require('../util/hasOwnProperty')
  * Object.keys(obj).forEach(key => map.set(key, obj[key]))
  * @TODO use `forOwn`
  * @TODO can just use obj.hasOwnProperty again?
+ *
+ * {@link https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/entries#Converting_an_Object_to_a_Map mozilla-obj-to-map}
+ * @see {@link mozilla-obj-to-map}
+ *
+ * @example
+ *
+ *    const obj = {eh: 0}
+ *    const map = objToMap(obj)
+ *
+ *    map.has('eh')
+ *    //=> true
+ *
+ *    map.get('eh')
+ *    //=> 0
+ *
+ *    map.size
+ *    //=> 1
+ *
  */
 const objToMap = obj => {
   const map = newMap()
 
-  const objHasProp = hasOwnProperty(obj)
-  for (let prop in obj) {
-    if (objHasProp(prop)) map.set(prop, obj[prop])
-  }
+  // eslint-disable-next-line
+  for (let prop in obj) hasOwnProperty(obj, prop) && map.set(prop, obj[prop]);
 
   return map
 }
+
+/**
+ * @TODO
+ * const map = pipe(entries, newMap)
+ * const map = newMap(Object.entries(obj))
+ */
 
 module.exports = objToMap

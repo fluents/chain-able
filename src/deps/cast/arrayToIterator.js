@@ -7,6 +7,8 @@ const addHiddenFinalProp = require('../util/defineFinal')
  * @see {@link mobx-array-to-iteratable}
  * @see {@link mobx-inspiration-iterall}
  *
+ * @see Chainable[Symbol.Iterator] much preferred
+ *
  * @memberOf cast
  *
  * @TODO examples

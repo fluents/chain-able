@@ -18,10 +18,10 @@
  * Foo.prototype.c = 3
  *
  * assign({ 'a': 1 }, new Foo)
- * // => { 'a': 1, 'b': 2 }
+ * //=> { 'a': 1, 'b': 2 }
  *
  * assign({ 'a': 1 }, toPlainObject(new Foo))
- * // => { 'a': 1, 'b': 2, 'c': 3 }
+ * //=> { 'a': 1, 'b': 2, 'c': 3 }
  *
  */
 function toPlainObject(value) {

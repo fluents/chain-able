@@ -21,6 +21,5 @@ module.exports = function toObj(x) {
   //   throw new TypeError('Null or undefined passed to ToObject')
   // }
   if (isNill(x)) return false
-
-  return Object(x)
+  else return Object(x)
 }
