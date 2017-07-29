@@ -4,8 +4,6 @@ const traverse = require('../traverse')
 const cache = require('../cache')
 const ENV_DEBUG = require('../env/debug')
 
-let run = 0
-
 /* prettier-ignore */
 /**
  * @desc   gathers dot.prop from any value, with a prefixed/base key
@@ -30,7 +28,7 @@ let run = 0
  *
  */
 module.exports = function(key, value, longest) {
-  // if (cache.has(value)) return cache.get(value)
+  if (cache.has(value)) return cache.get(value)
 
   let paths = []
 
@@ -50,19 +48,19 @@ module.exports = function(key, value, longest) {
 
     /* istanbul ignore next: debug */
     if (ENV_DEBUG) {
-      console.log('paths', run++, this.path)
+      // run++,
+      console.log('paths', this.path)
     }
 
+    // @NOTE we always have paths now
     // ignore
-    if (!currentPath) return
-    else if (!currentPath.length) return
+    // if (!currentPath) return
+    if (!currentPath.length) return
 
+    // (currentPath.join ? currentPath.join('.') : currentPath)
     // dot-prop the array of paths
     // if we have a key, prefix it
-    paths.push(
-      (key ? key + '.' : '') +
-      (currentPath.join ? currentPath.join('.') : currentPath)
-    )
+    paths.push((key ? key + '.' : '') + currentPath.join('.'))
   })
 
   if (isTrue(longest)) {
@@ -73,7 +71,7 @@ module.exports = function(key, value, longest) {
     ))
   }
 
-  // cache.set(value, paths)
+  cache.set(value, paths)
 
   return paths
 }
