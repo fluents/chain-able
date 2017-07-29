@@ -2,7 +2,7 @@
 
 /**
  * @desc use in array.filter(uniq) to de-dupe values using indexOf
- * @since  0.1.0
+ * @since 0.1.0
  * @memberOf array
  *
  * @param  {*} value value in array iteration
@@ -10,8 +10,9 @@
  * @param  {Array} arr array being iterated, `thisArg` when using .filter
  * @return {Array} de-duped/uniqued array
  *
- * @name uniq
  * @func
+ * @name uniq
+ * @alias unique
  *
  * {@link https://github.com/lodash/lodash/blob/master/uniq.js lodash-uniq}
  * {@link https://github.com/mobxjs/mobx/blob/master/src/utils/utils.ts#L58 mobx-uniq}
