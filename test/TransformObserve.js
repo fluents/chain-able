@@ -177,6 +177,34 @@ function remapSee(entry) {
         }
       })
 
+      // const {
+      //   // query
+      //   hrefIs,
+      //   hrefEq,
+      //   hrefNot,
+      //   // getset
+      //   setHref,
+      //   getHref,
+      //   // transform
+      //   transformHref,
+      //   observeTransform,
+      //   // aliasable for better naming
+      //   transformObserve,
+      //   // presets
+      //   escapeDotHref,
+      //   freezeHref,
+      // } = chain.lense('href')
+      //
+      // const setLinkAsLabel = pipe(getLink, setHref)
+      //
+      // observeLabel(({label}) => {
+      //   if (hasLinkFor(label)) {
+      //     setLinkAsLabel(label)
+      //     freezeHref()
+      //   }
+      // })
+
+
       chain
         .ifElse(c => labelIs('@see') && getHref())
         .then(c => hrefToLabel())

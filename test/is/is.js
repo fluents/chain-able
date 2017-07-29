@@ -4,6 +4,7 @@ const isPromise = require('../../src/deps/is/promise')
 const isAsync = require('../../src/deps/is/async')
 const isAsyncish = require('../../src/deps/is/asyncish')
 const isNative = require('../../src/deps/is/native')
+const isClass = require('../../src/deps/is/class')
 const ObjectDefine = require('../../src/deps/util/define')
 const stress = require('../_stress')
 const {isMap, isSet, isFunction, isObjWithKeys, isPrototypeOf} = require('./')
@@ -115,6 +116,11 @@ test('objWithKeys', () => {
 //   t.false(isClass({}))
 // })
 
+test('isClass', () => {
+  const iz = isClass(eval('class Eh {}'))
+  expect(iz).toBe(true)
+  expect(isClass({})).toBe(false)
+})
 test('isPrototypeOf', () => {
   class SuperProto {}
   class SubProto extends SuperProto {}

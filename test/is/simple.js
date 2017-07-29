@@ -1,8 +1,8 @@
 const stress = require('../_stress')
-const {isObj, isDate, isRegExp, isArray, isError, isFunction} = require('./')
+const {isObj, isDate, isRegExp, isArray, isError, isFunction, isNil} = require('./')
 
 test('should work for objects', () => {
-  function Test() {}
+  function Test() { }
   var instance = new Test()
   var literal = {}
   var create = Object.create(null)
@@ -41,7 +41,7 @@ test('should not mark regular expressions as Functions, but they are PureObjects
 })
 
 test('should work for functions', () => {
-  expect(isFunction(t => {})).toBe(true)
+  expect(isFunction(t => { })).toBe(true)
   expect(isFunction(new Function())).toBe(true)
   stress(isFunction)
 })
@@ -51,3 +51,12 @@ test('should work for Errors', () => {
   expect(isObj(new Error(''))).toBe(true)
   stress(isError)
 })
+
+// test('isNill', () => {
+//   eq(isNil(void 0), true)
+//   eq(isNil(null), true)
+//   eq(isNil([]), false)
+//   eq(isNil({}), false)
+//   eq(isNil(0), false)
+//   eq(isNil(''), false)
+// })

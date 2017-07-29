@@ -22,7 +22,7 @@ const isStringPrimitive = require('./src/deps/is/stringPrimitive')
 const isBooleanPrimitive = require('./src/deps/is/booleanPrimitive')
 const isNumberPrimitive = require('./src/deps/is/numberPrimitive')
 const isPrimitive = require('./src/deps/is/primitive')
-const expressions = require('./src/deps/expressions')
+const math = require('./src/deps/math')
 const util = require('./src/deps/util')
 const to = require('./src/deps/cast')
 const escapeDot = require('./src/deps/dot/escape')
@@ -33,6 +33,9 @@ const array = require('./src/deps/array')
 const construct = require('./src/deps/construct')
 const addPooling = require('./src/deps/cache/pooler')
 const string = require('./src/deps/string')
+const encase = require('./src/deps/encase')
+const cast = require('./src/deps/cast')
+const loop = require('./src/deps/loop')
 
 const cache = {addPooling}
 const dots = {escapeDot, isDottable: dottable, segments, paths}
@@ -65,14 +68,17 @@ Object.assign(
   conditionsObj,
   fp,
   is,
-  expressions,
-  util,
+  math,
   to,
   dots,
   string,
   array,
+  util,
   construct,
-  cache
+  cache,
+  encase,
+  cast,
+  loop
 )
 
 module.exports = index

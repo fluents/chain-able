@@ -14,7 +14,7 @@ const hasInMatching = require('../../src/deps/fp/hasInMatching')
 const stress = require('../_stress')
 
 test('localGlobal', () => {
-  expect(localGlobal).toBe(global)
+  expect(localGlobal()).toBe(global)
 })
 
 test('isUndefinedLike', () => {
