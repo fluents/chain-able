@@ -5,6 +5,7 @@ const isNill = require('../../is/nullOrUndefined')
  * The iteratee is invoked with three arguments: (value, index, array).
  * @memberOf loop
  *
+ * @name mapArray
  * @since 5.0.0-beta.6
  * @category Array
  * @param {Array} array The array to iterate over.
@@ -15,11 +16,12 @@ const isNill = require('../../is/nullOrUndefined')
  *
  * const square = n => n * n
  * map([4, 8], square)
- * // => [16, 64]
+ * //=> [16, 64]
  */
 function map(array, iteratee) {
   let index = -1
   const length = isNill(array) ? 0 : array.length
+  // pre-allocate
   const result = new Array(length)
 
   while (++index < length) {

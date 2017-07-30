@@ -4,6 +4,7 @@ const ObjectKeys = require('../../util/keys')
  * Creates an array of values by running each property of `object` thru
  * `iteratee`. The iteratee is invoked with three arguments: (value, key, object).
  *
+ * @name mapObjVals
  * @since 5.0.0-beta.6
  * @memberOf loop
  *
@@ -21,10 +22,10 @@ const ObjectKeys = require('../../util/keys')
  *
  *   const square = n => n * n
  *   map({ 'a': 4, 'b': 8 }, square)
- *   // => [16, 64] (iteration order is not guaranteed)
+ *   //=> [16, 64] (iteration order is not guaranteed)
  *
  */
-function mapObject(object, iteratee) {
+function mapObjectValues(object, iteratee) {
   const props = ObjectKeys(object)
   const result = new Array(props.length)
 
@@ -37,4 +38,4 @@ function mapObject(object, iteratee) {
   return result
 }
 
-module.exports = mapObject
+module.exports = mapObjectValues

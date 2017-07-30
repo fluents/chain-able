@@ -1,6 +1,5 @@
 const curry = require('../../fp/curry')
 
-
 /**
  * The `mapAccum` function behaves like a combination of map and reduce; it
  * applies a function to each element of a list, passing an accumulating
@@ -11,6 +10,7 @@ const curry = require('../../fp/curry')
  * return a tuple *[acc, value]*.
  * @since 5.0.0-beta.6
  * @memberOf loop
+ * @alias functionOnEach
  *
  * @param {Function} fn The function to be called on every element of the input `list`.
  * @param {*} acc The accumulator value.
@@ -41,14 +41,19 @@ const curry = require('../../fp/curry')
  *
  */
 module.exports = curry(3, function mapAccum(fn, acc, list) {
-  var idx = 0
-  var len = list.length
-  var result = []
-  var tuple = [acc]
+  // nums
+  let idx = 0
+  const len = list.length
+
+  // arrs
+  const result = []
+  let tuple = [acc]
+
   while (idx < len) {
     tuple = fn(tuple[0], list[idx])
     result[idx] = tuple[1]
     idx += 1
   }
+
   return [tuple[0], result]
 })

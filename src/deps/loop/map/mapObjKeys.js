@@ -8,6 +8,7 @@ const toObj = require('../../cast/object')
  * with three arguments: (value, key, object).
  * @since 5.0.0-beta.6
  * @memberOf loop
+ * @alias mapKeys
  *
  * @param {Object} object The object to iterate over.
  * @param {Function} iteratee The function invoked per iteration.
@@ -21,7 +22,7 @@ const toObj = require('../../cast/object')
  * @example
  *
  *   mapKey({ 'a': 1, 'b': 2 }, (value, key) => key + value)
- *   // => { 'a1': 1, 'b2': 2 }
+ *   //=> { 'a1': 1, 'b2': 2 }
  *
  */
 function mapKey(object, iteratee) {
