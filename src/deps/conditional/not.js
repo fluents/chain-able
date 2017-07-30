@@ -40,10 +40,3 @@ const curry = require('../fp/curry')
  */
 const not = (fn, x) => !fn(x)
 module.exports = curry(2, not)
-
-// curry(2,
-// function not(predicate) {
-//   return function() {
-//     return !predicate.apply(this, arguments)
-//   }
-// }
