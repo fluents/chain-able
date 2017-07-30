@@ -17,8 +17,8 @@ const construct = require('./deps/fp/construct')
 
 // export
 const exp = compose()
-exp.chainable = construct(1, exp)
-exp.builder = construct(1, MethodChain)
+exp.chainable = construct(0, exp)
+exp.builder = construct(0, MethodChain)
 exp.Chain = exp
 exp.compose = compose
 
@@ -52,7 +52,7 @@ exp.MethodChain = MethodChain
 exp.MergeChain = MergeChain
 exp.merge = dopemerge
 
-exp.is = require('./deps/is')
+exp.is = require('./deps/is/_core')
 
 ObjectAssign(exp, exp.is)
 

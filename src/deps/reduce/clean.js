@@ -1,12 +1,12 @@
 const isReal = require('../is/real')
 const isEmpty = require('../is/empty')
 const ObjectKeys = require('../util/keys')
-const mapWhere = require('../fp/mapWhere')
+const filterWhere = require('../loop/filter/filterWhere')
 const reduceToObj = require('./toObj')
 
 // const [isNotReal, isNotEmpty] = [isReal, isEmpty].map(not)
 // const isNotEmptyOrNotReal = or(isNotReal, isNotEmpty)
-const mapNotEmpty = mapWhere('_', x => isReal(x) && !isEmpty(x))
+const mapNotEmpty = filterWhere('_', x => isReal(x) && !isEmpty(x))
 
 /**
  * @desc goes through the maps,

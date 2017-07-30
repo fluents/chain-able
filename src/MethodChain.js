@@ -15,10 +15,10 @@
  */
 
 // core
-const ChainedMap = require('./ChainedMapBase')
-const SHORTHANDS_KEY = require('./deps/meta/shorthands')
+const SHORTHANDS_KEY = require('./deps/meta/SHORTHANDS_KEY')
 const ENV_DEVELOPMENT = require('./deps/env/dev')
 const ENV_DEBUG = require('./deps/env/debug')
+const ChainedMap = require('./ChainedMapBase')
 // plugins
 const schemaMethod = require('./plugins/schema')
 const typesPlugin = require('./plugins/types')

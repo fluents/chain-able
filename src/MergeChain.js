@@ -9,7 +9,7 @@ const isMapish = require('./deps/is/mapish')
 const ObjectKeys = require('./deps/util/keys')
 const constructInit = require('./deps/fp/constructInit')
 const EMPTY_OBJ = require('./deps/native/EMPTY_OBJ')
-const SHORTHANDS_KEY = require('./deps/meta/shorthands')
+const SHORTHANDS_KEY = require('./deps/meta/SHORTHANDS_KEY')
 const ENV_DEVELOPMENT = require('./deps/env/dev')
 const ENV_DEBUG = require('./deps/env/debug')
 
@@ -53,9 +53,9 @@ class MergeChain extends ChainedMapBase {
    *    //=> Map { 'eh' => 2, 'coo' => 'oo' }
    *
    */
-  static init(parent) {
-    return new MergeChain(parent)
-  }
+  // static init(parent) {
+  //   return new MergeChain(parent)
+  // }
 
   /**
    * @inheritdoc
@@ -315,7 +315,7 @@ class MergeChain extends ChainedMapBase {
   }
 }
 
-// constructInit(MergeChain)
+constructInit(MergeChain)
 
 /**
  * @memberOf MergeChain

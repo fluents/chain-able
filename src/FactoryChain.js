@@ -2,6 +2,7 @@ const ENV_DEBUG = require('./deps/env/debug')
 const ChainedMap = require('./ChainedMap')
 const isUndefined = require('./deps/is/undefined')
 const isTrue = require('./deps/is/true')
+const newSet = require('./deps/construct/set')
 
 const ON_CHAIN_UP_DOWN_KEY = 'onChainUpDown'
 const ON_DONE_KEY = 'onDone'
@@ -9,14 +10,19 @@ const ON_DONE_KEY = 'onDone'
 /**
  * @extends {ChainedMapBase}
  * @inheritdoc
+ *
+ * @since 1.0.0
+ *
  * @prop {Object} data
  * @prop {Set} _calls
  * @type {Map}
  *
  * {@link http://robdodson.me/javascript-design-patterns-factory/ abstract-factory-pattern}
+ * @see {@link abstract-factory-pattern}
  *
  * @member FactoryChain
  * @category Chainable
+ *
  * @tests FactoryChain
  * @types FactoryChain
  */
