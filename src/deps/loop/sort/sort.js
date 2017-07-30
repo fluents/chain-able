@@ -1,5 +1,5 @@
-const slice = require('../native/arraySlice')
-const curry = require('../fp/curry')
+const slice = require('../../native/arraySlice')
+const curry = require('../../fp/curry')
 
 /**
  * Returns a copy of the list, sorted according to the comparator function,
