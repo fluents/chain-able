@@ -9,6 +9,7 @@
  * @param {Function} iteratee The function invoked per iteration.
  * @param {Function} keysFunc The function to get the keys of `object`.
  * @return {Object} Returns `object`.
+ *
  */
 function baseFor(object, iteratee, keysFunc) {
   const iterable = Object(object)

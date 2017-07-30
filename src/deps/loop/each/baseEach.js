@@ -1,5 +1,5 @@
-const isArrayLike = require('../is/arrayLike')
-const isNill = require('../is/nullOrUndefined')
+const isArrayLike = require('../../is/arrayLike')
+const isNill = require('../../is/nullOrUndefined')
 const baseForOwn = require('./baseForOwn')
 
 /**
@@ -10,6 +10,9 @@ const baseForOwn = require('./baseForOwn')
  * @param {Array|Object} collection The collection to iterate over.
  * @param {Function} iteratee The function invoked per iteration.
  * @return {Array|Object} Returns `collection`.
+ *
+ * @see https://github.com/lodash/lodash/blob/master/.internal/baseEach.js
+ *
  */
 function baseEach(collection, iteratee) {
   if (isNill(collection)) {

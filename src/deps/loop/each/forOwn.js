@@ -1,34 +1,43 @@
+const ObjectKeys = require('../../util/keysIn')
+
 /**
  * Iterates over own enumerable string keyed properties of an object and
  * invokes `iteratee` for each property. The iteratee is invoked with three
  * arguments: (value, key, object). Iteratee functions may exit iteration
  * early by explicitly returning `false`.
+ *
  * @since 5.0.0-beta.6
  * @memberOf loop
  *
- * @fork 0.3.0
- * @category Object
  * @param {Object} object The object to iterate over.
  * @param {Function} iteratee The function invoked per iteration.
+ * @return {Object} object passed in originally
+ *
+ * @fork 0.3.0
+ * @category Object
+ *
+ * @TODO !!! did not return object, consistently the others do, why?
+ *
  * @see forEach, forEachRight, forIn, forInRight, forOwnRight
+ * @see https://github.com/lodash/lodash/blob/master/forOwn.js
+ *
  * @example
  *
- * function Foo() {
- *   this.a = 1
- *   this.b = 2
- * }
+ *     function Foo() {
+ *       this.a = 1
+ *       this.b = 2
+ *     }
  *
- * Foo.prototype.c = 3
+ *     Foo.prototype.c = 3
  *
- * forOwn(new Foo, function(value, key) {
- *   console.log(key)
- * })
- * // => Logs 'a' then 'b' (iteration order is not guaranteed).
+ *     forOwn(new Foo, (value, key) => console.log(key))
+ *     //=> Logs 'a' then 'b' (iteration order is not guaranteed).
  *
  */
 function forOwn(object, iteratee) {
-  // object = Object(object)
-  Object.keys(object).forEach(key => iteratee(object[key], key, object))
+  const obj = Object(object)
+  ObjectKeys(obj).forEach(key => iteratee(obj[key], key, obj))
+  return obj
 }
 
 module.exports = forOwn
