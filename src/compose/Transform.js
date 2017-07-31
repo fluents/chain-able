@@ -10,7 +10,7 @@ const TRANSFORMERS_KEY = require('../deps/meta/TRANSFORMERS_KEY')
 const OBSERVERS_KEY = require('../deps/meta/OBSERVERS_KEY')
 
 /**
- * @param  {Class | Composable} Target composable class
+ * @param {Class | Composable} Target composable class
  * @return {TransformChain} class
  * @example
  *    compose(class {})
@@ -38,7 +38,7 @@ module.exports = Target => {
    * {@link https://github.com/iluwatar/java-design-patterns/tree/master/state state-pattern}
    * {@link https://github.com/iluwatar/java-design-patterns/tree/master/strategy strategy-pattern}
    */
-  // return class Transform extends Target {
+  // class Transform extends Target
   // -------------------------------------------
 
   /**
@@ -127,6 +127,8 @@ module.exports = Target => {
    * @inheritdoc
    * @since 1.0.0
    *
+   * @TODO curry
+   *
    * @param {Primitive} key key to set with
    * @param {any} val value to set for key
    * @param {undefined | string | Array<string>} dotPropKey special key used for initializing dot prop values in an optimized way to keep reference
@@ -134,7 +136,7 @@ module.exports = Target => {
    *
    * @see this.observe, this.transform
    */
-  Target.prototype.set = curry(2, function transformSet(key, val, dotPropKey) {
+  Target.prototype.set = function transformSet(key, val, dotPropKey) {
     let value = val
 
     // get
@@ -165,7 +167,7 @@ module.exports = Target => {
     }
 
     return this
-  })
+  }
 
   // @TODO
   // // https://stackoverflow.com/questions/31158902/is-it-possible-to-sort-a-es6-map-object

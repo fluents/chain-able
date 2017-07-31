@@ -6,7 +6,7 @@
 const isUndefined = require('../deps/is/undefined')
 const isFunction = require('../deps/is/function')
 const hasOwnPropertyFlipped = require('../deps/flipped/hasOwnPropertyFlipped')
-const constant = require('../deps/fp/return')
+const identity = require('../deps/fp/identity')
 const defaultToNoop = require('../deps/flipped/defaultToNoop')
 
 const hasMeta = hasOwnPropertyFlipped('meta')
@@ -48,7 +48,13 @@ const hasMeta = hasOwnPropertyFlipped('meta')
  *
  */
 module.exports = Target => {
-  const constructs = defaultToNoop(Target.prototype.construct)
+  class Shorthands extends Target {
+    constructor(parent) {
+      super(parent)
+      this.debug(hasMeta(parent) ? parent.meta.debug : false)
+    }
+  }
+  // const constructs = defaultToNoop(Target.prototype.construct)
 
   /**
    * @version 2.0.0 <- was constructor
@@ -57,10 +63,10 @@ module.exports = Target => {
    * @param  {*} parent @see Chainable
    * @return {void}
    */
-  Target.prototype.construct = function(parent) {
-    constructs.call(this, parent)
-    this.debug(hasMeta(parent) ? parent.meta.debug : false)
-  }
+  // Target.prototype.construct = function(parent) {
+  //   constructs.call(this, parent)
+  //   // this.debug(hasMeta(parent) ? parent.meta.debug : false)
+  // }
 
   /**
    * @desc sets on store not this.set for easier extension
@@ -73,7 +79,7 @@ module.exports = Target => {
    *
    * @NOTE is inherited by any chain with a parent with .meta.debug
    *
-   *  @example
+   * @example
    *
    *    const Chain = require('chain-able')
    *    const chain = new Chain()
@@ -87,7 +93,11 @@ module.exports = Target => {
    *    //=> {}
    *
    */
-  Target.prototype.debug = function(should) {
+  Shorthands.prototype.debug = function(should) {
+    // @NOTE if this is trying to inherit,
+    // and we have shorthands above ChainedMap somehow
+    // because of the `construct`, error, lame
+    if (!this.meta) return this
     this.meta.debug = isUndefined(should) ? true : should
     return this
   }
@@ -136,7 +146,7 @@ module.exports = Target => {
    *   chain.when(!chain.has('eh'), instance => instance.set('eh', false))
    *
    */
-  Target.prototype.setIfEmpty = function(name, value) {
+  Shorthands.prototype.setIfEmpty = function(name, value) {
     if (this.has(name)) return this
     else return this.set(name, value)
   }
@@ -148,7 +158,7 @@ module.exports = Target => {
    * @memberOf ShorthandChain
    * @since 3.0.0
    *
-   * @see fp/return
+   * @see fp/identity
    * @param  {any} value value to return at the end of a chain
    * @return {any} value
    *
@@ -164,7 +174,7 @@ module.exports = Target => {
    *    //=> value of process.env
    *
    */
-  Target.prototype['return'] = constant
+  Shorthands.prototype['return'] = identity
 
   /**
    * @desc wrap a value, if it's a Function call it, return this
@@ -195,10 +205,10 @@ module.exports = Target => {
    *      .fn(true)
    *
    */
-  Target.prototype.wrap = function(fn) {
+  Shorthands.prototype.wrap = function(fn) {
     if (isFunction(fn)) fn.call(this, this)
     return this
   }
 
-  return Target
+  return Shorthands
 }

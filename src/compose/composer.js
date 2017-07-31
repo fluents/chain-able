@@ -3,6 +3,7 @@
 
 // @see compose note on looping, this solves that
 const isUndefined = require('../deps/is/undefined')
+const isFunction = require('../deps/is/function')
 const setToArray = require('../deps/cast/setToArray')
 const reduceArray = require('../deps/loop/reduce/reduceArray')
 
@@ -16,7 +17,9 @@ const COMPOSER_KEY = '127932'
 // '🎩'
 const TOP_BASE_CLASS_KEY = '127913'
 
-const callCurrent = (accumulated, current) => current(accumulated)
+const callCurrent = (accumulated, current) => {
+  return current(accumulated)
+}
 
 // @NOTE 'top' is a global property o.o
 module.exports = function addCompose(fn, defaultTop) {
@@ -54,7 +57,9 @@ module.exports = function addCompose(fn, defaultTop) {
     composed[COMPOSER_KEY] = new Set()
   }
 
-  composed[COMPOSER_KEY].add(fn)
+  if (isFunction(fn)) {
+    composed[COMPOSER_KEY].add(fn)
+  }
 
   return composed
 }
