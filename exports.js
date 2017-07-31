@@ -15,13 +15,9 @@ const or = require('./src/deps/conditional/or')
 const and = require('./src/deps/conditional/and')
 // fp
 const fp = require('./src/deps/fp')
+// const native = require('./src/deps/native')
+// const regexp = require('./src/deps/regexp')
 // is
-const isMatch = require('./src/deps/is/match')
-const isEmpty = require('./src/deps/is/empty')
-const isStringPrimitive = require('./src/deps/is/stringPrimitive')
-const isBooleanPrimitive = require('./src/deps/is/booleanPrimitive')
-const isNumberPrimitive = require('./src/deps/is/numberPrimitive')
-const isPrimitive = require('./src/deps/is/primitive')
 const math = require('./src/deps/math')
 const util = require('./src/deps/util')
 const to = require('./src/deps/cast')
@@ -36,18 +32,11 @@ const string = require('./src/deps/string')
 const encase = require('./src/deps/encase')
 const cast = require('./src/deps/cast')
 const loop = require('./src/deps/loop')
+const is = require('./src/deps/is/_all')
 
 const cache = {addPooling}
 const dots = {escapeDot, isDottable: dottable, segments, paths}
 
-const is = {
-  isMatch,
-  isEmpty,
-  isStringPrimitive,
-  isBooleanPrimitive,
-  isNumberPrimitive,
-  isPrimitive,
-}
 const conditionsObj = {all, some, not, or, and}
 
 includes.all = includesAll

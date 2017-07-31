@@ -1,8 +1,6 @@
 const castArgs = require('../../src/deps/cast/toArguments')
 const slice = require('../../src/deps/flipped/sliceFlipped')
 
-const eq = (x, y, msg) => expect(x).toEqual(y)
-
 describe('slice', function() {
   it('retrieves the proper sublist of a list', function() {
     var list = [8, 6, 7, 5, 3, 0, 9]

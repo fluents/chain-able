@@ -3,12 +3,12 @@ const nthArg = require('../../src/deps/fp/nthArg')
 const eq = (x, y, msg) => expect(x).toEqual(y)
 
 describe('nthArg', function() {
-  it('returns a function which returns its nth argument', function() {
+  it.skip('returns a function which returns its nth argument', function() {
     eq(nthArg(0)('foo', 'bar'), 'foo')
     eq(nthArg(1)('foo', 'bar'), 'bar')
   })
 
-  it('accepts negative offsets', function() {
+  it.skip('accepts negative offsets', function() {
     eq(nthArg(-1)('foo', 'bar'), 'bar')
     eq(nthArg(-2)('foo', 'bar'), 'foo')
     eq(nthArg(-3)('foo', 'bar'), undefined)
