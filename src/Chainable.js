@@ -17,25 +17,22 @@ const noop = require('./deps/util/noop')
 const ObjectKeys = require('./deps/util/keys')
 const ObjectDefine = require('./deps/util/define')
 const ignored = require('./deps/meta/ignored')
-const castSetToArray = require('./deps/cast/setToArray')
 const ArrayFrom = require('./deps/util/from')
 const keyValueToIterator = require('./deps/cast/keyValueToIterator')
-const castIteratorToArray = require('./deps/cast/iteratorToArray')
 const hasOwnPropertyFlipped = require('./deps/flipped/hasOwnPropertyFlipped')
-const preAllocate = require('./deps/array/preAllocate')
 const when = require('./deps/fp/when')
 const composer = require('./compose/composer')
+const pathSatisfies = require('./deps/fp/propSatisfies')
 
 const hasStore = hasOwnPropertyFlipped('store')
-const hasDestructor = hasOwnPropertyFlipped('destructor')
+const hasConstructMethod = pathSatisfies('construct', isFunction)
+const hasDestructorMethod = pathSatisfies('destructor', isFunction)
 
 // @TODO change from `||` to if else
 const shouldClear = (key, property) =>
   !ignored(key) &&
   (isMap(property) || isSet(property) || hasStore(property))
 
-const hasConstructMethod = ownPropertyIs('construct', isFunction)
-const hasDestructorMethod = ownPropertyIs('destructor', isFunction)
 
 // @TODO would just be `always(prop(name))`
 function valueMethod(name) {
@@ -150,7 +147,7 @@ const ComposeChainable = (Target, parentArgs) => {
     constructor(parent) {
       super()
 
-      if (hasConstructMethod(this)) this.construct(parent)
+      // if (hasConstructMethod(this)) this.construct(parent)
       this.className = this.constructor.name
       this.parent = parent
     }
@@ -176,60 +173,6 @@ const ComposeChainable = (Target, parentArgs) => {
   Chainable.hashCode = function() {
     // this.store.size
     // this.className
-  }
-
-
-  /**
-   * @desc Iterator for looping values in the store
-   *
-   * @memberOf Chainable
-   * @since 0.5.0
-   * @version 5.0.0 <- uses.keys > keys(entries())
-   *
-   * @type {generator}
-   * @return {Object} {value: undefined | any, done: true | false}
-   *
-   * @NOTE assigned to a variable so buble ignores it
-   *
-   *
-   * @see https://github.com/sindresorhus/quick-lru/blob/master/index.js
-   * @see https://stackoverflow.com/questions/36976832/what-is-the-meaning-of-symbol-iterator-in-this-context
-   * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator
-   * @see this.store
-   * @tests iteration
-   *
-   * @example
-   *
-   *    const chain = new Chain().set('eh', 1)
-   *    for (var [key, val] of chain) console.log({[key]: val})
-   *    //=> {eh: 1}
-   *
-   * @example
-   *
-   *    *[Symbol.iterator](): void { for (const item of this.store) yield item }
-   *
-   * @example
-   *
-   *    const {ChainedSet} = require('chain-able')
-   *    const set = new ChainedSet()
-   *    set.add('eh')
-   *
-   *    for (const arr of set) {
-   *      const [key, val] = arr
-   *
-   *      key
-   *      //=> 0
-   *
-   *      val
-   *      //=> 'eh'
-   *
-   *      arr.length
-   *      //=> 2
-   *    }
-   *
-   */
-  Chainable.prototype[SymbolIterator] = function() {
-    return keyValueToIterator(this.keys(), this.values(), this.store.size)
   }
 
   /**
@@ -289,7 +232,7 @@ const ComposeChainable = (Target, parentArgs) => {
    *    //=> {}
    *
    */
-  Chainable.prototype.clear = function(clearPropertiesThatAreChainLike = false) {
+  Chainable.prototype.clear = function(clearPropertiesThatAreChainLike = true) {
     this.store.clear()
 
     if (isFalse(clearPropertiesThatAreChainLike)) return this
@@ -403,6 +346,59 @@ const ComposeChainable = (Target, parentArgs) => {
     return ArrayFrom(this.store.values())
   }
 
+  // --- symbols ---
+
+  /**
+   * @desc Iterator for looping values in the store
+   *
+   * @memberOf Chainable
+   * @since 0.5.0
+   * @version 5.0.0 <- uses.keys > keys(entries())
+   *
+   * @type {generator}
+   * @return {Object} {value: undefined | any, done: true | false}
+   *
+   * @NOTE assigned to a variable so buble ignores it
+   * @NOTE both Map & Set collections iterate with `[key, val]`
+   *
+   * @see https://www.typescriptlang.org/docs/handbook/iterators-and-generators.html
+   * @see http://exploringjs.com/es6/ch_iteration.html#_maps-1
+   * @see https://github.com/sindresorhus/quick-lru/blob/master/index.js
+   * @see https://stackoverflow.com/questions/36976832/what-is-the-meaning-of-symbol-iterator-in-this-context
+   * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator
+   * @see this.store
+   *
+   * @tests iteration
+   *
+   * @example
+   *
+   *    const chain = new Chain().set('eh', 1)
+   *    for (var [key, val] of chain) console.log({[key]: val})
+   *    //=> {eh: 1}
+   *
+   * @example
+   *
+   *    *[Symbol.iterator](): void { for (const item of this.store) yield item }
+   *
+   * @example
+   *
+   *    const {ChainedSet} = require('chain-able')
+   *    const set = new ChainedSet()
+   *    set.add('eh')
+   *
+   *    for (const arr of set) {
+   *      const [key, val] = arr
+   *
+   *      key        //=> 0
+   *      val        //=> 'eh'
+   *      arr.length //=> 2
+   *    }
+   *
+   */
+  Chainable.prototype[SymbolIterator] = function() {
+    return keyValueToIterator(this.keys(), this.values(), this.store.size)
+  }
+
   /**
    * @desc symbol method for toString, toJSON, toNumber
    * @memberOf Chainable
@@ -476,6 +472,7 @@ const ComposeChainable = (Target, parentArgs) => {
       (isPrototypeOf(Chainable.prototype, instance) || hasStore(instance)),
   })
 
+  // @TODO to wrap in toFunction but keep prototype
   // return function(parent) {
   //   const instance = new Chainable(parent)
   //   // console.log({instance}, instance.end)
