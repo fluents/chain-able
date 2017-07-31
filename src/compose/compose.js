@@ -1,6 +1,6 @@
 const ENV_DEBUG = require('../deps/env/debug')
 const isUndefined = require('../deps/is/undefined')
-const isOfInstance = require('../deps/flipped/isOfInstance')
+const isInstanceOf = require('../deps/is/instanceOf')
 const flattenForIn = require('../deps/loop/flattenForIn')
 const defaultTo = require('../deps/cast/defaultTo')
 const Chainable = require('../Chainable')
@@ -12,7 +12,7 @@ const Transform = require('./Transform')
 const DotProp = require('./DotProp')
 
 const ComposableExtensions = [Observe, Shorthands, Transform, DotProp]
-const isOfInstanceObj = isOfInstance(Object)
+const isOfInstanceObj = isInstanceOf(Object)
 
 /**
  * @desc compose chains all the way up from Chainable
@@ -27,9 +27,15 @@ const isOfInstanceObj = isOfInstance(Object)
  * @tutorial examples/playground/compose
  * @tutorial examples/babel/decorators
  *
+ * {@link http://js-bits.blogspot.ca/2010/08/javascript-inheritance-done-right.html javascript-inheritance-done-right}
+ * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain mozilla_Inheritance_and_the_prototype_chain}
+ * @see {@link mozilla_Inheritance_and_the_prototype_chain}
+ * @see {@link javascript-inheritance-done-right}
+ *
+ * @func
  * @name compose
- * @func compose
  * @member compose
+ *
  * @tests compose
  * @types compose
  * @symb 🎼
