@@ -132,6 +132,7 @@ test('prepend', () => {
   expect(set.prepend('beta')).toBe(set)
   expect(set.store.has('beta')).toBe(true)
   expect([...set.store]).toEqual(['beta', 'alpha'])
+  expect([...set.store]).toEqual(set.values())
 })
 
 test('clear', () => {

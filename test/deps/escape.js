@@ -1,4 +1,4 @@
-const escapeStringRegExp = require('../../src/deps/matcher/escape-string-regex')
+const escapeStringRegExp = require('../../src/deps/string/escapeRegExp')
 
 test('excape string regexp', () => {
   const actual = escapeStringRegExp('\\ ^ $ * + ? . ( ) | { } [ ]')

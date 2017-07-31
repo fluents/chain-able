@@ -13,13 +13,20 @@ test('composable', () => {
 })
 
 test('compose custom extensions', () => {
-  class CustomTarget { }
+  class CustomTarget {
+    constructor(parent) {
+      this.ok = true
+    }
+  }
   const CustomComposer = SuperClass => {
-    class Customed extends SuperClass { }
+    class Customed extends SuperClass {
+
+    }
     return Customed
   }
   const CustomComposed = compose(CustomTarget, [CustomComposer])
   const map = new CustomComposed()
+  expect(map.ok).toBe(true)
   expect(map instanceof CustomTarget).toBe(true)
 })
 
@@ -79,6 +86,7 @@ test('extend class as decorator', () => {
   class ComposedTarget extends CT { }
   class ComposedTarget2 extends compose(Target2) { }
   const map = new ComposedTarget({isParent: true})
+  const map2 = new ComposedTarget2({isParent: true})
   // log.prettyformat(new CustomComposed()).echo()
   // log.prettyformat(map).echo()
   // log.prettyformat(new ComposedTarget2()).echo()

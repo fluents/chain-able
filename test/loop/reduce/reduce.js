@@ -1,6 +1,6 @@
 const log = require('fliplog')
-const reduceEntries = require('../../src/deps/reduce/entries')
-const reduce = require('../../src/deps/reduce')
+const reduceEntries = require('../../../src/deps/reduce/entries')
+const reduce = require('../../../src/deps/reduce')
 
 test('reduce calls .entries()', () => {
   expect.assertions(2)

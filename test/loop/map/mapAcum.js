@@ -1,11 +1,15 @@
-const mapAccum = require('../../src/deps/loop/map/mapAcum')
-
-const eq = (x, y) => expect(x).toEqual(y)
+const mapAccum = require('../../../src/deps/loop/map/mapAcum')
 
 describe('mapAccum', function() {
-  var add = function(a, b) { return [a + b, a + b] }
-  var mult = function(a, b) { return [a * b, a * b] }
-  var concat = function(a, b) { return [a.concat(b), a.concat(b)] }
+  var add = function(a, b) {
+    return [a + b, a + b]
+  }
+  var mult = function(a, b) {
+    return [a * b, a * b]
+  }
+  var concat = function(a, b) {
+    return [a.concat(b), a.concat(b)]
+  }
 
   it('map and accumulate simple functions over arrays with the supplied accumulator', function() {
     eq(mapAccum(add, 0, [1, 2, 3, 4]), [10, [1, 3, 6, 10]])

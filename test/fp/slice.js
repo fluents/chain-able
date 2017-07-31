@@ -1,4 +1,4 @@
-const castArgs = require('../../src/deps/cast/args')
+const castArgs = require('../../src/deps/cast/toArguments')
 const slice = require('../../src/deps/flipped/sliceFlipped')
 
 const eq = (x, y, msg) => expect(x).toEqual(y)
