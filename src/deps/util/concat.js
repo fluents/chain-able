@@ -1,7 +1,7 @@
 const curry = require('../fp/curry')
-const isString = require('../is/stringPrimitive')
+const toString = require('../cast/toString')
 const concatArray = require('../array/concat')
-const toString = require('../cast/string')
+const isString = require('../is/stringPrimitive')
 
 /**
  * @name concat

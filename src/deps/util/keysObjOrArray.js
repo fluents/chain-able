@@ -52,7 +52,8 @@ const ObjectKeys = require('./keys')
  */
 module.exports = function keys(obj) {
   return isArray(obj)
-    ? preAllocate(obj)
+    // preAllocate(obj)
+    ? obj
     : isObj(obj)
       ? ObjectKeys(obj)
       // @TODO
