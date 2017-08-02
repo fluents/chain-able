@@ -1,15 +1,16 @@
 /* istanbul ignore next */
 
-const map = require('./map')
-const set = require('./set')
-const regexp = require('./regexp')
+const constructMap = require('./map')
+const constructSet = require('./set')
+const constructRegExp = require('./regexp')
 
 /**
  * @member construct
  * @type {Object}
+ * @TODO map to `newX` ?
  */
 module.exports = {
-  map,
-  set,
-  regexp,
+  constructMap,
+  constructSet,
+  constructRegExp,
 }

@@ -6,7 +6,9 @@ const curry = require('../fp/curry')
  * It will:
  * - return `true` when the underlying function would return a false-y value,
  * - and `false` when it would return a truth-y one.
+ * @since 4.0.1
  *
+ * {@link https://github.com/facebook/immutable-js/blob/master/src/CollectionImpl.js#L771 immutable-js-not}
  * {@link https://github.com/ramda/ramda/blob/master/src/not.js ramda-not}
  * {@link https://github.com/lodash/lodash/blob/master/negate.js lodash-negate}
  * {@link http://documentcloud.github.io/underscore-contrib/#not-1 underscore-not}
@@ -15,11 +17,11 @@ const curry = require('../fp/curry')
  * @see {@link underscore-not}
  * @see {@link lodash-negate}
  * @see {@link ramda-not}
+ * @see {@link immutable-js-not}
  *
  * @alias negate
  * @name not
  * @memberOf conditional
- * @since  4.0.1
  * @func
  *
  * @param  {Function} fn any function

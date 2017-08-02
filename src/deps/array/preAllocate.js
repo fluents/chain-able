@@ -6,6 +6,7 @@ const from0 = require('../util/numberFromZero')
 // const lengthMinusOne = require('../util/lengthMinusOne')
 // const lengthFrom0 = require('../util/lengthFromZero')
 
+// @TODO also ensure we coerce this number...?
 // @NOTE calls from0 twice but inlined makes less diff than adding pointer
 const arrFrom0 = x => new Array(from0(x) > LARGE_ARRAY_SIZE ? 0 : from0(x))
 
@@ -46,9 +47,11 @@ const arrFrom0 = x => new Array(from0(x) > LARGE_ARRAY_SIZE ? 0 : from0(x))
  *
  */
 module.exports = function preAllocate(x) {
+  // @TODO now that size is better, this can just be...
+  // return arrFrom0(size(x))
   return isNumberPrimitive(x)
     ? arrFrom0(x)
     : isArray(x)
-      ? arrFrom0(x)
+      ? arrFrom0(x.length)
       : arrFrom0(size(x))
 }
