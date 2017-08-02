@@ -12,6 +12,8 @@ const isNumber = require('./number')
  * @return {boolean} x is Buffer
  *
  * If you need to support Safari 5-7 (8-10 yr-old browser),
+ * 
+ * @see https://nodejs.org/api/util.html#util_util_isbuffer_object
  * @see https://github.com/feross/is-buffer
  *
  * @example

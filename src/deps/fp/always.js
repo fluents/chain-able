@@ -10,6 +10,8 @@
  * @alias constant
  * @alias const
  *
+ * @tests fp/always
+ *
  * @func
  * @memberOf fp
  * @since v5.0.0

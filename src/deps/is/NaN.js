@@ -13,9 +13,11 @@ const isNumber = require('./number')
  * @alias isNotNumber
  * @alias isNotEhNumber
  *
+ * {@link https://tc39.github.io/ecma262/#sec-isnan-number emca-isnan}
  * {@link https://github.com/lodash/lodash/tree/npm-packages/lodash.isnan lodash-isnan}
  * {@link https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/isNaN mozilla-isnan}
  * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L1347 underscore-is-nan}
+ * @see {@link emca-isnan}
  * @see {@link mozilla-isnan}
  * @see {@link underscore-is-nan}
  * @see {@link lodash-isnan}

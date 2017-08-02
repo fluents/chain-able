@@ -10,24 +10,27 @@ const curry = require('./curry')
  * with the same arguments and returns the same type. The arity of the function
  * returned is specified to allow using variadic constructor functions.
  *
- * @func
  * @memberOf fp
  * @symb 👷
  * @since 5.0.0-beta.4
- * @fork v0.4.0
- * @category Function
- * @sig Number -> (* -> {*}) -> (* -> {*})
  *
  * @param {number} n The arity of the constructor function. (aka, number of args)
  * @param {Function} Klass The constructor function to wrap. (class to do `new Klass` on)
  * @return {Function} A wrapped, curried constructor function.
  *
+ * @func
+ * @fork v0.4.0
+ * @category Function
+ * @sig Number -> (* -> {*}) -> (* -> {*})
+ *
  * @extends R.construct
  * @extends R.constructN
  * @variation with a single *notNumber* arg, it acts as construct, rather than constructN
  *
+ * {@link https://stackoverflow.com/questions/9267157/why-is-it-impossible-to-change-constructor-function-from-prototype stack-overflow-constructor}
  * {@link https://github.com/ramda/ramda/blob/master/src/constructN.js ramda-construct}
  * @see {@link ramda-construct}
+ * @see {@link stack-overflow-constructor}
  * @see isNumberPrimitive
  *
  * @example

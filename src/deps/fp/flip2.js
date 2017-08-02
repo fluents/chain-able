@@ -1,4 +1,4 @@
-const argumentor = require('../argumentor')
+const argumentor = require('../cast/argumentor')
 const curry = require('./curry')
 
 /**

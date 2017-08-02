@@ -15,6 +15,7 @@ const isStringPrimitive = require('./stringPrimitive')
  * @param {*} x The value to check.
  * @return {boolean} Returns `true` if `value` is a string, else `false`.
  *
+ * {@link https://nodejs.org/api/util.html#util_util_isstring_object node-util-isstring}
  * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L1318 underscore-isstring}
  * {@link https://github.com/infernojs/inferno/blob/master/packages/inferno-shared/src/index.ts#L42 inferno-isstring}
  * {@link https://github.com/ramda/ramda/blob/master/src/internal/_isString.js ramda-is-string}
@@ -27,6 +28,7 @@ const isStringPrimitive = require('./stringPrimitive')
  * @see {@link ramda-is-string}
  * @see {@link inferno-isstring}
  * @see {@link underscore-isstring}
+ * @see {@link node-util-isstring}
  * @see isStringPrimitive
  *
  * @example

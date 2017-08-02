@@ -1,4 +1,4 @@
-// const toObject = require('../cast/object')
+const toObject = require('../cast/toObj')
 
 /**
  * @desc prop is in Object(obj)
@@ -19,7 +19,7 @@
  *  isIn({eh: true}, 'oh') //=> false
  *
  */
-module.exports = (obj, prop) => (prop in Object(obj))
+module.exports = (obj, prop) => (prop in toObject(obj))
 
 // @TODO
 // function isIn(set) {

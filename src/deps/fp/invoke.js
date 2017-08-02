@@ -22,21 +22,23 @@ const hasIn = require('../is/hasIn')
  * @param {Array} [args] The arguments to invoke the method with.
  * @returns {Function} Returns the new invoker function.
  *
+ * @see https://github.com/emberjs/ember.js/blob/master/packages/ember-utils/lib/invoke.js
  * @see https://github.com/wycats/handlebars.js/blob/master/lib/handlebars/runtime.js#L38
  * @see https://github.com/lodash/lodash/blob/master/method.js
  *
  * @example
  *
- * const objects = [
- *   { 'a': { 'b': () => 2 } },
- *   { 'a': { 'b': () => 1 } }
- * ]
+ *   const objects = [
+ *     { 'a': { 'b': () => 2 } },
+ *     { 'a': { 'b': () => 1 } }
+ *   ]
  *
- * map(objects, method('a.b'))
- * //=> [2, 1]
+ *   map(objects, method('a.b'))
+ *   //=> [2, 1]
  *
- * map(objects, method(['a', 'b']))
- * //=> [2, 1]
+ *   map(objects, method(['a', 'b']))
+ *   //=> [2, 1]
+ *
  */
 
 /**

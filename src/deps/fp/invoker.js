@@ -1,4 +1,4 @@
-const argumentor = require('../argumentor')
+const argumentor = require('../cast/argumentor')
 const slice = require('../native/arraySlice')
 const isNill = require('../is/nullOrUndefined')
 const isFunction = require('../is/function')
@@ -6,14 +6,25 @@ const hasIn = require('../is/hasIn')
 const curry = require('./curry')
 
 /**
- * Turns a named method with a specified arity into a function that can be
- * called directly supplied with arguments and a target object.
+ * @desc simple desc:
+ *   - pass in numberOfArgs & methodName
+ *   - when the function is called, with 1 more arg than the number of args you gave
+ *     it uses that as
+ *        // arguments 0-numberOfArgs...
+ *        `leftover = arguments.slice(0, numberOfArgs)`
+ *        `target[numberOfArgs][methodName](leftover)`
+ *   longer desc:
+ *   - Turns a named method with a specified arity into a function that can be
+ *     called directly supplied with arguments and a target object.
+ *   - The returned function is curried and accepts `arity + 1` parameters where
+ *     the final parameter is the target object.
  *
- * The returned function is curried and accepts `arity + 1` parameters where
- * the final parameter is the target object.
  * @since 5.0.0-beta.6
+ * @NOTE has safety and returns `undefined` when there is no method for the function
+ * @TODO add the `safety` to debugRecord
  *
  * @func
+ * @name invoker
  * @memberOf fp
  * @ramda v0.1.0
  * @category Function
@@ -24,7 +35,9 @@ const curry = require('./curry')
  * @param {String} method Name of the method to call.
  * @return {Function} A new curried function.
  *
+ * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L294 underscore-invoke}
  * {@link https://github.com/ramda/ramda/blob/master/src/invoker.js ramda-invoker}
+ * @see {@link underscore-invoker}
  * @see {@link ramda-invoker}
  * @see fp/construct
  *
@@ -59,6 +72,7 @@ module.exports = curry(2, function invoker(arity, method) {
     else {
       return undefined
     }
+
     // throw new TypeError(toString(target) + ' does not have a method named "' + method + '"')
   })
 })

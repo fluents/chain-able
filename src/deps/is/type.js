@@ -12,8 +12,10 @@ const curry = require('../fp/curry')
  * @param  {string} x object to match `typeof x === type`
  * @return {boolean}
  *
+ * {@link https://github.com/facebook/jest/blob/master/packages/jest-get-type/src/index.js jest-get-type}
  * {@link https://github.com/yesvods/sanife/blob/master/src/type.js#L3 sanife-type}
  * @see {@link sanife-type}
+ * @see {@link jest-get-type}
  *
  * @example
  *    isType('string')('eh') //=> true

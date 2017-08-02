@@ -1,4 +1,4 @@
-const argumentor = require('../argumentor')
+const argumentor = require('../cast/argumentor')
 
 /**
  * @desc flip the fn args:

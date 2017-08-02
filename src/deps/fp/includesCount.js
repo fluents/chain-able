@@ -1,17 +1,13 @@
 const EMPTY_ARRAY = require('../native/EMPTY_ARRAY')
 const isArray = require('../is/array')
 const isString = require('../is/stringPrimitive')
-const esc = require('../matcher/to-regexp')
+const toRegExp = require('../cast/toRegExp')
 const pipe = require('../fp/pipe')
 const curry = require('../fp/curry')
 const invoke = require('../fp/invoke')
 const lengthMinusOne = require('../util/lengthMinusOne')
-const newRegExp = require('../construct/regexp')
 const split = require('../string/split')
-const test = require('../matcher/test')
 
-// @TODO move
-const toRegExp = pipe(esc, newRegExp, test)
 // @TODO could have `method` for curring with .flip .invoke
 const filter = invoke('_', 'filter')
 
@@ -19,7 +15,6 @@ const filter = invoke('_', 'filter')
  * @desc getIncludesCount, how many times a needle occurrs in a haystack
  *
  * @since 5.0.0-beta.4
- * @alias countBy
  * @alias occurrs
  * @alias getIncludesCount
  *

@@ -19,8 +19,14 @@ const curry = require('./curry')
  * @param {Object} testObj
  * @return {Boolean}
  *
+ * @tests fp/where
+ *
+ * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L323 underscore-where}
+ * {@link https://github.com/lodash/lodash/blob/master/.internal/baseConformsTo.js lodash-conformsto}
  * {@link https://github.com/ramda/ramda/blob/v0.24.1/src/where.js ramda-where}
+ * @see {@link underscore-where}
  * @see {@link ramda-where}
+ * @see {@link lodash-conformsto}
  *
  * @func
  * @fork v0.1.1

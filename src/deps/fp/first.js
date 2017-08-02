@@ -12,14 +12,24 @@ const firstIndex = require('./firstIndex')
  * @param {*} x Array or Object find the last key of
  * @return {*} value at last index
  *
+ * @name first
+ * @alias head
+ *
+ * @tests fp/first
+ *
  * @func
  * @category List
  * @sig [a] -> a | Undefined
  * @sig String -> String
  *
- * @see https://github.com/lodash/lodash/blob/master/head.js
- * @see https://github.com/ramda/ramda/blob/master/src/head.js
+ * {@link https://github.com/ramda/ramda/blob/master/src/head.js ramda-head}
+ * {@link https://github.com/lodash/lodash/blob/master/head.js lodash-head}
+ * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L494 underscore-first}
+ * @see {@link underscore-head}
+ * @see {@link lodash-head}
+ * @see {@link ramda-head}
  * @see R.init, R.head, R.tail
+ *
  * @TODO could just pipe nth
  *
  * @example

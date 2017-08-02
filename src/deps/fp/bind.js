@@ -10,6 +10,8 @@ const curry = require('./curry')
  * @param {Object} thisArg The context to bind `fn` to
  * @return {Function} A function that will execute in the context of `thisArg`.
  *
+ * @tests fp/bind
+ *
  * @func
  * @fork v0.6.0
  * @category Function

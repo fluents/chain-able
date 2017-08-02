@@ -6,9 +6,15 @@ const toS = require('./toS')
  *
  * @since 3.0.0
  * @memberOf is
+ *
  * @func
  * @name isDate
  * @extends toS
+ *
+ * {@link https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Date mozilla-date}
+ * {@link https://nodejs.org/api/util.html#util_util_isdate_object node-util-isdate}
+ * @see {@link node-util-isdate}
+ * @see {@link mozilla-date}
  *
  * @example
  *

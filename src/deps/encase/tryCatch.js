@@ -15,8 +15,10 @@ const curry = require('../fp/curry')
  *
  * @TODO `call.apply(null, arguments)` > a, b, c
  *
+ * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch mozilla-trycatch}
  * {@link https://github.com/fluture-js/Fluture#encase fluture-encase}
  * @see {@link fluture-encase}
+ * @see {@link mozilla-trycatch}
  */
 module.exports = curry(3, (call, onValid, onInvalid) => (a, b, c) => {
   let result

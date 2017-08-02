@@ -1,6 +1,6 @@
 const isArray = require('../is/array')
 const isFunction = require('../is/function')
-const argumentor = require('../argumentor')
+const argumentor = require('../cast/argumentor')
 
 /**
  * This checks whether a function has a [methodname] function. If it isn't an

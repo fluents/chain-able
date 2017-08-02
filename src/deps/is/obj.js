@@ -18,10 +18,12 @@ const isNull = require('./null')
  * @name isObj
  * @alias isObject
  *
+ * {@link https://github.com/gcanti/tcomb/blob/master/lib/isObject.js tcomb-isobject}
  * {@link https://github.com/lodash/lodash/blob/master/isObject.js lodash-isobject}
  * {@link https://github.com/mobxjs/mobx/blob/master/src/utils/utils.ts#L74 mobx-is-obj}
  * @see {@link mobx-isobject}
  * @see {@link lodash-isobject}
+ * @see {@link tcomb-isobject}
  *
  * @example
  *

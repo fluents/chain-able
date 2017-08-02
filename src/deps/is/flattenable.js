@@ -1,5 +1,5 @@
 const spreadableSymbol = require('../symbols/spreadable')
-const toBoolean = require('../cast/boolean')
+const toBoolean = require('../cast/toBoolean')
 // is
 const isArguments = require('./arguments')
 const isArray = require('./array')

@@ -2,18 +2,18 @@ const curry = require('../fp/curry')
 const hasIn = require('../is/in')
 
 /**
- * @TODO surely would be better with focusing on a prop, then applying predicate, lense? :s
- * @TODO is it better in fp/ or is/ ? needs some definitions
- *
  * @desc isIn + hasIn ...and also allows a predicate/matcher/specification
- *
  * @memberOf is
+ * @memberOf fp
  * @since 5.0.0-beta.4
  *
- * @param  {Object} predicate predicate match the property against this
- * @param  {Object} obj object to check
- * @param  {any} prop property to check in object
+ * @param {Object} predicate predicate match the property against this
+ * @param {Object} obj object to check
+ * @param {any} prop property to check in object
  * @return {boolean} obj[prop] hasIn & satisfies
+ *
+ * @TODO surely would be better with focusing on a prop, then applying predicate, lense? :s
+ * @TODO is it better in fp/ or is/ ? needs some definitions
  *
  * @see https://github.com/ramda/ramda/blob/master/src/propOr.js
  * @extends hasIn

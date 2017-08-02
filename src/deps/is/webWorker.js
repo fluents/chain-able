@@ -20,7 +20,7 @@ const isUndefinedLike = require('./undefinedLike')
  *   var GLOBAL = require("can-util/js/global/global");
  *
  *   if (isWebWorker()) {
- *     console.log(GLOBAL() === self); // -> true
+ *     GLOBAL() === self) //=> true
  *   }
  *
  */

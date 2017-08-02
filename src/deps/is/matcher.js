@@ -28,5 +28,6 @@ const isRegExp = require('./regexp')
  *    //=> false
  *
  */
-module.exports = or(isFunction, isRegExp) // x => isFunction(x) || isRegExp(x)
+module.exports = or(isFunction, isRegExp)
+// x => isFunction(x) || isRegExp(x)
 // x instanceof RegExp

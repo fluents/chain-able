@@ -40,6 +40,7 @@ const arity = require('./arity')
  * @category Function
  * @sig Number -> (* -> a) -> (* -> a)
  *
+ * {@link https://github.com/andrewplummer/Sugar/blob/master/lib/function.js#L382 sugar-partial}
  * {@link http://documentcloud.github.io/underscore-contrib/#curry underscore-contrib-curry}
  * {@link https://github.com/lodash/lodash/blob/master/.internal/composeArgs.js lodash-compose-args}
  * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L773 underscore-partial}
@@ -50,8 +51,9 @@ const arity = require('./arity')
  * @see {@link lodash-curry}
  * @see {@link ramda-uncurry}
  * @see {@link underscore-partial}
+ * @see {@link sugar-partial}
  *
- * @types fp
+ * @types fp/curry
  * @tests fp/curry
  *
  * @example

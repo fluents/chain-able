@@ -11,6 +11,8 @@ const lastIndex = require('./lastIndex')
  * @param {*} x list to get last index of
  * @return {*}
  *
+ * @tests fp/last
+ *
  * @ramda v0.1.4
  * @category List
  * @sig [a] -> a | Undefined

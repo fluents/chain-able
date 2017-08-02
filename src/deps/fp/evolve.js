@@ -23,6 +23,8 @@ const curry = require('./curry')
  * @param {Object} object The object to be transformed.
  * @return {Object} The transformed object.
  *
+ * @tests fp/evolve
+ *
  * @func
  * @fork v0.9.0
  * @category Object
@@ -54,12 +56,11 @@ module.exports = curry(2, function evolve(transformations, object) {
 
   for (key in object) {
     transformation = transformations[key]
-    result[key] =
-      isFunction(transformation)
-        ? transformation(object[key])
-        : isObjNotNull(transformation)
-          ? evolve(transformation, object[key])
-          : object[key]
+    result[key] = isFunction(transformation)
+      ? transformation(object[key])
+      : isObjNotNull(transformation)
+        ? evolve(transformation, object[key])
+        : object[key]
   }
 
   return result

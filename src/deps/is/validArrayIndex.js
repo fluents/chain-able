@@ -1,6 +1,5 @@
 const MAX_32_BIT = require('../native/MAX_32_BIT')
-const toInt32 = require('../cast/toSigned32')
-const isNumberPrimitive = require('./numberPrimitive')
+const toInt32 = require('../cast/toInt32')
 const isStringPrimitive = require('./stringPrimitive')
 
 /**
@@ -15,10 +14,16 @@ const isStringPrimitive = require('./stringPrimitive')
  * @param {string | number} x value to check
  * @return {boolean} x isValidArrayIndex
  *
- * @see https://github.com/facebook/immutable-js/blob/master/src/TrieUtils.js#L58
- * @see http://www.ecma-international.org/ecma-262/6.0/#sec-array-exotic-objects
- * @see cast/toSigned32
+ * {@link http://www.ecma-international.org/ecma-262/6.0/#sec-array-exotic-objects emca-array-exotic-objects}
+ * {@link https://github.com/andrewplummer/Sugar/blob/master/lib/common.js#L815 sugar-isarrayindex}
+ * {@link https://github.com/facebook/immutable-js/blob/master/src/TrieUtils.js#L58 immutablejs-trieutils}
+ * @see {@link immutablejs-trieutils}
+ * @see {@link emca-array-exotic-objects}
+ * @see {@link sugar-isarrayindex}
+ * @see cast/toInt32
+ * @see cast/toIndex
  * @see is/validIndex
+ *
  *
  * @example
  *

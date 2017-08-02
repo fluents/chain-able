@@ -19,8 +19,14 @@ const isBooleanPrimitive = require('./booleanPrimitive')
  * @func
  * @name isBoolean
  *
+ * {@link https://github.com/infernojs/inferno/blob/master/packages/inferno-shared/src/index.ts#L23 inferno-isboolean}
+ * {@link https://github.com/gcanti/tcomb/blob/master/lib/isBoolean.js tcomb-isboolean}
+ * {@link https://nodejs.org/api/util.html#util_util_isboolean_object node-util-isboolean}
  * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L1352 underscore-is-boolean}
+ * @see {@link inferno-isboolean}
+ * @see {@link tcomb-isboolean}
  * @see {@link underscore-is-boolean}
+ * @see {@link node-util-isboolean}
  * @see is/toS
  *
  * @example

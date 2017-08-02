@@ -14,6 +14,8 @@
  * @param {Function} fn function to wrap
  * @return {Function} function with params
  *
+ * @tests fp/arity
+ *
  * {@link https://github.com/blakeembrey/nary nary}
  * {@link https://www.npmjs.com/package/util-arity util-arity}
  * {@link https://docs.microsoft.com/en-us/scripting/javascript/reference/length-property-function-javascript microsoft-func-length}

@@ -1,5 +1,5 @@
 const isArray = require('../is/array')
-const argumentor = require('../argumentor')
+const argumentor = require('../cast/argumentor')
 const pipeTwo = require('./pipeTwo')
 
 /**

@@ -3,21 +3,29 @@ const isUndefined = require('./undefined')
 
 /**
  * @desc Checks if `value` is `null` or `undefined`.
- * @alias isNill
- * @alias isNil
- * @category Lang
+ * @since 4.0.0-alpha.1
+ * @memberOf is
  *
  * @param  {*} x value
  * @return {boolean} isNullOrUndefined
  *
- * @since 4.0.0-alpha.1
- * @memberOf is
- * @func isNullOrUndefined
+ * @name isNullOrUndefined
+ * @alias isNill
+ * @alias isNil
  *
+ * @func
+ * @category Lang
+ *
+ * {@link https://github.com/gcanti/tcomb/blob/master/lib/isNil.js tcomb-isnill}
+ * {@link http://ramdajs.com/docs/#isNil ramda-isnill}
+ * {@link https://github.com/infernojs/inferno/blob/master/packages/inferno-shared/src/index.ts#L23 inferno-isnullorundefined}
+ * {@link https://nodejs.org/api/util.html#util_util_isnullorundefined_object node-util-isnullorundefined}
+ * @see {@link inferno-isnullorundefined}
+ * @see {@link ramda-isnil}
+ * @see {@link tcomb-isnil}
+ * @see {@link node-util-isnullorundefined}
  * @see is/null
  * @see is/undefined
- * @see http://ramdajs.com/docs/#isNil
- * @see https://github.com/infernojs/inferno/blob/master/packages/inferno-shared/src/index.ts#L23
  *
  * @example
  *

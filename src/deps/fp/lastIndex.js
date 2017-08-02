@@ -3,18 +3,21 @@ const lengthMinusOne = require('../util/lengthMinusOne')
 const isArray = require('../is/array')
 const isObj = require('../is/objNotNull')
 const isString = require('../is/stringPrimitive')
-const toNumber = require('../cast/number')
 
 /**
  * @desc get last index in a list
- * @memberOf fp
  * @since 5.0.0-beta.2
+ * @memberOf fp
+ *
  * @name lastIndex
  * @alias findLastIndex
  *
  * @param  {Array | Object | string | *} x item to find the last index of
- * @return {*} last index, usually number/string
+ * @return {number|string|*} last index, usually number/string
  *
+ * @tests fp/last
+ *
+ * @TODO could have support for map...
  * @NOTE works for strings too eh
  * @extends deps/util/keysObjOrArray
  *
@@ -26,7 +29,6 @@ const toNumber = require('../cast/number')
  * @see {@link underscore-last-index}
  * @see deps/fp/last
  *
- *
  * @example
  *
  *   lastIndex([0, 'one'])       //=> 1
@@ -34,12 +36,13 @@ const toNumber = require('../cast/number')
  *
  */
 function lastIndex(x) {
-  // @TODO if (isString(x)) return x.lastIndexOf()
   if (isString(x) || isArray(x)) return lengthMinusOne(x)
-  // else if (isObj(x)) return toNumber(lengthMinusOne(keys(x)))
-  // else if (isObj(x)) return lastIndex(ObjectKeys(x))
   else if (isObj(x)) return ObjectKeys(x).pop()
   else return -1
+
+  // @TODO if (isString(x)) return x.lastIndexOf()
+  // else if (isObj(x)) return toNumber(lengthMinusOne(keys(x)))
+  // else if (isObj(x)) return lastIndex(ObjectKeys(x))
   // const xKeys = isArray(x) ? x : keys(x)
   // return xKeys[lengthMinusOne(xKeys)]
   // const last = xKeys[xKeys.length - 1]

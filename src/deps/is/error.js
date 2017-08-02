@@ -7,13 +7,17 @@ const toS = require('./toS')
  * @version 3.0.0 <- adding .message prop check
  * @version 2.0.0 <- just string tag
  * @version 1.0.0 <- was instanceof
+ * @since 4.0.0
+ * @memberOf is
  *
  * @param  {*} x value
  * @return {boolean} isError
  *
- * @since 4.0.0
- * @memberOf is
- * @func isError
+ * @name isError
+ * @func 
+ * 
+ * {@link https://nodejs.org/api/util.html#util_util_iserror_object node-util-iserror}
+ * @see {@link node-util-iserror}
  *
  * @example
  *

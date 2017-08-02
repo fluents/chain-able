@@ -22,6 +22,7 @@ const stringSlice = String.prototype.slice
  * @param {Number} toIndex The end index (exclusive).
  * @return {*}
  *
+ * @tests fp/slice
  * @curried 3
  * @see fp/preferExistingMethod
  *
@@ -57,11 +58,7 @@ function slice(list, fromIndex, toIndex) {
 
   // let array = isArray(list) ? list : from(list)
   let array = list
-  return arraySlice.call(
-    array,
-    fromIndex,
-    to
-  )
+  return arraySlice.call(array, fromIndex, to)
 }
 
 // @TODO put in flipped
