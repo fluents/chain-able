@@ -5,6 +5,7 @@ const freeze = require('../util/freeze')
  * @name EMPTY_OBJ
  * @alias emptyObject
  * @alias emptyObj
+ * @frozen
  * @type {Object}
  */
 const EMPTY_OBJ = {}

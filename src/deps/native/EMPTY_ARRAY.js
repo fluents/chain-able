@@ -6,6 +6,8 @@ const freeze = require('../util/freeze')
  * @alias emptyArray
  * @type {Array}
  *
+ * @frozen
+ *
  * {@link https://github.com/mobxjs/mobx/blob/master/src/utils/utils.ts#L1 mobx-empty-array}
  * @see {@link mobx-empty-array}
  */
