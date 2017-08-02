@@ -1,5 +1,6 @@
 /**
  * @desc Used to compose unicode character classes.
+ * {@link https://github.com/qfox/heatfiler/blob/master/lib/uni.js qfox-uni}
  * @type {string}
  */
 const rsAstralRange = '\\ud800-\\udfff'

@@ -1,5 +1,6 @@
 /**
  * @example get className() {return classNames(this)}
+ * @memberOf string
  * @param  {Object} _c
  * @return {string}
  */

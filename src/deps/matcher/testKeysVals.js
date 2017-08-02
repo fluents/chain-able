@@ -1,4 +1,4 @@
-const tester = require('./to-test')
+const tester = require('../cast/toTestable')
 
 /**
  * the original simple to-test matcher for traversable,

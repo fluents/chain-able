@@ -12,7 +12,12 @@ const isMatcher = require('../is/matcher')
 const cache = require('../cache')
 const toarr = require('../to-arr')
 const newRegExp = require('../construct/regexp')
-const toEscapedRegExp = require('./to-regexp')
+const pipe = require('../fp/pipeTwo')
+const toEscapedRegExp = require('../cast/toRegExp')
+const replaceEscapedStar = require('../string/escapedToDotStar')
+const escapeStringRegExp = require('../string/escapeRegExp')
+
+const esc = pipe(escapeStringRegExp, replaceEscapedStar)
 
 const m = {}
 
@@ -76,7 +81,8 @@ m.make = (pattern, shouldNegate, alphaOmega) => {
   // }
   let negated = matchable[0] === '!'
   if (negated) matchable = matchable.slice(1)
-  matchable = toEscapedRegExp(matchable)
+
+  matchable = esc(matchable)
 
   if (negated && shouldNegate) matchable = `(?!${matchable})`
   if (alphaOmega) matchable = `^${matchable}$`
