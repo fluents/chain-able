@@ -4,8 +4,10 @@ const curry = require('../fp/curry')
 /**
  * @desc if it has own property, call fnIs(value), else false
  * @curried 3
+ * @name ownPropertyIs
+ * @alias ownPropertySatisfies
  *
- * @param  {string|Array<string>} propertyPath
+ * @param  {string|Array<string>} propertyPath (@TODO later, lensish)
  * @param  {Function} fnIs (obj[path]): boolean
  * @param  {Object} obj object to check
  * @return {boolean} hasOwnProperty && fnIs

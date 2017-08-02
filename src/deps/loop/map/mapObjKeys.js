@@ -1,5 +1,5 @@
 const ObjectKeys = require('../../util/keys')
-const toObj = require('../../cast/object')
+const toObj = require('../../cast/toObj')
 
 /**
  * The opposite of `mapValue` this method creates an object with the
@@ -8,7 +8,7 @@ const toObj = require('../../cast/object')
  * with three arguments: (value, key, object).
  * @since 5.0.0-beta.6
  * @memberOf loop
- * @alias mapKeys
+ * @alias mapObjKeys
  *
  * @param {Object} object The object to iterate over.
  * @param {Function} iteratee The function invoked per iteration.
@@ -21,11 +21,12 @@ const toObj = require('../../cast/object')
  *
  * @example
  *
- *   mapKey({ 'a': 1, 'b': 2 }, (value, key) => key + value)
+ *   var concatKey = (value, key) => key + value)
+ *   mapKey({ 'a': 1, 'b': 2 }, concatKey)
  *   //=> { 'a1': 1, 'b2': 2 }
  *
  */
-function mapKey(object, iteratee) {
+function mapObjKey(object, iteratee) {
   const obj = toObj(object)
   const result = {}
 
@@ -38,4 +39,4 @@ function mapKey(object, iteratee) {
   return result
 }
 
-module.exports = mapKey
+module.exports = mapObjKey

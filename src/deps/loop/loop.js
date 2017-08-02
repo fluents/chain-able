@@ -46,7 +46,6 @@ const keyVal = {
   mapObj: mapObjFlipped,
   mapObjOrArray: mapObjOrArrayFlipped,
   mapArray: mapArrayFlipped,
-  map: mapObjOrArray,
 }
 
 /**
@@ -55,31 +54,48 @@ const keyVal = {
  * @since 5.0.0-beta.6
  */
 module.exports = {
+  // each
   arrayEach,
   baseEach,
   baseFor,
   forEach,
   forOwn,
+  // filter
   filterWhere,
+  // arr
   mapArray,
   mapArrayIndex,
   mapObjKeys,
   mapAcum,
+  // obj
   mapObjVals,
   mapObjOrArray,
   mapObjOrArrayKeys,
   mapObjOrArrayVals,
   mapObjValsFlipped,
+  // sort
   sort,
   sortBy,
   sortByR,
   sortWith,
   comparator,
-  keyVal,
-  flipped: keyVal,
   // fantasy
   mapFantasy,
   reduceFantasy,
   converge,
   pluck,
+
+  // flipped
+  map: mapObjOrArray,
+  // named
+  // keyVal,
+  flipped: keyVal,
+
+  filterWhereFlipped,
+  mapObjOrArrayKeysFlipped,
+  forOwnFlipped,
+  forEachFlipped,
+  mapObjFlipped,
+  mapObjOrArrayFlipped,
+  mapArrayFlipped,
 }

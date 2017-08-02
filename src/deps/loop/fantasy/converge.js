@@ -1,10 +1,10 @@
-const argumentor = require('../../argumentor')
+const ENV_DEBUG = require('../../env/debug')
+const argumentor = require('../../cast/argumentor')
 const curry = require('../../fp/curry')
 const max = require('../../math/max')
 const reduce = require('./_reduce')
 const pluck = require('./pluck')
 const map = require('./_map')
-
 
 /**
  * Accepts a converging function and a list of branching functions and returns
@@ -45,8 +45,10 @@ function _converge(after, fns) {
     const args = argumentor.apply(null, arguments)
     const self = this
     let index = 0
+
     return after.apply(self, map(function(fn) {
       fn = fn || fns[index++]
+      
       // console.log({fn, args, fns, after, index, i: fns[index++]})
       return fn.apply(self, args)
     }, fns))

@@ -1,4 +1,5 @@
 const ObjectKeys = require('../../util/keys')
+const preAllocate = require('../../array/preAllocate')
 
 /**
  * Creates an array of values by running each property of `object` thru

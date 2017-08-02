@@ -1,5 +1,6 @@
 const ObjectKeys = require('../../util/keys')
 const toArray = require('../../cast/toArray')
+const preAllocate = require('../../array/preAllocate')
 
 /**
  * The opposite of `mapValue` this method creates an ARRAY with the
@@ -29,7 +30,7 @@ const toArray = require('../../cast/toArray')
  */
 function mapIndex(array, iteratee) {
   // const arr = toArray(array)
-  const result = new Array(array.length)
+  const result = preAllocate(array)
 
   for (let i = 0; i < array.length; i++) {
     const key = array[i]

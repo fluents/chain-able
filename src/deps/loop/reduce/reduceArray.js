@@ -1,4 +1,4 @@
-const isNill = require('../../is/nullOrUndefined')
+const size = require('../../util/size')
 
 /**
  * A specialized version of `reduce` for arrays.
@@ -13,7 +13,7 @@ const isNill = require('../../is/nullOrUndefined')
  */
 function arrayReduce(array, iteratee, accumulator, initAccum) {
   let index = -1
-  const length = isNill(array) ? 0 : array.length
+  const length = size(array)
 
   if (initAccum && length) {
     accumulator = array[++index]

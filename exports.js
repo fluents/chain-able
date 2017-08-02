@@ -33,6 +33,7 @@ const encase = require('./src/deps/encase')
 const cast = require('./src/deps/cast')
 const loop = require('./src/deps/loop')
 const is = require('./src/deps/is/_all')
+const _ = require('./src/deps/_')
 
 const cache = {addPooling}
 const dots = {escapeDot, isDottable: dottable, segments, paths}
@@ -67,7 +68,8 @@ Object.assign(
   cache,
   encase,
   cast,
-  loop
+  loop,
+  _
 )
 
 module.exports = index

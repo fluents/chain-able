@@ -1,4 +1,5 @@
-const ObjectKeys = require('../../util/keysIn')
+const toObj = require('../../cast/toObj')
+const keysIn = require('../../util/keysIn')
 
 /**
  * Iterates over own enumerable string keyed properties of an object and
@@ -19,7 +20,8 @@ const ObjectKeys = require('../../util/keysIn')
  * @TODO !!! did not return object, consistently the others do, why?
  *
  * @see forEach, forEachRight, forIn, forInRight, forOwnRight
- * @see https://github.com/lodash/lodash/blob/master/forOwn.js
+ * {@link https://github.com/lodash/lodash/blob/master/forOwn.js lodash-forown}
+ * @see {@link lodash-forown}
  *
  * @example
  *
@@ -35,8 +37,8 @@ const ObjectKeys = require('../../util/keysIn')
  *
  */
 function forOwn(object, iteratee) {
-  const obj = Object(object)
-  ObjectKeys(obj).forEach(key => iteratee(obj[key], key, obj))
+  const obj = toObj(object)
+  keysIn(obj).forEach(key => iteratee(obj[key], key, obj))
   return obj
 }
 
