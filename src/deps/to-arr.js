@@ -4,9 +4,6 @@ const isSet = require('./is/set')
 const isMap = require('./is/map')
 const isIterator = require('./is/iterator')
 const ArrayFrom = require('./util/from')
-const hasOwnPropertyFlipped = require('./flipped/hasOwnPropertyFlipped')
-
-const hasValues = hasOwnPropertyFlipped('values')
 
 /**
  * @desc anything into an array
@@ -55,12 +52,13 @@ const hasValues = hasOwnPropertyFlipped('values')
  *   //=> ['', false, null]
  *
  */
-module.exports = function(ar) {
+const toArray = function(ar) {
   // @NOTE: !'' === true
   if (isStringPrimitive(ar)) return ar.includes(',') ? ar.split(',') : [ar]
   else if (!ar) return [ar]
   else if (isArray(ar)) return ar
-  else if (isSet(ar) || isMap(ar) || hasValues(ar)) {
+  // hasIn(ar, 'values')
+  else if (isSet(ar) || isMap(ar) || ar.values) {
     /**
      * @desc when using `new Set().values`... no forEach o.o
      * @NOTE .values is also on `Object`...
@@ -70,3 +68,5 @@ module.exports = function(ar) {
   else if (isIterator(ar)) return ArrayFrom(ar)
   else return [ar]
 }
+
+module.exports = toArray

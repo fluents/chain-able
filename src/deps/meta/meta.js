@@ -1,15 +1,19 @@
-// without it, the arguments & caller are uglier when drbugging
+/**
+ * @file without it, the arguments & caller are uglier when debugging
+ * @TODO freeze store props
+ * @TODO callsites are super polymorphic
+ */
 
-// @TODO freeze store props
-
+const ENV_DEBUG = require('../env/debug')
+const EMPTY_ARRAY = require('../native/EMPTY_ARRAY')
 const isSet = require('../is/set')
 const hasOwnProperty = require('../util/hasOwnProperty')
 const iteratorToArray = require('../cast/iteratorToArray')
+const ArrayFrom = require('../util/from')
 const isUndefined = require('../is/undefined')
 const concat = require('../array/concat')
 const toarr = require('../to-arr')
 const size = require('../util/size')
-const EMPTY_ARRAY = require('../native/EMPTY_ARRAY')
 const TRANSFORMERS_KEY = require('./TRANSFORMERS_KEY')
 const OBSERVERS_KEY = require('./OBSERVERS_KEY')
 const SHORTHANDS_KEY = require('./SHORTHANDS_KEY')
@@ -117,19 +121,19 @@ function getMeta(_this) {
    * @return {Array | Chain} depending on args
    */
   function meta(key, prop, value) {
-    if (process.env.NODE_ENV === 'DEBUG') {
-      console.log('USING META', {key, prop, value})
-    }
-
     /* prettier-ignore */
     if (isUndefined(value)) {
       // when we want to just access the property, return an array
       // @example `.meta('transformers')`
       if (isUndefined(prop)) {
+        if (ENV_DEBUG) {
+          console.log('META_CALL_GETTER', {[key]: store[key]})
+        }
+
         if (isUndefined(store[key])) return EMPTY_ARRAY
         else return size(store[key]) === 0
           ? EMPTY_ARRAY
-          : iteratorToArray(store[key])
+          : ArrayFrom(store[key])
       }
       // we have `key, prop`
       //
@@ -137,6 +141,9 @@ function getMeta(_this) {
       else if (isInKeyMapAsSet(key)) {
         ensureInitialized(key)
         set(key, prop)
+        if (ENV_DEBUG) {
+          console.log('META_CALL_SET_SETTER', {key, value: prop, store})
+        }
       }
       // 2: prop is a key, we want to return the [..] for that specific property
       // @example `.meta('transformers', 'eh')`
@@ -146,8 +153,13 @@ function getMeta(_this) {
     // we have `key, prop, value`
     else {
       ensureInitialized(key)
+
       // we have a value, let's add it
       set(key, prop, value)
+
+      if (ENV_DEBUG) {
+        console.log('META_CALL_MAP_SETTER', {key, prop, value, store})
+      }
     }
 
     return _this

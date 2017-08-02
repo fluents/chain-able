@@ -1,9 +1,8 @@
-const ownPropertyIs = require('../is/ownPropertyIs')
 const isString = require('../is/stringPrimitive')
 const isFunction = require('../is/function')
-const isFalse = require('../is/false')
+const propSatisfies = require('../fp/propSatisfies')
 
-const getIsFunction = ownPropertyIs('get', isFunction)
+const getIsFunction = propSatisfies('get', isFunction)
 
 /**
  * @desc when the condition is true,
@@ -20,6 +19,8 @@ const getIsFunction = ownPropertyIs('get', isFunction)
  * @param  {Function} [falseBrancher=Function] called when false
  * @return {Chainable} @chainable
  *
+ * @tests fp/when
+ *
  * @example
  *
  *
@@ -29,21 +30,26 @@ const getIsFunction = ownPropertyIs('get', isFunction)
  *
  */
 module.exports = function when(condition, trueBrancher, falseBrancher) {
+  // truthy condition - could be string
   if (condition) {
+    // ensure we have functions
     if (isFunction(trueBrancher)) {
+      // if we have a .get function, and we use a string, use that
       if (isString(condition) && getIsFunction(this)) {
         if (this.get(condition)) {
           trueBrancher(this)
         }
       }
-      else {
+ else {
         trueBrancher(this)
       }
     }
   }
-  else if (isFunction(falseBrancher)) {
+ else if (isFunction(falseBrancher)) {
+    // ensure function, on else
     falseBrancher(this)
   }
 
+  // chainable
   return this
-}
+};

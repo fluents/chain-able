@@ -1,4 +1,4 @@
-const argumentor = require('../argumentor')
+const argumentor = require('../cast/argumentsToArray')
 const curryN = require('./curry')
 const nth = require('./nth')
 
@@ -12,6 +12,7 @@ const nth = require('./nth')
  * @see deps/argumentor
  *
  * @curried 1
+ * @tests fp/nthArg
  *
  * @func
  * @fork v0.9.0
@@ -28,9 +29,12 @@ const nth = require('./nth')
  *      nthArg(-1)('a', 'b', 'c') //=> 'c'
  *
  */
-module.exports = function nthArg(n) {
+const nthArg = function(n) {
   const arity = n < 0 ? 1 : n + 1
   return curryN(arity, function() {
-    return nth(n, argumentor.apply(null, arguments))
+    // return nth(n, argumentor.apply(null, arguments))
+    return nth(argumentor.apply(null, arguments), n)
   })
 }
+
+module.exports = nthArg

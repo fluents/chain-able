@@ -36,7 +36,7 @@ const ObjectKeys = require('./deps/util/keys')
 const ObjectAssign = require('./deps/util/assign')
 // utils
 const toarr = require('./deps/to-arr')
-const argumentor = require('./deps/argumentor')
+const argumentor = require('./deps/cast/argumentor')
 const camelCase = require('./deps/string/camelCase')
 // const markForGarbageCollection = require('./deps/gc')
 // is

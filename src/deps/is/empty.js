@@ -1,3 +1,4 @@
+const EMPTY_STRING = require('../native/EMPTY_STRING')
 const size = require('../util/size')
 const isNullOrUndefined = require('./nullOrUndefined')
 const isObj = require('./objTypeof')
@@ -18,6 +19,7 @@ const isObj = require('./objTypeof')
  * @category Logic
  * @sig a -> Boolean
  *
+ * {@link https://github.com/js-data/js-data/blob/v2/src/utils.js#L98 js-data-is-empty}
  * {@link https://github.com/wycats/handlebars.js/blob/master/lib/handlebars/utils.js#L85 handlebars-is-empty}
  * {@link https://github.com/bitovi/u/blob/master/js/object/isEmptyObject.js can-u-is-empty-object}
  * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L1293 underscore-is-empty}
@@ -26,6 +28,7 @@ const isObj = require('./objTypeof')
  * @see {@link underscore-is-empty}
  * @see {@link ramda-is-empty}
  * @see {@link handlebars-is-empty}
+ * @see {@link js-data-is-empty}
  * @see empty
  *
  * @example
@@ -39,19 +42,24 @@ const isObj = require('./objTypeof')
  *
  */
 module.exports = function isEmpty(x) {
-  if (x === '') {
+  if (x === EMPTY_STRING) {
     return true
   }
   else if (isNullOrUndefined(x)) {
     return false
   }
   else if (isObj(x)) {
-    return size(x) !== 0
+    // @NOTE
+    // for (const property in x)
+    //   return true
+    // return false
+    return size(x) === 0
   }
   else {
     return false
   }
 
+  // @NOTE old version
   // else return (
   //   // null|undefined = empty
   //   // isNullOrUndefined(x) ||

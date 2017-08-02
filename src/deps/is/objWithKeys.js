@@ -1,3 +1,5 @@
+const ObjectKeys = require('../util/keys')
+const size = require('../util/size')
 const isObj = require('./obj')
 const isEmpty = require('./empty')
 
@@ -41,4 +43,4 @@ const isEmpty = require('./empty')
  *  //=> false
  *
  */
-module.exports = x => isObj(x) && !isEmpty(x)
+module.exports = x => isObj(x) && ObjectKeys(x).length !== 0 // !isEmpty(x)

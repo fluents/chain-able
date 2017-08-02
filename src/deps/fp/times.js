@@ -1,4 +1,5 @@
 const curry = require('../fp/curry')
+const toLength = require('../cast/toLength')
 
 /**
  * - Run a function **n** times.
@@ -12,6 +13,8 @@ const curry = require('../fp/curry')
  * @since 5.0.0-beta.1
  * @memberOf fp
  * @curried 2
+ *
+ * @NOTE lodash & underscore have `(number, fn)`, ramda has `(fn, number)`
  *
  * @param {number} n The number of times to invoke `iteratee`.
  * @param {Function} iteratee The function invoked per iteration.
@@ -29,6 +32,7 @@ const curry = require('../fp/curry')
  * @see {@link ramda-times}
  * @see {@link underscore-times}
  * @see {@link lodash-times}
+ * @see cast/toLength
  *
  * @example
  *
@@ -40,9 +44,10 @@ const curry = require('../fp/curry')
  *
  */
 function times(n, iteratee) {
-  const accum = new Array(Math.max(0, n))
-  for (let i = 0; i < n; i++) accum[i] = iteratee(i)
-  return accum
+  n = toLength(n)
+  const result = new Array(Math.max(0, n))
+  for (let i = 0; i < n; i++) result[i] = iteratee(i)
+  return result
 }
 
 module.exports = curry(2, times)

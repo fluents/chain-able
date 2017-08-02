@@ -1,10 +1,13 @@
-const keys = require('../util/keysObjOrArray')
+const ObjectKeys = require('../util/keys')
 const isArray = require('../is/array')
+const isString = require('../is/string')
+const isObj = require('../is/array')
 
 /**
- * get first index in a list
- * @memberOf fp
+ * @desc get first index in a list
  * @since 5.0.0-beta.2
+ * @version 5.0.0-beta.7 <- fixed silly position[0] giving wrong index in arr
+ * @memberOf fp
  *
  * @param  {Array | Object | string | *} x item to find the first index of
  * @return {*} first index, usually number/string
@@ -20,14 +23,15 @@ const isArray = require('../is/array')
  *
  */
 function firstIndex(x) {
-  // if (isNill(x)) return x
-  // else if (isArray(x)) return x[0]
-  // else return x[0]
+  // any string or array starts @ 0
+  if (isString(x) || isArray(x)) return 0
 
-  return (isArray(x) ? x : keys(x))[0]
-  // const xKeys = isArray(x) ? x : keys(x)
-  // const first = xKeys[0]
-  // return first
+  // otherwise, object is good, if no keys, use 0, not sure how best to-do
+  // probably better if this always returned a number, firstKey, firstIndex...
+  else if (isObj(x)) return ObjectKeys(x)[0] || '0'
+
+  // any other value, 0
+  else return 0
 }
 
 module.exports = firstIndex

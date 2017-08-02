@@ -18,21 +18,23 @@ const hasInMatching = require('./hasInMatching')
 const includesCount = require('./includesCount')
 const remove = require('./remove')
 const replace = require('./replace')
-// const replaceWrap = require('./replaceWrap')
 const reverse = require('./reverse')
 const invoke = require('./invoke')
+const invoker = require('./invoker')
 const flip = require('./flip')
 const flip2 = require('./flip2')
 const bind = require('./bind')
 const times = require('./times')
 const nth = require('./nth')
+const nthArg = require('./nthArg')
 const invertObj = require('./invertObjKeyVal')
 const preferExistingMethod = require('./preferExistingMethod')
 const slice = require('./slice')
 const where = require('./where')
 const when = require('./when')
-const constant = require('./return')
+const identity = require('./identity')
 // const wrap = require('./wrap')
+// const replaceWrap = require('./replaceWrap')
 
 /**
  * @member fp
@@ -50,6 +52,7 @@ module.exports = {
   equals,
   includesCount,
   invoke,
+  invoker,
   curry,
   first,
   firstIndex,
@@ -66,12 +69,13 @@ module.exports = {
   reverse,
   times,
   nth,
+  nthArg,
   preferExistingMethod,
   invertObj,
   slice,
   evolve,
   where,
   when,
-  constant,
-  'return': constant,
+  identity,
+  'return': identity,
 }

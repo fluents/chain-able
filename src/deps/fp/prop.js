@@ -7,24 +7,29 @@ const curry = require('./curry')
  * property of that object, if it exists.
  *
  * @version 3.0.0 <- checks isNill
+ * @since v5.0.0
+ * @memberOf fp
+ *
+ * @param {String} key The property name
+ * @param {Object} obj The object to query
+ * @return {*} The value at `obj[key]`.
+ *
+ * {@link https://github.com/ramda/ramda/blob/master/src/prop.js ramda-prop}
+ * @see {@link ramda-prop}
+ *
+ * @TODO could toKey here
  *
  * @func
- * @memberOf fp
- * @since v5.0.0
  * @category Object
  * @sig s -> {s: a} -> a | Undefined
- *
- * @param {String} p The property name
- * @param {Object} obj The object to query
- * @return {*} The value at `obj.p`.
  *
  * @types fp
  * @tests fp/prop
  *
  * @example
  *
- *      R.prop('x', {x: 100}); //=> 100
- *      R.prop('x', {}); //=> undefined
+ *      prop('x', {x: 100}); //=> 100
+ *      prop('x', {}); //=> undefined
  *
  */
 module.exports = curry(2, (key, obj) => isNil(obj) ? undefined : obj[key])

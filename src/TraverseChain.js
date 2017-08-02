@@ -1,7 +1,7 @@
 const ChainedMapBase = require('./ChainedMapBase')
 const traverse = require('./deps/traverse')
 const isTrue = require('./deps/is/true')
-const matchFactory = require('./deps/matcher/any-key-val')
+const matchFactory = require('./deps/matcher/testKeysVals')
 const ENV_DEBUG = require('./deps/env/debug')
 
 const TRAVERSED_KEY = 1
