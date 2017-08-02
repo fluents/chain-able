@@ -3,17 +3,22 @@ const curry = require('../fp/curry')
 /**
  * @memberOf math
  * @since 5.0.0-beta.4
+ *
+ * @name isBelow
  * @alias lt
+ * @alias below
+ * @alias isLessThan
+ * @alias lessThan
  *
  * @param  {number} belowThis x is `belowThis`
- * @param  {number} x is above `belowThis`
- * @return {boolean} x > belowThis
+ * @param  {number} x is < `belowThis`
+ * @return {boolean} x < belowThis
  *
  * @category Math
  *
  * @example
- *    isAbove(0, 1) //=> true
- *    isAbove(1, 0) //=> false
+ *    isBelow(0, 1) //=> false
+ *    isBelow(1, 0) //=> true
  */
 function isBelow(belowThis, x) {
   return x < belowThis

@@ -17,6 +17,9 @@ const max = require('./max')
  * @category Relation
  * @sig Ord a => a -> a -> a
  *
+ * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max mozilla-math.min}
+ * @see {@link mozilla-math.min}
+ *
  * @see maxBy, min
  * @see math/min
  *

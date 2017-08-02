@@ -11,6 +11,11 @@ const curry = require('../fp/curry')
  * @param {number|*} b
  * @return {number|*} if (b > a) b; else b
  *
+ * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max mozilla-math.max}
+ * @see {@link mozilla-math.max}
+ *
+ * @TODO add maxAll for `reduce(max)`
+ *
  * @func
  * @fork v0.1.0
  * @category Relation
