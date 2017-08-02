@@ -7,8 +7,10 @@ const preAllocate = require('../array/preAllocate')
  * @param {Object} map The map to convert.
  * @return {Array} Returns the key-value pairs.
  *
- * {@link https://github.com/lodash/lodash/blob/master/.internal/mapToArray.js lodash-map-to-array}
- * @see {@link lodash-map-to-array}
+ * {@link https://github.com/andrewplummer/Sugar/blob/master/lib/common.js#L1235 sugar-settoarray}
+ * {@link https://github.com/lodash/lodash/blob/master/.internal/mapToArray.js lodash-maptoarray}
+ * @see {@link lodash-maptoarray}
+ * @see {@link sugar-maptoarray}
  * @see cast/pairs
  *
  * @example

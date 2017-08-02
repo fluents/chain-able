@@ -14,14 +14,17 @@ const unicodeToArray = require('./unicodeToArray')
  * @param {string} string The string to convert.
  * @return {Array} Returns the converted array. `Array(x)`
  *
+ * {@link https://github.com/lodash/lodash/blob/master/.internal/stringToArray.js lodash-stringtoarray}
+ * @see {@link lodash-stringtoarray}
  * @see string/hasUnicode
  * @see cast/unicodeToArray
  * @see cast/asciiToArray
+ *
+ * @example
+ *    stringToArray('eh') //=> ['e', 'eh']
  */
 function stringToArray(string) {
-  return hasUnicode(string)
-    ? unicodeToArray(string)
-    : asciiToArray(string)
+  return hasUnicode(string) ? unicodeToArray(string) : asciiToArray(string)
 }
 
 module.exports = stringToArray

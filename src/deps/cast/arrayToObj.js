@@ -1,6 +1,6 @@
 const isArray = require('../is/array')
 const getLength = require('../util/length')
-const castKey = require('./key')
+const castKey = require('./toKey')
 
 /**
  * Converts lists into objects.

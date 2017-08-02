@@ -12,8 +12,10 @@ const isUndefined = require('../is/undefined')
  * @NOTE isSet(map) ? preAllocate(size) : map.keys() <- works, but too monomorphic
  * @TODO could do prepack-style and have returned object reused?
  *
+ * {@link https://tc39.github.io/ecma262/#sec-operations-on-iterator-objects emca-iterator-operations}
  * {@link https://github.com/facebook/immutable-js/blob/master/src/Iterator.js#L19 immutable-js-iterator}
  * @see {@link immutable-js-iterator}
+ * @see {@link emca-iterator-operations}
  *
  * @example
  *
