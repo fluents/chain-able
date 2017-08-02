@@ -1,7 +1,7 @@
 const isObj = require('../is/obj')
 const isIn = require('../is/in')
 const noop = require('../util/noop')
-const toBoolean = require('../cast/boolean')
+const toBoolean = require('../cast/toBoolean')
 const debounce = require('./debounce')
 
 /**
@@ -40,10 +40,12 @@ const debounce = require('./debounce')
  * @fork 0.1.0
  * @category Function
  *
+ * {@link https://github.com/andrewplummer/Sugar/blob/master/lib/function.js#L172 sugar-throttle}
  * {@link https://github.com/lodash/lodash/blob/master/throttle.js lodash-throttle}
- * @see {@link lodash-throttle}
  * {@link https://css-tricks.com/debouncing-throttling-explained-examples/ debounce-vs-throttle-difference-explained}
  * @see {@link debounce-vs-throttle-difference-explained}
+ * @see {@link lodash-throttle}
+ * @see {@link sugar-throttle}
  *
  * @example
  *

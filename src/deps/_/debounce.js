@@ -2,6 +2,8 @@ const isUndefined = require('../is/undefined')
 const isFunction = require('../is/function')
 const isObj = require('../is/obj')
 const noop = require('../util/noop')
+const toInteger = require('../cast/toInteger')
+
 
 // underscore.js
 // Returns a function, that, as long as it continues to be invoked, will not
@@ -83,17 +85,19 @@ function debounce(func, wait, options) {
   let maxing = false
   let trailing = true
 
+  // @TODO this would be coercing
   if (!isFunction(func)) {
     func = noop
     // throw new TypeError('Expected a function')
   }
-
   // defaultTo(0)
-  wait = +wait || 0
+  wait = toInteger(wait)
+  // const optionsHas = hasIn(options)
+
   if (isObj(options)) {
     leading = !!options.leading
     maxing = 'maxWait' in options
-    maxWait = maxing ? Math.max(+options.maxWait || 0, wait) : maxWait
+    maxWait = maxing ? Math.max(toInteger(options.maxWait), wait) : maxWait
     trailing = 'trailing' in options ? !!options.trailing : trailing
   }
 
@@ -142,6 +146,7 @@ function debounce(func, wait, options) {
     if (shouldInvoke(time)) {
       return trailingEdge(time)
     }
+
     // Restart the timer.
     timerId = setTimeout(timerExpired, remainingWait(time))
   }
@@ -193,8 +198,10 @@ function debounce(func, wait, options) {
     }
     return result
   }
+
   debounced.cancel = cancel
   debounced.flush = flush
+
   return debounced
 }
 
