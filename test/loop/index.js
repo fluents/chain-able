@@ -29,8 +29,6 @@ const {
   flipped,
 } = require('../../src/deps/loop')
 
-const eq = (x, y) => expect(x).toEqual(y)
-
 test('forOwn', () => {
   const object = {eh: true, oh: 1, canada: 'yes'}
   forOwn(object, function(value, key) {

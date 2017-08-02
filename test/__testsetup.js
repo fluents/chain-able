@@ -7,7 +7,7 @@ const {encase} = require('../exports')
 try {
   path = require.resolve('../build/FAKEROOT/_exported')
 }
- catch (e) {
+catch (e) {
   //
 }
 
@@ -32,7 +32,7 @@ const extend = (fn, key) => {
           pass: true,
         }
       }
- else {
+      else {
         return {
           message: () => `expected ${received} to be divisible by ${argument}`,
           pass: false,
@@ -40,17 +40,20 @@ const extend = (fn, key) => {
       }
     },
   })
-};
+}
 
 global.eq = (a, b) => {
   expect(a).toEqual(b)
-};
+}
+global.neq = (a, b) => {
+  expect(a).not.toEqual(b)
+}
 
 global.fail = reason => {
   console.log('FAILED: ', reason)
   expect(true).toBe(false)
   throw new Error('failed')
-};
+}
 
 global.NO_OP = () => {}
 global.t = {

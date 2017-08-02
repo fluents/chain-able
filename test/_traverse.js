@@ -249,10 +249,63 @@ test('Fn vs Fn', () => {
   console.log('noop != noops')
   expect(!deepEqual(noop, noops)).toBeTruthy()
 })
+test('Fn vs Fn - string diff', () => {
+  function noop() {
+    /* noop */
+  }
+  function noops() {
+    /* noops */
+  }
+  noop()
+  noops()
+
+  expect(deepEqual(noop, noop)).toBe(true)
+  expect(deepEqual(noop, noops)).toBe(false)
+})
 test('ObjKeys', () => {
   expect(
     !deepEqual({one: true, two: true}, {one: true, three: false})
   ).toBeTruthy()
+})
+test.skip('supports.equals', () => {
+  const alwaysFalse = {
+    equals() {
+      return false
+    },
+  }
+  const alwaysTrue = {
+    equals() {
+      return true
+    },
+  }
+
+  expect(deepEqual(alwaysFalse, alwaysTrue)).toBe(false)
+  expect(deepEqual(alwaysTrue, alwaysFalse)).toBe(true)
+})
+
+test.skip('eq: simple primitives', () => {
+  // 'null == undefined'
+  expect(eq(null, undefined)).toBe(true)
+
+  // 'null == null'
+  expect(eq(null, null)).toBe(true)
+
+  // '1 == 1'
+  expect(eq(1, 1)).toBe(true)
+  // '"1" == 1'
+  expect(eq(1, '1')).toBe(true)
+
+  // '"1" ~= 1'
+  expect(eq(1, '1', true)).toBe(true)
+
+  // '1 == 0'
+  expect(eq(1, 0)).toBe(true)
+
+  // '1 == [1]'
+  expect(eq(1, [1])).toBe(true)
+
+  // '[1] == [1]'
+  expect(eq([1], [1])).toBe(true)
 })
 
 test.skip('edge', () => {
@@ -289,29 +342,6 @@ test.skip('edge', () => {
   expect(deepEqual(new Error(), '1')).toBe(true)
   // expect(deepEqual(new Promise(r => r()).toBe(true), new Error('2')).toBe(true))
   // expect(deepEqual(new Promise(r => r()).toBe(true), 'string')).toBe(true)
-
-  // 'null == undefined'
-  expect(eq(null, undefined)).toBe(true)
-
-  // 'null == null'
-  expect(eq(null, null)).toBe(true)
-
-  // '1 == 1'
-  expect(eq(1, 1)).toBe(true)
-  // '"1" == 1'
-  expect(eq(1, '1')).toBe(true)
-
-  // '"1" ~= 1'
-  expect(eq(1, '1', true)).toBe(true)
-
-  // '1 == 0'
-  expect(eq(1, 0)).toBe(true)
-
-  // '1 == [1]'
-  expect(eq(1, [1])).toBe(true)
-
-  // '[1] == [1]'
-  expect(eq([1], [1])).toBe(true)
 
   // '{1, 3} == {1, 3}'
   expect(eq({one: 2, three: 3}, {one: 2, three: 3})).toBe(true)
