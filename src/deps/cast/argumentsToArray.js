@@ -1,4 +1,4 @@
-const preAllocate = require('./array/preAllocate')
+const preAllocate = require('../array/preAllocate')
 
 /**
  * @desc turns arguments into an array, used as a util, for opt
