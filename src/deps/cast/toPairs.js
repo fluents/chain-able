@@ -16,6 +16,7 @@ const hasOwnProperty = require('../util/hasOwnProperty')
  * @alias objToArray
  * @alias objectToArray
  * @alias objToArr
+ * @alias toEntries
  *
  * @func
  * @fork v0.4.0

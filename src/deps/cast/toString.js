@@ -1,10 +1,11 @@
+const EMPTY_STRING = require('../native/EMPTY_STRING')
 const mapArray = require('../loop/map/mapArray')
 const symbolToString = require('../symbols/toString')
 const isSymbol = require('../is/symbol')
 const isNill = require('../is/nullOrUndefined')
 const isArray = require('../is/array')
 const isString = require('../is/stringPrimitive')
-const castToKey = require('./key')
+const castToKey = require('./toKey')
 
 /**
  * Converts `value` to a string. An empty string is returned for `null`
@@ -38,7 +39,7 @@ const castToKey = require('./key')
  */
 function castToString(value) {
   if (isNill(value)) {
-    return ''
+    return EMPTY_STRING
   }
   // Exit early for strings to avoid a performance hit in some environments.
   else if (isString(value)) {
@@ -52,6 +53,7 @@ function castToString(value) {
   else if (isSymbol(value)) {
     return symbolToString.call(value)
   }
+  // e.g. isNumber
   else {
     return castToKey(value)
   }

@@ -1,9 +1,9 @@
-const isBoolean = require('../is/boolean')
-const isObj = require('../is/objNotNull')
-const isArray = require('../is/array')
-const isNumberish = require('../is/numberish')
-const SymbolPrimitive = require('../symbols/primitive')
-const hasOwnProperty = require('../util/hasOwnProperty')
+// const isBoolean = require('../is/boolean')
+// const isObj = require('../is/objNotNull')
+// const isArray = require('../is/array')
+// const isNumberish = require('../is/numberish')
+// const SymbolPrimitive = require('../symbols/primitive')
+// const hasOwnProperty = require('../util/hasOwnProperty')
 
 /**
  * @since 5.0.0-beta.6
@@ -11,13 +11,19 @@ const hasOwnProperty = require('../util/hasOwnProperty')
  *
  * @name toNumber
  * @alias toNum
- * @alias ToNumber
+ * @aka ToNumber
  *
- * @param  {*} x number to cast to primitive number
+ * @param {*} x number to cast to primitive number
  * @return {number} +x
  *
- * @see http://people.mozilla.org/~jorendorff/es6-draft.html#sec-tonumber
- * @see https://coderwall.com/p/5tlhmw/converting-strings-to-number-in-javascript-pitfalls
+ * {@link http://2ality.com/2012/04/number-encoding.html number-encoding-js}
+ * {@link http://speakingjs.com/es5/ch11.html speaking-js-numbers}
+ * {@link  https://coderwall.com/p/5tlhmw/converting-strings-to-number-in-javascript-pitfalls coderwal-to-number}
+ * {@link http://ecma-international.org/ecma-262/7.0/#sec-tonumber emca-to-number}
+ * @see {@link emca-to-number}
+ * @see {@link coderwal-to-number}
+ * @see {@link speaking-js-numbers}
+ * @see {@link number-encoding-js}
  *
  * @TODO make this `toNumberPrimitive` while others could convert as codes
  *
