@@ -15,6 +15,7 @@ const ENV_DEBUG = require('../env/debug')
  * @see clone
  * @memberOf Traverse
  *
+ * {@link https://github.com/the-grid/finitedomain/blob/master/src/solver.js#L750 qfox-clone}
  * {@link https://github.com/lodash/lodash/blob/master/.internal/cloneRegExp.js lodash-clone-regexp}
  *
  * @param  {*} src value to copy

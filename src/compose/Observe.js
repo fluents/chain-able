@@ -5,7 +5,7 @@ const getPathSegments = require('../deps/dot/segments')
 const dotSet = require('../deps/dot/set')
 const newMap = require('../deps/construct/map')
 const OBSERVERS_KEY = require('../deps/meta/OBSERVERS_KEY')
-const ENV_DEBUG = require('../deps/env/debug') || true
+const ENV_DEBUG = require('../deps/env/debug')
 
 // @TODO export better, this adds extra size
 const {eq, clone} = traverse

@@ -1,3 +1,5 @@
+const keys = require('../util/keys')
+const isObj = require('../is/obj')
 const isFunction = require('../is/function')
 const isClass = require('../is/class')
 const construct = require('../fp/construct')
@@ -30,6 +32,12 @@ function toFunction(x, onCall = null) {
   }
   else if (isFunction(x)) {
     return construct(x.length, (x))
+  }
+  else if (isObj(x)) {
+    // could bind
+    const first = keys(x).filter(key => isFunction(x[key]))[0]
+    if (isFunction(first)) return first
+    else return always(x)
   }
   // else if (isObj(x)) return construct(x)
   else {

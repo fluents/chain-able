@@ -1,10 +1,10 @@
 /** @ignore 🚧 */
 
 // --- deps ---
-const log = require('fliplog')
 const fs = require('fs')
+const log = require('fliplog')
 const dox = require('doctrine')
-const Chainable = require('./exports')
+const Chainable = require('../exports')
 
 // --- check exported ---
 //

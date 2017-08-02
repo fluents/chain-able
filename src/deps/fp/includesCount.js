@@ -2,6 +2,7 @@ const EMPTY_ARRAY = require('../native/EMPTY_ARRAY')
 const isArray = require('../is/array')
 const isString = require('../is/stringPrimitive')
 const toRegExp = require('../cast/toRegExp')
+const toFunction = require('../cast/toFunction')
 const pipe = require('../fp/pipe')
 const curry = require('../fp/curry')
 const invoke = require('../fp/invoke')
@@ -9,7 +10,7 @@ const lengthMinusOne = require('../util/lengthMinusOne')
 const split = require('../string/split')
 
 // @TODO could have `method` for curring with .flip .invoke
-const filter = invoke('_', 'filter')
+// const filter = invoke('_', 'filter')
 
 /**
  * @desc getIncludesCount, how many times a needle occurrs in a haystack
@@ -51,7 +52,7 @@ function getIncludesCount(haystack, needle) {
     // @TODO this disables ternary ability
     // const matcher = toRegExp(needle).test
     // return haystack.filter(toRegExp(needle))
-    return filter(haystack, toRegExp(needle))
+    return haystack.filter(toFunction(toRegExp(needle)))
   }
   // may not be needed...
   else {

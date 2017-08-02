@@ -15,10 +15,14 @@ const eqValue = require('./eqValue')
 /* prettier-ignore */
 /**
  * @name eq
+ * @alias equals
  * @since 3.0.0
  * @version 5.0.0
  * @memberOf Traverse
  *
+ * {@link https://github.com/andrewplummer/Sugar/blob/master/lib/common.js#L668 sugar-equal}
+ * {@link https://github.com/the-grid/finitedomain/blob/master/src/propagator.js#L160 eq-qfox}
+ * {@link https://github.com/jasmine/jasmine.github.io/blob/master/lib/jasmine-1.3.1/jasmine.js#L940 jasmine-equals}
  * {@link https://github.com/mobxjs/mobx/blob/master/src/utils/utils.ts#L145 mobx-deepequal}
  * {@link https://github.com/js-data/js-data/blob/v2/src/utils.js#L571 js-data-circular}
  * {@link https://github.com/js-data/js-data/blob/v2/src/utils.js#L300 js-data-equals}
@@ -42,6 +46,9 @@ const eqValue = require('./eqValue')
  * @see {@link traverse-deep-equal}
  * @see {@link react-deep-differ}
  * @see {@link js-data-equals}
+ * @see {@link jasmine-equals}
+ * @see {@link eq-qfox}
+ * @see {@link sugar-equal}
  *
  * @param {Traverse} traverse traversejs (scoped, @FIXME @HACK)
  * @param  {*} a compare to b

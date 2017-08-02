@@ -79,6 +79,8 @@ webpack:
 
 cli:
 	node build/cli.js
+testexamples:
+	node build/examples-test-runner.js
 cliquick:
 	node build/cli.js --quick
 

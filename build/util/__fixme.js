@@ -20,7 +20,7 @@ const {
   invoke,
   hasOwnProperty,
   keysObjOrArray,
-} = require('../../index.all')
+} = require('../../exports')
 
 const isNegative = x => x < 0
 

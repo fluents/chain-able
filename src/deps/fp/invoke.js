@@ -2,6 +2,7 @@
 
 const curry = require('../fp/curry')
 const hasIn = require('../is/hasIn')
+const isFunction = require('../is/function')
 
 /**
  * Creates a function that invokes the method at `path` of a given object.
@@ -72,7 +73,7 @@ const hasIn = require('../is/hasIn')
  *
  */
 function invoke(x, key, args) {
-  if (hasIn(x, key)) return x[key](args)
+  if (hasIn(x, key) && isFunction(x[key])) return x[key](args)
   // else return void 0
 }
 
