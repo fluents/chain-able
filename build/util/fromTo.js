@@ -6,7 +6,9 @@ const del = require('./_delete')
 const res = _res(__dirname)
 
 const path = res('../fromTo.json')
-const defaultCopied = { /* ['absFrom']: 'absTo' */ }
+const defaultCopied = {
+  /* ['absFrom']: 'absTo' */
+}
 const store = new ConfigStore('easy-exports', {copied: defaultCopied})
 
 // put in store instead
@@ -34,7 +36,12 @@ fromTo.values = () => Object.values(fromTo.data)
 fromTo.keys = () => Object.keys(fromTo.data)
 
 fromTo.read()
-// fromTo.folder = res('../FAKEROOT')
-fromTo.folder = res('../../')
+
+if (process.env.DEBUG) {
+  fromTo.folder = res('../FAKEROOT')
+}
+else {
+  fromTo.folder = res('../../')
+}
 
 module.exports = fromTo

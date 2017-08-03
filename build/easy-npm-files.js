@@ -33,6 +33,8 @@ const {
   firstToUpperCase,
   trim,
   uniq,
+  toString,
+  always,
 } = require('../exports')
 const {
   forEach,
@@ -56,12 +58,7 @@ const {
   getFileName,
   getFolderAndFileName,
 } = require('./util/_filefolder')
-const {
-  _res,
-  del,
-  fromTo,
-  isDir,
-} = require('./util')
+const {_res, del, fromTo, isDir} = require('./util')
 
 const camelCase = str =>
   str
@@ -84,8 +81,8 @@ const cwdRes = _res(cwd)
 const res = _res(__dirname)
 
 // @HACK @TODO just emulating
-const resRoot = _res(res('./FAKEROOT'))
-// const resRoot = _res(fromTo.folder)
+// const resRoot = _res(res('./FAKEROOT'))
+const resRoot = _res(fromTo.folder)
 const outputPath = resRoot('.')
 
 // @TODO pipe?
@@ -106,9 +103,9 @@ const toRoot = x => {
 }
 
 // only copying .js ['!*package.json', '!*.DS_Store']
-const isNotIndex = x => !x.includes('runner') &&
-  (!x.includes('index') || x.includes('indexable'))
-  // not(has('index.js'))
+const isNotIndex = x =>
+  !x.includes('runner') && (!x.includes('index') || x.includes('indexable'))
+// not(has('index.js'))
 const isIzzez = has('/deps/is/')
 
 const remapKeysToArr = remapKeys(toArr)
@@ -130,18 +127,24 @@ const found = find
   .filter(isNotIndex)
   .filter(file => !read(file).trim().startsWith('/** @ignore 🚧 '))
 
-
 const filesMeta = {}
 const filesObj = {}
+
+const ENV_DEBUG = false
+
+if (!ENV_DEBUG) log.filter(always(false))
+
 // const founds = wrapForEach(found)
 const hasDupeFileName = abs => {
   // prop, pipe, lense?
   const rel = filesObj[abs]
   const rels = Object.values(filesObj)
-  const count = includesCount(rels, rel)
-  // console.log({[rel]: count})
+
+  const count = includesCount(rels, toString(rel))
+  log.title('has dupe file name?').data({rel, abs, count}).echo()
+
   if (count >= 2) {
-    console.log(count, abs)
+    // log.data(count, abs)
   }
   return count >= 2
 }
@@ -155,10 +158,10 @@ const prefixFileNameCamel = (abs, prefix) => {
   const fileName = getFileName(abs)
   const folderName = getFolderName(abs)
   const folderFile = folderName + '/' + fileName
-  const transformed = folderName + '/' + camelCase(prefix + '-' + fileName) + '.js'
+  const transformed =
+    folderName + '/' + camelCase(prefix + '-' + fileName) + '.js'
   return replace(folderFile, transformed, abs)
 }
-
 
 // @TODO either replaceLast, or toRel then replace
 const transformIzzes = (abs, folder, filename) => {
@@ -166,7 +169,7 @@ const transformIzzes = (abs, folder, filename) => {
   // if (filename.includes('toS')) return abs
 
   const fileName = getFileName(abs)
-  const transformedFileName = camelCase('is_' + fileName)
+  const transformedFileName = camelCase('is-' + fileName)
   // @TODO: replaceLast (could .reverse.replace.reverse)
   let transformedAbs = replaceLast(fileName, transformedFileName, abs)
   return transformedAbs
@@ -183,7 +186,7 @@ const transformSymbol = (abs, folder, fileName) => {
 const ignore = () => false
 const docBlocks = includesCount('_', '/**')
 // remove /*, //, *, spaces
-const stripCommentsWhitespace = /(\*|\s|\t|\n|\/)*/gmi
+const stripCommentsWhitespace = /(\*|\s|\t|\n|\/)*/gim
 
 // @TODO !!! support returning []
 const transformToAlias = (abs, folder, fileName) => {
@@ -257,218 +260,215 @@ const firstIsFunction = x => isFunction(x[0])
 const isNotCamelCase = x =>
   x.includes('.') || x.includes('-') || x.includes('_')
 
-
 const doubleExtHACK = has('.js.js')
 const doubleSlashToSingle = replace(/\/{2}/, '/')
 
 let allFound = found.concat(fromTo.keys()).filter(uniq)
-allFound.forEach(abs => filesObj[abs] = getFileName(abs))
+allFound.forEach(abs => (filesObj[abs] = getFileName(abs)))
 filesMeta.files = filesObj
 
 // isLast, isFirst ? kind of is .before .after if it's only flat...
-let remapped = allFound
-  .map(abs => {
-    if (!isString(abs)) {
-      log.red('NOT_STRING').data({abs}).echo()
-      return abs
-    }
+let remapped = allFound.map(abs => {
+  if (!isString(abs)) {
+    log.red('NOT_STRING').data({abs}).echo()
+    return abs
+  }
 
-    // start remap
-    fromTo.data[abs] = fromTo.data[abs] || [abs]
-    let remappedAbs = fromTo.data[abs]
+  // start remap
+  fromTo.data[abs] = fromTo.data[abs] || [abs]
+  let remappedAbs = fromTo.data[abs]
 
-    // const alreadyHas = includes(remappedAbs)
-    const add = x => {
-      toArr(x).forEach(value => {
-        let rootValue = toRoot(value)
+  // const alreadyHas = includes(remappedAbs)
+  const add = x => {
+    toArr(x).forEach(value => {
+      let rootValue = toRoot(value)
 
-        if (!rootValue.endsWith('.js')) {
-          rootValue += '.js'
-        }
-        if (rootValue.endsWith('.js.js')) {
-          rootValue = rootValue.replace('.js.js', '.js')
-        }
-        if (remappedAbs.includes(rootValue)) {
-          log.red('already has').data({rootValue})
-          return
-        }
+      if (!rootValue.endsWith('.js')) {
+        rootValue += '.js'
+      }
+      if (rootValue.endsWith('.js.js')) {
+        rootValue = rootValue.replace('.js.js', '.js')
+      }
+      if (remappedAbs.includes(rootValue)) {
+        log.red('already has').data({rootValue}).echo(false)
+        return
+      }
 
-        // remappedAbs.push(value)
-        remappedAbs.push(rootValue)
-      })
-      remappedAbs.forEach((value, index) => {
-        remappedAbs[index] = toRoot(value)
-        if (doubleExtHACK(remappedAbs[index])) {
-          remappedAbs[index] = remappedAbs[index].split('.js').shift() + '.js'
-        }
-      })
+      // remappedAbs.push(value)
+      remappedAbs.push(rootValue)
+    })
+    remappedAbs.forEach((value, index) => {
+      remappedAbs[index] = toRoot(value)
+      if (doubleExtHACK(remappedAbs[index])) {
+        remappedAbs[index] = remappedAbs[index].split('.js').shift() + '.js'
+      }
+    })
 
-      // if (isNotCamelCase(x)) add(camelCase(escapeDot(x)))
-    }
+    // if (isNotCamelCase(x)) add(camelCase(escapeDot(x)))
+  }
 
-    // @NOTE
-    const aliased = transformToAlias(abs)
-    toArr(aliased).forEach(alias => add(alias))
+  // @NOTE
+  const aliased = transformToAlias(abs)
+  toArr(aliased).forEach(alias => add(alias))
 
+  // find if we need to remap and how we will do so
+  const matchFound = findMatching(map, abs)
+  const ignoreOriginal = findMatching(mapOnlyRename, abs)
 
-    // find if we need to remap and how we will do so
-    const matchFound = findMatching(map, abs)
-    const ignoreOriginal = findMatching(mapOnlyRename, abs)
+  // @TODO @HACK @FIXME --- EXAMPLE NATIVE/HASOWNPROPERTY UGH
+  if (ignoreOriginal) {
+    // log.quick({abs, ignoreOriginal})
+  }
 
+  if (matchFound) {
+    let [key, value, keys] = matchFound
 
-    // @TODO @HACK @FIXME --- EXAMPLE NATIVE/HASOWNPROPERTY UGH
-    if (ignoreOriginal) {
-      // log.quick({abs, ignoreOriginal})
-    }
+    log.text('found matching').data({abs, key, value, keys}).echo(false)
 
-    if (matchFound) {
-      let [key, value, keys] = matchFound
+    let [folderName, fileName] = getFolderAndFileName(abs)
 
-      // console.log('found matching', {abs, key, value, keys})
-      let [folderName, fileName] = getFolderAndFileName(abs)
+    if (isArray(value) && !isEmpty(value)) {
+      if (value.length > 1) {
+        value = value.map(x => (isString(x) ? replace(key, value) : x))
 
-      if (isArray(value) && !isEmpty(value)) {
-        if (value.length > 1) {
-          value = value.map(x => (isString(x) ? replace(key, value) : x))
+        // @TODO was pipe, need best name
+        // what's the name for this? reducing with each value updating?
+        let transformed = abs
+        value.forEach(val => {
+          [folderName, fileName] = getFolderAndFileName(abs)
 
-          // @TODO was pipe, need best name
-          // what's the name for this? reducing with each value updating?
-          let transformed = abs
-          value.forEach(val => {
-            [folderName, fileName] = getFolderAndFileName(abs)
-            // console.log({folderName, fileName, val, transformed})
+          // @NOTE `OR` transformed
+          transformed = val(transformed, folderName, fileName) || transformed
+        })
 
-            // @NOTE `OR` transformed
-            transformed = val(transformed, folderName, fileName) || transformed
-          })
-
-          // ignore files that return falsy
-          if (transformed) {
-            add(transformed)
-          }
-        }
-        else if (firstIsFunction(value)) {
-          const transformed = value[0](abs, folderName, fileName)
+        // ignore files that return falsy
+        if (transformed) {
           add(transformed)
         }
-        else {
-          console.log('first is not a function', {value: value[0]})
-        }
       }
-      // if (!ignoreOriginal)
-      else {
-        const transformed = replace(key, value, abs)
+      else if (firstIsFunction(value)) {
+        const transformed = value[0](abs, folderName, fileName)
         add(transformed)
       }
-
-      // @NOTE
-      // if (ignoreOriginal) {
-      //   return remappedAbs
-      // }
+      else {
+        log.red('first is not a function').data({value: value[0]}).echo()
+      }
     }
-    else if (isIzzez(abs)) {
-      const transformed = transformIzzes(abs)
-      add(transformed)
-    }
-    // @TODO default the one to use
-    else if (hasDupeFileName(abs)) {
-      const folderName = getFolderName(abs)
-      const fileName = getFileName(abs)
-      const folder_file = folderName + '-' + fileName
-      const folderWithSlashes = '/' + folderName + '/'
-      const beforeFolder = abs.split(folderWithSlashes).shift()
-      let transformed = beforeFolder + camelCase(folder_file)
-
-      add(transformed)
-    }
-    // if (!ignoreOriginal)
     else {
-      add(abs)
+      // if (!ignoreOriginal)
+      const transformed = replace(key, value, abs)
+      add(transformed)
     }
 
     // @NOTE
     // if (ignoreOriginal) {
     //   return remappedAbs
     // }
-
+  }
+  else if (isIzzez(abs)) {
+    const transformed = transformIzzes(abs)
+    add(transformed)
+  }
+  else if (hasDupeFileName(abs)) {
+    // @TODO default the one to use
+    const folderName = getFolderName(abs)
     const fileName = getFileName(abs)
+    const folder_file = folderName + '-' + fileName
+    const folderWithSlashes = '/' + folderName + '/'
+    const beforeFolder = abs.split(folderWithSlashes).shift()
+    let transformed = beforeFolder + camelCase(folder_file)
 
-    // @TODO all snake & all camel
-    if (isNotCamelCase(fileName)) {
-      const beginning = abs.split(`/${fileName}`).shift()
-      let transformed = beginning + '/' + camelCase(fileName) + '.js'
-      // let transformed = replace(fileName, camelCase(fileName), abs)
-      // log.data({transformed, camel: camelCase(fileName), fileName, abs}).echo()
-      add(transformed)
-    }
-
-    // @TODO this should check if we resolve the conflict
-    //       right now I will default it to first-come-first-serve (else)
-    if (!hasDupeFileName(abs)) {
-      // add(abs) <- keeps nested folders which is meh
-      add(transformToFileName(abs))
-
-      const [folderName] = getFolderAndFileName(abs)
-      const [alpha, omega] = abs.split(folderName)
-      let transformed = alpha + omega
-      // replace doubleslash with 1
-      transformed = doubleSlashToSingle(transformed)
-      log.data({transformed}).echo()
-      if (transformed.endsWith('/')) return remappedAbs
-      // @TODO on getter, echo, pre easy log._
-      add(transformed)
-    }
-    else {
-      log.red('has dupe').data(abs).echo()
-      // already only is added if it has not been added before
-      add(abs)
-    }
-
+    add(transformed)
+  }
+  else {
+    // if (!ignoreOriginal)
     add(abs)
+  }
 
-    return remappedAbs
-    // return abs
-  })
+  // @NOTE
+  // if (ignoreOriginal) {
+  //   return remappedAbs
+  // }
 
+  const fileName = getFileName(abs)
+
+  // @TODO all snake & all camel
+  if (isNotCamelCase(fileName)) {
+    const beginning = abs.split(`/${fileName}`).shift()
+    let transformed = beginning + '/' + camelCase(fileName) + '.js'
+    // let transformed = replace(fileName, camelCase(fileName), abs)
+    // log.data({transformed, camel: camelCase(fileName), fileName, abs}).echo()
+    add(transformed)
+  }
+
+  // @TODO this should check if we resolve the conflict
+  //       right now I will default it to first-come-first-serve (else)
+  if (!hasDupeFileName(abs)) {
+    // add(abs) <- keeps nested folders which is meh
+    add(transformToFileName(abs))
+
+    const [folderName] = getFolderAndFileName(abs)
+    const [alpha, omega] = abs.split(folderName)
+    let transformed = alpha + omega
+    // replace doubleslash with 1
+    transformed = doubleSlashToSingle(transformed)
+    log.data({transformed}).echo()
+    if (transformed.endsWith('/')) return remappedAbs
+    // @TODO on getter, echo, pre easy log._
+    add(transformed)
+  }
+  else {
+    log.red('has dupe').data(abs).echo()
+    // already only is added if it has not been added before
+    add(abs)
+  }
+
+  add(abs)
+
+  return remappedAbs
+  // return abs
+})
 
 fromTo.del().write()
 
-const sillyRegExpSpecial = /(\s|\^|\$|\#|\@|\!|\&|\=|\+|\t|\n|\?|\>|\<|\{|\}|\[|\]|\|\'|\"|\`|\\|\)|\(|\:|\;|\*|\~|\%|\,)*/gmi
-const dotSlash = /(\.\/)/gmi
-const matchRequireString = requirePath => requirePath = requirePath
-  .replace('require(', '')
-  // .replace(/[\W_-]+/g, '')
-  .replace(sillyRegExpSpecial, '')
-  // .replace(dotSlash, '')
-  .replace(/'*/gmi, '')
+const sillyRegExpSpecial = /(\s|\^|\$|\#|\@|\!|\&|\=|\+|\t|\n|\?|\>|\<|\{|\}|\[|\]|\|\'|\"|\`|\\|\)|\(|\:|\;|\*|\~|\%|\,)*/gim
+const dotSlash = /(\.\/)/gim
+const matchRequireString = requirePath =>
+  (requirePath = requirePath
+    .replace('require(', '')
+    // .replace(/[\W_-]+/g, '')
+    .replace(sillyRegExpSpecial, '')
+    // .replace(dotSlash, '')
+    .replace(/'*/gim, ''))
 
-const isAllCapital = x => (x ? x
-  .split('')
-  .map(char => {
-    // it is a letter
-    if (/[A-Z]/i.test(char)) {
-      // is it uppercase
-      return (/[A-Z]/).test(char)
-    }
-  })
-  .every(isTrue)
-  : false)
+const isAllCapital = x =>
+  (x
+    ? x
+      .split('')
+      .map(char => {
+        // it is a letter
+        if (/[A-Z]/i.test(char)) {
+          // is it uppercase
+          return (/[A-Z]/).test(char)
+        }
+      })
+      .every(isTrue)
+    : false)
 
-const onlyLetters = x => x
-  .split('')
-  .filter(match => {
-    if (/[a-zA-Z_-]/i.test(match)) return match
-    else return false
-  })
-  .join('')
+const onlyLetters = x =>
+  x
+    .split('')
+    .filter(match => {
+      if (/[a-zA-Z_-]/i.test(match)) return match
+      else return false
+    })
+    .join('')
 
 // remove all initial dots, and the first slash
 const sanitizeRequire = x => x.replace(/[.]/g, '').replace('/', '')
 const stripWhitespace = replace(/(\s|\t|\n)+/g, '')
 const _isComment = x =>
-  x.startsWith('//') ||
-  x.startsWith('*') ||
-  x.startsWith('/*')
+  x.startsWith('//') || x.startsWith('*') || x.startsWith('/*')
 const isComment = pipe(trim, stripWhitespace, _isComment)
 function _descend(fn, a, b) {
   var aa = fn(a)
@@ -479,209 +479,209 @@ function _descend(fn, a, b) {
 }
 const descend = curry(3, _descend)
 
-
 // @TODO
 //  abstract this,
 //  should pull in either/and ast parsing for requires
 //  depflip
-const remapRequire = (contents, abs) => contents
-  .split('\n')
-  .map(line => {
-    if (!(line.includes('/') && line.includes('require'))) return line
-    // if (!hasRequire(line)) return line
-    if (isComment(line)) return line
+const remapRequire = (contents, abs) =>
+  contents
+    .split('\n')
+    .map(line => {
+      if (!(line.includes('/') && line.includes('require'))) return line
+      // if (!hasRequire(line)) return line
+      if (isComment(line)) return line
 
-    const parts = line.split('=')
-    const name = parts.shift().trim()
+      const parts = line.split('=')
+      const name = parts.shift().trim()
 
-    const requireReplacer = (match, p1, offset, string) => {
-      const ogMatch = match
-      const matchIsDir = isDir(ogMatch)
-      let matchName = match
+      const requireReplacer = (match, p1, offset, string) => {
+        const ogMatch = match
+        const matchIsDir = isDir(ogMatch)
+        let matchName = match
 
-      match = sanitizeRequire(match)
+        match = sanitizeRequire(match)
 
-      // dir... @example deps/util/util.js
-      // log.color('white.underline').text('matchIsDir').data(matchIsDir).echo()
-      // then use a more specific namespace
-      if (matchIsDir) {
-        if (match.includes('/')) matchName = match.split('/').pop()
+        // dir... @example deps/util/util.js
+        // log.color('white.underline').text('matchIsDir').data(matchIsDir).echo()
+        // then use a more specific namespace
+        if (matchIsDir) {
+          if (match.includes('/')) matchName = match.split('/').pop()
 
-        match = match + '/' + matchName + '.js'
-      }
-      if (matchIsDir) {
-        // log.data(ogMatch).echo()
-        // console.log('\n\n\n\n')
-        // log.data(fromTo.keys()).echo()
-        // log.data({match}).echo()
-      }
+          match = match + '/' + matchName + '.js'
+        }
+        if (matchIsDir) {
+          // log.data(ogMatch).echo()
+          // console.log('\n\n\n\n')
+          // log.data(fromTo.keys()).echo()
+          // log.data({match}).echo()
+        }
 
+        const findFrom = () => {
+          return fromTo.keys().filter(x => {
+            const matches =
+              isMatch(match, x) ||
+              isMatch(x, match) ||
+              x.includes(match) ||
+              match.includes(x)
 
-      const findFrom = () => {
-        return fromTo.keys().filter(x => {
-          const matches =
-            isMatch(match, x) ||
-            isMatch(x, match) ||
-            x.includes(match) ||
-            match.includes(x)
+            if (matches) {
+              // log.data({match, x}).echo()
+            }
+            // don't want to require itself, if it is the longest
+            return matches && getFileName(abs) !== getFileName(x)
+          })
+        }
 
-          if (matches) {
-            // log.data({match, x}).echo()
+        let requiresFound = []
+        // let requiresFound = findFrom()
+
+        // we know it is a dir, and we could not find it
+        if (matchIsDir && (requiresFound || requiresFound.length === 0)) {
+          const sanitizedMatchName = sanitizeRequire(matchName)
+          requiresFound = [sanitizedMatchName]
+
+          // const resolvedMatchName = resRoot(matchName)
+          // log
+          //   .data({requiresFound, matchName, resolvedMatchName, sanitizedMatchName})
+          //   .echo()
+
+          return sanitizedMatchName + '.js'
+        }
+
+        const requireFound = requiresFound ? requiresFound[0] : requiresFound
+
+        const descending = descend(x => x.length)
+        let requireValues = fromTo.data[requireFound] || []
+
+        let hasIs = false
+        requiresFound.forEach(val => {
+          if (val.includes('is/') || val.startsWith('is')) {
+            hasIs = true
           }
-          // don't want to require itself, if it is the longest
-          return matches && getFileName(abs) !== getFileName(x)
         })
-      }
+        if (hasIs) {
+          requireValues = requireValues.sort(descending)
+        }
 
-      let requiresFound = []
-      // let requiresFound = findFrom()
+        let requireValue = requireValues ? requireValues.shift() : requireValues
 
-      // we know it is a dir, and we could not find it
-      if (matchIsDir && (requiresFound || requiresFound.length === 0)) {
-        const sanitizedMatchName = sanitizeRequire(matchName)
-        requiresFound = [sanitizedMatchName]
+        // if one is all caps and one is not, that is not correct
+        const isRequireCaps = isAllCapital(requireValue)
+        const isMatchCaps = isAllCapital(match)
+        // if (isRequireCaps && !isMatchCaps) {
+        //   requireValue = requireValues.shift() || requireValue
+        // }
+        // else if (isMatchCaps && !isRequireCaps) {
+        //   requireValue = requireValues.shift() || requireValue
+        // }
 
-        // const resolvedMatchName = resRoot(matchName)
+        // we don't want to fuzzy it up with `is`
+        // if (!hasIs) {
+        //   const FuzzySet = require('./fuzzyset')
+        //   const fuzzies = FuzzySet()
+        //   requireValues.forEach(val => fuzzies.add(val))
+        //   const fuzzyFind = fuzzies.get(match, requireValue) || requireValue
+        //   // finding returns [score, find]
+        //   requireValue = isArray(fuzzyFind) ? fuzzyFind.pop() : fuzzyFind
+        //
+        //   // log
+        //   //   .bold('FUZZY_FIND')
+        //   //   .data(fuzzyFind)
+        //   //   .echo()
+        // }
+
         // log
-        //   .data({requiresFound, matchName, resolvedMatchName, sanitizedMatchName})
+        //   .bold('REQUIRES_FOUND')
+        //   .data({requiresFound, requireValues})
         //   .echo()
 
-        return sanitizedMatchName + '.js'
+        return requireValue
       }
 
-      const requireFound = requiresFound ? requiresFound[0] : requiresFound
+      if (parts.length === 0) return line
 
-      const descending = descend(x => x.length)
-      let requireValues = fromTo.data[requireFound] || []
+      const ogRequire = parts.pop().trim()
 
-      let hasIs = false
-      requiresFound.forEach(val => {
-        if (val.includes('is/') || val.startsWith('is')) {
-          hasIs = true
-        }
-      })
-      if (hasIs) {
-        requireValues = requireValues.sort(descending)
-      }
+      // @TODO right here can use a new name matching the parts, bingo bango bongo
+      const remappedRequires = ogRequire
+        .replace(`require('`, '')
+        .replace(')', '')
+        .replace(`'`, '')
+        .replace(/.*/, requireReplacer)
+        .split('/')
 
-      let requireValue = requireValues ? requireValues.shift() : requireValues
+      let strippedRequires = onlyLetters(ogRequire)
+      let remappedRequire = remappedRequires.pop() || getFileName(ogRequire)
 
-      // if one is all caps and one is not, that is not correct
-      const isRequireCaps = isAllCapital(requireValue)
-      const isMatchCaps = isAllCapital(match)
-      // if (isRequireCaps && !isMatchCaps) {
-      //   requireValue = requireValues.shift() || requireValue
-      // }
-      // else if (isMatchCaps && !isRequireCaps) {
-      //   requireValue = requireValues.shift() || requireValue
-      // }
-
-      // we don't want to fuzzy it up with `is`
-      // if (!hasIs) {
-      //   const FuzzySet = require('./fuzzyset')
-      //   const fuzzies = FuzzySet()
-      //   requireValues.forEach(val => fuzzies.add(val))
-      //   const fuzzyFind = fuzzies.get(match, requireValue) || requireValue
-      //   // finding returns [score, find]
-      //   requireValue = isArray(fuzzyFind) ? fuzzyFind.pop() : fuzzyFind
-      //
-      //   // log
-      //   //   .bold('FUZZY_FIND')
-      //   //   .data(fuzzyFind)
-      //   //   .echo()
-      // }
-
+      // remappedRequires
       // log
-      //   .bold('REQUIRES_FOUND')
-      //   .data({requiresFound, requireValues})
+      //   .bold('require_matches')
+      //   .data(({remappedRequire, ogRequire}))
       //   .echo()
 
+      if (/^undefined$/.test(remappedRequire)) {
+        let ogRemappedRequire = remappedRequire
+        remappedRequire = name
+        if (remappedRequire.includes(' '))
+          remappedRequire = name.split(' ').pop()
+        let fileNameWord = onlyLetters(getFileName(ogRequire))
 
-      return requireValue
-    }
+        // if they are named very differently
+        if (!name.includes(fileNameWord)) remappedRequire = fileNameWord
 
-    if (parts.length === 0) return line
-
-
-    const ogRequire = parts.pop().trim()
-
-    // @TODO right here can use a new name matching the parts, bingo bango bongo
-    const remappedRequires = ogRequire
-      .replace(`require('`, '')
-      .replace(')', '')
-      .replace(`'`, '')
-      .replace(/.*/, requireReplacer)
-      .split('/')
-
-    let strippedRequires = onlyLetters(ogRequire)
-    let remappedRequire = remappedRequires.pop() || getFileName(ogRequire)
-
-    // remappedRequires
-    // log
-    //   .bold('require_matches')
-    //   .data(({remappedRequire, ogRequire}))
-    //   .echo()
-
-    if (/^undefined$/.test(remappedRequire)) {
-      let ogRemappedRequire = remappedRequire
-      remappedRequire = name
-      if (remappedRequire.includes(' ')) remappedRequire = name.split(' ').pop()
-      let fileNameWord = onlyLetters(getFileName(ogRequire))
-
-      // if they are named very differently
-      if (!name.includes(fileNameWord)) remappedRequire = fileNameWord
-
-      if (ogRequire.includes('is/')) {
-        if (!remappedRequire.includes('is')) {
-          remappedRequire = camelCase(`is-${remappedRequire}`)
+        if (ogRequire.includes('is/')) {
+          if (!remappedRequire.includes('is')) {
+            remappedRequire = camelCase(`is-${remappedRequire}`)
+          }
         }
       }
-    }
 
-    const str = matchRequireString(ogRequire)
+      const str = matchRequireString(ogRequire)
 
-    const absFileName = getFileName(abs)
-    const beforeFolder = abs.split(absFileName + '.js').shift()
-    let resolvedish = require('path').resolve(beforeFolder, str)
-    log
-      .data({
-        resolvedish, str, absFileName, abs, beforeFolder,
-      })
-      .echo()
+      const absFileName = getFileName(abs)
+      const beforeFolder = abs.split(absFileName + '.js').shift()
+      let resolvedish = require('path').resolve(beforeFolder, str)
+      log
+        .data({
+          resolvedish,
+          str,
+          absFileName,
+          abs,
+          beforeFolder,
+        })
+        .echo()
 
+      let resolved = resolvedish
+      try {
+        resolved = require.resolve(resolvedish)
+      }
+      catch (error) {
+        console.log({error})
+      }
 
-    let resolved = resolvedish
-    try {
-      resolved = require.resolve(resolvedish)
-    }
-    catch (error) {
-      console.log({error})
-    }
+      // log.data({resolved}).echo()
 
-    // log.data({resolved}).echo()
+      if (isEmpty(fromTo.data[resolved])) parseFromTo(resolved, true)
 
-    if (isEmpty(fromTo.data[resolved])) parseFromTo(resolved, true)
+      let resolveds =
+        fromTo.data[resolved] ||
+        fromTo.data[resolved + '.js'] ||
+        fromTo.data[resolvedish] ||
+        fromTo.data[resolvedish + '.js'] ||
+        []
+      // log.quick(fromTo.data)
 
-    let resolveds = (
-      fromTo.data[resolved] ||
-      fromTo.data[resolved + '.js'] ||
-      fromTo.data[resolvedish] ||
-      fromTo.data[resolvedish + '.js'] ||
-      []
-    )
-    // log.quick(fromTo.data)
-
-    // log.data({fromTo, resolveds}).echo()
-    // [resolveds.length - 1]
-    let reResolved = resolveds.slice(0).pop()
-    let finalFull = reResolved || remappedRequire
-    let finals = getFileName(finalFull) + '.js'
-    // log.data({finals, reResolved}).echo()
-    const sanitizedOgRequire = matchRequireString(ogRequire)
-    const comment = `/* remapped from ${sanitizedOgRequire} */`
-    return `${comment}\n${name} = require('./${finals}')`
-  })
-  .join('\n')
+      // log.data({fromTo, resolveds}).echo()
+      // [resolveds.length - 1]
+      let reResolved = resolveds.slice(0).pop()
+      let finalFull = reResolved || remappedRequire
+      let finals = getFileName(finalFull) + '.js'
+      // log.data({finals, reResolved}).echo()
+      const sanitizedOgRequire = matchRequireString(ogRequire)
+      const comment = `/* remapped from ${sanitizedOgRequire} */`
+      return `${comment}\n${name} = require('./${finals}')`
+    })
+    .join('\n')
 
 // fromTo.keys().forEach(key => {
 //   log.underline(key).data(fromTo.data[key]).echo()
@@ -807,7 +807,7 @@ Object.keys(fromToComeOn).forEach(abs => {
 
 fromTo.write()
 // log.prettyformat(fileMeta).echo()
-const stripExtJS = replace(/\.js$/gmi, '')
+const stripExtJS = replace(/\.js$/gim, '')
 
 const hackRequire = `
   const _require = (str) => {
@@ -842,17 +842,19 @@ const makeExportsRequire = pipe(stripExtJS, _makeExportsRequire)
 let flatFileNames = jetpack
   .list(outputPath)
   .map(stripExtJS)
-  .filter(name =>
-    !isEmpty(name) &&
-    !name.includes('-') &&
-    !name.includes('_exports') &&
-    !name.includes('_es6'))
+  .filter(
+    name =>
+      !isEmpty(name) &&
+      !name.includes('-') &&
+      !name.includes('_exports') &&
+      !name.includes('_es6')
+  )
 
 // flatFileNames.forEach(name => log.bold(name).echo())
 
 log.data({flatFileNames}).echo()
-const es6Add = x => es6 = concatUniq(es6)
-const exportedAdd = x => exported = concatUniq(es6)
+const es6Add = x => (es6 = concatUniq(es6))
+const exportedAdd = x => (exported = concatUniq(es6))
 
 flatFileNames.forEach(name => {
   exported += makeRequire(name)
