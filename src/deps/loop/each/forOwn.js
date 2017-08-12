@@ -1,5 +1,7 @@
+/* eslint no-unused-expressions: "OFF" */
+/* eslint guard-for-in: "OFF" */
 const toObj = require('../../cast/toObj')
-const keysIn = require('../../util/keysIn')
+const hasOwnProperty = require('../../util/hasOwnProperty')
 
 /**
  * Iterates over own enumerable string keyed properties of an object and
@@ -17,6 +19,7 @@ const keysIn = require('../../util/keysIn')
  * @fork 0.3.0
  * @category Object
  *
+ * @NOTE for array, object, and string, iterates over property/index/key
  * @TODO !!! did not return object, consistently the others do, why?
  *
  * @see forEach, forEachRight, forIn, forInRight, forOwnRight
@@ -38,7 +41,10 @@ const keysIn = require('../../util/keysIn')
  */
 function forOwn(object, iteratee) {
   const obj = toObj(object)
-  keysIn(obj).forEach(key => iteratee(obj[key], key, obj))
+
+  for (const key in obj)
+    hasOwnProperty(obj, key) && iteratee(obj[key], key, obj)
+
   return obj
 }
 

@@ -6,6 +6,8 @@ const baseEach = require('./each/baseEach')
 const baseFor = require('./each/baseFor')
 const forEach = require('./each/forEach')
 const forOwn = require('./each/forOwn')
+const forInUnguarded = require('./each/forInUnguarded')
+const baseForOwn = require('./each/baseForOwn')
 // filter
 const filterWhere = require('./filter/filterWhere')
 // map
@@ -91,6 +93,8 @@ module.exports = {
   // keyVal,
   flipped: keyVal,
 
+  forInUnguarded,
+  baseForOwn,
   filterWhereFlipped,
   mapObjOrArrayKeysFlipped,
   forOwnFlipped,
