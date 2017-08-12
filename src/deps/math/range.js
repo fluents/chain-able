@@ -7,6 +7,7 @@ const isNill = require('../is/nullOrUndefined')
  *
  * @name range
  * @since 5.0.0-beta.6
+ * @memberOf math
  *
  * @param {number} start starting number
  * @param {number} [stop] ending number, defaultsTo(start)

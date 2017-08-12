@@ -1,4 +1,10 @@
+// const forOwn = require('../loop/each/forOwn')
 const hasOwnProperty = require('../util/hasOwnProperty')
+const hasIn = require('../is/hasIn')
+const isObj = require('../is/obj')
+const isObjPure = require('../is/objPure')
+const isFunction = require('../is/function')
+const isArray = require('../is/array')
 const curry = require('./curry')
 
 /**
@@ -12,11 +18,12 @@ const curry = require('./curry')
  * functions such as [`filter`](#filter) and [`find`](#find).
  *
  * @since 5.0.0-beta.6
+ * @version 5.0.0-beta.9 <- added safety https://github.com/fluents/chain-able/issues/61
  * @memberOf fp
  * @curried 2
  *
- * @param {Object} spec
- * @param {Object} testObj
+ * @param {Object} spec specification
+ * @param {Object} testObj object to test specification on
  * @return {Boolean}
  *
  * @tests fp/where
@@ -51,10 +58,44 @@ const curry = require('./curry')
  *
  */
 module.exports = curry(2, function where(spec, testObj) {
+  // forOwn(spec, (test, prop) => hasOwnProperty(testObj, prop) && !spec[prop](testObj[prop]) })
+
+  /**
+   * cannot really test an object vs a non object, unless spec is a function
+   */
+  if (!isObj(testObj)) {
+    if (isFunction(spec)) return spec(testObj)
+    else return false
+  }
+
+  /* prettier-ignore */
   for (let prop in spec) {
-    if (hasOwnProperty(spec, prop) && !spec[prop](testObj[prop])) {
+    /**
+     * @NOTE we are allowing checks on inherited TESTOBJ,
+     *       but not on inherited SPEC
+     *
+     * !hasIn(testObj, prop)
+     */
+    if (!hasOwnProperty(spec, prop)) {
+      // continue
+    }
+    /**
+     * when we have a nested object, recursively check
+     */
+    else if (isObjPure(spec[prop]) || isArray(spec[prop])) {
+      if (!where(spec[prop], testObj[prop])) {
+        return false
+      }
+    }
+    /**
+     * if the test object does not have the same property
+     * or our value in the testObje does not satisfy the specification
+     */
+    else if (!spec[prop](testObj[prop])) {
       return false
     }
   }
+
+  // good to go!
   return true
 })

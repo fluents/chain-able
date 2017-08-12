@@ -20,6 +20,7 @@ const pipeTwo = require('./pipeTwo')
  * @param {...Function} rest function next
  * @return {Function}
  *
+ * @see https://github.com/reactjs/redux/blob/master/src/compose.js
  * @see https://github.com/ramda/ramda/blob/master/src/compose.js
  * @see https://github.com/ramda/ramda/blob/master/src/pipe.js
  * @see https://github.com/ramda/ramda/blob/master/test/pipe.js
@@ -48,11 +49,8 @@ module.exports = function pipe(first) {
   // @TODO: could move into pipeArray
   // could start from first, second? etc?
   // (isArray(first) ? first : argumentor.apply(null, arguments))
-  let args = argumentor
-    .apply(null, arguments)
-    .slice(1)
-    .reduce(pipeTwo)
-    // .reduce((previous, next) => pipeTwo(previous, next))
+  let args = argumentor.apply(null, arguments).slice(1).reduce(pipeTwo)
+  // .reduce((previous, next) => pipeTwo(previous, next))
 
   return pipeTwo(first, args)
 }

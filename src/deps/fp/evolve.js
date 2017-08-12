@@ -54,6 +54,7 @@ module.exports = curry(2, function evolve(transformations, object) {
   let transformation
   let key
 
+  // eslint-disable-next-line
   for (key in object) {
     transformation = transformations[key]
     result[key] = isFunction(transformation)
