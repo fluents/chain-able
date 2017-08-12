@@ -10,9 +10,6 @@
     "babel-plugin-transform-flow-strip-types": "^6.22.0"
   },
   "dependencies": {
-    "fliplog": "^1.0.4",
-    "frisbee": "^1.5.0",
-    "node-fetch": "^1.7.1",
-    "xmlhttprequest": "^1.8.0"
+    "fliplog": "^1.0.4"
   }
 }

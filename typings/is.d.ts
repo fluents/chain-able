@@ -34,16 +34,21 @@ export type notEmptyArray = [any]
 export function toArray(arg): any[]
 export function isNotEmptyArray(o: any): o is notEmptyArray
 
-export function isString(o: any): o is string
-export function isNumber(o: any): o is number
+export function isStringPrimitive(o: any): o is number
+export function isString(o: any): o is string | String
+export function numberPrimitive(o: any): o is number
+export function isNumber(o: any): o is Number | number
 export function isStringOrNumber(o: any): o is string | number
 
 export function isNull(o: any): o is null
 export function isUndefined(o: any): o is undefined
-export function isNullOrUndef(o: any): o is undefined | null
+export function isNullOrUndefined(o: any): o is undefined | null
 
 export function isFunction(o: any): o is Function
-export function isObj(o: any): o is object
+export function isObj(o: any): o is object | Array<any> | Function
+export function isObjNotNull(o: any): o is object // !null
+export function objTypeof(o: any): o is object | null
+export function objPure(o: any): o is object // !Array
 export function isObjWithKeys(o: any): o is ObjectWithKeys
 
 export function isPrototypeOf(o: any, prop: any): PrototypeOf
@@ -72,6 +77,32 @@ export function isObjLoose(o: any): 'o is typeof Obj' | boolean
 export function isClass(o: any): 'o.toString().includes(class)' | boolean
 export function isMapish(o: any): o is Mapish
 
+export type Property = 'property in Object' | boolean | string | any
+export function hasIn(o: any, prop: any): prop is Property
+// no generics
+// hasIn(s: Prop, obj: Struct<any>): boolean;
+// hasIn(s: Prop): (obj: Struct<any>) => boolean;
+
+export function isNotNested(o: any): boolean
+export function isIteratable(o: any): boolean
+export function isPrimitive(o: any): boolean
+export function isEmpty(o: any): boolean
+export function isGenerator(o: any): boolean
+export function isJSON(o: any): o is JSON
+export function isNative(o: any): boolean
+export function isPromise(o: any): o is Promise<any>
+export function isAsyncish(o: any): o is Promise<any>
+export function isIn(obj: Object | any, prop: any): boolean
+export function isBuffer(o: any): o is Buffer
+export function isArguments(o: any): o is Arguments
+
+// function(x) => x.every(<predicate>)
+export function isArrayOf(predicate: Function): boolean
+
+// o is !isEmpty || o is !isReal
+export function isNotRealOrIsEmpty(o: any): boolean
+
+
 export const is = {
   isArray,
   isString,
@@ -99,7 +130,8 @@ export const is = {
   // @example `chain-able/deps/is/stringOrNumber`, `chain-able/deps/is/dot`
   isNotEmptyArray,
   isStringOrNumber,
-  isNullOrUndef,
+  isNullOrUndefined,
+  isNill: isNullOrUndefined,
   isFalse,
   isDot,
   isMapish,

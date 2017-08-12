@@ -1,5 +1,5 @@
 const log = require('fliplog')
-const {Chain, MethodChain} = require('../src')
+const {Chain, MethodChain, merge} = require('../src')
 
 const {isUndefined, isObj, isFunction} = Chain.is
 
@@ -29,9 +29,16 @@ test('.decorate(obj)', () => {
   const chain = new Chain()
   const obj = {}
   chain.method('ehOh').decorate(obj).build()
-  expect(typeof obj.ehOh).toBe('function')
+  expect(isFunction(obj.ehOh)).toBe(true)
   obj.ehOh(1)
   expect(chain.get('ehOh')).toBe(1)
+
+  // const chain2 = new Chain()
+  // const obj2 = {}
+  // chain2.method('ehOh').decorate(obj2).build()
+  // expect(isFunction(obj2.ehOh)).toBe(true)
+  // obj2.ehOh(1)
+  // expect(chain2.get('ehOh')).toBe(1)
 })
 
 test('.method(object) .call() & .get().set()', () => {
@@ -81,6 +88,37 @@ test('.plugin', () => {
   chain.methods('eh').plugin(autoGetSet).build()
   expect(chain.eh(1)).toBe(chain)
   expect(chain.eh()).toBe(1)
+})
+
+test.only('factory method - automerge !!!!', () => {
+  // also add this merge plugin factory
+  function autoMergeMethodFactory(name, parent) {
+    function autoMerge(arg) {
+      if (isUndefined(arg)) {
+        return this.get(name)
+      }
+      else if (this.has(name)) {
+        return this.set(name, merge(this.get(name), arg))
+      }
+      else {
+        return this.set(name, arg)
+      }
+    }
+
+    // so we know if we defaulted them
+    autoMerge.mergeFactory = true
+
+    return this.onSet(autoMerge).onGet(autoMerge).onCall(autoMerge)
+  }
+
+  // @TODO: extend with `mergeName` to merge in
+  // @example
+  // .methods('eh')
+  // .eh([])
+  // .mergeEh(1)
+  MethodChain.add({
+    autoMerge: autoMergeMethodFactory,
+  })
 })
 
 test('addFactoryMethods', () => {

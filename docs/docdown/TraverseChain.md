@@ -4,22 +4,22 @@
 
 <!-- div -->
 
-## `Traverse.prototype`
-* <a href="#Traverse-prototype-exports">`Traverse.prototype.exports`</a>
+## `Traverse`
+* <a href="#Traverse-prototype-exports"  data-meta="ChainedMapBase exports"  data-call="exports"  data-category="traverse"  data-description="Map"  data-name="exports"  data-member="Traverse"  data-see="href https github com fluents chain able blob master src deps traverse js label deps traverse"  data-klassProps="obj keys vals onMatch onNonMatch clone"  data-all="meta ChainedMapBase n n exports call exports category traverse description Map name exports member Traverse see href https github com fluents chain able blob master src deps traverse js label deps traverse notes todos klassProps obj n keys n vals n onMatch n onNonMatch n clone n" >`Traverse.exports`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
-## `TraverseChain.prototype`
-* <a href="#TraverseChain-prototype-traverse">`TraverseChain.prototype.traverse`</a>
+## `TraverseChain`
+* <a href="#TraverseChain-prototype-traverse"  data-meta="traverse shouldReturn false"  data-call="traverse shouldReturn false"  data-category="Methods"  data-description="Function runs traverser checks the tests calls the onMatch"  data-name="traverse"  data-member="TraverseChain"  data-all="meta traverse shouldReturn false call traverse shouldReturn false category Methods description Function runs traverser checks the tests calls the onMatch name traverse member TraverseChain see notes todos klassProps" >`TraverseChain.traverse`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
 ## `traversed`
-* <a href="#traversed">`traversed`</a>
+* <a href="#traversed"  data-meta="traversed"  data-call="traversed"  data-category="Methods"  data-description="Function value traversed in traverse"  data-name="traversed"  data-see="href https github com fluents chain able search utf8 E2 9C 93 q TraverseChain traverse type label TraverseChain traverse"  data-all="meta traversed call traversed category Methods description Function value traversed in traverse name traversed member see href https github com fluents chain able search utf8 E2 9C 93 q TraverseChain traverse type label TraverseChain traverse notes todos klassProps" >`traversed`</a>
 
 <!-- /div -->
 
@@ -29,7 +29,7 @@
 
 <!-- div -->
 
-## `Traverse.prototype`
+## `Traverse`
 
 <!-- div -->
 
@@ -37,17 +37,23 @@
 
 <a href="https://github.com/fluents/chain-able/blob/master/test/TraverseChain.js">🔬  Tests: TraverseChain</a>&nbsp;
 
-<h3 id="Traverse-prototype-exports"><a href="#Traverse-prototype-exports">#</a>&nbsp;<code>Traverse.prototype.exports</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/TraverseChain.js#L29 "View in source") [&#x24C9;][1]
+<h3 id="Traverse-prototype-exports" data-member="Traverse" data-category="traverse" data-name="exports"><code>Traverse.exports</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/TraverseChain.js#L30 "View in source") [&#x24C9;][1]
 
 Map
 
 
-### @symb 
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js" >deps/traverse</a>
+
+#### @symb 
 
 👣 
 
-### @classProps 
+#### @classProps 
 
 * {obj}  
 * {keys}  
@@ -57,11 +63,12 @@ Map
 * {clone}  
  
 
-### @extends
+#### @extends
 ChainedMapBase
 
 
-#### Since
+
+#### @Since
 1.0.0
 
 ---
@@ -72,16 +79,19 @@ ChainedMapBase
 
 <!-- div -->
 
-## `TraverseChain.prototype`
+## `TraverseChain`
 
 <!-- div -->
 
-<h3 id="TraverseChain-prototype-traverse"><a href="#TraverseChain-prototype-traverse">#</a>&nbsp;<code>TraverseChain.prototype.traverse([shouldReturn=false])</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/TraverseChain.js#L90 "View in source") [&#x24C9;][1]
+<h3 id="TraverseChain-prototype-traverse" data-member="TraverseChain" data-category="Methods" data-name="traverse"><code>TraverseChain.traverse([shouldReturn=false])</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/TraverseChain.js#L92 "View in source") [&#x24C9;][1]
 
 (Function): runs traverser, checks the tests, calls the onMatch
 
-#### Since
+
+#### @Since
 1.0.0
 
 #### Arguments
@@ -131,12 +141,19 @@ traversed
 
 <!-- div -->
 
-<h3 id="traversed"><a href="#traversed">#</a>&nbsp;<code>traversed()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/TraverseChain.js#L172 "View in source") [&#x24C9;][1]
+<h3 id="traversed" data-member="" data-category="Methods" data-name="traversed"><code>traversed()</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/TraverseChain.js#L192 "View in source") [&#x24C9;][1]
 
 (Function): value traversed in traverse
 
-#### Since
+
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=TraverseChain.traverse&type=" >TraverseChain.traverse</a>
+
+#### @Since
 1.0.0
 
 #### Returns
@@ -205,4 +222,4 @@ const eh = {
 
 <!-- /div -->
 
- [1]: #traverse.prototype "Jump back to the TOC."
+ [1]: #traverse "Jump back to the TOC."

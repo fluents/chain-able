@@ -1,3 +1,4 @@
+const log = require('fliplog')
 const isLength = require('validator/lib/isLength')
 const isNumeric = require('validator/lib/isNumeric')
 const trim = require('validator/lib/trim')
@@ -44,7 +45,8 @@ test(testChecklist, () => {
   // typed.short(val => {}) // valid function
 
   try {
-    typed.short(!!Boolean) // boolean, not a function, throws
+    const result = typed.short(!!Boolean) // boolean, not a function, throws
+    log.red('SHOULD NOT HIT THIS').data({result}).echo()
   }
   catch (e) {
     return

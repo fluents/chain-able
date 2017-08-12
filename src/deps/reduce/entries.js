@@ -1,5 +1,7 @@
 const isFunction = require('../is/function')
-const ignored = require('../ignored')
+const isObj = require('../is/obj')
+const hasIn = require('../is/in')
+const ignored = require('../meta/ignored')
 const ObjectKeys = require('../util/keys')
 const ObjectAssign = require('../util/assign')
 
@@ -12,7 +14,9 @@ const ObjectAssign = require('../util/assign')
  * @param {Object | any} reduced merged object and reduced
  * @return {Function} Function(values: Object)
  *
+ * @see https://www.airpair.com/javascript/javascript-array-reduce
  * @see ChainedMap
+ * @NOTE could curry, but this is super hot function
  *
  * @example
  *
@@ -31,7 +35,7 @@ const ObjectAssign = require('../util/assign')
  *   }
  *   const reduced = reduce(map)
  *   reduceEntries(reduced)({chain})
- *   // => {
+ *   //=> {
  *     eh: true,
  *     chain: {
  *       nested: {
@@ -63,6 +67,12 @@ const ObjectAssign = require('../util/assign')
 module.exports = reduced => obj => {
   const keys = ObjectKeys(obj)
 
+  // const filter = (value, key) =>
+  //   !ignored(key) && hasIn(value, 'entries')
+  // const transform = (value, key) =>
+  //   ObjectAssign(reduced, {[key]: value.entries(true) || {}})
+  // mapFilterWhere(obj, filter, transform)
+
   for (let k = 0; k < keys.length; k++) {
     const key = keys[k]
 
@@ -70,9 +80,11 @@ module.exports = reduced => obj => {
       continue
     }
 
-    const val = obj[key]
-    if (val && isFunction(val.entries)) {
-      ObjectAssign(reduced, {[key]: val.entries(true) || {}})
+    const value = obj[key]
+    // @NOTE could use hasInMatching here
+    // isObj(value) && isFunction(value.entries)
+    if (hasIn(value, 'entries')) {
+      ObjectAssign(reduced, {[key]: value.entries(true) || {}})
     }
   }
 

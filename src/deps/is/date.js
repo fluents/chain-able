@@ -1,13 +1,20 @@
 const toS = require('./toS')
 
 /**
- * @param  {*} x value
+ * @param {*} x value
  * @return {boolean} isDate
  *
  * @since 3.0.0
  * @memberOf is
- * @func isDate
+ *
+ * @func
+ * @name isDate
  * @extends toS
+ *
+ * {@link https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Date mozilla-date}
+ * {@link https://nodejs.org/api/util.html#util_util_isdate_object node-util-isdate}
+ * @see {@link node-util-isdate}
+ * @see {@link mozilla-date}
  *
  * @example
  *
@@ -32,6 +39,7 @@ const toS = require('./toS')
  *  class Eh extends Date()
  *  isDate(new Eh())
  *  //=> true
+ *
  */
 module.exports = function isDate(x) {
   return toS(x) === '[object Date]'

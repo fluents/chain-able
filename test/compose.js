@@ -5,7 +5,7 @@ const {compose} = require('../src')
 
 const PreComposed = compose()
 
-class Composed extends PreComposed {}
+class Composed extends PreComposed { }
 
 test('composable', () => {
   const map = new Composed({isParent: true})
@@ -13,13 +13,20 @@ test('composable', () => {
 })
 
 test('compose custom extensions', () => {
-  class CustomTarget {}
+  class CustomTarget {
+    constructor(parent) {
+      this.ok = true
+    }
+  }
   const CustomComposer = SuperClass => {
-    class Customed extends SuperClass {}
+    class Customed extends SuperClass {
+
+    }
     return Customed
   }
   const CustomComposed = compose(CustomTarget, [CustomComposer])
   const map = new CustomComposed()
+  expect(map.ok).toBe(true)
   expect(map instanceof CustomTarget).toBe(true)
 })
 
@@ -57,13 +64,35 @@ test('.className', () => {
 })
 
 test('extend class as decorator', () => {
+  class CustomTarget { }
+  const CustomComposer = SuperClass => {
+    class Customed extends SuperClass { }
+    return Customed
+  }
+  const CustomComposed = compose(CustomTarget, [CustomComposer])
+
   class Target {
     get extended() {
       return true
     }
   }
-  class ComposedTarget extends compose(Target) {}
+  class Target2 {
+    eh() { }
+    get extended2() {
+      return true
+    }
+  }
+  const CT = compose(Target, undefined)
+  class ComposedTarget extends CT { }
+  class ComposedTarget2 extends compose(Target2) { }
   const map = new ComposedTarget({isParent: true})
+  const map2 = new ComposedTarget2({isParent: true})
+  // log.prettyformat(new CustomComposed()).echo()
+  // log.prettyformat(map).echo()
+  // log.prettyformat(new ComposedTarget2()).echo()
+  // log.data(new ComposedTarget2() instanceof ComposedTarget2).echo()
+  // log.data(map instanceof Target).echo()
+
   expect(map.parent).toEqual({isParent: true})
   expect(map.extended).toBe(true)
 })

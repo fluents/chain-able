@@ -1,0 +1,48 @@
+# Optional
+.nyc_output
+.fliphub
+coverage
+
+# Caches
+tmp
+_tmp
+.tmp
+.happypack
+
+# Dist/build output
+dist
+built
+build
+public
+
+
+# Numerous always-ignore extensions
+*.diff
+*.err
+*.orig
+*.log
+*.rej
+*.swo
+*.swp
+*.vi
+*~
+*.sass-cache
+
+
+# OS or Editor folders
+.DS_Store
+.cache
+.project
+.settings
+.tmproj
+nbproject
+Thumbs.db
+.eslintcache
+.idea
+.vscode
+.vmconfig
+.tmConfig
+
+
+# NPM packages folder.
+node_modules/

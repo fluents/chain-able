@@ -2,13 +2,19 @@ const toS = require('./toS')
 
 /**
  * @desc Checks if `value` is classified as a `Map` object.
+ * @since 3.0.0
+ * @memberOf is
+ *
  * @param  {*} x value
  * @return {boolean} isMap
  *
- * @since 3.0.0
- * @memberOf is
- * @func isMap
- * @see https://github.com/jonschlinkert/kind-of
+ * @func
+ * @name isMap
+ *
+ * {@link https://github.com/mobxjs/mobx/blob/master/src/utils/utils.ts#L210 mobx-is-map}
+ * {@link https://github.com/jonschlinkert/kind-of kind-of}
+ * @see {@link kind-of}
+ * @see {@link mobx-is-map}
  *
  * @example
  *
@@ -25,7 +31,7 @@ const toS = require('./toS')
  *  isMap(1)
  *  //=> false
  *  isMap(new WeakMap)
- *  // => false
+ *  //=> false
  *
  * @example
  *

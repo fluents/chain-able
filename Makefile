@@ -41,6 +41,9 @@ lint:
 docgen:
 	node build/cli --docs
 
+site:
+	node docs/_site/index.js
+
 dox:
 	yarn run dox -- 'src/**/*.js' --layout markdown --output docs/bits/doxdox.md
 
@@ -58,6 +61,9 @@ babel:
 tests:
 	yarn run test -- --notify
 
+frisbee:
+	cd _modules/frisbee && npm run test
+
 testdist:
 	yarn run ava -- test/built.js --verbose
 
@@ -73,6 +79,10 @@ webpack:
 
 cli:
 	node build/cli.js
+testexamples:
+	node build/examples-test-runner.js
+cliquick:
+	node build/cli.js --quick
 
 rollupcli:
 	yarn run rollup -- --config build/cli-rollup.js --environment format:dev
@@ -93,8 +103,9 @@ jestdiff:
 coveralls:
 	yarn run coveralls -- < coverage/lcov.info
 
-quick:
-	node build/cli.js --quick --test
+# unused now for tests anyway
+# quicktest:
+# 	node build/cli.js --quick --test
 
 gzip:
 	yarn run gzip -- dists/umd/index.js --raw \
@@ -104,6 +115,15 @@ gzip:
 
 rollup:
 	yarn run rollup -- -c build/rollup.config.js
+
+easyexports:
+	node build/easy-npm-files
+lintexports:
+	node build/cli --easyexports
+cleanexports:
+	node build/cli --cleaneasyexports
+versions:
+	node build/versions
 
 # --- makefile combos/presets ---
 # (the above things use names so they are non conflicting, e.g. we cannot have `build`)
@@ -117,19 +137,38 @@ stripcombo:
 distcombo:
 	$(MAKE) copysrc && $(MAKE) buble
 
+quickcombo:
+	$(MAKE) clean && $(MAKE) distcombo && $(MAKE) cliquick && $(MAKE) gzip
+
 buildcombo:
 	$(MAKE) distcombo && $(MAKE) cli && $(MAKE) gzip
 
 buildcombofuse:
 	$(MAKE) distcombo && $(MAKE) cli && $(MAKE) fuse && $(MAKE) webpack && $(MAKE) gzip
 
+export:
+	$(MAKE) cleanexports && $(MAKE) easyexports && $(MAKE) lintexports
+
+#&& $(MAKE) versions
+
 travis:
 	$(MAKE) stripcombo \
 	&& $(MAKE) buildcombo \
 	&& $(MAKE) testdist \
-	&& $(MAKE) jestserial
+	&& $(MAKE) jestserial \
+	&& $(MAKE) docgen \
+	&& $(MAKE) export \
+	&& $(MAKE) postpublish
 
 prepublish:
-	$(MAKE) copyroot && $(MAKE) buildcombo && $(MAKE) cov && $(MAKE) testdist
+	$(MAKE) copyroot \
+	&& $(MAKE) docgen \
+	&& $(MAKE) export \
+	&& $(MAKE) buildcombo \
+	&& $(MAKE) cov \
+	&& $(MAKE) testdist
+
+postpublish:
+	$(MAKE) clean && $(MAKE) cleanexports
 
 .PHONY: clean, quick

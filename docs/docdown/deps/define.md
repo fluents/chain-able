@@ -5,7 +5,7 @@
 <!-- div -->
 
 ## `exports`
-* <a href="#exports">`exports`</a>
+* <a href="#exports"  data-meta="exports obj undefined name undefined descriptor undefined"  data-call="exports obj undefined name undefined descriptor undefined"  data-category="Methods"  data-description="Function default to configurable and enumerable unless configured otherwise"  data-name="exports"  data-all="meta exports obj undefined name undefined descriptor undefined call exports obj undefined name undefined descriptor undefined category Methods description Function default to configurable and enumerable unless configured otherwise name exports member see notes todos klassProps" >`exports`</a>
 
 <!-- /div -->
 
@@ -19,12 +19,15 @@
 
 <!-- div -->
 
-<h3 id="exports"><a href="#exports">#</a>&nbsp;<code>exports(obj=undefined, name=undefined, descriptor=undefined)</code></h3>
+<h3 id="exports" data-member="" data-category="Methods" data-name="exports"><code>exports(obj=undefined, name=undefined, descriptor=undefined)</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/define.js#L19 "View in source") [&#x24C9;][1]
 
 (Function): default to configurable and enumerable, unless configured otherwise
 
-#### Since
+
+#### @Since
 4.0.0
 
 #### Arguments

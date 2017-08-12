@@ -1,3 +1,5 @@
+import {Primitive, Arr, Matchable} from './generic'
+
 export function escapeStringRegExp(str: string): string
 // calls escapeStringRegExp
 export function toRegExp(str: string): string

@@ -10,9 +10,10 @@
  * @func isUndefined
  *
  * @see is/nullOrUndefined
- * @see https://github.com/infernojs/inferno/blob/master/packages/inferno-shared/src/index.ts#L57
- *
- * @NOTE || typeof x === 'undefined'
+ * {@link https://github.com/infernojs/inferno/blob/master/packages/inferno-shared/src/index.ts#L57 inferno-isundefined}
+ * {@link https://nodejs.org/api/util.html#util_util_isundefined_object node_util_isundefined}
+ * @see {@link node_util_isundefined}
+ * @see {@link inferno-isundefined}
  *
  * @example
  *

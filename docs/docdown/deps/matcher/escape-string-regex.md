@@ -4,8 +4,8 @@
 
 <!-- div -->
 
-## `matcher.prototype`
-* <a href="#matcher-prototype-escapeStringRegExp">`matcher.prototype.escapeStringRegExp`</a>
+## `matcher`
+* <a href="#matcher-prototype-escapeStringRegExp"  data-meta="exports str undefined"  data-call="exports str undefined"  data-category="Methods"  data-description="Function"  data-name="escapeStringRegExp"  data-member="matcher"  data-see="href https github com sindresorhus escape string regexp label escape string regexp href https github com fluents chain able blob master src deps fp replace js label fp replace"  data-notes="also as const escapeStringRegexp require escape string regexp"  data-all="meta exports str undefined call exports str undefined category Methods description Function name escapeStringRegExp member matcher see href https github com sindresorhus escape string regexp label escape string regexp href https github com fluents chain able blob master src deps fp replace js label fp replace notes also as const escapeStringRegexp require escape string regexp n todos klassProps" >`matcher.escapeStringRegExp`</a>
 
 <!-- /div -->
 
@@ -15,21 +15,29 @@
 
 <!-- div -->
 
-## `matcher.prototype`
+## `matcher`
 
 <!-- div -->
 
-<h3 id="matcher-prototype-escapeStringRegExp"><a href="#matcher-prototype-escapeStringRegExp">#</a>&nbsp;<code>matcher.prototype.exports(str=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/matcher/escape-string-regex.js#L19 "View in source") [&#x24C9;][1]
+<h3 id="matcher-prototype-escapeStringRegExp" data-member="matcher" data-category="Methods" data-name="escapeStringRegExp"><code>matcher.exports(str=undefined)</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/matcher/escape-string-regex.js#L21 "View in source") [&#x24C9;][1]
 
 Function
 
 
-### @notes 
+#### @see 
+
+* <a href="https://github.com/sindresorhus/escape-string-regexp" >escape-string-regexp</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/fp/replace.js" >fp/replace</a>
+
+#### @notes 
 
 * also as const escapeStringRegexp = require('escape-string-regexp');
  
-#### Since
+
+#### @Since
 3.0.0
 
 #### Arguments
@@ -53,4 +61,4 @@ new RegExp(escaped)
 
 <!-- /div -->
 
- [1]: #matcher.prototype "Jump back to the TOC."
+ [1]: #matcher "Jump back to the TOC."

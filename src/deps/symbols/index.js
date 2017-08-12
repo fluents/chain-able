@@ -2,6 +2,10 @@
 // const hasSymbol = typeof Symbol !== 'undefined'
 // hasSymbol ? Symbol.iterator : 'Symbol(iterator)'
 
+/**
+ * @member symbol
+ * @icon 🔣
+ */
 module.exports = {
   Iterator: Symbol.iterator,
   Primitive: Symbol.toPrimitive,

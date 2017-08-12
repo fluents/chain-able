@@ -164,6 +164,7 @@ test('when(has)', () => {
   expect.assertions(6)
   const map = new ChainedMap()
   map.set('truth', true).set('lies', false)
+
   const right = instance => {
     expect(instance).toBe(map)
     instance.set('alpha', 'a')

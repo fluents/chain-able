@@ -1,35 +1,43 @@
 const objTypeof = require('./objTypeof')
 const isFunction = require('./function')
+const isNull = require('./null')
+// const objNotNull = require('./objNotNull')
 
 /**
- * @func isObj
- *
  * Checks if `value` is the
  * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
  * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
- *
+ * @memberOf is
  * @since 3.0.0
  * @category Lang
+ *
  * @param {*} value The value to check.
  * @return {boolean} Returns `true` if `value` is an object, else `false`.
  *
- * @memberOf is
- * @see http://stackoverflow.com/questions/34111902/why-do-lodashs-isobject-isplainobject-behave-differently-than-typeof-x
- * @see https://github.com/lodash/lodash/blob/master/isObject.js
- * @NOTE Object.prototype.toString.call(val) === '[object Object]'
+ * @func
+ * @name isObj
+ * @alias isObject
+ *
+ * {@link https://github.com/gcanti/tcomb/blob/master/lib/isObject.js tcomb-isobject}
+ * {@link https://github.com/lodash/lodash/blob/master/isObject.js lodash-isobject}
+ * {@link https://github.com/mobxjs/mobx/blob/master/src/utils/utils.ts#L74 mobx-is-obj}
+ * @see {@link mobx-isobject}
+ * @see {@link lodash-isobject}
+ * @see {@link tcomb-isobject}
  *
  * @example
  *
  * isObject({})
- * // => true
+ * //=> true
  *
  * isObject([1, 2, 3])
- * // => true
+ * //=> true
  *
  * isObject(Function)
- * // => true
+ * //=> true
  *
  * isObject(null)
- * // => false
+ * //=> false
+ *
  */
-module.exports = x => x !== null && (objTypeof(x) || isFunction(x))
+module.exports = x => !isNull(x) && (objTypeof(x) || isFunction(x))

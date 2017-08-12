@@ -1,4 +1,4 @@
-const DECORATED_KEY = require('../deps/meta/decorated')
+const DECORATED_KEY = require('../deps/meta/DECORATED_KEY')
 const meta = require('../deps/meta')
 
 /**

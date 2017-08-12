@@ -4,8 +4,8 @@
 
 <!-- div -->
 
-## `matcher.prototype`
-* <a href="#matcher-prototype-toRegExp">`matcher.prototype.toRegExp`</a>
+## `matcher`
+* <a href="#matcher-prototype-toRegExp"  data-meta="exports str undefined"  data-call="exports str undefined"  data-category="Methods"  data-description="Function"  data-name="toRegExp"  data-member="matcher"  data-all="meta exports str undefined call exports str undefined category Methods description Function name toRegExp member matcher see notes todos klassProps" >`matcher.toRegExp`</a>
 
 <!-- /div -->
 
@@ -15,17 +15,19 @@
 
 <!-- div -->
 
-## `matcher.prototype`
+## `matcher`
 
 <!-- div -->
 
-<h3 id="matcher-prototype-toRegExp"><a href="#matcher-prototype-toRegExp">#</a>&nbsp;<code>matcher.prototype.exports(str=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/matcher/to-regexp.js#L21 "View in source") [&#x24C9;][1]
+<h3 id="matcher-prototype-toRegExp" data-member="matcher" data-category="Methods" data-name="toRegExp"><code>matcher.exports(str=undefined)</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/matcher/to-regexp.js#L23 "View in source") [&#x24C9;][1]
 
 Function
 
 
-### @extends
+#### @extends
 
 
 
@@ -51,4 +53,4 @@ toRegExp('*')
 
 <!-- /div -->
 
- [1]: #matcher.prototype "Jump back to the TOC."
+ [1]: #matcher "Jump back to the TOC."

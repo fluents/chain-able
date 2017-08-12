@@ -6,8 +6,10 @@ const toS = require('./toS')
  *
  * @since 3.0.0
  * @memberOf is
- * @func isIterator
+ * @func
+ * @name isIterator
  * @see https://github.com/jonschlinkert/kind-of/pull/12
+ * @see https://github.com/facebook/immutable-js/blob/master/src/Iterator.js#L59
  *
  * @example
  *

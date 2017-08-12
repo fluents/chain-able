@@ -29,6 +29,7 @@ function docdown(options) {
     style: 'default',
     title: 'API documentation',
     toc: 'properties',
+    metadata: true,
 
     // @TODO
     debug: false,

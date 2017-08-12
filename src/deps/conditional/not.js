@@ -1,9 +1,32 @@
+const curry = require('../fp/curry')
+
 /**
  * return a negated function
+ * A function wrapping a call to the given function in a `!` operation.
+ * It will:
+ * - return `true` when the underlying function would return a false-y value,
+ * - and `false` when it would return a truth-y one.
+ * @since 4.0.1
+ *
+ * {@link https://github.com/facebook/immutable-js/blob/master/src/CollectionImpl.js#L771 immutable-js-not}
+ * {@link https://github.com/ramda/ramda/blob/master/src/not.js ramda-not}
+ * {@link https://github.com/lodash/lodash/blob/master/negate.js lodash-negate}
+ * {@link http://documentcloud.github.io/underscore-contrib/#not-1 underscore-not}
+ * {@link https://github.com/jashkenas/underscore/blob/master/underscore.js#L916 underscore-negate}
+ * @see {@link underscore-negate}
+ * @see {@link underscore-not}
+ * @see {@link lodash-negate}
+ * @see {@link ramda-not}
+ * @see {@link immutable-js-not}
+ *
+ * @alias negate
+ * @name not
  * @memberOf conditional
- * @since  4.0.1
+ * @func
+ *
  * @param  {Function} fn any function
- * @return {Function} !Function
+ * @param  {*} x value to pass to function
+ * @return {Function} !Function(x)
  *
  * @example
  *
@@ -17,4 +40,5 @@
  *    //=> false
  *
  */
-module.exports = fn => x => !fn(x)
+const not = (fn, x) => !fn(x)
+module.exports = curry(2, not)

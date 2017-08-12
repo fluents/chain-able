@@ -1,0 +1,3 @@
+☮️📦⬇ remove node_gyp dep unless it is installed
+
+☮️ compatibility: update fliptime with microtime polyfil that prefers microtime dep when it is available and accepts flags when available

@@ -702,7 +702,8 @@ class EntryMax extends Entry {
 
   // @return {Array<{{linkHref: string, linkName: string}}>}
   getLinkLines(needle) {
-    const linkChain = this.linkChain.factory(needle)
+    const block = this.get('block')
+    const linkChain = this.linkChain.factory(block, needle)
     // console.log({linkChain})
     return linkChain
   }
@@ -711,10 +712,12 @@ class EntryMax extends Entry {
    * @TODO ADD @TUTORIAL
    */
   getSee() {
-    const linksy = this.get('block').includes('@see')
+    const block = this.get('block')
+    const linksy = block.includes('@see')
     if (linksy) {
-      const remapChain = this.linkChain.remapSee()
+      const remapChain = this.linkChain.remapSee(block, this)
       // log.bold('remapChain').data(remapChain).echo()
+
       return remapChain
     }
 

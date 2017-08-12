@@ -8,17 +8,19 @@ const toS = require('./toS')
  * @param {*} x The value to check.
  * @return {boolean} Returns `true` if `value` is a set, else `false`.
  *
- *  @example
+ * @TODO map[Symbol.species] === Set
  *
- * isSet(new Set)
- * // => true
+ * @example
  *
- * isSet(new WeakSet)
- * // => false
+ *   isSet(new Set)
+ *   //=> true
+ *
+ *   isSet(new WeakSet)
+ *   //=> false
  *
  */
 module.exports = function isSet(x) {
-  return x instanceof Set || toS(x) === '[object Set]'
-  // return toS(x) === '[object Set]'
+  // return x instanceof Set || toS(x) === '[object Set]'
+  return toS(x) === '[object Set]'
 }
 // x instanceof Set ||

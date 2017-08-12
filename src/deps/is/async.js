@@ -9,6 +9,8 @@ const toS = require('./toS')
  *
  * @memberOf is
  * @func isAsync
+ * @see is/toS
+ * @see is/promise
  *
  * @example
  *

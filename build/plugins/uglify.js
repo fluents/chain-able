@@ -5,7 +5,11 @@ const {minify} = require('uglify-es')
 // https://github.com/mishoo/UglifyJS2#minify-options-structure
 // should mangle...
 module.exports = options => {
-  const mangles = options.mangles === undefined ? true : options.mangles
+  let mangles = options.mangles === undefined ? true : options.mangles
+
+  // @TODO hard to keep it mangling top-level, so ugly with 1 letter fns
+  // mangles = false
+
   const beautify = !!options.beautify
 
   const uglifyOptions = {
@@ -49,10 +53,12 @@ module.exports = options => {
 
       // @TODO:
       // pure_funcs: true, side_effects: false,
-      keep_fargs: beautify,
+
+      // @NOTE we need this one for fp/arity
+      keep_fargs: true,
+
       keep_fnames: beautify, // for now
 
-      // keep_fargs: false,
       // keep_fnames: false, // for now
       passes: 10,
     },

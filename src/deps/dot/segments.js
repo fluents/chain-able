@@ -3,6 +3,27 @@ const isUndefined = require('../is/undefined')
 const lengthMinusOne = require('../util/lengthMinusOne')
 
 let cache
+
+/**
+ * @name dotPropSegments
+ * @alias castPath
+ *
+ * @TODO `isKey(value, object) ? [value] : stringToPath(value)`
+ *       // isKey/hasIn
+ *
+ * @since 4.0.0
+ * @memberOf dot
+ *
+ * @param  {string | Array<string>} path dot-prop-path
+ * @return {Array<string>} array path
+ *
+ * @example
+ *
+ *    dotPropSegments('eh.oh') //=> ['eh', 'oh']
+ *    dotPropSegments(['eh', 'oh']) //=> ['eh', 'oh']
+ *    dotPropSegments('ehoh') //=> ['ehoh']
+ *
+ */
 module.exports = path => {
   if (!cache) cache = new Map()
   if (cache.has(path)) return cache.get(path)
@@ -16,8 +37,8 @@ module.exports = path => {
 
     /**
      * @example 1
-     *          '\.eh' -1 === '\\'      (true)
-     *                +1 !== undefined (true, eh)
+     *          '\.eh' -1 === '\\'     //=> true
+     *                +1 !== undefined //=> true, eh
      *
      * @example 2
      *          '.eh'  -1 === '\\'      (false, undefined)

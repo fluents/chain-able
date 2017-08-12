@@ -5,30 +5,24 @@
 <!-- div -->
 
 ## `MergeChain`
-* <a href="#">``</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `MergeChain.prototype`
-* <a href="#MergeChain-prototype-">`MergeChain.prototype.`</a>
-* <a href="#MergeChain-prototype-merger">`MergeChain.prototype.merger`</a>
-* <a href="#MergeChain-prototype-onExisting">`MergeChain.prototype.onExisting`</a>
+* <a href="#"  data-meta="parent undefined"  data-call="parent undefined"  data-category="Methods"  data-description="Function"  data-all="meta parent undefined call parent undefined category Methods description Function name member see notes todos klassProps" >``</a>
+* <a href="#MergeChain-prototype-"  data-meta="ChainedMapBase"  data-category="Properties"  data-description="Map"  data-member="MergeChain"  data-see="href https github com fluents chain able blob master src deps dopemerge dopemerge js label deps dopemerge"  data-todos="consider just making this a function because 80 20 onValue merger onExisting are rarely used are easily overridable with merge"  data-all="meta ChainedMapBase call category Properties description Map name member MergeChain see href https github com fluents chain able blob master src deps dopemerge dopemerge js label deps dopemerge notes todos consider just making this a function n because 80 20 onValue merger onExisting n are rarely used are easily overridable with merge n klassProps" >`MergeChain.`</a>
+* <a href="#MergeChain-prototype-merger"  data-meta="merger opts undefined"  data-call="merger opts undefined"  data-category="Methods"  data-description="Function options for merging with dopemerge"  data-name="merger"  data-member="MergeChain"  data-see="href https github com fluents chain able blob master src deps dopemerge dopemerge js label dopemerge"  data-all="meta merger opts undefined call merger opts undefined category Methods description Function options for merging with dopemerge name merger member MergeChain see href https github com fluents chain able blob master src deps dopemerge dopemerge js label dopemerge notes todos klassProps" >`MergeChain.merger`</a>
+* <a href="#MergeChain-prototype-onExisting"  data-meta="exports"  data-call="exports"  data-category="Properties"  data-description="unknown"  data-name="onExisting"  data-member="MergeChain"  data-all="meta exports call exports category Properties description unknown name onExisting member MergeChain see notes todos klassProps" >`MergeChain.onExisting`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
 ## `merge`
-* <a href="#merge">`merge`</a>
+* <a href="#merge"  data-meta="merge obj2 undefined"  data-call="merge obj2 undefined"  data-category="Methods"  data-description="Function merges object in goes through all keys checks cbs dopemerges"  data-name="merge"  data-see="href https github com fluents chain able blob master src ChainedMap js label ChainedMap"  data-todos="issue here if we extend without shorthands we want to merge existing values s"  data-all="meta merge obj2 undefined call merge obj2 undefined category Methods description Function merges object in goes through all keys checks cbs dopemerges name merge member see href https github com fluents chain able blob master src ChainedMap js label ChainedMap notes todos issue here if we extend without shorthands n we want to merge existing values s n klassProps" >`merge`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
 ## `setChosen`
-* <a href="#setChosen">`setChosen`</a>
+* <a href="#setChosen"  data-meta="setChosen keyToSet undefined valueToSet undefined"  data-call="setChosen keyToSet undefined valueToSet undefined"  data-category="Methods"  data-description="Function when fn is a full method not an extended shorthand"  data-name="setChosen"  data-all="meta setChosen keyToSet undefined valueToSet undefined call setChosen keyToSet undefined valueToSet undefined category Methods description Function when fn is a full method not an extended shorthand name setChosen member see notes todos klassProps" >`setChosen`</a>
 
 <!-- /div -->
 
@@ -42,7 +36,9 @@
 
 <!-- div -->
 
-<h3 id=""><a href="#">#</a>&nbsp;<code>(parent=undefined)</code></h3>
+<h3 id="" data-member="" data-category="Methods" data-name="MergeChain"><code>(parent=undefined)</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MergeChain.js#L54 "View in source") [&#x24C9;][1]
 
 Function
@@ -68,34 +64,35 @@ console.dir(map)
 
 <!-- /div -->
 
-<!-- /div -->
-
-<!-- div -->
-
-## `MergeChain.prototype`
-
 <!-- div -->
 
 <a href="https://github.com/fluents/chain-able/blob/master/test/MergeChain.js">🔬  Tests: MergeChain</a>&nbsp;
 
-<h3 id="MergeChain-prototype-"><a href="#MergeChain-prototype-">#</a>&nbsp;<code>MergeChain.prototype.</code></h3>
+<h3 id="MergeChain-prototype-" data-member="MergeChain" data-category="Properties" data-name="MergeChain"><code>MergeChain.</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MergeChain.js#L9 "View in source") [&#x24C9;][1]
 
 Map
 
 
-### @todos 
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/dopemerge/dopemerge.js" >deps/dopemerge</a>
+
+#### @todos 
 
 - [ ] consider just making this a function,
       because 80/20 onValue merger & onExisting
       are rarely used & are easily overridable with .merge
  
 
-### @extends
+#### @extends
 ChainedMapBase
 
 
-#### Since
+
+#### @Since
 1.0.0
 
 ---
@@ -104,12 +101,19 @@ ChainedMapBase
 
 <!-- div -->
 
-<h3 id="MergeChain-prototype-merger"><a href="#MergeChain-prototype-merger">#</a>&nbsp;<code>MergeChain.prototype.merger(opts=undefined)</code></h3>
+<h3 id="MergeChain-prototype-merger" data-member="MergeChain" data-category="Methods" data-name="merger"><code>MergeChain.merger(opts=undefined)</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MergeChain.js#L93 "View in source") [&#x24C9;][1]
 
 (Function): options for merging with dopemerge
 
-#### Since
+
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/dopemerge/dopemerge.js" >dopemerge</a>
+
+#### @Since
 1.0.2
 
 #### Arguments
@@ -138,12 +142,15 @@ ChainedMapBase
 
 <!-- div -->
 
-<h3 id="MergeChain-prototype-onExisting"><a href="#MergeChain-prototype-onExisting">#</a>&nbsp;<code>MergeChain.prototype.exports</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MergeChain.js#L334 "View in source") [&#x24C9;][1]
+<h3 id="MergeChain-prototype-onExisting" data-member="MergeChain" data-category="Properties" data-name="onExisting"><code>MergeChain.exports</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MergeChain.js#L335 "View in source") [&#x24C9;][1]
 
 unknown
 
-#### Since
+
+#### @Since
 0.9.0
 
 #### Example
@@ -170,18 +177,25 @@ chain.get('str')
 
 <!-- div -->
 
-<h3 id="merge"><a href="#merge">#</a>&nbsp;<code>merge([obj2=undefined])</code></h3>
+<h3 id="merge" data-member="" data-category="Methods" data-name="merge"><code>merge([obj2=undefined])</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MergeChain.js#L122 "View in source") [&#x24C9;][1]
 
 (Function): merges object in, goes through all keys, checks cbs, dopemerges
 
 
-### @todos 
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/blob/master/src/ChainedMap.js" >ChainedMap</a>
+
+#### @todos 
 
 - [ ] issue here if we extend without shorthands &
       we want to merge existing values... :s
  
-#### Since
+
+#### @Since
 1.0.0
 
 #### Arguments
@@ -211,12 +225,15 @@ chain.entries()
 
 <!-- div -->
 
-<h3 id="setChosen"><a href="#setChosen">#</a>&nbsp;<code>setChosen(keyToSet=undefined, valueToSet=undefined)</code></h3>
+<h3 id="setChosen" data-member="" data-category="Methods" data-name="setChosen"><code>setChosen(keyToSet=undefined, valueToSet=undefined)</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/MergeChain.js#L199 "View in source") [&#x24C9;][1]
 
 (Function): when fn is a full method, not an extended shorthand
 
-#### Since
+
+#### @Since
 0.5.0
 
 #### Arguments

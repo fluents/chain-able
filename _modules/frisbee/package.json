@@ -1,0 +1,25 @@
+{
+  "name": "md-chain",
+  "scripts": {
+    "babs": "babel awesome-github.js > awesome-github-es6.js",
+    "build": "node js",
+    "test": "jest --verbose"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "./test-setup.js"
+  },
+  "devDependencies": {
+    "isomorphic-fetch": "*",
+    "express": "*",
+    "cors": "*",
+    "body-parser": "*",
+    "jest": "*"
+  },
+  "dependencies": {
+    "fliplog": "^1.0.4",
+    "qs": "*",
+    "frisbee": "^1.5.0",
+    "node-fetch": "^1.7.1",
+    "xmlhttprequest": "^1.8.0"
+  }
+}

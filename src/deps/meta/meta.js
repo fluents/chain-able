@@ -1,15 +1,23 @@
-// without it, the arguments & caller are uglier when drbugging
-'use strict'
+/**
+ * @file without it, the arguments & caller are uglier when debugging
+ * @TODO freeze store props
+ * @TODO callsites are super polymorphic
+ */
 
+const ENV_DEBUG = require('../env/debug')
+const EMPTY_ARRAY = require('../native/EMPTY_ARRAY')
 const isSet = require('../is/set')
+const hasOwnProperty = require('../util/hasOwnProperty')
+const iteratorToArray = require('../cast/iteratorToArray')
 const ArrayFrom = require('../util/from')
 const isUndefined = require('../is/undefined')
-const concat = require('../concat')
+const concat = require('../array/concat')
 const toarr = require('../to-arr')
-const TRANSFORMERS_KEY = require('./transformers')
-const OBSERVERS_KEY = require('./observers')
-const SHORTHANDS_KEY = require('./shorthands')
-const DECORATED_KEY = require('./decorated')
+const size = require('../util/size')
+const TRANSFORMERS_KEY = require('./TRANSFORMERS_KEY')
+const OBSERVERS_KEY = require('./OBSERVERS_KEY')
+const SHORTHANDS_KEY = require('./SHORTHANDS_KEY')
+const DECORATED_KEY = require('./DECORATED_KEY')
 
 // will expand this later
 const isInKeyMapAsSet = x => x === OBSERVERS_KEY
@@ -25,7 +33,7 @@ const isInKeyMapAsSet = x => x === OBSERVERS_KEY
  */
 function getMeta(_this) {
   // if we already have it, keep it
-  if (_this.meta) return _this.meta
+  if (hasOwnProperty(_this, 'meta')) return _this.meta
 
   // the store
   // shorthands: key -> method
@@ -61,7 +69,7 @@ function getMeta(_this) {
    * @return {boolean}
    */
   const has = (key, prop) => {
-    if (isUndefined(prop)) return !!store[key].size
+    if (isUndefined(prop)) return !!size(store[key])
     else return store[key].has(prop)
   }
   /**
@@ -70,7 +78,11 @@ function getMeta(_this) {
    * @param  {Primitive | undefined} [prop=undefined]
    * @return {any}
    */
-  const get = (key, prop) => (has(key, prop) ? store[key].get(prop) : [])
+  const get = (key, prop) => (
+    has(key, prop)
+      ? store[key].get(prop)
+      : EMPTY_ARRAY
+  )
 
   /**
    * @since  4.0.0
@@ -81,6 +93,7 @@ function getMeta(_this) {
    */
   const set = (key, prop, value) => {
     const storage = store[key]
+
     // when it's a set, we have no `prop`, we just have .add
     // so `prop = value` && `value = undefined`
     if (isSet(storage)) {
@@ -108,17 +121,19 @@ function getMeta(_this) {
    * @return {Array | Chain} depending on args
    */
   function meta(key, prop, value) {
-    if (process.env.NODE_ENV === 'DEBUG') {
-      console.log('USING META', {key, prop, value})
-    }
-
     /* prettier-ignore */
     if (isUndefined(value)) {
       // when we want to just access the property, return an array
       // @example `.meta('transformers')`
       if (isUndefined(prop)) {
-        if (isUndefined(store[key])) return []
-        else return store[key].size === 0 ? [] : ArrayFrom(store[key].values())
+        if (ENV_DEBUG) {
+          console.log('META_CALL_GETTER', {[key]: store[key]})
+        }
+
+        if (isUndefined(store[key])) return EMPTY_ARRAY
+        else return size(store[key]) === 0
+          ? EMPTY_ARRAY
+          : ArrayFrom(store[key])
       }
       // we have `key, prop`
       //
@@ -126,23 +141,48 @@ function getMeta(_this) {
       else if (isInKeyMapAsSet(key)) {
         ensureInitialized(key)
         set(key, prop)
+        if (ENV_DEBUG) {
+          console.log('META_CALL_SET_SETTER', {key, value: prop, store})
+        }
       }
       // 2: prop is a key, we want to return the [..] for that specific property
       // @example `.meta('transformers', 'eh')`
-      else if (isUndefined(store[key])) return []
+      else if (isUndefined(store[key])) return EMPTY_ARRAY
       else return toarr(get(key, prop))
     }
     // we have `key, prop, value`
     else {
       ensureInitialized(key)
+
       // we have a value, let's add it
       set(key, prop, value)
+
+      if (ENV_DEBUG) {
+        console.log('META_CALL_MAP_SETTER', {key, prop, value, store})
+      }
     }
+
     return _this
   }
 
   // for debugging
   meta.store = store
+
+  // @NOTE not really needed, can just do `meta.store.[prop].clear`
+  // meta.clear = prop => meta.store[prop].clear()
+
+  // @TODO use `remove` here, so it will delete say, index
+  //
+  // @example store.transformers = Map({eh: [transformer, anotherTransformer]})
+  //          store.delete('transformers.eh[0]')
+  //
+  // @example store.observers = Map({eh: [transformer, anotherTransformer]})
+  //          store.delete('observers[-1]')
+  //
+  // eslint-disable-next-line
+  // meta['delete'] = (prop, valueOrKey) => meta.store[prop].delete(valueOrKey)
+
+  // default value
   // meta.debug = false
 
   return meta

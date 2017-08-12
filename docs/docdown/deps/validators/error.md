@@ -4,8 +4,8 @@
 
 <!-- div -->
 
-## `encase.prototype`
-* <a href="#encase-prototype-exports">`encase.prototype.exports`</a>
+## `encase`
+* <a href="#encase-prototype-exports"  data-meta="exports method undefined type undefined"  data-call="exports method undefined type undefined"  data-category="Methods"  data-description="Function enhance an Error enable rethrowing better inspection"  data-name="exports"  data-member="encase"  data-see="href https github com fluents chain able blob master src MethodChain js label MethodChain href https github com fluents chain able blob master src deps validators schemaBuilder js label validators schemaBuilder href https github com fluents chain able blob master src deps validators validatorBuilder js label validators validatorBuilder href https github com fluents chain able blob master src plugins encase js label plugins encase"  data-todos="js stringify if development"  data-all="meta exports method undefined type undefined call exports method undefined type undefined category Methods description Function enhance an Error enable rethrowing better inspection name exports member encase see href https github com fluents chain able blob master src MethodChain js label MethodChain href https github com fluents chain able blob master src deps validators schemaBuilder js label validators schemaBuilder href https github com fluents chain able blob master src deps validators validatorBuilder js label validators validatorBuilder href https github com fluents chain able blob master src plugins encase js label plugins encase notes todos js stringify if development n klassProps" >`encase.exports`</a>
 
 <!-- /div -->
 
@@ -15,28 +15,31 @@
 
 <!-- div -->
 
-## `encase.prototype`
+## `encase`
 
 <!-- div -->
 
-<h3 id="encase-prototype-exports"><a href="#encase-prototype-exports">#</a>&nbsp;<code>encase.prototype.exports(method=undefined, type=undefined)</code></h3>
+<h3 id="encase-prototype-exports" data-member="encase" data-category="Methods" data-name="exports"><code>encase.exports(method=undefined, type=undefined)</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/validators/error.js#L54 "View in source") [&#x24C9;][1]
 
 (Function): enhance an Error, enable rethrowing & better inspection
 
 
-### @see 
+#### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/MethodChain.js">fluents/chain able/blob/master/src/method chain.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/validators/schemaBuilder.js">fluents/chain able/blob/master/src/deps/validators/schema builder.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/validators/validatorBuilder.js">fluents/chain able/blob/master/src/deps/validators/validator builder.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/plugins/encase.js">fluents/chain able/blob/master/src/plugins/encase.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/MethodChain.js" >MethodChain</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/validators/schemaBuilder.js" >validators/schemaBuilder</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/validators/validatorBuilder.js" >validators/validatorBuilder</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/plugins/encase.js" >plugins/encase</a>
 
-### @todos 
+#### @todos 
 
 - [ ] js stringify if development
  
-#### Since
+
+#### @Since
 4.0.0-alpha.1
 
 #### Arguments
@@ -77,4 +80,4 @@ console.log(error)
 
 <!-- /div -->
 
- [1]: #encase.prototype "Jump back to the TOC."
+ [1]: #encase "Jump back to the TOC."

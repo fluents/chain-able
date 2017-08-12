@@ -6,11 +6,18 @@
  * @types matcher
  * @tests deps/matcher
  */
+
 const ObjectAssign = require('../util/assign')
 const isMatcher = require('../is/matcher')
 const cache = require('../cache')
 const toarr = require('../to-arr')
-const toRegExp = require('./to-regexp')
+const newRegExp = require('../construct/regexp')
+const pipe = require('../fp/pipeTwo')
+const toEscapedRegExp = require('../cast/toRegExp')
+const replaceEscapedStar = require('../string/escapedToDotStar')
+const escapeStringRegExp = require('../string/escapeRegExp')
+
+const esc = pipe(escapeStringRegExp, replaceEscapedStar)
 
 const m = {}
 
@@ -40,25 +47,25 @@ const m = {}
  *
  *    var strings = x => typeof x === 'string'
  *    matcher.make(strings)
- *    // {test: strings}
+ *    //=> {test: strings}
  *
  * @example
  *
  *    var tester = {test: x => x === true}
  *    matcher.make(tester)
- *    // tester
+ *    //=> tester
  *
  * @example
  *
  *    var noName = '!name'
  *    matcher.make(noName, true)
- *    // new RegExp('(?:name)', 'i')
+ *    //=> new RegExp('(?:name)', 'i')
  *
  * @example
  *
  *    var noName = '!name'
  *    matcher.make(noName, true, true)
- *    // new RegExp('^(?:name)$', 'i')
+ *    //=> new RegExp('^(?:name)$', 'i')
  *
  */
 m.make = (pattern, shouldNegate, alphaOmega) => {
@@ -74,12 +81,13 @@ m.make = (pattern, shouldNegate, alphaOmega) => {
   // }
   let negated = matchable[0] === '!'
   if (negated) matchable = matchable.slice(1)
-  matchable = toRegExp(matchable)
+
+  matchable = esc(matchable)
 
   if (negated && shouldNegate) matchable = `(?!${matchable})`
   if (alphaOmega) matchable = `^${matchable}$`
 
-  matchable = new RegExp(`${matchable}`, 'i')
+  matchable = newRegExp(`${matchable}`, 'i')
   matchable.negated = negated
 
   cache.set(pattern, matchable)

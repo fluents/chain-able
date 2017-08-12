@@ -4,8 +4,8 @@
 
 <!-- div -->
 
-## `exports`
-* <a href="#exports">`exports`</a>
+## `is`
+* <a href="#is-prototype-exports"  data-meta="exports obj undefined prop undefined"  data-call="exports obj undefined prop undefined"  data-category="Methods"  data-description="Function isIn but first checks it is not null"  data-name="exports"  data-member="is"  data-all="meta n n exports obj undefined prop undefined call exports obj undefined prop undefined category Methods description Function isIn but first checks it is not null name exports member is see notes todos klassProps" >`is.exports`</a>
 
 <!-- /div -->
 
@@ -15,21 +15,27 @@
 
 <!-- div -->
 
-## `exports`
+## `is`
 
 <!-- div -->
 
-<h3 id="exports"><a href="#exports">#</a>&nbsp;<code>exports(obj=undefined, prop=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/hasIn.js#L12 "View in source") [&#x24C9;][1]
+<h3 id="is-prototype-exports" data-member="is" data-category="Methods" data-name="exports"><code>is.exports(obj=undefined, prop=undefined)</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/hasIn.js#L23 "View in source") [&#x24C9;][1]
 
-Function
+(Function): isIn, but first checks it is not null
 
 
-### @extends 
+#### @extends 
 
 * undefined
 * undefined
 
+
+
+#### @Since
+5.0.0
 
 #### Arguments
 1. `obj=undefined` *(Object)*: object to check
@@ -38,6 +44,13 @@ Function
 #### Returns
 *(boolean)*:
 
+#### Example
+```js
+hasIn({}, 'eh') //=> false
+hasIn(null, 'eh') //=> false
+hasIn({ eh: true }, 'eh') //=> true
+
+```
 ---
 
 <!-- /div -->
@@ -46,4 +59,4 @@ Function
 
 <!-- /div -->
 
- [1]: #exports "Jump back to the TOC."
+ [1]: #is "Jump back to the TOC."

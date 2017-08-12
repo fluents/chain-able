@@ -1,6 +1,7 @@
-const firstToUpper = str => str.charAt(0).toUpperCase() + str.slice(1)
+const firstToUpperCase = require('./firstToUpperCase')
 
-const addPrefix = (string, prefix) => prefix + firstToUpper(string)
+// pretty much camel-case here
+const addPrefix = (string, prefix) => prefix + firstToUpperCase(string)
 
 function removePrefix(string, prefix) {
   if (string.indexOf(prefix) === 0) string = string.slice(prefix.length)
@@ -8,7 +9,7 @@ function removePrefix(string, prefix) {
 }
 
 module.exports = {
-  firstToUpper,
+  firstToUpperCase,
   addPrefix,
   removePrefix,
 }

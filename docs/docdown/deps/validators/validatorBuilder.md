@@ -5,35 +5,35 @@
 <!-- div -->
 
 ## `ChainedMap`
-* <a href="#ChainedMap">`ChainedMap`</a>
+* <a href="#ChainedMap"  data-meta="ChainedMap validators undefined"  data-call="ChainedMap validators undefined"  data-category="Methods"  data-description="Function library of validators to use by name"  data-name="ChainedMap"  data-all="meta ChainedMap validators undefined call ChainedMap validators undefined category Methods description Function library of validators to use by name name ChainedMap member see notes todos klassProps" >`ChainedMap`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
 ## `addTypes`
-* <a href="#addTypes">`addTypes`</a>
+* <a href="#addTypes"  data-meta="addTypes types undefined"  data-call="addTypes types undefined"  data-category="Methods"  data-description="Function add custom types for validation"  data-name="addTypes"  data-see="href https github com fluents chain able search utf8 E2 9C 93 q deps validators validatorFactory type label deps validators validatorFactory"  data-all="meta addTypes types undefined call addTypes types undefined category Methods description Function add custom types for validation name addTypes member see href https github com fluents chain able search utf8 E2 9C 93 q deps validators validatorFactory type label deps validators validatorFactory notes todos klassProps" >`addTypes`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
 ## `arithmeticTypeFactory`
-* <a href="#arithmeticTypeFactory">`arithmeticTypeFactory`</a>
+* <a href="#arithmeticTypeFactory"  data-meta="arithmeticTypeFactory fullKey undefined"  data-call="arithmeticTypeFactory fullKey undefined"  data-category="types"  data-description="Function transform arithmetic strings into types"  data-name="arithmeticTypeFactory"  data-see="href https github com fluents chain able blob master src deps expressions bitwiseMathOperator js label is"  data-todos="coercing values to certain types arithmeticTypeFactory value"  data-all="meta arithmeticTypeFactory fullKey undefined call arithmeticTypeFactory fullKey undefined category types description Function transform arithmetic strings into types name arithmeticTypeFactory member see href https github com fluents chain able blob master src deps expressions bitwiseMathOperator js label is notes todos coercing values to certain types arithmeticTypeFactory value n klassProps" >`arithmeticTypeFactory`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
 ## `builder`
-* <a href="#builder">`builder`</a>
+* <a href="#builder"  data-meta="builder fullKey undefined"  data-call="builder fullKey undefined"  data-category="types"  data-description="Function pattern builder builds using multiple factories depending on conditons or abstractFactory whatever opinionated if it s a function it s a validator"  data-name="builder"  data-see="href https developer mozilla org en docs Web JavaScript Reference Functions Default parameters label https developer mozilla org en docs Web JavaScript Reference Functions Default parameters"  data-notes="if else is for uglifying ternaries even though else if is not needed if key is number iterating the array"  data-all="meta builder fullKey undefined call builder fullKey undefined category types description Function pattern builder builds using multiple factories depending on conditons or abstractFactory whatever opinionated if it s a function it s a validator name builder member see href https developer mozilla org en docs Web JavaScript Reference Functions Default parameters label https developer mozilla org en docs Web JavaScript Reference Functions Default parameters notes if else is for uglifying ternaries even though else if is not needed n if key is number iterating the array n todos klassProps" >`builder`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
-## `schema.prototype`
-* <a href="#schema-prototype-typeListFactory">`schema.prototype.typeListFactory`</a>
+## `schema`
+* <a href="#schema-prototype-typeListFactory"  data-meta="typeListFactory fullKey undefined"  data-call="typeListFactory fullKey undefined"  data-category="types"  data-description="Function"  data-name="typeListFactory"  data-member="schema"  data-all="meta typeListFactory fullKey undefined call typeListFactory fullKey undefined category types description Function name typeListFactory member schema see notes todos klassProps" >`schema.typeListFactory`</a>
 
 <!-- /div -->
 
@@ -47,7 +47,9 @@
 
 <!-- div -->
 
-<h3 id="ChainedMap"><a href="#ChainedMap">#</a>&nbsp;<code>ChainedMap(validators=undefined)</code></h3>
+<h3 id="ChainedMap" data-member="" data-category="Methods" data-name="ChainedMap"><code>ChainedMap(validators=undefined)</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/validators/validatorBuilder.js#L8 "View in source") [&#x24C9;][1]
 
 (Function): library of validators to use by name
@@ -69,11 +71,17 @@
 
 <a href="https://github.com/fluents/chain-able/blob/master/typings/schema.d.ts">🌊  Types: schema.d</a>&nbsp;
 
-<h3 id="addTypes"><a href="#addTypes">#</a>&nbsp;<code>addTypes(types=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/validators/validatorBuilder.js#L75 "View in source") [&#x24C9;][1]
+<h3 id="addTypes" data-member="" data-category="Methods" data-name="addTypes"><code>addTypes(types=undefined)</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/validators/validatorBuilder.js#L74 "View in source") [&#x24C9;][1]
 
 (Function): add custom types for validation
 
+
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=deps/validators/validatorFactory&type=" >deps/validators/validatorFactory</a>
 #### Arguments
 1. `types=undefined` *(Object)*: custom Types
 
@@ -116,17 +124,24 @@ new Chain().methods('eh').type('*').build().eh
 
 <a href="https://github.com/fluents/chain-able/blob/master/typings/schema.d.ts">🌊  Types: schema.d</a>&nbsp;
 
-<h3 id="arithmeticTypeFactory"><a href="#arithmeticTypeFactory">#</a>&nbsp;<code>arithmeticTypeFactory(fullKey=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/validators/validatorBuilder.js#L182 "View in source") [&#x24C9;][1]
+<h3 id="arithmeticTypeFactory" data-member="" data-category="types" data-name="arithmeticTypeFactory"><code>arithmeticTypeFactory(fullKey=undefined)</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/validators/validatorBuilder.js#L172 "View in source") [&#x24C9;][1]
 
 (Function): transform arithmetic strings into types
 
 
-### @todos 
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/expressions/bitwiseMathOperator.js" >is</a>
+
+#### @todos 
 
 - [ ] coercing values to certain types: arithmeticTypeFactory('<value>')
  
-#### Since
+
+#### @Since
 4.0.0-alpha.1
 
 #### Arguments
@@ -178,18 +193,25 @@ arithmeticTypeFactory('===')
 
 <!-- div -->
 
-<h3 id="builder"><a href="#builder">#</a>&nbsp;<code>builder(fullKey=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/validators/validatorBuilder.js#L247 "View in source") [&#x24C9;][1]
+<h3 id="builder" data-member="" data-category="types" data-name="builder"><code>builder(fullKey=undefined)</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/validators/validatorBuilder.js#L237 "View in source") [&#x24C9;][1]
 
 (Function): @pattern @builder -> builds using multiple factories depending on conditons or abstractFactory whatever opinionated: if it's a function, it's a validator...
 
 
-### @notes 
+#### @see 
+
+* <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Default_parameters" >https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Default_parameters</a>
+
+#### @notes 
 
 * if/else is for uglifying ternaries, even though else if is not needed
 * if key is number, iterating the array
  
-#### Since
+
+#### @Since
 4.0.0
 
 #### Arguments
@@ -231,12 +253,14 @@ builder('string|string[]')
 
 <!-- div -->
 
-## `schema.prototype`
+## `schema`
 
 <!-- div -->
 
-<h3 id="schema-prototype-typeListFactory"><a href="#schema-prototype-typeListFactory">#</a>&nbsp;<code>schema.prototype.typeListFactory(fullKey=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/validators/validatorBuilder.js#L110 "View in source") [&#x24C9;][1]
+<h3 id="schema-prototype-typeListFactory" data-member="schema" data-category="types" data-name="typeListFactory"><code>schema.typeListFactory(fullKey=undefined)</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/validators/validatorBuilder.js#L100 "View in source") [&#x24C9;][1]
 
 Function
 

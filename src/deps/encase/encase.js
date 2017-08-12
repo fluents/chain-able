@@ -1,11 +1,22 @@
 const tryCatch = require('./tryCatch')
 
 /**
+ * @desc wrap in tryCatch, or a tryCatch-like api
+ * @version 5.0.0 wrapped tryCatch & withSpecification in curry
  * @version 4.0.1 added custom encaser
  * @since   4.0.0
- * @param   {Function} call function to _encase_
- * @param   {Function | undefined} [encaser=tryCatch] function to encase _with_
- * @return  {Function} -> FunctionObject{onInvalid, onValid, rethrow, call}
+ * @member encase
+ * @alias attempt
+ * @symb 🛡
+ *
+ * @param {Function} call function to _encase_
+ * @param {Function | undefined} [encaser=tryCatch] function to encase _with_
+ * @return {Function} -> FunctionObject{onInvalid, onValid, rethrow, call}
+ *
+ * {@link https://github.com/fluture-js/Fluture#encase fluture-encase}
+ * {@link https://github.com/lodash/lodash/blob/master/attempt.js lodash-attempt}
+ * @see {@link lodash-attempt}
+ * @see {@link fluture-encase}
  *
  * @example
  *
@@ -33,6 +44,7 @@ const tryCatch = require('./tryCatch')
 module.exports = (call, encaser) => {
   const encased = encaser ? encaser(call) : tryCatch(call)
 
+  // @TODO rethink this scoped approach
   // left, right, rethrow
   let onInvalid
   let onValid

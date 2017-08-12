@@ -4,8 +4,8 @@
 
 <!-- div -->
 
-## `is.prototype`
-* <a href="#is-prototype-exports">`is.prototype.exports`</a>
+## `is`
+* <a href="#is-prototype-exports"  data-meta="exports x undefined"  data-call="exports x undefined"  data-category="Lang"  data-description="Function Checks if value is classified as a String primitive or object"  data-name="exports"  data-member="is"  data-see="href https github com infernojs inferno blob master packages inferno shared src index ts L23 label https github com infernojs inferno blob master packages inferno shared src index ts L23 href https github com lodash lodash blob master isString js label https github com lodash lodash blob master isString js"  data-all="meta exports x undefined call exports x undefined category Lang description Function Checks if value is classified as a String primitive or object name exports member is see href https github com infernojs inferno blob master packages inferno shared src index ts L23 label https github com infernojs inferno blob master packages inferno shared src index ts L23 href https github com lodash lodash blob master isString js label https github com lodash lodash blob master isString js notes todos klassProps" >`is.exports`</a>
 
 <!-- /div -->
 
@@ -15,16 +15,24 @@
 
 <!-- div -->
 
-## `is.prototype`
+## `is`
 
 <!-- div -->
 
-<h3 id="is-prototype-exports"><a href="#is-prototype-exports">#</a>&nbsp;<code>is.prototype.exports(x=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/stringOrNumber.js#L24 "View in source") [&#x24C9;][1]
+<h3 id="is-prototype-exports" data-member="is" data-category="Lang" data-name="exports"><code>is.exports(x=undefined)</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/is/stringOrNumber.js#L25 "View in source") [&#x24C9;][1]
 
 (Function): Checks if `value` is classified as a `String` primitive or object.
 
-#### Since
+
+#### @see 
+
+* <a href="https://github.com/infernojs/inferno/blob/master/packages/inferno-shared/src/index.ts#L23" >https://github.com/infernojs/inferno/blob/master/packages/inferno-shared/src/index.ts#L23</a>
+* <a href="https://github.com/lodash/lodash/blob/master/isString.js" >https://github.com/lodash/lodash/blob/master/isString.js</a>
+
+#### @Since
 3.0.0
 
 #### Arguments
@@ -50,4 +58,4 @@ isString(1)
 
 <!-- /div -->
 
- [1]: #is.prototype "Jump back to the TOC."
+ [1]: #is "Jump back to the TOC."

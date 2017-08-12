@@ -1,4 +1,8 @@
 module.exports = cb => {
+  const evilArray = []
+  evilArray[-1] = 'boo'
+  const emojiString = '👻'
+
   const fullmap = new Map()
   const fullset = new Set()
   fullset.add('eh')
@@ -34,6 +38,8 @@ module.exports = cb => {
   // const xml = g.XMLHttpRequest ? new g.XMLHttpRequest() : require('http')
 
   const datas = [
+    evilArray,
+    emojiString,
     generatorFunction,
     class {},
     [],

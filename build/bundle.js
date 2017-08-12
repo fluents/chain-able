@@ -44,6 +44,9 @@ const createBundle = options => {
   if (format === 'amd') {
     options.moduleId = moduleName
   }
+
+  bundleOptions.externals = [require.resolve('../src/deps/env/debuggable.js')]
+
   log.data(bundleOptions).echo()
 
   // log.quick(bundleOptions)

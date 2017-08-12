@@ -1,6 +1,6 @@
 const log = require('fliplog')
 const m = require('../../src/deps/matcher')
-const toTest = require('../../src/deps/matcher/to-test')
+const toTest = require('../../src/deps/cast/toTestable')
 
 test('matcher *', () => {
   expect(m('canada.arr.0', 'canada.*').length).toBeTruthy()

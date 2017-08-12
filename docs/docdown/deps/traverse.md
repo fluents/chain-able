@@ -4,173 +4,36 @@
 
 <!-- div -->
 
-## `Traverse.prototype`
-* <a href="#Traverse-prototype-">`Traverse.prototype.`</a>
-* <a href="#Traverse-prototype-">`Traverse.prototype.`</a>
-* <a href="#Traverse-prototype-clone">`Traverse.prototype.clone`</a>
-* <a href="#Traverse-prototype-forEach">`Traverse.prototype.forEach`</a>
-* <a href="#Traverse-prototype-get">`Traverse.prototype.get`</a>
-* <a href="#Traverse-prototype-has">`Traverse.prototype.has`</a>
-* <a href="#Traverse-prototype-nodes">`Traverse.prototype.nodes`</a>
-* <a href="#Traverse-prototype-paths">`Traverse.prototype.paths`</a>
-* <a href="#Traverse-prototype-reduce">`Traverse.prototype.reduce`</a>
-* <a href="#Traverse-prototype-set">`Traverse.prototype.set`</a>
+## `Traverse`
+* <a href="#Traverse-prototype-checkIteratable"  data-meta="checkIteratable node undefined"  data-call="checkIteratable node undefined"  data-category="Methods"  data-description="Function checks whether a node is iteratable"  data-name="checkIteratable"  data-member="Traverse"  data-todos="move into the wrapper if perf allows"  data-all="meta checkIteratable node undefined call checkIteratable node undefined category Methods description Function checks whether a node is iteratable name checkIteratable member Traverse see notes todos move into the wrapper if perf allows n klassProps" >`Traverse.checkIteratable`</a>
+* <a href="#Traverse-prototype-clone"  data-meta="clone arg undefined"  data-call="clone arg undefined"  data-category="Methods"  data-description="Function clone any value"  data-name="clone"  data-member="Traverse"  data-see="href https github com fluents chain able blob master src deps dopemerge dopemerge js label dopemerge"  data-all="meta n n clone arg undefined call clone arg undefined category Methods description Function clone any value name clone member Traverse see href https github com fluents chain able blob master src deps dopemerge dopemerge js label dopemerge notes todos klassProps" >`Traverse.clone`</a>
+* <a href="#Traverse-prototype-forEach"  data-meta="forEach cb undefined"  data-call="forEach cb undefined"  data-category="Methods"  data-description="Function this is the main usage of Traverse"  data-name="forEach"  data-member="Traverse"  data-all="meta forEach cb undefined call forEach cb undefined category Methods description Function this is the main usage of Traverse name forEach member Traverse see notes todos klassProps" >`Traverse.forEach`</a>
+* <a href="#Traverse-prototype-iterate"  data-meta="iterate on undefined on key null Primitive val any instance Traverse any"  data-call="iterate on undefined"  data-category="Methods"  data-description="Function"  data-name="iterate"  data-member="Traverse"  data-todos="handler for Set Map so they can be skipped or traversed for example when cloning add hook to add custom checking if isIteratable deal with isRoot if needed examples with clone and stop"  data-all="meta iterate on undefined n on key null Primitive val any instance Traverse any call iterate on undefined category Methods description Function name iterate member Traverse see notes todos handler for Set Map so they can be skipped or traversed for example when cloning n add hook to add custom checking if isIteratable n deal with isRoot if needed n examples with clone and stop n klassProps" >`Traverse.iterate`</a>
+* <a href="#Traverse-prototype-remove"  data-meta="remove arg undefined"  data-call="remove arg undefined"  data-category="Methods"  data-description="Function Remove the current element from the output If the node is in an Array it will be spliced off Otherwise it will be deleted from its parent"  data-name="remove"  data-member="Traverse"  data-all="meta remove arg undefined call remove arg undefined category Methods description Function Remove the current element from the output nIf the node is in an Array it will be spliced off nOtherwise it will be deleted from its parent name remove member Traverse see notes todos klassProps" >`Traverse.remove`</a>
+* <a href="#Traverse-prototype-skip"  data-meta="skip"  data-call="skip"  data-category="Methods"  data-description="Function"  data-name="skip"  data-member="Traverse"  data-todos="skip 1 branch"  data-all="meta skip call skip category Methods description Function name skip member Traverse see notes todos skip 1 branch n klassProps" >`Traverse.skip`</a>
+* <a href="#Traverse-prototype-stop"  data-meta="stop"  data-call="stop"  data-category="Methods"  data-description="Function stop the iteration"  data-name="stop"  data-member="Traverse"  data-all="meta stop call stop category Methods description Function stop the iteration name stop member Traverse see notes todos klassProps" >`Traverse.stop`</a>
+* <a href="#Traverse-prototype-update"  data-meta="update value undefined"  data-call="update value undefined"  data-category="Methods"  data-description="Function update the value for the current key"  data-name="update"  data-member="Traverse"  data-all="meta update value undefined call update value undefined category Methods description Function update the value for the current key name update member Traverse see notes todos klassProps" >`Traverse.update`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
-## `after`
-* <a href="#after">`after`</a>
+## `clone`
+* <a href="#clone"  data-meta="clone arg undefined"  data-call="clone arg undefined"  data-category="Methods"  data-description="Function"  data-name="clone"  data-todos="merge with dopemerge needs tests converted back for this observe tests do cover somewhat"  data-all="meta clone arg undefined call clone arg undefined category Methods description Function name clone member see notes todos merge with dopemerge n needs tests converted back for this observe tests do cover somewhat n klassProps" >`clone`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
-## `before`
-* <a href="#before">`before`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `block`
-* <a href="#block">`block`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `circular`
-* <a href="#circular">`circular`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `delete`
-* <a href="#delete">`delete`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `forEach`
-* <a href="#forEach">`forEach`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `isRoot`
-* <a href="#isRoot">`isRoot`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `key`
-* <a href="#key">`key`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `level`
-* <a href="#level">`level`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `node`
-* <a href="#node">`node`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `node_`
-* <a href="#node_">`node_`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `parent`
-* <a href="#parent">`parent`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `path`
-* <a href="#path">`path`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `post`
-* <a href="#post">`post`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `pre`
-* <a href="#pre">`pre`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `remove`
-* <a href="#remove">`remove`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `return`
-* <a href="#return">`return`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `state`
-* <a href="#state">`state`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `stop`
-* <a href="#stop">`stop`</a>
+## `copy`
+* <a href="#copy"  data-meta="copy src undefined"  data-call="copy src undefined"  data-category="Methods"  data-description="Function"  data-name="copy"  data-todos="ugh how to clone better with recursive objects"  data-all="meta copy src undefined call copy src undefined category Methods description Function name copy member see notes todos ugh how to clone better with recursive objects n klassProps" >`copy`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
 ## `traverse`
-* <a href="#">``</a>
-* <a href="#">``</a>
-* <a href="#traverse">`traverse`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `update`
-* <a href="#update">`update`</a>
-
-<!-- /div -->
-
-<!-- div -->
-
-## `updateState`
-* <a href="#updateState">`updateState`</a>
+* <a href="#"  data-category="Properties"  data-description="unknown"  data-all="meta call category Properties description unknown name member see notes todos klassProps" >``</a>
 
 <!-- /div -->
 
@@ -180,55 +43,90 @@
 
 <!-- div -->
 
-## `Traverse.prototype`
+## `Traverse`
 
 <!-- div -->
 
-* <a href="https://github.com/fluents/chain-able/blob/master/typings/TraverseChain.d.ts">🌊  Types: TraverseChain.d</a>&nbsp;
-* <a href="https://github.com/fluents/chain-able/blob/master/typings/traverse.d.ts">🌊  Types: traverse.d</a>&nbsp;
+<h3 id="Traverse-prototype-checkIteratable" data-member="Traverse" data-category="Methods" data-name="checkIteratable"><code>Traverse.checkIteratable(node=undefined)</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L337 "View in source") [&#x24C9;][1]
 
-* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/circular.js">🔬  Tests: circular</a>&nbsp;
-* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/date.js">🔬  Tests: date</a>&nbsp;
-* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/equal.js">🔬  Tests: equal</a>&nbsp;
-* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/error.js">🔬  Tests: error</a>&nbsp;
-* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/has.js">🔬  Tests: has</a>&nbsp;
-* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/index.js">🔬  Tests: index</a>&nbsp;
-* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/instance.js">🔬  Tests: instance</a>&nbsp;
-* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/interface.js">🔬  Tests: interface</a>&nbsp;
-* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/json.js">🔬  Tests: json</a>&nbsp;
-* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/keys.js">🔬  Tests: keys</a>&nbsp;
-* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/leaves.js">🔬  Tests: leaves</a>&nbsp;
-* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/negative.js">🔬  Tests: negative</a>&nbsp;
-* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/obj.js">🔬  Tests: obj</a>&nbsp;
-* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/set-map.js">🔬  Tests: set-map</a>&nbsp;
-* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/siblings.js">🔬  Tests: siblings</a>&nbsp;
-* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/stop.js">🔬  Tests: stop</a>&nbsp;
-* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/stringify.js">🔬  Tests: stringify</a>&nbsp;
-* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/subexpr.js">🔬  Tests: subexpr</a>&nbsp;
-* <a href="https://github.com/fluents/chain-able/blob/master/test/traverse/superDeep.js">🔬  Tests: superDeep</a>&nbsp;
-
-<h3 id="Traverse-prototype-"><a href="#Traverse-prototype-">#</a>&nbsp;<code>Traverse.prototype.Traverse(obj=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L91 "View in source") [&#x24C9;][1]
-
-Function
+(Function): checks whether a node is iteratable
 
 
-### @todos 
+#### @todos 
 
-- [ ] : symbol, map, set
- 
-
-### @classProps 
-
-* {value} the data passed in as an argument to traverse on 
+- [ ] move into the wrapper? if perf allows?
  
 #### Arguments
-1. `obj=undefined` *(Traversable)*: any traversable value
+1. `node=undefined` *(&#42;)*: value to check
+
+#### Returns
+*(void)*:
 
 #### Example
 ```js
-traverse({})
-//=> Traverser
+.checkIteratable({eh: true})
+   //=> this.isLeaf = false
+   //=> this.isCircular = false
+   //=> this.isIteratable = true
+
+   .checkIteratable({} || [])
+   //=> this.isLeaf = true
+   //=> this.isCircular = false
+   //=> this.isIteratable = false
+
+   var circular = {}
+   circular.circular = circular
+   .checkIteratable(circular)
+   //=> this.isLeaf = false
+   //=> this.isCircular = true
+   //=> this.isIteratable = true
+```
+---
+
+<!-- /div -->
+
+<!-- div -->
+
+<h3 id="Traverse-prototype-clone" data-member="Traverse" data-category="Methods" data-name="clone"><code>Traverse.clone(arg=undefined)</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L833 "View in source") [&#x24C9;][1]
+
+(Function): clone any value
+
+
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/dopemerge/dopemerge.js" >dopemerge</a>
+
+#### @extends 
+
+* undefined
+* undefined
+
+
+
+#### @Since
+4.0.0
+
+#### Arguments
+1. `arg=undefined` *(&#42;)*: argument to clone
+
+#### Returns
+*(&#42;)*: cloned value
+
+#### Example
+```js
+var obj = { eh: true }
+clone(obj) === obj //=> false
+
+var obj = { eh: true }
+var obj2 = clone(obj)
+obj.eh = false
+console.log(obj2.eh) //=> true
 
 ```
 ---
@@ -237,29 +135,137 @@ traverse({})
 
 <!-- div -->
 
-<h3 id="Traverse-prototype-"><a href="#Traverse-prototype-">#</a>&nbsp;<code>Traverse.prototype.map(cb=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L199 "View in source") [&#x24C9;][1]
+<h3 id="Traverse-prototype-forEach" data-member="Traverse" data-category="Methods" data-name="forEach"><code>Traverse.forEach(cb=undefined)</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L250 "View in source") [&#x24C9;][1]
 
-(Function): Execute fn for each node in the object and return a new object with the results of the walk. To update nodes in the result use this.update(value).
+(Function): this is the main usage of Traverse
+
+
+#### @Since
+3.0.0
 
 #### Arguments
-1. `cb=undefined` *(Function)*: fn for each node in the object
+1. `cb=undefined` *(Function)*: callback for each iteration
 
 #### Returns
-*(any)*:
+*(&#42;)*: mapped result or original value, depends how it is used
 
 #### Example
 ```js
-var { traverse } = require('chain-able')
+traverse([1, 2, 3]).forEach((key, value) => console.log({ [key]: value }))
+//=> {'0': 1}
+//=> {'1': 2}
+//=> {'2': 3}
 
-var obj = { a: 1, b: 2, c: [3, 4] }
-obj.c.push(obj)
+```
+---
 
-var scrubbed = traverse(obj).map(function(x) {
-  if (this.circular) this.remove()
+<!-- /div -->
+
+<!-- div -->
+
+<h3 id="Traverse-prototype-iterate" data-member="Traverse" data-category="Methods" data-name="iterate"><code>Traverse.iterate(on=undefined)</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L518 "View in source") [&#x24C9;][1]
+
+Function
+
+
+#### @todos 
+
+- [ ] handler for Set & Map so they can be skipped or traversed, for example when cloning...
+- [ ] add hook to add custom checking if isIteratable
+- [ ] deal with .isRoot if needed
+- [ ] examples with clone and stop
+ 
+
+#### @sig 
+
+on(key: null | Primitive, val: any, instance: Traverse): any 
+#### Arguments
+1. `on=undefined` *(Function)*: callback fn for each iteration
+
+#### Returns
+*(&#42;)*: this.node
+
+#### Example
+```js
+iterate([])
+//=> []
+//=> on(null, [])
+
+```
+#### Example
+```js
+iterate([1])
+//=> [1]
+//=> on(null, [1])
+//=> on('1', 1)
+
+```
+#### Example
+```js
+//primitive - same for any number, string, symbol, null, undefined
+iterate(Symbol('eh'))
+//=> Symbol('eh')
+//=> on(Symbol('eh'))
+
+```
+#### Example
+```js
+var deeper = { eh: 'canada', arr: [{ moose: true }, 0] }
+iterate(deeper)
+//=> deeper // returns
+//=> on(null, deeper, this) // root
+
+//=> on('eh', 'canada', this) // 1st branch
+
+//=> on('arr', [{moose: true}, 0], this)
+//=> on('arr.0', [{moose: true}], this)
+//=> on('arr.0.moose', true, this)
+//=> on('arr.1', [0], this)
+
+```
+---
+
+<!-- /div -->
+
+<!-- div -->
+
+<h3 id="Traverse-prototype-remove" data-member="Traverse" data-category="Methods" data-name="remove"><code>Traverse.remove([arg=undefined])</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L397 "View in source") [&#x24C9;][1]
+
+(Function): Remove the current element from the output.
+If the node is in an Array it will be spliced off.
+Otherwise it will be deleted from its parent.
+
+
+#### @Since
+2.0.0
+
+#### Arguments
+1. `[arg=undefined]` *(|Object)*: optional obj to use, defaults to this.node
+
+#### Returns
+*(void)*:
+
+#### Example
+```js
+traverse([0]).forEach((key, val, it) => it.remove())
+//=> []
+
+traverse({ eh: true }).forEach((key, val, it) => it.remove())
+//=> {}
+
+traverse({ eh: true, str: 'stringy' }).forEach((key, val, it) => {
+  if (!isString(val)) it.remove()
 })
-console.dir(scrubbed)
-//=> { a: 1, b: 2, c: [ 3, 4 ] }
+//=> {str: 'stringy'}
 
 ```
 ---
@@ -268,53 +274,53 @@ console.dir(scrubbed)
 
 <!-- div -->
 
-<h3 id="Traverse-prototype-clone"><a href="#Traverse-prototype-clone">#</a>&nbsp;<code>Traverse.prototype.clone()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L319 "View in source") [&#x24C9;][1]
+<h3 id="Traverse-prototype-skip" data-member="Traverse" data-category="Methods" data-name="skip"><code>Traverse.skip()</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L298 "View in source") [&#x24C9;][1]
 
-(Function): Create a deep clone of the object.
+Function
+
+
+#### @todos 
+
+- [ ] skip 1 branch
+ 
+
+#### @Since
+3.0.0
 
 #### Returns
-*(any)*:
+*(void)*:
 
 #### Example
 ```js
-const { traverse, eq } = require('chain-able')
-
-const obj = { eh: true, canada: [1] }
-const cloned = traverse(obj).clone()
-cloned.eh = false
-eq(cloned, obj)
-//=> false
-
-```
----
-
-<!-- /div -->
-
-<!-- div -->
-
-<h3 id="Traverse-prototype-forEach"><a href="#Traverse-prototype-forEach">#</a>&nbsp;<code>Traverse.prototype.forEach(callback=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L226 "View in source") [&#x24C9;][1]
-
-(Function): Execute fn for each node in the object but unlike .map(), when this.update() is called it updates the object in-place. executes a provided function once for each traversed element.
-
-#### Arguments
-1. `callback=undefined` *(Function)*: provided callback function
-
-#### Returns
-*(any)*: this.value
-
-#### Example
-```js
-var { traverse } = require('chain-able')
-
-var obj = [5, 6, -3, [7, 8, -2, 1], { f: 10, g: -13 }]
-traverse(obj).forEach(function(x) {
-  if (x < 0) this.update(x + 128)
+traverse([1, 2, 3, [4]]).forEach((key, val, t) => {
+  if (isArray(val)) t.skip()
 })
 
-console.dir(obj)
-//=> [ 5, 6, 125, [ 7, 8, 126, 1 ], { f: 10, g: 115 } ]
+```
+---
+
+<!-- /div -->
+
+<!-- div -->
+
+<h3 id="Traverse-prototype-stop" data-member="Traverse" data-category="Methods" data-name="stop"><code>Traverse.stop()</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L278 "View in source") [&#x24C9;][1]
+
+(Function): stop the iteration
+
+#### Returns
+*(void)*:
+
+#### Example
+```js
+traverse({ eh: true, arr: [] }).forEach((key, val, t) => {
+  if (isArray(val)) this.stop()
+})
 
 ```
 ---
@@ -323,143 +329,72 @@ console.dir(obj)
 
 <!-- div -->
 
-<h3 id="Traverse-prototype-get"><a href="#Traverse-prototype-get">#</a>&nbsp;<code>Traverse.prototype.get(ps=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L105 "View in source") [&#x24C9;][1]
+<h3 id="Traverse-prototype-update" data-member="Traverse" data-category="Methods" data-name="update"><code>Traverse.update(value=undefined)</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L440 "View in source") [&#x24C9;][1]
 
-(Function): Get the element at the array path.
+(Function): update the value for the current key
 
 
-### @todos 
+#### @Since
+2.0.0
 
-- [ ] hasOwnProperty
+#### Arguments
+1. `value=undefined` *(&#42;)*: this.node&#91;this.key&#93; = value
+
+#### Returns
+*(void)*:
+
+#### Example
+```js
+traverse({ eh: true }).forEach((key, val, traverser) => {
+  if (this.isRoot) return
+  traverser.update(false)
+})
+//=> {eh: false}
+
+```
+---
+
+<!-- /div -->
+
+<!-- /div -->
+
+<!-- div -->
+
+## `clone`
+
+<!-- div -->
+
+<h3 id="clone" data-member="" data-category="Methods" data-name="clone"><code>clone(arg=undefined)</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L801 "View in source") [&#x24C9;][1]
+
+Function
+
+
+#### @todos 
+
+- [ ] merge with dopemerge?
+- [ ] needs tests converted back for this (observe tests do cover somewhat)
  
 #### Arguments
-1. `ps=undefined` *(string&#91;&#93;)*: paths
+1. `arg=undefined` *(&#42;)*: defaults to this.node
 
 #### Returns
-*(any)*: value at dot-prop
-
----
-
-<!-- /div -->
-
-<!-- div -->
-
-<h3 id="Traverse-prototype-has"><a href="#Traverse-prototype-has">#</a>&nbsp;<code>Traverse.prototype.has(pathsArray=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L144 "View in source") [&#x24C9;][1]
-
-(Function): Return whether the element at the array path exists.
-
-#### Arguments
-1. `pathsArray=undefined` *(string&#91;&#93;)*: paths
-
-#### Returns
-*(boolean)*: has element at path
+*(&#42;)*: cloned
 
 #### Example
 ```js
-traverse({ eh: true }).has(['eh'])
-//=> true
-
-```
-#### Example
-```js
-traverse({ eh: true }).has(['canada'])
+var obj = {}
+var cloned = traverse().clone(obj)
+obj.eh = true
+eq(obj, cloned)
 //=> false
 
 ```
-#### Example
-```js
-traverse([0]).has([2])
-//=> false
-
-```
----
-
-<!-- /div -->
-
-<!-- div -->
-
-<h3 id="Traverse-prototype-nodes"><a href="#Traverse-prototype-nodes">#</a>&nbsp;<code>Traverse.prototype.nodes()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L294 "View in source") [&#x24C9;][1]
-
-(Function): Return an Array of every node in the object.
-
-#### Returns
-*(&#42;)*:
-
----
-
-<!-- /div -->
-
-<!-- div -->
-
-<a href="https://github.com/fluents/chain-able/blob/master/test/traverse/keys.js">🔬  Tests: keys</a>&nbsp;
-
-<h3 id="Traverse-prototype-paths"><a href="#Traverse-prototype-paths">#</a>&nbsp;<code>Traverse.prototype.paths()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L281 "View in source") [&#x24C9;][1]
-
-(Function): Return an Array of every possible non-cyclic path in the object. Paths are Arrays of string keys.
-
-#### Returns
-*(&#42;)*:
-
----
-
-<!-- /div -->
-
-<!-- div -->
-
-<h3 id="Traverse-prototype-reduce"><a href="#Traverse-prototype-reduce">#</a>&nbsp;<code>Traverse.prototype.reduce(cb=undefined, init=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L264 "View in source") [&#x24C9;][1]
-
-(Function): applies a function against an accumulator and each element in the array *(from left to right)* to reduce it to a single value. calls cb for each loop that is .notRoot defaults initial value to `this.value`
-
-#### Arguments
-1. `cb=undefined` *(Function)*: callback forEach
-2. `init=undefined` *(Array|Object|any)*: initial value
-
-#### Returns
-*(&#42;)*:
-
-#### Example
-```js
-var { traverse } = require('chain-able')
-
-var obj = {
-  a: [1, 2, 3],
-  b: 4,
-  c: [5, 6],
-  d: { e: [7, 8], f: 9 },
-}
-
-var leaves = traverse(obj).reduce(function(acc, x) {
-  if (this.isLeaf) acc.push(x)
-  return acc
-}, [])
-
-console.dir(leaves)
-//=> [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
-
-```
----
-
-<!-- /div -->
-
-<!-- div -->
-
-<h3 id="Traverse-prototype-set"><a href="#Traverse-prototype-set">#</a>&nbsp;<code>Traverse.prototype.set(arrayPath=undefined, value=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L166 "View in source") [&#x24C9;][1]
-
-(Function): Set the element at the array path to value.
-
-#### Arguments
-1. `arrayPath=undefined` *(string&#91;&#93;)*: paths
-2. `value=undefined` *(any)*: any value to assign to the element @ the path
-
-#### Returns
-*(any)*: value passed in
-
 ---
 
 <!-- /div -->
@@ -468,374 +403,27 @@ console.dir(leaves)
 
 <!-- div -->
 
-## `after`
+## `copy`
 
 <!-- div -->
 
-<h3 id="after"><a href="#after">#</a>&nbsp;<code>after(fn=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L485 "View in source") [&#x24C9;][1]
-
-(Function): Call this function after any of the children are traversed.
-
-#### Arguments
-1. `fn=undefined` *(Function)*:
-
-#### Returns
-*(any)*:
-
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `before`
-
-<!-- div -->
-
-<h3 id="before"><a href="#before">#</a>&nbsp;<code>before(fn=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L477 "View in source") [&#x24C9;][1]
-
-(Function): Call this function before any of the children are traversed.
-You can assign into this.keys here to traverse in a custom order.
-
-#### Arguments
-1. `fn=undefined` *(Function)*:
-
-#### Returns
-*(any)*:
-
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `block`
-
-<!-- div -->
-
-<h3 id="block"><a href="#block">#</a>&nbsp;<code>block()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L517 "View in source") [&#x24C9;][1]
+<h3 id="copy" data-member="" data-category="Methods" data-name="copy"><code>copy(src=undefined)</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L808 "View in source") [&#x24C9;][1]
 
 Function
 
-#### Returns
-*(void)*:
 
----
+#### @todos 
 
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `circular`
-
-<!-- div -->
-
-<h3 id="circular"><a href="#circular">#</a>&nbsp;<code>circular</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L427 "View in source") [&#x24C9;][1]
-
-unknown
-
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `delete`
-
-<!-- div -->
-
-<h3 id="delete"><a href="#delete">#</a>&nbsp;<code>delete(stopHere=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L448 "View in source") [&#x24C9;][1]
-
-(Function): Delete the current element from its parent in the output. Calls delete even on Arrays.
-
-#### Arguments
-1. `stopHere=undefined` *(boolean)*:
-
-#### Returns
-*(void)*:
-
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `forEach`
-
-<!-- div -->
-
-<h3 id="forEach"><a href="#forEach">#</a>&nbsp;<code>forEach()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L673 "View in source") [&#x24C9;][1]
-
-(Function): adds methods to Traverser
-
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `isRoot`
-
-<!-- div -->
-
-<h3 id="isRoot"><a href="#isRoot">#</a>&nbsp;<code>isRoot</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L417 "View in source") [&#x24C9;][1]
-
-(Boolean): Whether the present node is the root node
-
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `key`
-
-<!-- div -->
-
-<h3 id="key"><a href="#key">#</a>&nbsp;<code>key</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L412 "View in source") [&#x24C9;][1]
-
-unknown
-
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `level`
-
-<!-- div -->
-
-<h3 id="level"><a href="#level">#</a>&nbsp;<code>level</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L422 "View in source") [&#x24C9;][1]
-
-(number): Depth of the node within the traversal
-
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `node`
-
-<!-- div -->
-
-<h3 id="node"><a href="#node">#</a>&nbsp;<code>node</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L390 "View in source") [&#x24C9;][1]
-
-(Array): The present node on the recursive walk
-
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `node_`
-
-<!-- div -->
-
-<h3 id="node_"><a href="#node_">#</a>&nbsp;<code>node_</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L396 "View in source") [&#x24C9;][1]
-
-Array
-
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `parent`
-
-<!-- div -->
-
-<h3 id="parent"><a href="#parent">#</a>&nbsp;<code>parent</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L406 "View in source") [&#x24C9;][1]
-
-unknown
-
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `path`
-
-<!-- div -->
-
-<h3 id="path"><a href="#path">#</a>&nbsp;<code>path</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L401 "View in source") [&#x24C9;][1]
-
-(Array): An array of string keys from the root to the present node
-
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `post`
-
-<!-- div -->
-
-<h3 id="post"><a href="#post">#</a>&nbsp;<code>post(fn=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L501 "View in source") [&#x24C9;][1]
-
-(Function): Call this function after each of the children are traversed.
-
-#### Arguments
-1. `fn=undefined` *(Function)*:
-
-#### Returns
-*(any)*:
-
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `pre`
-
-<!-- div -->
-
-<h3 id="pre"><a href="#pre">#</a>&nbsp;<code>pre(fn=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L493 "View in source") [&#x24C9;][1]
-
-(Function): Call this function before each of the children are traversed.
-
-#### Arguments
-1. `fn=undefined` *(Function)*:
-
-#### Returns
-*(any)*:
-
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `remove`
-
-<!-- div -->
-
-<h3 id="remove"><a href="#remove">#</a>&nbsp;<code>remove(stopHere=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L457 "View in source") [&#x24C9;][1]
-
-(Function): Remove the current element from the output. If the node is in an Array it will be spliced off. Otherwise it will be deleted from its parent.
-
-#### Arguments
-1. `stopHere=undefined` *(boolean)*:
-
-#### Returns
-*(void)*:
-
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `return`
-
-<!-- div -->
-
-<h3 id="return"><a href="#return">#</a>&nbsp;<code>return(node_=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L374 "View in source") [&#x24C9;][1]
-
-Function
-
-#### Arguments
-1. `node_=undefined` *(any)*:
-
-#### Returns
-*(State)*: see types
-
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `state`
-
-<!-- div -->
-
-<h3 id="state"><a href="#state">#</a>&nbsp;<code>state</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L385 "View in source") [&#x24C9;][1]
-
-(Object): Each method that takes a callback has a context *(its this object)* with these attributes:
-
-
-### @classProps 
-
-* {isRoot} @alias isNotRoot Whether or not the present node is a leaf node (has no children) 
+- [ ] ugh, how to clone better with *recursive* objects?
  
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `stop`
-
-<!-- div -->
-
-<h3 id="stop"><a href="#stop">#</a>&nbsp;<code>stop()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L509 "View in source") [&#x24C9;][1]
-
-Function
+#### Arguments
+1. `src=undefined` *(any)*: wip
 
 #### Returns
-*(void)*:
+*(any)*: wip
 
 ---
 
@@ -849,110 +437,12 @@ Function
 
 <!-- div -->
 
-<h3 id=""><a href="#">#</a>&nbsp;<code>walk(root=undefined, cb=undefined, immutable=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L360 "View in source") [&#x24C9;][1]
+<h3 id="" data-member="" data-category="Properties" data-name="traverse"><code></code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L22 "View in source") [&#x24C9;][1]
 
-Function
-
-#### Arguments
-1. `root=undefined` *(any)*: root node
-2. `cb=undefined` *(Function)*: callback for each
-3. `immutable=undefined` *(boolean)*: should mutate or not
-
-#### Returns
-*(any)*:
-
----
-
-<!-- /div -->
-
-<!-- div -->
-
-<h3 id=""><a href="#">#</a>&nbsp;<code>copy(src=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L610 "View in source") [&#x24C9;][1]
-
-Function
-
-
-### @notes 
-
-* wicked ternary
- 
-
-### @todos 
-
-- [ ] does not respect ObjectDescriptors
- 
-#### Arguments
-1. `src=undefined` *(any)*:
-
-#### Returns
-*(any)*:
-
----
-
-<!-- /div -->
-
-<!-- div -->
-
-<h3 id="traverse"><a href="#traverse">#</a>&nbsp;<code>traverse(obj=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L7 "View in source") [&#x24C9;][1]
-
-Function
-
-#### Arguments
-1. `obj=undefined` *(Traversable)*: object to traverse
-
-#### Example
-```js
-traverse({})
-//=> new Traverse(obj)
-
-```
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `update`
-
-<!-- div -->
-
-<h3 id="update"><a href="#update">#</a>&nbsp;<code>update(x=undefined, stopHere=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L436 "View in source") [&#x24C9;][1]
-
-(Function): Set a new value for the present node.
-All the elements in value will be recursively traversed unless stopHere is true.
-
-#### Arguments
-1. `x=undefined` *(Function)*:
-2. `stopHere=undefined` *(boolean)*:
-
-#### Returns
-*(void)*:
-
----
-
-<!-- /div -->
-
-<!-- /div -->
-
-<!-- div -->
-
-## `updateState`
-
-<!-- div -->
-
-<h3 id="updateState"><a href="#updateState">#</a>&nbsp;<code>updateState()</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/traverse.js#L533 "View in source") [&#x24C9;][1]
-
-(Function): updates if needed:
-
-#### Returns
-*(void)*:
+unknown
 
 ---
 
@@ -962,4 +452,4 @@ All the elements in value will be recursively traversed unless stopHere is true.
 
 <!-- /div -->
 
- [1]: #traverse.prototype "Jump back to the TOC."
+ [1]: #traverse "Jump back to the TOC."

@@ -4,22 +4,22 @@
 
 <!-- div -->
 
-## `CM`
-* <a href="#CM">`CM`</a>
+## `ChainedMapBase`
+* <a href="#ChainedMapBase-prototype-ComposeChainedMap"  data-meta="ChainedMapBase ComposeChainedMap SuperClass ChainedMapBase"  data-call="ComposeChainedMap SuperClass ChainedMapBase"  data-category="Methods"  data-description="Function ChainedMap composer"  data-name="ComposeChainedMap"  data-member="ChainedMapBase"  data-see="href https github com fluents chain able blob master src ChainedMapBase js label ChainedMapBase"  data-all="meta ChainedMapBase n n ComposeChainedMap SuperClass ChainedMapBase call ComposeChainedMap SuperClass ChainedMapBase category Methods description Function ChainedMap composer name ComposeChainedMap member ChainedMapBase see href https github com fluents chain able blob master src ChainedMapBase js label ChainedMapBase notes todos klassProps" >`ChainedMapBase.ComposeChainedMap`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
 ## `merge`
-* <a href="#merge">`merge`</a>
+* <a href="#merge"  data-meta="merge obj undefined handleMergeFn undefined"  data-call="merge obj undefined handleMergeFn undefined"  data-category="merge"  data-description="Function merges an object with the current store"  data-name="merge"  data-see="href https github com fluents chain able blob master src deps dopemerge dopemerge js label deps dopemerge href https github com fluents chain able blob master src MergeChain js label MergeChain"  data-todos="needs to pass in additional opts somehow"  data-all="meta merge obj undefined handleMergeFn undefined call merge obj undefined handleMergeFn undefined category merge description Function merges an object with the current store name merge member see href https github com fluents chain able blob master src deps dopemerge dopemerge js label deps dopemerge href https github com fluents chain able blob master src MergeChain js label MergeChain notes todos needs to pass in additional opts somehow n klassProps" >`merge`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
 ## `method`
-* <a href="#method">`method`</a>
+* <a href="#method"  data-meta="method names undefined"  data-call="method names undefined"  data-category="methods"  data-description="Function the way to easily start building methods when using chainable instances"  data-name="method"  data-see="href https github com fluents chain able blob master src MethodChain js label MethodChain"  data-all="meta method names undefined call method names undefined category methods description Function the way to easily start building methods when using chainable instances name method member see href https github com fluents chain able blob master src MethodChain js label MethodChain notes todos klassProps" >`method`</a>
 
 <!-- /div -->
 
@@ -29,7 +29,7 @@
 
 <!-- div -->
 
-## `CM`
+## `ChainedMapBase`
 
 <!-- div -->
 
@@ -38,22 +38,24 @@
 
 <a href="https://github.com/fluents/chain-able/blob/master/test/ChainedMap.js">🔬  Tests: ChainedMap</a>&nbsp;
 
-<h3 id="CM"><a href="#CM">#</a>&nbsp;<code>CM([SuperClass=ChainedMapBase])</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMap.js#L31 "View in source") [&#x24C9;][1]
+<h3 id="ChainedMapBase-prototype-ComposeChainedMap" data-member="ChainedMapBase" data-category="Methods" data-name="ComposeChainedMap"><code>ChainedMapBase.ComposeChainedMap([SuperClass=ChainedMapBase])</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMap.js#L33 "View in source") [&#x24C9;][1]
 
 (Function): ChainedMap composer
 
 
-### @see 
+#### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/dopemerge/dopemerge.js">fluents/chain able/blob/master/src/deps/dopemerge/dopemerge.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/MergeChain.js">fluents/chain able/blob/master/src/merge chain.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/ChainedMapBase.js" >ChainedMapBase</a>
 
-### @extends
+#### @extends
 ChainedMapBase
 
 
-#### Since
+
+#### @Since
 0.0.1
 
 #### Arguments
@@ -83,22 +85,25 @@ hehchain instanceof heh
 
 <!-- div -->
 
-<h3 id="merge"><a href="#merge">#</a>&nbsp;<code>merge(obj=undefined, [handleMergeFn=undefined])</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMap.js#L99 "View in source") [&#x24C9;][1]
+<h3 id="merge" data-member="" data-category="merge" data-name="merge"><code>merge(obj=undefined, [handleMergeFn=undefined])</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMap.js#L101 "View in source") [&#x24C9;][1]
 
 (Function): merges an object with the current store
 
 
-### @see 
+#### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/dopemerge/dopemerge.js">fluents/chain able/blob/master/src/deps/dopemerge/dopemerge.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/MergeChain.js">fluents/chain able/blob/master/src/merge chain.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/dopemerge/dopemerge.js" >deps/dopemerge</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/MergeChain.js" >MergeChain</a>
 
-### @todos 
+#### @todos 
 
 - [ ] needs to pass in additional opts somehow...
  
-#### Since
+
+#### @Since
 0.4.0
 
 #### Arguments
@@ -139,17 +144,19 @@ const chain = new Chain()
 
 <!-- div -->
 
-<h3 id="method"><a href="#method">#</a>&nbsp;<code>method(names=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMap.js#L63 "View in source") [&#x24C9;][1]
+<h3 id="method" data-member="" data-category="methods" data-name="method"><code>method(names=undefined)</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/ChainedMap.js#L65 "View in source") [&#x24C9;][1]
 
 (Function): the way to easily start building methods when using chainable instances
 
 
-### @see 
+#### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/dopemerge/dopemerge.js">fluents/chain able/blob/master/src/deps/dopemerge/dopemerge.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/MergeChain.js">fluents/chain able/blob/master/src/merge chain.js</a>
-#### Since
+* <a href="https://github.com/fluents/chain-able/blob/master/src/MethodChain.js" >MethodChain</a>
+
+#### @Since
 4.0.0
 
 #### Arguments
@@ -175,4 +182,4 @@ chain.get('eh')
 
 <!-- /div -->
 
- [1]: #cm "Jump back to the TOC."
+ [1]: #chainedmapbase "Jump back to the TOC."

@@ -4,22 +4,22 @@
 
 <!-- div -->
 
-## `arrayHasAll`
-* <a href="#arrayHasAll">`arrayHasAll`</a>
+## `arrayIncludesAll`
+* <a href="#arrayIncludesAll"  data-meta="arrayIncludesAll needles undefined haystack undefined"  data-call="arrayIncludesAll needles undefined haystack undefined"  data-category="Methods"  data-description="Function"  data-name="arrayIncludesAll"  data-see="href https github com fluents chain able search utf8 E2 9C 93 q stringIncludesAll type label stringIncludesAll"  data-all="meta arrayIncludesAll needles undefined haystack undefined call arrayIncludesAll needles undefined haystack undefined category Methods description Function name arrayIncludesAll member see href https github com fluents chain able search utf8 E2 9C 93 q stringIncludesAll type label stringIncludesAll notes todos klassProps" >`arrayIncludesAll`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
 ## `includesAll`
-* <a href="#includesAll">`includesAll`</a>
+* <a href="#includesAll"  data-meta="includesAll needle undefined haystack undefined"  data-call="includesAll needle undefined haystack undefined"  data-category="Methods"  data-description="Function"  data-name="includesAll"  data-see="href https github com fluents chain able search utf8 E2 9C 93 q arrayIncludesAll type label arrayIncludesAll href https github com fluents chain able search utf8 E2 9C 93 q stringIncludesAll type label stringIncludesAll"  data-all="meta includesAll needle undefined haystack undefined call includesAll needle undefined haystack undefined category Methods description Function name includesAll member see href https github com fluents chain able search utf8 E2 9C 93 q arrayIncludesAll type label arrayIncludesAll href https github com fluents chain able search utf8 E2 9C 93 q stringIncludesAll type label stringIncludesAll notes todos klassProps" >`includesAll`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
-## `strHasAll`
-* <a href="#strHasAll">`strHasAll`</a>
+## `stringIncludesAll`
+* <a href="#stringIncludesAll"  data-meta="stringIncludesAll needle undefined haystack undefined"  data-call="stringIncludesAll needle undefined haystack undefined"  data-category="Methods"  data-description="Function"  data-name="stringIncludesAll"  data-all="meta stringIncludesAll needle undefined haystack undefined call stringIncludesAll needle undefined haystack undefined category Methods description Function name stringIncludesAll member see notes todos klassProps" >`stringIncludesAll`</a>
 
 <!-- /div -->
 
@@ -29,15 +29,21 @@
 
 <!-- div -->
 
-## `arrayHasAll`
+## `arrayIncludesAll`
 
 <!-- div -->
 
-<h3 id="arrayHasAll"><a href="#arrayHasAll">#</a>&nbsp;<code>arrayHasAll(needles=undefined, haystack=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/all.js#L24 "View in source") [&#x24C9;][1]
+<h3 id="arrayIncludesAll" data-member="" data-category="Methods" data-name="arrayIncludesAll"><code>arrayIncludesAll(needles=undefined, haystack=undefined)</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/all.js#L28 "View in source") [&#x24C9;][1]
 
 Function
 
+
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=stringIncludesAll&type=" >stringIncludesAll</a>
 #### Arguments
 1. `needles=undefined` *(string&#91;&#93;)*:
 2. `haystack=undefined` *(string&#91;&#93;)*:
@@ -57,18 +63,38 @@ Function
 
 <!-- div -->
 
-<h3 id="includesAll"><a href="#includesAll">#</a>&nbsp;<code>includesAll(needle=undefined, haystack=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/all.js#L39 "View in source") [&#x24C9;][1]
+<h3 id="includesAll" data-member="" data-category="Methods" data-name="includesAll"><code>includesAll(needle=undefined, haystack=undefined)</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/all.js#L54 "View in source") [&#x24C9;][1]
 
 Function
 
+
+#### @see 
+
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=arrayIncludesAll&type=" >arrayIncludesAll</a>
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=stringIncludesAll&type=" >stringIncludesAll</a>
+
+#### @Since
+4.0.0
+
 #### Arguments
-1. `needle=undefined` *(string|string&#91;&#93;)*:
-2. `haystack=undefined` *(string&#91;&#93;)*:
+1. `needle=undefined` *(string|string&#91;&#93;)*: everything in haystack is in this
+2. `haystack=undefined` *(string&#91;&#93;)*: everything in this is in the needle
 
 #### Returns
 *(boolean)*:
 
+#### Example
+```js
+/// 'canada' and 'can' are both in it, so true
+includesAll('canada', ['canada', 'can'])
+includesAll(['eh'], 'e') //=> true
+includesAll(['eh'], 'nope') //=> false
+includesAll('eh', ['no', 'eh']) //=> false
+
+```
 ---
 
 <!-- /div -->
@@ -77,12 +103,14 @@ Function
 
 <!-- div -->
 
-## `strHasAll`
+## `stringIncludesAll`
 
 <!-- div -->
 
-<h3 id="strHasAll"><a href="#strHasAll">#</a>&nbsp;<code>strHasAll(needle=undefined, haystack=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/all.js#L9 "View in source") [&#x24C9;][1]
+<h3 id="stringIncludesAll" data-member="" data-category="Methods" data-name="stringIncludesAll"><code>stringIncludesAll(needle=undefined, haystack=undefined)</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/conditional/includes/all.js#L13 "View in source") [&#x24C9;][1]
 
 Function
 
@@ -93,6 +121,10 @@ Function
 #### Returns
 *(boolean)*:
 
+#### Example
+```js
+
+```
 ---
 
 <!-- /div -->
@@ -101,4 +133,4 @@ Function
 
 <!-- /div -->
 
- [1]: #arrayhasall "Jump back to the TOC."
+ [1]: #arrayincludesall "Jump back to the TOC."

@@ -1,7 +1,12 @@
-const isNotEmptyArray = require('../is/notEmptyArray')
 const isReal = require('../is/real')
-const isObjWithKeys = require('../is/objWithKeys')
+const isEmpty = require('../is/empty')
 const ObjectKeys = require('../util/keys')
+const filterWhere = require('../loop/filter/filterWhere')
+const reduceToObj = require('./toObj')
+
+// const [isNotReal, isNotEmpty] = [isReal, isEmpty].map(not)
+// const isNotEmptyOrNotReal = or(isNotReal, isNotEmpty)
+const mapNotEmpty = filterWhere('_', x => isReal(x) && !isEmpty(x))
 
 /**
  * @desc goes through the maps,
@@ -16,10 +21,13 @@ const ObjectKeys = require('../util/keys')
  * @param {Object} obj object to clean, usually .entries()
  * @return {Object} reduced object, without `notReal` values
  *
+ * @TODO seems to be overkill with reducing mapping just copy & ignore or delete?
+ *
  * @see reduce
  * @see isObjWithKeys
  * @see isNotEmptyArray
  * @see isReal
+ * @see http://underscorejs.org/#reduce
  *
  * @example
  *
@@ -37,13 +45,9 @@ const ObjectKeys = require('../util/keys')
  *
  */
 module.exports = function clean(obj) {
-  return ObjectKeys(obj).reduce(function(acc, key) {
-    const val = obj[key]
+  const mapped = mapNotEmpty(obj)
+  const keys = ObjectKeys(mapped)
+  const iterator = (reduced, key) => (reduced[key] = mapped[key])
 
-    if (isReal(val) && (isNotEmptyArray(val) || isObjWithKeys(val))) {
-      acc[key] = val
-    }
-
-    return acc
-  }, {})
+  return reduceToObj(keys, iterator)
 }

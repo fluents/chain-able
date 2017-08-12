@@ -4,38 +4,38 @@
 
 <!-- div -->
 
-## `DotProp.prototype`
-* <a href="#DotProp-prototype-get">`DotProp.prototype.get`</a>
-* <a href="#DotProp-prototype-set">`DotProp.prototype.set`</a>
+## `DotProp`
+* <a href="#DotProp-prototype-get"  data-meta="get key undefined fallback undefined"  data-call="get key undefined fallback undefined"  data-category="Methods"  data-description="Function dot prop enabled get"  data-name="get"  data-member="DotProp"  data-see="href https github com fluents chain able search utf8 E2 9C 93 q ChainedMap get type label ChainedMap get href https github com fluents chain able blob master src deps dot delete js label deps dot href https github com fluents chain able blob master src deps is dot js label deps is dot"  data-todos="dot prop on non store instance property when using nested chains"  data-all="meta get key undefined fallback undefined call get key undefined fallback undefined category Methods description Function dot prop enabled get name get member DotProp see href https github com fluents chain able search utf8 E2 9C 93 q ChainedMap get type label ChainedMap get href https github com fluents chain able blob master src deps dot delete js label deps dot href https github com fluents chain able blob master src deps is dot js label deps is dot notes todos dot prop on non store instance property when using nested chains n klassProps" >`DotProp.get`</a>
+* <a href="#DotProp-prototype-set"  data-meta="set"  data-call="set"  data-category="Properties"  data-description="unknown"  data-name="set"  data-member="DotProp"  data-see="href https github com fluents chain able search utf8 E2 9C 93 q TargetedMap set type label TargetedMap set href https github com fluents chain able search utf8 E2 9C 93 q dot type label dot"  data-all="meta set call set category Properties description unknown name set member DotProp see href https github com fluents chain able search utf8 E2 9C 93 q TargetedMap set type label TargetedMap set href https github com fluents chain able search utf8 E2 9C 93 q dot type label dot notes todos klassProps" >`DotProp.set`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
-## `Observe.prototype`
-* <a href="#Observe-prototype-exports">`Observe.prototype.exports`</a>
+## `Observe`
+* <a href="#Observe-prototype-exports"  data-meta="ChainedMap exports Target undefined"  data-call="exports Target undefined"  data-category="Chainable"  data-description="Function"  data-name="exports"  data-member="Observe"  data-see="href https github com fluents chain able blob master src deps dot delete js label deps dot"  data-all="meta ChainedMap n n exports Target undefined call exports Target undefined category Chainable description Function name exports member Observe see href https github com fluents chain able blob master src deps dot delete js label deps dot notes todos klassProps" >`Observe.exports`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
 ## `delete`
-* <a href="#delete">`delete`</a>
+* <a href="#delete"  data-meta="delete"  data-call="delete"  data-category="Properties"  data-description="unknown"  data-name="delete"  data-see="href https github com fluents chain able blob master src deps dot delete js label deps dot href https github com fluents chain able blob master src deps is dot js label deps is dot"  data-all="meta delete call delete category Properties description unknown name delete member see href https github com fluents chain able blob master src deps dot delete js label deps dot href https github com fluents chain able blob master src deps is dot js label deps is dot notes todos klassProps" >`delete`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
 ## `dot`
-* <a href="#dot">`dot`</a>
-* <a href="#dot">`dot`</a>
+* <a href="#dot"  data-meta="dot"  data-call="dot"  data-category="Properties"  data-description="unknown"  data-name="dot"  data-all="meta dot call dot category Properties description unknown name dot member see notes todos klassProps" >`dot`</a>
+* <a href="#dot"  data-meta="dot useDot undefined"  data-call="dot useDot undefined"  data-category="Methods"  data-description="Function"  data-name="dot"  data-see="href https github com fluents chain able blob master src deps meta decorated js label deps meta"  data-all="meta dot useDot undefined call dot useDot undefined category Methods description Function name dot member see href https github com fluents chain able blob master src deps meta decorated js label deps meta notes todos klassProps" >`dot`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
 ## `has`
-* <a href="#has">`has`</a>
+* <a href="#has"  data-meta="has"  data-call="has"  data-category="Properties"  data-description="unknown"  data-name="has"  data-see="href https github com fluents chain able blob master src deps dot delete js label deps dot href https github com fluents chain able blob master src deps is dot js label deps is dot"  data-all="meta has call has category Properties description unknown name has member see href https github com fluents chain able blob master src deps dot delete js label deps dot href https github com fluents chain able blob master src deps is dot js label deps is dot notes todos klassProps" >`has`</a>
 
 <!-- /div -->
 
@@ -45,26 +45,30 @@
 
 <!-- div -->
 
-## `DotProp.prototype`
+## `DotProp`
 
 <!-- div -->
 
-<h3 id="DotProp-prototype-get"><a href="#DotProp-prototype-get">#</a>&nbsp;<code>DotProp.prototype.get(key=undefined, [fallback=undefined])</code></h3>
+<h3 id="DotProp-prototype-get" data-member="DotProp" data-category="Methods" data-name="get"><code>DotProp.get(key=undefined, [fallback=undefined])</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/DotProp.js#L199 "View in source") [&#x24C9;][1]
 
 (Function): dot-prop enabled get
 
 
-### @see 
+#### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/dot/delete.js">fluents/chain able/blob/master/src/deps/dot/delete.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/dot.js">fluents/chain able/blob/master/src/deps/is/dot.js</a>
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=ChainedMap.get&type=" >ChainedMap.get</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/dot/delete.js" >deps/dot</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/dot.js" >deps/is/dot</a>
 
-### @todos 
+#### @todos 
 
 - [ ] dot-prop on non-store instance.property when using nested chains...
  
-#### Since
+
+#### @Since
 3.0.1
 
 #### Arguments
@@ -99,17 +103,20 @@ chain.get(['moose', 'simple'])
 
 <!-- div -->
 
-<h3 id="DotProp-prototype-set"><a href="#DotProp-prototype-set">#</a>&nbsp;<code>DotProp.prototype.set</code></h3>
+<h3 id="DotProp-prototype-set" data-member="DotProp" data-category="Properties" data-name="set"><code>DotProp.set</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/DotProp.js#L141 "View in source") [&#x24C9;][1]
 
 unknown
 
 
-### @see 
+#### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/dot/delete.js">fluents/chain able/blob/master/src/deps/dot/delete.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/dot.js">fluents/chain able/blob/master/src/deps/is/dot.js</a>
-#### Since
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=TargetedMap.set&type=" >TargetedMap.set</a>
+* <a href="https://github.com/fluents/chain-able/search?utf8=%E2%9C%93&q=.dot&type=" >.dot</a>
+
+#### @Since
 3.0.1
 
 #### Example
@@ -128,29 +135,30 @@ chain.set('moose.simple', 1)
 
 <!-- div -->
 
-## `Observe.prototype`
+## `Observe`
 
 <!-- div -->
 
 <a href="https://github.com/fluents/chain-able/blob/master/test/DotProp.js">🔬  Tests: DotProp</a>&nbsp;
 
-<h3 id="Observe-prototype-exports"><a href="#Observe-prototype-exports">#</a>&nbsp;<code>Observe.prototype.exports(Chain=undefined)</code></h3>
+<h3 id="Observe-prototype-exports" data-member="Observe" data-category="Chainable" data-name="exports"><code>Observe.exports(Target=undefined)</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/DotProp.js#L88 "View in source") [&#x24C9;][1]
 
 Function
 
 
-### @see 
+#### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/dot/delete.js">fluents/chain able/blob/master/src/deps/dot/delete.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/dot.js">fluents/chain able/blob/master/src/deps/is/dot.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/dot/delete.js" >deps/dot</a>
 
-### @extends
+#### @extends
 ChainedMap
 
 
 #### Arguments
-1. `Chain=undefined` *(Class|Composable)*: composable class
+1. `Target=undefined` *(Class|Composable)*: composable class
 
 #### Returns
 *(DotProp)*: class
@@ -200,17 +208,20 @@ chain.get(['moose', 'canada', 'igloo'])
 
 <!-- div -->
 
-<h3 id="delete"><a href="#delete">#</a>&nbsp;<code>delete</code></h3>
+<h3 id="delete" data-member="" data-category="Properties" data-name="delete"><code>delete</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/DotProp.js#L255 "View in source") [&#x24C9;][1]
 
 unknown
 
 
-### @see 
+#### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/dot/delete.js">fluents/chain able/blob/master/src/deps/dot/delete.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/dot.js">fluents/chain able/blob/master/src/deps/is/dot.js</a>
-#### Since
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/dot/delete.js" >deps/dot</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/dot.js" >deps/is/dot</a>
+
+#### @Since
 3.0.1
 
 #### Example
@@ -242,12 +253,15 @@ chain.has('moose.canada')
 
 <!-- div -->
 
-<h3 id="dot"><a href="#dot">#</a>&nbsp;<code>dot</code></h3>
+<h3 id="dot" data-member="" data-category="Properties" data-name="dot"><code>dot</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/DotProp.js#L4 "View in source") [&#x24C9;][1]
 
 unknown
 
-#### Since
+
+#### @Since
 2.0.0
 
 ---
@@ -256,17 +270,19 @@ unknown
 
 <!-- div -->
 
-<h3 id="dot"><a href="#dot">#</a>&nbsp;<code>dot([useDot=undefined])</code></h3>
+<h3 id="dot" data-member="" data-category="Methods" data-name="dot"><code>dot([useDot=undefined])</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/DotProp.js#L116 "View in source") [&#x24C9;][1]
 
 Function
 
 
-### @see 
+#### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/dot/delete.js">fluents/chain able/blob/master/src/deps/dot/delete.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/dot.js">fluents/chain able/blob/master/src/deps/is/dot.js</a>
-#### Since
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/meta/decorated.js" >deps/meta</a>
+
+#### @Since
 3.0.1
 
 #### Arguments
@@ -297,17 +313,20 @@ toArr(chain.store.keys())
 
 <!-- div -->
 
-<h3 id="has"><a href="#has">#</a>&nbsp;<code>has</code></h3>
+<h3 id="has" data-member="" data-category="Properties" data-name="has"><code>has</code></h3>
+<br>
+<br>
 [&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/compose/DotProp.js#L222 "View in source") [&#x24C9;][1]
 
 unknown
 
 
-### @see 
+#### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/dot/delete.js">fluents/chain able/blob/master/src/deps/dot/delete.js</a>
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/dot.js">fluents/chain able/blob/master/src/deps/is/dot.js</a>
-#### Since
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/dot/delete.js" >deps/dot</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/dot.js" >deps/is/dot</a>
+
+#### @Since
 3.0.1
 
 #### Example
@@ -325,4 +344,4 @@ chain.has('one.two')
 
 <!-- /div -->
 
- [1]: #dotprop.prototype "Jump back to the TOC."
+ [1]: #dotprop "Jump back to the TOC."

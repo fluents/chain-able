@@ -41,6 +41,7 @@ test('.method().encase().onValid', () => {
     .encase()
     .then(val => expect(val).toBeTruthy())
     .catch(e => {
+      throw e
       /* istanbul ignore next: this means tests fail, shouldn't hit this */
       fail(e)
     })

@@ -1,15 +1,16 @@
 const TraverseChain = require('../TraverseChain')
+const curry = require('../deps/fp/curry')
 const isObj = require('../deps/is/obj')
 const isTrue = require('../deps/is/true')
-const isFalse = require('../deps/is/false')
+const isFalsy = require('../deps/is/falsy')
 const isUndefined = require('../deps/is/undefined')
 const ObjectKeys = require('../deps/util/keys')
 const dotPropPaths = require('../deps/dot/paths')
-const TRANSFORMERS_KEY = require('../deps/meta/transformers')
-const OBSERVERS_KEY = require('../deps/meta/observers')
+const TRANSFORMERS_KEY = require('../deps/meta/TRANSFORMERS_KEY')
+const OBSERVERS_KEY = require('../deps/meta/OBSERVERS_KEY')
 
 /**
- * @param  {Class | Composable} Target composable class
+ * @param {Class | Composable} Target composable class
  * @return {TransformChain} class
  * @example
  *    compose(class {})
@@ -37,7 +38,7 @@ module.exports = Target => {
    * {@link https://github.com/iluwatar/java-design-patterns/tree/master/state state-pattern}
    * {@link https://github.com/iluwatar/java-design-patterns/tree/master/strategy strategy-pattern}
    */
-  // return class Transform extends Target {
+  // class Transform extends Target
   // -------------------------------------------
 
   /**
@@ -53,14 +54,26 @@ module.exports = Target => {
    * @example
    *  TAKE FROM TRAVERSECHAIN
    */
-  Target.prototype.traverse = function traverseChain(useThis = false) {
+  Target.prototype.traverse = function traverseChain(useThis) {
     /* prettier-ignore */
     return new TraverseChain(this)
-      .obj(isFalse(useThis)
-        ? this.entries(true)
-        : isTrue(useThis)
-          ? this
-          : useThis
+      .obj(
+        // @NOTE
+        // defaultTo(false, useThis)
+        //  defaulting arg to false is shorter
+        //  & faster than void 0 inline checks
+        //  that mutate arguments (when transpiled)
+        isFalsy(useThis)
+          ? this.entries(true)
+          : isTrue(useThis)
+            ? this
+            : useThis
+
+        // isFalse(useThis)
+        //   ? this.entries(true)
+        //   : isTrue(useThis)
+        //     ? this
+        //     : useThis
       )
   }
 
@@ -114,6 +127,8 @@ module.exports = Target => {
    * @inheritdoc
    * @since 1.0.0
    *
+   * @TODO curry
+   *
    * @param {Primitive} key key to set with
    * @param {any} val value to set for key
    * @param {undefined | string | Array<string>} dotPropKey special key used for initializing dot prop values in an optimized way to keep reference
@@ -136,6 +151,7 @@ module.exports = Target => {
     // get
     const observers = this.meta(OBSERVERS_KEY)
 
+    // @TODO !isEmpty
     // skip the below if we have no observers
     if (!observers.length) {
       return this
@@ -152,6 +168,27 @@ module.exports = Target => {
 
     return this
   }
+
+  // @TODO
+  // // https://stackoverflow.com/questions/31158902/is-it-possible-to-sort-a-es6-map-object
+  // ordered(comperator = null) {
+  //   // this.set = this.before(this.set)
+  //   this.set = (key, value) => {
+  //     // have to iterate over the keys before setting
+  //     // and then after merging in values, update
+  //     if (this.store.has(key)) {
+  //       // first
+  //       let keys = this.store.keys()
+  //       if (isFunction(comperator)) keys = keys.sort(comperator)
+  //
+  //       // after
+  //       const store = this.store
+  //       this.store = new Map()
+  //       keys.forEach(keyInOrder => this.store.set(key, store.get(key)))
+  //       store.clear()
+  //     }
+  //   }
+  // }
 
   // --- remap ---
   /**
@@ -187,8 +224,7 @@ module.exports = Target => {
    *
    */
   Target.prototype.remap = function chainRemap(from, to) {
-    let remap = from
-    if (!isObj(from)) remap = {[from]: to}
+    let remap = isObj(from) ? from : {[from]: to}
 
     /* prettier-ignore */
     ObjectKeys(remap).forEach(key => this.transform(key, val => {

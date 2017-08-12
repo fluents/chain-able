@@ -7,12 +7,11 @@
 [![BuildStatus](https://travis-ci.org/fluents/awesome-fluents.svg?branch=master)](https://travis-ci.org/fluents/awesome-fluents)
 [![Coverage Status](https://coveralls.io/repos/github/fluents/chain-able/badge.svg?branch=master)](https://coveralls.io/github/fluents/chain-able?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b1d92a30c4aa43df9a6233cfadde2307)](https://www.codacy.com/app/aretecode/chain-able?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=fluents/chain-able&amp;utm_campaign=Badge_Grade)
-[![gzip size](http://img.badgesize.io/https://unpkg.com/chain-able@3.0.0/index.amd.js?compression=gzip)](https://unpkg.com/chain-able@3.0.0)
+[![gzip size](http://img.badgesize.io/https://unpkg.com/chain-able@4.0.6/dists/amd/index.js?compression=gzip)](https://unpkg.com/chain-able@4.0.6)
+
 [![fluent](https://img.shields.io/badge/⛓-fluent-9659F7.svg)](https://github.com/fluents/awesome-fluents)
 [![fluent](https://img.shields.io/badge/🎡-playground-black.svg)](https://aretecode.github.io/chain-able-playground/)
 
-
-<!-- https://david-dm.org/fluents/chain-able.svg -->
 [david-deps-img]: https://img.shields.io/badge/0-dependencies-blue.svg
 [david-deps-url]: https://david-dm.org/fluents/chain-able
 [chain-able-npm-image]: https://img.shields.io/npm/v/chain-able.svg
@@ -57,6 +56,8 @@
 
 > interfaces that describe their intentions
 
+❗ chain-able now has a website!
+[🔗 chain-able.js.org](https://chain-able.js.org)
 
 ### 📦 install
 
@@ -64,6 +65,11 @@
 yarn add chain-able
 npm i chain-able --save
 ```
+
+#### cdn
+- _dev_ `<script src="https://unpkg.com/chain-able@beta/dists/dev/index.js"></script>`
+- _min_ `<script src="https://unpkg.com/chain-able@beta/dists/umd/index.js"></script>`
+
 
 # 🏰 benefits
 
@@ -78,8 +84,8 @@ writing an api using chain-able means:
 
 - [expressive, clearly communicative code][wiki]
 - [runtime type validation][Schema]
-- [🔬 230+ tests][Tests] with [96%+ code coverage][cov]
-- ⚡ [performant & tiny][Src] `~7kb` _(gzip)_ [_300 byte_ minimal version available as snippet][snippet]
+- [🔬 300+ tests][Tests] with [96%+ code coverage][cov]
+- ⚡ [performant & tiny][Src] `~8kb` _(gzip)_ [_300 byte_ minimal version available as snippet][snippet]
 
 <details><summary><em><b>more...</b></em></summary>
 
@@ -123,7 +129,6 @@ writing an api using chain-able means:
 - [🏭 infinitely nestable understandable factories][FactoryChain]
 - [▶️◀️ easy deep merging][MergeChain]
 - [☮️ compatibility - typescript, nodejs,  webpack, rollup, fusebox, babel, buble, amd][API]
-- ⚡ performant & tiny `~7kb` _(gzip)_ [_300 byte_ minimal version available as snippet][snippet]
 
 </details>
 
@@ -140,4 +145,4 @@ writing an api using chain-able means:
 - thanks to [Jon Schlinkert](https://github.com/jonschlinkert/kind-of) & [inferno](https://github.com/infernojs/inferno/blob/master/packages/inferno-shared/src/index.ts) for type checking inspirations
 - transpiled with [buble](https://gitlab.com/Rich-Harris/buble)
 - [Martin Fowler on FluentInterface](https://www.martinfowler.com/bliki/FluentInterface.html)
-<!-- - thanks to [ramda](https://github.com/ramda/ramda/tree/master/src/internal) & [lodash](https://github.com/lodash/lodash) for the currying -->
+- [ramda](https://github.com/ramda/ramda) & [lodash](https://github.com/lodash/lodash) for some well tested & documented utilities (currying, mapping)

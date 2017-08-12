@@ -7,22 +7,21 @@
  */
 const ChainedMap = require('../../ChainedMapBase')
 const ENV_DEBUG = require('../env/debug')
-const is = require('../is')
-const isArray = require('../is/array')
-const isReal = require('../is/real')
+const is = require('../is/_core')
 const isString = require('../is/string')
 const isFunction = require('../is/function')
 const dopemerge = require('../dopemerge')
-const camelCase = require('../camel-case')
+const camelCase = require('../string/camelCase')
 const not = require('../conditional/not')
-const and = require('../conditional/and')
 const or = require('../conditional/or')
-const all = require('../conditional/all')
+const isArrayOf = require('../is/arrayOf')
+const isNotRealOrIsEmpty = require('../is/notRealOrIsEmpty')
+const replace = require('../fp/replace')
 
 let validators = new ChainedMap()
 
 // eslint-disable-next-line
-const stripArithmeticSymbols = x => x.replace(/[?\[\]!\|]/g, '')
+const stripArithmeticSymbols = replace(/[?\[\]!\|]/g, '')
 const escapedKey = x => camelCase('is-' + x)
 const enummy = enums => x => enums === x || enums.includes(x)
 
@@ -77,15 +76,6 @@ const addTypes = types =>
 
 addTypes(is)
 
-// ----
-// @NOTE: putting these as functions increased size 20 bytes: worth it
-// ----
-
-// @SIZE: another 10bytes for these fns
-const isNotRealOrIsEmptyString = and(not(isReal), x => x === '')
-
-// const isArrayOf = predicate => x => isArray(x) && x.every(predicate)
-const isArrayOf = predicate => and(isArray, all(predicate))
 const includesAndOr = x => x.includes('|') || x.includes('&')
 
 /**
@@ -186,7 +176,7 @@ function arithmeticTypeFactory(fullKey) {
   const typeOrArrayOrType = `${key}[]`
   const notType = `!${key}`
 
-  const isValidOrNotRealOrEmptyStr = or(fn, isNotRealOrIsEmptyString)
+  const isValidOrNotRealOrEmptyStr = or(fn, isNotRealOrIsEmpty)
   const isValidOrArrayOfValid = or(fn, isArrayOf(fn))
   if (doesNotHave(optionalType)) {
     set(optionalType, isValidOrNotRealOrEmptyStr)
@@ -226,22 +216,22 @@ function arithmeticTypeFactory(fullKey) {
  *    // functionType
  *    const isString = x => typeof x === 'string'
  *    builder(isString)
- *    // => isString
+ *    //=> isString
  *
  * @example
  *
  *    // stringType (built in, or custom-keyed validator, or eqeqeq)
  *    builder('string')
- *    // => isString
+ *    //=> isString
  *
  *    const enummy = builder('enum')
- *    // => x => ['enum'].includes(x)
+ *    //=> x => ['enum'].includes(x)
  *
  * @example
  *
  *    // arithmeticType
  *    builder('string|string[]')
- *    // => isString || isArrayOf(isString)
+ *    //=> isString || isArrayOf(isString)
  *
  */
 function builder(fullKey) {

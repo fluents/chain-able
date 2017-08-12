@@ -7,11 +7,13 @@ const toS = require('./toS')
  * @return {boolean} x isGenerator
  *
  * @alternate fn.constructor.name === 'GeneratorFunction'
- * @see https://github.com/jonschlinkert/kind-of/blob/master/index.js#L66
+ *
+ * {@link https://github.com/jonschlinkert/kind-of/blob/master/index.js#L66}
+ * @see {@link kind-of}
  *
  * @example
  *
- *   isGenerator(*function() {})
+ *  isGenerator(*function() {})
  *  //=> true
  *  isGenerator(function() {})
  *  //=> false

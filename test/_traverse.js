@@ -6,9 +6,32 @@ const log = require('fliplog')
 const traverse = require('../src/deps/traverse')
 const isArray = require('../src/deps/is/array')
 const isObj = require('../src/deps/is/obj')
+const isNumber = require('../src/deps/is/number')
+const isReal = require('../src/deps/is/real')
 
-const {eq} = traverse
+const {eq, copy} = traverse
 const deepEqual = eq
+
+test('pre-copy eq to themselves invariant for environment', () => {
+  const date = new Date(0, 0, 0, 0)
+  expect(date).toBe(date)
+
+  const error = new Error('ehror')
+  expect(error).toBe(error)
+
+  const regexp = new RegExp('../', 'gmi')
+  expect(regexp).toBe(regexp)
+})
+test('copy', () => {
+  const date = new Date(0, 0, 0, 0)
+  expect(copy(date)).not.toBe(date)
+
+  const error = new Error('ehror')
+  expect(copy(error)).not.toBe(error)
+
+  const regexp = new RegExp('../', 'gmi')
+  expect(copy(regexp)).not.toBe(regexp)
+})
 
 test('deepDates', () => {
   expect.assertions(2)
@@ -226,10 +249,63 @@ test('Fn vs Fn', () => {
   console.log('noop != noops')
   expect(!deepEqual(noop, noops)).toBeTruthy()
 })
+test('Fn vs Fn - string diff', () => {
+  function noop() {
+    /* noop */
+  }
+  function noops() {
+    /* noops */
+  }
+  noop()
+  noops()
+
+  expect(deepEqual(noop, noop)).toBe(true)
+  expect(deepEqual(noop, noops)).toBe(false)
+})
 test('ObjKeys', () => {
   expect(
     !deepEqual({one: true, two: true}, {one: true, three: false})
   ).toBeTruthy()
+})
+test.skip('supports.equals', () => {
+  const alwaysFalse = {
+    equals() {
+      return false
+    },
+  }
+  const alwaysTrue = {
+    equals() {
+      return true
+    },
+  }
+
+  expect(deepEqual(alwaysFalse, alwaysTrue)).toBe(false)
+  expect(deepEqual(alwaysTrue, alwaysFalse)).toBe(true)
+})
+
+test.skip('eq: simple primitives', () => {
+  // 'null == undefined'
+  expect(eq(null, undefined)).toBe(true)
+
+  // 'null == null'
+  expect(eq(null, null)).toBe(true)
+
+  // '1 == 1'
+  expect(eq(1, 1)).toBe(true)
+  // '"1" == 1'
+  expect(eq(1, '1')).toBe(true)
+
+  // '"1" ~= 1'
+  expect(eq(1, '1', true)).toBe(true)
+
+  // '1 == 0'
+  expect(eq(1, 0)).toBe(true)
+
+  // '1 == [1]'
+  expect(eq(1, [1])).toBe(true)
+
+  // '[1] == [1]'
+  expect(eq([1], [1])).toBe(true)
 })
 
 test.skip('edge', () => {
@@ -266,29 +342,6 @@ test.skip('edge', () => {
   expect(deepEqual(new Error(), '1')).toBe(true)
   // expect(deepEqual(new Promise(r => r()).toBe(true), new Error('2')).toBe(true))
   // expect(deepEqual(new Promise(r => r()).toBe(true), 'string')).toBe(true)
-
-  // 'null == undefined'
-  expect(eq(null, undefined)).toBe(true)
-
-  // 'null == null'
-  expect(eq(null, null)).toBe(true)
-
-  // '1 == 1'
-  expect(eq(1, 1)).toBe(true)
-  // '"1" == 1'
-  expect(eq(1, '1')).toBe(true)
-
-  // '"1" ~= 1'
-  expect(eq(1, '1', true)).toBe(true)
-
-  // '1 == 0'
-  expect(eq(1, 0)).toBe(true)
-
-  // '1 == [1]'
-  expect(eq(1, [1])).toBe(true)
-
-  // '[1] == [1]'
-  expect(eq([1], [1])).toBe(true)
 
   // '{1, 3} == {1, 3}'
   expect(eq({one: 2, three: 3}, {one: 2, three: 3})).toBe(true)
@@ -349,8 +402,8 @@ test('stringify', () => {
     // console.log('before', t.key, t.path.join(''), '\n\n')
 
     // s += '\nbefore\n'
-    if (isArray(t.iteratee)) s += '['
-    else if (isObj(t.iteratee)) s += '{'
+    if (isArray(t.node)) s += '['
+    else if (isObj(t.node)) s += '{'
   })
 
   trav.pre(traverser => {
@@ -358,7 +411,7 @@ test('stringify', () => {
     // console.log('pre', traverser.key, traverser.path.join(''), '\n\n')
     const key = traverser.key || traverser.path.join('')
 
-    if (key && isObj(traverser.iteratee) && !isArray(traverser.iteratee)) {
+    if (key && isObj(traverser.node) && !isArray(traverser.node)) {
       s += '"' + key + '"' + ':'
     }
   })
@@ -367,8 +420,8 @@ test('stringify', () => {
     // console.log('after')
     if (s.endsWith(',')) s = s.slice(0, -1)
     // s += '\nafter\n'
-    if (isArray(t.iteratee)) s += ']'
-    else if (isObj(t.iteratee)) s += '}'
+    if (isArray(t.node)) s += ']'
+    else if (isObj(t.node)) s += '}'
   })
   trav.post(child => {
     // console.log('post', child)
@@ -485,6 +538,44 @@ test('stop', () => {
 //
 //   expect(acc.join(' ')).toEqual('9 30 22')
 // })
+
+// ----- remove
+test('traverse no argument', () => {
+  traverse().forEach(() => {})
+})
+
+test('remove arr', () => {
+  traverse([]).forEach((key, val, it) => {})
+
+  const arr = [0]
+  traverse(arr).forEach((key, val, it) => it.remove())
+  expect(arr.filter(isReal)).toEqual([])
+
+  let arrString = [0, 100, 10, 100, 'not number', 200, 1000]
+  traverse(arrString).forEach((key, val, it) => {
+    log.bold(key).data(val).echo()
+    if (isNumber(val)) it.remove()
+  })
+
+  expect(arrString.filter(isReal)).toEqual(['not number'])
+})
+
+test('remove obj', () => {
+  const emptyObj = {}
+  traverse(emptyObj).forEach((key, val, it) => {})
+  expect(emptyObj).toEqual(emptyObj)
+
+  const obj = {eh: true}
+  traverse(obj).forEach((key, val, it) => it.remove())
+  expect(obj).toEqual({})
+
+  const objNumber = {eh: true, num: 100}
+  traverse(objNumber).forEach((key, val, it) => {
+    if (!isNumber(val)) it.remove()
+  })
+
+  expect(objNumber).toEqual({num: 100})
+})
 
 // --- leaves.js
 test('leaves test', () => {
@@ -613,15 +704,15 @@ test.skip('circClone - @FIXME', () => {
   console.log(clone.x[3][2] !== obj)
 })
 
-// test('circMapScrub', () => {
-//   var obj = {a: 1, b: 2}
-//   obj.c = obj
-//
-//   var scrubbed = traverse(obj).map(function(node) {
-//     if (this.circular) this.remove()
-//   })
-//   expect(Object.keys(scrubbed).sort()).toEqual(['a', 'b'])
-//   expect(deepEqual(scrubbed, {a: 1, b: 2}, true)).toBeTruthy()
-//
-//   expect(deepEqual(obj.c, obj, true)).toBeTruthy()
-// })
+test.skip('circMapScrub', () => {
+  var obj = {a: 1, b: 2}
+  obj.c = obj
+
+  var scrubbed = traverse(obj).map(function(node) {
+    if (this.circular) this.remove()
+  })
+  expect(Object.keys(scrubbed).sort()).toEqual(['a', 'b'])
+  expect(deepEqual(scrubbed, {a: 1, b: 2}, true)).toBeTruthy()
+
+  expect(deepEqual(obj.c, obj, true)).toBeTruthy()
+})

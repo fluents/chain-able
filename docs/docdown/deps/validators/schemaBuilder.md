@@ -4,15 +4,15 @@
 
 <!-- div -->
 
-## `schema.prototype`
-* <a href="#schema-prototype-typeValidator">`schema.prototype.typeValidator`</a>
+## `schema`
+* <a href="#schema-prototype-typeValidator"  data-meta="typeValidator input undefined"  data-call="typeValidator input undefined"  data-category="Methods"  data-description="Function build a recursive schema for all around runtime type safety"  data-name="typeValidator"  data-member="schema"  data-see="href https github com fluents chain able blob master src deps expressions bitwiseMathOperator js label is"  data-all="meta n typeValidator input undefined call typeValidator input undefined category Methods description Function build a recursive schema for all around runtime type safety name typeValidator member schema see href https github com fluents chain able blob master src deps expressions bitwiseMathOperator js label is notes todos klassProps" >`schema.typeValidator`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
 ## `schemaFactory`
-* <a href="#schemaFactory">`schemaFactory`</a>
+* <a href="#schemaFactory"  data-meta="schemaFactory property undefined nestedSchema undefined"  data-call="schemaFactory property undefined nestedSchema undefined"  data-category="Methods"  data-description="Function pass the property schema in get a nestable typeValidator out"  data-name="schemaFactory"  data-all="meta schemaFactory property undefined nestedSchema undefined call schemaFactory property undefined nestedSchema undefined category Methods description Function pass the property schema in get a nestable typeValidator out name schemaFactory member see notes todos klassProps" >`schemaFactory`</a>
 
 <!-- /div -->
 
@@ -22,24 +22,27 @@
 
 <!-- div -->
 
-## `schema.prototype`
+## `schema`
 
 <!-- div -->
 
-<h3 id="schema-prototype-typeValidator"><a href="#schema-prototype-typeValidator">#</a>&nbsp;<code>schema.prototype.typeValidator(input=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/validators/schemaBuilder.js#L102 "View in source") [&#x24C9;][1]
+<h3 id="schema-prototype-typeValidator" data-member="schema" data-category="Methods" data-name="typeValidator"><code>schema.typeValidator(input=undefined)</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/validators/schemaBuilder.js#L91 "View in source") [&#x24C9;][1]
 
 (Function): build a recursive schema for all around runtime type safety
 
 
-### @see 
+#### @see 
 
-* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/is/array.js">fluents/chain able/blob/master/src/deps/is/array.js</a>
+* <a href="https://github.com/fluents/chain-able/blob/master/src/deps/expressions/bitwiseMathOperator.js" >is</a>
 
-### @symb 
+#### @symb 
 
 🛂 
-#### Since
+
+#### @Since
 4.0.0-beta.1
 
 #### Arguments
@@ -89,12 +92,15 @@ var isValid = typeValidator(1)
 
 <!-- div -->
 
-<h3 id="schemaFactory"><a href="#schemaFactory">#</a>&nbsp;<code>schemaFactory(property=undefined, nestedSchema=undefined)</code></h3>
-[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/validators/schemaBuilder.js#L60 "View in source") [&#x24C9;][1]
+<h3 id="schemaFactory" data-member="" data-category="Methods" data-name="schemaFactory"><code>schemaFactory(property=undefined, nestedSchema=undefined)</code></h3>
+<br>
+<br>
+[&#x24C8;](https://github.com/fluents/chain-able/blob/master/src/deps/validators/schemaBuilder.js#L49 "View in source") [&#x24C9;][1]
 
 (Function): pass the property & schema in, get a nestable typeValidator out
 
-#### Since
+
+#### @Since
 4.0.0-alpha.1
 
 #### Arguments
@@ -139,4 +145,4 @@ input = {
 
 <!-- /div -->
 
- [1]: #schema.prototype "Jump back to the TOC."
+ [1]: #schema "Jump back to the TOC."

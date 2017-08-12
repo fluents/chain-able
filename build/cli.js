@@ -16,25 +16,45 @@
 //   - run test
 // - run cov
 const {resolve, basename} = require('path')
+const jetpack = require('fs-jetpack')
 const fwf = require('funwithflags')
 const Script = require('script-chain')
 const log = require('fliplog')
 const {read, write} = require('flipfile')
-const {del} = require('./util')
+const eslint = require('eslint')
 // const docdown = require('docdown')
-const {stripRollup} = require('./plugins/ast')
 const find = require('chain-able-find')
+const Chainable = require('../exports')
+const {del, _res, fromTo} = require('./util')
+const {stripRollup} = require('./plugins/ast')
 
-const res = rel => resolve(__dirname, rel)
-const resRoot = rel => resolve(res('../'), rel)
+const {linter, CLIEngine} = eslint
+const res = _res(__dirname)
+const resRoot = _res('../')
+
+const {
+  replace, pipe, dot, traverse, uniq, includes, not, and, trim,
+} = Chainable
+
+const hasColon = includes(':')
+const hasDot = includes('.')
 
 // https://github.com/chalk/ansi-regex/blob/master/index.js
 const ansiRegex = /[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-PRZcf-nqry=><]/g
-const stripAnsi = str => str.replace(ansiRegex, '')
+const stripAnsi = replace(ansiRegex, '')
 
 const timer = log.fliptime()
 timer.start('cli')
 log.registerCatch()
+
+// startsWith '//' || '/*'
+const stripWhitespace = replace(/(\s|\t|\n)+/g, '')
+const _isComment = x =>
+  x.startsWith('//') ||
+  x.startsWith('*') ||
+  x.startsWith('/*') ||
+  x.includes('remapped from')
+const isComment = pipe(trim, stripWhitespace, _isComment)
 
 // setup args
 // src: [rollup, typescript, buble, babel, browserify, copy/strip]
@@ -48,6 +68,9 @@ const argvOpts = {
     'optimize',
     'diff',
     'doctrine',
+    'easyexports',
+    'cleaneasyexports',
+    'quick',
   ],
   string: ['format'],
   default: {
@@ -60,11 +83,24 @@ const argvOpts = {
     diff: false,
     production: true,
     doctrine: false,
+    easyexports: false,
+    cleaneasyexports: false,
     format: ['amd', 'iife', 'dev', 'es', 'cjs', 'umd'],
   },
 }
 const argvs = fwf(process.argv.slice(2), argvOpts)
-const {production, quick, tests, cov, clean, docs, diff, doctrine} = argvs
+const {
+  production,
+  quick,
+  tests,
+  cov,
+  clean,
+  docs,
+  diff,
+  doctrine,
+  easyexports,
+  cleaneasyexports,
+} = argvs
 
 const OPTIMIZE_JS_FILE = '../dists/umd/index.js'
 const TSC_SOURCE = '../dists/dev/index.js'
@@ -151,23 +187,30 @@ const testFiles = find
   .results()
 
 const toRel = filepath => filepath.replace(root, '').replace(entry, '')
-const dot = require('../src/deps/dot')
-const traverse = require('../src/deps/traverse')
-const uniq = require('../src/deps/array/uniq')
 
 const repoPath = 'https://github.com/fluents/chain-able/blob/master'
 const repoDocPath =
   'https://github.com/fluents/chain-able/blob/master/docs/docdown'
 const toDocPath = filepathBasename =>
   (res('../docs/docdown/') + '/' + filepathBasename).replace('.js', '.md')
-const toRepoPath = filepathBasename => repoPath + filepathBasename
 const toRepoDocPath = filepathBasename => repoDocPath + filepathBasename
 const toBasename = filePath => basename(filePath)
-const stripDot = filePath => filePath.replace(/[.]/gim, '')
-const escapeDot = filePath => filePath.replace(/[.]/gim, '\\.')
-const slashToDot = filePath => filePath.replace(/\//gim, '.')
 const toAnchor = (label, href) => `[${basename(label)}](${href || label})`
-const stripExt = filePath => filePath.replace(/\.[a-zA-Z0-9]{0,3}/, '')
+const stripDot = replace(/[.]/gim, '')
+const escapeDot = replace(/[.]/gim, '\\.')
+const slashToDot = replace(/\//gim, '.')
+const stripExt = replace(/\.[a-zA-Z0-9]{0,3}/, '')
+
+
+// ensure there is a `/` between them, say if we just resolve a filename
+const toRepoPath = filepathBasename => {
+  if (repoPath.endsWith('/') || filepathBasename.startsWith('/')) {
+    return repoPath + filepathBasename
+  }
+  else {
+    return repoPath + '/' + filepathBasename
+  }
+}
 
 // cli class
 class CLI {
@@ -260,67 +303,9 @@ class CLI {
   rollupNode(overrides = {}) {
     return require('./build')(overrides)
   }
-  doctrine() {
+  doctrine(source) {
     var doctrineAPI = require('doctrine')
-    var ast = doctrineAPI.parse(
-      [
-        `
-          /**
-           * {@link https://ponyfoo.com/articles/es6-maps-in-depth pony-map}
-           * {@link https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map mozilla-map}
-           * @see {@link pony-map}
-           * @see {@link mozilla-map}
-           *
-           * @see ChainedMap
-           * @see Chainable
-           * @see MergeChain
-           * @see MethodChain
-           * @see ChainedMap
-           *
-           */
-        `,
-        // `
-        //   /**
-        //    * @param  {*} x value
-        //    * @param  {any} [y] not real, for ast
-        //    * @return {boolean} isDate
-        //    *
-        //    * @since 3.0.0
-        //    * @memberOf is
-        //    * @func isDate
-        //    *
-        //    * @example
-        //    *
-        //    *  isDate(new Date())
-        //    *  //=> true
-        //    *  isDate(Date.now())
-        //    *  //=> false
-        //    *  isDate(1)
-        //    *  //=> false
-        //    *  isDate('')
-        //    *  //=> false
-        //    *
-        //    * @example
-        //    *
-        //    *  const e = {}
-        //    *  eh[Symbol.toStringTag] = '[Object Date]'
-        //    *  isDate(eh)
-        //    *  //=> true
-        //    *
-        //    * @example
-        //    *
-        //    *  class Eh extends Date()
-        //    *  isDate(new Eh())
-        //    *  //=> true
-        //    */
-        // `,
-        // '/**',
-        // ' * This function comment is parsed by doctrine',
-        // ' * @param {{ok:String}} userName',
-        // '*/',
-      ].join('\n'),
-      {unwrap: true, sloppy: true}
-    )
+    var ast = doctrineAPI.parse(source, {unwrap: true, sloppy: true})
     log.quick(ast)
   }
   docs() {
@@ -403,7 +388,7 @@ class CLI {
       .results()
 
     let dirs = allDirs
-      .map(dir => (dir.includes('.') ? dir.replace(basename(dir), '') : dir))
+      .map(dir => (hasDot(dir) ? dir.replace(basename(dir), '') : dir))
       .filter(uniq)
 
     const docFiles = vfs.src.rel
@@ -419,7 +404,7 @@ class CLI {
       let docName = doc.replace(repoDocPath, '')
 
       // file
-      if (doc.includes('.')) {
+      if (hasDot(doc)) {
         docName = stripExt(docName)
       }
 
@@ -440,8 +425,13 @@ class CLI {
     //   .replace(/(\[39|2m,)/gim, '')
     //   .replace(/\'/gim, '')
     //   .replace(/\,/gim, '')
-    const toCode = x => x.replace(/[├─│─┐└─]/gim, '`$&`')
+    const toCode = replace(/[├─│─┐└─]/gim, '`$&`')
     const treeify = log.requirePkg('treeify')
+
+    // const testColon = test(/\:$/)
+    // pipe(trim, testColon)
+    const endsWithColon = x => (/\:$/).test(x.trim())
+
     try {
       const tree = treeify.asTree(docsTree, true, true)
 
@@ -449,7 +439,7 @@ class CLI {
         .split('\n')
         .map(line => '- ' + toCode(line).replace('``', '` `'))
         .map(line => {
-          if (line.includes(':')) {
+          if (hasColon(line)) {
             return line
           }
           else {
@@ -468,10 +458,11 @@ class CLI {
           }
         })
         // ends with `:`
-        .map(
-          line =>
-            ((/\:$/).test(line.trim()) ? line.substring(0, line.length - 2) : line)
-        )
+        .map(line => (
+          endsWithColon(line)
+            ? line.substring(0, line.length - 2)
+            : line
+        ))
         .join('\n')
 
       // console.log(treeString)
@@ -484,7 +475,153 @@ class CLI {
       // )
     }
   }
+  // @TODO run versions index
+  versions() {}
+  cleanEasyExports() {
+    const {flatten} = require('../exports')
+    const {fromTo} = require('./util')
 
+    const exported = flatten(fromTo.values())
+
+    exported
+      // .map(exp => {
+      //   if (isNotInOutput(exp)) throw new Error(exp)
+      //   return exp
+      // })
+      .forEach(exp => {
+        log.red('deleting').data(exp).echo()
+        del(exp)
+      })
+  }
+  lintEasyExports() {
+    const temp = fromTo.folder
+    const files = jetpack
+      .list(temp)
+      // @TODO example difference currying makes
+      // .filter(filename => filename.includes('.js'))
+      .filter(includes('.js'))
+      .map(filename => res(temp + '/' + filename))
+
+    files.forEach(filename => this.lintEasyExport(filename, temp))
+    // log.quick({files})
+  }
+  // https://github.com/eslint/eslint/issues/4119 Load plugin when using eslint in node via the API
+  lintEasyExport(filename, dir) {
+    // @HACK @FIXME @TODO just is ignoring this silly copied over files
+    if (!filename.includes('build/')) return
+    if (filename.includes('index.web') ||
+      filename.includes('_exported') ||
+      filename.includes('_es6') ||
+      filename.includes('runner')
+    ) return
+
+    let config = {}
+    try {
+      const configPath = require.resolve('../../.eslintrc.js')
+      config = require(configPath)
+    }
+    catch (e) {
+      // ignore, some travis issue?
+    }
+    config.rules = {
+      'import/no-unresolved': 2,
+      // 'node/no-missing-require': 'error',
+    }
+    config.plugins.push('import')
+    // log.quick(config)
+
+    let source = read(filename)
+    log.bold(filename).echo()
+
+    source
+      .split('\n')
+      // ensure relativeish
+      .filter(and(includes('require'), includes('/')))
+      // .filter(not(isComment))
+      .map(line => {
+        // commented out lines
+        if (isComment(line)) return line
+
+        log.red(line).echo()
+        console.log('\n\n')
+        const parts = line.split('=')
+        const name = parts.shift().trim()
+        let requirePath = parts.pop()
+        if (!requirePath) {
+          // was just a comment 0.0
+          return line
+          // log.quick({parts, name})
+        }
+
+        // comment from exporting
+        requirePath = requirePath
+          .split('/*')
+          .shift()
+
+        if (requirePath.includes('.js')) {
+          // remove .js if needed
+          requirePath = requirePath
+            .split('.js')
+            .shift()
+        }
+
+        // keeps letters, numbers, `-` & `_` & `.`
+        const sillyRegExpSpecial = /(\s|\^|\$|\#|\@|\!|\&|\=|\+|\t|\n|\?|\>|\<|\{|\}|\[|\]|\|\'|\"|\`|\\|\)|\(|\:|\;|\*|\~|\%|\,)*/gmi
+        const dotSlash = /(\.\/)/gmi
+        requirePath = requirePath
+          .replace('require(', '')
+          // .replace(/[\W_-]+/g, '')
+          .replace(sillyRegExpSpecial, '')
+          .replace(dotSlash, '')
+          .replace(/'*/gmi, '')
+
+        log.blue(requirePath).echo()
+        if (!requirePath) {
+          log.quick(line)
+        }
+
+        requirePath = dir + '/' + requirePath
+
+        // ensure all paths exist
+        try {
+          require.resolve(requirePath)
+        }
+        catch (error) {
+          log.quick({error, requirePath})
+          log.catchAndThrow(error)
+        }
+      })
+
+    const colored = log.colored(source, 'cyan')
+    // log.cyan('before\n').data(colored).echo() // "var foo = bar;"
+    const eslintCli = new CLIEngine({
+      // configFile: configPath,
+      config,
+    })
+
+    const executed = eslintCli.executeOnText(source)
+    const {results} = executed
+    const unresolved = results[0]
+      .messages
+      .filter(msg => msg.ruleId === 'import/no-unresolved')
+      // .map(msg => msg.message)
+
+    // log.quick(unresolved)
+    // log.quick(eslintCli)
+
+    const verifiedMessages = linter.verify(source, config, {filename})
+    const code = linter.getSourceCode()
+
+    // ignoring, linting manually
+    // log.yellow('messages').data(verifiedMessages).echo()
+    // if (!code || !code.text) {
+    //   log.red('could not handle this file ').data({filename}).echo()
+    //   return source
+    // }
+    // log.yellow('code').fmtobj(code).echo()
+    // log.blue(code.text).echo() // "var foo = bar;"
+    // return code.text
+  }
   buble() {
     const sourcemaps = true
     const scripts = new Script()
@@ -578,16 +715,16 @@ async function publishing() {
   const rollupProdWith = opts => cli.rollupNode(prodWith(opts))
   const rollupDevWith = opts => cli.rollupNode(devWith(opts))
 
-  const prodBuilds = [
+  let prodBuilds = [
     {format: 'amd', falafel: false},
-    {format: 'iife', falafel: false},
     {format: 'es'},
     {format: 'cjs'},
+    {format: 'iife', falafel: false},
     // @HACK @FIXME just needs sourceType script
     {format: 'umd', verbose: true, debug: false},
   ]
 
-  const devBuilds = [
+  let devBuilds = [
     {
       exportName: 'debugger',
       debugger: true,
@@ -606,8 +743,16 @@ async function publishing() {
     },
   ]
 
+  // @NOTE quick, just build one
+  if (quick) {
+    log.bold('quick').echo()
+    prodBuilds = prodBuilds.slice(prodBuilds.length - 2)
+    devBuilds = []
+  }
+
   let devOps = devBuilds.map(dev => rollupDevWith(dev))
   let prodOps = prodBuilds.map(prod => rollupProdWith(prod))
+
   let builds = [].concat(devOps).concat(prodOps)
 
   const built = await Promise.all(builds)
@@ -617,6 +762,14 @@ async function publishing() {
 async function all() {
   timer.start('cli')
 
+  if (cleaneasyexports) {
+    await cli.cleanEasyExports()
+    process.exit()
+  }
+  if (easyexports) {
+    await cli.lintEasyExports()
+    process.exit()
+  }
   if (docs) {
     await cli.docs()
     process.exit()

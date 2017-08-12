@@ -30,6 +30,7 @@ test('.decorate(parent)', () => {
   const master = new Master()
   master.advanced('a+')
   master.easy(true)
+  // log.quick(master)
   expect(master.get('easy-peasy')).toBe(true)
   expect(master.eh.get('advanced') === 'a+').toBe(true)
 })

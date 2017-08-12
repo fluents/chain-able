@@ -1,0 +1,17 @@
+GITBOOK = node_modules/.bin/gitbook
+JSDOC = node_modules/.bin/jsdoc
+LESS = node_modules/.bin/lessc
+
+
+JSDOC_FILES := $(shell find jsdoc -type f | sort)
+LESS_FILES := $(shell find less -name '*.less' | sort)
+
+docs/%: $(VERSION)/docs/%
+	mkdir -p '$(@D)'
+	cp '$<' '$@'
+
+.PHONY: gitbook
+gitbook: check-version
+	$(GITBOOK) build manual './manual'
+	find './manual' -name '*.html' -print0 \
+	  | xargs -0 perl -p -i -e 's/ data-revision="[^"]*"//g'

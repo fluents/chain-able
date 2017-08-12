@@ -1,10 +1,11 @@
 const ArrayFrom = require('../util/from')
+const castIteratorToArray = require('../cast/iteratorToArray')
 
 /**
  * @desc Map -> Object
  * @since 4.0.0
  *
- * @param  {Map} map map to reduce, calls entries, turns into an array, then object
+ * @param {Map} map map to reduce, calls entries, turns into an array, then object
  * @return {Object} reduced object
  *
  * @see ArrayFrom
@@ -13,14 +14,14 @@ const ArrayFrom = require('../util/from')
  *
  *    var emptyMap = new Map()
  *    reduce(emptyMap)
- *    // => {}
+ *    //=> {}
  *
  * @example
  *
  *    var map = new Map()
  *    map.set('eh', 1)
  *    reduce(map)
- *    // => {eh: 1}
+ *    //=> {eh: 1}
  *
  */
 module.exports = map => {
@@ -31,7 +32,7 @@ module.exports = map => {
     reduced = ArrayFrom(map.entries()).reduce((acc, [key, value]) => {
       acc[key] = value
       return acc
-    }, {})
+    }, reduced)
   }
 
   return reduced

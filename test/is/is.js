@@ -4,15 +4,11 @@ const isPromise = require('../../src/deps/is/promise')
 const isAsync = require('../../src/deps/is/async')
 const isAsyncish = require('../../src/deps/is/asyncish')
 const isNative = require('../../src/deps/is/native')
-const ObjectDefine = require('../../src/deps/define')
+const isClass = require('../../src/deps/is/class')
+const ObjectDefine = require('../../src/deps/util/define')
+const size = require('../../src/deps/util/size')
 const stress = require('../_stress')
-const {
-  isMap,
-  isSet,
-  isFunction,
-  isObjWithKeys,
-  isPrototypeOf,
-} = require('./')
+const {isMap, isSet, isFunction, isObjWithKeys, isPrototypeOf} = require('./')
 
 test('stress', () => {
   stress()
@@ -83,7 +79,8 @@ var generatorFunction = function* named() {
 async function asyncFunction() {}
 const emptyPromise = new Promise(r => r)
 const datasObjs = [
-  new String('str'),
+  // @TODO
+  // new String('str'),
   Object.assign(anon2, {keys: true}),
   {keys: true},
 ]
@@ -110,6 +107,8 @@ test('should work for Set', () => {
 })
 
 test('objWithKeys', () => {
+  // datas.forEach(data => console.log([data, isObjWithKeys(data), size(data)]))
+  // datasObjs.forEach(data => console.log([data, isObjWithKeys(data)]))
   datas.map(data => expect(isObjWithKeys(data)).toBe(false))
   datasObjs.map(data => expect(isObjWithKeys(data)).toBe(true))
 })
@@ -121,10 +120,15 @@ test('objWithKeys', () => {
 //   t.false(isClass({}))
 // })
 
+test('isClass', () => {
+  const iz = isClass(eval('class Eh {}'))
+  expect(iz).toBe(true)
+  expect(isClass({})).toBe(false)
+})
 test('isPrototypeOf', () => {
   class SuperProto {}
   class SubProto extends SuperProto {}
-  var sub = new SubProto()
+  const sub = new SubProto()
 
   // SuperProto.isPrototypeOf(sub)
   expect(isPrototypeOf(Object.getPrototypeOf(sub), sub)).toBe(true)
@@ -139,7 +143,7 @@ test('isPrototypeOf on instance', () => {
     enumerable: false,
     value: instance => isPrototypeOf(SubProto.prototype, instance),
   })
-  var sub = new SubProto()
+  const sub = new SubProto()
 
   expect(new RegExp() instanceof SubProto).toBe(false)
   expect(sub instanceof SubProto).toBe(true)
