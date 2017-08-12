@@ -1,10 +1,17 @@
 const toS = require('./toS')
+const isTagEq = require('./tagEq')
+const isType = require('./type')
+const isArguments = require('./arguments')
 const isArray = require('./array')
+const isArrayOf = require('./arrayOf')
+const isArrayLike = require('./arrayLike')
 const isArrayTyped = require('./arrayTyped')
 const isArrayBuffer = require('./arrayBuffer')
 const isAsync = require('./async')
+const isAsyncish = require('./asyncish')
 const isBoolean = require('./boolean')
 const isBooleanPrimitive = require('./booleanPrimitive')
+const isBooleanLike = require('./booleanLike')
 const isBrowser = require('./browser')
 const isCircular = require('./circular')
 const isClass = require('./class')
@@ -20,6 +27,7 @@ const isFunction = require('./function')
 const isFalse = require('./false')
 const isFalsy = require('./falsy')
 const isFlattenable = require('./flattenable')
+const isFinite = require('./finite')
 const isGenerator = require('./generator')
 const hasIn = require('./hasIn')
 const isIterator = require('./iterator')
@@ -49,9 +57,12 @@ const isObjPure = require('./objPure')
 const isObjWithKeys = require('./objWithKeys')
 const isObjNotNull = require('./objNotNull')
 const isObjPlain = require('./objPlain')
+const isObjTag = require('./objTag')
+const isObjTypeof = require('./objTypeof')
 const ownPropertyIs = require('./ownPropertyIs')
 const isPrimitive = require('./primitive')
 const isPrototypeOf = require('./prototypeOf')
+const isPromise = require('./promise')
 const isRegExp = require('./regexp')
 const isReal = require('./real')
 const isStringOrNumber = require('./stringOrNumber')
@@ -63,11 +74,15 @@ const isUndefined = require('./undefined')
 const isUndefinedLike = require('./undefinedLike')
 const isUnsignedInteger = require('./unsignedInteger')
 const isURL = require('./url')
+const isValidArrayIndex = require('./validArrayIndex')
+const isValidIndex = require('./validIndex')
+const isValidPropertyKey = require('./validPropertyKey')
 const isWeakMap = require('./weakMap')
 const isWeakSet = require('./weakSet')
 const isWebWorker = require('./webWorker')
 const isWeakMapUsable = require('./weakMapUsable')
 const isZeroish = require('./zeroish')
+const hasDecimals = require('./hasDecimals')
 
 const getTag = toS
 
@@ -82,12 +97,17 @@ module.exports = {
   getTag,
   toS,
   // actual isses
+  isArguments,
+  isArrayOf,
+  isArrayLike,
+  isAsyncish,
   isArray,
   isArrayTyped,
   isArrayBuffer,
   isAsync,
   isBoolean,
   isBooleanPrimitive,
+  isBooleanLike,
   isBrowser,
   isCircular,
   isClass,
@@ -103,6 +123,7 @@ module.exports = {
   isFalse,
   isFalsy,
   isFlattenable,
+  isFinite,
   isGenerator,
   // not named is
   hasIn,
@@ -130,11 +151,14 @@ module.exports = {
   isNative,
   isNodeJS,
   isObj,
+  isObjTag,
+  isObjTypeof,
   isObjPure,
   isObjWithKeys,
   isObjNotNull,
   isObjPlain,
   isPrimitive,
+  isPromise,
   isPrototypeOf,
   isRegExp,
   isReal,
@@ -143,13 +167,19 @@ module.exports = {
   isSet,
   isSymbol,
   isTrue,
+  isType,
+  isTagEq,
   isUndefined,
   isUndefinedLike,
   isUnsignedInteger,
   isURL,
+  isValidArrayIndex,
+  isValidIndex,
+  isValidPropertyKey,
   isWeakMap,
   isWeakMapUsable,
   isWeakSet,
   isWebWorker,
   isZeroish,
+  hasDecimals,
 }

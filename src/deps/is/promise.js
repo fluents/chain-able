@@ -1,3 +1,4 @@
+const ENV_COMPAT = require('../env/compat')
 const toS = require('./toS')
 
 /**
@@ -42,3 +43,9 @@ const toS = require('./toS')
  *
  */
 module.exports = x => toS(x) === '[object Promise]'
+
+if (ENV_COMPAT) {
+  const isObj = require('./obj')
+  const isFunction = require('./function')
+  module.exports = x => isObj(x) && isFunction(x.then)
+}
