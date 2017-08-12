@@ -5,6 +5,7 @@ const flattenRecursive = require('./flattenRecursive')
 const concat = require('./concat')
 const insertAtIndex = require('./insertAtIndex')
 const uniq = require('./uniq')
+const preAllocate = require('./preAllocate')
 
 /**
  * @symb []
@@ -17,4 +18,5 @@ module.exports = {
   insertAtIndex,
   flattenRecursive,
   uniq,
+  preAllocate,
 }

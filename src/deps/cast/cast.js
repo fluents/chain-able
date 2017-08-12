@@ -20,6 +20,8 @@ const asciiToArray = require('./asciiToArray')
 const unicodeToArray = require('./unicodeToArray')
 const setToArray = require('./setToArray')
 const stringToArray = require('./stringToArray')
+const stringToCharCodes = require('./stringToCharCodes')
+const argumentsToArray = require('./argumentsToArray')
 // collection
 const objToMap = require('./objToMap')
 const arrayToSet = require('./arrayToSet')
@@ -66,12 +68,14 @@ module.exports = {
   // more casting
   asciiToArray,
 
+  argumentsToArray,
   iteratorToArray,
   arrayToIterator,
   arrayToObj,
   unicodeToArray,
   setToArray,
   stringToArray,
+  stringToCharCodes,
   objToArray,
   objToMap,
   toPlainObject,

@@ -14,6 +14,7 @@ const isBooleanPrimitive = require('./booleanPrimitive')
 const isBooleanLike = require('./booleanLike')
 const isBrowser = require('./browser')
 const isCircular = require('./circular')
+const isCollection = require('./collection')
 const isClass = require('./class')
 const isDate = require('./date')
 const isDataView = require('./dataView')
@@ -48,6 +49,7 @@ const isNull = require('./null')
 const isNumber = require('./number')
 const isNumberPrimitive = require('./numberPrimitive')
 const isNumberish = require('./numberish')
+const isNumberishWithDecimals = require('./numberishWithDecimals')
 const isNaN = require('./NaN')
 const isNative = require('./native')
 const isNodeJS = require('./nodejs')
@@ -110,6 +112,7 @@ module.exports = {
   isBooleanLike,
   isBrowser,
   isCircular,
+  isCollection,
   isClass,
   isDate,
   isDataView,
@@ -147,6 +150,7 @@ module.exports = {
   isNumber,
   isNumberPrimitive,
   isNumberish,
+  isNumberishWithDecimals,
   isNaN,
   isNative,
   isNodeJS,
